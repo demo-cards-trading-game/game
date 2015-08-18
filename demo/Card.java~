@@ -1,0 +1,20 @@
+package demo;
+ 
+public class card
+{
+
+  private int id;
+  
+  card(int id)/*constructor*/
+  {
+    this.id=id;
+   }
+  
+  public int Getid()
+  {
+    return(this.id);
+  }
+
+
+
+}
