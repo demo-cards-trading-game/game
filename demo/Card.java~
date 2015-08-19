@@ -1,11 +1,11 @@
 package demo;
  
-public class card
+public class Card
 {
 
   private int id;
   
-  card(int id)/*constructor*/
+  Card(int id)/*constructor*/
   {
     this.id=id;
    }
