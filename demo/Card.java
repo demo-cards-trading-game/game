@@ -1,5 +1,4 @@
 package demo;
-import java.util.Scanner;
 public class Card
 {
 
@@ -12,9 +11,9 @@ public class Card
   /*template el fondo gay de la carta ...depende del tipo de carta*/
   
   
-  Card(int id)/*constructor*/
+  public Card()/*constructor*/
   {
-    this.SetNumber=id;
+    this.SetNumber=0;
    }
   /**********************funciones de consulta****************************/
   public int Getid()
@@ -76,4 +75,15 @@ public class Card
   {
     this.Limit=New;
   } 
+  /***************************  otros **********************************/
+  public void PrintCard() /*imprime toda la info de las cartas (para pruebas)*/
+  {
+    System.out.println(this.SetNumber);
+    System.out.println(this.Cost);
+    System.out.println(this.Name);
+    System.out.println(this.Source);
+    System.out.println(this.Class);
+    System.out.println(this.Limit);
+    
+  }
 }
