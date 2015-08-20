@@ -86,4 +86,14 @@ public class Card
     System.out.println(this.Limit);
     
   }
+  
+  public void asignar(Card a, Card b)/*a = b */
+  {
+       a.SetNumber=b.SetNumber; /*id de la carta*/
+       a.Cost=b.Cost;    /*costo de mana */
+       a.Name=b.Name;  /*nombre de la carta*/
+       a.Class=b.Class; /*clase de la carta */
+       a.Limit=b.Limit;   /*el limite de esa carta que puede haber en un deck*/
+       a.Source=b.Source;
+  }
 }

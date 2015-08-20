@@ -14,6 +14,8 @@ public class Card
   public Card()/*constructor*/
   {
     this.SetNumber=0;
+    this.Limit=0;
+    this.Cost=0;
    }
   /**********************funciones de consulta****************************/
   public int Getid()
