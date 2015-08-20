@@ -1,6 +1,7 @@
 package demo;
 
 public class lista{
+	//clase noob de nodo
 	class Nodo {
         int id;
         Nodo ant,sig;
