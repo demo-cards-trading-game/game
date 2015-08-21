@@ -22,14 +22,17 @@ public class LoadData {
         Scanner s = null;
         FileReader f = new FileReader(archivo);
         BufferedReader b = new BufferedReader(f);
+      ;
         
-        while((cadena = b.readLine())!=null) {
+        while(  (cadena = b.readLine())!=null ) {
             //System.out.println(cadena);
+           
             s=new Scanner(cadena);
             Created=new Card();
             
             
-                
+            if(s.hasNext()){
+
                 Created.SetId(s.next());
                 concat="";
                 while(!s.hasNextInt()){
@@ -49,21 +52,22 @@ public class LoadData {
                  concat=concat.concat(s.next()); 
                 concat=concat.concat(" "); 
                 }
-               Created.SetDescription(concat);
+                            
+                Created.SetDescription(concat);
                
-               //Created.PrintCard();
+               
           Data.insertar(1,Created);
-          Data.imprimir(); 
+          
+            } 
             
         }
-        
-        b.close();
        
+       b.close();
     }
      public static void main(String[] args) throws IOException 
      {
         muestraContenido("Warriors.in");
-        System.out.println("deberia mostrar la lista");
+        
         Data.imprimir();
       }
 
