@@ -2,23 +2,27 @@ package demo;
 public class Card
 {
 
-  private int SetNumber; /*id de la carta*/
+  private String SetNumber; /*id de la carta*/
   private int Cost;    /*costo de mana */
   private String Name; /*nombre de la carta*/
   private String Class; /*clase de la carta */
   private int Limit;   /*el limite de esa carta que puede haber en un deck*/
   private String Source; /*el elemento de la carta */
+  private int Hp;
+  private int Mp;
+  private int Sup;
+  private String Description;
   /*template el fondo gay de la carta ...depende del tipo de carta*/
   
   
   public Card()/*constructor*/
   {
-    this.SetNumber=0;
+    this.SetNumber="";
     this.Limit=0;
     this.Cost=0;
    }
   /**********************funciones de consulta****************************/
-  public int Getid()
+  public String Getid()
   {
     return(this.SetNumber);
   }
@@ -26,7 +30,10 @@ public class Card
   {
     return(this.Cost);
   }
-  
+  public String GetDescription()
+  {
+    return(this.Description);
+  }
   public String GetName()
   {
     return(this.Name);
@@ -46,9 +53,38 @@ public class Card
   {
   return (this.Limit);
   }
+    public int GetHp()
+  {
+    return(this.Hp);
+  }
+  public int GetMp()
+  {
+    return(this.Mp);
+  }
+  public int GetSup()
+  {
+    return(this.Sup);
+  }
   
     /**********************modificadores****************************/
-  public void SetId(int New)
+   public void SetHp(int New)
+  {
+    this.Hp=New;
+  }
+   public void SetMp(int New)
+  {
+    this.Mp=New;
+  }
+    public void SetSup(int New)
+  {
+    this.Sup=New;
+  }
+  
+  public void SetDescription(String New)
+  {
+    this.Description=New;
+  }  
+  public void SetId(String New)
   {
     this.SetNumber=New;
   }
@@ -80,22 +116,31 @@ public class Card
   /***************************  otros **********************************/
   public void PrintCard() /*imprime toda la info de las cartas (para pruebas)*/
   {
-    System.out.println(this.SetNumber);
-    System.out.println(this.Cost);
-    System.out.println(this.Name);
-    System.out.println(this.Source);
-    System.out.println(this.Class);
-    System.out.println(this.Limit);
+    System.out.println("\nCard Info");
+    System.out.println("SetNumber = "+this.SetNumber);
+    System.out.println("Cost = "+this.Cost);
+    System.out.println("Hp = "+this.Hp);
+    System.out.println("Mp = "+this.Mp);
+    System.out.println("Support = " +this.Sup);
+    System.out.println("Name = " + this.Name);
+    System.out.println("Source = "+this.Source);
+    System.out.println("Class = "+this.Class);
+    System.out.println("Limit per Deck = "+this.Limit);
+    System.out.println("Description= "+this.Description);
     
   }
   
-  public void asignar(Card a, Card b)/*a = b */
+  public void asignar( Card b)/*a = b */
   {
-       a.SetNumber=b.SetNumber; /*id de la carta*/
-       a.Cost=b.Cost;    /*costo de mana */
-       a.Name=b.Name;  /*nombre de la carta*/
-       a.Class=b.Class; /*clase de la carta */
-       a.Limit=b.Limit;   /*el limite de esa carta que puede haber en un deck*/
-       a.Source=b.Source;
+       this.SetNumber=b.SetNumber; /*id de la carta*/
+       this.Cost=b.Cost;    /*costo de mana */
+       this.Name=b.Name;  /*nombre de la carta*/
+       this.Class=b.Class; /*clase de la carta */
+       this.Limit=b.Limit;   /*el limite de esa carta que puede haber en un deck*/
+       this.Source=b.Source;
+       this.Hp=b.Hp;
+       this.Mp=b.Mp;
+       this.Sup=b.Sup;
+       this.Description=b.Description;
   }
 }
