@@ -208,6 +208,7 @@ public  class List{
         while (reco != null) {
             System.out.print ("Card # " + contador);
             reco.info.PrintCard();
+            System.out.println();
             reco = reco.sig;
             contador++;
         }
