@@ -1,6 +1,6 @@
 package data;
  import demo.Card;
-// import demo.List
+ import demo.List;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,21 +13,26 @@ import java.util.Scanner;
  
 public class LoadData {
     
-    public static void muestraContenido(String archivo) throws FileNotFoundException, IOException 
+ static private List Data=new List(); ;
+  public static void muestraContenido(String archivo) throws FileNotFoundException, IOException 
     {
         String cadena , concat;
+        
        Card Created;
         Scanner s = null;
         FileReader f = new FileReader(archivo);
         BufferedReader b = new BufferedReader(f);
+      ;
         
-        while((cadena = b.readLine())!=null) {
+        while(  (cadena = b.readLine())!=null ) {
             //System.out.println(cadena);
+           
             s=new Scanner(cadena);
             Created=new Card();
             
             
-                
+            if(s.hasNext()){
+
                 Created.SetId(s.next());
                 concat="";
                 while(!s.hasNextInt()){
@@ -47,19 +52,23 @@ public class LoadData {
                  concat=concat.concat(s.next()); 
                 concat=concat.concat(" "); 
                 }
-               Created.SetDescription(concat);
+                            
+                Created.SetDescription(concat);
                
-               Created.PrintCard();
-                
-           
+               
+          Data.insertar(1,Created);
+          
+            } 
             
         }
-        b.close();
-        
+       
+       b.close();
     }
      public static void main(String[] args) throws IOException 
      {
         muestraContenido("Warriors.in");
+        
+        Data.imprimir();
       }
 
     

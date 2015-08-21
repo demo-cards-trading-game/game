@@ -1,6 +1,6 @@
 package data;
  import demo.Card;
-// import demo.List
+ import demo.List;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,9 +13,11 @@ import java.util.Scanner;
  
 public class LoadData {
     
-    public static void muestraContenido(String archivo) throws FileNotFoundException, IOException 
+ static private List Data=new List(); ;
+  public static void muestraContenido(String archivo) throws FileNotFoundException, IOException 
     {
         String cadena , concat;
+        
        Card Created;
         Scanner s = null;
         FileReader f = new FileReader(archivo);
@@ -35,23 +37,34 @@ public class LoadData {
                 concat=concat.concat(" "); 
                 }
                 Created.SetName(concat);
-                System.out.println(concat);
                 Created.SetCost( Integer.parseInt(s.next()));
                 Created.SetLimit(Integer.parseInt(s.next()));
                 Created.SetSource(s.next());
                 Created.SetHp(Integer.parseInt(s.next()));
                 Created.SetMp(Integer.parseInt(s.next()));
-                System.out.println(s.next());
-                
-           
+                Created.SetClass(s.next());
+                Created.SetSup(Integer.parseInt(s.next()));
+                concat="";
+                while(s.hasNext()){
+                 concat=concat.concat(s.next()); 
+                concat=concat.concat(" "); 
+                }
+               Created.SetDescription(concat);
+               
+               //Created.PrintCard();
+          Data.insertar(1,Created);
+          Data.imprimir(); 
             
         }
-        b.close();
         
+        b.close();
+       
     }
      public static void main(String[] args) throws IOException 
      {
         muestraContenido("Warriors.in");
+        System.out.println("deberia mostrar la lista");
+        Data.imprimir();
       }
 
     
