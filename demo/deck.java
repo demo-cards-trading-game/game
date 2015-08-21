@@ -2,13 +2,59 @@ package demo;
 
 public class deck{
  
+  /******************revisar**********************/
+  
+  
+    /**
+      * Constructor.  Create an unshuffled deck of cards.
+      */
+     //public Deck()
+
+     /**
+      * Put all the used cards back into the deck,
+      * and shuffle it into a random order.
+      */
+       public void shuffle()
+     {
+     
+     
+     }
+
+     /**
+      * As cards are dealt from the deck, the number of 
+      * cards left decreases.  This function returns the 
+      * number of cards that are still left in the deck.
+      */
+       public int cardsLeft()
+     {
+         return longitud;
+     }
+
+     /**
+      * Deals one card from the deck and returns it.
+      * @throws IllegalStateException if no more cards are left.
+      */
+     /*  public Card dealCard()
+     {
+     
+     
+     }
+  */
+  
+  
+  /*************************************************************/
+  
+  
+  
+  
+  
  class nodo{ //clase auxiliar para la pila
   Card info;
   nodo sig;
  }
  
  private nodo raiz; //primera carta del deck
- private int longitud; //tamaño del deck 
+ static public int longitud; //tamaño del deck 
  private nodo fin= new nodo();; //apuntador al ultimo nodo
  
  //constructor
