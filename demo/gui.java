@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Color;
-public class Gui// implements ActionListener
+public class Gui extends JFrame implements ActionListener
  {
  JPanel jp1,jp2,jp3;
  JButton b1;
@@ -23,39 +23,51 @@ public class Gui// implements ActionListener
  JTextArea text;
  public Gui()
  {  
-   
+      super("Gui");
    
    
 
    JButton jb1,jb2;
    
-   JFrame jfm=new JFrame("GUI");
-   jfm.setLayout(null);
+
+   setLayout(null);
    
 
    /***********pruebas******************/
    
     
    
+
+   addbackgound(this);
+   addjlabel1(this);
+   addtext1(this,text);
+    b1=new JButton("Play");
+    b1.setBackground(Color.white);
+    b1.setBorder(null);
+    b1.setBounds(280,420,60,30);
+    b1.addActionListener(this);
+    add(b1);
   
-   addbackgound(jfm);
-   addbutton1(jfm,b1);
-   addjlabel1(jfm);
-   addtext1(jfm,text);
    /*********************************/
- 
-    
+
   
    
-   jfm.setLocation(100, 50);
-   jfm.setResizable(false);
+   setLocation(100, 50);
+   setResizable(false);
  
-   jfm.setSize(800,600);
-   jfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   setSize(800,600);
+   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
-   jfm.setVisible(true);
+   setVisible(true);
+   
  }
  
+  public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==b1)
+        {
+            System.exit(0);
+        }
+  }
  /***********funciones*************/
  void addbackgound(JFrame jfm)
  {
@@ -67,16 +79,10 @@ public class Gui// implements ActionListener
      }
  
  }
+
  
- void addbutton1(JFrame jfm,JButton b1 )
- {
-   b1=new JButton("Play");
-    b1.setBackground(Color.white);
-    b1.setBorder(null);
-    b1.setBounds(280,420,60,30);
-    
-    jfm.add(b1);
- }
+ 
+ 
  
  void addjlabel1(JFrame jfm)
  {
