@@ -19,8 +19,9 @@ public class Gui extends JFrame implements ActionListener
  {
  JPanel jp1,jp2,jp3;
  JButton b1;
- JLabel l1;
+ JLabel l1,demo;
  JTextArea text;
+ String Nombre1;//nombre del jugador1
  public Gui()
  {  
       super("Gui");
@@ -48,6 +49,11 @@ public class Gui extends JFrame implements ActionListener
     b1.addActionListener(this);
     add(b1);
   
+    demo=new JLabel("<html><font color='white'>Demo version: 0.000001 </font></html>");
+    demo.setBounds(740,560,300,30); //esto se mueve como horizontal vertical 100= h 200=v
+    this.add(demo);
+ 
+    
    /*********************************/
 
   
@@ -55,7 +61,7 @@ public class Gui extends JFrame implements ActionListener
    setLocation(100, 50);
    setResizable(false);
  
-   setSize(800,600);
+   setSize(900,630);
    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
    setVisible(true);
@@ -65,7 +71,16 @@ public class Gui extends JFrame implements ActionListener
   public void actionPerformed(ActionEvent e) {
         if (e.getSource()==b1)
         {
-            System.exit(0);
+           try {
+             
+             setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("test1.jpg")))));
+              setVisible(true);
+            
+           } 
+           catch (IOException a) {
+             a.printStackTrace();
+           }
+            //System.exit(0);
         }
   }
  /***********funciones*************/
@@ -86,19 +101,21 @@ public class Gui extends JFrame implements ActionListener
  
  void addjlabel1(JFrame jfm)
  {
- l1=new JLabel("<html><font color='white'>nombre jugador</font></html>");
+ l1=new JLabel("<html><font color='white'>player's name.</font></html>");
  l1.setBounds(380,400,300,30); //esto se mueve como horizontal vertical 100= h 200=v
  jfm.add(l1);
+ 
+ 
  
  }
  void addtext1(JFrame jfm,JTextArea text)
  {
- JTextArea jtextarea = new JTextArea();   
+   text = new JTextArea();   
  
-   jtextarea.setBounds(380, 450, 90, 20);
-   jtextarea.setEditable(true);
-   jtextarea.setText("Hola");
-   jfm.add(jtextarea);
+   text.setBounds(380, 450, 90, 20);
+   text.setEditable(true);
+   text.setText("Hola");
+   jfm.add(text);
  }
  
  /************************/
