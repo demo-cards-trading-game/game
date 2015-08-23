@@ -13,8 +13,15 @@ import java.util.Scanner;
  
 public class LoadData {
     
- static private List Data=new List(); ;
-  public static void muestraContenido(String archivo) throws FileNotFoundException, IOException 
+ static public List Data ;
+ 
+ public LoadData()
+ {
+	Data =new List();
+	 
+ }
+ 
+  public static void cargaContenido(String archivo) throws FileNotFoundException, IOException 
     {
         String cadena , concat;
         
@@ -64,13 +71,13 @@ public class LoadData {
        
        b.close();
     }
-     public static void main(String[] args) throws IOException 
+     /*public static void main(String[] args) throws IOException 
      {
-        muestraContenido("Warriors.in");
+       cargaContenido("Warriors.in");
         
         Data.imprimir();
       }
-
+      */
     
 }
    

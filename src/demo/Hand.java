@@ -2,7 +2,7 @@ package demo;
 
 public class Hand
 {
-    Card[]   hand = new Card[5];
+    public Card[]   hand = new Card[5];
     static public int current;
   
     public Hand()/*constructor ...crea la mano vacia*/

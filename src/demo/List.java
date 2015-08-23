@@ -2,7 +2,7 @@ package demo;
 import demo.Card;
 import demo.Warrior;
 public  class List{
- //clase noob de nodo
+ //clase noob de nodo                   
  class Nodo {
         Warrior info;
         Nodo ant,sig;
