@@ -15,7 +15,7 @@ public class Gui extends JFrame implements ActionListener
  JTextArea text;
   String Nombre1;//nombre del jugador1
   private JMenuBar mb;
-  private JMenu menu1;
+  private JMenu menu1,menu2;
   private JMenuItem mi1,mi2,mi3;
   public Gui()
  {  
@@ -33,17 +33,19 @@ public class Gui extends JFrame implements ActionListener
    
    mb=new JMenuBar();
    setJMenuBar(mb);
-   menu1=new JMenu("resolucion");
+   menu1=new JMenu("Opciones");
    mb.add(menu1);
+   menu2=new JMenu("resoucion");
+   menu1.add(menu2);
    mi1=new JMenuItem("640x480");
    mi1.addActionListener(this);
-   menu1.add(mi1);
+   menu2.add(mi1);
    mi2=new JMenuItem("800x600");
    mi2.addActionListener(this);
-   menu1.add(mi2);
+   menu2.add(mi2);
    mi3=new JMenuItem("1024x768");
    mi3.addActionListener(this);
-   menu1.add(mi3);         
+   menu2.add(mi3);         
    
 /***************************************/
    addbackgound(this);
