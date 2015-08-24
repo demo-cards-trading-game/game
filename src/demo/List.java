@@ -86,6 +86,24 @@ public  class List{
         }
          return informacion;
     }
+    
+    
+    public Card Consultar(int pos)
+    {
+    	Card informacion=new Card();
+    	if (pos == 1) 
+    	{
+            informacion = raiz.info;
+    	}else
+    	{
+    		Nodo reco;
+            reco = raiz;
+            for (int f = 2 ; f <= pos  ; f++)
+                reco = reco.sig;
+            informacion=reco.info;
+    	}
+    	return informacion;
+    }
 
     public void borrar (int pos)
     {

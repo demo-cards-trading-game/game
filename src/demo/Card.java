@@ -12,6 +12,7 @@ public class Card
   private int Hp;
   private int Mp;
   private int Sup;
+  private String Type;
   private int Effectid;
   private int CardNumber;
   /*template el fondo gay de la carta ...depende del tipo de carta*/
@@ -25,7 +26,10 @@ public class Card
    }
   /**********************funciones de consulta****************************/
 
-  
+  public String GetType()
+  {
+    return(this.Type);
+  }
   
   public String Getid()
   {
@@ -85,7 +89,10 @@ public class Card
   {
     this.Sup=New;
   }
-  
+  public void SetType(String New)
+  {
+    this.Type=New;
+  }  
   public void SetDescription(String New)
   {
     this.Description=New;
@@ -125,7 +132,7 @@ public class Card
     System.out.println("\nCard Info");
     System.out.println("SetNumber = "+this.SetNumber);
     System.out.println("Cost = "+this.Cost);
-   
+    System.out.println("Type= " +this.Type);
     System.out.println("Name = " + this.Name);
     System.out.println("Source = "+this.Source);
     System.out.println("Class = "+this.Class);
@@ -149,5 +156,6 @@ public class Card
        this.Hp=b.Hp;
        this.Mp=b.Mp;
        this.Sup=b.Sup;
+       this.Type=b.Type;
   }
 }

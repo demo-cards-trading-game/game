@@ -3,6 +3,7 @@ package demo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -56,12 +57,27 @@ public class Gui extends JFrame implements ActionListener
    text.setEditable(true);
    add(text);
    
+   BufferedImage buttonIcon = null;
+try {
+	buttonIcon = ImageIO.read(new File("play.png"));
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+/*
+	b1 = new JButton(new ImageIcon(buttonIcon));
    
-    b1=new JButton("Play");
+    b1.setBorderPainted(false);
+    b1.setFocusPainted(false);
+    b1.setContentAreaFilled(false);
+    b1.setBounds(280,420,160,120);
+    */
+   	 b1=new JButton("Play");
     b1.setBackground(Color.white);
     b1.setBorder(null);
     b1.setBounds(280,420,60,30);
-   
+    b1.setBorder(BorderFactory.createEmptyBorder());
+    
     b1.addActionListener(this);
     add(b1);
   
@@ -93,16 +109,20 @@ public class Gui extends JFrame implements ActionListener
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
            
            try {
-             
+        	
              setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("test1.jpg")))));
-              
+            
               addjlabel2(this);
+              
               setVisible(true);
              } 
            catch (IOException a) {
              a.printStackTrace();
            }
            
+           
+          
+          
         }
        
         if (e.getSource()==mi1) {

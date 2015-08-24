@@ -21,7 +21,7 @@ public class LoadData {
 	 
  }
  
-  public static void cargaContenido(String archivo) throws FileNotFoundException, IOException 
+  public static void cargaWarriors(String archivo) throws FileNotFoundException, IOException 
     {
         String cadena , concat;
         
@@ -61,7 +61,7 @@ public class LoadData {
                 }
                             
                 Created.SetDescription(concat);
-               
+                Created.SetType("Warrior");
                
           Data.insertar(1,Created);
           
@@ -71,13 +71,64 @@ public class LoadData {
        
        b.close();
     }
-     /*public static void main(String[] args) throws IOException 
+  public static void cargaDisruptions(String archivo) throws FileNotFoundException, IOException 
+  {
+      String cadena , concat;
+      
+      Card Created;
+      Scanner s = null;
+      FileReader f = new FileReader(archivo);
+      BufferedReader b = new BufferedReader(f);
+    ;
+      
+      while(  (cadena = b.readLine())!=null ) {
+          //System.out.println(cadena);
+         
+          s=new Scanner(cadena);
+          Created=new Card();
+          
+          
+          if(s.hasNext()){
+
+              Created.SetId(s.next());//carga el sid 
+              concat="";
+              while(!s.hasNextInt())//esto carga el nombre 
+              {
+               concat=concat.concat(s.next()); 
+              concat=concat.concat(" "); 
+              }
+              Created.SetName(concat);
+              
+              Created.SetCost( Integer.parseInt(s.next()));//costo 
+              Created.SetLimit(Integer.parseInt(s.next()));//limite
+              Created.SetSource(s.next());//carga el elemento 
+              Created.SetClass(s.next());
+              concat="";
+              while(s.hasNext()){
+               concat=concat.concat(s.next()); 
+              concat=concat.concat(" "); 
+              }
+                          
+              Created.SetDescription(concat);
+              Created.SetType("Disruption");
+             
+        Data.insertar(1,Created);
+        
+          } 
+          
+      }
+     
+     b.close();
+  }
+  
+     public static void main(String[] args) throws IOException 
      {
-       cargaContenido("Warriors.in");
+    	 Data =new List(); 
+       cargaDisruptions("Disruptions.in");
         
         Data.imprimir();
       }
-      */
+      
     
 }
    
