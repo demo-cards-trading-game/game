@@ -37,7 +37,7 @@ public class Gui extends JFrame implements ActionListener
    mb.add(menu1);
    menu2=new JMenu("resoucion");
    menu1.add(menu2);
-   mi1=new JMenuItem("640x480");
+   mi1=new JMenuItem("900,650(default)");
    mi1.addActionListener(this);
    menu2.add(mi1);
    mi2=new JMenuItem("800x600");
@@ -77,7 +77,7 @@ public class Gui extends JFrame implements ActionListener
    setLocation(100, 50);
    setResizable(false);
  
-   setSize(900,630);
+   setSize(900,650);
    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
    setVisible(true);
@@ -106,7 +106,7 @@ public class Gui extends JFrame implements ActionListener
         }
        
         if (e.getSource()==mi1) {
-        	 setSize(640,480);
+        	 setSize(900,650);
         }
         if (e.getSource()==mi2) {
         	 setSize(800,600);
