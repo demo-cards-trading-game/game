@@ -1,23 +1,12 @@
 package demo;
 
-
-
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Color;
+import javax.imageio.ImageIO;
+
 public class Gui extends JFrame implements ActionListener
  {
  JPanel jp1,jp2,jp3;
@@ -25,7 +14,10 @@ public class Gui extends JFrame implements ActionListener
  JLabel l1,demo;
  JTextArea text;
   String Nombre1;//nombre del jugador1
- public Gui()
+  private JMenuBar mb;
+  private JMenu menu1;
+  private JMenuItem mi1,mi2,mi3;
+  public Gui()
  {  
       super("Gui");
    
@@ -39,9 +31,21 @@ public class Gui extends JFrame implements ActionListener
 
    /***********pruebas******************/
    
-    
+   mb=new JMenuBar();
+   setJMenuBar(mb);
+   menu1=new JMenu("resolucion");
+   mb.add(menu1);
+   mi1=new JMenuItem("640x480");
+   mi1.addActionListener(this);
+   menu1.add(mi1);
+   mi2=new JMenuItem("800x600");
+   mi2.addActionListener(this);
+   menu1.add(mi2);
+   mi3=new JMenuItem("1024x768");
+   mi3.addActionListener(this);
+   menu1.add(mi3);         
    
-
+/***************************************/
    addbackgound(this);
    addjlabel1(this);
   // addtext1(this,text);
@@ -79,7 +83,8 @@ public class Gui extends JFrame implements ActionListener
  }
  
   public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==b1)//cuando se le da click al boton 1
+	
+	  if (e.getSource()==b1)//cuando se le da click al boton 1
         {
           
           
@@ -97,6 +102,16 @@ public class Gui extends JFrame implements ActionListener
            }
            
         }
+       
+        if (e.getSource()==mi1) {
+        	 setSize(640,480);
+        }
+        if (e.getSource()==mi2) {
+        	 setSize(800,600);
+        }
+        if (e.getSource()==mi3) {
+        	 setSize(1024,768);
+        }   
   }
  /***********funciones*************/
  void addbackgound(JFrame jfm)
