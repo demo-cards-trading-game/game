@@ -1,5 +1,5 @@
 package data;
- import demo.Warrior;
+ import demo.Card;
  import demo.List;
 
 import java.io.BufferedReader;
@@ -25,7 +25,7 @@ public class LoadData {
     {
         String cadena , concat;
         
-        Warrior Created;
+        Card Created;
         Scanner s = null;
         FileReader f = new FileReader(archivo);
         BufferedReader b = new BufferedReader(f);
@@ -35,7 +35,7 @@ public class LoadData {
             //System.out.println(cadena);
            
             s=new Scanner(cadena);
-            Created=new Warrior();
+            Created=new Card();
             
             
             if(s.hasNext()){

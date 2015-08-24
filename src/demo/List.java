@@ -1,17 +1,17 @@
 package demo;
 import demo.Card;
-import demo.Warrior;
+
 public  class List{
  //clase noob de nodo                   
  class Nodo {
-        Warrior info;
+        Card info;
         Nodo ant,sig;
        
         
         public Nodo() /*falto esto*/
         {
         ant=sig=null;
-        info=new Warrior();
+        info=new Card();
         }
     }
     
@@ -22,7 +22,7 @@ public  class List{
       cantidad=0;
     }
       
-   public void insertar (int pos, Warrior x)
+   public void insertar (int pos, Card x)
     {
         if (pos <= cantidad  + 1)    {
             Nodo nuevo = new Nodo ();
@@ -116,7 +116,7 @@ public  class List{
             Nodo reco2 = raiz;
             for (int f = 1 ; f < pos2 ; f++)
                 reco2 = reco2.sig;
-            Warrior aux = new Warrior();
+            Card aux = new Card();
               aux.asignar(reco1.info);
             reco1.info.asignar( reco2.info);
             reco2.info = aux;
