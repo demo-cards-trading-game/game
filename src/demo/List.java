@@ -16,12 +16,19 @@ public  class List{
     }
     
     private Nodo raiz;
+    private Nodo ultimo; //para poder insertar nodos al final directamente
     public static   int cantidad;
+    
+    
     public List() {
         raiz=null;
       cantidad=0;
     }
-      
+    
+    public int getCantidad(){
+    	return this.cantidad;
+    }
+    
    public void insertar (int pos, Card x)
     {
         if (pos <= cantidad  + 1)    {
@@ -37,6 +44,10 @@ public  class List{
                     
               }
                 raiz = nuevo;
+                
+              if(cantidad==0){ //en este caso el primer elemento tambien es el ultimo
+            	  ultimo = nuevo;
+              }  
             } else
                 if (pos == cantidad  + 1)    {
                     Nodo reco = raiz;
@@ -46,6 +57,8 @@ public  class List{
                     reco.sig = nuevo;
                     nuevo.ant=reco;
                     nuevo.sig = null;
+                    
+                    ultimo=nuevo;
                 } else {
                     Nodo reco = raiz;
                     for (int f = 1 ; f <= pos - 2 ; f++)
@@ -61,6 +74,18 @@ public  class List{
         }
     }
 
+   public void insertarUlt(Card x){
+	   //this.insertar((this.getCantidad()+1), x); //solucion facil xD
+	   Nodo nuevo = new Nodo ();
+       nuevo.info.asignar(x);
+       ultimo.sig=nuevo;
+       nuevo.ant=ultimo;
+       nuevo.sig=null;
+       ultimo=nuevo;
+       
+       cantidad++;
+   }
+   
     public Card extraer (int pos) {
          Card informacion=new Card();
       if (pos <= cantidad )    {
@@ -86,7 +111,6 @@ public  class List{
         }
          return informacion;
     }
-    
     
     public Card Consultar(int pos)
     {
@@ -140,86 +164,7 @@ public  class List{
             reco2.info = aux;
         }
     }
-/**************************esto aun no , no hemos creado nada para comparar una carta de otra *****************************/    
-    /*public int mayor () {
-        if (!vacia ()) {
-            Card may = raiz.info;
-            Nodo reco = raiz.sig;
-            while (reco != null) {
-                if (reco.info > may)
-                    may = reco.id;
-                reco = reco.sig;
-            }
-            return may;
-        }
-        else
-            return Integer.MAX_VALUE;
-    }
-    /*
-    public int posMayor() {
-        if (!vacia ())    {
-            int may = raiz.id;
-            int x=1;
-            int pos=x;
-            Nodo reco = raiz.sig;
-            while (reco != null){
-                if (reco.id > may) {
-                    may = reco.id;
-                    pos=x;
-                }
-                reco = reco.sig;
-                x++;
-            }
-            return pos;
-        }
-        else
-            return Integer.MAX_VALUE;
-    }
-*/
-/*    public int cantidad () esto es innecesario , mega ineficiente y para rematar si la lista es vacia da violacion de segmento 
-    {
-        int cant = 0;
-        Nodo reco = raiz;
-        while (reco != null) {
-            reco = reco.sig;
-            cant++;
-        }
-        return cant;
-    }
- /*  no aun  
-    public boolean ordenada() {
-        if (cantidad()>1) {
-            Nodo reco1=raiz;
-            Nodo reco2=raiz.sig;
-            while (reco2!=null) {
-                if (reco2.id<reco1.id) {
-                    return false;
-                }
-                reco2=reco2.sig;
-                reco1=reco1.sig;
-            }
-        }
-        return true;
-    }
-   */ /* hay que sobrecargar un funcion bool equals();
-    public boolean existe(int x) {
-        Nodo reco=raiz;
-        while (reco!=null) {
-            if (reco.id==x)
-                return true;
-            reco=reco.sig;
-        }
-        return false;
-    }
-    
-    public boolean vacia ()
-    {
-        if (raiz == null)
-            return true;
-        else
-            return false;
-    }
-    */
+
     public void imprimir ()
      {
       int contador=1;
