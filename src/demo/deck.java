@@ -4,21 +4,6 @@ public class deck{
  
   /******************revisar**********************/
   
-  
-    /**
-      * Constructor.  Create an unshuffled deck of cards.
-      */
-     //public Deck()
-
-     /**
-      * Put all the used cards back into the deck,
-      * and shuffle it into a random order.
-      */
-       public void shuffle()
-     {
-     
-     
-     }
 
      /**
       * As cards are dealt from the deck, the number of 
@@ -69,10 +54,13 @@ public class deck{
  //con Cards c = new Cards();
  public deck(Card[] cards, int n){
 	 shuffle(cards); //se barajea el vector antes de insertarse en el deck
+	 for (int i=0;i<n;i++){
+		 this.insertar(cards[i]);
+	 }
  }
  
  
- private void shuffle(Card[] cards) {
+public void shuffle(Card[] cards) {
 	 int n= cards.length;
 	 
 	 for(int i=0;i<n;i++){
@@ -92,6 +80,10 @@ private void exch(Card[] cards, int i, int r) {
 //consulta
  public Card verPila(){
   return raiz.info;
+ }
+ 
+ public int getLongitud(){
+	 return longitud;
  }
  
  //modificacion
