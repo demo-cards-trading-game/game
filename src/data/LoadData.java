@@ -15,12 +15,7 @@ public class LoadData {
     
  static public List Data ;
  
- public LoadData()
- {
-	Data =new List();
-	 
- }
- 
+
   public static void cargaWarriors(String archivo) throws FileNotFoundException, IOException 
     {
         String cadena , concat;
@@ -120,15 +115,117 @@ public class LoadData {
      
      b.close();
   }
-  
-     public static void main(String[] args) throws IOException 
-     {
-    	 Data =new List(); 
-       cargaDisruptions("Disruptions.in");
-        
-        Data.imprimir();
-      }
+  public static void cargaEvents(String archivo) throws FileNotFoundException, IOException 
+  {
+      String cadena , concat;
       
+      Card Created;
+      Scanner s = null;
+      FileReader f = new FileReader(archivo);
+      BufferedReader b = new BufferedReader(f);
+    ;
+      
+      while(  (cadena = b.readLine())!=null ) {
+          //System.out.println(cadena);
+         
+          s=new Scanner(cadena);
+          Created=new Card();
+          
+          
+          if(s.hasNext()){
+
+              Created.SetId(s.next());//carga el sid 
+              concat="";
+              while(!s.hasNextInt())//esto carga el nombre 
+              {
+               concat=concat.concat(s.next()); 
+              concat=concat.concat(" "); 
+              }
+              Created.SetName(concat);
+              
+              Created.SetCost( Integer.parseInt(s.next()));//costo 
+              Created.SetLimit(Integer.parseInt(s.next()));//limite
+              Created.SetSource(s.next());//carga el elemento 
+              Created.SetClass(s.next());
+              concat="";
+              while(s.hasNext()){
+               concat=concat.concat(s.next()); 
+              concat=concat.concat(" "); 
+              }
+                          
+              Created.SetDescription(concat);
+              Created.SetType("Event");
+             
+        Data.insertar(1,Created);
+        
+          } 
+          
+      }
+     
+     b.close();
+  }
+  
+  public static void cargaPowers(String archivo) throws FileNotFoundException, IOException 
+  {
+      String cadena , concat;
+      
+      Card Created;
+      Scanner s = null;
+      FileReader f = new FileReader(archivo);
+      BufferedReader b = new BufferedReader(f);
+    ;
+      
+      while(  (cadena = b.readLine())!=null ) {
+          //System.out.println(cadena);
+         
+          s=new Scanner(cadena);
+          Created=new Card();
+          
+          
+          if(s.hasNext()){
+
+              Created.SetId(s.next());//carga el sid 
+              concat="";
+              while(!s.hasNextInt())//esto carga el nombre 
+              {
+               concat=concat.concat(s.next()); 
+              concat=concat.concat(" "); 
+              }
+              Created.SetName(concat);
+              
+              Created.SetCost( Integer.parseInt(s.next()));//costo 
+              Created.SetLimit(Integer.parseInt(s.next()));//limite
+              Created.SetSource(s.next());//carga el elemento 
+              Created.SetType(s.next());
+              concat="";
+              while(s.hasNext()){
+               concat=concat.concat(s.next()); 
+              concat=concat.concat(" "); 
+              }
+                          
+              Created.SetDescription(concat);
+              Created.SetType("Event");
+             
+        Data.insertar(1,Created);
+        
+          } 
+          
+      }
+     
+     b.close();
+  }
+  public LoadData() throws FileNotFoundException, IOException
+  {
+	  Data =new List();
+	  cargaWarriors("Warriors.in"); 
+	  cargaDisruptions("Disruptions.in");
+      cargaEvents("Events.in");
+      cargaPowers("Powers.in");
+     
+ 	 
+  }
+  
+  
     
 }
    
