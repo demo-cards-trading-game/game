@@ -59,7 +59,7 @@ public class deck{
 	 }
  }
  
- 
+ //shuffle
 public void shuffle(Card[] cards) {
 	 int n= cards.length;
 	 
