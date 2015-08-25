@@ -15,6 +15,7 @@ public class Card
   private String Type;
   private int Effectid;
   private int CardNumber;
+  
   /*template el fondo gay de la carta ...depende del tipo de carta*/
   
   
@@ -74,9 +75,18 @@ public class Card
   {
     return(this.Sup);
   }
-  
+  public int GetCardNumber()
+  {
+    return(this.CardNumber);
+  }
     /**********************modificadores****************************/
    
+  public void SetCardNumber(int New)
+  {
+    this.CardNumber=New;
+  }
+  
+  
   public void SetHp(int New)
   {
     this.Hp=New;
@@ -141,7 +151,7 @@ public class Card
     System.out.println("Hp = "+this.Hp);
     System.out.println("Mp = "+this.Mp);
     System.out.println("Support = " +this.Sup);
-    
+    System.out.println("Number = " +this.GetCardNumber());
   }
   
   public void asignar( Card b)/*a = b */
@@ -157,5 +167,6 @@ public class Card
        this.Mp=b.Mp;
        this.Sup=b.Sup;
        this.Type=b.Type;
+       this.CardNumber=b.CardNumber;
   }
 }

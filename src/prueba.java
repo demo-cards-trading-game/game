@@ -19,7 +19,7 @@ public class prueba {
 	e.printStackTrace();
 }
   
-   
+  x.Data.imprimir();
    
    deck d = new deck();
    for(int i =1; i<5; i++){
@@ -28,6 +28,7 @@ public class prueba {
    for(int i =1; i<5; i++)
 	   d.extraerR().PrintCard();
    
-   
+  
   }
+
 }

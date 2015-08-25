@@ -16,7 +16,7 @@ public  class List{
     }
     
     private Nodo raiz;
-    public  static int cantidad;
+    public static   int cantidad;
     public List() {
         raiz=null;
       cantidad=0;
@@ -57,7 +57,7 @@ public  class List{
                     siguiente.ant=nuevo;
                     
                 }
-                cantidad++;
+                cantidad=cantidad+1;
         }
     }
 
