@@ -1,4 +1,5 @@
 package demo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,14 +9,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
 import data.LoadData;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
+
+
 
 import demo.Card;
 import javax.swing.border.BevelBorder;
+
+
 
 
 
@@ -36,7 +36,7 @@ public class CardGui extends JPanel {
 			
 		
 		setBackground(Color.ORANGE);
-		setBounds(50, 50, 268, 220);		
+		setBounds(400, 200, 268, 220);		
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setLayout(null);
 		
@@ -68,9 +68,4 @@ public class CardGui extends JPanel {
 		add(textArea);
 
 	}
-	
-	
-	
-	
-	
 }

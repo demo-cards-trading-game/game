@@ -1,6 +1,8 @@
 package demo;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -22,16 +24,25 @@ public class Gui extends JFrame implements ActionListener
   private JMenu menu1,menu2;
   private JMenuItem mi1,mi2,mi3;
   static LoadData data;
+  private JPanel contentPane;
   public Gui()
  {  
-      super("Gui");
+	  super("Gui");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  setBounds(100, 100, 900, 600);
+  contentPane = new JPanel();
+  contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+  contentPane.setLayout(new BorderLayout(0, 0));
+  setContentPane(contentPane);
+  setVisible(true);
+    
    
       try {
-		data=new LoadData();
-	} catch (IOException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
+  data=new LoadData();
+ } catch (IOException e1) {
+  // TODO Auto-generated catch block
+  e1.printStackTrace();
+ }
    
       
    JButton jb1,jb2;
@@ -69,20 +80,20 @@ public class Gui extends JFrame implements ActionListener
   /* 
    BufferedImage buttonIcon = null;
 try {
-	buttonIcon = ImageIO.read(new File("play.png"));
+ buttonIcon = ImageIO.read(new File("play.png"));
 } catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
+ // TODO Auto-generated catch block
+ e.printStackTrace();
 }
 
-	b1 = new JButton(new ImageIcon(buttonIcon));
+ b1 = new JButton(new ImageIcon(buttonIcon));
    
     b1.setBorderPainted(false);
     b1.setFocusPainted(false);
     b1.setContentAreaFilled(false);
     b1.setBounds(280,420,160,120);
     */
-   	 b1=new JButton("Play");
+     b1=new JButton("Play");
     b1.setBackground(Color.white);
     b1.setBorder(null);
     b1.setBounds(280,420,60,30);
@@ -116,69 +127,68 @@ try {
  }
  
   public void actionPerformed(ActionEvent e) {
-	
-	  if (e.getSource()==b1)//cuando se le da click al boton 1
+ 
+   if (e.getSource()==b1)//cuando se le da click al boton 1
         {
           
           
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
            
            try {
-        	
+         
              setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("test1.jpg")))));
-            
-              addjlabel2(this);
-         	 b2=new JButton("Show");
-             b2.setBackground(Color.white);
-             b2.setBorder(null);
-             b2.setBounds(280,420,60,30);
-             b2.setBorder(BorderFactory.createEmptyBorder());
-             
-             b2.addActionListener(this);
-             add(b2);
-              
-              setVisible(true);
+             setVisible(true);
              } 
            catch (IOException a) {
              a.printStackTrace();
            }
-           
-         
+          
+       
+          addjlabel2(this);
+        b2=new JButton("Show");
+          b2.setBackground(Color.white);
+          b2.setBorder(null);
+          b2.setBounds(280,420,60,30);
+          b2.setBorder(BorderFactory.createEmptyBorder());
+          
+          b2.addActionListener(this);
+          add(b2);
+          setVisible(true);
         }
-	  if (e.getSource()==b2)//cuando se le da click al boton 1
-      	{
-		  
-		   JPanel painel3;
-		   JPanel painel5;
-		  Container container;
-		  container = getContentPane();
-		  container.setLayout(null);
-		  /*
-		  painel5 = new JPanel();
-		  painel5.setBackground(Color.red);
-		  painel5.setBounds(120, 110, 100, 120);
-		  painel3 = new JPanel();
-		  painel3.setBackground(Color.white);
-		  painel3.add(painel5);
-		  painel3.setBounds(50, 50, 290, 220);
-		*/
-		  Random randomGenerator = new Random();
-		  int randomInt = randomGenerator.nextInt(15);
-		  CardGui x = new CardGui(data.Data.Consultar(randomInt));
-		  container.add(x);
-		    
-		    
-		 
-		  
-      	}
+   if (e.getSource()==b2)//cuando se le da click al boton 1
+       {
+    
+     JPanel painel3;
+     JPanel painel5;
+    Container container;
+    container = getContentPane();
+    container.setLayout(null);
+    /*
+    painel5 = new JPanel();
+    painel5.setBackground(Color.red);
+    painel5.setBounds(120, 110, 100, 120);
+    painel3 = new JPanel();
+    painel3.setBackground(Color.white);
+    painel3.add(painel5);
+    painel3.setBounds(50, 50, 290, 220);
+  */
+    Random randomGenerator = new Random();
+    int randomInt = randomGenerator.nextInt(15);
+    CardGui x = new CardGui(data.Data.Consultar(randomInt));
+    container.add(x);
+      
+      
+   
+    
+       }
         if (e.getSource()==mi1) {
-        	 setSize(900,650);
+          setSize(900,650);
         }
         if (e.getSource()==mi2) {
-        	 setSize(800,600);
+          setSize(800,600);
         }
         if (e.getSource()==mi3) {
-        	 setSize(1024,768);
+          setSize(1024,768);
         }   
   }
  /***********funciones*************/
