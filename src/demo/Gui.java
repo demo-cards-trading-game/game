@@ -7,27 +7,37 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import demo.CardGui;
+import data.LoadData;
+import java.util.Random;
 
 public class Gui extends JFrame implements ActionListener
  {
  JPanel jp1,jp2,jp3;
- JButton b1;
+ JButton b1,b2;
  JLabel l1,demo;
  JTextArea text;
   String Nombre1;//nombre del jugador1
   private JMenuBar mb;
   private JMenu menu1,menu2;
   private JMenuItem mi1,mi2,mi3;
+  static LoadData data;
   public Gui()
  {  
       super("Gui");
    
+      try {
+		data=new LoadData();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
    
-
+      
    JButton jb1,jb2;
    
 
-   setLayout(null);
+   setLayout(new CardLayout(0, 0));
    
 
    /***********pruebas******************/
@@ -56,7 +66,7 @@ public class Gui extends JFrame implements ActionListener
    text.setBounds(380, 450, 90, 20);
    text.setEditable(true);
    add(text);
-   
+  /* 
    BufferedImage buttonIcon = null;
 try {
 	buttonIcon = ImageIO.read(new File("play.png"));
@@ -64,7 +74,7 @@ try {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
-/*
+
 	b1 = new JButton(new ImageIcon(buttonIcon));
    
     b1.setBorderPainted(false);
@@ -80,7 +90,12 @@ try {
     
     b1.addActionListener(this);
     add(b1);
+    
+
   
+    
+   
+    
     demo=new JLabel("<html><font color='white'>Demo version: 0.000001 </font></html>");
     demo.setBounds(740,560,300,30); //esto se mueve como horizontal vertical 100= h 200=v
     this.add(demo);
@@ -113,6 +128,14 @@ try {
              setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("test1.jpg")))));
             
               addjlabel2(this);
+         	 b2=new JButton("Show");
+             b2.setBackground(Color.white);
+             b2.setBorder(null);
+             b2.setBounds(280,420,60,30);
+             b2.setBorder(BorderFactory.createEmptyBorder());
+             
+             b2.addActionListener(this);
+             add(b2);
               
               setVisible(true);
              } 
@@ -120,11 +143,34 @@ try {
              a.printStackTrace();
            }
            
-           
-          
-          
+         
         }
-       
+	  if (e.getSource()==b2)//cuando se le da click al boton 1
+      	{
+		  
+		   JPanel painel3;
+		   JPanel painel5;
+		  Container container;
+		  container = getContentPane();
+		  container.setLayout(null);
+		  /*
+		  painel5 = new JPanel();
+		  painel5.setBackground(Color.red);
+		  painel5.setBounds(120, 110, 100, 120);
+		  painel3 = new JPanel();
+		  painel3.setBackground(Color.white);
+		  painel3.add(painel5);
+		  painel3.setBounds(50, 50, 290, 220);
+		*/
+		  Random randomGenerator = new Random();
+		  int randomInt = randomGenerator.nextInt(15);
+		  CardGui x = new CardGui(data.Data.Consultar(randomInt));
+		  container.add(x);
+		    
+		    
+		 
+		  
+      	}
         if (e.getSource()==mi1) {
         	 setSize(900,650);
         }

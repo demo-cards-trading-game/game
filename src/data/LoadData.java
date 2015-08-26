@@ -176,7 +176,7 @@ public class LoadData {
     ;
       
       while(  (cadena = b.readLine())!=null ) {
-          //System.out.println(cadena);
+          System.out.println(cadena);
          
           s=new Scanner(cadena);
           Created=new Card();
