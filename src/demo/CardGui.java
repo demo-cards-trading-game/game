@@ -48,7 +48,29 @@ public class CardGui extends JPanel {
 		panel.setBounds(10, 54, 106, 104);
 		
 		  try {
-		      panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.jpg")))));
+			  switch(x.GetCardNumber()){
+			  case 1:
+				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01.jpg")))));
+				  	break;
+			  case 2: panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.jpg")))));
+			  		break;
+			  		
+			  case 3:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.jpg")))));
+			  		break;
+			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.jpg")))));		
+			  		break;
+			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05.jpg")))));		
+		  		break;	
+		  		
+			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05.jpg")))));		
+		  		break;	
+		  		
+			  case 13:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05.jpg")))));		
+		  		break;	
+		  		
+			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.jpg")))));
+			  
+			  }
 		      
 		     } 
 		   catch (IOException e) {
