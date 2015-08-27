@@ -105,7 +105,7 @@ public class Gui extends JFrame implements ActionListener
    setLocation(100, 50);
    setResizable(false);
  
-   setSize(900,650);
+   
    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
    setVisible(true);

@@ -80,6 +80,10 @@ public class CardGui extends JPanel {
 		JLabel lblSupport = new JLabel(" "+ x.GetSup());
 		lblSupport.setBounds(119, 124, 46, 14);
 		add(lblSupport);
+		
+		JLabel lblNewLabel = new JLabel(""+x.Getid());
+		lblNewLabel.setBounds(10, 11, 87, 21);
+		add(lblNewLabel);
 
 	}
 }
