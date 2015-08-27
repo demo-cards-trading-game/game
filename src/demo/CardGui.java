@@ -28,44 +28,58 @@ public class CardGui extends JPanel {
 	 */
 	
 	public CardGui(Card x) {
+		super();
+		setBackground(new Color(255, 215, 0));
 	
 		
-			
-				
-				
-			
-		
-		setBackground(Color.ORANGE);
-		setBounds(400, 200, 268, 220);		
+		setBounds(400, 200, 146, 250);	
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
-		lblNombre.setBounds(44, 11, 178, 14);
-		lblNombre.setForeground(Color.WHITE);
-		lblNombre.setBackground(Color.WHITE);
+		lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 11));
+		lblNombre.setBounds(10, 29, 126, 14);
+		lblNombre.setForeground(new Color(0, 0, 0));
+		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
 		
 		JPanel panel = new JPanel();
 		
-		panel.setBounds(10, 63, 180, 104);
+		panel.setBounds(10, 54, 106, 104);
+		
+		  try {
+		      panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.jpg")))));
+		      
+		     } 
+		   catch (IOException e) {
+		      e.printStackTrace();
+		     }
+		  
+		 add(panel);
 		
 		
+		JLabel lblAbility = new JLabel("Ability");
+		lblAbility.setBounds(10, 169, 46, 14);
+		add(lblAbility);
 		
-		textField = new JTextField();
-		textField.setBounds(32, 220, 138, 54);
-		textField.setText(x.GetDescription());
-		add(textField);
-		textField.setColumns(10);
+		JTextPane txtpnTexto = new JTextPane();
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 10));
+		txtpnTexto.setText(x.GetDescription());
+		txtpnTexto.setBounds(10, 183, 126, 56);
+		txtpnTexto.setEditable(false);
+		add(txtpnTexto);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(32, 41, 208, 101);
-		add(panel_1);
+		JLabel lblAtaque = new JLabel(" "+x.GetHp());
+		lblAtaque.setBounds(119, 70, 46, 14);
+		add(lblAtaque);
 		
-		TextArea textArea = new TextArea();
-		textArea.setBounds(28, 156, 212, 54);
-		textArea.setText(x.GetDescription());
-		add(textArea);
+		JLabel lblDefensa = new JLabel(" " + x.GetMp());
+		lblDefensa.setBounds(119, 99, 46, 14);
+		add(lblDefensa);
+		
+		JLabel lblSupport = new JLabel(" "+ x.GetSup());
+		lblSupport.setBounds(119, 124, 46, 14);
+		add(lblSupport);
 
 	}
 }
