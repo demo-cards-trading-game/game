@@ -121,7 +121,7 @@ public class Gui extends JFrame implements ActionListener
           
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
           contentPane=new JPanel();
-          contentPane.setBackground(Color.BLACK);
+          contentPane.setBackground(new Color(153, 102, 102));
           contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
           contentPane.setLayout(null);
           contentPane.removeAll();
