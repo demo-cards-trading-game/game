@@ -76,14 +76,14 @@ public class Gui extends JFrame implements ActionListener
    addjlabel1(this);
   // addtext1(this,text);
    text = new JTextArea();   
-   text.setBounds(380, 450, 90, 20);
+   text.setBounds(480, 580, 90, 20);
    text.setEditable(true);
    add(text);
 
      b1=new JButton("Play");
     b1.setBackground(Color.white);
     b1.setBorder(null);
-    b1.setBounds(280,420,60,30);
+    b1.setBounds(380,560,60,30);
     b1.setBorder(BorderFactory.createEmptyBorder());
     
     b1.addActionListener(this);
@@ -95,7 +95,7 @@ public class Gui extends JFrame implements ActionListener
    
     
     demo=new JLabel("<html><font color='white'>Demo version: 0.000001 </font></html>");
-    demo.setBounds(740,560,300,30); //esto se mueve como horizontal vertical 100= h 200=v
+    demo.setBounds(870,660,300,30); //esto se mueve como horizontal vertical 100= h 200=v
     this.add(demo);
  
     
@@ -126,7 +126,7 @@ public class Gui extends JFrame implements ActionListener
           contentPane.setLayout(null);
           contentPane.removeAll();
        
-          addjlabel2(this);
+          
           b2=new JButton("Show");
           b2.setBackground(Color.white);
           b2.setBorder(null);
@@ -136,10 +136,17 @@ public class Gui extends JFrame implements ActionListener
 
           b2.addActionListener(this);
           mano=new HandGui(100,450);
-         mano2=new HandGui(100,0);
+          mano2=new HandGui(100,0);
           contentPane.add(b2);
           contentPane.add(mano);
+          
+         
+          
+          
+          
           setContentPane(contentPane);
+          
+          
           setVisible(true);
           
           
@@ -151,7 +158,7 @@ public class Gui extends JFrame implements ActionListener
 	 contentPane.removeAll();
      JPanel painel3;
      JPanel painel5;
-   
+     JLabel n;
     
     Random randomGenerator = new Random();
     int randomInt = randomGenerator.nextInt(15);
@@ -161,6 +168,7 @@ public class Gui extends JFrame implements ActionListener
     contentPane.add(mano2);
     contentPane.add(mano);
     contentPane.add(b2);
+    
     contentPane.repaint();
     	
    
@@ -193,20 +201,12 @@ public class Gui extends JFrame implements ActionListener
 
  
  
-void addjlabel2(JFrame jfm)
- {
- l1=new JLabel("<html><font color='black'>welcome "+ Nombre1+" .</font></html>");
- l1.setBounds(380,20,300,30); //esto se mueve como horizontal vertical 100= h 200=v
- jfm.add(l1);
- 
- 
- 
- } 
+
  
  void addjlabel1(JFrame jfm)
  {
  l1=new JLabel("<html><font color='white'>player's name.</font></html>");
- l1.setBounds(380,400,300,30); //esto se mueve como horizontal vertical 100= h 200=v
+ l1.setBounds(480,530,300,30); //esto se mueve como horizontal vertical 100= h 200=v
  jfm.add(l1);
  
  

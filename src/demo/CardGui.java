@@ -29,7 +29,45 @@ public class CardGui extends JPanel {
 	
 	public CardGui(Card x) {
 		super();
-		setBackground(new Color(255, 215, 0));
+	
+		
+		CirclePanel panel = new CirclePanel();//aca va la imagen
+	
+		
+		panel.setBounds(10, 54, 130, 104);
+		if(x.GetType()=="Warrior")
+		{
+			panel.setBounds(10, 54, 106, 104);
+			JLabel lblAtaque = new JLabel(" "+x.GetHp());
+			lblAtaque.setBounds(119, 70, 46, 14);
+			add(lblAtaque);
+			
+			JLabel lblDefensa = new JLabel(" " + x.GetMp());
+			lblDefensa.setBounds(119, 99, 46, 14);
+			add(lblDefensa);
+			
+			JLabel lblSupport = new JLabel(" "+ x.GetSup());
+			lblSupport.setBounds(119, 124, 46, 14);
+			add(lblSupport);
+			setBackground(new Color(255, 215, 0));
+			
+		}else if(x.GetType()=="Disruption")
+		{
+			setBackground(new Color(255, 0, 153));
+			
+			
+		}else if(x.GetType()=="Event")
+		{
+			setBackground(new Color(102, 0, 255));
+			
+		}else
+		{
+			setBackground(new Color(0, 255, 0));
+			
+			
+		}
+		
+		
 	
 		
 		setBounds(400, 200, 146, 250);	
@@ -43,9 +81,6 @@ public class CardGui extends JPanel {
 		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
 		
-		JPanel panel = new JPanel();
-		
-		panel.setBounds(10, 54, 106, 104);
 		
 		  try {
 			  switch(x.GetCardNumber()){
@@ -91,21 +126,23 @@ public class CardGui extends JPanel {
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
-		JLabel lblAtaque = new JLabel(" "+x.GetHp());
-		lblAtaque.setBounds(119, 70, 46, 14);
-		add(lblAtaque);
 		
-		JLabel lblDefensa = new JLabel(" " + x.GetMp());
-		lblDefensa.setBounds(119, 99, 46, 14);
-		add(lblDefensa);
-		
-		JLabel lblSupport = new JLabel(" "+ x.GetSup());
-		lblSupport.setBounds(119, 124, 46, 14);
-		add(lblSupport);
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
 		lblNewLabel.setBounds(10, 11, 87, 21);
 		add(lblNewLabel);
 
+	}
+	public class CirclePanel extends JPanel {
+
+	    /**
+		 * 
+		 */
+	
+
+		@Override
+	    protected void paintComponent(Graphics g) {
+	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
+	    }
 	}
 }
