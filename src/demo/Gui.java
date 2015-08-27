@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import demo.CardGui;
 import data.LoadData;
 import java.util.Random;
-
+import demo.HandGui;
 public class Gui extends JFrame implements ActionListener
  {
  JPanel jp1,jp2,jp3;
@@ -25,9 +25,10 @@ public class Gui extends JFrame implements ActionListener
   private JMenuItem mi1,mi2,mi3;
   static LoadData data;
   private JPanel contentPane;
- 
+  private HandGui mano,mano2;
   public Gui()
  {  
+	  
 	  super("Gui");
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   setBounds(100, 100, 1024, 768);
@@ -120,6 +121,7 @@ public class Gui extends JFrame implements ActionListener
           
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
           contentPane=new JPanel();
+          contentPane.setBackground(Color.BLACK);
           contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
           contentPane.setLayout(null);
           contentPane.removeAll();
@@ -128,13 +130,21 @@ public class Gui extends JFrame implements ActionListener
           b2=new JButton("Show");
           b2.setBackground(Color.white);
           b2.setBorder(null);
-          b2.setBounds(280,420,60,30);
+          b2.setBounds(500,350,60,30);
           b2.setBorder(BorderFactory.createEmptyBorder());
-          
+         
+
           b2.addActionListener(this);
+          mano=new HandGui(100,450);
+         mano2=new HandGui(100,0);
           contentPane.add(b2);
+          contentPane.add(mano);
           setContentPane(contentPane);
           setVisible(true);
+          
+          
+
+          
         }
    if (e.getSource()==b2)//cuando se le da click al boton 1
        {
@@ -143,13 +153,14 @@ public class Gui extends JFrame implements ActionListener
      JPanel painel5;
    
     
- 
     Random randomGenerator = new Random();
     int randomInt = randomGenerator.nextInt(15);
-    CardGui x = new CardGui(data.Data.Consultar(randomInt));
-    contentPane.add(x);
+    mano.draw(LoadData.Data.Consultar(randomInt));
+    	randomInt = randomGenerator.nextInt(15);
+    	mano2.draw(LoadData.Data.Consultar(randomInt));
+    contentPane.add(mano2);
+    contentPane.add(mano);
     contentPane.add(b2);
-    x.setVisible(true);
     contentPane.repaint();
     	
    
