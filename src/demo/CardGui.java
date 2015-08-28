@@ -23,13 +23,15 @@ import javax.swing.border.LineBorder;
 
 public class CardGui extends JPanel {
 	private JTextField textField;
-
+	private Card  actual;
 	/**
 	 * Create the panel.
 	 */
 	
 	public CardGui(Card x) {
+		
 		super();
+		actual=x;
 		setBackground(new Color(160, 82, 45));
 		
 		
@@ -182,6 +184,11 @@ public class CardGui extends JPanel {
 		
 		
 
+	}
+	
+	public Card getcard()
+	{
+		return actual;
 	}
 	public class CirclePanel extends JPanel {
 
