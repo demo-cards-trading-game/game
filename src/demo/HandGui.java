@@ -14,7 +14,7 @@ public class HandGui extends JPanel {
 		
 		current=0;
 		setOpaque(false);
-		setBounds(posx,posy, 780, 252);
+		setBounds(posx,posy, 620, 186);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		JPanel panel = new JPanel();

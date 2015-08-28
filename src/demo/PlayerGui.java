@@ -5,18 +5,19 @@ import demo.CardGui;
 import javax.swing.JPanel;
 
 public class PlayerGui extends JPanel {
-
-	HandGui mano;
 	DeckGui deck;
-	
+	HandGui hand;
 	public PlayerGui(int x , int y) {
-	
+		deck = new DeckGui(0,0);
+		deck.setSize(250, 343);
+		hand= new HandGui (0,0);
+		hand.setLocation(0, 366);
+		deck.setLocation(550, 234);
 		setOpaque(false);
 		setLayout(null);
-		setBounds(x,y, 780, 552);
-		mano = new HandGui(0,0); 
-		mano.setLocation(0, 130);
-		add(mano);
+		setBounds(x,y, 829, 600);
+		this.add(deck);
+		this.add(hand);
 	}
 
 }

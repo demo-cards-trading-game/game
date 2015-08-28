@@ -25,8 +25,7 @@ public class Gui extends JFrame implements ActionListener
   private JMenuItem mi1,mi2,mi3;
   static LoadData data;
   private JPanel contentPane;
-  private HandGui mano;
-  private DeckGui d;
+  private PlayerGui player1;
   public Gui()
  {  
 	  
@@ -119,8 +118,9 @@ public class Gui extends JFrame implements ActionListener
    if (e.getSource()==b1)//cuando se le da click al boton 1
         {
           
-	   
+	   	  player1=new PlayerGui(220,140);
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
+         
           contentPane=new JPanel();
           contentPane.setBackground(new Color(153, 102, 102));
           contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -136,11 +136,11 @@ public class Gui extends JFrame implements ActionListener
          
 
           b2.addActionListener(this);
-          mano=new HandGui(220,450);
-          d= new DeckGui(0,380);
-          contentPane.add(d);
+         
+         
+        
           contentPane.add(b2);
-          contentPane.add(mano);
+         
           setContentPane(contentPane);
           
           setVisible(true);
@@ -158,9 +158,8 @@ public class Gui extends JFrame implements ActionListener
     
     Random randomGenerator = new Random();
     int randomInt = randomGenerator.nextInt(15);
-    mano.draw(LoadData.Data.Consultar(randomInt));
-    contentPane.add(d);
-    contentPane.add(mano);
+    player1.hand.draw(LoadData.Data.Consultar(randomInt));
+    contentPane.add(player1);
     contentPane.add(b2);
     
     contentPane.repaint();

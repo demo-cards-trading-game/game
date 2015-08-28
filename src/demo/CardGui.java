@@ -40,15 +40,15 @@ public class CardGui extends JPanel {
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
 		JTextPane txtpnTexto = new JTextPane();
-		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 11));
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
 		txtpnTexto.setText(x.GetDescription());
-		txtpnTexto.setBounds(10, 172, 133, 67);
+		txtpnTexto.setBounds(10, 126, 102, 49);
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
 		JLabel lblSource = new JLabel(x.GetSource());
 	
-		lblSource.setBounds(104, 60, 60, 14);
+		lblSource.setBounds(64, 32, 60, 14);
 		lblSource.setOpaque(true);
 		add(lblSource);
 		switch (x.GetSource())
@@ -68,30 +68,30 @@ public class CardGui extends JPanel {
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(10, 54, 130, 104);
+		panel.setBounds(10, 36, 102, 72);
 		if(x.GetType()=="Warrior")
 		{
-			panel.setBounds(10, 54, 106, 104);
-			txtpnTexto.setBackground(new Color(255, 228, 181));
 			
+			txtpnTexto.setBackground(new Color(255, 228, 181));
+			//panel.setBounds(10, 36, 77, 62);
 			
 			JLabel lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
-			lblAtaque.setBounds(119, 85, 46, 14);
+			lblAtaque.setBounds(94, 56, 46, 10);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
 			add(lblAtaque);
 			
 			JLabel lblDefensa = new JLabel(" " + x.GetMp());
-			lblDefensa.setBounds(119, 114, 46, 14);
+			lblDefensa.setBounds(94, 81, 46, 10);
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
 			add(lblDefensa);
 			
 			JLabel lblSupport = new JLabel(" "+ x.GetSup());
-			lblSupport.setBounds(104, 143, 56, 14);
+			lblSupport.setBounds(78, 101, 46, 14);
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
@@ -104,33 +104,34 @@ public class CardGui extends JPanel {
 			txtpnTexto.setBackground(new Color(255, 105, 180));
 			setBackground(new Color(255, 0, 153));
 			panel.setForeground(new Color(255, 0, 153));
-			lblSource.setBounds(117, 60, 60, 14);
+			
 			
 		}else if(x.GetType()=="Event")
 		{
 			txtpnTexto.setBackground(new Color(216, 191, 216));
 			setBackground(new Color(147, 112, 219));
 			panel.setForeground(new Color(147, 112, 219));
-			lblSource.setBounds(107, 60, 60, 14);
+			
 		}else
 		{
 			txtpnTexto.setBackground(new Color(255, 228, 181));
 			setBackground(new Color(0, 255, 0));
 			panel.setForeground(new Color(0, 255, 0));
-			lblSource.setBounds(117, 60, 60, 14);
+			
 			
 		}
 		
 		
 	
 		
-		setBounds(400, 200, 153, 250);	
-		setBorder(new LineBorder(new Color(102, 51, 0), 4));
+		setBounds(400, 200, 124, 186);	
+		setBorder(new LineBorder(new Color(102, 51, 0), 2));
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
-		lblNombre.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		lblNombre.setBounds(10, 29, 133, 20);
+		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 8));
+		lblNombre.setBounds(0, 11, 124, 20);
 		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
@@ -170,7 +171,7 @@ public class CardGui extends JPanel {
 		
 		
 		JLabel lblAbility = new JLabel("Ability");
-		lblAbility.setBounds(10, 155, 46, 14);
+		lblAbility.setBounds(10, 109, 46, 14);
 		add(lblAbility);
 		
 		
@@ -178,17 +179,18 @@ public class CardGui extends JPanel {
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
-		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
 		lblNewLabel.setForeground(new Color(128, 0, 0));
-		lblNewLabel.setBounds(10, 11, 87, 21);
+		lblNewLabel.setBounds(10, 0, 77, 21);
 		add(lblNewLabel);
 		
 		JLabel lblType = new JLabel(x.GetType());
 		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblType.setForeground(new Color(255, 255, 255));
-		lblType.setBounds(81, 14, 62, 14);
+		lblType.setBounds(52, 2, 62, 14);
 		add(lblType);
 		
+	
 		
 
 	}
