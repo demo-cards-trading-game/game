@@ -32,7 +32,6 @@ public class CardGui extends JPanel {
 		
 		super();
 		actual=x;
-		setBackground(new Color(160, 82, 45));
 		
 		
 		
@@ -130,7 +129,7 @@ public class CardGui extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
-		lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 11));
+		lblNombre.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
 		lblNombre.setBounds(10, 29, 133, 20);
 		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setBackground(new Color(0, 0, 0));
@@ -179,8 +178,16 @@ public class CardGui extends JPanel {
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
+		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		lblNewLabel.setForeground(new Color(128, 0, 0));
 		lblNewLabel.setBounds(10, 11, 87, 21);
 		add(lblNewLabel);
+		
+		JLabel lblType = new JLabel(x.GetType());
+		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblType.setForeground(new Color(255, 255, 255));
+		lblType.setBounds(81, 14, 62, 14);
+		add(lblType);
 		
 		
 

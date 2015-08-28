@@ -11,30 +11,31 @@ public class HandGui extends JPanel {
 	private Card[]  cards  = new Card[5];
 	private int current;
 	public HandGui(int posx,int posy) {
-		setBackground(new Color(153, 102, 102));
-		current=0;
 		
+		current=0;
+		setOpaque(false);
 		setBounds(posx,posy, 780, 252);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(153, 102, 102));
+		panel.setOpaque(false);
+		
 		add(panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(153, 102, 102));
+		panel_1.setOpaque(false);
 		add(panel_1);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(153, 102, 102));
+		panel_2.setOpaque(false);
 		add(panel_2);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(153, 102, 102));
+		panel_3.setOpaque(false);
 		add(panel_3);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(153, 102, 102));
+		panel_5.setOpaque(false);
 		add(panel_5);
 		
 		handgui[0] = panel;
