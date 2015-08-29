@@ -31,6 +31,7 @@ public class CardGui extends JPanel {
 	public CardGui(Card x) {
 		
 		super();
+		
 		actual=x;
 		
 		
@@ -69,6 +70,7 @@ public class CardGui extends JPanel {
 		panel.setBorder(null);
 		
 		panel.setBounds(10, 36, 102, 72);
+	
 		if(x.GetType()=="Warrior")
 		{
 			

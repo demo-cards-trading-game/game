@@ -118,7 +118,7 @@ public class Gui extends JFrame implements ActionListener
    if (e.getSource()==b1)//cuando se le da click al boton 1
         {
           
-	   	  player1=new PlayerGui(220,140);
+	   	  player1=new PlayerGui(0,120);
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
          
           contentPane=new JPanel();
@@ -131,7 +131,7 @@ public class Gui extends JFrame implements ActionListener
           b2=new JButton("Show");
           b2.setBackground(Color.white);
           b2.setBorder(null);
-          b2.setBounds(500,350,60,30);
+          b2.setBounds(0,0,60,30);
           b2.setBorder(BorderFactory.createEmptyBorder());
          
 
@@ -139,7 +139,7 @@ public class Gui extends JFrame implements ActionListener
          
          
         
-          contentPane.add(b2);
+          contentPane.add(b2);                                                                          
          
           setContentPane(contentPane);
           
