@@ -118,56 +118,31 @@ public class Gui extends JFrame implements ActionListener
    if (e.getSource()==b1)//cuando se le da click al boton 1
         {
           
-	   	  player1=new PlayerGui(0,120);
+	   	 
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
-         
-          contentPane=new JPanel();
-          contentPane.setBackground(new Color(153, 102, 102));
-          contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-          contentPane.setLayout(null);
-          contentPane.removeAll();
-       
+          player1=new PlayerGui(0,120,Nombre1);
           
-          b2=new JButton("Show");
-          b2.setBackground(Color.white);
-          b2.setBorder(null);
-          b2.setBounds(0,0,60,30);
-          b2.setBorder(BorderFactory.createEmptyBorder());
+          addbackgound2(this);
+          getContentPane().setLayout(null);
+        
+         // contentPane.removeAll();
+       
+          add(player1);
          
 
-          b2.addActionListener(this);
+                                                                             
          
-         
-        
-          contentPane.add(b2);                                                                          
-         
-          setContentPane(contentPane);
           
           setVisible(true);
-          
+
+         
           
 
           
         }
    if (e.getSource()==b2)//cuando se le da click al boton 1
        {
-	 contentPane.removeAll();
-     JPanel painel3;
-     JPanel painel5;
-     JLabel n;
-    
-    Random randomGenerator = new Random();
-    int randomInt = randomGenerator.nextInt(15);
-    player1.hand.draw(LoadData.Data.Consultar(randomInt));
-    contentPane.add(player1);
-    contentPane.add(b2);
-    
-    contentPane.repaint();
-    	
-   
-   
-      this.setVisible(true);
-      this.setVisible(true);
+	
       
   }
         if (e.getSource()==mi1) {
@@ -192,6 +167,16 @@ public class Gui extends JFrame implements ActionListener
  
  }
 
+ void addbackgound2(JFrame jfm)
+ {
+   try {
+      jfm.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("frame2.jpg")))));
+     } 
+   catch (IOException e) {
+      e.printStackTrace();
+     }
+ 
+ }
  
  
 

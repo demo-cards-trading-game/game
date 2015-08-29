@@ -1,10 +1,14 @@
 package demo;
 import javax.swing.JPanel;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+
+import data.LoadData;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -15,24 +19,27 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextPane;
 public class DeckGui extends JPanel {
-	private JTextField textField;
+	JTextField textField;
 
 	public deck Deck;
+	public LoadData loadData;
 	private JTextField txtHero;
 	private JTextField txtCharacter;
 	private JTextField txtSection;
+	public JButton btnNewButton; 
+	
+	
 	public DeckGui(int x,int y) {
 		Deck=new deck();
+		 for(int i =1; i<16; i++){
+			   Deck.insertar(loadData.Data.Consultar(i));
+		   }
 		setBackground(new Color(255, 165, 0));
 		setBounds(x, y, 250, 340);
 		setOpaque(false);
 		setLayout(null);
 		
-		JButton btnNewButton = new JButton();
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnNewButton = new JButton();
 		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setOpaque(false);
 		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
