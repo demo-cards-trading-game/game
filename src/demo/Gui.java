@@ -2,7 +2,7 @@ package demo;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
+import demo.DeckGui;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -25,7 +25,7 @@ public class Gui extends JFrame implements ActionListener
   private JMenuItem mi1,mi2,mi3;
   static LoadData data;
   private JPanel contentPane;
-  private HandGui mano,mano2;
+  private PlayerGui player1;
   public Gui()
  {  
 	  
@@ -118,10 +118,11 @@ public class Gui extends JFrame implements ActionListener
    if (e.getSource()==b1)//cuando se le da click al boton 1
         {
           
-          
+	   	  player1=new PlayerGui(0,120);
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
+         
           contentPane=new JPanel();
-          contentPane.setBackground(Color.BLACK);
+          contentPane.setBackground(new Color(153, 102, 102));
           contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
           contentPane.setLayout(null);
           contentPane.removeAll();
@@ -130,22 +131,17 @@ public class Gui extends JFrame implements ActionListener
           b2=new JButton("Show");
           b2.setBackground(Color.white);
           b2.setBorder(null);
-          b2.setBounds(500,350,60,30);
+          b2.setBounds(0,0,60,30);
           b2.setBorder(BorderFactory.createEmptyBorder());
          
 
           b2.addActionListener(this);
-          mano=new HandGui(100,450);
-          mano2=new HandGui(100,0);
-          contentPane.add(b2);
-          contentPane.add(mano);
-          
          
-          
-          
-          
+         
+        
+          contentPane.add(b2);                                                                          
+         
           setContentPane(contentPane);
-          
           
           setVisible(true);
           
@@ -162,11 +158,8 @@ public class Gui extends JFrame implements ActionListener
     
     Random randomGenerator = new Random();
     int randomInt = randomGenerator.nextInt(15);
-    mano.draw(LoadData.Data.Consultar(randomInt));
-    	randomInt = randomGenerator.nextInt(15);
-    	mano2.draw(LoadData.Data.Consultar(randomInt));
-    contentPane.add(mano2);
-    contentPane.add(mano);
+    player1.hand.draw(LoadData.Data.Consultar(randomInt));
+    contentPane.add(player1);
     contentPane.add(b2);
     
     contentPane.repaint();

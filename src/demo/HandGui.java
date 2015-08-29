@@ -8,32 +8,34 @@ import java.awt.Color;
 import java.util.Random;
 public class HandGui extends JPanel {
 	private JPanel[]  handgui  = new JPanel[5];
+	private Card[]  cards  = new Card[5];
 	private int current;
 	public HandGui(int posx,int posy) {
-		setBackground(Color.BLACK);
-		current=0;
 		
-		setBounds(posx,posy, 780, 252);
+		current=0;
+		setOpaque(false);
+		setBounds(posx,posy, 620, 186);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.BLACK);
+		panel.setOpaque(false);
+		
 		add(panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.BLACK);
+		panel_1.setOpaque(false);
 		add(panel_1);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.BLACK);
+		panel_2.setOpaque(false);
 		add(panel_2);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.BLACK);
+		panel_3.setOpaque(false);
 		add(panel_3);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(Color.BLACK);
+		panel_5.setOpaque(false);
 		add(panel_5);
 		
 		handgui[0] = panel;
@@ -55,7 +57,7 @@ public class HandGui extends JPanel {
 	      {
 	       
 	      handgui[i-1]=handgui[i];
-	      
+	      cards[i-1]=cards[i];
 	      }
 
 	      current=current-1;
@@ -76,6 +78,7 @@ public class HandGui extends JPanel {
 			 
 			 CardGui x= new CardGui(a);
 		      handgui[current]=x;
+		      cards[current]=a;
 		      current=current+1;
 		     removeAll();
 			 addall();

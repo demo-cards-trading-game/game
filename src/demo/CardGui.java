@@ -14,6 +14,7 @@ import data.LoadData;
 
 import demo.Card;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 
 
 
@@ -22,47 +23,102 @@ import javax.swing.border.BevelBorder;
 
 public class CardGui extends JPanel {
 	private JTextField textField;
-
+	private Card  actual;
 	/**
 	 * Create the panel.
 	 */
 	
 	public CardGui(Card x) {
+		
 		super();
+		
+		actual=x;
+		
+		
+		
+		setForeground(Color.WHITE);
 	
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
-	
+		JTextPane txtpnTexto = new JTextPane();
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
+		txtpnTexto.setText(x.GetDescription());
+		txtpnTexto.setBounds(10, 126, 102, 49);
+		txtpnTexto.setEditable(false);
+		add(txtpnTexto);
 		
-		panel.setBounds(10, 54, 130, 104);
+		JLabel lblSource = new JLabel(x.GetSource());
+	
+		lblSource.setBounds(64, 32, 60, 14);
+		lblSource.setOpaque(true);
+		add(lblSource);
+		switch (x.GetSource())
+		{
+		case "Water":	lblSource.setBackground(new Color(0, 191, 255));
+			break;
+		case "Wind": 	lblSource.setBackground(Color.WHITE);	
+			break;
+		case "Fire":   	lblSource.setBackground(Color.RED);
+			break;
+		case "Earth": 	lblSource.setBackground(new Color(160, 82, 45));
+			break;
+			
+		default : 	lblSource.setBackground(Color.ORANGE);
+		
+		}
+		
+		panel.setBorder(null);
+		
+		panel.setBounds(10, 36, 102, 72);
+	
 		if(x.GetType()=="Warrior")
 		{
-			panel.setBounds(10, 54, 106, 104);
-			JLabel lblAtaque = new JLabel(" "+x.GetHp());
-			lblAtaque.setBounds(119, 70, 46, 14);
+			
+			txtpnTexto.setBackground(new Color(255, 228, 181));
+			//panel.setBounds(10, 36, 77, 62);
+			
+			JLabel lblAtaque = new JLabel();
+			lblAtaque.setText(""+x.GetHp());
+			
+			lblAtaque.setBounds(94, 56, 46, 10);
+			lblAtaque.setBackground(new Color(255, 51, 204));
+			lblAtaque.setOpaque(true);
+			lblAtaque.setVisible(true);
 			add(lblAtaque);
 			
 			JLabel lblDefensa = new JLabel(" " + x.GetMp());
-			lblDefensa.setBounds(119, 99, 46, 14);
+			lblDefensa.setBounds(94, 81, 46, 10);
+			lblDefensa.setBackground(new Color(0, 255, 51));
+			lblDefensa.setOpaque(true);
 			add(lblDefensa);
 			
 			JLabel lblSupport = new JLabel(" "+ x.GetSup());
-			lblSupport.setBounds(119, 124, 46, 14);
+			lblSupport.setBounds(78, 101, 46, 14);
+			lblSupport.setOpaque(true);
 			add(lblSupport);
-			setBackground(new Color(255, 215, 0));
+			lblSupport.setBackground(new Color(204, 153, 255));
+			
+			setBackground(new Color(204, 153, 51));
+			panel.setForeground(new Color(204, 153, 51));
 			
 		}else if(x.GetType()=="Disruption")
 		{
+			txtpnTexto.setBackground(new Color(255, 105, 180));
 			setBackground(new Color(255, 0, 153));
+			panel.setForeground(new Color(255, 0, 153));
 			
 			
 		}else if(x.GetType()=="Event")
 		{
-			setBackground(new Color(102, 0, 255));
+			txtpnTexto.setBackground(new Color(216, 191, 216));
+			setBackground(new Color(147, 112, 219));
+			panel.setForeground(new Color(147, 112, 219));
 			
 		}else
 		{
+			txtpnTexto.setBackground(new Color(255, 228, 181));
 			setBackground(new Color(0, 255, 0));
+			panel.setForeground(new Color(0, 255, 0));
 			
 			
 		}
@@ -70,13 +126,14 @@ public class CardGui extends JPanel {
 		
 	
 		
-		setBounds(400, 200, 146, 250);	
-		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		setBounds(400, 200, 124, 186);	
+		setBorder(new LineBorder(new Color(102, 51, 0), 2));
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
-		lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 11));
-		lblNombre.setBounds(10, 29, 126, 14);
+		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 8));
+		lblNombre.setBounds(0, 11, 124, 20);
 		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
@@ -85,25 +142,25 @@ public class CardGui extends JPanel {
 		  try {
 			  switch(x.GetCardNumber()){
 			  case 1:
-				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01.jpg")))));
+				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01.png")))));
 				  	break;
-			  case 2: panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.jpg")))));
+			  case 2: panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));
 			  		break;
 			  		
-			  case 3:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.jpg")))));
+			  case 3:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.png")))));
 			  		break;
-			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.jpg")))));		
+			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.png")))));		
 			  		break;
-			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05.jpg")))));		
+			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));		
 		  		break;	
 		  		
-			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05.jpg")))));		
+			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
 		  		break;	
 		  		
-			  case 13:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05.jpg")))));		
+			  case 13:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
 		  		break;	
 		  		
-			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.jpg")))));
+			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.png")))));
 			  
 			  }
 		      
@@ -116,22 +173,33 @@ public class CardGui extends JPanel {
 		
 		
 		JLabel lblAbility = new JLabel("Ability");
-		lblAbility.setBounds(10, 169, 46, 14);
+		lblAbility.setBounds(10, 109, 46, 14);
 		add(lblAbility);
 		
-		JTextPane txtpnTexto = new JTextPane();
-		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 10));
-		txtpnTexto.setText(x.GetDescription());
-		txtpnTexto.setBounds(10, 183, 126, 56);
-		txtpnTexto.setEditable(false);
-		add(txtpnTexto);
+		
 		
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
-		lblNewLabel.setBounds(10, 11, 87, 21);
+		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
+		lblNewLabel.setForeground(new Color(128, 0, 0));
+		lblNewLabel.setBounds(10, 0, 77, 21);
 		add(lblNewLabel);
+		
+		JLabel lblType = new JLabel(x.GetType());
+		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblType.setForeground(new Color(255, 255, 255));
+		lblType.setBounds(52, 2, 62, 14);
+		add(lblType);
+		
+	
+		
 
+	}
+	
+	public Card getcard()
+	{
+		return actual;
 	}
 	public class CirclePanel extends JPanel {
 
