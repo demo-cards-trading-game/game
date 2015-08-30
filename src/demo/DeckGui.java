@@ -27,8 +27,8 @@ public class DeckGui extends JPanel {
 	private JTextField txtCharacter;
 	private JTextField txtSection;
 	public JButton btnNewButton; 
-	
-	
+	public JButton btnNewButton_1;
+	public JButton btnNewButton_2;
 	public DeckGui(int x,int y) {
 		Deck=new deck();
 		 for(int i =1; i<16; i++){
@@ -62,12 +62,9 @@ public class DeckGui extends JPanel {
 		lblDeck.setBounds(170, 210, 53, 14);
 		add(lblDeck);
 		
-		JButton btnNewButton_1 = new JButton();
+		btnNewButton_1 = new JButton();
 		btnNewButton_1.setIcon(new ImageIcon("C:\\Documents and Settings\\Administrador\\git\\game\\Fallen.JPG"));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnNewButton_1.setBounds(160, 122, 80, 77);
 		add(btnNewButton_1);
 		
@@ -77,14 +74,11 @@ public class DeckGui extends JPanel {
 		lblTheFallen.setBounds(160, 108, 80, 14);
 		add(lblTheFallen);
 		
-		JButton btnNewButton_2 = new JButton();
+		btnNewButton_2 = new JButton();
 	
 		
 		btnNewButton_2.setIcon(new ImageIcon("C:\\Documents and Settings\\Administrador\\git\\game\\Forgotten.JPG"));
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+	
 		btnNewButton_2.setBounds(160, 21, 80, 77);
 		add(btnNewButton_2);
 		
