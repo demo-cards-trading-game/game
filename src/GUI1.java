@@ -5,22 +5,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import javax.swing.JLayeredPane;
+import javax.swing.JDesktopPane;
 
 public class GUI1 extends JFrame {
-
-	private JPanel contentPane;
 
 	public GUI1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLACK);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.SOUTH);
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBackground(Color.LIGHT_GRAY);
+		desktopPane.setBounds(101, 93, 246, 141);
+		getContentPane().add(desktopPane);
 	}
 	
 	 public static void main(String[] args)
@@ -28,5 +26,4 @@ public class GUI1 extends JFrame {
 	 GUI1 Juego=new GUI1();
 	 
 	 }
-
 }

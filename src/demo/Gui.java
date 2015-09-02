@@ -2,6 +2,8 @@ package demo;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import demo.DeckGui;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,12 +13,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
 import data.LoadData;
+import data.deckCreator;
+
 import java.util.Random;
 import demo.HandGui;
 public class Gui extends JFrame implements ActionListener
  {
  JPanel jp1,jp2,jp3;
- JButton b1,b2;
+ JButton b1,b2,b3;
  JLabel l1,demo;
  JTextArea text;
   String Nombre1;//nombre del jugador1
@@ -26,6 +30,8 @@ public class Gui extends JFrame implements ActionListener
   static LoadData data;
   private JPanel contentPane;
   private PlayerGui player1;
+  private deckCreator crear;
+  JInternalFrame crea;
   public Gui()
  {  
 	  
@@ -38,7 +44,9 @@ public class Gui extends JFrame implements ActionListener
   setContentPane(contentPane);
   setVisible(true);
     
-   
+  crea = new JInternalFrame("Crear deck");
+  crear= new deckCreator(200,200);
+  
       try {
   data=new LoadData();
  } catch (IOException e1) {
@@ -47,7 +55,7 @@ public class Gui extends JFrame implements ActionListener
  }
    
       
-   JButton jb1,jb2;
+
    
 
    setLayout(new CardLayout(0, 0));
@@ -80,12 +88,11 @@ public class Gui extends JFrame implements ActionListener
    text.setEditable(true);
    add(text);
 
-     b1=new JButton("Play");
+    b1=new JButton("Play");
     b1.setBackground(Color.white);
     b1.setBorder(null);
     b1.setBounds(380,560,60,30);
     b1.setBorder(BorderFactory.createEmptyBorder());
-    
     b1.addActionListener(this);
     add(b1);
     
@@ -108,68 +115,68 @@ public class Gui extends JFrame implements ActionListener
  
    
    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 
+   
    setVisible(true);
    
  }
  
   public void actionPerformed(ActionEvent e) {
+	  
+	if(e.getSource()==b1)
+	{
+		addbackground3(this);
+		b2 = new JButton("Play");
+		b2.setBackground(new Color(222, 184, 135));
+		b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		b2.setForeground(Color.BLACK);
+		b2.setBounds(70, 50, 132, 43);
+		b2.addActionListener(this);
+		add(b2);
+		
+		b3=new JButton("Create deck");
+		b3.setForeground(Color.BLACK);
+		b3.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		b3.setBackground(new Color(222, 184, 135));
+	    b3.setBounds(70, 130, 132, 43);
+	    b3.addActionListener(this);
+	    add(b3);
+		setVisible(true);
+	}
  
-   if (e.getSource()==b1)//cuando se le da click al boton 1
+   if (e.getSource()==b2)//cuando se le da click al boton 1
         {
           
-	   	  player1=new PlayerGui(0,120);
+	   	 
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
-         
-          contentPane=new JPanel();
-          contentPane.setBackground(new Color(153, 102, 102));
-          contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-          contentPane.setLayout(null);
-          contentPane.removeAll();
+          player1=new PlayerGui(0,0,Nombre1);
+          player1.deck.btnNewButton_1.addActionListener(this);
+          addbackgound2(this);
+          getContentPane().setLayout(null);
+        
+         // contentPane.removeAll();
        
-          
-          b2=new JButton("Show");
-          b2.setBackground(Color.white);
-          b2.setBorder(null);
-          b2.setBounds(0,0,60,30);
-          b2.setBorder(BorderFactory.createEmptyBorder());
+          add(player1);
          
 
-          b2.addActionListener(this);
+                                                                             
          
-         
-        
-          contentPane.add(b2);                                                                          
-         
-          setContentPane(contentPane);
           
           setVisible(true);
-          
-          
-
-          
-        }
-   if (e.getSource()==b2)//cuando se le da click al boton 1
-       {
-	 contentPane.removeAll();
-     JPanel painel3;
-     JPanel painel5;
-     JLabel n;
-    
-    Random randomGenerator = new Random();
-    int randomInt = randomGenerator.nextInt(15);
-    player1.hand.draw(LoadData.Data.Consultar(randomInt));
-    contentPane.add(player1);
-    contentPane.add(b2);
-    
-    contentPane.repaint();
-    	
+          }
    
-   
-      this.setVisible(true);
-      this.setVisible(true);
-      
-  }
+   		if (e.getSource()==b3)
+   		{
+   			
+   			if(!crear.isVisible()){
+   				
+   			
+			
+			crear.setVisible(true);
+			
+			add(crear);
+   			}
+   		}
+  
         if (e.getSource()==mi1) {
           setSize(900,650);
         }
@@ -180,7 +187,12 @@ public class Gui extends JFrame implements ActionListener
           setSize(1024,768);
         }   
   }
- /***********funciones*************/
+ private deckCreator deckCreator() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+/***********funciones*************/
  void addbackgound(JFrame jfm)
  {
    try {
@@ -192,7 +204,27 @@ public class Gui extends JFrame implements ActionListener
  
  }
 
+ void addbackgound2(JFrame jfm)
+ {
+   try {
+      jfm.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("frame2.jpg")))));
+     } 
+   catch (IOException e) {
+      e.printStackTrace();
+     }
  
+ }
+ 
+ void addbackground3(JFrame jfm)
+ {
+   try {
+      jfm.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("frame3.jpg")))));
+     } 
+   catch (IOException e) {
+      e.printStackTrace();
+     }
+ 
+ }
  
 
  
