@@ -37,7 +37,7 @@ public class Gui extends JFrame implements ActionListener
 	  
 	  super("Gui");
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  setBounds(100, 100, 1024, 768);
+  setBounds(0,0, 1024, 768);
   contentPane = new JPanel();
   contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
   contentPane.setLayout(null);
@@ -45,7 +45,7 @@ public class Gui extends JFrame implements ActionListener
   setVisible(true);
     
   crea = new JInternalFrame("Crear deck");
-  crear= new deckCreator(200,200);
+  crear= new deckCreator(112,84);
   
       try {
   data=new LoadData();
@@ -126,17 +126,17 @@ public class Gui extends JFrame implements ActionListener
 	{
 		addbackground3(this);
 		b2 = new JButton("Play");
-		b2.setBackground(new Color(222, 184, 135));
+		b2.setBackground(new Color(139, 0, 0));
 		b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
 		b2.setForeground(Color.BLACK);
 		b2.setBounds(70, 50, 132, 43);
 		b2.addActionListener(this);
 		add(b2);
 		
-		b3=new JButton("Create deck");
+		b3=new JButton("Deck menu");
 		b3.setForeground(Color.BLACK);
 		b3.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		b3.setBackground(new Color(222, 184, 135));
+		b3.setBackground(new Color(139, 0, 0));
 	    b3.setBounds(70, 130, 132, 43);
 	    b3.addActionListener(this);
 	    add(b3);
@@ -173,7 +173,10 @@ public class Gui extends JFrame implements ActionListener
 			
 			crear.setVisible(true);
 			
+			
 			add(crear);
+			
+			
    			}
    		}
   

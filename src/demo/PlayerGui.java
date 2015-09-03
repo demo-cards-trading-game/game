@@ -45,6 +45,7 @@ import javax.swing.JTextPane;
 import java.awt.Rectangle;
 import javax.swing.JLayeredPane;
 
+
 public class PlayerGui extends JPanel implements ActionListener {
 	public DeckGui deck;
 	HandGui hand;
@@ -59,7 +60,6 @@ public class PlayerGui extends JPanel implements ActionListener {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-	private JPanel pene;
 	private JPanel field;
 	private JPanel flecha;
 	private JPanel panel_5;
@@ -321,7 +321,7 @@ public class PlayerGui extends JPanel implements ActionListener {
 				pane.setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
 				//pane.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				pane.setVisible(true);
-			
+				deck.setVisible(false);
 				add(pane);
 				
 			  	}

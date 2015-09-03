@@ -63,7 +63,7 @@ public class DeckGui extends JPanel {
 		add(lblDeck);
 		
 		btnNewButton_1 = new JButton();
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Documents and Settings\\Administrador\\git\\game\\Fallen.JPG"));
+		btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
 		
 		btnNewButton_1.setBounds(160, 122, 80, 77);
 		add(btnNewButton_1);
@@ -77,7 +77,7 @@ public class DeckGui extends JPanel {
 		btnNewButton_2 = new JButton();
 	
 		
-		btnNewButton_2.setIcon(new ImageIcon("C:\\Documents and Settings\\Administrador\\git\\game\\Forgotten.JPG"));
+		btnNewButton_2.setIcon(new ImageIcon("Forgotten.JPG"));
 	
 		btnNewButton_2.setBounds(160, 21, 80, 77);
 		add(btnNewButton_2);
