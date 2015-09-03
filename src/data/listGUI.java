@@ -5,13 +5,14 @@ import java.awt.Rectangle;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.JComboBox;
 import javax.swing.JList;
 import demo.CardGui;
 import data.LoadData;
 
 public class listGUI extends JPanel {
 
-	public JList list;
+	public JComboBox<CardGui> list;
 	public LoadData data;
 
 	public listGUI() {
@@ -27,9 +28,9 @@ public class listGUI extends JPanel {
 			e.printStackTrace();
 		}
 		CardGui x = new CardGui(data.Data.Consultar(1));
-		list = new JList();
+		list = new JComboBox();
 		list.setBounds(new Rectangle(100, 100, 600, 400));
-		list.setBounds(150, 87, 600, 481);
+		list.setBounds(121, 75, 600, 481);
 		list.add(x);
 		add(list);
 
