@@ -10,6 +10,7 @@ public class HandGui extends JPanel {
 	private JPanel[]  handgui  = new JPanel[5];
 	private Card[]  cards  = new Card[5];
 	private int current;
+	
 	public HandGui(int posx,int posy) {
 		
 		current=0;
@@ -76,7 +77,7 @@ public class HandGui extends JPanel {
 		  
 		 }
 			 
-			 CardGui x= new CardGui(a);
+			 CardGui x= new CardGui(a,0,0);
 		      handgui[current]=x;
 		      cards[current]=a;
 		      current=current+1;

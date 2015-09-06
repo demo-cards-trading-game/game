@@ -91,11 +91,9 @@ public class DeckGui extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
-		panel.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-			}
-		});
+		
+		
+		
 		panel.setBackground(new Color(204, 153, 51));
 		panel.setBounds(41, 168, 109, 172);
 		add(panel);

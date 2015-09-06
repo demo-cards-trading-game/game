@@ -32,6 +32,7 @@ public class Gui extends JFrame implements ActionListener
   private PlayerGui player1;
   private deckCreator crear;
   JInternalFrame crea;
+ 
   public Gui()
  {  
 	  
@@ -82,7 +83,7 @@ public class Gui extends JFrame implements ActionListener
 /***************************************/
    addbackgound(this);
    addjlabel1(this);
-  // addtext1(this,text);
+  
    text = new JTextArea();   
    text.setBounds(480, 580, 90, 20);
    text.setEditable(true);
@@ -117,7 +118,7 @@ public class Gui extends JFrame implements ActionListener
    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    
    setVisible(true);
-   
+ 
  }
  
   public void actionPerformed(ActionEvent e) {

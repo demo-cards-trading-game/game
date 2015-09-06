@@ -321,7 +321,6 @@ public class PlayerGui extends JPanel implements ActionListener {
 				pane.setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
 				//pane.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				pane.setVisible(true);
-				deck.setVisible(false);
 				add(pane);
 				
 			  	}

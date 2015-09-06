@@ -1,5 +1,4 @@
 package data;
-
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -24,11 +23,15 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import demo.deck;
+import data.LoadData;
+
 
 public class deckCreator extends JInternalFrame implements ActionListener {
 	public JPanel panel1,panel2;
 	private JTextField nombred;
-
+	JButton create;
+	prueba lista;
 	public deckCreator(int x , int y) 
 	{
 		
@@ -83,9 +86,9 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		panel2.setLayout(null);
 		
 		
-		JButton btnNewButton = new JButton("Create");
-		btnNewButton.setBounds(104, 132, 173, 48);
-		panel2.add(btnNewButton);
+		create = new JButton("Create");
+		create.setBounds(104, 132, 173, 48);
+		panel2.add(create);
 		
 		nombred = new JTextField();
 		nombred.setBounds(145, 72, 86, 20);
@@ -102,6 +105,7 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		lblSetAName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSetAName.setBounds(145, 86, 92, 35);
 		panel2.add(lblSetAName);
+		create.addActionListener(this);
 		
 	}
 	
@@ -118,10 +122,13 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 	 
 	 public void actionPerformed(ActionEvent e)
 	 {
-		  if (e.getSource()==this)
+		  if (e.getSource()== create)
 		 {
-			 
+			addbackground(this);
+			 lista=new prueba();
+			 add(lista);
 			 repaint();
+			
 			 
 		 }
 		 

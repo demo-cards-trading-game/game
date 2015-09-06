@@ -21,14 +21,14 @@ import javax.swing.border.LineBorder;
 
 
 
-public class CardGui extends JPanel {
+public class BigCard extends JPanel {
 	private JTextField textField;
 	private Card  actual;
 	/**
 	 * Create the panel.
 	 */
 	
-	public CardGui(Card x, int a ,int b) {
+	public BigCard(Card x, int a ,int b) {
 		
 		super();
 		
@@ -41,15 +41,15 @@ public class CardGui extends JPanel {
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
 		JTextPane txtpnTexto = new JTextPane();
-		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
 		txtpnTexto.setText(x.GetDescription());
-		txtpnTexto.setBounds(10, 126, 102, 49);
+		txtpnTexto.setBounds(22, 181, 190, 117);
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
 		JLabel lblSource = new JLabel(x.GetSource());
 	
-		lblSource.setBounds(64, 32, 60, 14);
+		lblSource.setBounds(148, 32, 84, 20);
 		lblSource.setOpaque(true);
 		add(lblSource);
 		switch (x.GetSource())
@@ -69,7 +69,7 @@ public class CardGui extends JPanel {
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(10, 36, 102, 72);
+		panel.setBounds(20, 38, 190, 125);
 	
 		if(x.GetType()=="Warrior")
 		{
@@ -80,27 +80,27 @@ public class CardGui extends JPanel {
 			JLabel lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
-			lblAtaque.setBounds(94, 56, 46, 10);
+			lblAtaque.setBounds(170, 71, 76, 20);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
 			add(lblAtaque);
 			
 			JLabel lblDefensa = new JLabel(" " + x.GetMp());
-			lblDefensa.setBounds(94, 81, 46, 10);
+			lblDefensa.setBounds(170, 111, 76, 20);
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
 			add(lblDefensa);
 			
 			JLabel lblSupport = new JLabel(" "+ x.GetSup());
-			lblSupport.setBounds(78, 101, 46, 14);
+			lblSupport.setBounds(150, 150, 96, 20);
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
 			
 			setBackground(new Color(204, 153, 51));
-			panel.setForeground(new Color(204, 153, 51));
-			
+			//panel.setForeground(new Color(204, 153, 51));
+			panel.setForeground(Color.BLACK);
 		}else if(x.GetType()=="Disruption")
 		{
 			txtpnTexto.setBackground(new Color(255, 105, 180));
@@ -126,14 +126,14 @@ public class CardGui extends JPanel {
 		
 	
 		
-		setBounds(a, b, 124, 186);	
+		setBounds(a, b, 235, 322);	
 		setBorder(new LineBorder(new Color(102, 51, 0), 2));
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
-		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 8));
-		lblNombre.setBounds(0, 11, 124, 20);
+		lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 11));
+		lblNombre.setBounds(10, 23, 128, 15);
 		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
@@ -173,7 +173,8 @@ public class CardGui extends JPanel {
 		
 		
 		JLabel lblAbility = new JLabel("Ability");
-		lblAbility.setBounds(10, 109, 46, 14);
+		lblAbility.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		lblAbility.setBounds(22, 156, 89, 20);
 		add(lblAbility);
 		
 		
@@ -181,15 +182,16 @@ public class CardGui extends JPanel {
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
-		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
+		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblNewLabel.setForeground(new Color(128, 0, 0));
-		lblNewLabel.setBounds(10, 0, 77, 21);
+		lblNewLabel.setBounds(10, 0, 101, 21);
 		add(lblNewLabel);
 		
 		JLabel lblType = new JLabel(x.GetType());
+		lblType.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
 		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblType.setForeground(new Color(255, 255, 255));
-		lblType.setBounds(52, 2, 62, 14);
+		lblType.setBounds(141, 2, 84, 21);
 		add(lblType);
 		
 	
