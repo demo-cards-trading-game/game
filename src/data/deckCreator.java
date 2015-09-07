@@ -32,14 +32,13 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 	private JTextField nombred;
 	JButton create;
 	prueba lista;
+	String Nombre=null;
 	public deckCreator(int x , int y) 
 	{
 		
 		getContentPane().setLayout(null);
 		setBounds(x,y,800,600);
-		
-		//list.setBounds(100, 50, 600, 400);
-		//getContentPane().add(list);
+	
 		setClosable(true);
 		setIconifiable(false);
 		addbackground(this);
@@ -124,11 +123,15 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 	 {
 		  if (e.getSource()== create)
 		 {
+			 Nombre=nombred.getText(); 
+			 
+			if(!Nombre.isEmpty()){  
 			addbackground(this);
 			 lista=new prueba();
 			 add(lista);
 			 repaint();
-			
+			 System.out.println(Nombre+"pene");
+			}
 			 
 		 }
 		 

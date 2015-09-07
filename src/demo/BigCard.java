@@ -31,6 +31,7 @@ public class BigCard extends JPanel {
 	public BigCard(Card x, int a ,int b) {
 		
 		super();
+		setAutoscrolls(true);
 		
 		actual=x;
 		
@@ -41,14 +42,15 @@ public class BigCard extends JPanel {
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
 		JTextPane txtpnTexto = new JTextPane();
-		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
+		txtpnTexto.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 13));
 		txtpnTexto.setText(x.GetDescription());
-		txtpnTexto.setBounds(22, 181, 190, 117);
+		txtpnTexto.setBounds(22, 192, 190, 106);
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
 		JLabel lblSource = new JLabel(x.GetSource());
-	
+		lblSource.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		lblSource.setBounds(148, 32, 84, 20);
 		lblSource.setOpaque(true);
 		add(lblSource);
@@ -69,7 +71,8 @@ public class BigCard extends JPanel {
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(20, 38, 190, 125);
+		panel.setBounds(20, 34, 190, 150);
+		//panel.setBorder(new LineBorder(new Color(0, 0, 0), 4, true));
 	
 		if(x.GetType()=="Warrior")
 		{
@@ -81,6 +84,7 @@ public class BigCard extends JPanel {
 			lblAtaque.setText(""+x.GetHp());
 			
 			lblAtaque.setBounds(170, 71, 76, 20);
+			lblAtaque.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
@@ -88,6 +92,7 @@ public class BigCard extends JPanel {
 			
 			JLabel lblDefensa = new JLabel(" " + x.GetMp());
 			lblDefensa.setBounds(170, 111, 76, 20);
+			lblDefensa.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
 			add(lblDefensa);
@@ -95,12 +100,13 @@ public class BigCard extends JPanel {
 			JLabel lblSupport = new JLabel(" "+ x.GetSup());
 			lblSupport.setBounds(150, 150, 96, 20);
 			lblSupport.setOpaque(true);
+			lblSupport.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
 			
 			setBackground(new Color(204, 153, 51));
-			//panel.setForeground(new Color(204, 153, 51));
-			panel.setForeground(Color.BLACK);
+			panel.setForeground(new Color(204, 153, 51));
+			panel.setBackground(new Color(204, 153, 51));
 		}else if(x.GetType()=="Disruption")
 		{
 			txtpnTexto.setBackground(new Color(255, 105, 180));
@@ -133,8 +139,8 @@ public class BigCard extends JPanel {
 		JLabel lblNombre = new JLabel(x.GetName());
 		lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 11));
-		lblNombre.setBounds(10, 23, 128, 15);
-		lblNombre.setForeground(new Color(0, 0, 0));
+		lblNombre.setBounds(10, 2, 161, 24);
+		lblNombre.setForeground(new Color(255, 255, 204));
 		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
 		
@@ -142,25 +148,25 @@ public class BigCard extends JPanel {
 		  try {
 			  switch(x.GetCardNumber()){
 			  case 1:
-				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01.png")))));
+				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01big.png")))));
 				  	break;
-			  case 2: panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));
+			  case 2: panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02big.png")))));
 			  		break;
 			  		
-			  case 3:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.png")))));
+			  case 3:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03big.png")))));
 			  		break;
-			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.png")))));		
+			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04big.png")))));		
 			  		break;
-			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));		
+			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05big.png")))));		
 		  		break;	
 		  		
-			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
+			  case 6:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("06big.png")))));		
 		  		break;	
 		  		
-			  case 13:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
+			  case 7:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("07big.png")))));		
 		  		break;	
 		  		
-			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.png")))));
+			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("08big.png")))));
 			  
 			  }
 		      
@@ -174,7 +180,7 @@ public class BigCard extends JPanel {
 		
 		JLabel lblAbility = new JLabel("Ability");
 		lblAbility.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		lblAbility.setBounds(22, 156, 89, 20);
+		lblAbility.setBounds(22, 171, 89, 20);
 		add(lblAbility);
 		
 		
@@ -182,9 +188,10 @@ public class BigCard extends JPanel {
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
-		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblNewLabel.setForeground(new Color(128, 0, 0));
-		lblNewLabel.setBounds(10, 0, 101, 21);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setFont(new Font("Showcard Gothic", Font.ITALIC, 12));
+		lblNewLabel.setForeground(new Color(0, 0, 51));
+		lblNewLabel.setBounds(124, 301, 101, 21);
 		add(lblNewLabel);
 		
 		JLabel lblType = new JLabel(x.GetType());
@@ -194,6 +201,8 @@ public class BigCard extends JPanel {
 		lblType.setBounds(141, 2, 84, 21);
 		add(lblType);
 		
+		
+	
 	
 		
 
