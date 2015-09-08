@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import demo.deck;
 import data.LoadData;
@@ -32,6 +33,7 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 	private JTextField nombred;
 	JButton create;
 	prueba lista;
+	JInternalFrame  error;
 	String Nombre=null;
 	public deckCreator(int x , int y) 
 	{
@@ -43,6 +45,28 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		setIconifiable(false);
 		addbackground(this);
 	
+		
+		JTextPane txtpnTexto = new JTextPane();
+		txtpnTexto.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 13));
+		txtpnTexto.setText("You must enter a valid name for the deck if you ever want to create one");
+		txtpnTexto.setBounds(0, 0, 200, 180);
+		txtpnTexto.setEditable(false);
+	
+		
+		error= new JInternalFrame("Error");
+		error.setLayout(null);
+		error.setBounds(500, 250, 200, 200);
+		error.setClosable(true);
+		error.setIconifiable(false);
+		error.setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
+		error.add(txtpnTexto);
+		add(error);
+		
+		
+		
+		//pane.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		error.setVisible(false);
 		setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
 		panel2=new JPanel();
 		panel2.setBounds(400,0,400,600);
@@ -131,6 +155,18 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 			 add(lista);
 			 repaint();
 			 System.out.println(Nombre+"pene");
+			}else{
+				
+
+				if(!error.isVisible())
+			  	{
+			  	
+				error.setVisible(true);
+				
+			  	}
+				
+				
+				
 			}
 			 
 		 }
