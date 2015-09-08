@@ -92,7 +92,7 @@ public class Gui extends JFrame implements ActionListener
     b1=new JButton("Play");
     b1.setBackground(Color.white);
     b1.setBorder(null);
-    b1.setBounds(380,560,60,30);
+    b1.setBounds(380 ,560,60,30);
     b1.setBorder(BorderFactory.createEmptyBorder());
     b1.addActionListener(this);
     add(b1);
@@ -127,9 +127,9 @@ public class Gui extends JFrame implements ActionListener
 	{
 		addbackground3(this);
 		b2 = new JButton("Play");
-		b2.setBackground(new Color(139, 0, 0));
+		b2.setBackground(Color.BLACK);
 		b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		b2.setForeground(Color.BLACK);
+		b2.setForeground(Color.WHITE);
 		b2.setBounds(70, 50, 132, 43);
 		b2.addActionListener(this);
 		add(b2);
@@ -137,7 +137,7 @@ public class Gui extends JFrame implements ActionListener
 		b3=new JButton("Deck menu");
 		b3.setForeground(Color.BLACK);
 		b3.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		b3.setBackground(new Color(139, 0, 0));
+		b3.setBackground(Color.WHITE);
 	    b3.setBounds(70, 130, 132, 43);
 	    b3.addActionListener(this);
 	    add(b3);
