@@ -76,13 +76,18 @@ public  class List{
 
    public void insertarUlt(Card x){
 	   //this.insertar((this.getCantidad()+1), x); //solucion facil xD
-	   Nodo nuevo = new Nodo ();
+	   if(ultimo!=null)
+	   { Nodo nuevo = new Nodo ();
        nuevo.info.asignar(x);
        ultimo.sig=nuevo;
        nuevo.ant=ultimo;
        nuevo.sig=null;
        ultimo=nuevo;
-       
+	   }else
+	   {
+		   insertar(1,x);
+		   
+	   }
        cantidad++;
    }
    

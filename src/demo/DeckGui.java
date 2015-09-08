@@ -17,6 +17,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.IOException;
+
 import javax.swing.JTextPane;
 public class DeckGui extends JPanel {
 	JTextField textField;
@@ -31,9 +33,14 @@ public class DeckGui extends JPanel {
 	public JButton btnNewButton_2;
 	public DeckGui(int x,int y) {
 		Deck=new deck();
-		 for(int i =1; i<16; i++){
-			   Deck.insertar(loadData.Data.Consultar(i));
-		   }
+		 
+		 try {
+			Deck.Load("resources/siren.in");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 Deck.barajear();
 		setBackground(new Color(255, 165, 0));
 		setBounds(x, y, 250, 340);
 		setOpaque(false);
