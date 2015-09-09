@@ -150,11 +150,11 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 			 Nombre=nombred.getText(); 
 			 
 			if(!Nombre.isEmpty()){  
-			addbackground(this);
-			 lista=new prueba();
+			addbackground(this);// agregar el fondo
+			 lista=new prueba();//
 			 add(lista);
 			 repaint();
-			 System.out.println(Nombre+"pene");
+			 
 			}else{
 				
 

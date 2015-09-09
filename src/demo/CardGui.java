@@ -201,7 +201,7 @@ public class CardGui extends JPanel {
 	{
 		return actual;
 	}
-	public class CirclePanel extends JPanel {
+		public class CirclePanel extends JPanel {
 
 	
 

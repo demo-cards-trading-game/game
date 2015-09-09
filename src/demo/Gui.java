@@ -48,6 +48,7 @@ public class Gui extends JFrame implements ActionListener
   crea = new JInternalFrame("Crear deck");
   crear= new deckCreator(112,84);
   
+  
       try {
   data=new LoadData();
  } catch (IOException e1) {

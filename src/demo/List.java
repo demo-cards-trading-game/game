@@ -127,7 +127,7 @@ public  class List{
     	{
     		Nodo reco;
             reco = raiz;
-            for (int f = 2 ; f <= pos  ; f++)
+            for (int f = 2 ; f < pos  ; f++)
                 reco = reco.sig;
             informacion=reco.info;
     	}
