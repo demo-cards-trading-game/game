@@ -1,4 +1,6 @@
 package demo;
+import java.util.Random;
+
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -78,10 +80,25 @@ public class deck{
  //shuffle
 public void shuffle(Card[] cards) {
 	 int n= cards.length;
-	 int aux;
+	 int mayor, aux, menor;
+	  Random rnd = new Random();
+	 for(int j=0; j<n; j++){
+		  for(int i=0;i<n;i++){
+			 mayor =n-i;
+			 menor=i;
+			 if(mayor<i){
+				 aux= menor;
+				 menor = mayor;
+				 mayor =menor;
+			 }
+			 int r= (int)(rnd.nextDouble()*mayor+menor); //entre i y n-1
+			 
+			 exch(cards,i,r);
+		 }
+	 }
+	 
 	 for(int i=0;i<n;i++){
-		 int r= i+(int)(Math.random()*(n-i)); //entre i y n-1
-		 exch(cards,i,r);
+		 recorrerYmover();
 	 }
  }
 
@@ -91,6 +108,16 @@ private void exch(Card[] cards, int i, int r) {
 	swamp.asignar(cards[i]);
 	cards[i].asignar(cards[r]);
 	cards[r].asignar(swamp);
+}
+
+public void recorrerYmover(){
+	Random rnd = new Random();
+	 for(int i=0; i<cards.length-2; i++){
+		 if(cards[i].GetType()==cards[i+1].GetType()){//tratar de que no se vean repetidas a su alrededor
+			 this.exch(cards, i, (int)(rnd.nextDouble()*(cards.length-1)+0));
+			 System.out.println("h");
+		 }
+	 }
 }
 
 //consulta
@@ -190,7 +217,28 @@ private void exch(Card[] cards, int i, int r) {
  }
  public void barajear()
  {
-	
+	//organizamos las cartas de una manera aleatoria antes de barajear
+	/* Card [] aux = new Card[longitud];
+	 int [] verificar = new int[longitud];
+	 for(int i=1; i<=longitud; i++){
+		 aux[i].asignar(cards[i]);
+		 verificar[i]=0; //significa que esta disponible el espacio
+	 }
+	 int cont =1;
+	 int num;
+	 Random rd = new Random();
+	 while(cont <= longitud){ //itera hasta que no exista espacios por insertar
+		 num= (int)(rd.nextDouble() * (longitud-1)+0); //numero aleatorio entre 0 a longitud-1
+		 if(verificar[num]==0){ //verifica espacios vacios
+			 cards[num].asignar(aux[num]); //se llena el vector original
+			 verificar[num]=1; 
+			 cont++;
+		 }
+	 }
+	 */
+	 
+	 //////////////////////////////////////////////////
+	 
 	 for (int i =0; i<40;i++)
 	 {
 		 cards[i]=Consultar(i);
