@@ -197,6 +197,17 @@ public class CardGui extends JPanel {
 
 	}
 
+	 @Override
+     public void paintComponent(Graphics g)
+     {
+		 
+         int height = 200;
+         int width = 120;
+         g.setColor(Color.gray);
+         g.drawRoundRect(0, 0, width, height, 20, 30);
+         super.paintComponent(g);
+        
+     }
 	public Card getcard()
 	{
 		return actual;

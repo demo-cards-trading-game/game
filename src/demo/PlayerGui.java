@@ -46,7 +46,7 @@ import java.awt.Rectangle;
 import javax.swing.JLayeredPane;
 
 
-public class PlayerGui extends JPanel implements ActionListener {
+public class PlayerGui extends JLayeredPane implements ActionListener {
 	public DeckGui deck;
 	HandGui hand;
 	int turn;
@@ -322,6 +322,7 @@ public class PlayerGui extends JPanel implements ActionListener {
 				//pane.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				pane.setVisible(true);
 				add(pane);
+				moveToFront(pane);
 				
 			  	}
 				
