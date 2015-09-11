@@ -11,7 +11,7 @@ import data.LoadData;
 public class prueba {
   public static void main(String[] args)
   {
-  /*LoadData x=null;
+  LoadData x=null;
   
   try {
 	x=new LoadData();
@@ -20,10 +20,17 @@ public class prueba {
 	e.printStackTrace();
 }
   
-  x.Data.imprimir();
-   
+  //x.Data.imprimir();
+  	Card [] c = new Card[15];
    deck d = new deck();
    for(int i =1; i<5; i++){
+	   c[i]= new Card();
+	   c[i].asignar(LoadData.Data.Consultar(i));
+   }
+   for(int i =1; i<5; i++){
+	   c[i].PrintCard();
+   }
+   /*for(int i =1; i<5; i++){
 	   d.insertar(LoadData.Data.Consultar(i));
    }
    for(int i =1; i<5; i++)
@@ -31,7 +38,7 @@ public class prueba {
    
   */
 	  
-	Card c1 = new Card();
+	/*Card c1 = new Card();
 	c1.SetId("1");
 	Card c2 = new Card();
 	c2.SetId("2");
@@ -46,7 +53,7 @@ public class prueba {
 	l.insertar(1, c3);
 	l.insertar(4, c3);
 	l.insertarUlt(c4);
-	l.imprimir();
+	l.imprimir();*/
   }
 
 }

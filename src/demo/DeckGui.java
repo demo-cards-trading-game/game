@@ -50,7 +50,10 @@ public class DeckGui extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 Deck.barajear();
+
+			 Deck.barajear();
+
+		 
 		setBackground(new Color(255, 165, 0));
 		setBounds(x, y, 250, 340);
 		setOpaque(false);

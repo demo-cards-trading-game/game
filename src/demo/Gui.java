@@ -155,14 +155,9 @@ public class Gui extends JFrame implements ActionListener
           addbackgound2(this);
           getContentPane().setLayout(null);
         
-         // contentPane.removeAll();
-       
+         // contentPane.removeAll();       
           add(player1);
-         
-
-                                                                             
-         
-          
+   
           setVisible(true);
           }
    
