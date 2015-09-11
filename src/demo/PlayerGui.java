@@ -44,13 +44,16 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JTextPane;
 import java.awt.Rectangle;
 import javax.swing.JLayeredPane;
-
+import demo.abstracta;
 
 public class PlayerGui extends JLayeredPane implements ActionListener {
-	public DeckGui deck;
-	HandGui hand;
+	
+	public static  JPanel[]  barriers   = new JPanel[5];
+	public static DeckGui deck;
+	public HandGui hand;
 	int turn;
-	private JPanel[]  barriers   = new JPanel[5];
+	
+	
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
@@ -62,10 +65,11 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 	private JLabel label_3;
 	private LoadData cartas;
 	private JInternalFrame pane; 
-	private field campo;
+
 	
 	public PlayerGui(int x , int y, String name) {
-		setBorder(null);
+	setBorder(null);
+
 		setBackground(UIManager.getColor("Button.disabledShadow"));
 		hand= new HandGui (0,0);
 		hand.setLocation(179, 530);
@@ -181,13 +185,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		deck.setLocation(770, 361);
 		 
 		this.add(deck);
-		campo=new field(200,100);
-		campo.draw(deck.Deck.Consultar(1));
-		add(campo);
-		campo.setLayout(null);
-	
-		  deck.btnNewButton.addActionListener(this);
-		  deck.btnNewButton_1.addActionListener(this);
+		
+		deck.btnNewButton.addActionListener(this);
+		deck.btnNewButton_1.addActionListener(this);
 		  
 	
 	}
@@ -199,7 +199,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 			 if(deck.Deck.cardsLeft()!= 0 )
 			 {
 
-			  hand.draw( deck.Deck.extraerR());
+			  hand.draw(deck.Deck.extraerR());
 			 }
 			 deck.textField.repaint();
 			 deck.textField.setText("cards left "+ deck.Deck.cardsLeft());

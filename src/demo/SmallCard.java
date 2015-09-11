@@ -33,6 +33,7 @@ public class SmallCard extends JPanel {
 	public SmallCard(Card x, int a ,int b) {
 		
 		super();
+		setBounds(new Rectangle(0, 0, 100, 145));
 		
 		actual=x;
 		
@@ -71,7 +72,7 @@ public class SmallCard extends JPanel {
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(10, 36, 102, 72);
+		panel.setBounds(10, 36, 70, 40);
 	
 		if(x.GetType()=="Warrior")
 		{

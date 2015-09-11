@@ -21,9 +21,11 @@ import javax.swing.border.LineBorder;
 
 
 
-public class CardGui extends JPanel {
+ 	public class CardGui extends JPanel  implements MouseListener ,MouseMotionListener  {
 	private JTextField textField;
 	private Card  actual;
+	private JPanel option;
+	JButton btnView;
 	/**
 	 * Create the panel.
 	 */
@@ -31,15 +33,37 @@ public class CardGui extends JPanel {
 	public CardGui(Card x, int a ,int b) {
 		
 		super();
+		 addMouseListener(this);
 		
 		actual=x;
-		
+		  addMouseMotionListener(this);
 		
 		
 		setForeground(Color.WHITE);
 	
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(false);
+		
+		panel_1.setBounds(0, 0, 124, 186);
+		add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton btnSummon = new JButton("summon");
+		btnSummon.setBounds(10, 11, 104, 23);
+		panel_1.add(btnSummon);
+		
+		JButton btnSet = new JButton("set");
+		btnSet.setBounds(10, 45, 104, 23);
+		panel_1.add(btnSet);
+		
+		 btnView= new JButton("view");
+		
+			
+		btnView.setBounds(10, 79, 104, 23);
+		panel_1.add(btnView);
 		JTextPane txtpnTexto = new JTextPane();
 		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
 		txtpnTexto.setText(x.GetDescription());
@@ -127,6 +151,10 @@ public class CardGui extends JPanel {
 	
 		
 		setBounds(a, b, 124, 186);	
+		option=new JPanel();
+		option.setBounds(a, b, 124, 186);
+		option.setOpaque(false);
+		
 		setBorder(new LineBorder(new Color(102, 51, 0), 2));
 		setLayout(null);
 		
@@ -221,4 +249,36 @@ public class CardGui extends JPanel {
 	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 	    }
 	}
+		public void mousePressed(MouseEvent e) {
+			 saySomething("Mouse pressed", e);
+		    }
+		  public void mouseReleased(MouseEvent e) {
+			  saySomething("Mouse released", e);
+		    }
+		  public void mouseExited(MouseEvent e) {
+			  saySomething("Mouse exited", e);
+		    }
+		  
+		  public void mouseClicked(MouseEvent e) {
+		       saySomething("Mouse clicked (# of clicks: "
+		                    + e.getClickCount() + ")", e);
+		    }
+		  public void mouseEntered(MouseEvent e) {
+		       saySomething("Mouse entered", e);
+		    }
+		    void saySomething(String eventDescription, MouseEvent e) {
+		       System.out.println(eventDescription + " detected on "
+		                        + e.getComponent().getClass().getName()
+		                        + "." );
+		    }
+		  
+		    public void mouseMoved(MouseEvent e) {
+		        saySomething("Mouse moved", e);
+		     }
+
+		     public void mouseDragged(MouseEvent e) {
+		        saySomething("Mouse dragged", e);
+		     }
+		   
+			  
 }
