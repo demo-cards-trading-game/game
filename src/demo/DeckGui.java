@@ -31,6 +31,16 @@ public class DeckGui extends JPanel {
 	public JButton btnNewButton; 
 	public JButton btnNewButton_1;
 	public JButton btnNewButton_2;
+
+	public JPanel panel;
+	
+	
+	public void addhero(Card x)
+	{
+		panel.add(new SmallCard(x,0,0));
+		repaint();
+		
+	}
 	public DeckGui(int x,int y) {
 		Deck=new deck();
 		 
@@ -97,48 +107,18 @@ public class DeckGui extends JPanel {
 		add(lblForgotten);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(null);
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		
 		
-		
-		panel.setBackground(new Color(204, 153, 51));
-		panel.setBounds(41, 168, 109, 172);
-		add(panel);
 		panel.setLayout(null);
+		panel.setBackground(new Color(204, 153, 51));
+		panel.setBounds(41, 168, 100, 145);
+		add(panel);
+	
 		
-		txtHero = new JTextField();
-		txtHero.setOpaque(false);
-		txtHero.setForeground(new Color(255, 255, 255));
-		txtHero.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		txtHero.setEditable(false);
-		txtHero.setText("Hero");
-		txtHero.setBounds(10, 53, 86, 20);
-		panel.add(txtHero);
 		
-		txtHero.setBorder(null);
-		txtHero.setColumns(10);
 		
-		txtCharacter = new JTextField();
-		txtCharacter.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		txtCharacter.setForeground(new Color(255, 255, 255));
-		txtCharacter.setEditable(false);
-		txtCharacter.setText("character");
-		txtCharacter.setColumns(10);
-		txtCharacter.setBounds(10, 79, 86, 20);
-		txtCharacter.setOpaque(false);
-		txtCharacter.setBorder(null);
-		panel.add(txtCharacter);
-		
-		txtSection = new JTextField();
-		txtSection.setOpaque(false);
-		txtSection.setBorder(null);
-		txtSection.setForeground(new Color(255, 255, 255));
-		txtSection.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		txtSection.setEditable(false);
-		txtSection.setText("Section");
-		txtSection.setColumns(10);
-		txtSection.setBounds(10, 107, 86, 20);
-		panel.add(txtSection);
-
+	
 	}
+	
 }
