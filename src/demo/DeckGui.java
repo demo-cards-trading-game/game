@@ -51,7 +51,7 @@ public class DeckGui extends JPanel {
 			e.printStackTrace();
 		}
 
-			 Deck.barajear();
+			
 
 		 
 		setBackground(new Color(255, 165, 0));

@@ -160,8 +160,7 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 
 				if(!error.isVisible())
 			  	{
-			  	
-				error.setVisible(true);
+			  	error.setVisible(true);
 				
 			  	}
 				
