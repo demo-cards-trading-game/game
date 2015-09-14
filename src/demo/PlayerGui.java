@@ -51,6 +51,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 	public static  JPanel[]  barriers   = new JPanel[5];
 	public static DeckGui deck;
 	public HandGui hand;
+	public fieldGui field;
 	int turn;
 	
 	
@@ -92,6 +93,11 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		this.add(hand);
 		
 	
+		field = new fieldGui(0,0);
+		field.setLocation(220, 350);
+		field.setSize(500, 130);
+		
+		this.add(field);
 		
 		
 		/*******************************************/
@@ -100,8 +106,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		panel.setForeground(new Color(0, 102, 0));
 		panel.setBounds(179, 505, 97, 35);
 		barriers[0]=panel;
-	
-	
+		
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel.setLayout(null);
 		add(panel);
@@ -114,7 +119,6 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		lblBarrier.setBounds(10, 0, 77, 25);
 		panel.add(lblBarrier);
 		
-
 		panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setForeground(Color.WHITE);
@@ -188,8 +192,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		
 		deck.btnNewButton.addActionListener(this);
 		deck.btnNewButton_1.addActionListener(this);
-		  
-	
+		
 	}
 	  public void actionPerformed(ActionEvent e) {
 		  
