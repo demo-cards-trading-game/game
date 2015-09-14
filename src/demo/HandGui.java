@@ -37,13 +37,26 @@ public  class HandGui extends JPanel implements MouseListener{
 	      for (i=pos;i<current;i++)
 	      {
 	      cards[i-1]=cards[i];
+	      handgui[i-1]=handgui[i];
 	      }
-	      compactar();
+	   
 	      current=current-1;
-	      remove(handgui[current]);
+	      remove(current);
+	      compactar();
+	      removeAll();
+	      addall();
 	      repaint();
 	    }
-	 
+	 void addall()
+	 {
+		 for (int i=0;i<current;i++)
+	      {
+	   
+	      add(handgui[i]);
+	      }
+		 
+		 
+	 }
 	 public void draw(Card a)
 	 {
 		 
@@ -128,9 +141,39 @@ public  class HandGui extends JPanel implements MouseListener{
 			}
 	    }
 	  
-	  public void mouseClicked(MouseEvent e) {
-	  
-	    }
+	  public void mouseClicked(MouseEvent e) 
+	  {
+		  if(e.getButton() == MouseEvent.BUTTON1)
+		    {
+		     if(e.getClickCount()==2)
+		     {
+		    	 System.out.println("se jugara la carta");
+		     }
+		    }	    
+		    else if(e.getButton() == MouseEvent.BUTTON3)
+		    {
+		    	if(e.getSource()==handgui[0])
+				{
+					discard(1);
+				}
+				else if(e.getSource()==handgui[1])
+				{
+					discard(2);
+				}
+				else if(e.getSource()==handgui[2])
+				{
+					discard(3);
+				}
+				else if(e.getSource()==handgui[3])
+				{
+					discard(4);
+				}else if(e.getSource()==handgui[4])
+				{
+					discard(5);
+				}
+		    }
+		  
+	   }
 	
 	    public void mouseMoved(MouseEvent e) {
 	       

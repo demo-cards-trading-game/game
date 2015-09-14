@@ -24,8 +24,7 @@ import javax.swing.border.LineBorder;
  	public class CardGui extends JPanel   {
 	private JTextField textField;
 	private Card  actual;
-	private JPanel option;
-	JButton btnView;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -42,37 +41,19 @@ import javax.swing.border.LineBorder;
 		setForeground(Color.WHITE);
 	
 		
-		CirclePanel panel = new CirclePanel();//aca va la imagen
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setVisible(false);
-		panel_1.setOpaque(false);
-		
-		panel_1.setBounds(0, 0, 124, 186);
-		add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnSummon = new JButton("summon");
-		btnSummon.setBounds(10, 11, 104, 23);
-		panel_1.add(btnSummon);
-		
-		JButton btnSet = new JButton("set");
-		btnSet.setBounds(10, 45, 104, 23);
-		panel_1.add(btnSet);
-		
-		 btnView= new JButton("view");
-		
-			
-		btnView.setBounds(10, 79, 104, 23);
-		panel_1.add(btnView);
+		CirclePanel panel = new CirclePanel();
 		JTextPane txtpnTexto = new JTextPane();
+		txtpnTexto.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		txtpnTexto.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		txtpnTexto.setVerifyInputWhenFocusTarget(false);
 		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
 		txtpnTexto.setText(x.GetDescription());
 		txtpnTexto.setBounds(10, 126, 102, 49);
 		txtpnTexto.setEditable(false);
-		add(txtpnTexto);
+		
 		
 		JLabel lblSource = new JLabel(x.GetSource());
+		lblSource.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 	
 		lblSource.setBounds(64, 32, 60, 14);
 		lblSource.setOpaque(true);
@@ -152,9 +133,7 @@ import javax.swing.border.LineBorder;
 	
 		
 		setBounds(a, b, 124, 186);	
-		option=new JPanel();
-		option.setBounds(a, b, 124, 186);
-		option.setOpaque(false);
+	
 		
 		setBorder(new LineBorder(new Color(102, 51, 0), 2));
 		setLayout(null);
@@ -222,7 +201,7 @@ import javax.swing.border.LineBorder;
 		add(lblType);
 		
 	
-		
+		add(txtpnTexto);
 
 	}
 
