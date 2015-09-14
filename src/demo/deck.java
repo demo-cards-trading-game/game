@@ -133,7 +133,7 @@ public int findanother(int x)
 			
 			x=i;
 			i++;
-			System.out.println("numero de i "+i);
+			
 		}
 		
 	}while(verif[x]);//ninguno de las dos formas lo encontro

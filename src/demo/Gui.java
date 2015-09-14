@@ -11,6 +11,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import demo.CardGui;
 import data.LoadData;
 import data.deckCreator;
@@ -150,6 +156,7 @@ public class Gui extends JFrame implements ActionListener
           
 	   	 
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
+          
           player1=new PlayerGui(0,0,Nombre1);
           player1.deck.btnNewButton_1.addActionListener(this);
           addbackgound2(this);
@@ -251,7 +258,9 @@ public class Gui extends JFrame implements ActionListener
  }
  
  /************************/
- 
+
+
+
  public static void main(String[] args)
  {
  Gui Juego=new Gui();

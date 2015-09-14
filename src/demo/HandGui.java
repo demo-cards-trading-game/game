@@ -1,20 +1,37 @@
 package demo;
 import javax.swing.JPanel;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import demo.Hand;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 import demo.Card;
 import demo.CardGui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 import java.awt.event.MouseAdapter;
+import java.awt.Point;
 public  class HandGui extends JPanel implements MouseListener{
 	private JPanel[]  handgui  = new JPanel[5];
 	private Card[]  cards  = new Card[5];
 	private int current;
-	
+	int curX = -1, curY = -1;
+    boolean dragging = false;
+    int sX = -1, sY = -1;
 	public HandGui(int posx,int posy) {
 		
 		current=0;
@@ -59,7 +76,7 @@ public  class HandGui extends JPanel implements MouseListener{
 	 }
 	 public void draw(Card a)
 	 {
-		 
+		 music();
 		 if(current==5)
 		 {
 			 Random randomGenerator = new Random();
@@ -113,12 +130,30 @@ public  class HandGui extends JPanel implements MouseListener{
 		 }
 	 }
 	 
-	 public void mousePressed(MouseEvent e) {
-	
-	    }
+	 public void mousePressed(MouseEvent e)
+	 {
+		 Point point = e.getPoint();
+		 sX = point.x;
+		 sY = point.y;
+		 dragging=true;
+	 }
 	  public void mouseReleased(MouseEvent e) {
-		
+		  dragging = false;
 	    }
+	  
+	  public void mouseDragged(MouseEvent e)
+	     {
+		  Point p = e.getPoint();
+		  curX = p.x;
+		  curY = p.y;
+		  if (dragging)
+		  {
+			  
+			  
+		  }
+	     }
+	  
+	  
 	  public void mouseExited(MouseEvent e) {
 		  if(e.getSource()==handgui[0])
 			{
@@ -179,9 +214,7 @@ public  class HandGui extends JPanel implements MouseListener{
 	       
 	     }
 
-	     public void mouseDragged(MouseEvent e) {
-	       
-	     }
+	     
 		 public void mouseEntered(MouseEvent e) 
 			{
 				if(e.getSource()==handgui[0])
@@ -205,8 +238,35 @@ public  class HandGui extends JPanel implements MouseListener{
 				}
 			}
 		
-		 
-	 }	 
+		 public static void music() 
+		    {       
+			 String soundName = "burn.wav";    
+			 AudioInputStream audioInputStream = null;
+			try {
+				audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+				
+			} catch (UnsupportedAudioFileException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 Clip clip = null;
+			try {
+				clip = AudioSystem.getClip();
+			} catch (LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				clip.open(audioInputStream);
+			} catch (LineUnavailableException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 clip.start();
+			 
+		    }
+		}
+	 	 
 	
 	 
 	 
