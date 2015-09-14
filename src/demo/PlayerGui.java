@@ -13,6 +13,8 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.beans.PropertyVetoException;
 import java.io.File;
@@ -46,14 +48,14 @@ import java.awt.Rectangle;
 import javax.swing.JLayeredPane;
 
 
-public class PlayerGui extends JLayeredPane implements ActionListener {
+public class PlayerGui extends JLayeredPane implements ActionListener, MouseListener {
 	
 	public static  JPanel[]  barriers   = new JPanel[5];
 	public static DeckGui deck;
 	public HandGui hand;
 	public fieldGui field;
 	int turn;
-	
+	int acampo;
 	
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -74,6 +76,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		setBackground(UIManager.getColor("Button.disabledShadow"));
 		hand= new HandGui (0,0);
 		hand.setLocation(179, 510);
+		hand.addMouseListener(this);
 		setOpaque(false);
 		setLayout(null);
 		setBounds(x,y, 1024, 768);
@@ -94,8 +97,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		
 	
 		field = new fieldGui(0,0);
-		field.setLocation(220, 350);
-		field.setSize(500, 130);
+		field.setLocation(214, 306);
+		
 		
 		this.add(field);
 		
@@ -202,7 +205,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 			 if(deck.Deck.cardsLeft()!= 0 )
 			 {
 
-			  hand.draw(deck.Deck.extraerR());
+			 int pos= hand.draw(deck.Deck.extraerR());
+			 hand.handgui[pos-1].addMouseListener(this);
 			 }
 			 deck.textField.repaint();
 			 deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
@@ -260,8 +264,135 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 	public DeckGui getDeck() {
 		return deck;
 	}
-}
 	
+	public void mouseClicked(MouseEvent e) {
+		
+		if(e.getButton() == MouseEvent.BUTTON1)
+		    {
+		     if(e.getClickCount()==2)
+		     {
+		    	 if(e.getSource()==hand.handgui[0])
+					{
+						acampo=1;
+					}
+		    	 else if(e.getSource()==hand.handgui[1])
+					{
+						acampo=2;
+					}
+					else if(e.getSource()==hand.handgui[2])
+					{
+						acampo=3;
+					}
+					else if(e.getSource()==hand.handgui[3])
+					{
+						acampo=4;
+					}else if(e.getSource()==hand.handgui[4])
+					{
+						acampo=5;
+					}
+		    	 if(acampo!=0)
+		    		 System.out.println("se jugara la carta "+acampo);
+		    	 acampo=0;
+		     }
+		    }	    
+		    else if(e.getButton() == MouseEvent.BUTTON3)
+		    {
+		    	if(e.getSource()==hand.handgui[0])
+				{
+					hand.discard(1);
+				}
+				else if(e.getSource()==hand.handgui[1])
+				{
+					hand.discard(2);
+				}
+				else if(e.getSource()==hand.handgui[2])
+				{
+					hand.discard(3);
+				}
+				else if(e.getSource()==hand.handgui[3])
+				{
+					hand.discard(4);
+				}else if(e.getSource()==hand.handgui[4])
+				{
+					hand.discard(5);
+				}
+		    }
+		}
+	
+	 public void mousePressed(MouseEvent e)
+	 {
+		
+	 }
+	  public void mouseReleased(MouseEvent e) {
+		  
+	    }
+	  
+	  public void mouseDragged(MouseEvent e)
+	     {
+		
+	     }
+	  
+	  
+	  public void mouseExited(MouseEvent e) {
+		  if(e.getSource()==hand.handgui[0])
+			{
+				hand.handgui[0].setBounds(0, 20, 124, 186);
+			}
+			else if(e.getSource()==hand.handgui[1])
+			{
+				hand.handgui[1].setBounds(124, 20, 124, 186);
+			}
+			else if(e.getSource()==hand.handgui[2])
+			{
+				hand.handgui[2].setBounds(248, 20, 124, 186);
+			}
+			else if(e.getSource()==hand.handgui[3])
+			{
+				hand.handgui[3].setBounds(372, 20, 124, 186);
+			}else if(e.getSource()==hand.handgui[4])
+			{
+				hand.handgui[4].setBounds(496, 20, 124, 186);
+			}
+	    }
+	  
+	  
+	
+	    public void mouseMoved(MouseEvent e) {
+	       
+	     }
+
+	     
+		 public void mouseEntered(MouseEvent e) 
+			{
+				if(e.getSource()==hand.handgui[0])
+				{
+					hand.handgui[0].setBounds(0, 0, 124, 186);
+				}
+				else if(e.getSource()==hand.handgui[1])
+				{
+					hand.handgui[1].setBounds(124, 0, 124, 186);
+				}
+				else if(e.getSource()==hand.handgui[2])
+				{
+					hand.handgui[2].setBounds(248, 0, 124, 186);
+				}
+				else if(e.getSource()==hand.handgui[3])
+				{
+					hand.handgui[3].setBounds(372, 0, 124, 186);
+				}else if(e.getSource()==hand.handgui[4])
+				{
+					hand.handgui[4].setBounds(496, 0, 124, 186);
+				}
+			}
+		 
+		 
+		 void Hand2field(int pos)
+		 {
+			 
+			// field.place(hand.handgui[pos], false);
+			 hand.discard(pos);
+		 }
+}
 
 	
 

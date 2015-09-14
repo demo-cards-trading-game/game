@@ -25,8 +25,13 @@ import java.io.InputStream;
 import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.Point;
-public  class HandGui extends JPanel implements MouseListener{
-	private JPanel[]  handgui  = new JPanel[5];
+public  class HandGui extends JPanel //implements MouseListener
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public CardGui[]  handgui  = new CardGui[5];
 	private Card[]  cards  = new Card[5];
 	private int current;
 	int curX = -1, curY = -1;
@@ -38,7 +43,7 @@ public  class HandGui extends JPanel implements MouseListener{
 		setOpaque(false);
 		setBounds(posx,posy, 620, 206);
 		setLayout(null);
-		addMouseListener(this);
+		//addMouseListener(this);
 		
 		
 	
@@ -74,7 +79,7 @@ public  class HandGui extends JPanel implements MouseListener{
 		 
 		 
 	 }
-	 public void draw(Card a)
+	 public int draw(Card a)
 	 {
 		 music();
 		 if(current==5)
@@ -102,15 +107,13 @@ public  class HandGui extends JPanel implements MouseListener{
 		      case 4:x= new CardGui(a,496,20);
 		    	  break;
 		      }
-		      x.addMouseListener(this);
+		     // x.addMouseListener(this);
 		      handgui[current]=x;
 		      add(handgui[current]);
 		      current=current+1;
-		      
-			
-			 repaint();
-		 
-	  }
+		      repaint();
+			return(current);
+		 }
 	 public void compactar()
 	 {
 		 for (int i=0;i<current;i++)
@@ -129,7 +132,7 @@ public  class HandGui extends JPanel implements MouseListener{
 			 }
 		 }
 	 }
-	 
+	 /*
 	 public void mousePressed(MouseEvent e)
 	 {
 		 Point point = e.getPoint();
@@ -178,35 +181,7 @@ public  class HandGui extends JPanel implements MouseListener{
 	  
 	  public void mouseClicked(MouseEvent e) 
 	  {
-		  if(e.getButton() == MouseEvent.BUTTON1)
-		    {
-		     if(e.getClickCount()==2)
-		     {
-		    	 System.out.println("se jugara la carta");
-		     }
-		    }	    
-		    else if(e.getButton() == MouseEvent.BUTTON3)
-		    {
-		    	if(e.getSource()==handgui[0])
-				{
-					discard(1);
-				}
-				else if(e.getSource()==handgui[1])
-				{
-					discard(2);
-				}
-				else if(e.getSource()==handgui[2])
-				{
-					discard(3);
-				}
-				else if(e.getSource()==handgui[3])
-				{
-					discard(4);
-				}else if(e.getSource()==handgui[4])
-				{
-					discard(5);
-				}
-		    }
+		 
 		  
 	   }
 	
@@ -237,7 +212,7 @@ public  class HandGui extends JPanel implements MouseListener{
 					handgui[4].setBounds(496, 0, 124, 186);
 				}
 			}
-		
+		*/
 		 public static void music() 
 		    {       
 			 String soundName = "burn.wav";    
