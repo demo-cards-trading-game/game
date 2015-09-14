@@ -44,7 +44,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JTextPane;
 import java.awt.Rectangle;
 import javax.swing.JLayeredPane;
-import demo.abstracta;
+
 
 public class PlayerGui extends JLayeredPane implements ActionListener {
 	
@@ -72,7 +72,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 
 		setBackground(UIManager.getColor("Button.disabledShadow"));
 		hand= new HandGui (0,0);
-		hand.setLocation(179, 530);
+		hand.setLocation(179, 510);
 		setOpaque(false);
 		setLayout(null);
 		setBounds(x,y, 1024, 768);
@@ -240,9 +240,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener {
 		 
 	 }
 	 
-	public HandGui getHand() {
-		return hand;
-	}
+
 	
 	public class CirclePanel extends JPanel {
 

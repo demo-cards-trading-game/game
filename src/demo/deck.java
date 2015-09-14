@@ -110,9 +110,9 @@ public void shuffle() {
 		 {
 			 b=findanother(b);
 		 }
-		 System.out.println("se cambiara a ,b " + cards[a].Getid() + cards[b].Getid());
+		 
 		 exch(a,b);
-		 System.out.println("se cambio a ,b " + cards[a].Getid() + cards[b].Getid());
+		
 	 
 		 insertar( cards[a]);
 		 insertar( cards[b]);
