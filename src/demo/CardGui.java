@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 
 
 
- 	public class CardGui extends JPanel  /*implements MouseListener ,MouseMotionListener*/  {
+ 	public class CardGui extends JPanel   {
 	private JTextField textField;
 	private Card  actual;
 	private JPanel option;
@@ -33,10 +33,10 @@ import javax.swing.border.LineBorder;
 	public CardGui(Card x, int a ,int b) {
 		
 		super();
-		// addMouseListener(this);
+		
 		
 		actual=x;
-		 // addMouseMotionListener(this);
+		
 		
 		
 		setForeground(Color.WHITE);
@@ -250,36 +250,6 @@ import javax.swing.border.LineBorder;
 	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 	    }
 	}
-		public void mousePressed(MouseEvent e) {
-			 saySomething("Mouse pressed", e);
-		    }
-		  public void mouseReleased(MouseEvent e) {
-			  saySomething("Mouse released", e);
-		    }
-		  public void mouseExited(MouseEvent e) {
-			//  setBounds(this.getX(),this.getY()+20,this.getWidth(),this.getHeight());
-		    }
-		  
-		  public void mouseClicked(MouseEvent e) {
-		       saySomething("Mouse clicked (# of clicks: "
-		                    + e.getClickCount() + ")", e);
-		    }
-		  public void mouseEntered(MouseEvent e) {
-		     //  setBounds(this.getX(),this.getY()-20,this.getWidth(),this.getHeight());
-		    }
-		    void saySomething(String eventDescription, MouseEvent e) {
-		       System.out.println(eventDescription + " detected on "
-		                        + e.getComponent().getClass().getName()
-		                        + "." );
-		    }
-		  
-		    public void mouseMoved(MouseEvent e) {
-		        saySomething("Mouse moved", e);
-		     }
-
-		     public void mouseDragged(MouseEvent e) {
-		        saySomething("Mouse dragged", e);
-		     }
-		   
+		
 			  
 }
