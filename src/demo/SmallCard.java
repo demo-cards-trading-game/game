@@ -33,7 +33,8 @@ public class SmallCard extends JPanel {
 	public SmallCard(Card x, int a ,int b) {
 		
 
-		setBounds(new Rectangle(0, 0, 100, 145));
+		//setBounds(new Rectangle(0, 0, 100, 145));
+		setBounds(new Rectangle(0, 0, 80, 120));
 		
 		actual=x;
 		
@@ -44,7 +45,7 @@ public class SmallCard extends JPanel {
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
 		JTextPane txtpnTexto = new JTextPane();
-		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
+		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 5));
 		txtpnTexto.setText(x.GetDescription());
 		txtpnTexto.setBounds(10, 101, 77, 33);
 		txtpnTexto.setEditable(false);
@@ -73,7 +74,7 @@ public class SmallCard extends JPanel {
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(10, 36, 70, 40);
+		panel.setBounds(10, 36, 60, 55);
 	
 		if(x.GetType()=="Warrior")
 		{
@@ -84,20 +85,20 @@ public class SmallCard extends JPanel {
 			JLabel lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
-			lblAtaque.setBounds(80, 56, 30, 10);
+			lblAtaque.setBounds(75, 56, 24, 9);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
 			add(lblAtaque);
 			
-			JLabel lblDefensa = new JLabel(" " + x.GetMp());
-			lblDefensa.setBounds(80, 81, 19, 10);
+			JLabel lblDefensa = new JLabel("" + x.GetMp());
+			lblDefensa.setBounds(75, 70, 24, 9);
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
 			add(lblDefensa);
 			
-			JLabel lblSupport = new JLabel(" "+ x.GetSup());
-			lblSupport.setBounds(70, 101, 46, 14);
+			JLabel lblSupport = new JLabel(""+ x.GetSup());
+			lblSupport.setBounds(75, 85, 24, 9);
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
@@ -130,13 +131,13 @@ public class SmallCard extends JPanel {
 		
 	
 		
-		setBounds(a, b, 115, 145);	
+		setBounds(a, b, 105, 145);	
 		setBorder(new LineBorder(new Color(102, 51, 0), 2));
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 8));
+		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 5));
 		lblNombre.setBounds(0, 11, 112, 20);
 		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setBackground(new Color(0, 0, 0));
@@ -177,7 +178,7 @@ public class SmallCard extends JPanel {
 		
 		
 		JLabel lblAbility = new JLabel("Ability");
-		lblAbility.setBounds(10, 87, 46, 14);
+		lblAbility.setBounds(10, 92, 46, 7);
 		add(lblAbility);
 		
 		
@@ -185,15 +186,17 @@ public class SmallCard extends JPanel {
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
-		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
+		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 7));
+		//ESTE COLOR NO SE NOTA MUCHO
 		lblNewLabel.setForeground(Color.GRAY);
 		lblNewLabel.setBounds(10, 0, 77, 21);
 		add(lblNewLabel);
 		
 		JLabel lblType = new JLabel(x.GetType());
-		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
+		//lblType.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblType.setFont(new Font("Showcard Gothic", Font.ITALIC, 7));
 		lblType.setForeground(new Color(255, 255, 255));
-		lblType.setBounds(52, 2, 62, 14);
+		lblType.setBounds(55, 2, 52, 14);
 		add(lblType);
 		
 	
