@@ -11,14 +11,14 @@ public class fieldGui extends JPanel {
 	public JButton btn;
 	public JPanel panel2,panel,panel3,panel4,panel1,panel5; 
 	public SmallCard[]  cards  = new SmallCard[5];
-	
+	public int current;
 	public fieldGui(int posx,int posy) {
 		
 		setOpaque(false);
 		setBounds(posx,posy, 500, 145);
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
+		 panel = new JPanel();
 		panel.setOpaque(true);
 		panel.setLayout(null);
 		panel.setForeground(Color.WHITE);
@@ -26,8 +26,8 @@ public class fieldGui extends JPanel {
 		panel.setBackground(new Color(204, 204, 204));
 		panel.setBounds(0, 0, 100, 145);
 		add(panel);
-		
-		JPanel panel2 = new JPanel();
+		current=0;
+		 panel2 = new JPanel();
 		panel2.setOpaque(true);
 		panel2.setLayout(null);
 		panel2.setForeground(Color.WHITE);
@@ -36,7 +36,7 @@ public class fieldGui extends JPanel {
 		panel2.setBounds(100, 0, 100, 145);
 		add(panel2);
 		
-		JPanel panel3 = new JPanel();
+		panel3 = new JPanel();
 		panel3.setOpaque(true);
 		panel3.setLayout(null);
 		panel3.setForeground(Color.WHITE);
@@ -45,7 +45,7 @@ public class fieldGui extends JPanel {
 		panel3.setBounds(200, 0, 100, 145);
 		add(panel3);
 		
-		JPanel panel4 = new JPanel();
+		panel4 = new JPanel();
 		panel4.setOpaque(true);
 		panel4.setLayout(null);
 		panel4.setForeground(Color.WHITE);
@@ -54,7 +54,7 @@ public class fieldGui extends JPanel {
 		panel4.setBounds(300, 0, 100, 145);
 		add(panel4);
 		
-		JPanel panel5 = new JPanel();
+		panel5 = new JPanel();
 		panel5.setOpaque(true);
 		panel5.setLayout(null);
 		panel5.setForeground(Color.WHITE);
@@ -64,39 +64,50 @@ public class fieldGui extends JPanel {
 		add(panel5);
 			
 	}
-	void place(Card x,int pos,boolean bocabajo)
+	void place(Card x,boolean bocabajo)
 	{
-		SmallCard nueva = null;
-		
-		switch(pos)
+		if(current==5)
+		{
+			quitar(4);
+				
+		}
+	
+		switch(current)
 		{
 		
 		case 0:
+			if(panel.isShowing()){
 			remove(panel);
-			nueva=new SmallCard(x,0,0);
+			cards[0]=new SmallCard(x,0,0);
 			
-			
+			}
 			break;
 		case 1:
-			remove(panel1);
-			nueva=new SmallCard(x,100,0);
-		
+			if(panel2.isShowing())
+			{
+			remove(panel2);
+			cards[current]=new SmallCard(x,100,0);
+			}
 			break;
 		case 2: 
-			remove(panel2);
-			nueva=new SmallCard(x,200,0);
-			
+			if(panel3.isShowing())
+			{
+			remove(panel3);
+			cards[current]=new SmallCard(x,200,0);
+			}
 			break;
 		case 3 :
-			remove(panel3);
-			nueva=new SmallCard(x,300,0);
-			
+			if(panel4.isShowing()){
+			remove(panel4);
+			cards[current]=new SmallCard(x,300,0);
+			}
 			break;
 			
 		case 4:
-			remove(panel4);
-			nueva=new SmallCard(x,400,0);
-			
+			if(panel5.isShowing()){
+			remove(panel5);
+			cards[current]=new SmallCard(x,400,0);
+			}
 		
 			break;
 			
@@ -106,9 +117,57 @@ public class fieldGui extends JPanel {
 		{
 			
 		}
-		cards[pos]=nueva;
-		add(cards[pos]);
+		
+	
+		add(cards[current]);
 		repaint();
+		current++;
 	}
 	 
+	public void quitar(int pos)
+	{
+		
+		switch(pos)
+		{
+		case 0:
+			if(cards[0].isShowing()){
+			remove(cards[0]);
+			add(panel);
+			
+			}
+			break;
+		case 1:
+			if(cards[1].isShowing())
+			{
+			remove(cards[1]);
+			add(panel2);
+			}
+			break;
+		case 2: 
+			if(cards[2].isShowing())
+			{
+			remove(cards[2]);
+			add(panel3);
+			}
+			break;
+		case 3 :
+			if(cards[3].isShowing()){
+			remove(cards[3]);
+			add(panel4);
+			}
+			break;
+			
+		case 4:
+			if(cards[4].isShowing()){
+			remove(cards[4]);
+			add(panel5);
+			}
+		
+			break;
+				
+		}
+		current--;
+		System.out.println("quit current"+current);
+		repaint();
+	}
 }

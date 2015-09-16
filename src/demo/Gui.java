@@ -42,7 +42,7 @@ public class Gui extends JFrame implements ActionListener
   public Gui()
  {  
 	  
-	  super("Gui");
+	  this.set
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   setBounds(0,0, 1024, 768);
   contentPane = new JPanel();

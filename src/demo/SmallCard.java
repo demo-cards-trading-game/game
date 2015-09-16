@@ -32,7 +32,7 @@ public class SmallCard extends JPanel {
 	
 	public SmallCard(Card x, int a ,int b) {
 		
-		super();
+
 		setBounds(new Rectangle(0, 0, 100, 145));
 		
 		actual=x;
@@ -46,13 +46,14 @@ public class SmallCard extends JPanel {
 		JTextPane txtpnTexto = new JTextPane();
 		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
 		txtpnTexto.setText(x.GetDescription());
-		txtpnTexto.setBounds(10, 101, 95, 33);
+		txtpnTexto.setBounds(10, 101, 77, 33);
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
 		JLabel lblSource = new JLabel(x.GetSource());
+		lblSource.setFont(new Font("Tahoma", Font.PLAIN, 8));
 	
-		lblSource.setBounds(52, 32, 60, 14);
+		lblSource.setBounds(70, 32, 30, 10);
 		lblSource.setOpaque(true);
 		add(lblSource);
 		switch (x.GetSource())
@@ -83,20 +84,20 @@ public class SmallCard extends JPanel {
 			JLabel lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
-			lblAtaque.setBounds(94, 56, 46, 10);
+			lblAtaque.setBounds(80, 56, 30, 10);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
 			add(lblAtaque);
 			
 			JLabel lblDefensa = new JLabel(" " + x.GetMp());
-			lblDefensa.setBounds(94, 81, 46, 10);
+			lblDefensa.setBounds(80, 81, 19, 10);
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
 			add(lblDefensa);
 			
 			JLabel lblSupport = new JLabel(" "+ x.GetSup());
-			lblSupport.setBounds(78, 101, 46, 14);
+			lblSupport.setBounds(70, 101, 46, 14);
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));

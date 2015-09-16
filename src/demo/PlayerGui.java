@@ -55,7 +55,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public HandGui hand;
 	public fieldGui field;
 	int turn;
-	int acampo;
+	int acampo=-1;
 	
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -99,7 +99,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		field = new fieldGui(0,0);
 		field.setLocation(214, 306);
 		
-		
+		field.addMouseListener(this);
 		this.add(field);
 		
 		
@@ -265,7 +265,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		return deck;
 	}
 	
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) 
+	{
 		
 		if(e.getButton() == MouseEvent.BUTTON1)
 		    {
@@ -273,26 +274,34 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		     {
 		    	 if(e.getSource()==hand.handgui[0])
 					{
-						acampo=1;
+						acampo=0;
 					}
 		    	 else if(e.getSource()==hand.handgui[1])
 					{
-						acampo=2;
+						acampo=1;
 					}
 					else if(e.getSource()==hand.handgui[2])
 					{
-						acampo=3;
+						acampo=2;
 					}
 					else if(e.getSource()==hand.handgui[3])
 					{
-						acampo=4;
+						acampo=3;
 					}else if(e.getSource()==hand.handgui[4])
 					{
-						acampo=5;
+						acampo=4;
 					}
-		    	 if(acampo!=0)
-		    		 System.out.println("se jugara la carta "+acampo);
-		    	 acampo=0;
+		    	 
+		    	 
+		    	 
+		    	 
+		    	 if(acampo!=-1){
+		    		 field.place(hand.handgui[acampo].getcard(),false);
+		    		
+		    	 	hand.discard(acampo+1);
+		    	 	 field.cards[acampo].addMouseListener(this);
+		    	 acampo=-1;
+		    	 }
 		     }
 		    }	    
 		    else if(e.getButton() == MouseEvent.BUTTON3)
@@ -316,6 +325,27 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				{
 					hand.discard(5);
 				}
+		    	if(e.getSource()==field.cards[0])
+				{
+					field.quitar(0);
+				}
+				else if(e.getSource()==field.cards[1])
+				{
+					field.quitar(1);
+				}
+				else if(e.getSource()==field.cards[2])
+				{
+					field.quitar(2);
+				}
+				else if(e.getSource()==field.cards[3])
+				{
+					field.quitar(3);
+				}else if(e.getSource()==field.cards[4])
+				{
+					field.quitar(4);
+				}
+		    	
+		    	
 		    }
 		}
 	
