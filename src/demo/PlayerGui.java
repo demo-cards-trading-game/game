@@ -19,6 +19,7 @@ import java.awt.geom.Ellipse2D;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
@@ -56,6 +57,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public fieldGui field;
 	int turn;
 	int acampo=-1;
+	int i=0;
 	
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -68,9 +70,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private JLabel label_3;
 	private LoadData cartas;
 	private JInternalFrame pane; 
-
+	private Phases phases;
 	
-	public PlayerGui(int x , int y, String name) {
+	public PlayerGui(int x , int y, String name) throws IOException {
 	setBorder(null);
 
 		setBackground(UIManager.getColor("Button.disabledShadow"));
@@ -92,12 +94,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		pane = new JInternalFrame("THE FALLEN");
 		
-		
+		phases=new Phases(200,290);
+		add(phases);
 		this.add(hand);
 		
 	
-		field = new fieldGui(0,0);
-		field.setLocation(214, 306);
+		field = new fieldGui(200,350);
+		
+		
 		
 		field.addMouseListener(this);
 		this.add(field);
@@ -208,8 +212,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			 int pos= hand.draw(deck.Deck.extraerR());
 			 hand.handgui[pos-1].addMouseListener(this);
 			 }
-			 deck.textField.repaint();
 			 deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
+			 deck.textField.repaint();
+			
 			  repaint();
 			  
 			  
@@ -267,7 +272,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 	public void mouseClicked(MouseEvent e) 
 	{
-		
+		int where;
 		if(e.getButton() == MouseEvent.BUTTON1)
 		    {
 		     if(e.getClickCount()==2)
@@ -294,58 +299,93 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		    	 
 		    	 
 		    	 
-		    	 
-		    	 if(acampo!=-1){
-		    		 field.place(hand.handgui[acampo].getcard(),false);
-		    		
-		    	 	hand.discard(acampo+1);
-		    	 	 field.cards[acampo].addMouseListener(this);
+		    	
+		    	 if(acampo!=-1)
+		    	 {
+		    		 where=field.findwhere();
+		    		if(where!=-1)
+		    		{
+		    	
+		    		hand.discard(acampo+1);
+		    	 	SmallCard pene;
+					try {
+						Random randomGenerator = new Random();
+						int test=randomGenerator.nextInt(10);
+						if(test % 2==0)
+						{
+						pene = new SmallCard(true,hand.handgui[acampo].getcard());
+						
+						}else
+						pene = new SmallCard(false,hand.handgui[acampo].getcard());
+					 	pene.addMouseListener(this);
+			    	 	
+			    	 	
+					 	
+			    	 
+					 	
+					 		field.poner(pene,where);
+					 
+					 
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		    	
 		    	 acampo=-1;
+		    		 
+		    		 }
 		    	 }
 		     }
 		    }	    
 		    else if(e.getButton() == MouseEvent.BUTTON3)
 		    {
-		    	if(e.getSource()==hand.handgui[0])
-				{
-					hand.discard(1);
-				}
-				else if(e.getSource()==hand.handgui[1])
-				{
-					hand.discard(2);
-				}
-				else if(e.getSource()==hand.handgui[2])
-				{
-					hand.discard(3);
-				}
-				else if(e.getSource()==hand.handgui[3])
-				{
-					hand.discard(4);
-				}else if(e.getSource()==hand.handgui[4])
-				{
-					hand.discard(5);
-				}
-		    	if(e.getSource()==field.cards[0])
-				{
-					field.quitar(0);
-				}
-				else if(e.getSource()==field.cards[1])
-				{
-					field.quitar(1);
-				}
-				else if(e.getSource()==field.cards[2])
-				{
-					field.quitar(2);
-				}
-				else if(e.getSource()==field.cards[3])
-				{
-					field.quitar(3);
-				}else if(e.getSource()==field.cards[4])
-				{
+		    	if(e.getClickCount()==1)
+		    	{
+		    		
+		    	
+		    		if(e.getSource()==hand.handgui[0])
+		    		{
+		    			hand.discard(1);
+		    		}
+		    		if(e.getSource()==hand.handgui[1])
+		    		{
+		    			hand.discard(2);
+		    		}
+		    		if(e.getSource()==hand.handgui[2])
+		    		{
+		    			hand.discard(3);
+		    		}
+		    		if(e.getSource()==hand.handgui[3])
+		    		{
+		    			hand.discard(4);
+		    		}
+		    		if(e.getSource()==hand.handgui[4])
+		    		{
+		    			hand.discard(5);
+		    		}
+		    	
+		    		if(e.getSource()==field.cards[0])
+		    		{
+		    			field.quitar(0);
+		    		}	
+		    		if(e.getSource()==field.cards[1])
+		    		{
+		    			field.quitar(1);
+		    		}
+		    		if(e.getSource()==field.cards[2])
+		    		{
+		    			field.quitar(2);
+		    		}
+		    		if(e.getSource()==field.cards[3])
+		    		{
+		    			field.quitar(3);
+		    		}if(e.getSource()==field.cards[4])
+		    		{
 					field.quitar(4);
-				}
+		    		}	
 		    	
 		    	
+		    	}
 		    }
 		}
 	
@@ -416,12 +456,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			}
 		 
 		 
-		 void Hand2field(int pos)
-		 {
-			 
-			// field.place(hand.handgui[pos], false);
-			 hand.discard(pos);
-		 }
+		 
 }
 
 	

@@ -35,9 +35,9 @@ public class DeckGui extends JPanel {
 	public JPanel panel;
 	
 	
-	public void addhero(Card x)
+	public void addhero(Card x) throws IOException
 	{
-		panel.add(new SmallCard(x,0,0));
+		panel.add(new SmallCard(true,x));
 		repaint();
 		
 	}
@@ -69,8 +69,8 @@ public class DeckGui extends JPanel {
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setForeground(new Color(255, 255, 255));
-		textField.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		textField.setText("cards left "+ Deck.cardsLeft());
+		textField.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		textField.setText("Cards left "+ Deck.cardsLeft());
 		textField.setBackground(new Color(139, 69, 19));
 		textField.setBounds(160, 320, 80, 20);
 		add(textField);
@@ -109,7 +109,7 @@ public class DeckGui extends JPanel {
 		lblForgotten.setBounds(158, 0, 117, 14);
 		add(lblForgotten);
 		
-		JPanel panel = new JPanel();
+		 panel= new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		
 		

@@ -41,10 +41,10 @@ public class Gui extends JFrame implements ActionListener
  
   public Gui()
  {  
-	  
-	  //this.set
+  setBounds(0,0, 1024, 768);  
+  this.setTitle("Dyna-stryfe"); /*adds jframe title*/
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  setBounds(0,0, 1024, 768);
+  
   contentPane = new JPanel();
   contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
   contentPane.setLayout(null);
@@ -157,7 +157,12 @@ public class Gui extends JFrame implements ActionListener
 	   	 
           Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
           
-          player1=new PlayerGui(0,0,Nombre1);
+          try {
+			player1=new PlayerGui(0,0,Nombre1);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
           player1.deck.btnNewButton_1.addActionListener(this);
           addbackgound2(this);
           getContentPane().setLayout(null);

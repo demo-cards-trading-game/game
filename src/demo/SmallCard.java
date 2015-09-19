@@ -23,20 +23,60 @@ import javax.swing.border.LineBorder;
 
 
 
-public class SmallCard extends JPanel {
+public class SmallCard extends JLayeredPane{
 	private JTextField textField;
 	private Card  actual;
+	
 	/**
 	 * Create the panel.
+	 * @throws IOException 
 	 */
 	
-	public SmallCard(Card x, int a ,int b) {
+	public SmallCard(boolean bocabajo,Card x ) throws IOException {
 		
+		setOpaque(true);
+		actual=x;
 
 		//setBounds(new Rectangle(0, 0, 100, 145));
-		setBounds(new Rectangle(0, 0, 80, 120));
+		setBounds(0,0, 100, 145);	
 		
-		actual=x;
+		setLayout(null);
+		if(!bocabajo)
+			normal(x);
+		else
+			abajo();
+	
+
+	}
+	public void abajo()
+	{
+		
+		try {
+			JPanel panel_1= new JPanel();
+			panel_1.setBounds(0, 0, 100, 145);
+			panel_1.setOpaque(true);
+			panel_1.setVisible(true);
+			panel_1.setLayout(null);
+			JLabel prueba=new JLabel(new ImageIcon(ImageIO.read(new File("back.png"))));
+			panel_1.setBorder(new LineBorder(Color.GRAY, 2, true));
+			panel_1.add(prueba);
+			prueba.setBounds(2,2,96,141);
+			add(panel_1);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		repaint();
+		
+	
+		
+	}
+	public void normal(Card x )
+	{
+		
+
+		setBorder(new LineBorder(new Color(102, 51, 0), 2));
+		actual=x;//el objeto carta que se pinta
 		
 		
 		
@@ -44,10 +84,16 @@ public class SmallCard extends JPanel {
 	
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
+		
+		
+			
+			
+			
+		
 		JTextPane txtpnTexto = new JTextPane();
 		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 5));
 		txtpnTexto.setText(x.GetDescription());
-		txtpnTexto.setBounds(10, 101, 77, 33);
+		txtpnTexto.setBounds(5,100, 90, 40);
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
@@ -73,8 +119,10 @@ public class SmallCard extends JPanel {
 		}
 		
 		panel.setBorder(null);
-		
+		panel.setOpaque(true);
+		panel.setVisible(true);
 		panel.setBounds(10, 36, 60, 55);
+		
 	
 		if(x.GetType()=="Warrior")
 		{
@@ -131,9 +179,7 @@ public class SmallCard extends JPanel {
 		
 	
 		
-		setBounds(a, b, 105, 145);	
-		setBorder(new LineBorder(new Color(102, 51, 0), 2));
-		setLayout(null);
+	
 		
 		JLabel lblNombre = new JLabel(x.GetName());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,6 +191,7 @@ public class SmallCard extends JPanel {
 		
 		
 		  try {
+				
 			  switch(x.GetCardNumber()){
 			  case 1:
 				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01.png")))));
@@ -188,7 +235,7 @@ public class SmallCard extends JPanel {
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
 		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 7));
 		//ESTE COLOR NO SE NOTA MUCHO
-		lblNewLabel.setForeground(Color.GRAY);
+		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setBounds(10, 0, 77, 21);
 		add(lblNewLabel);
 		
@@ -199,11 +246,10 @@ public class SmallCard extends JPanel {
 		lblType.setBounds(55, 2, 52, 14);
 		add(lblType);
 		
-	
 		
-
+		
+		
 	}
-
 	 @Override
      public void paintComponent(Graphics g)
      {
@@ -217,7 +263,9 @@ public class SmallCard extends JPanel {
      }
 	public Card getcard()
 	{
-		return actual;
+		Card x=null;
+		x.asignar(actual);
+		return x;
 	}
 		public class CirclePanel extends JPanel {
 
