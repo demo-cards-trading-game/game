@@ -317,8 +317,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						
 						}else
 						pene = new SmallCard(false,hand.handgui[acampo].getcard());
-					 	pene.addMouseListener(this);
-			    	 	
+					 	
+						pene.addMouseListener(this);
+						if(phases.actual<5)
+							phases.change(phases.actual+1);
+						else
+							phases.change(0);
 			    	 	
 					 	
 			    	 

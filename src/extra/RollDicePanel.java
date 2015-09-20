@@ -1,0 +1,33 @@
+package extra;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class RollDicePanel extends JPanel {
+ public Die _leftDie;  
+ public Die _rightDie;
+ public JButton rollButton;
+ RollDicePanel() {
+	 this.setOpaque(false);
+     //... Create the dice
+     _leftDie  = new Die();
+     _leftDie.setBounds(5, 51, 244, 244);
+     _rightDie = new Die();
+     _rightDie.setBounds(350, 51, 244, 244);
+     
+     rollButton = new JButton("Let them roll");
+     rollButton.setBounds(71, 317, 440, 41);
+     rollButton.setFont(new Font("Sansserif", Font.PLAIN, 24));
+     
+    
+     setLayout(null);
+     this.add(rollButton);
+     this.add(_leftDie);
+     this.add(_rightDie);
+     
+     this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+ }
+ 
+}
