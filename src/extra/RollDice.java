@@ -7,7 +7,10 @@ public class RollDice extends JPanel {
 	public RollDicePanel pane;
 	 public JButton btnPlay ;
 	 public JLabel label;
+	 
  public RollDice() {
+	 
+	 
 	 this.setBounds(0,0,1024,768);
 	 this.setLayout(null);
 	 this.setOpaque(false);

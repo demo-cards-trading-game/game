@@ -3,7 +3,7 @@ package demo;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
+import extra.*;
 import demo.DeckGui;
 import java.awt.*;
 import java.awt.event.*;
@@ -152,9 +152,9 @@ public class Gui extends JFrame implements ActionListener
 			add(b3);
 			setVisible(true);
 		}
-		if(e.getSource()==dados.pane.rollButton)
+		if(e.getSource()==dados.pane.rollButton)//dados
 		{
-			dados.pane._leftDie.roll();
+			/*dados.pane._leftDie.roll();
 			dados.pane._rightDie.roll();
 			if(dados.pane._leftDie.getValue()!= dados.pane._rightDie.getValue())
 			{
@@ -170,6 +170,19 @@ public class Gui extends JFrame implements ActionListener
 				
 				
 			}
+			dados.btnPlay.setVisible(true);*/
+			
+			dados.pane.rollButton.setVisible(false);
+			dados.btnPlay.setVisible(true);
+			if(dados.pane.text.getText()=="1"){
+				dados.label.setText("Fist turn is yours");
+			}
+			else{
+				dados.label.setText("AI player gets the  first turn");
+			}
+			dados.label.setVisible(true);
+			dados.btnPlay.setVisible(true);
+			
 		}
 		if(e.getSource()==dados.btnPlay)
 		{
