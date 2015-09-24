@@ -3,6 +3,7 @@ package extra;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.event.*;
 
 public class RollDicePanel extends JPanel {
@@ -21,8 +22,10 @@ public class RollDicePanel extends JPanel {
      */
      getter = new IconGetter();
 	 JLabel dice1 = new JLabel(getter.getIcon("d1.png"));
+	 dice1.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 	 dice1.setBounds(5, 51, 244, 244);
      JLabel dice2 = new JLabel(getter.getIcon("d1.png"));
+     dice2.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
      dice2.setBounds(350, 51, 244, 244);
      rollButton = new JButton("Let them roll");
      rollButton.setBounds(71, 317, 440, 41);
