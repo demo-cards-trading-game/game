@@ -199,6 +199,17 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		deck.btnNewButton.addActionListener(this);
 		deck.btnNewButton_1.addActionListener(this);
+		for(int i=1;i<=5;i++)
+		{
+			 int pos= hand.draw(deck.Deck.extraerR());
+			 hand.handgui[pos-1].addMouseListener(this);
+			 
+			 deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
+			 deck.textField.repaint();
+			
+			  repaint();
+			
+		}
 		
 	}
 	  public void actionPerformed(ActionEvent e) {

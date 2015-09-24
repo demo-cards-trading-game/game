@@ -111,7 +111,7 @@ public class Gui extends JFrame implements ActionListener
 
 
 
-		demo=new JLabel("<html><font color='white'>Demo version: 0.000001 </font></html>");
+		demo=new JLabel("<html><font color='white'>Demo version: 0.000011 </font></html>");
 		demo.setBounds(870,660,300,30); //esto se mueve como horizontal vertical 100= h 200=v
 		this.add(demo);
 
@@ -134,7 +134,7 @@ public class Gui extends JFrame implements ActionListener
 
 		if(e.getSource()==b1)
 		{
-			addbackground3(this);
+			addbackground2(this);
 			b2 = new JButton("Play");
 			b2.setBackground(Color.BLACK);
 			b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
@@ -156,16 +156,23 @@ public class Gui extends JFrame implements ActionListener
 		{
 			dados.pane._leftDie.roll();
 			dados.pane._rightDie.roll();
-			dados.pane.rollButton.setVisible(false);
-			dados.btnPlay.setVisible(true);
-
-
+			if(dados.pane._leftDie.getValue()!= dados.pane._rightDie.getValue())
+			{
+				
+				dados.pane.rollButton.setVisible(false);
+				dados.btnPlay.setVisible(true);
+				if(dados.pane._leftDie.getValue()>dados.pane._rightDie.getValue())
+					dados.label.setText("Fist turn is yours");
+				else
+					dados.label.setText("AI player gets the  first turn");
+				dados.label.setVisible(true);
+				
+				
+				
+			}
 		}
-		if (e.getSource()==b2)//cuando se le da click al boton 1
+		if(e.getSource()==dados.btnPlay)
 		{
-
-
-			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
 
 			try {
 				player1=new PlayerGui(0,0,Nombre1);
@@ -173,7 +180,22 @@ public class Gui extends JFrame implements ActionListener
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
+			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
 			player1.deck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
+			addbackground3(this);
+			getContentPane().setLayout(null);
+			
+			add(player1);
+			setVisible(true);
+		}
+		
+		
+		if (e.getSource()==b2)//cuando se le da click al boton 1
+		{
+
+
+			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
 
 			dados.pane.rollButton.addActionListener(this);
 
@@ -184,8 +206,7 @@ public class Gui extends JFrame implements ActionListener
 			add(dados);
 			dados.pane.rollButton.addActionListener(this);
 			dados.btnPlay.addActionListener(this);
-			// add(player1);
-
+			
 			setVisible(true);
 		}
 
@@ -232,7 +253,7 @@ public class Gui extends JFrame implements ActionListener
 
 	}
 
-	void addbackgound2(JFrame jfm)
+	void addbackground2(JFrame jfm)
 	{
 		try {
 			jfm.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("frame2.jpg")))));
