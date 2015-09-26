@@ -51,7 +51,7 @@ import javax.swing.JLayeredPane;
 
 public class PlayerGui extends JLayeredPane implements ActionListener, MouseListener {
 	
-	public static  JPanel[]  barriers   = new JPanel[5];
+	public Barriers barriers;
 	public static DeckGui deck;
 	public HandGui hand;
 	public fieldGui field;
@@ -59,15 +59,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	int acampo=-1;
 	int i=0;
 	
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JLabel lblBarrier;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
+
+
+
 	private LoadData cartas;
 	private JInternalFrame pane; 
 	private Phases phases;
@@ -104,91 +98,20 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		
 		field.addMouseListener(this);
+		
 		this.add(field);
 		
 		
 		/*******************************************/
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 102, 0));
-		panel.setForeground(new Color(0, 102, 0));
-		panel.setBounds(179, 505, 97, 35);
-		barriers[0]=panel;
 		
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel.setLayout(null);
-		add(panel);
 		
-		lblBarrier = new JLabel("Barrier");
-		lblBarrier.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBarrier.setForeground(new Color(255, 255, 255));
-		lblBarrier.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		lblBarrier.setLabelFor(panel);
-		lblBarrier.setBounds(10, 0, 77, 25);
-		panel.add(lblBarrier);
+
 		
-		panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setForeground(Color.WHITE);
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_1.setBackground(new Color(204, 204, 204));
-		panel_1.setBounds(305, 505, 100, 35);
-		add(panel_1);
 		
-		panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setForeground(Color.WHITE);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_2.setBackground(new Color(102, 153, 204));
-		panel_2.setBounds(432, 505, 88, 35);
-		add(panel_2);
+	
 		
-		panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setForeground(Color.WHITE);
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_3.setBackground(new Color(102, 153, 153));
-		panel_3.setBounds(547, 505, 100, 35);
-		add(panel_3);
+	
 		
-		panel_4 = new JPanel();
-		panel_4.setLayout(null);
-		panel_4.setForeground(Color.WHITE);
-		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_4.setBackground(new Color(204, 0, 102));
-		panel_4.setBounds(673, 505, 97, 35);
-		add(panel_4);
-		barriers[1]=panel_1;
-		
-		label = new JLabel("Barrier");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label.setBounds(10, 0, 80, 25);
-		panel_1.add(label);
-		barriers[2]=panel_2;
-		
-		label_1 = new JLabel("Barrier");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_1.setBounds(10, 0, 68, 25);
-		panel_2.add(label_1);
-		barriers[3]=panel_3;
-		
-		label_2 = new JLabel("Barrier");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_2.setBounds(10, 0, 80, 25);
-		panel_3.add(label_2);
-		barriers[4]=panel_4;
-		
-		label_3 = new JLabel("Barrier");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_3.setBounds(10, 0, 77, 25);
-		panel_4.add(label_3);
 		
 
 		deck = new DeckGui(0,0);
@@ -199,6 +122,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		deck.btnNewButton.addActionListener(this);
 		deck.btnNewButton_1.addActionListener(this);
+		barriers =new Barriers(179,500);
+		add(barriers);
+		barriers.addMouseListener(this);
 		for(int i=1;i<=5;i++)
 		{
 			 int pos= hand.draw(deck.Deck.extraerR());
@@ -211,24 +137,31 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 		}
 		
+		for (int i=0;i<5;i++)
+			barriers.barriers[i].addMouseListener(this);
+		
 	}
 	  public void actionPerformed(ActionEvent e) {
 		  
 		  if (e.getSource()==deck.btnNewButton)
 		  {
-			 
+			 if(barriers.findwhere()!=-1){
 			 if(deck.Deck.cardsLeft()!= 0 )
 			 {
 
-			 int pos= hand.draw(deck.Deck.extraerR());
-			 hand.handgui[pos-1].addMouseListener(this);
+			 barriers.addbarrier(deck.Deck.extraerR());
+			// hand.handgui[pos-1].addMouseListener(this);
+			 }else{
+				 
+				// aca va lo de game over
+				 
 			 }
 			 deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			 deck.textField.repaint();
 			
 			  repaint();
 			  
-			  
+			 }
 		  }
 		  if (e.getSource()==deck.btnNewButton_1)
 		  {
@@ -252,16 +185,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		  }
 		  
 }
-	void addall()
-	 {
-		 int i;
-		 for (i=0;i<=4;i++)
-		 {
-			 add(barriers[i]);
-			 
-		 }
-		 
-	 }
+
 	 
 
 	
@@ -285,7 +209,45 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	{
 		int where;
 		if(e.getButton() == MouseEvent.BUTTON1)
-		    {
+		    {if(e.getClickCount()==1)
+	    	{
+	    		
+	    		if(e.getSource()==barriers.barriers[0])
+	    		{
+	    			 int pos= hand.draw(barriers.cards[0]);
+	    			 hand.handgui[pos-1].addMouseListener(this);
+	    			 barriers.removebarrier(0);
+	    			repaint();
+	    		}
+	    		if(e.getSource()==barriers.barriers[1])
+	    		{
+	    			 int pos= hand.draw(barriers.cards[1]);
+	    			 hand.handgui[pos-1].addMouseListener(this);
+	    			 barriers.removebarrier(1);
+	    			repaint();
+	    		}
+	    		if(e.getSource()==barriers.barriers[2])
+	    		{
+	    			 int pos= hand.draw(barriers.cards[2]);
+	    			 hand.handgui[pos-1].addMouseListener(this);
+	    			 barriers.removebarrier(2);
+	    			repaint();
+	    		}
+	    		if(e.getSource()==barriers.barriers[3])
+	    		{
+	    			 int pos= hand.draw(barriers.cards[3]);
+	    			 hand.handgui[pos-1].addMouseListener(this);
+	    			 barriers.removebarrier(3);
+	    			repaint();
+	    		}
+	    		if(e.getSource()==barriers.barriers[4])
+	    		{
+	    			 int pos= hand.draw(barriers.cards[4]);
+	    			 hand.handgui[pos-1].addMouseListener(this);
+	    			 barriers.removebarrier(4);
+	    			repaint();
+	    		}
+	    	}
 		     if(e.getClickCount()==2)
 		     {
 		    	 if(e.getSource()==hand.handgui[0])
@@ -357,7 +319,6 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		    	if(e.getClickCount()==1)
 		    	{
 		    		
-		    	
 		    		if(e.getSource()==hand.handgui[0])
 		    		{
 		    			hand.discard(1);
