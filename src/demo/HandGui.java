@@ -32,7 +32,7 @@ public  class HandGui extends JPanel //implements MouseListener
 	 */
 	private static final long serialVersionUID = 1L;
 	public CardGui[]  handgui  = new CardGui[5];
-	private Card[]  cards  = new Card[5];
+	Card[]  cards  = new Card[5];
 	private int current;
 	int curX = -1, curY = -1;
     boolean dragging = false;
@@ -43,7 +43,7 @@ public  class HandGui extends JPanel //implements MouseListener
 		setOpaque(false);
 		setBounds(posx,posy, 620, 206);
 		setLayout(null);
-		//addMouseListener(this);
+
 		
 		
 	

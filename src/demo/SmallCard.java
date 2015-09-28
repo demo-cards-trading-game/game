@@ -263,9 +263,8 @@ public class SmallCard extends JLayeredPane{
      }
 	public Card getcard()
 	{
-		Card x=null;
-		x.asignar(actual);
-		return x;
+		
+		return actual;
 	}
 		public class CirclePanel extends JPanel {
 

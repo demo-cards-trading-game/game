@@ -40,7 +40,7 @@ public class Gui extends JFrame implements ActionListener
 	private deckCreator crear;
 	JInternalFrame crea;
 	RollDice dados;
-
+   
 	public Gui()
 	{  
 		setBounds(0,0, 1024, 768);  
@@ -55,14 +55,8 @@ public class Gui extends JFrame implements ActionListener
 
 		crea = new JInternalFrame("Crear deck");
 		crear= new deckCreator(112,84);
+		
 
-
-		try {
-			data=new LoadData();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 
 
 
@@ -70,7 +64,7 @@ public class Gui extends JFrame implements ActionListener
 
 		setLayout(new CardLayout(0, 0));
 
-		dados= new RollDice();
+	
 		/***********pruebas******************/
 
 		mb=new JMenuBar();
@@ -152,10 +146,11 @@ public class Gui extends JFrame implements ActionListener
 			add(b3);
 			setVisible(true);
 		}
+	if(dados!=null){
 		if(e.getSource()==dados.pane.rollButton)//dados
 		{
-		
-			
+
+
 			dados.pane.rollButton.setVisible(false);
 			dados.btnPlay.setVisible(true);
 			if(dados.pane.text.getText()=="1"){
@@ -166,47 +161,96 @@ public class Gui extends JFrame implements ActionListener
 			}
 			dados.label.setVisible(true);
 			dados.btnPlay.setVisible(true);
-			
+
 		}
-		if(e.getSource()==dados.btnPlay)
+			
+	if(e.getSource()==dados.btnPlay)
 		{
 
-			try {
-				player1=new PlayerGui(0,0,Nombre1);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
+		try {
+			player1=new PlayerGui(0,0,Nombre1);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
 			player1.deck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
+			player1.deck.btnNewButton.addActionListener(this);
 			addbackground3(this);
 			getContentPane().setLayout(null);
-			
+
 			add(player1);
 			setVisible(true);
 		}
-		
-		
+
+	}
 		if (e.getSource()==b2)//cuando se le da click al boton 1
 		{
 
 
 			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
-
+			dados= new RollDice();
 			dados.pane.rollButton.addActionListener(this);
 
 			addbackground4(this);
 			getContentPane().setLayout(null);
 
-			// contentPane.removeAll();   
+
 			add(dados);
 			dados.pane.rollButton.addActionListener(this);
 			dados.btnPlay.addActionListener(this);
-			
+
 			setVisible(true);
 		}
+	if(player1!=null){
+		if (e.getSource()==player1.deck.btnNewButton)
+		{
+			if(player1.barriers.findwhere()!=-1)
+			{
+				if(player1.deck.Deck.cardsLeft()!= 0 )
+				{
 
+					player1.barriers.addbarrier(player1.deck.Deck.extraerR());
+					player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
+					player1.deck.textField.repaint();
+
+					repaint();
+				}else
+				{
+					
+					gameover(this);
+					
+				
+					try {
+						player1=new PlayerGui(0,0,Nombre1);
+
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+					b2 = new JButton("rematch");
+					b2.setBackground(Color.BLACK);
+					b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+					b2.setForeground(Color.WHITE);
+					b2.setBounds(70, 50, 132, 43);
+					b2.addActionListener(this);
+					add(b2);
+					repaint();
+					setVisible(true);
+				
+					
+				}
+				
+
+			}
+		}
+		
+	
+	
+	}
 		if (e.getSource()==b3)
 		{
 
@@ -249,7 +293,16 @@ public class Gui extends JFrame implements ActionListener
 		}
 
 	}
+	void gameover(JFrame jfm)
+	{
+		try {
+			jfm.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("gameover.jpg")))));
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 
+	}
 	void addbackground2(JFrame jfm)
 	{
 		try {
