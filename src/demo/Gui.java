@@ -164,7 +164,6 @@ public class Gui extends JFrame implements ActionListener
 			        }
 			        dados.pane.rollButton.setVisible(false);
 					dados.btnPlay.setVisible(true);
-					System.out.println(dados.pane.text.getText()+"  hola");
 					if(dados.pane.text.getText()=="1"){
 						dados.label.setText("Fist turn is yours");
 					}
@@ -173,7 +172,6 @@ public class Gui extends JFrame implements ActionListener
 					}
 					dados.label.setVisible(true);
 					dados.btnPlay.setVisible(true);
-					System.out.println(dados.pane.text.getText()+"  hola2");
 				}
 			});
 			t.start();

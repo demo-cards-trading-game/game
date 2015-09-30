@@ -98,15 +98,11 @@ public class RollDicePanel extends JPanel implements ActionListener{
 	     	            }
 	     	            aux=((ImageIcon)dice1.getIcon()).getDescription();
 	     	            aux2=((ImageIcon)dice2.getIcon()).getDescription();
-	     	            System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+ text.getText());
 	     	            
 	     	        }
 	     	        else{
 	     	        	
 	     	            this.cancel();
-	     	          // System.out.println("hola");
-	     	           // System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+ text.getText());
-
 		     	   }
 	     	}
 	     }, 0, 100);
