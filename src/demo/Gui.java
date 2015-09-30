@@ -149,18 +149,34 @@ public class Gui extends JFrame implements ActionListener
 	if(dados!=null){
 		if(e.getSource()==dados.pane.rollButton)//dados
 		{
-				dados.pane.rollButton.setVisible(false);
-				dados.btnPlay.setVisible(true);
-				System.out.println(dados.pane.text.getText()+"  hola");
-				if(dados.pane.text.getText()=="1"){
-					dados.label.setText("Fist turn is yours");
+			Thread t = new Thread(new Runnable(){
+				
+				public void start(){
+					this.start();
 				}
-				else{
-					dados.label.setText("AI player gets the  first turn");
+				
+				public void run(){
+
+			        try {
+			            Thread.sleep(3000); 
+			        } catch (InterruptedException e) {
+			            e.printStackTrace();
+			        }
+			        dados.pane.rollButton.setVisible(false);
+					dados.btnPlay.setVisible(true);
+					System.out.println(dados.pane.text.getText()+"  hola");
+					if(dados.pane.text.getText()=="1"){
+						dados.label.setText("Fist turn is yours");
+					}
+					else{
+						dados.label.setText("AI player gets the  first turn");
+					}
+					dados.label.setVisible(true);
+					dados.btnPlay.setVisible(true);
+					System.out.println(dados.pane.text.getText()+"  hola2");
 				}
-				dados.label.setVisible(true);
-				dados.btnPlay.setVisible(true);
-				System.out.println(dados.pane.text.getText()+"  hola2");
+			});
+			t.start();
 		}
 			
 	if(e.getSource()==dados.btnPlay)
@@ -198,7 +214,7 @@ public class Gui extends JFrame implements ActionListener
 
 
 			add(dados);
-			//dados.pane.rollButton.addActionListener(this);
+			dados.pane.rollButton.addActionListener(this);
 			dados.btnPlay.addActionListener(this);
 
 			setVisible(true);

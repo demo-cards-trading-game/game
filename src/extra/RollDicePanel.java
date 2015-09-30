@@ -21,6 +21,7 @@ public class RollDicePanel extends JPanel implements ActionListener{
  private Random rg = new Random();
  public  String aux, aux2;
  public int count=25;
+ 
  RollDicePanel() {
 	 this.setOpaque(false);
      //... Create the dice
@@ -50,45 +51,64 @@ public class RollDicePanel extends JPanel implements ActionListener{
      this.add(dice1);
      this.add(dice2);
      rollButton.addActionListener(this);
+     
      //rollButton.addActionListener(new ButtonListener(dice1, dice2, text));
      this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
  }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		 Timer timer = new Timer();
-	       
-	        timer.scheduleAtFixedRate(new TimerTask(){
-	        	
-	        	 
-	        	
-	        	public void run(){
-	        		 if(count > 0){
-	        	            count --;
-	        	            int num1 = rg.nextInt(6);
-	        	            int num2 = rg.nextInt(6);
-	        	            Icon icon1 = getter.getIcon("d" + (num1+1) + ".png");
-	        	            Icon icon2 = getter.getIcon("d" + (num2+1) + ".png");
-	        	            dice1.setIcon(icon1);
-	        	            dice2.setIcon(icon2);
-	        	            
+		correr();
+		/*Thread t = new Thread(new Runnable(){
+			
+			public void start(){
+				this.start();
+			}
+			
+			public void run(){
 
-	        	            if(num1>=num2){
-	        	            	 text.setText("1");
-	        	            }else{
-	        	            	 text.setText("2");
-	        	            }
-	        	            aux=((ImageIcon)dice1.getIcon()).getDescription();
-	        	            aux2=((ImageIcon)dice2.getIcon()).getDescription();
-	        	            System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+ text.getText());
-	        	            
-	        	        }
-	        	        else{
-	        	        	
-	        	            this.cancel();
-	        	        }
-	        	}
-	        }, 0, 100);
+		        try {
+		            Thread.sleep(1000); 
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+				System.out.println("soy un hilo");
+			}
+		});
+		t.start();*/
 	}
-	 
+	 public void correr(){
+		 Timer timer = new Timer();
+		 timer.scheduleAtFixedRate(new TimerTask(){	        		
+			 public void run(){
+	     		 if(count > 0){
+	     	            count --;
+	     	            int num1 = rg.nextInt(6);
+	     	            int num2 = rg.nextInt(6);
+	     	            Icon icon1 = getter.getIcon("d" + (num1+1) + ".png");
+	     	            Icon icon2 = getter.getIcon("d" + (num2+1) + ".png");
+	     	            dice1.setIcon(icon1);
+	     	            dice2.setIcon(icon2);
+	     	            
+	     	            
+	     	            if(num1>=num2){
+	     	            	 text.setText("1");
+	     	            }else{
+	     	            	 text.setText("2");
+	     	            }
+	     	            aux=((ImageIcon)dice1.getIcon()).getDescription();
+	     	            aux2=((ImageIcon)dice2.getIcon()).getDescription();
+	     	            System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+ text.getText());
+	     	            
+	     	        }
+	     	        else{
+	     	        	
+	     	            this.cancel();
+	     	          // System.out.println("hola");
+	     	           // System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+ text.getText());
+
+		     	   }
+	     	}
+	     }, 0, 100);
+	 }
 }
