@@ -2,16 +2,25 @@ package extra;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.*;
 
-public class RollDicePanel extends JPanel {
+public class RollDicePanel extends JPanel implements ActionListener{
  public Die _leftDie;  
  public Die _rightDie;
  public JButton rollButton;
  private IconGetter getter; 
  public JLabel text = new JLabel(""); //donde deberia ir el resultado
+ public JLabel dice1;
+ public JLabel dice2;
+ private Random rg = new Random();
+ public  String aux, aux2;
+ public int count=25;
  RollDicePanel() {
 	 this.setOpaque(false);
      //... Create the dice
@@ -21,10 +30,10 @@ public class RollDicePanel extends JPanel {
      _rightDie.setBounds(350, 51, 244, 244);
      */
      getter = new IconGetter();
-	 JLabel dice1 = new JLabel(getter.getIcon("d1.png"));
+	 dice1 = new JLabel(getter.getIcon("d1.png"));
 	 dice1.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 	 dice1.setBounds(5, 51, 244, 244);
-     JLabel dice2 = new JLabel(getter.getIcon("d1.png"));
+     dice2 = new JLabel(getter.getIcon("d1.png"));
      dice2.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
      dice2.setBounds(350, 51, 244, 244);
      rollButton = new JButton("Let them roll");
@@ -40,8 +49,46 @@ public class RollDicePanel extends JPanel {
     // this.add(_rightDie);
      this.add(dice1);
      this.add(dice2);
-     rollButton.addActionListener(new ButtonListener(dice1, dice2, text));
+     rollButton.addActionListener(this);
+     //rollButton.addActionListener(new ButtonListener(dice1, dice2, text));
      this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
  }
- 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		 Timer timer = new Timer();
+	       
+	        timer.scheduleAtFixedRate(new TimerTask(){
+	        	
+	        	 
+	        	
+	        	public void run(){
+	        		 if(count > 0){
+	        	            count --;
+	        	            int num1 = rg.nextInt(6);
+	        	            int num2 = rg.nextInt(6);
+	        	            Icon icon1 = getter.getIcon("d" + (num1+1) + ".png");
+	        	            Icon icon2 = getter.getIcon("d" + (num2+1) + ".png");
+	        	            dice1.setIcon(icon1);
+	        	            dice2.setIcon(icon2);
+	        	            
+
+	        	            if(num1>=num2){
+	        	            	 text.setText("1");
+	        	            }else{
+	        	            	 text.setText("2");
+	        	            }
+	        	            aux=((ImageIcon)dice1.getIcon()).getDescription();
+	        	            aux2=((ImageIcon)dice2.getIcon()).getDescription();
+	        	            System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+ text.getText());
+	        	            
+	        	        }
+	        	        else{
+	        	        	
+	        	            this.cancel();
+	        	        }
+	        	}
+	        }, 0, 100);
+	}
+	 
 }
