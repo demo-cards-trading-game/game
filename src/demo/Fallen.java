@@ -13,6 +13,7 @@ import javax.swing.event.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import data.LoadData;
+import data.prueba.ColorTableCellRenderer;
 import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
@@ -48,16 +49,17 @@ public class Fallen extends JInternalFrame
 			e.printStackTrace();
 		}
 		cant=data.Data.getCantidad();
-	        setLayout(null);
+	        getContentPane().setLayout(null);
 	        setSize(736, 380);
 	      
 
 	        JScrollPane scrollPane_1 = new JScrollPane();
 	        scrollPane_1.setBounds(new Rectangle(500, 0, 250, 400));
 	        scrollPane_1.setBounds(50, 67, 271, 245);
-	        add(scrollPane_1);
+	        getContentPane().add(scrollPane_1);
 	        leftTable = new JTable(new SimpleColorTableModel());
-	        leftTable.setBackground(new Color(153, 204, 255));
+	        leftTable.setOpaque(false);
+	     
 	        scrollPane_1.setViewportView(leftTable);
 	        
 	        	        setupTable(leftTable);
@@ -70,7 +72,7 @@ public class Fallen extends JInternalFrame
 	        panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 	        panel_1.setBackground(new Color(102, 204, 255));
 	        panel_1.setBounds(105, 27, 176, 29);
-	        add(panel_1);
+	        getContentPane().add(panel_1);
 	         panel_1.setLayout(null);
 	        	        
 	        	        	       
@@ -106,7 +108,7 @@ public class Fallen extends JInternalFrame
 	                		int x=(int) rowValue.get(0);
 	                		current=new BigCard(data.Data.Consultar(x),470,15);
 	                	}
-	                	add (current);
+	                	getContentPane().add (current);
 	                }
 	                
        			 repaint();
@@ -126,10 +128,17 @@ public class Fallen extends JInternalFrame
 	
 	
 	
-	
 	  protected void setupTable(JTable table) {
 
+	        table.setFillsViewportHeight(true);
+	        table.getColumnModel().getColumn(2).setMaxWidth(10);
+	        table.getColumnModel().getColumn(0).setMaxWidth(18);
+	     //   table.getColumnModel().getColumn(0).setPreferredWidth(10);
+	        
+	        table.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
+
 	    }
+	
 	
 	
     public class ColorTableCellRenderer extends DefaultTableCellRenderer {

@@ -183,6 +183,10 @@ public class Gui extends JFrame implements ActionListener
 
 			add(player1);
 			setVisible(true);
+			
+			
+			
+			
 		}
 
 	}
@@ -365,7 +369,8 @@ public class Gui extends JFrame implements ActionListener
 	public static void main(String[] args)
 	{
 		Gui Juego=new Gui();
-
+		
+		
 	}
-
+	
 }
