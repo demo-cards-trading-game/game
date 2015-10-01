@@ -23,7 +23,6 @@ import data.deckCreator;
 
 import java.util.Random;
 import demo.HandGui;
-import extra.RollDice;
 public class Gui extends JFrame implements ActionListener
 {
 	JPanel jp1,jp2,jp3;
@@ -162,16 +161,36 @@ public class Gui extends JFrame implements ActionListener
 			        } catch (InterruptedException e) {
 			            e.printStackTrace();
 			        }
-			        dados.pane.rollButton.setVisible(false);
-					dados.btnPlay.setVisible(true);
-					if(dados.pane.text.getText()=="1"){
-						dados.label.setText("Fist turn is yours");
-					}
-					else{
-						dados.label.setText("AI player gets the  first turn");
-					}
-					dados.label.setVisible(true);
-					dados.btnPlay.setVisible(true);
+			        //dados.pane.text.setText("3");
+			        if(dados.pane.text.getText()=="3"){
+			        	dados.label.setBounds(25, 316+50, 507, 41);
+			        	dados.label.setText("Tie, Roll again");
+						dados.label.setVisible(true);
+			        	try {
+				            Thread.sleep(1000); 
+				        } catch (InterruptedException e) {
+				            e.printStackTrace();
+				        }
+			        	b2.doClick();
+			        	dados.label.setBounds(25, 316+50, 507, 41);
+			        	dados.label.setText("Tie, Roll again");
+						dados.label.setVisible(true);
+						//repaint();
+			        }
+			        else{
+			        	dados.label.setBounds(25, 316, 507, 41);
+			        	dados.pane.rollButton.setVisible(false);
+						dados.btnPlay.setVisible(true);
+						if(dados.pane.text.getText()=="1"){
+							dados.label.setText("Fist turn is yours");
+						}
+						else{
+							dados.label.setText("AI player gets the  first turn");
+						}
+						dados.label.setVisible(true);
+						dados.btnPlay.setVisible(true);
+			        }
+			       
 				}
 			});
 			t.start();

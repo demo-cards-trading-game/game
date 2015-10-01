@@ -59,6 +59,7 @@ public class RollDicePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		correr();
+		rollButton.enable(true);
 		/*Thread t = new Thread(new Runnable(){
 			
 			public void start(){
@@ -91,14 +92,22 @@ public class RollDicePanel extends JPanel implements ActionListener{
 	     	            dice2.setIcon(icon2);
 	     	            
 	     	            
-	     	            if(num1>=num2){
+	     	            if(num1>num2){
 	     	            	 text.setText("1");
-	     	            }else{
-	     	            	 text.setText("2");
+	     	            }else
+	     	            {
+	     	            	if(num1<num2){
+	     	            		text.setText("2");
+	     	            	}
+	     	            	else
+	     	            	{
+		     	            	 text.setText("3");	     	            		
+	     	            	}
+
 	     	            }
 	     	            aux=((ImageIcon)dice1.getIcon()).getDescription();
 	     	            aux2=((ImageIcon)dice2.getIcon()).getDescription();
-	     	            
+	     	            System.out.println(aux.substring(aux.length()-5, aux.length()-4)+" "+aux2.substring(aux2.length()-5, aux2.length()-4)+" "+text.getText());
 	     	        }
 	     	        else{
 	     	        	
