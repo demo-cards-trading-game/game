@@ -260,7 +260,9 @@ public class Gui extends JFrame implements ActionListener
 					
 				
 					try {
+					
 						player1=new PlayerGui(0,0,Nombre1);
+						
 
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

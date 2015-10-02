@@ -25,7 +25,7 @@ public class Barriers extends JPanel {
 		
 		
 		
-		
+		removeall();
 		setLayout(null);
 		setOpaque(false);
 		setBounds(x,y,600,50);//se fija el tamaño y la posicion
@@ -113,6 +113,7 @@ public class Barriers extends JPanel {
 		barriers[i].setVisible(false);
 		
 		
+		
 	}
 	int findwhere()
 	{
@@ -144,4 +145,15 @@ public class Barriers extends JPanel {
 		cards[pos]=null;
 		repaint();
 	}
+	void removeall()
+	{
+		
+		
+		
+			for (int i=0;i<5;i++){
+			cards[i]=null;
+			}
+		
+	}
+
 }

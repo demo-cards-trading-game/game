@@ -53,14 +53,17 @@ import javax.swing.JLayeredPane;
 public class PlayerGui extends JLayeredPane implements ActionListener, MouseListener {
 
 	public Barriers barriers;
+	public Drained powers;
 	public static DeckGui deck;
+
 	public HandGui hand;
 	public fieldGui field;
+	public fieldGui aifield;
 	int turn;
 	int acampo=-1;
 	int i=0;
 	 private Fallen fallen ;
-
+	 
 
 
 	private LoadData cartas;
@@ -94,18 +97,18 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		this.add(hand);
 
 
-		field = new fieldGui(200,350);
-
+		field = new fieldGui(220,350);
+		aifield = new fieldGui(220,110);
 
 
 		field.addMouseListener(this);
 
 		this.add(field);
-
+		add(aifield);
 
 		/*******************************************/
-
-
+		powers=new Drained(15,320);
+		add(powers);
 
 
 
@@ -416,6 +419,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			hand.handgui[4].setBounds(496, 0, 124, 186);
 		}
 	}
+	
+
 }
 
 
