@@ -23,12 +23,12 @@ import data.deckCreator;
 
 import java.util.Random;
 import demo.HandGui;
-public class Gui extends JFrame implements ActionListener, KeyListener
+public class Gui extends JFrame implements ActionListener
 {
 	JPanel jp1,jp2,jp3;
 	JButton b1,b2,b3;
-	JLabel l1,demo;
-	JTextArea text;
+	JLabel l1,demo, validar;
+	JTextArea text, val1,val2;
 	String Nombre1;//nombre del jugador1
 	private JMenuBar mb;
 	private JMenu menu1,menu2;
@@ -90,7 +90,12 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 		text.setBounds(480, 580, 90, 20);
 		text.setEditable(true);
 		add(text);
-
+		
+		validar = new JLabel("please, input a valid name and press enter!");
+		validar.setBounds(580, 580, 250, 20);
+		validar.setVisible(false);
+		add(validar);
+		
 		b1=new JButton("Play");
 		b1.setBackground(Color.white);
 		b1.setBorder(null);
@@ -99,7 +104,7 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 		b1.addActionListener(this);
 		add(b1);
 		text.requestFocusInWindow();
-		text.addKeyListener(this);
+		text.addKeyListener(new myKeyState1());
 
 
 
@@ -129,23 +134,41 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 
 		if(e.getSource()==b1)
 		{
-			addbackground2(this);
-			b2 = new JButton("Play");
-			b2.setBackground(Color.BLACK);
-			b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-			b2.setForeground(Color.WHITE);
-			b2.setBounds(70, 50, 132, 43);
-			b2.addActionListener(this);
-			add(b2);
-
-			b3=new JButton("Deck menu");
-			b3.setForeground(Color.BLACK);
-			b3.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-			b3.setBackground(Color.WHITE);
-			b3.setBounds(70, 130, 132, 43);
-			b3.addActionListener(this);
-			add(b3);
-			setVisible(true);
+			
+			if(text.getText().trim().length()==0){
+				b1.setEnabled(false);
+				validar.setVisible(true);
+			}
+			else{
+				validar.setVisible(false);
+				b1.setEnabled(true);
+		      
+				addbackground2(this);
+				b2 = new JButton("Play");
+				b2.setBackground(Color.BLACK);
+				b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+				b2.setForeground(Color.WHITE);
+				b2.setBounds(70, 50, 132, 43);
+				b2.addActionListener(this);
+				add(b2);
+				
+				//validacion para entrar directamente con enter
+				val1 = new JTextArea();   
+				val1.setBounds(480, 580, 0, 0);
+				val1.setVisible(true);
+				add(val1);
+				val1.requestFocusInWindow();
+				val1.addKeyListener(new myKeyState2());
+				
+				b3=new JButton("Deck menu");
+				b3.setForeground(Color.BLACK);
+				b3.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+				b3.setBackground(Color.WHITE);
+				b3.setBounds(70, 130, 132, 43);
+				b3.addActionListener(this);
+				add(b3);
+				setVisible(true);
+		    }
 		}
 	if(dados!=null){
 		if(e.getSource()==dados.pane.rollButton)//dados
@@ -234,7 +257,14 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 
 			addbackground4(this);
 			getContentPane().setLayout(null);
-
+			
+			//validacion para entrar directamente con enter
+			val2 = new JTextArea();   
+			val2.setBounds(480, 580, 0, 0);
+			val2.setVisible(true);
+			add(val2);
+			val2.requestFocusInWindow();
+			val2.addKeyListener(new myKeyState3());
 
 			add(dados);
 			dados.pane.rollButton.addActionListener(this);
@@ -315,6 +345,93 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 			setSize(1024,768);
 		}   
 	}
+	
+	class myKeyState1 extends KeyAdapter implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+			      if(text.getText().trim().length()==0){
+			    	  b1.setEnabled(false);
+			    	  validar.setVisible(true);
+			      }
+			      else{
+			    	  validar.setVisible(false);
+			    	  b1.setEnabled(true);
+			    	  b1.doClick();
+			      }
+					
+			   }
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class myKeyState2 extends KeyAdapter implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+			      b2.doClick();
+			   }
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class myKeyState3 extends KeyAdapter implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+				if(!dados.btnPlay.isVisible()){
+					dados.pane.rollButton.doClick();
+				}
+				else{
+					dados.btnPlay.doClick();
+				}
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
 	private deckCreator deckCreator() {
 		// TODO Auto-generated method stub
 		return null;
@@ -406,12 +523,21 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 		
 		
 	}
-
+/*
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-		      b1.doClick();
+		      if(text.getText().trim().length()==0){
+		    	  b1.setEnabled(false);
+		    	  validar.setVisible(true);
+		      }
+		      else{
+		    	  validar.setVisible(false);
+		    	  b1.setEnabled(true);
+		    	  b1.doClick();
+		      }
+				
 		   }
 	}
 
@@ -426,5 +552,5 @@ public class Gui extends JFrame implements ActionListener, KeyListener
 		// TODO Auto-generated method stub
 		
 	}
-	
+	*/
 }
