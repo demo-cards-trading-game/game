@@ -23,7 +23,7 @@ import data.deckCreator;
 
 import java.util.Random;
 import demo.HandGui;
-public class Gui extends JFrame implements ActionListener
+public class Gui extends JFrame implements ActionListener, KeyListener
 {
 	JPanel jp1,jp2,jp3;
 	JButton b1,b2,b3;
@@ -98,7 +98,8 @@ public class Gui extends JFrame implements ActionListener
 		b1.setBorder(BorderFactory.createEmptyBorder());
 		b1.addActionListener(this);
 		add(b1);
-
+		text.requestFocusInWindow();
+		text.addKeyListener(this);
 
 
 
@@ -107,7 +108,8 @@ public class Gui extends JFrame implements ActionListener
 		demo=new JLabel("<html><font color='white'>Demo version: 0.000011 </font></html>");
 		demo.setBounds(870,660,300,30); //esto se mueve como horizontal vertical 100= h 200=v
 		this.add(demo);
-
+		
+		
 
 		/*********************************/
 
@@ -402,6 +404,26 @@ public class Gui extends JFrame implements ActionListener
 	{
 		Gui Juego=new Gui();
 		
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+		      b1.doClick();
+		   }
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 	
