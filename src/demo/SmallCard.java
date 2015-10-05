@@ -26,7 +26,9 @@ import javax.swing.border.LineBorder;
 public class SmallCard extends JLayeredPane{
 	private JTextField textField;
 	private Card  actual;
-	
+	Graphics2D g2d;
+    boolean rotating = false;
+    int count;
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -250,29 +252,26 @@ public class SmallCard extends JLayeredPane{
 		
 		
 	}
-	 @Override
-     public void paintComponent(Graphics g)
-     {
-		 
-         int height = 200;
-         int width = 120;
-         g.setColor(Color.gray);
-         g.drawRoundRect(0, 0, width, height, 20, 30);
-         super.paintComponent(g);
-        
-     }
+
+
+
 	public Card getcard()
 	{
-		
+
 		return actual;
 	}
-		public class CirclePanel extends JPanel {
 
-	
+	public class CirclePanel extends JPanel {
+
+
 
 		@Override
-	    protected void paintComponent(Graphics g) {
-	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
-	    }
+		protected void paintComponent(Graphics g) {
+			Graphics2D g2d;
+			g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
+			g2d = (Graphics2D) g;
+			g2d.rotate( 180.0 * Math.PI,g.getClipBounds().width, g.getClipBounds().height);
+			
+		}
 	}
 }

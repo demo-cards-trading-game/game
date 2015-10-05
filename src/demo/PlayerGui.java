@@ -58,7 +58,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 	public HandGui hand;
 	public fieldGui field;
-	public fieldGui aifield;
+	public AIGui ai;
 	int turn;
 	int acampo=-1;
 	int i=0;
@@ -98,13 +98,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 
 		field = new fieldGui(220,350);
-		aifield = new fieldGui(220,110);
+		ai = new AIGui();
 
 
 		field.addMouseListener(this);
 
 		this.add(field);
-		add(aifield);
+		add(ai);
 
 		/*******************************************/
 		powers=new Drained(15,320);
@@ -259,18 +259,22 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				{
 
 					hand.discard(acampo+1);
-					SmallCard pene;
+					SmallCard carta;
+					Reverse volteada;
 					try {
 						Random randomGenerator = new Random();
 						int test=randomGenerator.nextInt(10);
 						if(test % 2==0)
 						{
-							pene = new SmallCard(true,hand.handgui[acampo].getcard());
+							carta = new SmallCard(true,hand.handgui[acampo].getcard());
+							volteada=new Reverse(true,hand.handgui[acampo].getcard());
+						}else{
+							carta = new SmallCard(false,hand.handgui[acampo].getcard());
+							volteada=new Reverse(false,hand.handgui[acampo].getcard());
+						}
 
-						}else
-							pene = new SmallCard(false,hand.handgui[acampo].getcard());
-
-						pene.addMouseListener(this);
+						carta.addMouseListener(this);
+						volteada.addMouseListener(this);
 						if(phases.actual<5)
 							phases.change(phases.actual+1);
 						else
@@ -279,8 +283,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 
 
-						field.poner(pene,where);
-
+						field.poner(carta,where);
+						ai.aifield.poner(volteada, where);
+						repaint();
 
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

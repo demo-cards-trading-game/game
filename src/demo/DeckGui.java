@@ -21,7 +21,7 @@ import java.io.IOException;
 
 import javax.swing.JTextPane;
 public class DeckGui extends JPanel {
-	JTextField textField;
+	public JTextField textField;
 
 	public deck Deck;
 	public LoadData loadData;
@@ -31,10 +31,10 @@ public class DeckGui extends JPanel {
 	public JButton btnNewButton; 
 	public JButton btnNewButton_1;
 	public JButton btnNewButton_2;
-
+	public JLabel lblTheFallen;
 	public JPanel panel;
-	
-	
+	public JLabel lblDeck; 
+	public JLabel lblForgotten ;
 	public void addhero(Card x) throws IOException
 	{
 		panel.add(new SmallCard(true,x));
@@ -76,7 +76,7 @@ public class DeckGui extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblDeck = new JLabel("DECK");
+	 lblDeck = new JLabel("DECK");
 		lblDeck.setForeground(new Color(50, 205, 50));
 		lblDeck.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblDeck.setBounds(170, 210, 53, 14);
@@ -88,7 +88,7 @@ public class DeckGui extends JPanel {
 		btnNewButton_1.setBounds(160, 122, 80, 77);
 		add(btnNewButton_1);
 		
-		JLabel lblTheFallen = new JLabel("The Fallen");
+	    lblTheFallen = new JLabel("The Fallen");
 		lblTheFallen.setForeground(new Color(30, 144, 255));
 		lblTheFallen.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblTheFallen.setBounds(160, 108, 80, 14);
@@ -102,7 +102,7 @@ public class DeckGui extends JPanel {
 		btnNewButton_2.setBounds(160, 21, 80, 77);
 		add(btnNewButton_2);
 		
-		JLabel lblForgotten = new JLabel("Forgotten");
+	  lblForgotten = new JLabel("Forgotten");
 		lblForgotten.setBorder(null);
 		lblForgotten.setForeground(new Color(153, 102, 255));
 		lblForgotten.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
