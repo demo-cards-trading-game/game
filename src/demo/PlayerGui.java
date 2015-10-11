@@ -70,6 +70,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	JInternalFrame pane; 
 	private Phases phases;
 
+	public JButton changePhase;
+	
 	public PlayerGui(int x , int y, String name) throws IOException {
 		setBorder(null);
 
@@ -145,21 +147,55 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			barriers.barriers[i].addMouseListener(this);
 		fallen=new Fallen();
 		add(fallen);
+		
+		juego();
+	}
+	
+	//este sera nuestro manejador de juego, aca estara todas las condiciones y cosas de las phases
+	public void juego()
+	{
+		this.changePhase = new JButton("cambiar");
+		this.changePhase.setBounds(450, 80, 90, 20);
+		this.changePhase.setVisible(true);
+		this.add(this.changePhase);
+		this.changePhase.addActionListener(this);
+		
+		/*
+		 * por defecto se desabilitaran todos los eventos del clic del juego y acciones 
+		 * (esto esta pensado sin la integracion del modulo de eventos, eso se agrega aca en las phases necesarias y ya)
+		 * 
+		 * lo que se puede hacer en el juego es lo siguiente
+		 * sacar card a barrier
+		 * sacar card a hand
+		 * colocar cartas
+		 * atacar
+		 * pasar de turno
+		 * 
+		 * en cada phase se ira habilitando cada una de estas funcionalidades, para que el jugagor disponga de ellas
+		 * 
+		 * y esta secuencia de phases se elaborara en un cliclo infinito hasta que uno o los dos players
+		 * tengan una lp <= 0
+		 * */
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource()==deck.btnNewButton_1)
 		{
-		
-			
 				
 				fallen.setVisible(true);
 			moveToFront(fallen);
-				
 
+		}
+		
+		
+		if(e.getSource()==changePhase){
+			if(phases.actual<5)
+				phases.change(phases.actual+1);
+			else
+				phases.change(0);
 			
-
+			repaint();
 		}
 	
 
@@ -275,13 +311,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 						carta.addMouseListener(this);
 						volteada.addMouseListener(this);
-						if(phases.actual<5)
-							phases.change(phases.actual+1);
-						else
-							phases.change(0);
-
-
-
+						
 
 						field.poner(carta,where);
 						ai.aifield.poner(volteada, where);
@@ -353,8 +383,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[4].getcard());
 					field.quitar(4);
 				}	
-
-
+				
 			}
 		}
 	}
