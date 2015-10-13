@@ -42,6 +42,8 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		setBounds(x,y,800,600);
 	
 		setClosable(true);
+		//this.setResizable(false);
+		this.setEnabled(false);
 		setIconifiable(false);
 		addbackground(this);
 	
