@@ -257,7 +257,8 @@ public class SmallCard extends JLayeredPane{
 
 	public Card getcard()
 	{
-
+		
+		
 		return actual;
 	}
 

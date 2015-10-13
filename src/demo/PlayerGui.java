@@ -63,7 +63,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	int acampo=-1;
 	int i=0;
 	 private Fallen fallen ;
-	 
+	 private fightpane pelea;
 
 
 	private LoadData cartas;
@@ -105,7 +105,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		this.add(field);
 		add(ai);
-
+		pelea=new fightpane();// se crea el panel de las peleas
+		add(pelea);
 		/*******************************************/
 		powers=new Drained(15,320);
 		add(powers);
@@ -156,9 +157,11 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				
 				fallen.setVisible(true);
 			moveToFront(fallen);
+				Atack(1,1);
+				moveToFront(pelea);
+				pelea.setVisible(true);
 				
-
-			
+			repaint();
 
 		}
 	
@@ -425,7 +428,28 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 	}
 	
+void Atack(int i , int j) //i se refiere a la posicion seleccionada del campo del jugador , j es la posicion seleccionada en el campo del ai
+{
+	BigCard copiap1;
+	BigCard copiap2;
 
+	copiap1=new BigCard(field.cards[i].getcard(),0,0);
+	copiap2=new BigCard(ai.aifield.cards[j].getcard(),0,0);
+	pelea.addCards(copiap1,copiap2);
+	pelea.setVisible(true);
+
+	if(field.cards[i].getcard().GetHp()> ai.aifield.cards[j].getcard().GetHp())//gana la carta del jugador
+	{
+		ai.aifield.quitar(j);
+	}else//gana la carta del ai
+	{
+		field.quitar(i);
+		
+	}
+	
+	repaint();
+}
+	
 }
 
 
