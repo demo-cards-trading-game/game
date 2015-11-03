@@ -18,11 +18,15 @@ public class Drained extends JLayeredPane {
 	/**
 	 * Create the panel.
 	 */
+	private  int currentdrained;
+	private  int currentundrained;
+	public JPanel[]  drained  = new JPanel[8];
+	public JPanel[]  undrained  = new JPanel[8];
 	public Drained(int x , int y)
 	{
 		setBounds(x,y,150,384);
 		setLayout(null);
-		
+		/***************************se crean los paneles ***************************************/
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new MatteBorder(3, 2, 1, 1, (Color) new Color(0, 0, 0)));
 		panel_7.setBackground(new Color(51, 51, 204));
@@ -139,5 +143,85 @@ public class Drained extends JLayeredPane {
 		panel_12.setBackground(new Color(204, 153, 51));
 		panel_12.setBounds(89, 263, 51, 59);
 		add(panel_12);
+		
+		
+		/********************************************************************************/
+		
+		/*************************se asignan a una posicion correspondiente ***********************************/
+		drained[0]=panel;
+		drained[1]=panel_1;
+		drained[2]=panel_3;
+		drained[3]=panel_2;
+		drained[4]=panel_4;
+		drained[5]=panel_5;
+		drained[6]=panel_6;
+		drained[7]=panel_7;
+		
+		undrained[0]=panel_8;
+		undrained[1]=panel_9;
+		undrained[2]=panel_10;
+		undrained[3]=panel_11;
+		undrained[4]=panel_12;
+		undrained[5]=panel_13;
+		undrained[6]=panel_14;
+		undrained[7]=panel_15;
+		
+		currentdrained=4;
+		currentundrained=4;
+		for(int i=4;i<8;i++)
+		{
+			undrained[i].setVisible(false);
+			drained[i].setVisible(false);
+			
+		}
+		
+		
+		
+		
+	}
+	
+	void drain(int n)
+	{
+		if(currentdrained+n<8)
+		{
+			for(int i=currentdrained;i<currentdrained+n;i++)
+			{
+				drained[i].setVisible(true);
+				
+			}
+			for(int i=currentundrained;i<currentundrained-n;i--)
+			{
+				undrained[i].setVisible(false);
+				
+			}
+			currentdrained=currentdrained+n;
+			currentundrained=currentundrained-n;
+			repaint();
+		}
+		
+	}
+	
+	void undrain(int n)
+	{
+		
+		if(currentundrained+n<=8)
+			
+		{
+			for(int i=currentundrained;i<currentundrained+n;i++)
+			{
+				undrained[i].setVisible(true);
+				
+			}
+			for(int i=currentdrained;i<currentdrained-n;i--)
+			{
+				drained[i].setVisible(false);
+				
+			}
+			currentdrained=currentdrained+n;
+			currentundrained=currentundrained-n;
+			repaint();
+		}
+		
+		
 	}
 }
