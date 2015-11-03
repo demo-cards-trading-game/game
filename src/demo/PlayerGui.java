@@ -308,12 +308,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 							carta = new SmallCard(false,hand.handgui[acampo].getcard());
 							volteada=new Reverse(false,hand.handgui[acampo].getcard());
 						}
-
+						powers.undrain(hand.handgui[acampo].getcard().GetCost());
+						repaint();
 						carta.addMouseListener(this);
 						volteada.addMouseListener(this);
 						
 
 						field.poner(carta,where);
+					
 						ai.aifield.poner(volteada, where);
 						repaint();
 
@@ -332,11 +334,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 			if(e.getClickCount()==1)
 			{
-
+				
 				if(e.getSource()==hand.handgui[0])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);
+					powers.drain(hand.cards[0].GetCost());
 					hand.discard(1);
+					
 				}
 				if(e.getSource()==hand.handgui[1])
 				{
