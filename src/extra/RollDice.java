@@ -15,21 +15,23 @@ public class RollDice extends JPanel {
 	 this.setLayout(null);
 	 this.setOpaque(false);
 	  pane=new RollDicePanel();
-	  pane.rollButton.setBounds(71, 316, 440, 52);
+	  pane.dice2.setLocation(544, 51);
+	  pane.dice1.setLocation(21, 51);
+	  pane.rollButton.setBounds(180, 306, 440, 52);
 	  pane.rollButton.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
-     pane.setBounds(230,257,616,500);
+     pane.setBounds(148,258,788,499);
 	 this.add(pane);
 	 
 	 btnPlay = new JButton("Play");
 	 btnPlay.setFont(new Font("Showcard Gothic", Font.BOLD, 14));
-	 btnPlay.setBounds(161, 379, 264, 41);
+	 btnPlay.setBounds(268, 369, 264, 41);
 	 pane.add(btnPlay);
 	 
 	 label = new JLabel("");
 	 label.setForeground(Color.WHITE);
 	 label.setHorizontalAlignment(SwingConstants.CENTER);
 	 label.setFont(new Font("Showcard Gothic", Font.BOLD, 20));
-	 label.setBounds(25, 316, 507, 41);
+	 label.setBounds(236, 320, 507, 41);
 	 pane.add(label);
 	 btnPlay.setVisible(false);
 	 label.setVisible(false);

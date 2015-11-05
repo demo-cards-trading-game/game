@@ -224,7 +224,7 @@ public class Drained extends JLayeredPane {
 				drained[i].setVisible(true);
 				drained[i].repaint();
 			}
-			for(int i=currentdrained;i>=currentdrained-n;i--)
+			for(int i=currentdrained-1;i>=currentdrained-n;i--)
 			{
 				undrained[i].setVisible(false);
 				undrained[i].repaint();

@@ -41,7 +41,7 @@ public  class AiHand extends JPanel //implements MouseListener
 		
 		current=0;
 		setOpaque(false);
-		setBounds(posx,posy, 620, 105);
+		setBounds(posx,posy, 500, 111);
 		setLayout(null);
 
 		
@@ -98,13 +98,13 @@ public  class AiHand extends JPanel //implements MouseListener
 		      {
 		      case 0:x= new AIcard(a,0,20);
 		    	  break;
-		      case 1:x= new AIcard(a,124,20);
+		      case 1:x= new AIcard(a,90,20);
 		    	  break;
-		      case 2:x= new AIcard(a,248,20);
+		      case 2:x= new AIcard(a,180,20);
 		    	  break;
-		      case 3:x= new AIcard(a,372,20);
+		      case 3:x= new AIcard(a,270,20);
 		    	  break;
-		      case 4:x= new AIcard(a,496,20);
+		      case 4:x= new AIcard(a,360,20);
 		    	  break;
 		      }
 		     // x.addMouseListener(this);
@@ -119,15 +119,15 @@ public  class AiHand extends JPanel //implements MouseListener
 		 for (int i=0;i<current;i++)
 		 {
 			 switch(i){
-			 	case 0:handgui[i].setBounds(0, 20, 124, 186);
+			 	case 0:handgui[i].setBounds(0, 20, 65, 90);
 			 		break;
-			 	case 1:handgui[i].setBounds(124, 20, 124, 186);
+			 	case 1:handgui[i].setBounds(90, 20, 65, 90);
 			 		break;
-			 	case 2:handgui[i].setBounds(248, 20, 124, 186);
+			 	case 2:handgui[i].setBounds(180, 20, 65, 90);
 			 		break;
-			 	case 3:handgui[i].setBounds(372, 20, 124, 186);
+			 	case 3:handgui[i].setBounds(270, 20,65, 90);
 			 		break;
-			 	case 4:handgui[i].setBounds(496, 20, 124, 186);
+			 	case 4:handgui[i].setBounds(360, 20, 65, 90);
 			 		break;
 			 }
 		 }

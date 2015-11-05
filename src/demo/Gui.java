@@ -188,7 +188,7 @@ public class Gui extends JFrame implements ActionListener
 			        }
 			        //dados.pane.text.setText("3");
 			        if(dados.pane.text.getText()=="3"){
-			        	dados.label.setBounds(25, 316+50, 507, 41);
+			        	dados.label.setBounds(70, 316+50, 507, 41);
 			        	dados.label.setText("Tie, Roll again");
 						dados.label.setVisible(true);
 			        	try {
@@ -197,13 +197,13 @@ public class Gui extends JFrame implements ActionListener
 				            e.printStackTrace();
 				        }
 			        	b2.doClick();
-			        	dados.label.setBounds(25, 316+50, 507, 41);
+			        	dados.label.setBounds(70, 316+50, 507, 41);
 			        	dados.label.setText("Tie, Roll again");
 						dados.label.setVisible(true);
 						//repaint();
 			        }
 			        else{
-			        	dados.label.setBounds(25, 316, 507, 41);
+			        	dados.label.setBounds(100, 316, 507, 41);
 			        	dados.pane.rollButton.setVisible(false);
 						dados.btnPlay.setVisible(true);
 						if(dados.pane.text.getText()=="1"){

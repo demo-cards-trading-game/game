@@ -19,7 +19,7 @@ public class AIGui extends JPanel {
 		aifield=new fieldGui(220,110);
 	
 		aideck=new AiDeck(10,10);
-		aihand=new AiHand(228,-10);
+		aihand=new AiHand(278,-10);
 		add(aihand);
 		add(aideck);
 		add (aifield);

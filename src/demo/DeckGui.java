@@ -63,7 +63,7 @@ public class DeckGui extends JPanel {
 		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setOpaque(false);
 		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
-		btnNewButton.setBounds(160, 235, 80, 77);
+		btnNewButton.setBounds(175, 269, 46, 40);
 		add(btnNewButton);
 		
 		textField = new JTextField();
@@ -79,19 +79,23 @@ public class DeckGui extends JPanel {
 	 lblDeck = new JLabel("DECK");
 		lblDeck.setForeground(new Color(50, 205, 50));
 		lblDeck.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblDeck.setBounds(170, 210, 53, 14);
+		lblDeck.setBounds(187, 244, 53, 14);
 		add(lblDeck);
 		
 		btnNewButton_1 = new JButton();
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
 		
-		btnNewButton_1.setBounds(160, 122, 80, 77);
+		btnNewButton_1.setBounds(175, 193, 46, 40);
 		add(btnNewButton_1);
 		
 	    lblTheFallen = new JLabel("The Fallen");
 		lblTheFallen.setForeground(new Color(30, 144, 255));
 		lblTheFallen.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblTheFallen.setBounds(160, 108, 80, 14);
+		lblTheFallen.setBounds(160, 168, 80, 14);
 		add(lblTheFallen);
 		
 		btnNewButton_2 = new JButton();
@@ -99,14 +103,14 @@ public class DeckGui extends JPanel {
 		
 		btnNewButton_2.setIcon(new ImageIcon("Forgotten.JPG"));
 	
-		btnNewButton_2.setBounds(160, 21, 80, 77);
+		btnNewButton_2.setBounds(175, 117, 46, 40);
 		add(btnNewButton_2);
 		
 	  lblForgotten = new JLabel("Forgotten");
 		lblForgotten.setBorder(null);
 		lblForgotten.setForeground(new Color(153, 102, 255));
 		lblForgotten.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblForgotten.setBounds(158, 0, 117, 14);
+		lblForgotten.setBounds(160, 99, 117, 14);
 		add(lblForgotten);
 		
 		 panel= new JPanel();

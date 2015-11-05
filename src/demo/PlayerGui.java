@@ -55,7 +55,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public Barriers barriers;
 	public Drained powers;
 	public static DeckGui deck;
-
+	public Previewpane preview;
 	public HandGui hand;
 	public fieldGui field;
 	public AIGui ai;
@@ -74,7 +74,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 	public PlayerGui(int x , int y, String name) throws IOException {
 		setBorder(null);
-
+		preview= new Previewpane();
 		setBackground(UIManager.getColor("Button.disabledShadow"));
 		hand= new HandGui (0,0);
 		hand.setLocation(179, 510);
@@ -125,7 +125,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		deck.setLocation(770, 361);
 
 		this.add(deck);
-
+		this.add(preview);
 		deck.btnNewButton.addActionListener(this);
 		deck.btnNewButton_1.addActionListener(this);
 		barriers =new Barriers(179,500);
@@ -422,21 +422,26 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		if(e.getSource()==hand.handgui[0])
 		{
 			hand.handgui[0].setBounds(0, 20, 124, 186);
+			preview.Remove();
 		}
 		else if(e.getSource()==hand.handgui[1])
 		{
 			hand.handgui[1].setBounds(124, 20, 124, 186);
+			preview.Remove();
 		}
 		else if(e.getSource()==hand.handgui[2])
 		{
 			hand.handgui[2].setBounds(248, 20, 124, 186);
+			preview.Remove();
 		}
 		else if(e.getSource()==hand.handgui[3])
 		{
 			hand.handgui[3].setBounds(372, 20, 124, 186);
+			preview.Remove();
 		}else if(e.getSource()==hand.handgui[4])
 		{
 			hand.handgui[4].setBounds(496, 20, 124, 186);
+			preview.Remove();
 		}
 	}
 
@@ -452,21 +457,26 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		if(e.getSource()==hand.handgui[0])
 		{
 			hand.handgui[0].setBounds(0, 0, 124, 186);
+			preview.addCard(new BigCard(hand.handgui[0].getcard(),0,0));
 		}
 		else if(e.getSource()==hand.handgui[1])
 		{
 			hand.handgui[1].setBounds(124, 0, 124, 186);
+			preview.addCard(new BigCard(hand.handgui[1].getcard(),0,0));
 		}
 		else if(e.getSource()==hand.handgui[2])
 		{
 			hand.handgui[2].setBounds(248, 0, 124, 186);
+			preview.addCard(new BigCard(hand.handgui[2].getcard(),0,0));
 		}
 		else if(e.getSource()==hand.handgui[3])
 		{
 			hand.handgui[3].setBounds(372, 0, 124, 186);
+			preview.addCard(new BigCard(hand.handgui[0].getcard(),0,0));
 		}else if(e.getSource()==hand.handgui[4])
 		{
 			hand.handgui[4].setBounds(496, 0, 124, 186);
+			preview.addCard(new BigCard(hand.handgui[4].getcard(),0,0));
 		}
 	}
 	
