@@ -294,7 +294,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				if(where!=-1)
 				{
 
-					hand.discard(acampo+1);
+					
 					SmallCard carta;
 					Reverse volteada;
 					try {
@@ -309,13 +309,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 							volteada=new Reverse(false,hand.handgui[acampo].getcard());
 						}
 						powers.undrain(hand.handgui[acampo].getcard().GetCost());
+					
 						repaint();
 						carta.addMouseListener(this);
 						volteada.addMouseListener(this);
 						
 
 						field.poner(carta,where);
-					
+						hand.discard(acampo+1);
 						ai.aifield.poner(volteada, where);
 						repaint();
 
@@ -338,53 +339,64 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				if(e.getSource()==hand.handgui[0])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);
-					powers.drain(hand.cards[0].GetCost());
+	
 					hand.discard(1);
 					
 				}
 				if(e.getSource()==hand.handgui[1])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);
+					
 					hand.discard(2);
 				}
 				if(e.getSource()==hand.handgui[2])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[2]);
 					hand.discard(3);
+				
 				}
 				if(e.getSource()==hand.handgui[3])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[3]);
 					hand.discard(4);
+					
 				}
 				if(e.getSource()==hand.handgui[4])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[4]);
 					hand.discard(5);
+					
 				}
 
 				if(e.getSource()==field.cards[0])
 				{
+					powers.drain(field.cards[0].getcard().GetCost());
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[0].getcard());
 					field.quitar(0);
 				}	
 				if(e.getSource()==field.cards[1])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[1].getcard());
+					powers.drain(field.cards[1].getcard().GetCost());
 					field.quitar(1);
 				}
 				if(e.getSource()==field.cards[2])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[2].getcard());
+					powers.drain(field.cards[2].getcard().GetCost());
 					field.quitar(2);
 				}
 				if(e.getSource()==field.cards[3])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[3].getcard());
+					powers.drain(field.cards[3].getcard().GetCost());
 					field.quitar(3);
+					
 				}if(e.getSource()==field.cards[4])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[4].getcard());
+					
+					powers.drain(field.cards[4].getcard().GetCost());
 					field.quitar(4);
 				}	
 				

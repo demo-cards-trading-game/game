@@ -13,13 +13,13 @@ public class AIcard extends JPanel {
 	private Card Current;
 	public AIcard(Card c ,int x ,int y) {
 		setBackground(Color.BLACK);
-		setBounds(x,y,100,97);
+		setBounds(x,y,61,90);
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBackground(Color.BLACK);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Documents and Settings\\Administrador\\Escritorio\\game\\game\\back2.JPG"));
-		lblNewLabel.setBounds(0, 0, 100, 97);
+		
+		lblNewLabel.setBounds(0, 0, 65, 90);
 		add(lblNewLabel);
 		Current=c;
 	}

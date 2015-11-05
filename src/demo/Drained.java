@@ -20,8 +20,8 @@ public class Drained extends JLayeredPane {
 	 */
 	private  int currentdrained;
 	private  int currentundrained;
-	public JPanel[]  drained  = new JPanel[8];
-	public JPanel[]  undrained  = new JPanel[8];
+	public JPanel[]  drained  = new JPanel[20];
+	public JPanel[]  undrained  = new JPanel[20];
 	public Drained(int x , int y)
 	{
 		setBounds(x,y,150,384);
@@ -182,46 +182,60 @@ public class Drained extends JLayeredPane {
 	
 	void drain(int n)
 	{
-		if(currentdrained+n<8)
-		{
+		System.out.println(n);
+		System.out.println("before");
+		System.out.println("undrained "+currentundrained);
+		System.out.println("drained "+currentdrained);
+		if(currentundrained-n>=0 && currentdrained +n >=0  )
+		{	System.out.println("funcion drain entro");
 			for(int i=currentdrained;i<currentdrained+n;i++)
 			{
-				drained[i].setVisible(true);
-				
+				undrained[i].setVisible(true);
+				undrained[i].repaint();
 			}
-			for(int i=currentundrained;i<currentundrained-n;i--)
+			for(int i=currentundrained-1 ;i>=currentundrained-n;i--)
 			{
-				undrained[i].setVisible(false);
+				drained[i].setVisible(false);
+				drained[i].repaint();
 				
 			}
-			currentdrained=currentdrained+n;
 			currentundrained=currentundrained-n;
+			currentdrained=currentdrained+n;
 			repaint();
 		}
-		
+		System.out.println("after");
+		System.out.println("undrained "+currentundrained);
+		System.out.println("drained "+currentdrained);
 	}
 	
 	void undrain(int n)
 	{
-		
-		if(currentundrained+n<=8)
+		/*confusion drained en realidad es undrained*/
+		System.out.println(n);
+		System.out.println("before");
+		System.out.println("undrained "+currentundrained);
+		System.out.println("drained "+currentdrained);
+		if(currentundrained+n<=8 && currentdrained-n >=0)
 			
 		{
+			System.out.println("funcion undrain entro");
 			for(int i=currentundrained;i<currentundrained+n;i++)
 			{
-				undrained[i].setVisible(true);
-				
+				drained[i].setVisible(true);
+				drained[i].repaint();
 			}
-			for(int i=currentdrained;i<currentdrained-n;i--)
+			for(int i=currentdrained;i>=currentdrained-n;i--)
 			{
-				drained[i].setVisible(false);
-				
+				undrained[i].setVisible(false);
+				undrained[i].repaint();
 			}
-			currentdrained=currentdrained+n;
-			currentundrained=currentundrained-n;
+			currentundrained=currentundrained+n;
+			currentdrained=currentdrained-n;
 			repaint();
 		}
-		
+		System.out.println("after");
+		System.out.println("undrained "+currentundrained);
+		System.out.println("drained "+currentdrained);
 		
 	}
 }

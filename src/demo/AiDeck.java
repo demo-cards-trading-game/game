@@ -15,18 +15,26 @@ public class AiDeck extends DeckGui {
 	 */
 	public AiDeck(int x , int y) {
 		super(x,y);
+		panel.setSize(53, 68);
+		btnNewButton.setSize(43, 43);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton_2.setSize(43, 43);
+		btnNewButton_1.setSize(43, 43);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		textField.setLocation(115, 276);
+		textField.setLocation(10, 242);
 		lblTheFallen.setLocation(10, 11);
-		lblForgotten.setLocation(10, 134);
-		lblDeck.setLocation(127, 163);
-		btnNewButton.setLocation(115, 188);
-		btnNewButton_1.setLocation(10, 36);
-		btnNewButton_2.setLocation(10, 163);
-		panel.setLocation(100, 11);
+		lblForgotten.setLocation(10, 96);
+		lblDeck.setLocation(20, 175);
+		btnNewButton.setLocation(20, 188);
+		btnNewButton_1.setLocation(20, 36);
+		btnNewButton_2.setLocation(20, 121);
+		panel.setLocation(116, 11);
 		repaint();
 	}
 	
