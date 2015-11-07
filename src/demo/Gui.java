@@ -9,7 +9,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -39,6 +42,9 @@ public class Gui extends JFrame implements ActionListener
 	private deckCreator crear;
 	JInternalFrame crea;
 	RollDice dados;
+	
+	private FileWriter turno = null;
+    private PrintWriter pw = null;
    
 	public Gui()
 	{  
@@ -206,14 +212,33 @@ public class Gui extends JFrame implements ActionListener
 			        	dados.label.setBounds(100, 316, 507, 41);
 			        	dados.pane.rollButton.setVisible(false);
 						dados.btnPlay.setVisible(true);
+						
+						try {
+							turno= new FileWriter("turno.txt");
+							pw=new PrintWriter(turno);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+								
+						
 						if(dados.pane.text.getText()=="1"){
 							dados.label.setText("Fist turn is yours");
+							pw.println(1);
 						}
 						else{
 							dados.label.setText("AI player gets the  first turn");
+							pw.println(2);
 						}
 						dados.label.setVisible(true);
 						dados.btnPlay.setVisible(true);
+						
+						try {
+							turno.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			        }
 			       
 				}
@@ -275,46 +300,48 @@ public class Gui extends JFrame implements ActionListener
 	if(player1!=null){
 		if (e.getSource()==player1.deck.btnNewButton)
 		{
-			if(player1.barriers.findwhere()!=-1)
-			{
-				if(player1.deck.Deck.cardsLeft()!= 0 )
+			if(this.player1.getPhaseActual()==0)
+			{	
+				if(player1.barriers.findwhere()!=-1)
 				{
-
-					player1.barriers.addbarrier(player1.deck.Deck.extraerR());
-					player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
-					player1.deck.textField.repaint();
-
-					repaint();
-				}else
-				{
-					
-					gameover(this);
-					
-				
-					try {
-					
-						player1=new PlayerGui(0,0,Nombre1);
+					if(player1.deck.Deck.cardsLeft()!= 0 )
+					{
+						player1.barriers.addbarrier(player1.deck.Deck.extraerR());
+						player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
+						player1.deck.textField.repaint();
+	
+						repaint();
+					}else
+					{
 						
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
-					b2 = new JButton("rematch");
-					b2.setBackground(Color.BLACK);
-					b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-					b2.setForeground(Color.WHITE);
-					b2.setBounds(70, 50, 132, 43);
-					b2.addActionListener(this);
-					add(b2);
-					repaint();
-					setVisible(true);
-				
+						gameover(this);
+						
 					
+						try {
+						
+							player1=new PlayerGui(0,0,Nombre1);
+							
+	
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+						b2 = new JButton("rematch");
+						b2.setBackground(Color.BLACK);
+						b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+						b2.setForeground(Color.WHITE);
+						b2.setBounds(70, 50, 132, 43);
+						b2.addActionListener(this);
+						add(b2);
+						repaint();
+						setVisible(true);
+					
+						
+					}
+					
+	
 				}
-				
-
 			}
 		}
 		

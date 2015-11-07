@@ -18,7 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.beans.PropertyVetoException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
@@ -63,14 +65,17 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	int acampo=-1;
 	int i=0;
 	 private Fallen fallen ;
-	 
-
-
 	private LoadData cartas;
 	JInternalFrame pane; 
 	private Phases phases;
-
 	public JButton changePhase;
+	private FileReader turno;
+	private BufferedReader br;
+	
+	
+	public int getPhaseActual(){
+		return phases.actual;
+	}
 	
 	public PlayerGui(int x , int y, String name) throws IOException {
 		setBorder(null);
@@ -112,29 +117,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		powers=new Drained(15,320);
 		add(powers);
 
-
-
-
-
-
-
-
-
 		deck = new DeckGui(0,0);
 		deck.setSize(250, 343);
 		deck.setLocation(770, 361);
-
 		this.add(deck);
 		this.add(preview);
-		deck.btnNewButton.addActionListener(this);
-		deck.btnNewButton_1.addActionListener(this);
+		
 		barriers =new Barriers(179,500);
 		add(barriers);
 		barriers.addMouseListener(this);
 		for(int i=1;i<=5;i++)
 		{
 			int pos= hand.draw(deck.Deck.extraerR());
-			hand.handgui[pos-1].addMouseListener(this);
+			//hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
 
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			deck.textField.repaint();
@@ -144,38 +139,37 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 
 		for (int i=0;i<5;i++)
-			barriers.barriers[i].addMouseListener(this);
+			//barriers.barriers[i].addMouseListener(this);				//DE BARRIERS A HAND
 		fallen=new Fallen();
+		
 		add(fallen);
 		
 		juego();
+		
+		JLabel a= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		a.setBounds(850, 80, 50, 110);
+		a.setVisible(true);
+		add(a);
+		try{
+			turno = new FileReader(new File("turno.txt"));
+			br= new BufferedReader(turno);
+			this.turn = Integer.parseInt(br.readLine());
+			turno.close();
+		}catch(Exception e2){ 
+            e2.printStackTrace();
+         }
 	}
 	
 	//este sera nuestro manejador de juego, aca estara todas las condiciones y cosas de las phases
 	public void juego()
 	{
-		this.changePhase = new JButton("cambiar");
+		/*this.changePhase = new JButton("cambiar");
 		this.changePhase.setBounds(450, 80, 90, 20);
 		this.changePhase.setVisible(true);
 		this.add(this.changePhase);
-		this.changePhase.addActionListener(this);
+		this.changePhase.addActionListener(this);*/
+		this.phases.draw.addActionListener(this);
 		
-		/*
-		 * por defecto se desabilitaran todos los eventos del clic del juego y acciones 
-		 * (esto esta pensado sin la integracion del modulo de eventos, eso se agrega aca en las phases necesarias y ya)
-		 * 
-		 * lo que se puede hacer en el juego es lo siguiente
-		 * sacar card a barrier
-		 * sacar card a hand
-		 * colocar cartas
-		 * atacar
-		 * pasar de turno
-		 * 
-		 * en cada phase se ira habilitando cada una de estas funcionalidades, para que el jugagor disponga de ellas
-		 * 
-		 * y esta secuencia de phases se elaborara en un cliclo infinito hasta que uno o los dos players
-		 * tengan una lp <= 0
-		 * */
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -189,11 +183,100 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 		
 		
-		if(e.getSource()==changePhase){
-			if(phases.actual<5)
+		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
+			System.out.println(turn);
+			
+			if(phases.actual<4)
 				phases.change(phases.actual+1);
 			else
 				phases.change(0);
+			
+			switch(phases.actual){
+				//setup
+				case 0:
+					this.phases.setup.removeActionListener(this);
+					this.phases.draw.addActionListener(this);
+					
+					//enable deck
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//disable field
+					//disable battle phase
+					//disable end turn
+				break;
+				//draw
+				case 1:
+					this.phases.draw.removeActionListener(this);
+					this.phases.action.addActionListener(this);
+					
+					//disable deck: done
+					//enable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].addMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//disable field
+					//disable battle phase
+					//disable end turn
+				break;
+				//action
+				case 2:
+					this.phases.action.removeActionListener(this);
+					this.phases.attack.addActionListener(this);
+					
+					//disable deck: done
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//enable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].addMouseListener(this);
+					//enable field
+					//disable battle phase
+					//disable end turn
+				break;
+				//attack
+				case 3:
+					this.phases.attack.removeActionListener(this);
+					this.phases.end.addActionListener(this);
+					
+					//disable deck: done
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//enable field
+					//enable battle phase
+					//disable end turn
+					
+					
+					
+				break;
+				//end turn
+				case 4:
+					this.phases.end.removeActionListener(this);
+					this.phases.setup.addActionListener(this);
+					
+					//disable deck: done
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//disable field
+					//disable battle phase
+					//enable end turn
+				break;
+				
+			}
 			
 			repaint();
 		}
@@ -317,7 +400,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 						field.poner(carta,where);
 						hand.discard(acampo+1);
-						ai.aifield.poner(volteada, where);
+						//ai.aifield.poner(volteada, where);
 						repaint();
 
 					} catch (IOException e1) {
@@ -572,10 +655,3 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 
 }
-
-
-
-
-
-
-
