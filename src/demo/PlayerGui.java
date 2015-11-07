@@ -398,7 +398,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					
 					powers.drain(field.cards[4].getcard().GetCost());
 					field.quitar(4);
-				}	
+				}
+				
 				
 			}
 		}
@@ -443,6 +444,41 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			hand.handgui[4].setBounds(496, 20, 124, 186);
 			preview.Remove();
 		}
+		if(e.getSource()==field.cards[0])
+		{
+			
+			preview.Remove();
+		}
+		if(e.getSource()==field.cards[1])
+		{
+			
+			preview.Remove();
+		}
+		if(e.getSource()==field.cards[2])
+		{
+			
+			preview.Remove();
+		}
+		if(e.getSource()==field.cards[3])
+		{
+			
+			preview.Remove();
+		}
+		if(e.getSource()==field.cards[4])
+		{
+			
+			preview.Remove();
+		}
+		if(e.getSource()==ai.aifield.cards[0])
+		{
+			preview.Remove();
+			
+		}
+		if(e.getSource()==ai.aifield.cards[1]||e.getSource()==ai.aifield.cards[2]|| e.getSource()==ai.aifield.cards[3]||e.getSource()==ai.aifield.cards[4] )
+		{
+			preview.Remove();
+			
+		}
 	}
 
 
@@ -453,6 +489,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 
 	public void mouseEntered(MouseEvent e) 
+	
 	{
 		if(e.getSource()==hand.handgui[0])
 		{
@@ -477,6 +514,59 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 			hand.handgui[4].setBounds(496, 0, 124, 186);
 			preview.addCard(new BigCard(hand.handgui[4].getcard(),0,0));
+		}
+		
+		if(e.getSource()==field.cards[0])
+		{
+			
+			preview.addCard(new BigCard(field.cards[0].getcard(),0,0));
+		}
+		if(e.getSource()==field.cards[1])
+		{
+			
+			preview.addCard(new BigCard(field.cards[1].getcard(),0,0));
+		}if(e.getSource()==field.cards[2])
+		{
+			
+			preview.addCard(new BigCard(field.cards[2].getcard(),0,0));
+		}if(e.getSource()==field.cards[3])
+		{
+			
+			preview.addCard(new BigCard(field.cards[3].getcard(),0,0));
+		}if(e.getSource()==field.cards[4])
+		{
+			
+			preview.addCard(new BigCard(field.cards[4].getcard(),0,0));
+		}
+		if(e.getSource()==ai.aifield.cards[0])
+		{
+			preview.addCard(new BigCard(ai.aifield.cards[0].getcard(),0,0));
+		
+			
+		}
+		if(e.getSource()==ai.aifield.cards[1])
+		{
+			preview.addCard(new BigCard(ai.aifield.cards[1].getcard(),0,0));
+			
+			
+		}
+		if(e.getSource()==ai.aifield.cards[2])
+		{
+			preview.addCard(new BigCard(ai.aifield.cards[2].getcard(),0,0));
+			
+			
+		}
+		if(e.getSource()==ai.aifield.cards[3])
+		{
+			preview.addCard(new BigCard(ai.aifield.cards[3].getcard(),0,0));
+			
+			
+		}
+		if(e.getSource()==ai.aifield.cards[4])
+		{
+			preview.addCard(new BigCard(ai.aifield.cards[4].getcard(),0,0));
+			
+			
 		}
 	}
 	
