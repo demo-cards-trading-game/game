@@ -18,7 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.beans.PropertyVetoException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
@@ -63,15 +65,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	int acampo=-1;
 	int i=0;
 	 private Fallen fallen ;
-	 
-
-
 	private LoadData cartas;
 	JInternalFrame pane; 
 	private Phases phases;
-
 	public JButton changePhase;
-
+	private FileReader turno;
+	private BufferedReader br;
+	
+	
 	public int getPhaseActual(){
 		return phases.actual;
 	}
@@ -140,9 +141,23 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		for (int i=0;i<5;i++)
 			//barriers.barriers[i].addMouseListener(this);				//DE BARRIERS A HAND
 		fallen=new Fallen();
+		
 		add(fallen);
 		
 		juego();
+		
+		JLabel a= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		a.setBounds(850, 80, 50, 110);
+		a.setVisible(true);
+		add(a);
+		try{
+			turno = new FileReader(new File("turno.txt"));
+			br= new BufferedReader(turno);
+			this.turn = Integer.parseInt(br.readLine());
+			turno.close();
+		}catch(Exception e2){ 
+            e2.printStackTrace();
+         }
 	}
 	
 	//este sera nuestro manejador de juego, aca estara todas las condiciones y cosas de las phases
@@ -169,6 +184,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		
 		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
+			System.out.println(turn);
+			
 			if(phases.actual<4)
 				phases.change(phases.actual+1);
 			else
@@ -238,6 +255,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//enable field
 					//enable battle phase
 					//disable end turn
+					
+					
+					
 				break;
 				//end turn
 				case 4:
@@ -380,7 +400,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 						field.poner(carta,where);
 						hand.discard(acampo+1);
-						ai.aifield.poner(volteada, where);
+						//ai.aifield.poner(volteada, where);
 						repaint();
 
 					} catch (IOException e1) {
@@ -545,10 +565,3 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 
 }
-
-
-
-
-
-
-

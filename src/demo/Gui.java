@@ -9,7 +9,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -39,6 +42,9 @@ public class Gui extends JFrame implements ActionListener
 	private deckCreator crear;
 	JInternalFrame crea;
 	RollDice dados;
+	
+	private FileWriter turno = null;
+    private PrintWriter pw = null;
    
 	public Gui()
 	{  
@@ -206,14 +212,33 @@ public class Gui extends JFrame implements ActionListener
 			        	dados.label.setBounds(100, 316, 507, 41);
 			        	dados.pane.rollButton.setVisible(false);
 						dados.btnPlay.setVisible(true);
+						
+						try {
+							turno= new FileWriter("turno.txt");
+							pw=new PrintWriter(turno);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+								
+						
 						if(dados.pane.text.getText()=="1"){
 							dados.label.setText("Fist turn is yours");
+							pw.println(1);
 						}
 						else{
 							dados.label.setText("AI player gets the  first turn");
+							pw.println(2);
 						}
 						dados.label.setVisible(true);
 						dados.btnPlay.setVisible(true);
+						
+						try {
+							turno.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			        }
 			       
 				}
