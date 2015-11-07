@@ -148,28 +148,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	//este sera nuestro manejador de juego, aca estara todas las condiciones y cosas de las phases
 	public void juego()
 	{
-		this.changePhase = new JButton("cambiar");
+		/*this.changePhase = new JButton("cambiar");
 		this.changePhase.setBounds(450, 80, 90, 20);
 		this.changePhase.setVisible(true);
 		this.add(this.changePhase);
-		this.changePhase.addActionListener(this);
+		this.changePhase.addActionListener(this);*/
+		this.phases.draw.addActionListener(this);
 		
-		/*
-		 * por defecto se desabilitaran todos los eventos del clic del juego y acciones 
-		 * (esto esta pensado sin la integracion del modulo de eventos, eso se agrega aca en las phases necesarias y ya)
-		 * 
-		 * lo que se puede hacer en el juego es lo siguiente
-		 * sacar card a barrier
-		 * sacar card a hand
-		 * colocar cartas
-		 * atacar
-		 * pasar de turno
-		 * 
-		 * en cada phase se ira habilitando cada una de estas funcionalidades, para que el jugagor disponga de ellas
-		 * 
-		 * y esta secuencia de phases se elaborara en un cliclo infinito hasta que uno o los dos players
-		 * tengan una lp <= 0
-		 * */
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -183,8 +168,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 		
 		
-		if(e.getSource()==changePhase){
-			if(phases.actual<5)
+		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
+			if(phases.actual<4)
 				phases.change(phases.actual+1);
 			else
 				phases.change(0);
@@ -192,6 +177,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			switch(phases.actual){
 				//setup
 				case 0:
+					this.phases.setup.removeActionListener(this);
+					this.phases.draw.addActionListener(this);
+					
 					//enable deck
 					//disable barriers
 					for (int i=0;i<5;i++)
@@ -205,6 +193,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				break;
 				//draw
 				case 1:
+					this.phases.draw.removeActionListener(this);
+					this.phases.action.addActionListener(this);
+					
 					//disable deck: done
 					//enable barriers
 					for (int i=0;i<5;i++)
@@ -218,6 +209,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				break;
 				//action
 				case 2:
+					this.phases.action.removeActionListener(this);
+					this.phases.attack.addActionListener(this);
+					
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)
@@ -231,6 +225,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				break;
 				//attack
 				case 3:
+					this.phases.attack.removeActionListener(this);
+					this.phases.end.addActionListener(this);
+					
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)
@@ -244,6 +241,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				break;
 				//end turn
 				case 4:
+					this.phases.end.removeActionListener(this);
+					this.phases.setup.addActionListener(this);
+					
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)

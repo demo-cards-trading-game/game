@@ -5,16 +5,19 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Icon;
 
 public class Phases extends JPanel {
-	private final JPanel panel_4 = new JPanel();
+	public final JPanel panel_4 = new JPanel();
 	public JLabel arrow;
 	int actual;
 	
-
+	public JPanel panel, panel_1, panel_2, panel_3;
+	public JButton setup, draw, action, attack, end;
+	
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -31,18 +34,18 @@ public class Phases extends JPanel {
 		setLayout(null);
 		
 	
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(10, 35, 70, 40);
-		JLabel setup=new JLabel(new ImageIcon(ImageIO.read(new File("setup.png"))));
+		setup=new JButton(new ImageIcon(ImageIO.read(new File("setup.png"))));
 		setup.setBounds(0, 0, 70, 40);
 		panel.add(setup);
 		panel.setOpaque(false);
 		add(panel);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		JLabel draw=new JLabel(new ImageIcon(ImageIO.read(new File("draw.png"))));
+		draw=new JButton(new ImageIcon(ImageIO.read(new File("draw.png"))));
 		draw.setBounds(0, 0, 70, 40);
 		panel_1.add(draw);
 		panel_1.setOpaque(false);
@@ -50,9 +53,9 @@ public class Phases extends JPanel {
 		add(panel_1);
 		
 
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		JLabel action=new JLabel(new ImageIcon(ImageIO.read(new File("action.png"))));
+		action=new JButton(new ImageIcon(ImageIO.read(new File("action.png"))));
 		action.setBounds(0, 0, 70, 40);
 		panel_2.add(action);
 		panel_2.setOpaque(false);
@@ -60,17 +63,17 @@ public class Phases extends JPanel {
 		add(panel_2);
 		
 
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		JLabel attack=new JLabel(new ImageIcon(ImageIO.read(new File("attack.png"))));
+		attack=new JButton(new ImageIcon(ImageIO.read(new File("attack.png"))));
 		attack.setBounds(0, 0, 70, 40);
 		panel_3.add(attack);
 		panel_3.setOpaque(false);
-	
 		panel_3.setBounds(343, 35, 70, 40);
 		add(panel_3);
+		
 		panel_4.setBounds(459, 35, 70, 40);
-		JLabel end=new JLabel(new ImageIcon(ImageIO.read(new File("end.png"))));
+		end=new JButton(new ImageIcon(ImageIO.read(new File("end.png"))));
 		end.setBounds(0, 0, 70, 40);
 		panel_4.add(end);
 		add(panel_4);
