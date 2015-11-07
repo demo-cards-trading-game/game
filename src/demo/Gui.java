@@ -275,46 +275,48 @@ public class Gui extends JFrame implements ActionListener
 	if(player1!=null){
 		if (e.getSource()==player1.deck.btnNewButton)
 		{
-			if(player1.barriers.findwhere()!=-1)
-			{
-				if(player1.deck.Deck.cardsLeft()!= 0 )
+			if(this.player1.getPhaseActual()==0)
+			{	
+				if(player1.barriers.findwhere()!=-1)
 				{
-
-					player1.barriers.addbarrier(player1.deck.Deck.extraerR());
-					player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
-					player1.deck.textField.repaint();
-
-					repaint();
-				}else
-				{
-					
-					gameover(this);
-					
-				
-					try {
-					
-						player1=new PlayerGui(0,0,Nombre1);
+					if(player1.deck.Deck.cardsLeft()!= 0 )
+					{
+						player1.barriers.addbarrier(player1.deck.Deck.extraerR());
+						player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
+						player1.deck.textField.repaint();
+	
+						repaint();
+					}else
+					{
 						
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
-					b2 = new JButton("rematch");
-					b2.setBackground(Color.BLACK);
-					b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-					b2.setForeground(Color.WHITE);
-					b2.setBounds(70, 50, 132, 43);
-					b2.addActionListener(this);
-					add(b2);
-					repaint();
-					setVisible(true);
-				
+						gameover(this);
+						
 					
+						try {
+						
+							player1=new PlayerGui(0,0,Nombre1);
+							
+	
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+						b2 = new JButton("rematch");
+						b2.setBackground(Color.BLACK);
+						b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+						b2.setForeground(Color.WHITE);
+						b2.setBounds(70, 50, 132, 43);
+						b2.addActionListener(this);
+						add(b2);
+						repaint();
+						setVisible(true);
+					
+						
+					}
+					
+	
 				}
-				
-
 			}
 		}
 		

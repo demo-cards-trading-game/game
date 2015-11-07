@@ -71,6 +71,10 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private Phases phases;
 
 	public JButton changePhase;
+
+	public int getPhaseActual(){
+		return phases.actual;
+	}
 	
 	public PlayerGui(int x , int y, String name) throws IOException {
 		setBorder(null);
@@ -78,7 +82,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		setBackground(UIManager.getColor("Button.disabledShadow"));
 		hand= new HandGui (0,0);
 		hand.setLocation(179, 510);
-		hand.addMouseListener(this);
+		//hand.addMouseListener(this);
 		setOpaque(false);
 		setLayout(null);
 		setBounds(x,y, 1024, 768);
@@ -103,7 +107,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		ai = new AIGui();
 
 
-		field.addMouseListener(this);
+		//field.addMouseListener(this);
 
 		this.add(field);
 		add(ai);
@@ -123,18 +127,18 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		deck = new DeckGui(0,0);
 		deck.setSize(250, 343);
 		deck.setLocation(770, 361);
-
+		deck.removeMouseListener(this);
 		this.add(deck);
 		this.add(preview);
-		deck.btnNewButton.addActionListener(this);
-		deck.btnNewButton_1.addActionListener(this);
+		//deck.btnNewButton.addActionListener(this);
+		//deck.btnNewButton_1.addActionListener(this);
 		barriers =new Barriers(179,500);
 		add(barriers);
-		barriers.addMouseListener(this);
+		//barriers.addMouseListener(this);
 		for(int i=1;i<=5;i++)
 		{
 			int pos= hand.draw(deck.Deck.extraerR());
-			hand.handgui[pos-1].addMouseListener(this);
+			//hand.handgui[pos-1].addMouseListener(this);
 
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			deck.textField.repaint();
@@ -143,8 +147,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		}
 
-		for (int i=0;i<5;i++)
-			barriers.barriers[i].addMouseListener(this);
+		//for (int i=0;i<5;i++)
+			//barriers.barriers[i].addMouseListener(this);
 		fallen=new Fallen();
 		add(fallen);
 		
