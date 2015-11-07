@@ -82,7 +82,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		setBackground(UIManager.getColor("Button.disabledShadow"));
 		hand= new HandGui (0,0);
 		hand.setLocation(179, 510);
-		//hand.addMouseListener(this);
+		hand.addMouseListener(this);
 		setOpaque(false);
 		setLayout(null);
 		setBounds(x,y, 1024, 768);
@@ -107,7 +107,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		ai = new AIGui();
 
 
-		//field.addMouseListener(this);
+		field.addMouseListener(this);
 
 		this.add(field);
 		add(ai);
@@ -116,29 +116,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		powers=new Drained(15,320);
 		add(powers);
 
-
-
-
-
-
-
-
-
 		deck = new DeckGui(0,0);
 		deck.setSize(250, 343);
 		deck.setLocation(770, 361);
-		deck.removeMouseListener(this);
 		this.add(deck);
 		this.add(preview);
-		//deck.btnNewButton.addActionListener(this);
-		//deck.btnNewButton_1.addActionListener(this);
+		
 		barriers =new Barriers(179,500);
 		add(barriers);
-		//barriers.addMouseListener(this);
+		barriers.addMouseListener(this);
 		for(int i=1;i<=5;i++)
 		{
 			int pos= hand.draw(deck.Deck.extraerR());
-			//hand.handgui[pos-1].addMouseListener(this);
+			//hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
 
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			deck.textField.repaint();
@@ -147,8 +137,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		}
 
-		//for (int i=0;i<5;i++)
-			//barriers.barriers[i].addMouseListener(this);
+		for (int i=0;i<5;i++)
+			//barriers.barriers[i].addMouseListener(this);				//DE BARRIERS A HAND
 		fallen=new Fallen();
 		add(fallen);
 		
@@ -198,6 +188,75 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				phases.change(phases.actual+1);
 			else
 				phases.change(0);
+			
+			switch(phases.actual){
+				//setup
+				case 0:
+					//enable deck
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//disable field
+					//disable battle phase
+					//disable end turn
+				break;
+				//draw
+				case 1:
+					//disable deck: done
+					//enable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].addMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//disable field
+					//disable battle phase
+					//disable end turn
+				break;
+				//action
+				case 2:
+					//disable deck: done
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//enable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].addMouseListener(this);
+					//enable field
+					//disable battle phase
+					//disable end turn
+				break;
+				//attack
+				case 3:
+					//disable deck: done
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//enable field
+					//enable battle phase
+					//disable end turn
+				break;
+				//end turn
+				case 4:
+					//disable deck: done
+					//disable barriers
+					for (int i=0;i<5;i++)
+						barriers.barriers[i].removeMouseListener(this);
+					//disable hand
+					for(int i=0;i<5;i++)
+						hand.handgui[i].removeMouseListener(this);
+					//disable field
+					//disable battle phase
+					//enable end turn
+				break;
+				
+			}
 			
 			repaint();
 		}
