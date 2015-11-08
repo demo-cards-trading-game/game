@@ -71,7 +71,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public JButton changePhase;
 	private FileReader turno;
 	private BufferedReader br;
-	
+	private JLabel turnoLabel;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -147,7 +147,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		juego();
 		
 		JLabel a= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		a.setBounds(850, 80, 50, 110);
+		a.setBounds(220, 350, 50, 310);
 		a.setVisible(true);
 		add(a);
 		try{
@@ -158,6 +158,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}catch(Exception e2){ 
             e2.printStackTrace();
          }
+		
+		this.turnoLabel = new JLabel("");
+		if(turn==1){//turno player 1
+			this.turnoLabel.setText("Turn Player");
+		}else{ //turno player 2
+			this.turnoLabel.setText("Turn UI Player");
+		}
+		this.turnoLabel.setBounds(800, 300, 140, 20);
+		this.turnoLabel.setForeground(new Color(255, 248, 220));
+		this.turnoLabel.setBackground(Color.WHITE);
+		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
+		add(turnoLabel);
 	}
 	
 	//este sera nuestro manejador de juego, aca estara todas las condiciones y cosas de las phases
@@ -274,6 +287,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//disable field
 					//disable battle phase
 					//enable end turn
+					
+					if(turn==1){
+						turn=2;
+						this.turnoLabel.setText("Turn UI Player");
+					}else{
+						turn=1;
+						this.turnoLabel.setText("Turn Player");
+					}
+					
+					repaint();
+					this.phases.setup.doClick();
+					repaint();
+					
 				break;
 				
 			}
