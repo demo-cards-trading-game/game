@@ -220,7 +220,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 			if(done==0)
 			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[2]);
 				hand.discard(3);
 			}
 			done=1;
@@ -229,14 +229,20 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		if(e.getSource()==hand.handgui[3].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
+			{
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[3]);
 				hand.discard(4);
+			}
 			done=1;
 			
 		}
 		if(e.getSource()==hand.handgui[4].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
+			{
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[4]);
 				hand.discard(5);
+			}
 			done=1;
 			
 		}
@@ -251,25 +257,25 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 		}
 		
-		if(e.getSource()==hand.handgui[1].Play)//si se le da play a la carta 1  
+		if(e.getSource()==hand.handgui[1].Play)//si se le da play a la carta 2  
 		{
 			if(done==0)
 			play(1);
 			done=1;
 			
 			
-		}if(e.getSource()==hand.handgui[2].Play)//si se le da play a la carta 1  
+		}if(e.getSource()==hand.handgui[2].Play)//si se le da play a la carta 3
 		{
 			if(done==0)
 			play(2);
 			done=1;
 			
-		}if(e.getSource()==hand.handgui[3].Play)//si se le da play a la carta 1  
+		}if(e.getSource()==hand.handgui[3].Play)//si se le da play a la carta 4 
 		{
 			if(done==0)
 			play(3);
 			done=1;
-		}if(e.getSource()==hand.handgui[4].Play)//si se le da play a la carta 1  
+		}if(e.getSource()==hand.handgui[4].Play)//si se le da play a la carta 5
 		{
 			if(done==0)
 			play(4);
