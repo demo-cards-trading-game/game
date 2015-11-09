@@ -21,24 +21,52 @@ import javax.swing.border.LineBorder;
 
 
 
- 	public class CardGui extends JPanel   {
+ 	public class CardGui extends JLayeredPane   {
 	private JTextField textField;
 	private Card  actual;
-	
+	public JInternalFrame menu;
+	public JButton Play, Preview,Discard,Set; 
 	/**
 	 * Create the panel.
 	 */
 	
 	public CardGui(Card x, int a ,int b) {
+		setOpaque(true);
 		
-		super();
+	setBounds(a, b, 124, 186);	
+	
+		
+		setBorder(new LineBorder(new Color(102, 51, 0), 2));
+		setLayout(null);
 		
 		
 		actual=x;
+		/**********************menu******************************/
+		menu = new JInternalFrame();
+		menu.getContentPane().setLayout(null);
+		
+		JButton Play = new JButton("Play");
+		Play.setBounds(15, 11, 89, 23);
+		menu.getContentPane().add(Play);
+		
+		Discard = new JButton("Discard");
+		Discard.setBounds(15, 45, 89, 23);
+		menu.getContentPane().add(Discard);
+		
+		Preview = new JButton("Preview");
+		Preview.setBounds(15, 79, 89, 23);
+		menu.getContentPane().add(Preview);
+		
+		Set = new JButton("Set");
+		Set.setBounds(15, 113, 89, 23);
+		menu.getContentPane().add(Set);
+		menu.setClosable(true);
+		menu.setBounds(0,0,124,186);
+		menu.setVisible(false);
+		/******************************************************/
 		
 		
 		
-		setForeground(Color.WHITE);
 	
 		
 		CirclePanel panel = new CirclePanel();
@@ -50,6 +78,9 @@ import javax.swing.border.LineBorder;
 		txtpnTexto.setText(x.GetDescription());
 		txtpnTexto.setBounds(10, 126, 102, 49);
 		txtpnTexto.setEditable(false);
+		
+	
+		add(txtpnTexto);
 		
 		
 		JLabel lblSource = new JLabel(x.GetSource());
@@ -103,7 +134,7 @@ import javax.swing.border.LineBorder;
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
-			
+			menu.setBackground(new Color(204, 153, 51));//the menu bacckground is added
 			setBackground(new Color(204, 153, 51));
 			panel.setForeground(new Color(204, 153, 51));
 			
@@ -112,31 +143,27 @@ import javax.swing.border.LineBorder;
 			txtpnTexto.setBackground(new Color(255, 105, 180));
 			setBackground(new Color(255, 0, 153));
 			panel.setForeground(new Color(255, 0, 153));
-			
+			menu.setBackground(new Color(255, 105, 180));//the menu bacckground is added
 			
 		}else if(x.GetType()=="Event")
 		{
 			txtpnTexto.setBackground(new Color(216, 191, 216));
 			setBackground(new Color(147, 112, 219));
 			panel.setForeground(new Color(147, 112, 219));
-			
+			menu.setBackground(new Color(147, 112, 219));
 		}else
 		{
 			txtpnTexto.setBackground(new Color(255, 228, 181));
 			setBackground(new Color(0, 255, 0));
 			panel.setForeground(new Color(0, 255, 0));
-			
+			menu.setBackground(new Color(0, 255, 0));
 			
 		}
 		
 		
 	
 		
-		setBounds(a, b, 124, 186);	
 	
-		
-		setBorder(new LineBorder(new Color(102, 51, 0), 2));
-		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -199,9 +226,8 @@ import javax.swing.border.LineBorder;
 		lblType.setForeground(new Color(255, 255, 255));
 		lblType.setBounds(52, 2, 62, 14);
 		add(lblType);
+		add(menu);
 		
-	
-		add(txtpnTexto);
 
 	}
 
@@ -213,7 +239,7 @@ import javax.swing.border.LineBorder;
          int width = 120;
          g.setColor(Color.gray);
          g.drawRoundRect(0, 0, width, height, 20, 30);
-         super.paintComponent(g);
+        
         
      }
 	public Card getcard()
@@ -229,6 +255,4 @@ import javax.swing.border.LineBorder;
 	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 	    }
 	}
-		
-			  
 }

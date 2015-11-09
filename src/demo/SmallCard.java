@@ -26,7 +26,9 @@ import javax.swing.border.LineBorder;
 public class SmallCard extends JLayeredPane{
 	private JTextField textField;
 	private Card  actual;
+	public JInternalFrame menu;
 	Graphics2D g2d;
+	public JLabel lblAtaque;
     boolean rotating = false;
     int count;
 	/**
@@ -38,7 +40,12 @@ public class SmallCard extends JLayeredPane{
 		
 		setOpaque(true);
 		actual=x;
-
+		
+		/**********************menu******************************/
+		menu = new JInternalFrame();
+		menu.setClosable(true);
+		menu.setBounds(0,0,100,145);
+		/******************************************************/
 		//setBounds(new Rectangle(0, 0, 100, 145));
 		setBounds(0,0, 100, 145);	
 		
@@ -132,7 +139,7 @@ public class SmallCard extends JLayeredPane{
 			txtpnTexto.setBackground(new Color(255, 228, 181));
 			//panel.setBounds(10, 36, 77, 62);
 			
-			JLabel lblAtaque = new JLabel();
+			lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
 			lblAtaque.setBounds(75, 56, 24, 9);
@@ -154,11 +161,13 @@ public class SmallCard extends JLayeredPane{
 			lblSupport.setBackground(new Color(204, 153, 255));
 			
 			setBackground(new Color(204, 153, 51));
+			menu.setBackground(new Color(204, 153, 51));//the menu bacckground is added
 			panel.setForeground(new Color(204, 153, 51));
 			
 		}else if(x.GetType()=="Disruption")
 		{
 			txtpnTexto.setBackground(new Color(255, 105, 180));
+			menu.setBackground(new Color(255, 105, 180));//the menu bacckground is added
 			setBackground(new Color(255, 0, 153));
 			panel.setForeground(new Color(255, 0, 153));
 			
@@ -167,12 +176,14 @@ public class SmallCard extends JLayeredPane{
 		{
 			txtpnTexto.setBackground(new Color(216, 191, 216));
 			setBackground(new Color(147, 112, 219));
+			menu.setBackground(new Color(147, 112, 219));
 			panel.setForeground(new Color(147, 112, 219));
 			
 		}else
 		{
 			txtpnTexto.setBackground(new Color(255, 228, 181));
 			setBackground(new Color(0, 255, 0));
+			menu.setBackground(new Color(0, 255, 0));
 			panel.setForeground(new Color(0, 255, 0));
 			
 			
@@ -260,6 +271,11 @@ public class SmallCard extends JLayeredPane{
 		
 		
 		return actual;
+	}
+	public void  setHplabel()
+	{
+		lblAtaque.setText(""+actual.GetHp());	
+		
 	}
 
 	public class CirclePanel extends JPanel {

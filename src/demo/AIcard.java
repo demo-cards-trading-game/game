@@ -19,7 +19,7 @@ public class AIcard extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Documents and Settings\\Administrador\\Escritorio\\game\\game\\back2.JPG"));
+		lblNewLabel.setIcon(new ImageIcon("back2.JPG"));
 		lblNewLabel.setBackground(Color.BLACK);
 		
 		lblNewLabel.setBounds(0, 0, 65, 90);
