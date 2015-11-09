@@ -186,7 +186,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-
+		System.out.println("pene");
+		int done=0;
 		if (e.getSource()==deck.btnNewButton_1)// si se le da click al boton de fallen 
 		{
 				
@@ -195,7 +196,37 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		}
 		
-		
+		if(e.getSource()==hand.handgui[0].Play)//si se le da play a la carta 1  
+		{
+			if(done==0)
+				play(0);
+			done=1;
+			
+		}if(e.getSource()==hand.handgui[1].Play)//si se le da play a la carta 1  
+		{
+			if(done==0)
+			play(1);
+			done=1;
+			
+			
+		}if(e.getSource()==hand.handgui[2].Play)//si se le da play a la carta 1  
+		{
+			if(done==0)
+			play(2);
+			done=1;
+			
+		}if(e.getSource()==hand.handgui[3].Play)//si se le da play a la carta 1  
+		{
+			if(done==0)
+			play(3);
+			done=1;
+		}if(e.getSource()==hand.handgui[4].Play)//si se le da play a la carta 1  
+		{
+			if(done==0)
+			play(4);
+			done=1;
+			
+		}
 		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
 			System.out.println(turn);
 			
@@ -306,7 +337,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 			repaint();
 		}
-	
+	done=0;
 
 	}
 
@@ -377,67 +408,32 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			if(e.getSource()==hand.handgui[0])
 			{
 				hand.handgui[0].menu.setVisible(true);
+				hand.handgui[0].Play.addActionListener(this);
+				
 			}
 			else if(e.getSource()==hand.handgui[1])
 			{
-				acampo=1;
+				hand.handgui[1].menu.setVisible(true);
+				hand.handgui[1].Play.addActionListener(this);
 			}
 			else if(e.getSource()==hand.handgui[2])
 			{
-				acampo=2;
+				hand.handgui[2].menu.setVisible(true);
+				hand.handgui[2].Play.addActionListener(this);
 			}
 			else if(e.getSource()==hand.handgui[3])
 			{
-				acampo=3;
+				hand.handgui[3].menu.setVisible(true);
+				hand.handgui[3].Play.addActionListener(this);
 			}else if(e.getSource()==hand.handgui[4])
 			{
-				acampo=4;
+				hand.handgui[4].menu.setVisible(true);
+				hand.handgui[4].Play.addActionListener(this);
 			}
 
 
 
 
-			if(acampo!=-1)
-			{
-				where=field.findwhere();
-				if(where!=-1)
-				{
-
-					
-					SmallCard carta;
-					Reverse volteada;
-					try {
-						Random randomGenerator = new Random();
-						int test=randomGenerator.nextInt(10);
-						if(test % 2==0)
-						{
-							carta = new SmallCard(true,hand.handgui[acampo].getcard());
-							volteada=new Reverse(true,hand.handgui[acampo].getcard());
-						}else{
-							carta = new SmallCard(false,hand.handgui[acampo].getcard());
-							volteada=new Reverse(false,hand.handgui[acampo].getcard());
-						}
-						powers.undrain(hand.handgui[acampo].getcard().GetCost());
-					
-						repaint();
-						carta.addMouseListener(this);
-						volteada.addMouseListener(this);
-						
-
-						field.poner(carta,where);
-						hand.discard(acampo+1);
-						//ai.aifield.poner(volteada, where);
-						repaint();
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-					acampo=-1;
-
-				}
-			}
 		}
 		}	    
 		else if(e.getButton() == MouseEvent.BUTTON3)
@@ -679,5 +675,47 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 	}
 	
+	void play(int pos)//plays a card on field
+	{
+		System.out.println("juega "+ pos);
+		int where=field.findwhere();//busca en donde poner la carta
+		if(where!=-1)
+		{
+
+			
+			SmallCard carta;
+			try {
+				Random randomGenerator = new Random();
+				int test=randomGenerator.nextInt(10);
+				if(test % 2==0)
+				{
+					carta = new SmallCard(true,hand.handgui[0].getcard());
+					
+				}else{
+					carta = new SmallCard(false,hand.handgui[0].getcard());
+					
+				}
+				powers.undrain(hand.handgui[0].getcard().GetCost());
+			
+				repaint();
+				carta.addMouseListener(this);
+			
+				
+
+				field.poner(carta,where);
+				hand.discard(1);
+				
+				repaint();
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			
+
+		}
+		
+	}
 
 }

@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.Point;
 public  class HandGui extends JPanel //implements MouseListener
@@ -37,13 +38,14 @@ public  class HandGui extends JPanel //implements MouseListener
 	int curX = -1, curY = -1;
     boolean dragging = false;
     int sX = -1, sY = -1;
+
 	public HandGui(int posx,int posy) {
 		
 		current=0;
 		setOpaque(false);
 		setBounds(posx,posy, 620, 206);
 		setLayout(null);
-
+	
 		
 		
 	
@@ -130,6 +132,7 @@ public  class HandGui extends JPanel //implements MouseListener
 			 	case 4:handgui[i].setBounds(496, 20, 124, 186);
 			 		break;
 			 }
+			
 		 }
 	 }
 

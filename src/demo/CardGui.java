@@ -45,7 +45,7 @@ import javax.swing.border.LineBorder;
 		menu = new JInternalFrame();
 		menu.getContentPane().setLayout(null);
 		
-		JButton Play = new JButton("Play");
+		Play = new JButton("Play");
 		Play.setBounds(15, 11, 89, 23);
 		menu.getContentPane().add(Play);
 		

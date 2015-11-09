@@ -244,10 +244,7 @@ public class Drained extends JLayeredPane {
 	
 	void drain(int n)
 	{
-		System.out.println(n);
-		System.out.println("before");
-		System.out.println("undrained "+currentundrained);
-		System.out.println("drained "+currentdrained);
+		
 		
 		if(currentundrained-n>=0 && currentdrained + n<=12  )
 		{	System.out.println("funcion drain entro");
@@ -266,19 +263,13 @@ public class Drained extends JLayeredPane {
 			currentdrained=currentdrained+n;
 			repaint();
 		}
-		System.out.println("after");
-		System.out.println("undrained "+currentundrained);
-		System.out.println("drained "+currentdrained);
+		
 	}
 	
 	void undrain(int n)
 	{
 		/*confusion drained en realidad es undrained*/
-		System.out.println(n);
-		System.out.println("before");
-		System.out.println("undrained "+currentundrained);
-		System.out.println("drained "+currentdrained);
-		System.out.println("undrained + n"+(n+currentundrained));
+		
 		if(currentundrained+n<=12 && currentdrained-n >=0)
 			
 		{
@@ -297,9 +288,6 @@ public class Drained extends JLayeredPane {
 			currentdrained=currentdrained-n;
 			repaint();
 		}
-		System.out.println("after");
-		System.out.println("undrained "+currentundrained);
-		System.out.println("drained "+currentdrained);
 		
 	}
 }
