@@ -186,7 +186,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("pene");
+	
 		int done=0;
 		if (e.getSource()==deck.btnNewButton_1)// si se le da click al boton de fallen 
 		{
@@ -246,9 +246,52 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			done=1;
 			
 		}
+		if(e.getSource()==hand.handgui[0].Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(hand.handgui[0].getcard(),0,0));
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[1].Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(hand.handgui[1].getcard(),0,0));
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[2].Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(hand.handgui[2].getcard(),0,0));
+			}
+			done=1;
+			
+		}
 		
-		
-		
+		if(e.getSource()==hand.handgui[3].Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(hand.handgui[3].getcard(),0,0));
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[4].Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(hand.handgui[4].getcard(),0,0));
+			}
+			done=1;
+			
+		}
 		if(e.getSource()==hand.handgui[0].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
@@ -465,6 +508,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[0].menu.setVisible(true);
 				hand.handgui[0].Play.addActionListener(this);
 				hand.handgui[0].Discard.addActionListener(this);
+				hand.handgui[0].Preview.addActionListener(this);
 				
 			}
 			else if(e.getSource()==hand.handgui[1])
@@ -472,23 +516,27 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[1].menu.setVisible(true);
 				hand.handgui[1].Play.addActionListener(this);
 				hand.handgui[1].Discard.addActionListener(this);
+				hand.handgui[1].Preview.addActionListener(this);
 			}
 			else if(e.getSource()==hand.handgui[2])
 			{
 				hand.handgui[2].menu.setVisible(true);
 				hand.handgui[2].Play.addActionListener(this);
 				hand.handgui[2].Discard.addActionListener(this);
+				hand.handgui[2].Preview.addActionListener(this);
 			}
 			else if(e.getSource()==hand.handgui[3])
 			{
 				hand.handgui[3].menu.setVisible(true);
 				hand.handgui[3].Play.addActionListener(this);
 				hand.handgui[3].Discard.addActionListener(this);
+				hand.handgui[3].Preview.addActionListener(this);
 			}else if(e.getSource()==hand.handgui[4])
 			{
 				hand.handgui[4].menu.setVisible(true);
 				hand.handgui[4].Play.addActionListener(this);
 				hand.handgui[4].Discard.addActionListener(this);
+				hand.handgui[4].Preview.addActionListener(this);
 			}
 
 
@@ -628,26 +676,26 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		if(e.getSource()==hand.handgui[0])
 		{
 			hand.handgui[0].setBounds(0, 0, 124, 186);
-			preview.addCard(new BigCard(hand.handgui[0].getcard(),0,0));
+			
 		}
 		else if(e.getSource()==hand.handgui[1])
 		{
 			hand.handgui[1].setBounds(124, 0, 124, 186);
-			preview.addCard(new BigCard(hand.handgui[1].getcard(),0,0));
+			
 		}
 		else if(e.getSource()==hand.handgui[2])
 		{
 			hand.handgui[2].setBounds(248, 0, 124, 186);
-			preview.addCard(new BigCard(hand.handgui[2].getcard(),0,0));
+			
 		}
 		else if(e.getSource()==hand.handgui[3])
 		{
 			hand.handgui[3].setBounds(372, 0, 124, 186);
-			preview.addCard(new BigCard(hand.handgui[0].getcard(),0,0));
+			
 		}else if(e.getSource()==hand.handgui[4])
 		{
 			hand.handgui[4].setBounds(496, 0, 124, 186);
-			preview.addCard(new BigCard(hand.handgui[4].getcard(),0,0));
+		
 		}
 		
 		if(e.getSource()==field.cards[0])
