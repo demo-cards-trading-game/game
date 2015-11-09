@@ -187,7 +187,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource()==deck.btnNewButton_1)
+		if (e.getSource()==deck.btnNewButton_1)// si se le da click al boton de fallen 
 		{
 				
 				fallen.setVisible(true);
@@ -336,7 +336,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{if(e.getClickCount()==1)
 		{
 
-			if(e.getSource()==barriers.barriers[0])
+			if(e.getSource()==barriers.barriers[0])//si se da click a la barrera 0
 			{
 				int pos= hand.draw(barriers.cards[0]);
 				hand.handgui[pos-1].addMouseListener(this);
@@ -376,7 +376,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 			if(e.getSource()==hand.handgui[0])
 			{
-				acampo=0;
+				hand.handgui[0].menu.setVisible(true);
 			}
 			else if(e.getSource()==hand.handgui[1])
 			{
