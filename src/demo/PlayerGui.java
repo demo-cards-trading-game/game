@@ -198,11 +198,60 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		if(e.getSource()==hand.handgui[0].Play)//si se le da play a la carta 1  
 		{
-			if(done==0)
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);	
 				play(0);
+				
+			}
 			done=1;
 			
-		}if(e.getSource()==hand.handgui[1].Play)//si se le da play a la carta 1  
+		}
+		if(e.getSource()==hand.handgui[1].Discard)//si se le da play a la carta 1  
+		{
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);
+				hand.discard(2);
+				
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[2].Discard)//si se le da play a la carta 1  
+		{
+			if(done==0)
+			{
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);
+				hand.discard(3);
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[3].Discard)//si se le da play a la carta 1  
+		{
+			if(done==0)
+				hand.discard(4);
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[4].Discard)//si se le da play a la carta 1  
+		{
+			if(done==0)
+				hand.discard(5);
+			done=1;
+			
+		}
+		
+		
+		
+		if(e.getSource()==hand.handgui[0].Discard)//si se le da play a la carta 1  
+		{
+			if(done==0)
+				hand.discard(1);
+			done=1;
+			
+		}
+		
+		if(e.getSource()==hand.handgui[1].Play)//si se le da play a la carta 1  
 		{
 			if(done==0)
 			play(1);
@@ -362,7 +411,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 	public void mouseClicked(MouseEvent e) 
 	{
-		int where;
+		
 		if(e.getButton() == MouseEvent.BUTTON1)
 		{if(e.getClickCount()==1)
 		{
@@ -409,26 +458,31 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				hand.handgui[0].menu.setVisible(true);
 				hand.handgui[0].Play.addActionListener(this);
+				hand.handgui[0].Discard.addActionListener(this);
 				
 			}
 			else if(e.getSource()==hand.handgui[1])
 			{
 				hand.handgui[1].menu.setVisible(true);
 				hand.handgui[1].Play.addActionListener(this);
+				hand.handgui[1].Discard.addActionListener(this);
 			}
 			else if(e.getSource()==hand.handgui[2])
 			{
 				hand.handgui[2].menu.setVisible(true);
 				hand.handgui[2].Play.addActionListener(this);
+				hand.handgui[2].Discard.addActionListener(this);
 			}
 			else if(e.getSource()==hand.handgui[3])
 			{
 				hand.handgui[3].menu.setVisible(true);
 				hand.handgui[3].Play.addActionListener(this);
+				hand.handgui[3].Discard.addActionListener(this);
 			}else if(e.getSource()==hand.handgui[4])
 			{
 				hand.handgui[4].menu.setVisible(true);
 				hand.handgui[4].Play.addActionListener(this);
+				hand.handgui[4].Discard.addActionListener(this);
 			}
 
 
@@ -441,38 +495,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			if(e.getClickCount()==1)
 			{
 				
-				if(e.getSource()==hand.handgui[0])
-				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);
-	
-					hand.discard(1);
-					
-				}
-				if(e.getSource()==hand.handgui[1])
-				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);
-					
-					hand.discard(2);
-				}
-				if(e.getSource()==hand.handgui[2])
-				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[2]);
-					hand.discard(3);
-				
-				}
-				if(e.getSource()==hand.handgui[3])
-				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[3]);
-					hand.discard(4);
-					
-				}
-				if(e.getSource()==hand.handgui[4])
-				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[4]);
-					hand.discard(5);
-					
-				}
-
+			
 				if(e.getSource()==field.cards[0])
 				{
 					powers.drain(field.cards[0].getcard().GetCost());
