@@ -72,6 +72,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
+	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
+	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -144,12 +146,70 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		add(fallen);
 		
-		juego();
+		this.phases.draw.addActionListener(this);
 		
-		JLabel a= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		a.setBounds(220, 350, 50, 310);
-		a.setVisible(true);
-		add(a);
+		//swords
+		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		swordp1.setBounds(0, 0, 535, 830);
+		add(swordp1);
+		this.moveToFront(swordp1);
+		
+		sworda1= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
+		sworda1.setBounds(0, 0, 540, 385);
+		add(sworda1);
+		this.moveToFront(sworda1);
+		
+		swordp2= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		swordp2.setBounds(0, 0, 760, 830);
+		add(swordp2);
+		this.moveToFront(swordp2);
+		
+		sworda2= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
+		sworda2.setBounds(0, 0, 760, 385);
+		add(sworda2);
+		this.moveToFront(sworda2);
+		
+		swordp3= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		swordp3.setBounds(0, 0, 980, 830);
+		add(swordp3);
+		this.moveToFront(swordp3);
+		
+		sworda3= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
+		sworda3.setBounds(0, 0, 980, 385);
+		add(sworda3);
+		this.moveToFront(sworda3);
+		
+		swordp4= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		swordp4.setBounds(0, 0, 1200, 830);
+		add(swordp4);
+		this.moveToFront(swordp4);
+		
+		sworda4= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
+		sworda4.setBounds(0, 0, 1200, 385);
+		add(sworda4);
+		this.moveToFront(sworda4);
+		
+		swordp5= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+		swordp5.setBounds(0, 0, 1420, 830);
+		add(swordp5);
+		this.moveToFront(swordp5);
+		
+		sworda5= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
+		sworda5.setBounds(0, 0, 1420, 385);
+		add(sworda5);
+		this.moveToFront(sworda5);
+		
+		this.swordp1.setVisible(false);
+		this.swordp2.setVisible(false);
+		this.swordp3.setVisible(false);
+		this.swordp4.setVisible(false);
+		this.swordp5.setVisible(false);
+		this.sworda1.setVisible(false);
+		this.sworda2.setVisible(false);
+		this.sworda3.setVisible(false);
+		this.sworda4.setVisible(false);
+		this.sworda5.setVisible(false);
+		
 		try{
 			turno = new FileReader(new File("turno.txt"));
 			br= new BufferedReader(turno);
@@ -163,7 +223,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		if(turn==1){//turno player 1
 			this.turnoLabel.setText("Turn Player");
 		}else{ //turno player 2
-			this.turnoLabel.setText("Turn UI Player");
+			this.turnoLabel.setText("Turn AI Player");
 		}
 		this.turnoLabel.setBounds(800, 300, 140, 20);
 		this.turnoLabel.setForeground(new Color(255, 248, 220));
@@ -171,18 +231,6 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
-	}
-	
-	//este sera nuestro manejador de juego, aca estara todas las condiciones y cosas de las phases
-	public void juego()
-	{
-		/*this.changePhase = new JButton("cambiar");
-		this.changePhase.setBounds(450, 80, 90, 20);
-		this.changePhase.setVisible(true);
-		this.add(this.changePhase);
-		this.changePhase.addActionListener(this);*/
-		this.phases.draw.addActionListener(this);
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -396,6 +444,20 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						hand.handgui[i].removeMouseListener(this);
 					//enable field
 					//enable battle phase
+					if(this.turn==1){
+						this.swordp1.setVisible(true);
+						this.swordp2.setVisible(true);
+						this.swordp3.setVisible(true);
+						this.swordp4.setVisible(true);
+						this.swordp5.setVisible(true);
+					}
+					else{
+						this.sworda1.setVisible(true);
+						this.sworda2.setVisible(true);
+						this.sworda3.setVisible(true);
+						this.sworda4.setVisible(true);
+						this.sworda5.setVisible(true);
+					}
 					//disable end turn
 					
 					
@@ -415,11 +477,21 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						hand.handgui[i].removeMouseListener(this);
 					//disable field
 					//disable battle phase
+					this.swordp1.setVisible(false);
+					this.swordp2.setVisible(false);
+					this.swordp3.setVisible(false);
+					this.swordp4.setVisible(false);
+					this.swordp5.setVisible(false);
+					this.sworda1.setVisible(false);
+					this.sworda2.setVisible(false);
+					this.sworda3.setVisible(false);
+					this.sworda4.setVisible(false);
+					this.sworda5.setVisible(false);
 					//enable end turn
 					
 					if(turn==1){
 						turn=2;
-						this.turnoLabel.setText("Turn UI Player");
+						this.turnoLabel.setText("Turn AI Player");
 					}else{
 						turn=1;
 						this.turnoLabel.setText("Turn Player");
