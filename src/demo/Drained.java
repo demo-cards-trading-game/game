@@ -18,8 +18,8 @@ public class Drained extends JLayeredPane {
 	/**
 	 * Create the panel.
 	 */
-	private  int currentdrained;
-	private  int currentundrained;
+	public  int currentdrained;
+	public  int currentundrained;
 	public JPanel[]  drained  = new JPanel[20];
 	public JPanel[]  undrained  = new JPanel[20];
 	public Drained(int x , int y)
@@ -266,6 +266,15 @@ public class Drained extends JLayeredPane {
 		
 	}
 	
+	void set(int n)
+	{
+		for(int i=currentundrained;i<currentundrained+n;i++)
+		{
+			drained[i].setVisible(true);
+			drained[i].repaint();
+		}
+		currentundrained=currentundrained+n;
+	}
 	void undrain(int n)
 	{
 		/*confusion drained en realidad es undrained*/

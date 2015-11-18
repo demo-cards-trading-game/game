@@ -50,6 +50,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JTextPane;
 import java.awt.Rectangle;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 
 public class PlayerGui extends JLayeredPane implements ActionListener, MouseListener {
@@ -72,6 +73,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
+	int warriorPlayed; //indica que se jugo un warrior en el turno
+	public int cardDrawn;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
 	
@@ -131,6 +134,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		for(int i=1;i<=5;i++)
 		{
 			int pos= hand.draw(deck.Deck.extraerR());
+			 Addlisteners2Card(pos-1);
 			//hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
 
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
@@ -140,8 +144,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		}
 
-		for (int i=0;i<5;i++)
-			//barriers.barriers[i].addMouseListener(this);				//DE BARRIERS A HAND
+	
 		fallen=new Fallen();
 		
 		add(fallen);
@@ -244,6 +247,61 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		}
 		
+		if(e.getSource()==hand.handgui[0].Set)
+		{
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);	
+				powers.set(1);
+				hand.discard(1);
+				
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[1].Set)
+		{
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);	
+				powers.set(1);
+				hand.discard(2);
+				
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[2].Set)
+		{
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[2]);	
+				powers.set(1);
+				hand.discard(3);
+				
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[3].Set)
+		{
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[3]);	
+				powers.set(1);
+				hand.discard(4);
+				
+			}
+			done=1;
+			
+		}
+		if(e.getSource()==hand.handgui[4].Set)
+		{
+			if(done==0){
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[4]);	
+				powers.set(1);
+				hand.discard(5);
+				
+			}
+			done=1;
+			
+		}
 		if(e.getSource()==hand.handgui[0].Play)//si se le da play a la carta 1  
 		{
 			if(done==0){
@@ -526,6 +584,15 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 		}
 	}
+	
+	void Addlisteners2Card(int i)//le coloca listeners al menu de la carta 
+	{
+		
+		hand.handgui[i].Play.addActionListener(this);
+		hand.handgui[i].Discard.addActionListener(this);
+		hand.handgui[i].Preview.addActionListener(this);
+		hand.handgui[i].Set.addActionListener(this);
+	}
 	public DeckGui getDeck() {
 		return deck;
 	}
@@ -541,6 +608,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				int pos= hand.draw(barriers.cards[0]);
 				hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(0);
 				repaint();
 			}
@@ -548,6 +616,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				int pos= hand.draw(barriers.cards[1]);
 				hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(1);
 				repaint();
 			}
@@ -555,6 +624,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				int pos= hand.draw(barriers.cards[2]);
 				hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(2);
 				repaint();
 			}
@@ -562,6 +632,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				int pos= hand.draw(barriers.cards[3]);
 				hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(3);
 				repaint();
 			}
@@ -569,46 +640,39 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				int pos= hand.draw(barriers.cards[4]);
 				hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(4);
 				repaint();
 			}
+			
 		}
 		if(e.getClickCount()==2)
 		{
 			if(e.getSource()==hand.handgui[0])
 			{
 				hand.handgui[0].menu.setVisible(true);
-				hand.handgui[0].Play.addActionListener(this);
-				hand.handgui[0].Discard.addActionListener(this);
-				hand.handgui[0].Preview.addActionListener(this);
+			
 				
 			}
 			else if(e.getSource()==hand.handgui[1])
 			{
 				hand.handgui[1].menu.setVisible(true);
-				hand.handgui[1].Play.addActionListener(this);
-				hand.handgui[1].Discard.addActionListener(this);
-				hand.handgui[1].Preview.addActionListener(this);
+		
 			}
 			else if(e.getSource()==hand.handgui[2])
 			{
 				hand.handgui[2].menu.setVisible(true);
-				hand.handgui[2].Play.addActionListener(this);
-				hand.handgui[2].Discard.addActionListener(this);
-				hand.handgui[2].Preview.addActionListener(this);
+				
 			}
 			else if(e.getSource()==hand.handgui[3])
 			{
 				hand.handgui[3].menu.setVisible(true);
-				hand.handgui[3].Play.addActionListener(this);
-				hand.handgui[3].Discard.addActionListener(this);
-				hand.handgui[3].Preview.addActionListener(this);
+			
+				
 			}else if(e.getSource()==hand.handgui[4])
 			{
 				hand.handgui[4].menu.setVisible(true);
-				hand.handgui[4].Play.addActionListener(this);
-				hand.handgui[4].Discard.addActionListener(this);
-				hand.handgui[4].Preview.addActionListener(this);
+			
 			}
 
 
@@ -824,47 +888,65 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 	}
 	
-	void play(int pos)//plays a card on field
+	void play(int pos)// plays a card on field
 	{
-		System.out.println("juega "+ pos);
-		int where=field.findwhere();//busca en donde poner la carta
-		if(where!=-1)
-		{
+		System.out.println(hand.handgui[pos].getcard().GetCost() + powers.currentundrained);
+		System.out.println(" "+hand.handgui[pos].getcard().GetType() + warriorPlayed);
+		if (hand.handgui[pos].getcard().GetCost() + powers.currentundrained <= 12) {//verifica que haya mana
 
-			
-			SmallCard carta;
-			try {
-				Random randomGenerator = new Random();
-				int test=randomGenerator.nextInt(10);
-				if(test % 2==0)
-				{
-					carta = new SmallCard(true,hand.handgui[0].getcard());
-					
-				}else{
-					carta = new SmallCard(false,hand.handgui[0].getcard());
-					
+			if ( warriorPlayed == 0 ||( hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
+				int where = field.findwhere();// busca en donde poner la carta
+				if (where != -1) {
+
+					SmallCard carta;
+					if (hand.handgui[pos].getcard().GetType() == "Warrior") {
+						
+						
+						warriorPlayed = 1;
+						
+
+					}
+					try {
+						Random randomGenerator = new Random();
+						int test = randomGenerator.nextInt(10);
+						if (test % 2 == 0) {
+							carta = new SmallCard(true, hand.handgui[0].getcard());
+
+						} else {
+							carta = new SmallCard(false, hand.handgui[0].getcard());
+
+						}
+						powers.undrain(hand.handgui[pos].getcard().GetCost());
+
+						repaint();
+						carta.addMouseListener(this);
+
+						field.poner(carta, where);
+						hand.discard(1);
+
+						repaint();
+
+						
+
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
 				}
-				powers.undrain(hand.handgui[0].getcard().GetCost());
-			
-				repaint();
-				carta.addMouseListener(this);
-			
+			}else
+			{
+				JOptionPane.showMessageDialog(null, "Sorry , u can only play a warrior on each turn");
 				
-
-				field.poner(carta,where);
-				hand.discard(1);
-				
-				repaint();
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
+		} else {
 
-			
-
+			JOptionPane.showMessageDialog(null, "Sorry , u dont have enough powers to play it");
 		}
-		
+
 	}
+	
+	
+	
 
 }
