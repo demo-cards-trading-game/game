@@ -437,16 +437,22 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 		
 		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
-			System.out.println(turn);
-			
-			if(phases.actual<4)
+			//System.out.println(turn);
+		
+				done=1;
+			if(phases.actual<4){
 				phases.change(phases.actual+1);
-			else
+		
+			}else{
 				phases.change(0);
+		
+			}
 			
 			switch(phases.actual){
 				//setup
 				case 0:
+					
+				
 					if(turn==1){
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
@@ -463,6 +469,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						//disable end turn
 					}
 					else{
+						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						ai.aideck.btnNewButton.addActionListener(this);
 					}
@@ -583,7 +590,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					}
 					
 					repaint();
-					this.phases.setup.doClick();
+					//this.phases.setup.doClick();
 					repaint();
 					
 				break;
@@ -592,6 +599,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 			repaint();
 		}
+		
 	done=0;
 
 	}
