@@ -26,11 +26,11 @@ public class Phases extends JPanel {
 	{
 		
 		actual=0;
-		arrow=new JLabel(new ImageIcon(ImageIO.read(new File("arrowr.png"))));
-		arrow.setBounds(0,0,35,30);
+		arrow=new JLabel(new ImageIcon(ImageIO.read(new File("flecha.png"))));
+		arrow.setBounds(0,0,22,21);
 		add(arrow);
 		setOpaque(false);
-		setBounds(x,y-30,539,80);
+		setBounds(x,y-30,600,80);
 		setLayout(null);
 		
 	
@@ -87,17 +87,17 @@ public class Phases extends JPanel {
 		actual=phase;
 		switch(actual)
 		{
-		case 0:arrow.setLocation(27, 0);
+		case 0:arrow.setLocation(27+60, 45);
 			break;
 		
-		case 1:arrow.setLocation(130, 0);
+		case 1:arrow.setLocation(130+60, 45);
 			break;
 			
-		case 2:arrow.setLocation(245, 0);
+		case 2:arrow.setLocation(245+60, 45);
 			break;
-		case 3:arrow.setLocation(360, 0);
+		case 3:arrow.setLocation(360+60, 45);
 			break;
-		case 4:arrow.setLocation(475, 0);
+		case 4:arrow.setLocation(475+60, 45);
 		break;
 		
 		}
