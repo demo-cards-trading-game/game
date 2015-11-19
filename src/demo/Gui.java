@@ -327,6 +327,7 @@ public class Gui extends JFrame implements ActionListener
 							player1.barriers.addbarrier(player1.deck.Deck.extraerR());
 							player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
 							player1.deck.textField.repaint();
+							System.out.println("toque deck");
 		
 							repaint();
 						}else

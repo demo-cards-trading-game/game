@@ -111,7 +111,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		field = new fieldGui(220,350);
 		ai = new AIGui();
-
+		
 
 		field.addMouseListener(this);
 
@@ -431,6 +431,11 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			done=1;
 			
 		}
+		
+		if(e.getSource()==ai.aideck.btnNewButton){
+			System.out.println("toque deck ai");
+		}
+		
 		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
 			System.out.println(turn);
 			
@@ -442,19 +447,25 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			switch(phases.actual){
 				//setup
 				case 0:
-					this.phases.setup.removeActionListener(this);
-					this.phases.draw.addActionListener(this);
-					
-					//enable deck
-					//disable barriers
-					for (int i=0;i<5;i++)
-						barriers.barriers[i].removeMouseListener(this);
-					//disable hand
-					for(int i=0;i<5;i++)
-						hand.handgui[i].removeMouseListener(this);
-					//disable field
-					//disable battle phase
-					//disable end turn
+					if(turn==1){
+						this.phases.setup.removeActionListener(this);
+						this.phases.draw.addActionListener(this);
+						
+						//enable deck
+						//disable barriers
+						for (int i=0;i<5;i++)
+							barriers.barriers[i].removeMouseListener(this);
+						//disable hand
+						for(int i=0;i<5;i++)
+							hand.handgui[i].removeMouseListener(this);
+						//disable field
+						//disable battle phase
+						//disable end turn
+					}
+					else{
+						this.phases.draw.addActionListener(this);
+						ai.aideck.btnNewButton.addActionListener(this);
+					}
 				break;
 				//draw
 				case 1:
@@ -503,11 +514,27 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//enable field
 					//enable battle phase
 					if(this.turn==1){
-						this.swordp1.setVisible(true);
-						this.swordp2.setVisible(true);
-						this.swordp3.setVisible(true);
-						this.swordp4.setVisible(true);
-						this.swordp5.setVisible(true);
+						for(int i=0;i<5;i++){
+							if(field.cards[i]!=null){
+								switch(i){
+								case 0:
+									this.swordp1.setVisible(true);
+									break;
+								case 1:
+									this.swordp2.setVisible(true);
+									break;
+								case 2:
+									this.swordp3.setVisible(true);
+									break;
+								case 3:
+									this.swordp4.setVisible(true);
+									break;
+								case 4:
+									this.swordp5.setVisible(true);
+									break;
+								}
+							}
+						}
 					}
 					else{
 						this.sworda1.setVisible(true);
