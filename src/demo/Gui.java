@@ -365,6 +365,13 @@ public class Gui extends JFrame implements ActionListener
 				{
 					JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
 				}
+			}else
+			{
+				
+					
+					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
+				
+				
 			}
 			}
 			

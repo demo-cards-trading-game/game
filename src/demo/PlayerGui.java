@@ -74,7 +74,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private BufferedReader br;
 	private JLabel turnoLabel;
 	int warriorPlayed; //indica que se jugo un warrior en el turno
-	public int cardDrawn;
+	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
 	
@@ -135,15 +135,16 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 			int pos= hand.draw(deck.Deck.extraerR());
 			 Addlisteners2Card(pos-1);
-			//hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
-
+			hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
+			
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			deck.textField.repaint();
 
 			repaint();
 
 		}
-
+		for(int i=0;i<5;i++)
+			hand.handgui[i].Play.setEnabled(false);
 	
 		fallen=new Fallen();
 		
@@ -451,9 +452,15 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			switch(phases.actual){
 				//setup
 				case 0:
+					barierpicked=0;
+					warriorPlayed=0;
+					cardDrawn=0;
 					
+					for(int i=0;i<5;i++)
+						hand.handgui[i].Play.setEnabled(false);
 				
 					if(turn==1){
+						
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						
@@ -472,6 +479,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						ai.aideck.btnNewButton.addActionListener(this);
+						
 					}
 				break;
 				//draw
@@ -484,8 +492,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					for (int i=0;i<5;i++)
 						barriers.barriers[i].addMouseListener(this);
 					//disable hand
-					for(int i=0;i<5;i++)
-						hand.handgui[i].removeMouseListener(this);
+					
 					//disable field
 					//disable battle phase
 					//disable end turn
@@ -499,9 +506,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//disable barriers
 					for (int i=0;i<5;i++)
 						barriers.barriers[i].removeMouseListener(this);
-					//enable hand
 					for(int i=0;i<5;i++)
-						hand.handgui[i].addMouseListener(this);
+						hand.handgui[i].Play.setEnabled(true);
 					//enable field
 					//disable battle phase
 					//disable end turn
@@ -645,6 +651,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(0);
+				barierpicked=1;
 				repaint();
 			}
 			if(e.getSource()==barriers.barriers[1])
@@ -653,6 +660,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(1);
+				barierpicked=1;
 				repaint();
 			}
 			if(e.getSource()==barriers.barriers[2])
@@ -661,6 +669,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(2);
+				barierpicked=1;
 				repaint();
 			}
 			if(e.getSource()==barriers.barriers[3])
@@ -669,6 +678,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(3);
+				barierpicked=1;
 				repaint();
 			}
 			if(e.getSource()==barriers.barriers[4])
@@ -677,6 +687,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
 				barriers.removebarrier(4);
+				barierpicked=1;
 				repaint();
 			}
 			
