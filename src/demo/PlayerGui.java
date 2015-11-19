@@ -522,8 +522,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					for (int i=0;i<5;i++)
 						barriers.barriers[i].removeMouseListener(this);
 					//disable hand
-					for(int i=0;i<5;i++)
-						hand.handgui[i].removeMouseListener(this);
+					
 					//enable field
 					//enable battle phase
 					if(this.turn==1){
@@ -568,11 +567,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					
 					//disable deck: done
 					//disable barriers
-					for (int i=0;i<5;i++)
-						barriers.barriers[i].removeMouseListener(this);
+				
 					//disable hand
-					for(int i=0;i<5;i++)
-						hand.handgui[i].removeMouseListener(this);
+				
 					//disable field
 					//disable battle phase
 					this.swordp1.setVisible(false);
