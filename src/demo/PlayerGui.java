@@ -453,15 +453,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 			switch(phases.actual){
 				//setup
+			
 				case 0:
+					JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+					powers.undrain(1);
 					barierpicked=0;
 					warriorPlayed=0;
 					cardDrawn=0;
 					
 					for(int i=0;i<5;i++)
 						hand.handgui[i].Play.setEnabled(false);
-				
-					if(turn==1){
+					
+					if(turn==1)
+					{
 						
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
@@ -471,8 +475,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						for (int i=0;i<5;i++)
 							barriers.barriers[i].removeMouseListener(this);
 						//disable hand
-						for(int i=0;i<5;i++)
-							hand.handgui[i].removeMouseListener(this);
+						
 						//disable field
 						//disable battle phase
 						//disable end turn
