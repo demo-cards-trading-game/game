@@ -73,6 +73,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
+	private Drained_2 aidra;
 	int warriorPlayed; //indica que se jugo un warrior en el turno
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
@@ -139,7 +140,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			deck.textField.repaint();
-
+			aidra=new Drained_2(860,0);
+			add(aidra);
 			repaint();
 
 		}
@@ -960,7 +962,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 						}
 						powers.undrain(hand.handgui[pos].getcard().GetCost());
-
+						aidra.dmana(hand.handgui[pos].getcard().GetCost());
 						repaint();
 						carta.addMouseListener(this);
 

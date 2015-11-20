@@ -26,6 +26,7 @@ public class Drained extends JLayeredPane {
 	{
 		setBounds(x,y,150,384);
 		setLayout(null);
+
 		/***************************se crean los paneles ***************************************/
 		
 		JPanel panel_23 = new JPanel();
