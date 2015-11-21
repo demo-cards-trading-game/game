@@ -105,7 +105,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		pane = new JInternalFrame("THE FALLEN");
 
-		phases=new Phases(200,290);
+		phases=new Phases(220,300);
 		add(phases);
 		this.add(hand);
 		repaint=new JButton();
@@ -1005,7 +1005,10 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 		JOptionPane.showMessageDialog(null, "el ai recibe un volatile power");
 		aidra.get(1);
-		
+		JOptionPane.showMessageDialog(null, "el ai agarra una carta del deck");
+		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
+		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
+		ai.aideck.textField.repaint();
 		setVisible(true);
 		JOptionPane.showMessageDialog(null, "el ai jugara su carta");
 			ai.aiPlay(0);
