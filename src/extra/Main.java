@@ -1,5 +1,7 @@
 package extra;
 
+import java.io.IOException;
+
 /**
  * Main.java
  * Created by Stijn Strickx on Feb. 16 2008
@@ -7,7 +9,7 @@ package extra;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Dice dice = new Dice();
         dice.start();
     }

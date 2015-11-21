@@ -2,10 +2,13 @@ package extra;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.*;
@@ -14,7 +17,7 @@ public class RollDicePanel extends JPanel implements ActionListener{
  public Die _leftDie;  
  public Die _rightDie;
  public JButton rollButton;
- private IconGetter getter; 
+
  public JLabel text = new JLabel(""); //donde deberia ir el resultado
  public JLabel dice1;
  public JLabel dice2;
@@ -22,7 +25,7 @@ public class RollDicePanel extends JPanel implements ActionListener{
  public  String aux, aux2;
  public int count=25;
  
- RollDicePanel() {
+ RollDicePanel() throws IOException {
 	 this.setOpaque(false);
      //... Create the dice
     /* _leftDie  = new Die();
@@ -30,11 +33,14 @@ public class RollDicePanel extends JPanel implements ActionListener{
      _rightDie = new Die();
      _rightDie.setBounds(350, 51, 244, 244);
      */
-     getter = new IconGetter();
-	 dice1 = new JLabel(getter.getIcon("d1.png"));
+    
+
+		dice1 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
+
+
 	 dice1.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 	 dice1.setBounds(-66, 51, 244, 244);
-     dice2 = new JLabel(getter.getIcon("d1.png"));
+     dice2 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
      dice2.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
      dice2.setBounds(542, 51, 244, 244);
      rollButton = new JButton("Let them roll");
@@ -86,10 +92,21 @@ public class RollDicePanel extends JPanel implements ActionListener{
 	     	            count --;
 	     	            int num1 = rg.nextInt(6);
 	     	            int num2 = rg.nextInt(6);
-	     	            Icon icon1 = getter.getIcon("d" + (num1+1) + ".png");
-	     	            Icon icon2 = getter.getIcon("d" + (num2+1) + ".png");
-	     	            dice1.setIcon(icon1);
-	     	            dice2.setIcon(icon2);
+	     	         
+						try {
+							   Icon icon1;
+			     	           Icon icon2;
+							icon1 = new ImageIcon(ImageIO.read(new File("d"+(num1+1)+".png")));
+							 dice1.setIcon(icon1);
+							 icon2 = new ImageIcon(ImageIO.read(new File("d"+(num2+1)+".png")));
+						      dice2.setIcon(icon2);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+	     	         
+					
+	     	      
 	     	            
 	     	            
 	     	            if(num1>num2){

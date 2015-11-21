@@ -2,6 +2,11 @@ package extra;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,16 +16,16 @@ import javax.swing.JLabel;
  * Copyright 2008 Stijn Strickx, All rights reserved
  */
 public class Dice {
-    private IconGetter getter;
+
 
     public Dice(){
-        getter = new IconGetter();
+    
         
     }
 
-    public void start() {
-    	JLabel dice1 = new JLabel(getter.getIcon("d1.png"));
-        JLabel dice2 = new JLabel(getter.getIcon("d1.png"));
+    public void start() throws IOException {
+    	JLabel dice1 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
+        JLabel dice2 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
         JButton button = new JButton("Throw");
         JLabel text = new JLabel("Total: 2");
         JFrame window = new JFrame("throw dice (c) Stijn Strickx");

@@ -272,31 +272,41 @@ public class Gui extends JFrame implements ActionListener
 		}
 
 	}
-		if (e.getSource()==b2)//cuando se le da click al boton 1
-		{
+		if (e.getSource()==b2)
+			try {
+				{
 
 
-			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
-			dados= new RollDice();
-			//dados.pane.rollButton.addActionListener(this);
+					Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
+					try {
+						dados= new RollDice();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					//dados.pane.rollButton.addActionListener(this);
 
-			addbackground4(this);
-			getContentPane().setLayout(null);
-			
-			//validacion para entrar directamente con enter
-			val2 = new JTextArea();   
-			val2.setBounds(480, 580, 0, 0);
-			val2.setVisible(true);
-			add(val2);
-			val2.requestFocusInWindow();
-			val2.addKeyListener(new myKeyState3());
+					addbackground4(this);
+					getContentPane().setLayout(null);
+					
+					//validacion para entrar directamente con enter
+					val2 = new JTextArea();   
+					val2.setBounds(480, 580, 0, 0);
+					val2.setVisible(true);
+					add(val2);
+					val2.requestFocusInWindow();
+					val2.addKeyListener(new myKeyState3());
 
-			add(dados);
-			dados.pane.rollButton.addActionListener(this);
-			dados.btnPlay.addActionListener(this);
+					add(dados);
+					dados.pane.rollButton.addActionListener(this);
+					dados.btnPlay.addActionListener(this);
 
-			setVisible(true);
-		}
+					setVisible(true);
+				}
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		
 		if (e.getSource()==b3)
 		{

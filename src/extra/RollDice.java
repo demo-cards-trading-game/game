@@ -1,6 +1,8 @@
 package extra;
 
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class RollDice extends JPanel {
@@ -8,7 +10,7 @@ public class RollDice extends JPanel {
 	 public JButton btnPlay ;
 	 public JLabel label;
 	 
- public RollDice() {
+ public RollDice() throws IOException {
 	 
 	 
 	 this.setBounds(0,0,1024,768);
