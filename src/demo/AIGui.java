@@ -2,6 +2,7 @@ package demo;
 
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class AIGui extends JPanel {
@@ -12,6 +13,7 @@ public class AIGui extends JPanel {
 	public fieldGui aifield;
 	public AiDeck aideck;
 	public AiHand aihand;
+	public int warriorPlayed;
 	public AIGui()
 	{
 		setBounds(0,0,1024,600);
@@ -32,4 +34,19 @@ public class AIGui extends JPanel {
 		}
 	}
 
+	void aiPlay(int pos) throws IOException
+	{
+		int where = aifield.findwhere();// busca en donde poner la carta el ai
+		if(where!=-1)
+		{
+			SmallCard carta;
+		
+			carta = new Reverse(false,aihand.handgui[pos].GetCard());
+			aifield.poner(carta, where);
+			aihand.discard(1);
+			repaint();
+		}
+		
+	}
+	
 }

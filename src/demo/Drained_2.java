@@ -13,59 +13,67 @@ public class Drained_2 extends JPanel {
 
 	public  int currentdrained;
 	public  int currentundrained;
-	public static JLabel lblDrained,lblDrained_1;
+	public static JLabel d,u;
 	public Drained_2(int x , int y)
 	{
 		setOpaque(false);
 		setBackground(new Color(0, 0, 0));
 		setBounds(x,y,150,141);
 		setLayout(null);
-		
-	    lblDrained = new JLabel("");
+	    
+	    d = new JLabel("");
+	    
 	 
 	
-	    lblDrained.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
-		lblDrained.setForeground(SystemColor.textHighlightText);
-		lblDrained.setBackground(SystemColor.activeCaption);
-		lblDrained.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "DRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		lblDrained.setOpaque(false);
-		lblDrained.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDrained.setBounds(10, 11, 130, 49);
-		add(lblDrained);
+	      d.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
+	      
+	      d.setBackground(SystemColor.activeCaption);
+	      d.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "DRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
+	      d.setHorizontalAlignment(SwingConstants.CENTER);
+	     d.setBounds(10, 11, 130, 49);
+	      add(d);
+	    
+	    u = new JLabel("");
+	    u.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
+	    u.setHorizontalAlignment(SwingConstants.CENTER);
+	    u.setForeground(Color.WHITE);
+	    u.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "UNDRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
+	    u.setBackground(SystemColor.activeCaption);
+	    u.setBounds(10, 77, 130, 49);
+	    add(u);
+	    
+		currentdrained=currentundrained=6;
 		
-	    lblDrained_1 = new JLabel("");
-	    lblDrained_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
-		lblDrained_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDrained_1.setForeground(Color.WHITE);
-		lblDrained_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "UNDRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		lblDrained_1.setBackground(SystemColor.activeCaption);
-		lblDrained_1.setBounds(10, 77, 130, 49);
-		add(lblDrained_1);
-		
-		setVisible(true);
+	
 		
 	}
-	void dmana( int n)
+	void init()
 	{
-		System.out.println("entro drain_2");
+		  d.setText(""+currentdrained);
+		  u.setText(""+currentundrained);
+	} 
+	
+	void get (int n)
+	{
+		u.setText(""+(currentundrained+n));
+		currentundrained+=n;
 		
-		currentdrained=currentdrained+n;
-		currentundrained=currentundrained-n;
-		System.out.println("n , c "+n +" ."+currentdrained+"current"+lblDrained.getText());
-	    lblDrained.setText(""+currentdrained);
-		lblDrained.repaint();
-		lblDrained_1.repaint();
-		lblDrained_1.setText(""+currentundrained);
-		setVisible(true);
-		repaint();
 	}
 	void undrain(int n)
 	{
-		System.out.println("entro undrain_2");
-		currentdrained=currentdrained-n;
-		currentundrained=currentundrained+n;
-		lblDrained.setText(""+currentdrained);
-		lblDrained_1.setText(""+currentundrained);
-		repaint();
+		u.setText(""+(currentundrained+n));
+		d.setText(""+(currentdrained-n));
+		currentundrained+=n;
+		currentdrained-=n;
+		
+	}
+	
+	void drain(int n)
+	{
+		u.setText(""+(currentundrained-n));
+		d.setText(""+(currentdrained+n));
+		currentundrained-=n;
+		currentdrained+=n;
+		
 	}
 }

@@ -60,7 +60,7 @@ public class Gui extends JFrame implements ActionListener
 
 		crea = new JInternalFrame("Crear deck");
 		crear= new deckCreator(112,84);
-		
+
 
 
 
@@ -262,7 +262,7 @@ public class Gui extends JFrame implements ActionListener
 			player1.deck.btnNewButton.addActionListener(this);
 			addbackground3(this);
 			getContentPane().setLayout(null);
-
+			player1.repaint.addActionListener(this);
 			add(player1);
 			setVisible(true);
 			
@@ -387,6 +387,13 @@ public class Gui extends JFrame implements ActionListener
 		if (e.getSource()==mi3) {
 			setSize(1024,768);
 		}   
+		if (player1!=null){
+		if(e.getSource()==player1.repaint)
+		{
+			repaint();
+			
+		}
+		}
 	}
 	
 	class myKeyState1 extends KeyAdapter implements KeyListener{

@@ -69,7 +69,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	private LoadData cartas;
 	JInternalFrame pane; 
 	private Phases phases;
-	public JButton changePhase;
+	public JButton changePhase,repaint;
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
@@ -108,7 +108,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		phases=new Phases(200,290);
 		add(phases);
 		this.add(hand);
-
+		repaint=new JButton();
 
 		field = new fieldGui(220,350);
 		ai = new AIGui();
@@ -455,8 +455,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				//setup
 			
 				case 0:
-					JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
-					powers.undrain(1);
+					
 					barierpicked=0;
 					warriorPlayed=0;
 					cardDrawn=0;
@@ -466,7 +465,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					
 					if(turn==1)
 					{
-						
+						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+						powers.undrain(1);
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						
@@ -484,6 +484,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						ai.aideck.btnNewButton.addActionListener(this);
+						try {
+							Aiturn();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						
 					}
 				break;
@@ -958,14 +964,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						Random randomGenerator = new Random();
 						int test = randomGenerator.nextInt(10);
 						if (test % 2 == 0) {
-							carta = new SmallCard(true, hand.handgui[0].getcard());
+							carta = new SmallCard(true, hand.handgui[pos].getcard());
 
 						} else {
-							carta = new SmallCard(false, hand.handgui[0].getcard());
+							carta = new SmallCard(false, hand.handgui[pos].getcard());
 
 						}
 						powers.undrain(hand.handgui[pos].getcard().GetCost());
-						aidra.dmana(hand.handgui[pos].getcard().GetCost());
+						
 						repaint();
 						carta.addMouseListener(this);
 
@@ -992,9 +998,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			JOptionPane.showMessageDialog(null, "Sorry , u dont have enough powers to play it");
 		}
 
+		
 	}
 	
-	
-	
+	public void Aiturn() throws IOException//aqui se programara a lo salvaje el turno del ai
+		{
+		JOptionPane.showMessageDialog(null, "el ai recibe un volatile power");
+		aidra.get(1);
+		
+		setVisible(true);
+		JOptionPane.showMessageDialog(null, "el ai jugara su carta");
+			ai.aiPlay(0);
+			
+			
+		}
 
 }
