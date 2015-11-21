@@ -32,7 +32,7 @@ public class Barriers2 extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 102, 0));
 		panel.setForeground(new Color(0, 102, 0));
-		panel.setBounds(0, 0, 100, 50);
+		panel.setBounds(58, 0, 65, 26);
 		barriers[0]=panel;
 		
 		panel_1 = new JPanel();
@@ -40,7 +40,7 @@ public class Barriers2 extends JPanel {
 		panel_1.setForeground(Color.WHITE);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_1.setBackground(new Color(204, 204, 204));
-		panel_1.setBounds(120, 0, 100, 50);
+		panel_1.setBounds(146, 0, 65, 26);
 		add(panel_1);
 		
 		panel_2 = new JPanel();
@@ -48,7 +48,7 @@ public class Barriers2 extends JPanel {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_2.setBackground(new Color(102, 153, 204));
-		panel_2.setBounds(240, 0, 100, 50);
+		panel_2.setBounds(229, 0, 65, 26);
 		add(panel_2);
 		
 		panel_3 = new JPanel();
@@ -56,7 +56,7 @@ public class Barriers2 extends JPanel {
 		panel_3.setForeground(Color.WHITE);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_3.setBackground(new Color(102, 153, 153));
-		panel_3.setBounds(360, 0, 100, 50);
+		panel_3.setBounds(315, 0, 65, 26);
 		add(panel_3);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel.setLayout(null);
@@ -66,7 +66,7 @@ public class Barriers2 extends JPanel {
 		panel_4.setForeground(Color.WHITE);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_4.setBackground(new Color(204, 0, 102));
-		panel_4.setBounds(480, 0, 100, 50);
+		panel_4.setBounds(400, 0, 65, 26);
 		add(panel_4);
 		barriers[1]=panel_1;
 		
@@ -74,7 +74,7 @@ public class Barriers2 extends JPanel {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label.setBounds(10, 25, 80, 25);
+		label.setBounds(0, 0, 65, 25);
 		panel_1.add(label);
 		barriers[2]=panel_2;
 		
@@ -82,7 +82,7 @@ public class Barriers2 extends JPanel {
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_1.setBounds(10, 25, 68, 25);
+		label_1.setBounds(0, 0, 65, 25);
 		panel_2.add(label_1);
 		barriers[3]=panel_3;
 		
@@ -90,7 +90,7 @@ public class Barriers2 extends JPanel {
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_2.setBounds(10, 25, 80, 25);
+		label_2.setBounds(0, 0, 65, 25);
 		panel_3.add(label_2);
 		barriers[4]=panel_4;
 		
@@ -99,14 +99,14 @@ public class Barriers2 extends JPanel {
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_3.setBounds(10, 25, 77, 25);
+		label_3.setBounds(0,0, 65, 25);
 		panel_4.add(label_3);
 		
 		label_4 = new JLabel("Barrier");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_4.setBounds(10, 25, 80, 25);
+		label_4.setBounds(0, 0, 65, 25);
 		panel.add(label_4);
 		barriers[2]=panel_2;
 		for (int i=0;i<5;i++)
@@ -154,6 +154,24 @@ public class Barriers2 extends JPanel {
 			cards[i]=null;
 			}
 		
+	}
+	int findwhich()//encuentra una barrier para jugarla
+	{
+		int which=-1,i=0;
+		int found=0;
+		while(i<4 && found==0)
+		{
+			if(barriers[i].isVisible())
+			{
+				which=i;
+				found=1;
+				
+				
+			}
+			
+		}
+		return(which);
+	
 	}
 
 }
