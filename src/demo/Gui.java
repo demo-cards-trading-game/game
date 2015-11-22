@@ -248,9 +248,37 @@ public class Gui extends JFrame implements ActionListener
 			
 	if(e.getSource()==dados.btnPlay)
 		{
-
 		try {
 			player1=new PlayerGui(0,0,Nombre1);
+Thread t = new Thread(new Runnable(){
+				
+				public void start(){
+					this.start();
+				}
+				
+				public void run(){
+
+			        try {
+			            Thread.sleep(1000); 
+			        } catch (InterruptedException e) {
+			            e.printStackTrace();
+			        }
+			        if(dados.pane.text.getText()=="2"){
+						System.out.println("hnmfgphmgfphfm");
+						player1.phases.draw.addActionListener(player1);
+						player1.ai.aideck.btnNewButton.addActionListener(player1);
+						try {
+							player1.Aiturn();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			});
+			t.start();
+			System.out.println("hnmfgphmgfphfm");
+
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

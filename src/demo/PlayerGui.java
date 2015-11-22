@@ -69,7 +69,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	 private Fallen fallen ;
 	private LoadData cartas;
 	JInternalFrame pane; 
-	private Phases phases;
+	public Phases phases;
 	public JButton changePhase,repaint;
 	private FileReader turno;
 	private BufferedReader br;
@@ -242,6 +242,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
