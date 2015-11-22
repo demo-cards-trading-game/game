@@ -1,5 +1,6 @@
 package demo;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -47,6 +48,33 @@ public class AIGui extends JPanel {
 			aifield.poner(carta, where);
 			aihand.discard(1);
 			repaint();
+		}
+		
+	}
+	
+	void smartPlay() throws IOException
+	{
+		int which ;
+		which=aihand.findwarrior();
+		
+		if(which!=-1)
+		{
+			JOptionPane.showMessageDialog(null, "ai is playing a warrior");
+			aiPlay(which);
+			
+		}else{
+			
+			which=aihand.finddisruption();
+			if(which!=-1)
+			{
+				JOptionPane.showMessageDialog(null, "ai is playing a disruption card");
+				aiPlay(which);
+			}else
+			{
+				JOptionPane.showMessageDialog(null, "else");
+				aiPlay(0);
+			}
+			
 		}
 		
 	}

@@ -1004,13 +1004,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public void Aiturn() throws IOException//aqui se programara a lo salvaje el turno del ai
 		{
 		int which;
-		JOptionPane.showMessageDialog(null, "el ai recibe un volatile power");
+		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
 		aidra.get(1);
-		JOptionPane.showMessageDialog(null, "el ai agarra una carta del deck");
+		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
 		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
-		JOptionPane.showMessageDialog(null, "el ai selecciona una carta de sus barriers");
+		JOptionPane.showMessageDialog(null, "ai gets a card from barriers");
 		which=ai.barriers.findwhich();//verifica que exista un barrier
 	if(ai.aihand.current!=5){	
 		if(which!=-1)//existe un barrier
@@ -1021,8 +1021,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 	}	
 		setVisible(true);
-		JOptionPane.showMessageDialog(null, "el ai jugara su carta");
-			ai.aiPlay(0);
+		JOptionPane.showMessageDialog(null,"ai is playing a card" );
+			ai.smartPlay();
 			
 			
 		}

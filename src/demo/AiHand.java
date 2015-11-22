@@ -160,6 +160,48 @@ public  class AiHand extends JPanel //implements MouseListener
 			 clip.start();
 			 
 		    }
+		 
+		 
+		 public int findwarrior()
+		 {
+			int which=-1;
+			int i=0;
+			int found=0;
+			while (i<5&& found==0)
+			{
+				System.out.println(cards[i].GetType());
+				if(cards[i].GetType()=="Warrior")
+				{
+					which=i;
+					found=1;
+					System.out.println("encontrowarrior");
+				}
+				i++;
+			}
+			return (which);
+			 
+		 }
+		 
+		 
+		 public int finddisruption()
+		 {
+			int which=-1;
+			int i=0;
+			int found=0;
+			while (i<5&& found==0)
+			{
+			
+				if(cards[i].GetType()=="Disruption")
+				{
+					System.out.println("encontrodisruption");
+					which=i;
+					found=1;
+				}
+				i++;
+			}
+			return (which);
+			 
+		 }
 		}
 	 	 
 	
