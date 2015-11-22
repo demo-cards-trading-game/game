@@ -1019,9 +1019,11 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		aidra.get(1);
 		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
 		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
+		phases.change(phases.actual+1);
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
 		JOptionPane.showMessageDialog(null, "ai gets a card from barriers");
+		phases.change(phases.actual+1);
 		which=ai.barriers.findwhich();//verifica que exista un barrier
 	if(ai.aihand.current!=5){	
 		if(which!=-1)//existe un barrier
@@ -1034,8 +1036,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		setVisible(true);
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
 			ai.smartPlay();
-			
-			
+			phases.change(phases.actual+1);
+			//attack phase 
+			JOptionPane.showMessageDialog(null,"ai is preparin an attack" );
+			phases.change(phases.actual+1);
+			JOptionPane.showMessageDialog(null,"ai is finishing your turn" );
+			phases.change(0);
+			turn=1;
 		}
 
 }
