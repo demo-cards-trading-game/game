@@ -62,6 +62,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public HandGui hand;
 	public fieldGui field;
 	public AIGui ai;
+	optionpane op;
 	int turn;
 	int acampo=-1;
 	int i=0;
@@ -135,16 +136,20 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		for(int i=1;i<=5;i++)
 		{
 			int pos= hand.draw(deck.Deck.extraerR());
+			barriers.addbarrier(deck.Deck.extraerR());
+			ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 			 Addlisteners2Card(pos-1);
 			hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
-			
+			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
 			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
 			deck.textField.repaint();
-			aidra=new Drained_2(860,0);
-			add(aidra);
-			repaint();
+			
 
 		}
+		
+		aidra=new Drained_2(860,0);
+		add(aidra);
+		repaint();
 		for(int i=0;i<5;i++)
 			hand.handgui[i].Play.setEnabled(false);
 	
@@ -153,7 +158,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		add(fallen);
 		
 		this.phases.draw.addActionListener(this);
-		
+		op=new  optionpane();
 		//swords
 		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
 		swordp1.setBounds(0, 0, 535, 830);
@@ -466,7 +471,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					if(turn==1)
 					{
 						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
-						powers.undrain(1);
+						powers.set(1);
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						
@@ -652,7 +657,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		if(e.getButton() == MouseEvent.BUTTON1)
 		{if(e.getClickCount()==1)
 		{
-
+			if(barierpicked==0)
+			{
 			if(e.getSource()==barriers.barriers[0])//si se da click a la barrera 0
 			{
 				int pos= hand.draw(barriers.cards[0]);
@@ -699,6 +705,10 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				repaint();
 			}
 			
+		}else
+		{
+			JOptionPane.showMessageDialog(op, "sorry u can only get a card from barriers per turn");
+		}	
 		}
 		if(e.getClickCount()==2)
 		{
@@ -742,33 +752,33 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 				if(e.getSource()==field.cards[0])
 				{
-					powers.drain(field.cards[0].getcard().GetCost());
+					powers.undrain(field.cards[0].getcard().GetCost());
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[0].getcard());
 					field.quitar(0);
 				}	
 				if(e.getSource()==field.cards[1])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[1].getcard());
-					powers.drain(field.cards[1].getcard().GetCost());
+					powers.undrain(field.cards[1].getcard().GetCost());
 					field.quitar(1);
 				}
 				if(e.getSource()==field.cards[2])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[2].getcard());
-					powers.drain(field.cards[2].getcard().GetCost());
+					powers.undrain(field.cards[2].getcard().GetCost());
 					field.quitar(2);
 				}
 				if(e.getSource()==field.cards[3])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[3].getcard());
-					powers.drain(field.cards[3].getcard().GetCost());
+					powers.undrain(field.cards[3].getcard().GetCost());
 					field.quitar(3);
 					
 				}if(e.getSource()==field.cards[4])
 				{
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[4].getcard());
 					
-					powers.drain(field.cards[4].getcard().GetCost());
+					powers.undrain(field.cards[4].getcard().GetCost());
 					field.quitar(4);
 				}
 				
@@ -944,8 +954,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 	void play(int pos)// plays a card on field
 	{
-		System.out.println(hand.handgui[pos].getcard().GetCost() + powers.currentundrained);
-		System.out.println(" "+hand.handgui[pos].getcard().GetType() + warriorPlayed);
+	
 		if (hand.handgui[pos].getcard().GetCost() + powers.currentundrained <= 12) {//verifica que haya mana
 
 			if ( warriorPlayed == 0 ||( hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
@@ -970,7 +979,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 							carta = new SmallCard(false, hand.handgui[pos].getcard());
 
 						}
-						powers.undrain(hand.handgui[pos].getcard().GetCost());
+						powers.drain(hand.handgui[pos].getcard().GetCost());
 						
 						repaint();
 						carta.addMouseListener(this);
@@ -990,12 +999,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				}
 			}else
 			{
-				JOptionPane.showMessageDialog(null, "Sorry , u can only play a warrior on each turn");
+				JOptionPane.showMessageDialog(op, "Sorry , u can only play a warrior on each turn");
 				
 			}
 		} else {
 
-			JOptionPane.showMessageDialog(null, "Sorry , u dont have enough powers to play it");
+			JOptionPane.showMessageDialog(op, "Sorry , u dont have enough powers to play it");
 		}
 
 		

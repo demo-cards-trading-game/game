@@ -134,9 +134,13 @@ public class Barriers2 extends JPanel {
 	void addbarrier(Card recieved)
 	{
 		int i = findwhere();
+		if(i!=-1){
 		cards[i]=recieved;
 		barriers[i].setVisible(true);
+		
 		repaint();
+		
+		}
 		
 	}
 	void removebarrier(int pos)

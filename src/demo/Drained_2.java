@@ -27,10 +27,11 @@ public class Drained_2 extends JPanel {
 	
 	      d.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
 	      
-	      d.setBackground(SystemColor.activeCaption);
+	      d.setBackground(Color.BLACK);
 	      d.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "DRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
 	      d.setHorizontalAlignment(SwingConstants.CENTER);
 	     d.setBounds(10, 11, 130, 49);
+	     d.setOpaque(true);
 	      add(d);
 	    
 	    u = new JLabel("");
@@ -38,8 +39,9 @@ public class Drained_2 extends JPanel {
 	    u.setHorizontalAlignment(SwingConstants.CENTER);
 	    u.setForeground(Color.WHITE);
 	    u.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "UNDRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-	    u.setBackground(SystemColor.activeCaption);
+	    u.setBackground(Color.BLACK);
 	    u.setBounds(10, 77, 130, 49);
+	    u.setOpaque(true);
 	    add(u);
 	    
 		currentdrained=currentundrained=6;
