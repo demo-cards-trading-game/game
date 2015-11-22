@@ -1041,8 +1041,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			JOptionPane.showMessageDialog(null,"ai is preparin an attack" );
 			phases.change(phases.actual+1);
 			JOptionPane.showMessageDialog(null,"ai is finishing your turn" );
-			phases.change(0);
 			turn=1;
+			phases.change(0);
+			
 		}
 
 }
