@@ -79,6 +79,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
+	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
+	public JButton attack1, attack2, attack3, attack4, attack5;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -243,7 +245,60 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
 		
+		menu1 = new JInternalFrame();
+		menu1.getContentPane().setLayout(null);
+		attack1 = new JButton("A");
+		attack1.setBounds(15, 11, 49, 20);
+		menu1.getContentPane().add(attack1);
+		menu1.setClosable(true);
+		menu1.setBounds(230,380,80,70);
+		menu1.setVisible(true);
+		add(menu1);
+		menu1.moveToFront();
 		
+		menu2 = new JInternalFrame();
+		menu2.getContentPane().setLayout(null);
+		attack2 = new JButton("A");
+		attack2.setBounds(15, 11, 49, 20);
+		menu2.getContentPane().add(attack2);
+		menu2.setClosable(true);
+		menu2.setBounds(340,380,80,70);
+		menu2.setVisible(true);
+		add(menu2);
+		menu2.moveToFront();
+		
+		menu3 = new JInternalFrame();
+		menu3.getContentPane().setLayout(null);
+		attack3 = new JButton("A");
+		attack3.setBounds(15, 11, 49, 20);
+		menu3.getContentPane().add(attack3);
+		menu3.setClosable(true);
+		menu3.setBounds(450,380,80,70);
+		menu3.setVisible(true);
+		add(menu3);
+		menu3.moveToFront();
+		
+		menu4= new JInternalFrame();
+		menu4.getContentPane().setLayout(null);
+		attack4 = new JButton("A");
+		attack4.setBounds(15, 11, 49, 20);
+		menu4.getContentPane().add(attack4);
+		menu4.setClosable(true);
+		menu4.setBounds(560,380,80,70);
+		menu4.setVisible(true);
+		add(menu4);
+		menu4.moveToFront();
+		
+		menu5= new JInternalFrame();
+		menu5.getContentPane().setLayout(null);
+		attack5 = new JButton("A");
+		attack5.setBounds(15, 11, 49, 20);
+		menu5.getContentPane().add(attack5);
+		menu5.setClosable(true);
+		menu5.setBounds(670,380,80,70);
+		menu5.setVisible(true);
+		add(menu5);
+		menu5.moveToFront();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -975,7 +1030,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						
 						
 						warriorPlayed = 1;
-						
+						System.out.println(this.warriorPlayed);
 
 					}
 					try {
