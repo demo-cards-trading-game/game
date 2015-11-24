@@ -252,7 +252,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		menu1.getContentPane().add(attack1);
 		menu1.setClosable(true);
 		menu1.setBounds(230,380,80,70);
-		menu1.setVisible(true);
+		menu1.setVisible(false);
 		add(menu1);
 		menu1.moveToFront();
 		
@@ -263,7 +263,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		menu2.getContentPane().add(attack2);
 		menu2.setClosable(true);
 		menu2.setBounds(340,380,80,70);
-		menu2.setVisible(true);
+		menu2.setVisible(false);
 		add(menu2);
 		menu2.moveToFront();
 		
@@ -274,7 +274,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		menu3.getContentPane().add(attack3);
 		menu3.setClosable(true);
 		menu3.setBounds(450,380,80,70);
-		menu3.setVisible(true);
+		menu3.setVisible(false);
 		add(menu3);
 		menu3.moveToFront();
 		
@@ -285,7 +285,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		menu4.getContentPane().add(attack4);
 		menu4.setClosable(true);
 		menu4.setBounds(560,380,80,70);
-		menu4.setVisible(true);
+		menu4.setVisible(false);
 		add(menu4);
 		menu4.moveToFront();
 		
@@ -296,7 +296,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		menu5.getContentPane().add(attack5);
 		menu5.setClosable(true);
 		menu5.setBounds(670,380,80,70);
-		menu5.setVisible(true);
+		menu5.setVisible(false);
 		add(menu5);
 		menu5.moveToFront();
 	}
@@ -603,19 +603,29 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 							if(field.cards[i]!=null){
 								switch(i){
 								case 0:
-									this.swordp1.setVisible(true);
+									if(!this.field.cards[0].down){
+										this.swordp1.setVisible(true);
+									}
 									break;
 								case 1:
-									this.swordp2.setVisible(true);
+									if(!this.field.cards[1].down){
+										this.swordp2.setVisible(true);
+									}
 									break;
 								case 2:
-									this.swordp3.setVisible(true);
+									if(!this.field.cards[2].down){
+										this.swordp3.setVisible(true);
+									}
 									break;
 								case 3:
-									this.swordp4.setVisible(true);
+									if(!this.field.cards[3].down){
+										this.swordp4.setVisible(true);
+									}
 									break;
 								case 4:
-									this.swordp5.setVisible(true);
+									if(!this.field.cards[4].down){
+										this.swordp5.setVisible(true);
+									}
 									break;
 								}
 							}
@@ -628,7 +638,6 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						this.sworda4.setVisible(true);
 						this.sworda5.setVisible(true);*/
 					}
-					
 					
 					//disable end turn
 					
@@ -657,6 +666,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					this.sworda3.setVisible(false);
 					this.sworda4.setVisible(false);
 					this.sworda5.setVisible(false);
+					
+					this.menu1.setVisible(false);
+					this.menu2.setVisible(false);
+					this.menu3.setVisible(false);
+					this.menu4.setVisible(false);
+					this.menu5.setVisible(false);
 					//enable end turn
 					
 					if(turn==1){
@@ -803,8 +818,26 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 			}
 
-
-
+			if(e.getSource()==field.cards[0]&&!field.cards[0].down)
+			{
+				this.menu1.setVisible(true);
+			}	
+			if(e.getSource()==field.cards[1]&&!field.cards[1].down)
+			{
+				this.menu2.setVisible(true);
+			}
+			if(e.getSource()==field.cards[2]&&!field.cards[2].down)
+			{
+				this.menu3.setVisible(true);
+			}
+			if(e.getSource()==field.cards[3]&&!field.cards[3].down)
+			{
+				this.menu4.setVisible(true);
+				
+			}if(e.getSource()==field.cards[4]&&!field.cards[4].down)
+			{
+				this.menu5.setVisible(true);
+			}
 
 		}
 		}	    

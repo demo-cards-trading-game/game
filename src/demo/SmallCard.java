@@ -31,6 +31,7 @@ public class SmallCard extends JLayeredPane{
 	public JLabel lblAtaque;
     boolean rotating = false;
     int count;
+    public boolean down;
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -40,7 +41,7 @@ public class SmallCard extends JLayeredPane{
 		
 		setOpaque(true);
 		actual=x;
-		
+		this.down=bocabajo;
 		/**********************menu******************************/
 		menu = new JInternalFrame();
 		menu.setClosable(true);
