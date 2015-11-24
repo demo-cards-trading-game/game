@@ -709,7 +709,10 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 		}else
 		{
-			JOptionPane.showMessageDialog(op, "sorry u can only get a card from barriers per turn");
+			if(phases.actual==1){
+				JOptionPane.showMessageDialog(op, "sorry u can only get a card from barriers per turn");
+			}	
+			
 		}	
 		}
 		if(e.getClickCount()==2)

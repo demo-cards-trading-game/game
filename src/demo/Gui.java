@@ -264,8 +264,6 @@ Thread t = new Thread(new Runnable(){
 			            e.printStackTrace();
 			        }
 			        if(dados.pane.text.getText()=="2"){
-						player1.phases.draw.addActionListener(player1);
-						player1.ai.aideck.btnNewButton.addActionListener(player1);
 						try {
 							player1.Aiturn();
 						} catch (IOException e1) {
