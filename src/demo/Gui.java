@@ -266,6 +266,7 @@ Thread t = new Thread(new Runnable(){
 			        if(dados.pane.text.getText()=="2"){
 						try {
 							player1.Aiturn();
+							player1.contTurn++;
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

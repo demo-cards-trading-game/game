@@ -63,7 +63,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public fieldGui field;
 	public AIGui ai;
 	optionpane op;
-	int turn;
+	int turn, contTurn=0;
 	int acampo=-1;
 	int i=0;
 	 private Fallen fallen ;
@@ -543,7 +543,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					
 					//enable field
 					//enable battle phase
-					if(this.turn==1){
+					if(this.turn==1&&this.contTurn>0){
 						for(int i=0;i<5;i++){
 							if(field.cards[i]!=null){
 								switch(i){
@@ -567,12 +567,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						}
 					}
 					else{
-						this.sworda1.setVisible(true);
+						/*this.sworda1.setVisible(true);
 						this.sworda2.setVisible(true);
 						this.sworda3.setVisible(true);
 						this.sworda4.setVisible(true);
-						this.sworda5.setVisible(true);
+						this.sworda5.setVisible(true);*/
 					}
+					
+					
 					//disable end turn
 					
 					
@@ -613,7 +615,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					repaint();
 					//this.phases.setup.doClick();
 					repaint();
-					
+					this.contTurn++;
 				break;
 				
 			}
@@ -1042,11 +1044,39 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			phases.change(phases.actual+1);
 			//attack phase 
 			JOptionPane.showMessageDialog(null,"ai is preparin an attack" );
+			if(this.contTurn>0){
+				for(int i=0;i<5;i++){
+					if(ai.aifield.cards[i]!=null){
+						switch(i){
+						case 0:
+							this.sworda1.setVisible(true);
+							break;
+						case 1:
+							this.sworda2.setVisible(true);
+							break;
+						case 2:
+							this.sworda3.setVisible(true);
+							break;
+						case 3:
+							this.sworda4.setVisible(true);
+							break;
+						case 4:
+							this.sworda5.setVisible(true);
+							break;
+						}
+					}
+				}	
+			}
 			phases.change(phases.actual+1);
 			JOptionPane.showMessageDialog(null,"ai is finishing your turn" );
+			this.sworda1.setVisible(false);
+			this.sworda2.setVisible(false);
+			this.sworda3.setVisible(false);
+			this.sworda4.setVisible(false);
+			this.sworda5.setVisible(false);
 			turn=1;
 			phases.change(0);
-			
+			this.contTurn++;
 		}
 
 }
