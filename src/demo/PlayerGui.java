@@ -613,13 +613,15 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					}
 					
 					repaint();
-					//this.phases.setup.doClick();
 					repaint();
 					this.contTurn++;
+					
 				break;
 				
 			}
-			
+			if(this.phases.actual==4){
+				this.phases.setup.doClick();	
+			}
 			repaint();
 		}
 		
@@ -1076,6 +1078,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			this.sworda5.setVisible(false);
 			turn=1;
 			phases.change(0);
+			this.turnoLabel.setText("Turn Player");
 			this.contTurn++;
 		}
 
