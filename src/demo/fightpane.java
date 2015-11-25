@@ -1,11 +1,12 @@
 package demo;
 
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import java.awt.Font;
 import java.awt.Color;
 
-public class fightpane extends JPanel {//en este panel se muestran las dos cartas que pelearan
+public class fightpane extends JInternalFrame {//en este panel se muestran las dos cartas que pelearan
 
 	/**
 	 * Create the panel.
@@ -15,9 +16,9 @@ public class fightpane extends JPanel {//en este panel se muestran las dos carta
 	public fightpane( ) 
 	{
 		setLayout(null);
-		this.setBounds(200,150,600,350);
+		this.setBounds(200,150,700,400);
 		this.setOpaque(false);
-		
+		setClosable(true);
 		txtpnVs = new JTextPane();
 		txtpnVs.setForeground(Color.WHITE);
 		txtpnVs.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 32));

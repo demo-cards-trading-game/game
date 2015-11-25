@@ -57,6 +57,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 	public Barriers barriers;
 	public Drained powers;
+	public fightpane fight;
 	public static DeckGui deck;
 	public Previewpane preview;
 	public HandGui hand;
@@ -123,7 +124,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 
 		field.addMouseListener(this);
-
+		fight=new fightpane();
+		this.add(fight);
 		this.add(field);
 		add(ai);
 
@@ -810,7 +812,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			this.menu5.setVisible(false);
 			
 			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
-			
+			if(!fight.isVisible()){
+			fight.addCards(new BigCard(field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
+			}
 			this.dest1.setVisible(false);
 			this.dest2.setVisible(false);
 			this.dest3.setVisible(false);
