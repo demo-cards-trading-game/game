@@ -602,7 +602,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					for (int i=0;i<5;i++)
 						barriers.barriers[i].removeMouseListener(this);
 					//disable hand
-					
+					for(int i=0;i<5;i++)
+						hand.handgui[i].Play.setEnabled(false);
 					//enable field
 					//enable battle phase
 					if(this.turn==1&&this.contTurn>0){
