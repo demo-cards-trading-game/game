@@ -794,51 +794,85 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			if(e.getSource()==hand.handgui[0])
 			{
 				hand.handgui[0].menu.setVisible(true);
-			
-				
+				hand.handgui[1].menu.setVisible(false);
+				hand.handgui[2].menu.setVisible(false);
+				hand.handgui[3].menu.setVisible(false);
+				hand.handgui[4].menu.setVisible(false);
 			}
 			else if(e.getSource()==hand.handgui[1])
 			{
 				hand.handgui[1].menu.setVisible(true);
-		
+				hand.handgui[0].menu.setVisible(false);
+				hand.handgui[2].menu.setVisible(false);
+				hand.handgui[3].menu.setVisible(false);
+				hand.handgui[4].menu.setVisible(false);
 			}
 			else if(e.getSource()==hand.handgui[2])
 			{
 				hand.handgui[2].menu.setVisible(true);
-				
+				hand.handgui[0].menu.setVisible(false);
+				hand.handgui[1].menu.setVisible(false);
+				hand.handgui[3].menu.setVisible(false);
+				hand.handgui[4].menu.setVisible(false);
 			}
 			else if(e.getSource()==hand.handgui[3])
 			{
 				hand.handgui[3].menu.setVisible(true);
-			
+				hand.handgui[0].menu.setVisible(false);
+				hand.handgui[1].menu.setVisible(false);
+				hand.handgui[2].menu.setVisible(false);
+				hand.handgui[4].menu.setVisible(false);
 				
 			}else if(e.getSource()==hand.handgui[4])
 			{
 				hand.handgui[4].menu.setVisible(true);
-			
+				hand.handgui[0].menu.setVisible(false);
+				hand.handgui[1].menu.setVisible(false);
+				hand.handgui[2].menu.setVisible(false);
+				hand.handgui[3].menu.setVisible(false);
 			}
-
-			if(e.getSource()==field.cards[0]&&!field.cards[0].down)
-			{
-				this.menu1.setVisible(true);
-			}	
-			if(e.getSource()==field.cards[1]&&!field.cards[1].down)
-			{
-				this.menu2.setVisible(true);
+			if(phases.actual==3){
+				if(e.getSource()==field.cards[0]&&!field.cards[0].down)
+				{
+					this.menu1.setVisible(true);
+					this.menu2.setVisible(false);
+					this.menu3.setVisible(false);
+					this.menu4.setVisible(false);
+					this.menu5.setVisible(false);
+				}	
+				if(e.getSource()==field.cards[1]&&!field.cards[1].down)
+				{
+					this.menu2.setVisible(true);
+					this.menu1.setVisible(false);
+					this.menu3.setVisible(false);
+					this.menu4.setVisible(false);
+					this.menu5.setVisible(false);
+				}
+				if(e.getSource()==field.cards[2]&&!field.cards[2].down)
+				{
+					this.menu3.setVisible(true);
+					this.menu1.setVisible(false);
+					this.menu2.setVisible(false);
+					this.menu4.setVisible(false);
+					this.menu5.setVisible(false);
+				}
+				if(e.getSource()==field.cards[3]&&!field.cards[3].down)
+				{
+					this.menu4.setVisible(true);
+					this.menu1.setVisible(false);
+					this.menu2.setVisible(false);
+					this.menu3.setVisible(false);
+					this.menu5.setVisible(false);
+					
+				}if(e.getSource()==field.cards[4]&&!field.cards[4].down)
+				{
+					this.menu5.setVisible(true);
+					this.menu1.setVisible(false);
+					this.menu2.setVisible(false);
+					this.menu3.setVisible(false);
+					this.menu4.setVisible(false);
+				}
 			}
-			if(e.getSource()==field.cards[2]&&!field.cards[2].down)
-			{
-				this.menu3.setVisible(true);
-			}
-			if(e.getSource()==field.cards[3]&&!field.cards[3].down)
-			{
-				this.menu4.setVisible(true);
-				
-			}if(e.getSource()==field.cards[4]&&!field.cards[4].down)
-			{
-				this.menu5.setVisible(true);
-			}
-
 		}
 		}	    
 		else if(e.getButton() == MouseEvent.BUTTON3)
