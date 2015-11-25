@@ -83,6 +83,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public JButton attack1, attack2, attack3, attack4, attack5;
 	public JButton dest1, dest2, dest3, dest4, dest5;
 	public int atkDest=-1, atkOrigin=-1;
+	public int [] aiAttack= new int[5];
+	public int [] aiDest= new int[5];
+	public int contTargetAttack;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -343,6 +346,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		this.dest3.addActionListener(this);
 		this.dest4.addActionListener(this);
 		this.dest5.addActionListener(this);
+
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -806,6 +810,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			this.menu5.setVisible(false);
 			
 			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+			
+			this.dest1.setVisible(false);
+			this.dest2.setVisible(false);
+			this.dest3.setVisible(false);
+			this.dest4.setVisible(false);
+			this.dest5.setVisible(false);
 		}
 		
 	}
@@ -1280,9 +1290,18 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			phases.change(phases.actual+1);
 			//attack phase 
 			JOptionPane.showMessageDialog(null,"ai is preparin an attack" );
+			
 			if(this.contTurn>0){
+				for(int i=0; i<5; i++){
+					this.aiAttack[i]=-1;
+					this.aiDest[i]=-1;
+				}
+				contTargetAttack=0;
 				for(int i=0;i<5;i++){
 					if(ai.aifield.cards[i]!=null){
+						this.aiAttack[i]=1;
+						contTargetAttack++;
+						
 						switch(i){
 						case 0:
 							this.sworda1.setVisible(true);
@@ -1301,8 +1320,44 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 							break;
 						}
 					}
+					else{
+						this.aiAttack[i]=0;
+					}
 				}	
+		
+				int band=0;
+				while(band==0){
+					Random r = new Random();
+					int a = r.nextInt(5);
+					if(this.aiAttack[a]==1){
+						this.atkOrigin=a;
+						band=1;
+					}
+				}
+				
+				for(int i=0;i<5;i++){
+					if(this.field.cards[i]!=null){
+						this.aiDest[i]=1;
+					}
+					else{
+						this.aiDest[i]=0;
+					}
+				}	
+				
+				band=0;
+				while(band==0){
+					Random r = new Random();
+					int a = r.nextInt(5);
+					if(this.aiDest[a]==1){
+						this.atkDest=a;
+						band=1;
+					}
+				}
+				JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
+
 			}
+			
+			
 			phases.change(phases.actual+1);
 			JOptionPane.showMessageDialog(null,"ai is finishing your turn" );
 			this.sworda1.setVisible(false);
