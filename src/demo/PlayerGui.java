@@ -82,7 +82,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
 	public JButton attack1, attack2, attack3, attack4, attack5;
 	public JButton dest1, dest2, dest3, dest4, dest5;
-	public int atkDest, atkOrigin;
+	public int atkDest=-1, atkOrigin=-1;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -328,7 +328,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		
 		this.dest5 = new JButton("Target");
 		this.dest5.setBounds(670, 210, 80, 20);
-		this.dest5.setVisible(true);
+		this.dest5.setVisible(false);
 		add(dest5);
 		this.moveToFront(this.dest5);
 		
@@ -717,6 +717,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					this.menu3.setVisible(false);
 					this.menu4.setVisible(false);
 					this.menu5.setVisible(false);
+					
+					this.dest1.setVisible(false);
+					this.dest2.setVisible(false);
+					this.dest3.setVisible(false);
+					this.dest4.setVisible(false);
+					this.dest5.setVisible(false);
 					//enable end turn
 					
 					if(turn==1){
@@ -730,7 +736,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					repaint();
 					repaint();
 					this.contTurn++;
-					
+					this.atkDest=this.atkOrigin=-1;
 				break;
 				
 			}
@@ -759,9 +765,49 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				this.atkOrigin=5;
 			}
 			JOptionPane.showMessageDialog(null, "Select Your Target");
+			if(ai.aifield.cards[0]!=null){
+				this.dest1.setVisible(true);
+			}
+			if(ai.aifield.cards[1]!=null){
+				this.dest2.setVisible(true);
+			}
+			if(ai.aifield.cards[2]!=null){
+				this.dest3.setVisible(true);
+			}
+			if(ai.aifield.cards[3]!=null){
+				this.dest4.setVisible(true);
+			}
+			if(ai.aifield.cards[4]!=null){
+				this.dest5.setVisible(true);
+			}
+		}
+		
+		if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
+			if(e.getSource()==this.dest1){
+				this.atkDest=1;
+			}
+			if(e.getSource()==this.dest2){
+				this.atkDest=2;
+			}
+			if(e.getSource()==this.dest3){
+				this.atkDest=3;
+			}
+			if(e.getSource()==this.dest4){
+				this.atkDest=4;
+			}
+			if(e.getSource()==this.dest5){
+				this.atkDest=5;
+			}
 			
+			this.menu1.setVisible(false);
+			this.menu2.setVisible(false);
+			this.menu3.setVisible(false);
+			this.menu4.setVisible(false);
+			this.menu5.setVisible(false);
 			
-		}	
+			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+		}
+		
 	}
 
 
@@ -897,7 +943,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				hand.handgui[2].menu.setVisible(false);
 				hand.handgui[3].menu.setVisible(false);
 			}
-			if(phases.actual==3){
+			if(phases.actual==3&&this.contTurn>0){
 				if(e.getSource()==field.cards[0]&&!field.cards[0].down)
 				{
 					this.menu1.setVisible(true);
