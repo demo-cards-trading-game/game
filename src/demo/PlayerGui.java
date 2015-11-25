@@ -81,6 +81,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
 	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
 	public JButton attack1, attack2, attack3, attack4, attack5;
+	public int atkDest, atkOrigin;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -299,6 +300,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		menu5.setVisible(false);
 		add(menu5);
 		menu5.moveToFront();
+		
+		this.attack1.addActionListener(this);
+		this.attack2.addActionListener(this);
+		this.attack3.addActionListener(this);
+		this.attack4.addActionListener(this);
+		this.attack5.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -696,7 +703,23 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 		
 	done=0;
-
+		if(e.getSource()==this.attack1&&e.getSource()==this.attack2&&e.getSource()==this.attack3&&e.getSource()==this.attack4&&e.getSource()==this.attack5){
+			if(e.getSource()==this.attack1){
+				
+			}
+			if(e.getSource()==this.attack2){
+				
+			}
+			if(e.getSource()==this.attack3){
+				
+			}
+			if(e.getSource()==this.attack4){
+				
+			}
+			if(e.getSource()==this.attack5){
+				
+			}
+		}	
 	}
 
 
