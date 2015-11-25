@@ -81,6 +81,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
 	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
 	public JButton attack1, attack2, attack3, attack4, attack5;
+	public JButton dest1, dest2, dest3, dest4, dest5;
 	public int atkDest, atkOrigin;
 	
 	public int getPhaseActual(){
@@ -301,11 +302,47 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		add(menu5);
 		menu5.moveToFront();
 		
+		this.dest1 = new JButton("Target");
+		this.dest1.setBounds(230, 210, 80, 20);
+		this.dest1.setVisible(false);
+		add(dest1);
+		this.moveToFront(this.dest1);
+		
+		this.dest2 = new JButton("Target");
+		this.dest2.setBounds(340, 210, 80, 20);
+		this.dest2.setVisible(false);
+		add(dest2);
+		this.moveToFront(this.dest2);
+		
+		this.dest3 = new JButton("Target");
+		this.dest3.setBounds(450, 210, 80, 20);
+		this.dest3.setVisible(false);
+		add(dest3);
+		this.moveToFront(this.dest3);
+		
+		this.dest4 = new JButton("Target");
+		this.dest4.setBounds(560, 210, 80, 20);
+		this.dest4.setVisible(false);
+		add(dest4);
+		this.moveToFront(this.dest4);
+		
+		this.dest5 = new JButton("Target");
+		this.dest5.setBounds(670, 210, 80, 20);
+		this.dest5.setVisible(true);
+		add(dest5);
+		this.moveToFront(this.dest5);
+		
 		this.attack1.addActionListener(this);
 		this.attack2.addActionListener(this);
 		this.attack3.addActionListener(this);
 		this.attack4.addActionListener(this);
 		this.attack5.addActionListener(this);
+		
+		this.dest1.addActionListener(this);
+		this.dest2.addActionListener(this);
+		this.dest3.addActionListener(this);
+		this.dest4.addActionListener(this);
+		this.dest5.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -704,22 +741,26 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 		
 	done=0;
-		if(e.getSource()==this.attack1&&e.getSource()==this.attack2&&e.getSource()==this.attack3&&e.getSource()==this.attack4&&e.getSource()==this.attack5){
+		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
+			
 			if(e.getSource()==this.attack1){
-				
+				this.atkOrigin=1;
 			}
 			if(e.getSource()==this.attack2){
-				
+				this.atkOrigin=2;
 			}
 			if(e.getSource()==this.attack3){
-				
+				this.atkOrigin=3;
 			}
 			if(e.getSource()==this.attack4){
-				
+				this.atkOrigin=4;
 			}
 			if(e.getSource()==this.attack5){
-				
+				this.atkOrigin=5;
 			}
+			JOptionPane.showMessageDialog(null, "Select Your Target");
+			
+			
 		}	
 	}
 
@@ -811,7 +852,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				JOptionPane.showMessageDialog(op, "sorry u can only get a card from barriers per turn");
 			}	
 			
-		}	
+		}				
+			
 		}
 		if(e.getClickCount()==2)
 		{
