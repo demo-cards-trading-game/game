@@ -125,6 +125,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		field.addMouseListener(this);
 		fight=new fightpane();
+		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
 		this.add(field);
 		add(ai);
@@ -815,6 +816,15 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			if(!fight.isVisible()){
 			fight.addCards(new BigCard(field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
 			}
+			if(field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
+			{
+				ai.aifield.quitar(atkDest-1);
+				
+			}else if(field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
+			{
+				field.quitar(atkOrigin-1);
+			}
+			
 			this.dest1.setVisible(false);
 			this.dest2.setVisible(false);
 			this.dest3.setVisible(false);
