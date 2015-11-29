@@ -1,0 +1,13 @@
+for the moment discard cards on field by right click ...click count == 1
+double click for card menu changed to 1 
+added poor animation to fight 
+now ai is able to atack you 
+
+
+instructions 
+1 click on deck button to get card (only on setup phase) card goes from deck to barriers
+1 click on a barrier to draw it (only on draw phase) card goes from barrier to hand 
+on action phase  the play card menu is now available
+on attack phase you must double click a card from field then a button is visible .... click on it and then click on the card u want to atack
+
+atack : if both cards has same atack - hp power ...nothing happens none of those cards is going to  the fallen

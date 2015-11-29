@@ -813,6 +813,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			this.menu5.setVisible(false);
 			
 			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+			remove(phases);
 			if(!fight.isVisible()){
 			fight.addCards(new BigCard(field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
 			}
@@ -824,12 +825,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				field.quitar(atkOrigin-1);
 			}
-			
+			add(phases);
 			this.dest1.setVisible(false);
 			this.dest2.setVisible(false);
 			this.dest3.setVisible(false);
 			this.dest4.setVisible(false);
 			this.dest5.setVisible(false);
+			
 		}
 		
 	}
@@ -924,9 +926,6 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 		}				
 			
-		}
-		if(e.getClickCount()==2)
-		{
 			if(e.getSource()==hand.handgui[0])
 			{
 				hand.handgui[0].menu.setVisible(true);
@@ -1303,7 +1302,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			ai.smartPlay();
 			phases.change(phases.actual+1);
 			//attack phase 
-			JOptionPane.showMessageDialog(null,"ai is preparin an attack" );
+			JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
 			
 			if(this.contTurn>0){
 				for(int i=0; i<5; i++){
@@ -1338,15 +1337,18 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						this.aiAttack[i]=0;
 					}
 				}	
-		
+				atkOrigin=-1;
+				atkDest=-1;
 				int band=0;
-				while(band==0){
+				i=0;
+				while(band==0 && i<6){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
 					}
+					i++;
 				}
 				
 				for(int i=0;i<5;i++){
@@ -1359,16 +1361,37 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				}	
 				
 				band=0;
-				while(band==0){
+				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+				while(band==0 && i<6){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
 						this.atkDest=a;
 						band=1;
 					}
+					i++;
 				}
 				JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
-
+				if(atkDest!=-1 && atkOrigin!=-1  )
+				{
+			
+					if(!field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
+					remove(phases);
+					if(!fight.isVisible()){
+					fight.addCards(new BigCard(field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
+					}
+					if(field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
+					{
+						ai.aifield.quitar(atkOrigin);
+						
+					}else if(field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
+					{
+						field.quitar(atkDest);
+					}
+					add(phases);
+					}
+					
+				}
 			}
 			
 			

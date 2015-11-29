@@ -278,6 +278,10 @@ public class SmallCard extends JLayeredPane{
 		lblAtaque.setText(""+actual.GetHp());	
 		
 	}
+	boolean getpos()
+	{
+		return down;
+	}
 
 	public class CirclePanel extends JPanel {
 
