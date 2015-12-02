@@ -87,6 +87,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public int [] aiAttack= new int[5];
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
+	public JButton j;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -349,6 +350,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		this.dest3.addActionListener(this);
 		this.dest4.addActionListener(this);
 		this.dest5.addActionListener(this);
+		
+		j = new JButton("prueba de listar cartas de deck para efectos");
+		j.setBounds(100, 100, 120, 50);
+		add(j);
+		j.addActionListener(this);
+		this.moveToFront(this.j);
 
 	}
 	
@@ -832,6 +839,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			this.dest4.setVisible(false);
 			this.dest5.setVisible(false);
 			
+		}
+		
+		if(e.getSource()==j){
+			for(int i=0; i<this.deck.Deck.cardsLeft();i++){
+				System.out.println(i+1+"   "+this.deck.Deck.Consultar(i).Getid()+"  "+this.deck.Deck.Consultar(i).GetName());
+			}
 		}
 		
 	}
