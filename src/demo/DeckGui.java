@@ -42,7 +42,7 @@ public class DeckGui extends JPanel {
 		
 	}
 	public DeckGui(int x,int y) {
-		Deck=new deck();
+		this.Deck=new deck();
 		 
 		 try {
 			Deck.Load("resources/siren.in");
@@ -83,10 +83,7 @@ public class DeckGui extends JPanel {
 		add(lblDeck);
 		
 		btnNewButton_1 = new JButton();
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
 		btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
 		
 		btnNewButton_1.setBounds(175, 193, 46, 40);

@@ -13,8 +13,8 @@ public class deck{
  
   /******************revisar**********************/
 	
-	public static  Card[]  cards  = new Card[40];
-	public static  Card[]  cards2  = new Card[40];
+	public   Card[]  cards  = new Card[40];
+	
 	private boolean[]  verif  = new boolean[40];
 	private LoadData lista;
 	
@@ -114,8 +114,8 @@ public void shuffle() {
 		 exch(a,b);
 		
 	 
-		 insertar( cards[a]);
-		 insertar( cards[b]);
+		 this.insertar( cards[a]);
+		this. insertar( cards[b]);
 	 }
 	
 
@@ -123,7 +123,7 @@ public void shuffle() {
 public int findanother(int x)
 {
 	int i=0;
-	 Random randomGenerator = new Random();
+	Random randomGenerator = new Random();
 	do
 	{
 		 x = randomGenerator.nextInt(cards.length-1);//genera un siguiente aleatoriamente

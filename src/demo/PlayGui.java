@@ -53,21 +53,22 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
 
-public class PlayerGui extends JLayeredPane implements ActionListener, MouseListener {
+public class PlayGui extends JLayeredPane implements ActionListener, MouseListener {
 
-	public Barriers barriers;
-	public Drained powers;
-	public fightpane fight;
-	public static DeckGui deck;
-	public Previewpane preview;
-	public HandGui hand;
-	public fieldGui field;
-	public AIGui ai;
+	
+	
+	public fightpane fight;//panel donde se muestra la animacion de peleas
+	public PlayerGui player;//aca estan el hand el deck y lo demas
+	public AIGui ai;//lo mismo pero en el ai
+	public Previewpane preview;//aca se muestra la carta
+
+
+	
 	optionpane op;
 	int turn, contTurn=0;
 	int acampo=-1;
 	int i=0;
-	 private Fallen fallen ;
+	private Fallen fallen ;
 	private LoadData cartas;
 	JInternalFrame pane; 
 	public Phases phases;
@@ -93,17 +94,16 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		return phases.actual;
 	}
 	
-	public PlayerGui(int x , int y, String name) throws IOException {
+	public PlayGui(int x , int y, String name) throws IOException {
 		setBorder(null);
+		player=new PlayerGui(x,y,name);
 		preview= new Previewpane();
-		setBackground(UIManager.getColor("Button.disabledShadow"));
-		hand= new HandGui (0,0);
-		hand.setLocation(179, 510);
-		hand.addMouseListener(this);
+		
+		player.hand.addMouseListener(this);
 		setOpaque(false);
 		setLayout(null);
-		setBounds(x,y, 1024, 768);
-
+		setBounds(0,0, 1024, 768);
+		cardDrawn=0;
 		JLabel name_1 = new JLabel("Player : "+ name);
 		add(name_1);
 		name_1.setForeground(new Color(255, 248, 220));
@@ -117,55 +117,50 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 		phases=new Phases(220,300);
 		add(phases);
-		this.add(hand);
+		
+		this.add(player);
 		repaint=new JButton();
 
-		field = new fieldGui(220,350);
+	
 		ai = new AIGui();
 		
 
-		field.addMouseListener(this);
+		player.field.addMouseListener(this);
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
-		this.add(field);
-		add(ai);
+		
+		this.add(ai);
 
 		/*******************************************/
-		powers=new Drained(15,320);
-		add(powers);
+		
 
-		deck = new DeckGui(0,0);
-		deck.setSize(250, 343);
-		deck.setLocation(770, 361);
-		this.add(deck);
+	
 		this.add(preview);
 		
-		barriers =new Barriers(179,500);
-		add(barriers);
-		barriers.addMouseListener(this);
+	
+		player.barriers.addMouseListener(this);
+		
+		
+		aidra=new Drained_2(860,0);//mover al ai 
+		add(aidra);
+		repaint();
 		for(int i=1;i<=5;i++)
 		{
-			int pos= hand.draw(deck.Deck.extraerR());
-			barriers.addbarrier(deck.Deck.extraerR());
-			ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
+			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
+			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
+			
 			 Addlisteners2Card(pos-1);
-			hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
+			player.hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
 			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
-			deck.textField.setText("cards left "+ deck.Deck.cardsLeft());
-			deck.textField.repaint();
+			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
+			player.pdeck.textField.repaint();
 			
 
 		}
-		
-		aidra=new Drained_2(860,0);
-		add(aidra);
-		repaint();
-		for(int i=0;i<5;i++)
-			hand.handgui[i].Play.setEnabled(false);
+		System.out.println(""+player.pdeck.Deck + "  " +ai.aideck.Deck);
 	
 		fallen=new Fallen();
-		
 		add(fallen);
 		
 		this.phases.draw.addActionListener(this);
@@ -362,192 +357,192 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public void actionPerformed(ActionEvent e) {
 	
 		int done=0;
-		if (e.getSource()==deck.btnNewButton_1)// si se le da click al boton de fallen 
+		if (e.getSource()==player.pdeck.btnNewButton_1)// si se le da click al boton de fallen 
 		{
 				
-				fallen.setVisible(true);
+			fallen.setVisible(true);
 			moveToFront(fallen);
 
 		}
 		
-		if(e.getSource()==hand.handgui[0].Set)
+		if(e.getSource()==player.hand.handgui[0].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);	
-				powers.set(1);
-				hand.discard(1);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
+				player.powers.set(1);
+				player.hand.discard(1);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[1].Set)
+		if(e.getSource()==player.hand.handgui[1].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);	
-				powers.set(1);
-				hand.discard(2);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);	
+				player.powers.set(1);
+				player.hand.discard(2);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[2].Set)
+		if(e.getSource()==player.hand.handgui[2].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[2]);	
-				powers.set(1);
-				hand.discard(3);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);	
+				player.powers.set(1);
+				player.hand.discard(3);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[3].Set)
+		if(e.getSource()==player.hand.handgui[3].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[3]);	
-				powers.set(1);
-				hand.discard(4);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);	
+				player.powers.set(1);
+				player.hand.discard(4);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[4].Set)
+		if(e.getSource()==player.hand.handgui[4].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[4]);	
-				powers.set(1);
-				hand.discard(5);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);	
+				player.powers.set(1);
+				player.hand.discard(5);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[0].Play)//si se le da play a la carta 1  
+		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 1  
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[0]);	
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
 				play(0);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[1].Discard)//si se le da play a la carta 1  
+		if(e.getSource()==player.hand.handgui[1].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[1]);
-				hand.discard(2);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);
+				player.hand.discard(2);
 				
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[2].Discard)//si se le da play a la carta 1  
+		if(e.getSource()==player.hand.handgui[2].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
 			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[2]);
-				hand.discard(3);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);
+				player.hand.discard(3);
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[3].Discard)//si se le da play a la carta 1  
+		if(e.getSource()==player.hand.handgui[3].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
 			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[3]);
-				hand.discard(4);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);
+				player.hand.discard(4);
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[4].Discard)//si se le da play a la carta 1  
+		if(e.getSource()==player.hand.handgui[4].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
 			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),hand.cards[4]);
-				hand.discard(5);
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);
+				player.hand.discard(5);
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[0].Preview)//muestra la carta 1 
+		if(e.getSource()==player.hand.handgui[0].Preview)//muestra la carta 1 
 		{
 			if(done==0)
 			{
-				preview.addCard(new BigCard(hand.handgui[0].getcard(),0,0));
+				preview.addCard(new BigCard(player.hand.handgui[0].getcard(),0,0));
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[1].Preview)//muestra la carta 1 
+		if(e.getSource()==player.hand.handgui[1].Preview)//muestra la carta 1 
 		{
 			if(done==0)
 			{
-				preview.addCard(new BigCard(hand.handgui[1].getcard(),0,0));
+				preview.addCard(new BigCard(player.hand.handgui[1].getcard(),0,0));
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[2].Preview)//muestra la carta 1 
+		if(e.getSource()==player.hand.handgui[2].Preview)//muestra la carta 1 
 		{
 			if(done==0)
 			{
-				preview.addCard(new BigCard(hand.handgui[2].getcard(),0,0));
+				preview.addCard(new BigCard(player.hand.handgui[2].getcard(),0,0));
 			}
 			done=1;
 			
 		}
 		
-		if(e.getSource()==hand.handgui[3].Preview)//muestra la carta 1 
+		if(e.getSource()==player.hand.handgui[3].Preview)//muestra la carta 1 
 		{
 			if(done==0)
 			{
-				preview.addCard(new BigCard(hand.handgui[3].getcard(),0,0));
+				preview.addCard(new BigCard(player.hand.handgui[3].getcard(),0,0));
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[4].Preview)//muestra la carta 1 
+		if(e.getSource()==player.hand.handgui[4].Preview)//muestra la carta 1 
 		{
 			if(done==0)
 			{
-				preview.addCard(new BigCard(hand.handgui[4].getcard(),0,0));
+				preview.addCard(new BigCard(player.hand.handgui[4].getcard(),0,0));
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==hand.handgui[0].Discard)//si se le da play a la carta 1  
+		if(e.getSource()==player.hand.handgui[0].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0)
-				hand.discard(1);
+				player.hand.discard(1);
 			done=1;
 			
 		}
 		
-		if(e.getSource()==hand.handgui[1].Play)//si se le da play a la carta 2  
+		if(e.getSource()==player.hand.handgui[1].Play)//si se le da play a la carta 2  
 		{
 			if(done==0)
 			play(1);
 			done=1;
 			
 			
-		}if(e.getSource()==hand.handgui[2].Play)//si se le da play a la carta 3
+		}if(e.getSource()==player.hand.handgui[2].Play)//si se le da play a la carta 3
 		{
 			if(done==0)
 			play(2);
 			done=1;
 			
-		}if(e.getSource()==hand.handgui[3].Play)//si se le da play a la carta 4 
+		}if(e.getSource()==player.hand.handgui[3].Play)//si se le da play a la carta 4 
 		{
 			if(done==0)
 			play(3);
 			done=1;
-		}if(e.getSource()==hand.handgui[4].Play)//si se le da play a la carta 5
+		}if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 5
 		{
 			if(done==0)
 			play(4);
@@ -581,19 +576,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					cardDrawn=0;
 					
 					for(int i=0;i<5;i++)
-						hand.handgui[i].Play.setEnabled(false);
+						player.hand.handgui[i].Play.setEnabled(false);
 					
 					if(turn==1)
 					{
 						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
-						powers.set(1);
+						player.powers.set(1);
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						
 						//enable deck
 						//disable barriers
 						for (int i=0;i<5;i++)
-							barriers.barriers[i].removeMouseListener(this);
+							player.barriers.barriers[i].removeMouseListener(this);
 						//disable hand
 						
 						//disable field
@@ -621,7 +616,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//disable deck: done
 					//enable barriers
 					for (int i=0;i<5;i++)
-						barriers.barriers[i].addMouseListener(this);
+						player.barriers.barriers[i].addMouseListener(this);
 					//disable hand
 					
 					//disable field
@@ -636,9 +631,9 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)
-						barriers.barriers[i].removeMouseListener(this);
+						player.barriers.barriers[i].removeMouseListener(this);
 					for(int i=0;i<5;i++)
-						hand.handgui[i].Play.setEnabled(true);
+						player.hand.handgui[i].Play.setEnabled(true);
 					//enable field
 					//disable battle phase
 					//disable end turn
@@ -651,38 +646,38 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)
-						barriers.barriers[i].removeMouseListener(this);
+						player.barriers.barriers[i].removeMouseListener(this);
 					//disable hand
 					for(int i=0;i<5;i++)
-						hand.handgui[i].Play.setEnabled(false);
+						player.hand.handgui[i].Play.setEnabled(false);
 					//enable field
 					//enable battle phase
 					if(this.turn==1&&this.contTurn>0){
 						for(int i=0;i<5;i++){
-							if(field.cards[i]!=null){
+							if(player.field.cards[i]!=null){
 								switch(i){
 								case 0:
-									if(!this.field.cards[0].down){
+									if(!this.player.field.cards[0].down){
 										this.swordp1.setVisible(true);
 									}
 									break;
 								case 1:
-									if(!this.field.cards[1].down){
+									if(!this.player.field.cards[1].down){
 										this.swordp2.setVisible(true);
 									}
 									break;
 								case 2:
-									if(!this.field.cards[2].down){
+									if(!this.player.field.cards[2].down){
 										this.swordp3.setVisible(true);
 									}
 									break;
 								case 3:
-									if(!this.field.cards[3].down){
+									if(!this.player.field.cards[3].down){
 										this.swordp4.setVisible(true);
 									}
 									break;
 								case 4:
-									if(!this.field.cards[4].down){
+									if(!this.player.field.cards[4].down){
 										this.swordp5.setVisible(true);
 									}
 									break;
@@ -705,6 +700,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				break;
 				//end turn
 				case 4:
+					
 					this.phases.end.removeActionListener(this);
 					this.phases.setup.addActionListener(this);
 					
@@ -822,15 +818,15 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
 			remove(phases);
 			if(!fight.isVisible()){
-			fight.addCards(new BigCard(field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
+			fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
 			}
-			if(field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
+			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
 			{
 				ai.aifield.quitar(atkDest-1);
 				
-			}else if(field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
+			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
 			{
-				field.quitar(atkOrigin-1);
+				player.field.quitar(atkOrigin-1);
 			}
 			add(phases);
 			this.dest1.setVisible(false);
@@ -842,8 +838,8 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		}
 		
 		if(e.getSource()==j){
-			for(int i=0; i<this.deck.Deck.cardsLeft();i++){
-				System.out.println(i+1+"   "+this.deck.Deck.Consultar(i).Getid()+"  "+this.deck.Deck.Consultar(i).GetName());
+			for(int i=0; i<player.pdeck.Deck.cardsLeft();i++){
+				System.out.println(i+1+"   "+player.pdeck.Deck.Consultar(i).Getid()+"  "+player.pdeck.Deck.Consultar(i).GetName());
 			}
 		}
 		
@@ -868,13 +864,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	void Addlisteners2Card(int i)//le coloca listeners al menu de la carta 
 	{
 		
-		hand.handgui[i].Play.addActionListener(this);
-		hand.handgui[i].Discard.addActionListener(this);
-		hand.handgui[i].Preview.addActionListener(this);
-		hand.handgui[i].Set.addActionListener(this);
+		player.hand.handgui[i].Play.addActionListener(this);
+		player.hand.handgui[i].Discard.addActionListener(this);
+		player.hand.handgui[i].Preview.addActionListener(this);
+		player.hand.handgui[i].Set.addActionListener(this);
 	}
 	public DeckGui getDeck() {
-		return deck;
+		return player.pdeck;
 	}
 
 	public void mouseClicked(MouseEvent e) 
@@ -885,48 +881,48 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 		{
 			if(barierpicked==0)
 			{
-			if(e.getSource()==barriers.barriers[0])//si se da click a la barrera 0
+			if(e.getSource()==player.barriers.barriers[0])//si se da click a la barrera 0
 			{
-				int pos= hand.draw(barriers.cards[0]);
-				hand.handgui[pos-1].addMouseListener(this);
+				int pos= player.hand.draw(player.barriers.cards[0]);
+				player.hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
-				barriers.removebarrier(0);
+				player.barriers.removebarrier(0);
 				barierpicked=1;
 				repaint();
 			}
-			if(e.getSource()==barriers.barriers[1])
+			if(e.getSource()==player.barriers.barriers[1])
 			{
-				int pos= hand.draw(barriers.cards[1]);
-				hand.handgui[pos-1].addMouseListener(this);
+				int pos= player.hand.draw(player.barriers.cards[1]);
+				player.hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
-				barriers.removebarrier(1);
+				player.barriers.removebarrier(1);
 				barierpicked=1;
 				repaint();
 			}
-			if(e.getSource()==barriers.barriers[2])
+			if(e.getSource()==player.barriers.barriers[2])
 			{
-				int pos= hand.draw(barriers.cards[2]);
-				hand.handgui[pos-1].addMouseListener(this);
+				int pos= player.hand.draw(player.barriers.cards[2]);
+				player.hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
-				barriers.removebarrier(2);
+				player.barriers.removebarrier(2);
 				barierpicked=1;
 				repaint();
 			}
-			if(e.getSource()==barriers.barriers[3])
+			if(e.getSource()==player.barriers.barriers[3])
 			{
-				int pos= hand.draw(barriers.cards[3]);
-				hand.handgui[pos-1].addMouseListener(this);
+				int pos= player.hand.draw(player.barriers.cards[3]);
+				player.hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
-				barriers.removebarrier(3);
+				player.barriers.removebarrier(3);
 				barierpicked=1;
 				repaint();
 			}
-			if(e.getSource()==barriers.barriers[4])
+			if(e.getSource()==player.barriers.barriers[4])
 			{
-				int pos= hand.draw(barriers.cards[4]);
-				hand.handgui[pos-1].addMouseListener(this);
+				int pos= player.hand.draw(player.barriers.cards[4]);
+				player.hand.handgui[pos-1].addMouseListener(this);
 				 Addlisteners2Card(pos-1);
-				barriers.removebarrier(4);
+				player.barriers.removebarrier(4);
 				barierpicked=1;
 				repaint();
 			}
@@ -939,48 +935,48 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			
 		}				
 			
-			if(e.getSource()==hand.handgui[0])
+			if(e.getSource()==player.hand.handgui[0])
 			{
-				hand.handgui[0].menu.setVisible(true);
-				hand.handgui[1].menu.setVisible(false);
-				hand.handgui[2].menu.setVisible(false);
-				hand.handgui[3].menu.setVisible(false);
-				hand.handgui[4].menu.setVisible(false);
+				player.hand.handgui[0].menu.setVisible(true);
+				player.hand.handgui[1].menu.setVisible(false);
+				player.hand.handgui[2].menu.setVisible(false);
+				player.hand.handgui[3].menu.setVisible(false);
+				player.hand.handgui[4].menu.setVisible(false);
 			}
-			else if(e.getSource()==hand.handgui[1])
+			else if(e.getSource()==player.hand.handgui[1])
 			{
-				hand.handgui[1].menu.setVisible(true);
-				hand.handgui[0].menu.setVisible(false);
-				hand.handgui[2].menu.setVisible(false);
-				hand.handgui[3].menu.setVisible(false);
-				hand.handgui[4].menu.setVisible(false);
+				player.hand.handgui[1].menu.setVisible(true);
+				player.hand.handgui[0].menu.setVisible(false);
+				player.hand.handgui[2].menu.setVisible(false);
+				player.hand.handgui[3].menu.setVisible(false);
+				player.hand.handgui[4].menu.setVisible(false);
 			}
-			else if(e.getSource()==hand.handgui[2])
+			else if(e.getSource()==player.hand.handgui[2])
 			{
-				hand.handgui[2].menu.setVisible(true);
-				hand.handgui[0].menu.setVisible(false);
-				hand.handgui[1].menu.setVisible(false);
-				hand.handgui[3].menu.setVisible(false);
-				hand.handgui[4].menu.setVisible(false);
+				player.hand.handgui[2].menu.setVisible(true);
+				player.hand.handgui[0].menu.setVisible(false);
+				player.hand.handgui[1].menu.setVisible(false);
+				player.hand.handgui[3].menu.setVisible(false);
+				player.hand.handgui[4].menu.setVisible(false);
 			}
-			else if(e.getSource()==hand.handgui[3])
+			else if(e.getSource()==player.hand.handgui[3])
 			{
-				hand.handgui[3].menu.setVisible(true);
-				hand.handgui[0].menu.setVisible(false);
-				hand.handgui[1].menu.setVisible(false);
-				hand.handgui[2].menu.setVisible(false);
-				hand.handgui[4].menu.setVisible(false);
+				player.hand.handgui[3].menu.setVisible(true);
+				player.hand.handgui[0].menu.setVisible(false);
+				player.hand.handgui[1].menu.setVisible(false);
+				player.hand.handgui[2].menu.setVisible(false);
+				player.hand.handgui[4].menu.setVisible(false);
 				
-			}else if(e.getSource()==hand.handgui[4])
+			}else if(e.getSource()==player.hand.handgui[4])
 			{
-				hand.handgui[4].menu.setVisible(true);
-				hand.handgui[0].menu.setVisible(false);
-				hand.handgui[1].menu.setVisible(false);
-				hand.handgui[2].menu.setVisible(false);
-				hand.handgui[3].menu.setVisible(false);
+				player.hand.handgui[4].menu.setVisible(true);
+				player.hand.handgui[0].menu.setVisible(false);
+				player.hand.handgui[1].menu.setVisible(false);
+				player.hand.handgui[2].menu.setVisible(false);
+				player.hand.handgui[3].menu.setVisible(false);
 			}
 			if(phases.actual==3&&this.contTurn>0){
-				if(e.getSource()==field.cards[0]&&!field.cards[0].down)
+				if(e.getSource()==player.field.cards[0]&&!player.field.cards[0].down)
 				{
 					this.menu1.setVisible(true);
 					this.menu2.setVisible(false);
@@ -988,7 +984,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					this.menu4.setVisible(false);
 					this.menu5.setVisible(false);
 				}	
-				if(e.getSource()==field.cards[1]&&!field.cards[1].down)
+				if(e.getSource()==player.field.cards[1]&&!player.field.cards[1].down)
 				{
 					this.menu2.setVisible(true);
 					this.menu1.setVisible(false);
@@ -996,7 +992,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					this.menu4.setVisible(false);
 					this.menu5.setVisible(false);
 				}
-				if(e.getSource()==field.cards[2]&&!field.cards[2].down)
+				if(e.getSource()==player.field.cards[2]&&!player.field.cards[2].down)
 				{
 					this.menu3.setVisible(true);
 					this.menu1.setVisible(false);
@@ -1004,7 +1000,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					this.menu4.setVisible(false);
 					this.menu5.setVisible(false);
 				}
-				if(e.getSource()==field.cards[3]&&!field.cards[3].down)
+				if(e.getSource()==player.field.cards[3]&&!player.field.cards[3].down)
 				{
 					this.menu4.setVisible(true);
 					this.menu1.setVisible(false);
@@ -1012,7 +1008,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 					this.menu3.setVisible(false);
 					this.menu5.setVisible(false);
 					
-				}if(e.getSource()==field.cards[4]&&!field.cards[4].down)
+				}if(e.getSource()==player.field.cards[4]&&!player.field.cards[4].down)
 				{
 					this.menu5.setVisible(true);
 					this.menu1.setVisible(false);
@@ -1029,36 +1025,36 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 			{
 				
 			
-				if(e.getSource()==field.cards[0])
+				if(e.getSource()==player.field.cards[0])
 				{
-					powers.undrain(field.cards[0].getcard().GetCost());
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[0].getcard());
-					field.quitar(0);
+					player.powers.undrain(player.field.cards[0].getcard().GetCost());
+					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[0].getcard());
+					player.field.quitar(0);
 				}	
-				if(e.getSource()==field.cards[1])
+				if(e.getSource()==player.field.cards[1])
 				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[1].getcard());
-					powers.undrain(field.cards[1].getcard().GetCost());
-					field.quitar(1);
+					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[1].getcard());
+					player.powers.undrain(player.field.cards[1].getcard().GetCost());
+					player.field.quitar(1);
 				}
-				if(e.getSource()==field.cards[2])
+				if(e.getSource()==player.field.cards[2])
 				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[2].getcard());
-					powers.undrain(field.cards[2].getcard().GetCost());
-					field.quitar(2);
+					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[2].getcard());
+					player.powers.undrain(player.field.cards[2].getcard().GetCost());
+					player.field.quitar(2);
 				}
-				if(e.getSource()==field.cards[3])
+				if(e.getSource()==player.field.cards[3])
 				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[3].getcard());
-					powers.undrain(field.cards[3].getcard().GetCost());
-					field.quitar(3);
+					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[3].getcard());
+					player.powers.undrain(player.field.cards[3].getcard().GetCost());
+					player.field.quitar(3);
 					
-				}if(e.getSource()==field.cards[4])
+				}if(e.getSource()==player.field.cards[4])
 				{
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),field.cards[4].getcard());
+					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[4].getcard());
 					
-					powers.undrain(field.cards[4].getcard().GetCost());
-					field.quitar(4);
+					player.powers.undrain(player.field.cards[4].getcard().GetCost());
+					player.field.quitar(4);
 				}
 				
 				
@@ -1081,51 +1077,51 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 
 
 	public void mouseExited(MouseEvent e) {
-		if(e.getSource()==hand.handgui[0])
+		if(e.getSource()==player.hand.handgui[0])
 		{
-			hand.handgui[0].setBounds(0, 20, 124, 186);
+			player.hand.handgui[0].setBounds(0, 20, 124, 186);
 			preview.Remove();
 		}
-		else if(e.getSource()==hand.handgui[1])
+		else if(e.getSource()==player.hand.handgui[1])
 		{
-			hand.handgui[1].setBounds(124, 20, 124, 186);
+			player.hand.handgui[1].setBounds(124, 20, 124, 186);
 			preview.Remove();
 		}
-		else if(e.getSource()==hand.handgui[2])
+		else if(e.getSource()==player.hand.handgui[2])
 		{
-			hand.handgui[2].setBounds(248, 20, 124, 186);
+			player.hand.handgui[2].setBounds(248, 20, 124, 186);
 			preview.Remove();
 		}
-		else if(e.getSource()==hand.handgui[3])
+		else if(e.getSource()==player.hand.handgui[3])
 		{
-			hand.handgui[3].setBounds(372, 20, 124, 186);
+			player.hand.handgui[3].setBounds(372, 20, 124, 186);
 			preview.Remove();
-		}else if(e.getSource()==hand.handgui[4])
+		}else if(e.getSource()==player.hand.handgui[4])
 		{
-			hand.handgui[4].setBounds(496, 20, 124, 186);
+			player.hand.handgui[4].setBounds(496, 20, 124, 186);
 			preview.Remove();
 		}
-		if(e.getSource()==field.cards[0])
+		if(e.getSource()==player.field.cards[0])
 		{
 			
 			preview.Remove();
 		}
-		if(e.getSource()==field.cards[1])
+		if(e.getSource()==player.field.cards[1])
 		{
 			
 			preview.Remove();
 		}
-		if(e.getSource()==field.cards[2])
+		if(e.getSource()==player.field.cards[2])
 		{
 			
 			preview.Remove();
 		}
-		if(e.getSource()==field.cards[3])
+		if(e.getSource()==player.field.cards[3])
 		{
 			
 			preview.Remove();
 		}
-		if(e.getSource()==field.cards[4])
+		if(e.getSource()==player.field.cards[4])
 		{
 			
 			preview.Remove();
@@ -1152,52 +1148,52 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	public void mouseEntered(MouseEvent e) 
 	
 	{
-		if(e.getSource()==hand.handgui[0])
+		if(e.getSource()==player.hand.handgui[0])
 		{
-			hand.handgui[0].setBounds(0, 0, 124, 186);
+			player.hand.handgui[0].setBounds(0, 0, 124, 186);
 			
 		}
-		else if(e.getSource()==hand.handgui[1])
+		else if(e.getSource()==player.hand.handgui[1])
 		{
-			hand.handgui[1].setBounds(124, 0, 124, 186);
+			player.hand.handgui[1].setBounds(124, 0, 124, 186);
 			
 		}
-		else if(e.getSource()==hand.handgui[2])
+		else if(e.getSource()==player.hand.handgui[2])
 		{
-			hand.handgui[2].setBounds(248, 0, 124, 186);
+			player.hand.handgui[2].setBounds(248, 0, 124, 186);
 			
 		}
-		else if(e.getSource()==hand.handgui[3])
+		else if(e.getSource()==player.hand.handgui[3])
 		{
-			hand.handgui[3].setBounds(372, 0, 124, 186);
+			player.hand.handgui[3].setBounds(372, 0, 124, 186);
 			
-		}else if(e.getSource()==hand.handgui[4])
+		}else if(e.getSource()==player.hand.handgui[4])
 		{
-			hand.handgui[4].setBounds(496, 0, 124, 186);
+			player.hand.handgui[4].setBounds(496, 0, 124, 186);
 		
 		}
 		
-		if(e.getSource()==field.cards[0])
+		if(e.getSource()==player.field.cards[0])
 		{
 			
-			preview.addCard(new BigCard(field.cards[0].getcard(),0,0));
+			preview.addCard(new BigCard(player.field.cards[0].getcard(),0,0));
 		}
-		if(e.getSource()==field.cards[1])
+		if(e.getSource()==player.field.cards[1])
 		{
 			
-			preview.addCard(new BigCard(field.cards[1].getcard(),0,0));
-		}if(e.getSource()==field.cards[2])
+			preview.addCard(new BigCard(player.field.cards[1].getcard(),0,0));
+		}if(e.getSource()==player.field.cards[2])
 		{
 			
-			preview.addCard(new BigCard(field.cards[2].getcard(),0,0));
-		}if(e.getSource()==field.cards[3])
+			preview.addCard(new BigCard(player.field.cards[2].getcard(),0,0));
+		}if(e.getSource()==player.field.cards[3])
 		{
 			
-			preview.addCard(new BigCard(field.cards[3].getcard(),0,0));
-		}if(e.getSource()==field.cards[4])
+			preview.addCard(new BigCard(player.field.cards[3].getcard(),0,0));
+		}if(e.getSource()==player.field.cards[4])
 		{
 			
-			preview.addCard(new BigCard(field.cards[4].getcard(),0,0));
+			preview.addCard(new BigCard(player.field.cards[4].getcard(),0,0));
 		}
 		if(e.getSource()==ai.aifield.cards[0])
 		{
@@ -1234,14 +1230,14 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	void play(int pos)// plays a card on field
 	{
 	
-		if (hand.handgui[pos].getcard().GetCost() + powers.currentundrained <= 12) {//verifica que haya mana
+		if (player.hand.handgui[pos].getcard().GetCost() + player.powers.currentundrained <= 12) {//verifica que haya mana
 
-			if ( warriorPlayed == 0 ||( hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
-				int where = field.findwhere();// busca en donde poner la carta
+			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
+				int where = player.field.findwhere();// busca en donde poner la carta
 				if (where != -1) {
 
 					SmallCard carta;
-					if (hand.handgui[pos].getcard().GetType() == "Warrior") {
+					if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 						
 						
 						warriorPlayed = 1;
@@ -1252,19 +1248,19 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 						Random randomGenerator = new Random();
 						int test = randomGenerator.nextInt(10);
 						if (test % 2 == 0) {
-							carta = new SmallCard(true, hand.handgui[pos].getcard());
+							carta = new SmallCard(true,player.hand.handgui[pos].getcard());
 
 						} else {
-							carta = new SmallCard(false, hand.handgui[pos].getcard());
+							carta = new SmallCard(false, player.hand.handgui[pos].getcard());
 
 						}
-						powers.drain(hand.handgui[pos].getcard().GetCost());
+						player.powers.drain(player.hand.handgui[pos].getcard().GetCost());
 						
 						repaint();
 						carta.addMouseListener(this);
 
-						field.poner(carta, where);
-						hand.discard(1);
+						player.field.poner(carta, where);
+						player.hand.discard(1);
 
 						repaint();
 
@@ -1291,6 +1287,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 	
 	public void Aiturn() throws IOException//aqui se programara a lo salvaje el turno del ai
 		{
+		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
 		int which;
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
 		aidra.get(1);
@@ -1365,7 +1362,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				}
 				
 				for(int i=0;i<5;i++){
-					if(this.field.cards[i]!=null){
+					if(this.player.field.cards[i]!=null){
 						this.aiDest[i]=1;
 					}
 					else{
@@ -1388,18 +1385,18 @@ public class PlayerGui extends JLayeredPane implements ActionListener, MouseList
 				if(atkDest!=-1 && atkOrigin!=-1  )
 				{
 			
-					if(!field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
+					if(!player.field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
 					remove(phases);
 					if(!fight.isVisible()){
-					fight.addCards(new BigCard(field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
+					fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
 					}
-					if(field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
+					if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
 					{
 						ai.aifield.quitar(atkOrigin);
 						
-					}else if(field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
+					}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
 					{
-						field.quitar(atkDest);
+						player.field.quitar(atkDest);
 					}
 					add(phases);
 					}

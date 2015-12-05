@@ -33,7 +33,7 @@ public class AIGui extends JPanel {
 		for (int i=1;i<=5;i++)
 		{
 			aihand.draw(aideck.Deck.extraerR());
-			
+			barriers.addbarrier(aideck.Deck.extraerR());
 		}
 	}
 

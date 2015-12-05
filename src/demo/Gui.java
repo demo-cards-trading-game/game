@@ -38,7 +38,7 @@ public class Gui extends JFrame implements ActionListener
 	private JMenuItem mi1,mi2,mi3;
 	static LoadData data;
 	private JPanel contentPane;
-	private PlayerGui player1;
+	private PlayGui player1;
 	private deckCreator crear;
 	JInternalFrame crea;
 	RollDice dados;
@@ -138,11 +138,82 @@ public class Gui extends JFrame implements ActionListener
 
 	public void actionPerformed(ActionEvent e) {
 
+		if(player1!=null){
+			if (e.getSource()==player1.player.pdeck.btnNewButton)
+				
+			{
+				if(this.player1.getPhaseActual()==0)
+				{	
+					
+				if(player1.cardDrawn==0){
+					
+
+					
+					if(player1.player.barriers.findwhere()!=-1)
+					{
+						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
+						{
+							player1.player.barriers.addbarrier(player1.player.pdeck.Deck.extraerR());
+							player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
+							player1.cardDrawn=1;
+							player1.player.pdeck.textField.repaint();
+						
+							setVisible(true);
+							repaint();
+						}else
+						{
+							
+							gameover(this);
+							
+						
+							try {
+							
+								player1=new PlayGui(0,0,Nombre1);
+								
+		
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						
+							b2 = new JButton("rematch");
+							b2.setBackground(Color.BLACK);
+							b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+							b2.setForeground(Color.WHITE);
+							b2.setBounds(70, 50, 132, 43);
+							b2.addActionListener(this);
+							add(b2);
+							repaint();
+							setVisible(true);
+						
+							
+						}
+						
+		
+					}else
+					{
+						JOptionPane.showMessageDialog(null, "Sorry , there is no place on your barriers spot");
+					}
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
+				}
+			}else
+			{
+				
+					
+					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
+				
+				
+			}
+			}
+			
+		}
 		if(e.getSource()==b1)
 		{
 			
 			if(text.getText().trim().length()==0){
-				b1.setEnabled(false);
+				
 				validar.setVisible(true);
 			}
 			else{
@@ -249,8 +320,8 @@ public class Gui extends JFrame implements ActionListener
 	if(e.getSource()==dados.btnPlay)
 		{
 		try {
-			player1=new PlayerGui(0,0,Nombre1);
-Thread t = new Thread(new Runnable(){
+			player1=new PlayGui(0,0,Nombre1);
+            Thread t = new Thread(new Runnable(){
 				
 				public void start(){
 					this.start();
@@ -283,8 +354,8 @@ Thread t = new Thread(new Runnable(){
 		}
 		
 			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
-			player1.deck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
-			player1.deck.btnNewButton.addActionListener(this);
+			player1.player.pdeck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
+			player1.player.pdeck.btnNewButton.addActionListener(this);
 			addbackground3(this);
 			getContentPane().setLayout(null);
 			player1.repaint.addActionListener(this);
@@ -348,79 +419,21 @@ Thread t = new Thread(new Runnable(){
 
 			}
 		}
-		if(player1!=null){
-			if (e.getSource()==player1.deck.btnNewButton)
-			{
-				if(this.player1.getPhaseActual()==0)
-				{	
-				if(player1.cardDrawn==0){
-					player1.cardDrawn=1;
-					if(player1.barriers.findwhere()!=-1)
-					{
-						if(player1.deck.Deck.cardsLeft()!= 0 )
-						{
-							player1.barriers.addbarrier(player1.deck.Deck.extraerR());
-							player1.deck.textField.setText("cards left "+player1.deck.Deck.cardsLeft());
-							player1.deck.textField.repaint();
-							System.out.println("toque deck");
 		
-							repaint();
-						}else
-						{
-							
-							gameover(this);
-							
-						
-							try {
-							
-								player1=new PlayerGui(0,0,Nombre1);
-								
-		
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						
-							b2 = new JButton("rematch");
-							b2.setBackground(Color.BLACK);
-							b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-							b2.setForeground(Color.WHITE);
-							b2.setBounds(70, 50, 132, 43);
-							b2.addActionListener(this);
-							add(b2);
-							repaint();
-							setVisible(true);
-						
-							
-						}
-						
-		
-					}
-				}else
-				{
-					JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
-				}
-			}else
-			{
-				
-					
-					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
-				
-				
-			}
-			}
-			
-		}
 		
 
 		if (e.getSource()==mi1) {
 			setSize(900,650);
+			pack();
 		}
 		if (e.getSource()==mi2) {
 			setSize(800,600);
+			pack();
+			
 		}
 		if (e.getSource()==mi3) {
 			setSize(1024,768);
+			pack();
 		}   
 		if (player1!=null){
 		if(e.getSource()==player1.repaint)

@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class AiDeck extends DeckGui {
@@ -14,7 +15,16 @@ public class AiDeck extends DeckGui {
 	 * Create the panel.
 	 */
 	public AiDeck(int x , int y) {
+		
 		super(x,y);
+		Deck=new deck();
+		 
+		 try {
+			Deck.Load("resources/siren.in");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		panel.setSize(53, 68);
 		btnNewButton.setSize(43, 43);
 		btnNewButton_1.addActionListener(new ActionListener() {
