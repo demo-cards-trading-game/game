@@ -65,6 +65,7 @@ public class deck{
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
+  
  }
  
  //sugiero un constructor que genere un deck ya barajeado 
@@ -74,16 +75,14 @@ public class deck{
  public deck(Card[] cards, int n)
  {
 	 shuffle(); //se barajea el vector antes de insertarse en el deck
-	 for (int i=0;i<n;i++){
-		 this.insertar(cards[i]);
-	 }
+	
  }
  
  //shuffle
  
  void init()
  {
-	 for (int i=0;i<cards.length;i++)
+	 for (int i=0;i<40;i++)
 	 {
 		 verif[i]=false;
 		 } 
@@ -92,13 +91,14 @@ public class deck{
 	 
  }
 public void shuffle() {
-	 int n= cards.length;
+	 
 	 int a,b;
 	 init();
 	 Random randomGenerator = new Random();
 	 	
-	 new deck();
-	 for(int i=0 ;i< cards.length/2;i++)
+	 raiz= null;//aca se deberia desuir lo que esta en la lista
+	  longitud=0;
+	 for(int i=0 ;i< 20;i++)
 	 {
 		 a = randomGenerator.nextInt(cards.length-1);
 		 b=randomGenerator.nextInt(cards.length-1);
@@ -113,9 +113,9 @@ public void shuffle() {
 		 
 		 exch(a,b);
 		
-	 
 		 this.insertar( cards[a]);
-		this. insertar( cards[b]);
+			this. insertar( cards[b]);
+		 
 	 }
 	
 
@@ -222,9 +222,9 @@ private void exch( int i, int r) {
  
   return ident;
  }
- public void Load(String nombredeck)throws FileNotFoundException, IOException 
+ public void Load(String nombredeck)throws FileNotFoundException, IOException //de aca sale con 40 cartas 
  {
-	 	
+	
 	   String cadena;
        int numero = 0,veces=0;
        Card Created;
@@ -244,12 +244,15 @@ private void exch( int i, int r) {
            }
            for (int i=1;i<=veces;i++){
            insertar(lista.Data.Consultar(numero));
+        
            }
     	   
     	   
-    	   
        }
+   
        barajear();
+   
+       
 	 
  }
  public void barajear()

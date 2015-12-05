@@ -13,7 +13,7 @@ import java.util.Scanner;
  
 public class LoadData {
     
- static public List Data ;
+  public List Data ;
  
 
   public void cargaWarriors(String archivo) throws FileNotFoundException, IOException 
@@ -57,7 +57,7 @@ public class LoadData {
                             
                 Created.SetDescription(concat);
                 Created.SetType("Warrior");
-                Created.SetCardNumber(List.cantidad+1);
+                Created.SetCardNumber(Data.cantidad+1);
           Data.insertarUlt(Created);
           
             } 
@@ -106,7 +106,7 @@ public class LoadData {
                           
               Created.SetDescription(concat);
               Created.SetType("Disruption");
-              Created.SetCardNumber(List.cantidad+1);
+              Created.SetCardNumber(Data.cantidad+1);
         Data.insertarUlt(Created);
         
           } 
@@ -155,7 +155,7 @@ public class LoadData {
                           
               Created.SetDescription(concat);
               Created.SetType("Event");
-              Created.SetCardNumber(List.cantidad+1);
+              Created.SetCardNumber(Data.cantidad+1);
         Data.insertarUlt(Created);
         
           } 
@@ -205,7 +205,7 @@ public class LoadData {
                           
               Created.SetDescription(concat);
               Created.SetType("Event");
-              Created.SetCardNumber(List.cantidad+1);
+              Created.SetCardNumber(Data.cantidad+1);
         Data.insertar(1,Created);
         
           } 

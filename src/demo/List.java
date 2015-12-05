@@ -17,7 +17,7 @@ public  class List{
     
     private Nodo raiz;
     private Nodo ultimo; //para poder insertar nodos al final directamente
-    public static   int cantidad;
+    public   int cantidad;
     
     
     public List() {

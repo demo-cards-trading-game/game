@@ -51,7 +51,7 @@ public class DeckGui extends JPanel {
 			e.printStackTrace();
 		}
 
-
+		 	System.out.println("" + Deck.longitud);
 		 
 		setBackground(new Color(255, 165, 0));
 		setBounds(x, y, 250, 340);
