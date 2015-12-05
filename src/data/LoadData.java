@@ -16,7 +16,7 @@ public class LoadData {
  static public List Data ;
  
 
-  public static void cargaWarriors(String archivo) throws FileNotFoundException, IOException 
+  public void cargaWarriors(String archivo) throws FileNotFoundException, IOException 
     {
         String cadena , concat;
         
@@ -66,7 +66,7 @@ public class LoadData {
        
        b.close();
     }
-  public static void cargaDisruptions(String archivo) throws FileNotFoundException, IOException 
+  public  void cargaDisruptions(String archivo) throws FileNotFoundException, IOException 
   {
       String cadena , concat;
       
@@ -115,7 +115,7 @@ public class LoadData {
      
      b.close();
   }
-  public static void cargaEvents(String archivo) throws FileNotFoundException, IOException 
+  public  void cargaEvents(String archivo) throws FileNotFoundException, IOException 
   {
       String cadena , concat;
       
@@ -165,7 +165,7 @@ public class LoadData {
      b.close();
   }
   
-  public static void cargaPowers(String archivo) throws FileNotFoundException, IOException 
+  public void cargaPowers(String archivo) throws FileNotFoundException, IOException 
   {
       String cadena , concat;
       

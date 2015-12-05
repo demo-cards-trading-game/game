@@ -841,6 +841,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			for(int i=0; i<player.pdeck.Deck.cardsLeft();i++){
 				System.out.println(i+1+"   "+player.pdeck.Deck.Consultar(i).Getid()+"  "+player.pdeck.Deck.Consultar(i).GetName());
 			}
+			for(int i=0; i<ai.aideck.Deck.cardsLeft();i++){
+				System.out.println(i+1+"   "+ai.aideck.Deck.Consultar(i).Getid()+"  "+ai.aideck.Deck.Consultar(i).GetName());
+			}
 		}
 		
 	}

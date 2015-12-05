@@ -35,12 +35,12 @@ public class DeckGui extends JPanel {
 	public JPanel panel;
 	public JLabel lblDeck; 
 	public JLabel lblForgotten ;
-	public void addhero(Card x) throws IOException
-	{
-		panel.add(new SmallCard(true,x));
-		repaint();
-		
-	}
+	
+	
+	
+	
+	
+	
 	public DeckGui(int x,int y) {
 		this.Deck=new deck();
 		 
@@ -51,7 +51,6 @@ public class DeckGui extends JPanel {
 			e.printStackTrace();
 		}
 
-			
 
 		 
 		setBackground(new Color(255, 165, 0));
@@ -125,4 +124,12 @@ public class DeckGui extends JPanel {
 	
 	}
 	
+	
+
+	 public void addhero(Card x) throws IOException
+		{
+			panel.add(new SmallCard(true,x));
+			repaint();
+			
+		}	
 }

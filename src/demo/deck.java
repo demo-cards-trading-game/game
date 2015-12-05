@@ -52,7 +52,7 @@ public class deck{
  }
  
  private nodo raiz; //primera carta del deck
- static public int longitud; //tamaño del deck 
+ public int longitud; //tamaño del deck 
  private nodo fin= new nodo();; //apuntador al ultimo nodo
  
  //constructor
