@@ -1,8 +1,9 @@
 package demo;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-public class PlayerGui extends JPanel {
+public class PlayerGui extends JLayeredPane {
 	public HandGui hand;
 	public DeckGui pdeck;
 	public Drained powers;

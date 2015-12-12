@@ -104,6 +104,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setLayout(null);
 		setBounds(0,0, 1024, 768);
 		cardDrawn=0;
+		fight=new fightpane();
+		moveToFront(fight);//takes to front fightpane
+		this.add(fight);
 		JLabel name_1 = new JLabel("Player : "+ name);
 		add(name_1);
 		name_1.setForeground(new Color(255, 248, 220));
@@ -125,10 +128,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai = new AIGui();
 		
 
-		player.field.addMouseListener(this);
-		fight=new fightpane();
-		moveToFront(fight);//takes to front fightpane
-		this.add(fight);
+	
 		
 		this.add(ai);
 
@@ -351,7 +351,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(j);
 		j.addActionListener(this);
 		this.moveToFront(this.j);
-
+		player.field.addMouseListener(this);
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
