@@ -89,7 +89,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
 	public JButton j;
-	public JInternalFrame listAll;
+	public prueba2 listAll;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -355,10 +355,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.field.addMouseListener(this);
 		
 		this.listAll = new prueba2(player.pdeck.Deck);
+		
 		this.listAll.setBounds(150, 100, 620, 420);
 		this.listAll.setVisible(false);
 		add(this.listAll);
 		this.moveToFront(this.listAll);
+		
+		this.listAll.aceptar.addActionListener(this);
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -848,6 +852,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.setVisible(true);
 		}
 		
+		if(e.getSource()==this.listAll.aceptar){
+			this.listAll.setVisible(true);
+			
+		}
+		
 	}
 
 
@@ -884,6 +893,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getButton() == MouseEvent.BUTTON1)
 		{if(e.getClickCount()==1)
 		{
+			
+			
 			if(barierpicked==0)
 			{
 			if(e.getSource()==player.barriers.barriers[0])//si se da click a la barrera 0
@@ -931,6 +942,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				barierpicked=1;
 				repaint();
 			}
+			
 			
 		}else
 		{
@@ -1023,6 +1035,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 		}
+		
 		}	    
 		else if(e.getButton() == MouseEvent.BUTTON3)
 		{
