@@ -17,7 +17,7 @@ import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
 
-public class prueba2 extends JInternalFrame 
+public class prueba2 extends JInternalFrame
 {
 	private boolean band,band1;
 	private JTable leftTable;
@@ -28,7 +28,7 @@ public class prueba2 extends JInternalFrame
 	public LoadData data;
 	public int cant;
 	//CardGui current;
-	BigCard current;
+	public BigCard current;
 	public JPanel panel;
 	private JPanel panel_1;
 	private JLabel Count; 
@@ -36,9 +36,13 @@ public class prueba2 extends JInternalFrame
 	private JLabel lblCardsOnDeck;
 	private JButton Create;
 	public deck mazo;
-	 
+	public JInternalFrame opciones;
+	public JButton aceptar; 
+	
+	
 	public prueba2(deck d)
 	{
+		this.current=new BigCard();
 		this.mazo= new deck();
 		this.mazo=d;
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -175,6 +179,41 @@ public class prueba2 extends JInternalFrame
 	                		int x=(int) rowValue.get(0);
 	                		
 	                		current=new BigCard(mazo.Consultar(x),340,30);
+	                		current.addMouseListener(new MouseListener(){
+
+								@Override
+								public void mouseClicked(MouseEvent e) {
+									// TODO Auto-generated method stub
+									if(e.getSource()==current){
+										opciones.setVisible(true);
+									}
+								}
+
+								@Override
+								public void mouseEntered(MouseEvent arg0) {
+									// TODO Auto-generated method stub
+									
+								}
+
+								@Override
+								public void mouseExited(MouseEvent arg0) {
+									// TODO Auto-generated method stub
+									
+								}
+
+								@Override
+								public void mousePressed(MouseEvent arg0) {
+									// TODO Auto-generated method stub
+									
+								}
+
+								@Override
+								public void mouseReleased(MouseEvent arg0) {
+									// TODO Auto-generated method stub
+									
+								}
+	                			
+	                		});
 	                	}
 	                	add (current);
 	                }
@@ -243,6 +282,20 @@ public class prueba2 extends JInternalFrame
 	                	Create.setEnabled(false);
 	            }
 	        });
+	        
+	        
+	        this.opciones = new JInternalFrame();
+			this.opciones.getContentPane().setLayout(null);
+			this.aceptar = new JButton("aceptar");
+			this.aceptar.setBounds(15, 11, 100, 20);
+			this.opciones.getContentPane().add(this.aceptar);
+			this.opciones.setClosable(true);
+			this.opciones.setBounds(380,160,130,70);
+			this.opciones.setVisible(false);
+			add(this.opciones);
+			this.opciones.moveToFront();
+			
+			
 }
 
 	        
@@ -373,4 +426,5 @@ public class prueba2 extends JInternalFrame
 	    }
 
 	}
+
 }

@@ -28,6 +28,10 @@ public class BigCard extends JPanel {
 	 * Create the panel.
 	 */
 	
+	public BigCard(){
+		
+	}
+	
 	public BigCard(Card x, int a ,int b) {
 		
 		super();
