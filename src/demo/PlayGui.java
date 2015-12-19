@@ -89,6 +89,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
 	public JButton j;
+	public prueba2 listAll;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -353,7 +354,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.j);
 		player.field.addMouseListener(this);
 		
+		this.listAll = new prueba2(player.pdeck.Deck);
 		
+		this.listAll.setBounds(150, 100, 620, 420);
+		this.listAll.setVisible(false);
+		add(this.listAll);
+		this.moveToFront(this.listAll);
+		
+		this.listAll.aceptar.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -840,12 +848,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		if(e.getSource()==j){
-			for(int i=0; i<player.pdeck.Deck.cardsLeft();i++){
-				System.out.println(i+1+"   "+player.pdeck.Deck.Consultar(i).Getid()+"  "+player.pdeck.Deck.Consultar(i).GetName());
-			}
-			for(int i=0; i<ai.aideck.Deck.cardsLeft();i++){
-				System.out.println(i+1+"   "+ai.aideck.Deck.Consultar(i).Getid()+"  "+ai.aideck.Deck.Consultar(i).GetName());
-			}
+			this.listAll.setVisible(true);
+			//System.out.println(this.listAll.current.actual.GetName());
+		}
+		
+		if(e.getSource()==this.listAll.aceptar){
+			this.listAll.setVisible(false);
+			this.listAll.opciones.setVisible(false);
 		}
 		
 	}

@@ -124,8 +124,6 @@ public class prueba2 extends JInternalFrame
 	       // add(panel_1);
 	        	        panel_1.setLayout(null);
 	        	        
-	        	        	       
-	        	        
 	        	        	        JLabel label = new JLabel("Available Choices");
 	        	        	        label.setBounds(21, 11, 131, 14);
 	        	        	        panel_1.add(label);
@@ -161,15 +159,32 @@ public class prueba2 extends JInternalFrame
 	            @Override
 	            public void valueChanged(ListSelectionEvent e) 
 	            {
-
+	            	int num, indice;
+	            	String aux;
+	            	char a;
+	            	
+	            		//System.out.println(e.getSource().toString());
+		            	//System.out.println(e.getSource().toString().substring(e.getSource().toString().length()-2, e.getSource().toString().length()-1));
+		            	//num=Integer.parseInt(e.getSource().toString().substring(e.getSource().toString().length()-2, e.getSource().toString().length()-1));
+	            		aux = e.getSource().toString();
+	            		indice= e.getSource().toString().indexOf("{")+1;
+	            		a= aux.charAt(indice);
+	            		num = Integer.parseInt(""+a);
+	            		
+	            		a= aux.charAt(indice+1);
+	            		if(a!='}'){
+	            			num=num*10;
+	            			num=num+Integer.parseInt(""+a);;
+	            		}
+	            		
+	            		//System.out.println(num);
+	            		
 	            	int count = leftTable.getSelectedRowCount();
 	                
 	                if(count>0&& band1 )
 	                {	
 	                	if (current!=null)
 	                		remove(current);
-	                	if(c < 10)
-	                		addButton.setEnabled(true);
 	                	
 	                	SimpleColorTableModel fromModel = (SimpleColorTableModel) leftTable.getModel();
 	                	for (int index :leftTable.getSelectedRows()) 
@@ -178,7 +193,7 @@ public class prueba2 extends JInternalFrame
 	                		Vector rowValue = (Vector) fromModel.getDataVector().get(index);
 	                		int x=(int) rowValue.get(0);
 	                		
-	                		current=new BigCard(mazo.Consultar(x),340,30);
+	                		current=new BigCard(mazo.Consultar(num),340,30);
 	                		current.addMouseListener(new MouseListener(){
 
 								@Override
@@ -373,7 +388,7 @@ public class prueba2 extends JInternalFrame
     	int i,id ;
     	Card x;
     	
-    	for(i=1;i<=cant;i++)
+    	for(i=0;i<cant;i++)
 		{
     		x= this.mazo.Consultar(i);
 			switch (x.GetSource())
