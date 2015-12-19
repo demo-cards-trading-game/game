@@ -23,10 +23,14 @@ import javax.swing.border.LineBorder;
 
 public class BigCard extends JPanel {
 	private JTextField textField;
-	private Card  actual;
+	public Card  actual;
 	/**
 	 * Create the panel.
 	 */
+	
+	public BigCard(){
+		
+	}
 	
 	public BigCard(Card x, int a ,int b) {
 		
