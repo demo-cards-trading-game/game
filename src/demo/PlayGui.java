@@ -1,5 +1,6 @@
 package demo;
 import demo.HandGui;
+import extra.Tutorial;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
 import demo.CardGui;
@@ -62,7 +63,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public AIGui ai;//lo mismo pero en el ai
 	public Previewpane preview;//aca se muestra la carta
 
-
+	public Tutorial tuto;
 	
 	optionpane op;
 	int turn, contTurn=0;
@@ -104,6 +105,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setLayout(null);
 		setBounds(0,0, 1024, 768);
 		cardDrawn=0;
+		
+		tuto=new Tutorial();
+		add(tuto);
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
@@ -124,7 +128,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.add(player);
 		repaint=new JButton();
 
-	
+		
 		ai = new AIGui();
 		
 
@@ -352,8 +356,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		j.addActionListener(this);
 		this.moveToFront(this.j);
 		player.field.addMouseListener(this);
-		
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -558,21 +560,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
 			//System.out.println(turn);
-		
+			System.out.println(phases.actual);
 				done=1;
-			if(phases.actual<4){
-				phases.change(phases.actual+1);
-		
-			}else{
-				phases.change(0);
-		
-			}
+				
+				if(phases.actual<4){
+					phases.change(phases.actual+1);
+			
+				}else{
+					phases.change(0);
+			
+				}
 			
 			switch(phases.actual){
 				//setup
 			
 				case 0:
 					
+				
 					barierpicked=0;
 					warriorPlayed=0;
 					cardDrawn=0;
@@ -580,8 +584,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					for(int i=0;i<5;i++)
 						player.hand.handgui[i].Play.setEnabled(false);
 					
+					System.out.println(turn);
 					if(turn==1)
 					{
+						
+						tuto.draw();
 						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
 						player.powers.set(1);
 						this.phases.setup.removeActionListener(this);
@@ -749,13 +756,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					repaint();
 					this.contTurn++;
 					this.atkDest=this.atkOrigin=-1;
-				break;
+					this.phases.setup.doClick();
+					break;
 				
 			}
-			if(this.phases.actual==4){
-				this.phases.setup.doClick();	
-			}
-			repaint();
+			
 		}
 		
 	done=0;

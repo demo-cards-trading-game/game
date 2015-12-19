@@ -142,6 +142,7 @@ public class Gui extends JFrame implements ActionListener
 			if (e.getSource()==player1.player.pdeck.btnNewButton)
 				
 			{
+				player1.tuto.ok.doClick();
 				if(this.player1.getPhaseActual()==0)
 				{	
 					
