@@ -90,6 +90,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
+	public Effects effects;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -362,6 +363,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
+		
+		this.effects= new Effects(this);
+		this.effects.makeEffect(this.player.pdeck.Deck.cards[0].Getid());
 	}
 	
 	public void actionPerformed(ActionEvent e) {
