@@ -90,7 +90,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
-	public Effects effects;
+	//public Effects effects;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -364,8 +364,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		this.listAll.aceptar.addActionListener(this);
 		*/
-		this.effects= new Effects(this);
-		this.effects.makeEffect(this.player.pdeck.Deck.cards[0].Getid());
+		this.listAll = new prueba2(player.pdeck.Deck);
+		
+		this.listAll.setBounds(150, 100, 620, 420);
+		add(this.listAll);
+		this.moveToFront(this.listAll);
+		
+		this.listAll.aceptar.addActionListener(this);
+		this.listAll.setVisible(false);
+		this.makeEffect(this.player.pdeck.Deck.cards[0].Getid());
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -1298,7 +1305,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						repaint();
 
-						
+						this.makeEffect(carta.actual.Getid());
 
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -1451,5 +1458,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.turnoLabel.setText("Turn Player");
 			this.contTurn++;
 		}
+	
+	public void makeEffect(String id){
+		
+		if(this.phases.actual==2){
+			if(id.equals("SSD-06")){
+				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
+				player.powers.set(2);
+				System.out.println("works");
+			}
+		}
+		if(this.phases.actual==3){
+			
+		}
+		
+	}
 
 }
