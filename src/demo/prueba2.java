@@ -27,7 +27,7 @@ public class prueba2 extends JInternalFrame
     private String deckname;
 	public LoadData data;
 	public int cant;
-	//CardGui current;
+	//CardGui current;hola
 	public BigCard current;
 	public JPanel panel;
 	private JPanel panel_1;
