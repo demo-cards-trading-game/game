@@ -82,7 +82,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
 	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
-	public JButton attack1, attack2, attack3, attack4, attack5;
+	public JButton attack1, attack2, attack3, attack4, attack5, undrain;
 	public JButton dest1, dest2, dest3, dest4, dest5;
 	public int atkDest=-1, atkOrigin=-1;
 	public int [] aiAttack= new int[5];
@@ -372,7 +372,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		this.listAll.aceptar.addActionListener(this);
 		this.listAll.setVisible(false);
-		this.makeEffect(this.player.pdeck.Deck.cards[0].Getid());
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -1305,7 +1304,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						repaint();
 
-						this.makeEffect(carta.actual.Getid());
+						this.makeEffect(carta.actual.Getid(),where);
 
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -1459,14 +1458,33 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.contTurn++;
 		}
 	
-	public void makeEffect(String id){
+	public void makeEffect(String id, int pos){
 		
 		if(this.phases.actual==2){
 			if(id.equals("SSD-06")){
 				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
 				player.powers.set(2);
-				System.out.println("works");
 			}
+			if(id.equals("SSD-05")){
+				this.undrain= new JButton("undrain");
+				this.undrain.setBounds(15, 17, 49, 20);
+				if(pos==0){
+					menu1.getContentPane().add(this.undrain);
+				}
+				if(pos==1){
+					menu2.getContentPane().add(this.undrain);
+				}
+				if(pos==2){
+					menu3.getContentPane().add(this.undrain);
+				}
+				if(pos==3){
+					menu4.getContentPane().add(this.undrain);
+				}
+				if(pos==4){
+					menu5.getContentPane().add(this.undrain);
+				}
+			}
+				
 		}
 		if(this.phases.actual==3){
 			
