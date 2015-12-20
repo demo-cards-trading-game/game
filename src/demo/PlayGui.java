@@ -90,8 +90,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
 	public JButton j;
-	public prueba2 listAll;
-	public Effects effects;
+	//public prueba2 listAll;
+	//public Effects effects;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -359,7 +359,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		changePhase.setVisible(false);
 		changePhase.addActionListener(this);
 		player.field.addMouseListener(this);
-		
+		/*
 		this.listAll = new prueba2(player.pdeck.Deck);
 		
 		this.listAll.setBounds(150, 100, 620, 420);
@@ -368,15 +368,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
+		*/
+		//this.listAll = new prueba2(player.pdeck.Deck);
 		
-		this.listAll = new prueba2(player.pdeck.Deck);
+		//this.listAll.setBounds(150, 100, 620, 420);
+		//add(this.listAll);
+		//this.moveToFront(this.listAll);
 		
-		this.listAll.setBounds(150, 100, 620, 420);
-		add(this.listAll);
-		this.moveToFront(this.listAll);
-		
-		this.listAll.aceptar.addActionListener(this);
-		this.listAll.setVisible(false);
+		//this.listAll.aceptar.addActionListener(this);
+		//this.listAll.setVisible(false);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -867,8 +867,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 		}
 		
-	if(e.getSource()==j){
-			this.listAll = new prueba2(player.pdeck.Deck);
+	//	if(e.getSource()==j){
+			/*this.listAll = new prueba2(player.pdeck.Deck);
 			
 			this.listAll.setBounds(150, 100, 620, 420);
 			add(this.listAll);
@@ -894,7 +894,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.removeAll();
 			repaint();
 		}
-		
+		*/
 	}
 
 
