@@ -52,7 +52,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 		 lblSms.setBackground(new Color(0, 128, 0));
 		 lblSms.setBounds(42, 35, 320, 40);
 		 panel.add(lblSms);
-		
+		this.setVisible(false);
 		
 	}
 	public void draw()
