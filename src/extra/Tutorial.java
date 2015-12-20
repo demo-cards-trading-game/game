@@ -65,10 +65,11 @@ public class Tutorial extends JPanel implements ActionListener  {
 	
 	}
 	
-	void barrier()
+	public void barrier()
 	{
-		animation.setLocation(400,220);
-		lblSms.setText("click on DECK button to get a card");
+		animation.setLocation(170,345);
+		lblSms.setText("click on a barrier to get the card");
+		animation.anim();
 		this.setVisible(true);
 	}
 	

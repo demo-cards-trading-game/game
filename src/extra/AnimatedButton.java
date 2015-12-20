@@ -30,7 +30,7 @@ public class AnimatedButton extends JPanel {
 			e.printStackTrace();
 		}
 		add(panel);
-		anim();
+		
 		
 
 	}
