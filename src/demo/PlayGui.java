@@ -1474,32 +1474,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(this.phases.actual==2){
 			if(id.equals("SSD-06")){
-				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
 				player.powers.set(2);
+				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
+				
 			}
 			if(id.equals("SSD-05")){
-				this.undrain= new JButton("undrain");
-				this.undrain.setBounds(15, 17, 49, 20);
-				if(pos==0){
-					menu1.getContentPane().add(this.undrain);
-				}
-				if(pos==1){
-					menu2.getContentPane().add(this.undrain);
-				}
-				if(pos==2){
-					menu3.getContentPane().add(this.undrain);
-				}
-				if(pos==3){
-					menu4.getContentPane().add(this.undrain);
-				}
-				if(pos==4){
-					menu5.getContentPane().add(this.undrain);
-				}
+				player.powers.undrain(player.field.cards[pos].getcard().GetCost());
+				JOptionPane.showMessageDialog(null, "power undrained");
 			}
 				
+			repaint();
 		}
 		if(this.phases.actual==3){
-			
+			repaint();
 		}
 		
 	}
