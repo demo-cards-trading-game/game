@@ -178,6 +178,32 @@ private void exch( int i, int r) {
  	return informacion;
  }
 
+ public Card ConsultarYextraer(int pos)
+ {
+ 	Card informacion=new Card();
+ 	nodo sig= new nodo();
+ 	nodo ant= new nodo();
+ 	if (pos == 1) 
+ 	{
+         informacion = raiz.info;
+         raiz=raiz.sig;
+ 	}else
+ 	{
+ 		nodo reco;
+         ant = raiz;
+         reco=ant.sig;
+         sig=reco.sig;
+         for (int f = 2 ; f < pos  ; f++){        	 
+             ant=ant.sig;
+        	 reco = ant.sig;
+             sig = reco.sig;
+         }
+         informacion=reco.info;
+         ant.sig=sig;
+ 	}
+ 	longitud--;
+ 	return informacion;
+ }
  
  public int getLongitud(){
 	 return longitud;

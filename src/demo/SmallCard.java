@@ -25,7 +25,7 @@ import javax.swing.border.LineBorder;
 
 public class SmallCard extends JLayeredPane{
 	private JTextField textField;
-	private Card  actual;
+	public Card  actual;
 	public JInternalFrame menu;
 	Graphics2D g2d;
 	public JLabel lblAtaque;
