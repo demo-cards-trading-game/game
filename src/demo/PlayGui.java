@@ -73,7 +73,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	private LoadData cartas;
 	JInternalFrame pane; 
 	public Phases phases;
-	public JButton changePhase,repaint;
+	public  JButton changePhase,repaint;
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
@@ -91,7 +91,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
-	//public Effects effects;
+	public Effects effects;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -355,8 +355,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(j);
 		j.addActionListener(this);
 		this.moveToFront(this.j);
+		changePhase=new JButton();
+		changePhase.setVisible(false);
+		changePhase.addActionListener(this);
 		player.field.addMouseListener(this);
-		/*
+		
 		this.listAll = new prueba2(player.pdeck.Deck);
 		
 		this.listAll.setBounds(150, 100, 620, 420);
@@ -365,7 +368,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
-		*/
+		
 		this.listAll = new prueba2(player.pdeck.Deck);
 		
 		this.listAll.setBounds(150, 100, 620, 420);
@@ -580,6 +583,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			//System.out.println(turn);
 		
 				done=1;
+				
 			if(phases.actual<4){
 				phases.change(phases.actual+1);
 		
@@ -587,12 +591,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				phases.change(0);
 		
 			}
-			
+			System.out.println(""+turno);
 			switch(phases.actual){
 				//setup
 			
 				case 0:
-					tuto.draw();
+					
 					barierpicked=0;
 					warriorPlayed=0;
 					cardDrawn=0;
@@ -602,9 +606,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					
 					if(turn==1)
 					{
-						System.out.println("entro else");
-						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
 						
+						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+						tuto.draw();
 						player.powers.set(1);
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
@@ -635,7 +639,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//draw
 				case 1:
-					tuto.draw();
+					tuto.barrier();
 					this.phases.draw.removeActionListener(this);
 					this.phases.action.addActionListener(this);
 					
@@ -863,7 +867,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 		}
 		
-		if(e.getSource()==j){
+	if(e.getSource()==j){
 			this.listAll = new prueba2(player.pdeck.Deck);
 			
 			this.listAll.setBounds(150, 100, 620, 420);
@@ -873,6 +877,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.aceptar.addActionListener(this);
 			this.listAll.setVisible(true);
 			//System.out.println(this.listAll.current.actual.GetName());
+			 
+			 
 		}
 		
 		if(e.getSource()==this.listAll.aceptar){
@@ -896,9 +902,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public class CirclePanel extends JPanel {
 
-		/**
-		 * 
-		 */
+		
 
 
 		@Override
@@ -1462,7 +1466,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			this.turnoLabel.setText("Turn Player");
 			this.contTurn++;
-			phases.change(0);
+			changePhase.doClick();
 		}
 	
 	public void makeEffect(String id, int pos){
