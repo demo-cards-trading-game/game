@@ -354,7 +354,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		j.addActionListener(this);
 		this.moveToFront(this.j);
 		player.field.addMouseListener(this);
-		
+		/*
 		this.listAll = new prueba2(player.pdeck.Deck);
 		
 		this.listAll.setBounds(150, 100, 620, 420);
@@ -363,7 +363,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
-		
+		*/
 		this.effects= new Effects(this);
 		this.effects.makeEffect(this.player.pdeck.Deck.cards[0].Getid());
 	}
@@ -852,6 +852,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		if(e.getSource()==j){
+			this.listAll = new prueba2(player.pdeck.Deck);
+			
+			this.listAll.setBounds(150, 100, 620, 420);
+			add(this.listAll);
+			this.moveToFront(this.listAll);
+			
+			this.listAll.aceptar.addActionListener(this);
 			this.listAll.setVisible(true);
 			//System.out.println(this.listAll.current.actual.GetName());
 		}
@@ -859,6 +866,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==this.listAll.aceptar){
 			this.listAll.setVisible(false);
 			this.listAll.opciones.setVisible(false);
+			
+			int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(this.listAll.num));
+			player.hand.handgui[pos-1].addMouseListener(this);
+			 Addlisteners2Card(pos-1);
+			this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+			this.player.pdeck.textField.repaint();
+
+			this.listAll.removeAll();
+			repaint();
 		}
 		
 	}

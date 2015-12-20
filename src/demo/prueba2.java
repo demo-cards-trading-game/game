@@ -38,7 +38,7 @@ public class prueba2 extends JInternalFrame
 	public deck mazo;
 	public JInternalFrame opciones;
 	public JButton aceptar; 
-	
+	public int num;
 	
 	public prueba2(deck d)
 	{
@@ -159,7 +159,7 @@ public class prueba2 extends JInternalFrame
 	            @Override
 	            public void valueChanged(ListSelectionEvent e) 
 	            {
-	            	int num, indice;
+	            	int indice;
 	            	String aux;
 	            	char a;
 	            	
