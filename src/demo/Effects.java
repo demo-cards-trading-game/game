@@ -15,9 +15,9 @@ public class Effects
 		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.cardsLeft());
 		System.out.println(id);
 		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.Consultar(0).GetName());
-		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.cards[1].GetName());
-		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.cards[2].GetName());
-		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.cards[3].GetName());
+		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.Consultar(1).GetName());
+		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.Consultar(2).GetName());
+		System.out.println("numero de cartas en el mazo "+play.player.pdeck.Deck.Consultar(3).GetName());
 
 	}
 
