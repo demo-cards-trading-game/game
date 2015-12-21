@@ -1262,33 +1262,63 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 				if(e.getSource()==player.field.cards[0])
 				{
-					player.powers.undrain(player.field.cards[0].getcard().GetCost());
+					if(player.field.cards[0].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[0].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[0].getcard().GetCost());
+					}
+					
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[0].getcard());
 					player.field.quitar(0);
 				}	
 				if(e.getSource()==player.field.cards[1])
 				{
+					if(player.field.cards[1].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[1].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[1].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[1].getcard());
-					player.powers.undrain(player.field.cards[1].getcard().GetCost());
 					player.field.quitar(1);
 				}
 				if(e.getSource()==player.field.cards[2])
 				{
+					if(player.field.cards[2].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[2].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[2].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[2].getcard());
-					player.powers.undrain(player.field.cards[2].getcard().GetCost());
 					player.field.quitar(2);
 				}
 				if(e.getSource()==player.field.cards[3])
 				{
+					if(player.field.cards[3].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[3].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[3].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[3].getcard());
-					player.powers.undrain(player.field.cards[3].getcard().GetCost());
 					player.field.quitar(3);
 					
 				}if(e.getSource()==player.field.cards[4])
 				{
+					if(player.field.cards[4].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[4].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[4].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[4].getcard());
-					
-					player.powers.undrain(player.field.cards[4].getcard().GetCost());
 					player.field.quitar(4);
 				}
 				
