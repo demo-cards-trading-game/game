@@ -52,7 +52,7 @@ public class AnimatedButton extends JPanel {
 						panel.setLocation(0,i);
 						i++;
 						try {
-							Thread.sleep(1);
+							Thread.sleep(2);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 
@@ -63,7 +63,7 @@ public class AnimatedButton extends JPanel {
 						panel.setLocation(0,i);
 						i--;
 						try {
-							Thread.sleep(1);
+							Thread.sleep(2);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 

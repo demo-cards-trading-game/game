@@ -16,10 +16,11 @@ import javax.swing.SwingConstants;
 
 public class Tutorial extends JPanel implements ActionListener  {
 
-	public JButton ok;
+	public JButton ok,ok2;
 	public AnimatedButton animation;
 	JLabel clickon;
 	JLabel lblSms ;
+	 JPanel panel;
 	public Tutorial() 
 	{
 		setBorder(new CompoundBorder(new LineBorder(new Color(0, 0, 0), 2), new LineBorder(new Color(0, 191, 255))));
@@ -34,10 +35,17 @@ public class Tutorial extends JPanel implements ActionListener  {
 		 ok.setBackground(Color.WHITE);
 		 ok.setBounds(150,120,100,40);
 		 ok.addActionListener(this);
+		 ok2=new JButton("Continue");
+		 ok2.setSelectedIcon(null);
+		 ok2.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
+		 ok2.setForeground(new Color(0, 0, 0));
+		 ok2.setBackground(Color.WHITE);
+		 ok2.setBounds(150,120,100,40);
+		 ok2.addActionListener(this);
 		 animation=new AnimatedButton(0,0);
 		 add(animation);
 		 
-		 JPanel panel = new JPanel();
+		panel= new JPanel();
 		 panel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 0, 0), 4), new MatteBorder(3, 2, 1, 2, (Color) new Color(255, 255, 255))));
 		 panel.setBackground(new Color(0, 128, 128));
 		 panel.setBounds(330, 201, 397, 193);
@@ -68,11 +76,32 @@ public class Tutorial extends JPanel implements ActionListener  {
 	public void barrier()
 	{
 		animation.setLocation(170,345);
+		
 		lblSms.setText("click on a barrier to get the card");
 		animation.anim();
 		this.setVisible(true);
 	}
 	
+	public void Action()
+	{
+		animation.setLocation(170,375);
+		lblSms.setText("now you can play a card , click on the card you are interested in then you will see a menu");
+		animation.anim();
+		remove(ok);
+		add(ok2);
+		this.setVisible(true);
+		
+		
+	}
+	public void Action2()
+	{
+		animation.setLocation(170,375);
+		lblSms.setText("done , now click on the play button");
+		animation.anim();
+		this.setVisible(true);
+		
+		
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -83,6 +112,17 @@ public class Tutorial extends JPanel implements ActionListener  {
 			
 			this.setVisible(false);
 			
+			
+		}
+		
+		if( e.getSource()==ok2)
+		{
+			animation.stop();
+			panel.remove(ok2);
+			panel.add(ok);
+			
+			this.setVisible(false);
+			Action2();
 			
 		}
 		

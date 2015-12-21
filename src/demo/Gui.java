@@ -49,6 +49,7 @@ public class Gui extends JFrame implements ActionListener
 	public Gui()
 	{  
 		setBounds(0,0, 1024, 768);  
+		
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -76,7 +77,7 @@ public class Gui extends JFrame implements ActionListener
 		setJMenuBar(mb);
 		menu1=new JMenu("Opciones");
 		mb.add(menu1);
-		menu2=new JMenu("resoucion");
+		menu2=new JMenu("resolucion");
 		menu1.add(menu2);
 		mi1=new JMenuItem("900,650(default)");
 		mi1.addActionListener(this);
@@ -126,7 +127,7 @@ public class Gui extends JFrame implements ActionListener
 
 
 
-		setLocation(100, 50);
+		
 		setResizable(false);
 
 
@@ -138,6 +139,13 @@ public class Gui extends JFrame implements ActionListener
 
 	public void actionPerformed(ActionEvent e) {
 
+		if (e.getSource()==mi2)
+		{
+			System.out.println("entro rico");
+			this.setBounds(0,0,800,100);
+			
+			
+		}
 		if(player1!=null){
 			if (e.getSource()==player1.player.pdeck.btnNewButton)
 				
@@ -427,11 +435,7 @@ public class Gui extends JFrame implements ActionListener
 			setSize(900,650);
 			pack();
 		}
-		if (e.getSource()==mi2) {
-			setSize(800,600);
-			pack();
-			
-		}
+		
 		if (e.getSource()==mi3) {
 			setSize(1024,768);
 			pack();

@@ -71,8 +71,8 @@ public class fightpane extends JLayeredPane{//en este panel se muestran las dos 
 				}
 
 				while (60 + i <= 360 - i) {
-					p1.setLocation(60 + i, 15);
-					p2.setLocation(360 - i, 15);
+				a1.setLocation(60 + i, 15);
+					a2.setLocation(360 - i, 15);
 
 					i++;
 					try {

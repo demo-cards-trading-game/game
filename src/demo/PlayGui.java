@@ -576,13 +576,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		if(e.getSource()==ai.aideck.btnNewButton){
-			System.out.println("toque deck ai");
+		
 		}
 		
-		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
-			//System.out.println(turn);
+		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
+		{
 		
-				done=1;
+			System.out.println("cocoyita");
+		if(done==0){
+				
 				
 			if(phases.actual<4){
 				phases.change(phases.actual+1);
@@ -591,7 +593,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				phases.change(0);
 		
 			}
-			System.out.println(""+turno);
+		
 			switch(phases.actual){
 				//setup
 			
@@ -639,10 +641,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//draw
 				case 1:
-					tuto.barrier();
+				
 					this.phases.draw.removeActionListener(this);
 					this.phases.action.addActionListener(this);
-					
+					tuto.barrier();
 					//disable deck: done
 					//enable barriers
 					for (int i=0;i<5;i++)
@@ -655,6 +657,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//action
 				case 2:
+					tuto.Action();
 					this.phases.action.removeActionListener(this);
 					this.phases.attack.addActionListener(this);
 					
@@ -672,7 +675,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				case 3:
 					this.phases.attack.removeActionListener(this);
 					this.phases.end.addActionListener(this);
-					
+				
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)
@@ -786,7 +789,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		
-	done=0;
+		done=1;
+	}
+		
 		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
 			
 			if(e.getSource()==this.attack1){
@@ -894,7 +899,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.removeAll();
 			repaint();
 		}
-		
+		done=0;
 	}
 
 
