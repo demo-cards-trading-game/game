@@ -168,7 +168,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		fallen=new Fallen();
 		add(fallen);
 		
-		this.phases.draw.addActionListener(this);
+		
 		op=new  optionpane();
 		//swords
 		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
@@ -413,7 +413,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.top3.setVisible(false);
 		this.top4.setVisible(false);
 		this.top5.setVisible(false);
-		
+		phases.change(4);
+		changePhase.doClick();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -616,7 +617,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			System.out.println("toque deck ai");
 		}
 		
-		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
+		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
+		{
 			//System.out.println(turn);
 		
 				done=1;
@@ -662,8 +664,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					else{
 						
-						this.phases.setup.removeActionListener(this);
-						this.phases.draw.addActionListener(this);
+					
 						ai.aideck.btnNewButton.addActionListener(this);
 						try {
 							Aiturn();
@@ -692,6 +693,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//action
 				case 2:
+					
 					this.phases.action.removeActionListener(this);
 					this.phases.attack.addActionListener(this);
 					
@@ -821,9 +823,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				this.phases.setup.doClick();	
 			}
 			repaint();
+			done=0;
 		}
 		
-	done=0;
+	
 		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
 			
 			if(e.getSource()==this.attack1){
@@ -1115,7 +1118,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			if(barierpicked==0)
 			{
-				tuto.ok.doClick();
+				
 			if(e.getSource()==player.barriers.barriers[0])//si se da click a la barrera 0
 			{
 				int pos= player.hand.draw(player.barriers.cards[0]);
