@@ -413,8 +413,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.top3.setVisible(false);
 		this.top4.setVisible(false);
 		this.top5.setVisible(false);
-		phases.change(4);
-		changePhase.doClick();
+		phases.draw.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -650,6 +649,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						tuto.draw();
 						player.powers.set(1);
 						this.phases.setup.removeActionListener(this);
+						this.phases.draw.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
 						
 						//enable deck
@@ -693,7 +693,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//action
 				case 2:
-					
+					tuto.Action();
 					this.phases.action.removeActionListener(this);
 					this.phases.attack.addActionListener(this);
 					
