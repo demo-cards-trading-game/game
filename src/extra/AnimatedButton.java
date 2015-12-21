@@ -11,6 +11,7 @@ import javax.swing.*;
 public class AnimatedButton extends JPanel {
 
 	JPanel panel;
+	public int i=0 ;
 	public boolean moving;
 
 	public AnimatedButton(int x, int y) {
@@ -44,7 +45,7 @@ public class AnimatedButton extends JPanel {
 			}
 
 			public void run() {
-				int i = 0;
+		
 				moving = true;
 				
 				while (moving) {
@@ -81,7 +82,7 @@ public class AnimatedButton extends JPanel {
 	public void stop()
 	{
 		moving=false;
-		
+		 i=0;
 		
 		
 	}

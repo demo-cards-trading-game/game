@@ -231,12 +231,8 @@ public class Drained extends JLayeredPane {
 		undrained[11]=panel_23;
 		currentdrained=6;
 		currentundrained=6;
-		for(int i=6;i<12;i++)
-		{
-			undrained[i].setVisible(false);
-			drained[i].setVisible(false);
-			
-		}
+		
+		
 		
 		
 		

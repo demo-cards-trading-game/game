@@ -97,6 +97,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int getPhaseActual(){
 		return phases.actual;
 	}
+	public void battle()
+	{
+		int pos=player.field.findwarrior();//busca un warrior en el campo para hacer la animacion
+		
+		if(pos!=-1)
+		{
+		tuto.animation.setLocation(210+pos*115,250);
+		tuto.lblSms.setText("select a warrior to fight");
+		tuto.animation.anim();
+		tuto.setVisible(true);
+		}
+	}
 	
 	public PlayGui(int x , int y, String name) throws IOException {
 		setBorder(null);
@@ -709,6 +721,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//attack
 				case 3:
+					battle();
 					this.phases.attack.removeActionListener(this);
 					this.phases.end.addActionListener(this);
 					
@@ -1747,4 +1760,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 	}
 
+	
+	
 }

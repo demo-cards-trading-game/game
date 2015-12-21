@@ -190,4 +190,22 @@ public class fieldGui extends JPanel {
 		
 		return x;
 	}
+	int findwarrior()
+	{
+		int x=-1;
+		int i=0;
+		while(x==-1 && i<5)
+		{
+			if(cards[i]!=null)
+			{
+				if(cards[i].getcard().GetType()=="Warrior"){
+				x=i;
+				}
+			}
+			i++;
+			
+		}
+		
+		return x;
+	}
 }

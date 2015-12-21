@@ -19,7 +19,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 	public JButton ok,ok2;
 	public AnimatedButton animation;
 	JLabel clickon;
-	JLabel lblSms ;
+	public JLabel lblSms ;
 	 JPanel panel;
 	public Tutorial() 
 	{
@@ -87,8 +87,9 @@ public class Tutorial extends JPanel implements ActionListener  {
 		animation.setLocation(170,375);
 		lblSms.setText("now you can play a card , click on the card you are interested in then you will see a menu");
 		animation.anim();
-		remove(ok);
-		add(ok2);
+		//ok2.setEnabled(false);
+		panel.remove(ok);
+		panel.add(ok2);
 		this.setVisible(true);
 		
 		
@@ -103,11 +104,13 @@ public class Tutorial extends JPanel implements ActionListener  {
 		
 	}
 	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if( e.getSource()==ok)
 		{
+			
 			animation.stop();
 			
 			this.setVisible(false);
@@ -117,11 +120,14 @@ public class Tutorial extends JPanel implements ActionListener  {
 		
 		if( e.getSource()==ok2)
 		{
+			System.out.println("ok2");
 			animation.stop();
+			
 			panel.remove(ok2);
 			panel.add(ok);
-			
+			animation.stop();
 			this.setVisible(false);
+			
 			Action2();
 			
 		}
