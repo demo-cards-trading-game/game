@@ -890,6 +890,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
 			{
 				ai.aifield.quitar(atkDest-1);
+				this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
 				
 			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
 			{
@@ -1693,6 +1694,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		if(this.phases.actual==3){
+			if(id.equals("SSD-02")){
+				int p;
+				JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+				
+				p=this.player.pdeck.Deck.posCard("SSD-15");
+				if(p==-1){
+					JOptionPane.showMessageDialog(null, "cannot find a water power");
+				}else{
+					int poss= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+					player.hand.handgui[poss-1].addMouseListener(this);
+					 Addlisteners2Card(poss-1);
+					this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+					this.player.pdeck.textField.repaint();
+				}
+			}
 			repaint();
 		}
 		
