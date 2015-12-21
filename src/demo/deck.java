@@ -204,6 +204,17 @@ private void exch( int i, int r) {
  	longitud--;
  	return informacion;
  }
+
+ public int posCard(String id){
+	 int pos=-1;
+	 for(int i=0; i<this.cardsLeft(); i++){
+		 if(this.Consultar(i).Getid().equals(id)){
+			 pos=i;
+		 }
+	 }
+	 
+	 return pos;
+ }
  
  public int getLongitud(){
 	 return longitud;

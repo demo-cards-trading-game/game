@@ -91,6 +91,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
+	public JButton top1,top2,top3,top4,top5;
 	//public Effects effects;
 	
 	public int getPhaseActual(){
@@ -368,7 +369,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
-		
 		this.listAll = new prueba2(player.pdeck.Deck);
 		
 		this.listAll.setBounds(150, 100, 620, 420);
@@ -377,6 +377,43 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		this.listAll.aceptar.addActionListener(this);
 		this.listAll.setVisible(false);
+		
+		this.top1=new JButton("tarjet");
+		this.top1.setBounds(200,580,80,30);
+		add(top1);
+		this.moveToFront(top1);
+		this.top1.addActionListener(this);
+		
+		this.top2=new JButton("tarjet");
+		this.top2.setBounds(330,580,80,30);
+		add(top2);
+		this.moveToFront(top2);
+		this.top2.addActionListener(this);
+		
+		this.top3=new JButton("tarjet");
+		this.top3.setBounds(450,580,80,30);
+		add(top3);
+		this.moveToFront(top3);
+		this.top3.addActionListener(this);
+		
+		this.top4=new JButton("tarjet");
+		this.top4.setBounds(570,580,80,30);
+		add(top4);
+		this.moveToFront(top4);
+		this.top4.addActionListener(this);
+		
+		this.top5=new JButton("tarjet");
+		this.top5.setBounds(700,580,80,30);
+		add(top5);
+		this.moveToFront(top5);
+		this.top5.addActionListener(this);
+		
+		this.top1.setVisible(false);
+		this.top2.setVisible(false);
+		this.top3.setVisible(false);
+		this.top4.setVisible(false);
+		this.top5.setVisible(false);
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -576,15 +613,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		if(e.getSource()==ai.aideck.btnNewButton){
-		
+			System.out.println("toque deck ai");
 		}
 		
-		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
-		{
+		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
+			//System.out.println(turn);
 		
-			System.out.println("cocoyita");
-		if(done==0){
-				
+				done=1;
 				
 			if(phases.actual<4){
 				phases.change(phases.actual+1);
@@ -593,7 +628,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				phases.change(0);
 		
 			}
-		
+			System.out.println(""+turno);
 			switch(phases.actual){
 				//setup
 			
@@ -641,10 +676,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//draw
 				case 1:
-				
+					tuto.barrier();
 					this.phases.draw.removeActionListener(this);
 					this.phases.action.addActionListener(this);
-					tuto.barrier();
+					
 					//disable deck: done
 					//enable barriers
 					for (int i=0;i<5;i++)
@@ -657,7 +692,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//action
 				case 2:
-					tuto.Action();
 					this.phases.action.removeActionListener(this);
 					this.phases.attack.addActionListener(this);
 					
@@ -675,7 +709,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				case 3:
 					this.phases.attack.removeActionListener(this);
 					this.phases.end.addActionListener(this);
-				
+					
 					//disable deck: done
 					//disable barriers
 					for (int i=0;i<5;i++)
@@ -789,9 +823,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		
-		done=1;
-	}
-		
+	done=0;
 		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
 			
 			if(e.getSource()==this.attack1){
@@ -858,6 +890,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
 			{
 				ai.aifield.quitar(atkDest-1);
+				this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
 				
 			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
 			{
@@ -881,7 +914,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			this.listAll.aceptar.addActionListener(this);
 			this.listAll.setVisible(true);
-			System.out.println(this.listAll.current.actual.GetName());
 			 
 			 
 		}
@@ -899,7 +931,154 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.removeAll();
 			repaint();
 		}
-		done=0;
+		
+		if(e.getSource()==this.top1){
+			int p;
+			
+			this.top1.setVisible(false);
+			this.top2.setVisible(false);
+			this.top3.setVisible(false);
+			this.top4.setVisible(false);
+			this.top5.setVisible(false);
+			
+			JOptionPane.showMessageDialog(null, "your card will be placed on top of the deck");
+			Card c = new Card();
+			c=player.hand.cards[0];	
+			player.pdeck.Deck.insertar(c);
+			player.hand.discard(1);
+			
+			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+			
+			p=this.player.pdeck.Deck.posCard("SSD-15");
+			if(p==-1){
+				JOptionPane.showMessageDialog(null, "cannot find a water power");
+			}else{
+				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+				this.player.pdeck.textField.repaint();
+			}
+			
+			repaint();
+		}
+		
+		if(e.getSource()==this.top2){
+			int p;
+			this.top1.setVisible(false);
+			this.top2.setVisible(false);
+			this.top3.setVisible(false);
+			this.top4.setVisible(false);
+			this.top5.setVisible(false);
+			
+			JOptionPane.showMessageDialog(null, "your card will be placed on top of the deck");
+			Card c = new Card();
+			c=player.hand.cards[1];	
+			player.pdeck.Deck.insertar(c);
+			player.hand.discard(2);
+			
+			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+			
+			p=this.player.pdeck.Deck.posCard("SSD-15");
+			if(p==-1){
+				JOptionPane.showMessageDialog(null, "cannot find a water power");
+			}else{
+				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+				this.player.pdeck.textField.repaint();
+			}
+			
+			repaint();
+		}
+		
+		if(e.getSource()==this.top3){
+			int p;
+			this.top1.setVisible(false);
+			this.top2.setVisible(false);
+			this.top3.setVisible(false);
+			this.top4.setVisible(false);
+			this.top5.setVisible(false);
+			
+			JOptionPane.showMessageDialog(null, "your card will be placed on top of the deck");
+			Card c = new Card();
+			c=player.hand.cards[2];	
+			player.pdeck.Deck.insertar(c);
+			player.hand.discard(3);
+
+			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+			p=this.player.pdeck.Deck.posCard("SSD-15");
+			if(p==-1){
+				JOptionPane.showMessageDialog(null, "cannot find a water power");
+			}else{
+				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+				this.player.pdeck.textField.repaint();
+			}
+			
+			repaint();
+		}
+
+		if(e.getSource()==this.top4){
+			int p;
+			this.top1.setVisible(false);
+			this.top2.setVisible(false);
+			this.top3.setVisible(false);
+			this.top4.setVisible(false);
+			this.top5.setVisible(false);
+			
+			JOptionPane.showMessageDialog(null, "your card will be placed on top of the deck");
+			Card c = new Card();
+			c=player.hand.cards[3];	
+			player.pdeck.Deck.insertar(c);
+			player.hand.discard(4);
+
+			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+			p=this.player.pdeck.Deck.posCard("SSD-15");
+			if(p==-1){
+				JOptionPane.showMessageDialog(null, "cannot find a water power");
+			}else{
+				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+				this.player.pdeck.textField.repaint();
+			}
+			
+			repaint();
+		}
+		
+		if(e.getSource()==this.top5){
+			int p;
+			this.top1.setVisible(false);
+			this.top2.setVisible(false);
+			this.top3.setVisible(false);
+			this.top4.setVisible(false);
+			this.top5.setVisible(false);
+			
+			JOptionPane.showMessageDialog(null, "your card will be placed on top of the deck");
+			Card c = new Card();
+			c=player.hand.cards[4];	
+			player.pdeck.Deck.insertar(c);
+			player.hand.discard(5);
+			
+			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+			p=this.player.pdeck.Deck.posCard("SSD-15");
+			if(p==-1){
+				JOptionPane.showMessageDialog(null, "cannot find a water power");
+			}else{
+				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+				this.player.pdeck.textField.repaint();
+			}
+			
+			repaint();
+		}
 	}
 
 
@@ -1083,33 +1262,63 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 				if(e.getSource()==player.field.cards[0])
 				{
-					player.powers.undrain(player.field.cards[0].getcard().GetCost());
+					if(player.field.cards[0].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[0].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[0].getcard().GetCost());
+					}
+					
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[0].getcard());
 					player.field.quitar(0);
 				}	
 				if(e.getSource()==player.field.cards[1])
 				{
+					if(player.field.cards[1].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[1].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[1].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[1].getcard());
-					player.powers.undrain(player.field.cards[1].getcard().GetCost());
 					player.field.quitar(1);
 				}
 				if(e.getSource()==player.field.cards[2])
 				{
+					if(player.field.cards[2].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[2].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[2].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[2].getcard());
-					player.powers.undrain(player.field.cards[2].getcard().GetCost());
 					player.field.quitar(2);
 				}
 				if(e.getSource()==player.field.cards[3])
 				{
+					if(player.field.cards[3].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[3].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[3].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[3].getcard());
-					player.powers.undrain(player.field.cards[3].getcard().GetCost());
 					player.field.quitar(3);
 					
 				}if(e.getSource()==player.field.cards[4])
 				{
+					if(player.field.cards[4].getcard().Getid().equals("SSD-01")){
+						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
+						player.powers.drain(player.field.cards[4].getcard().GetCost()*4);
+					}
+					else{
+						player.powers.undrain(player.field.cards[4].getcard().GetCost());
+					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[4].getcard());
-					
-					player.powers.undrain(player.field.cards[4].getcard().GetCost());
 					player.field.quitar(4);
 				}
 				
@@ -1481,30 +1690,56 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(id.equals("SSD-06")){
 				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
 				player.powers.set(2);
+				repaint();
 			}
 			if(id.equals("SSD-05")){
-				this.undrain= new JButton("undrain");
-				this.undrain.setBounds(15, 17, 49, 20);
-				if(pos==0){
-					menu1.getContentPane().add(this.undrain);
-				}
-				if(pos==1){
-					menu2.getContentPane().add(this.undrain);
-				}
-				if(pos==2){
-					menu3.getContentPane().add(this.undrain);
-				}
-				if(pos==3){
-					menu4.getContentPane().add(this.undrain);
-				}
-				if(pos==4){
-					menu5.getContentPane().add(this.undrain);
-				}
+				JOptionPane.showMessageDialog(null, "power undrained");
+				player.powers.undrain(player.field.cards[pos].getcard().GetCost());
+				repaint();
 			}
+			if(id.equals("SSD-04")){
+				JOptionPane.showMessageDialog(null, "please, select your hand card");				
+
+				if(player.hand.current>0){
+					this.top1.setVisible(true);
+				}
+				if(player.hand.current>1){
+					this.top2.setVisible(true);
+				}
+
+				if(player.hand.current>2){
+					this.top3.setVisible(true);
+				}
+				if(player.hand.current>3){
+					this.top4.setVisible(true);
+				}
+
+				if(player.hand.current>4){
+					this.top5.setVisible(true);
+				}
 				
+			}
+			
+				
+			repaint();
 		}
 		if(this.phases.actual==3){
-			
+			if(id.equals("SSD-02")){
+				int p;
+				JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+				
+				p=this.player.pdeck.Deck.posCard("SSD-15");
+				if(p==-1){
+					JOptionPane.showMessageDialog(null, "cannot find a water power");
+				}else{
+					int poss= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+					player.hand.handgui[poss-1].addMouseListener(this);
+					 Addlisteners2Card(poss-1);
+					this.player.pdeck.textField.setText("cards left "+this.player.pdeck.Deck.cardsLeft());
+					this.player.pdeck.textField.repaint();
+				}
+			}
+			repaint();
 		}
 		
 	}
