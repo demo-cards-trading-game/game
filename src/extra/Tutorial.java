@@ -67,6 +67,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 	public void draw()
 	{
 		animation.setLocation(910,420);
+		panel.setLocation(330, 201);
 		lblSms.setText("click on DECK button to get a card");
 		animation.anim();
 		this.setVisible(true);
@@ -127,7 +128,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 	public void end()
 	{
 				animation.setLocation(650,150);
-		
+		panel.setLocation(230, 201);
 		lblSms.setText("click on end button to end this turn");
 		animation.anim();
 		this.setVisible(true);
