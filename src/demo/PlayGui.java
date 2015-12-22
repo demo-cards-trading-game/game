@@ -67,7 +67,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	
 	optionpane op;
 	int turn, contTurn=0;
-	int acampo=-1;
+	int acampo=-1 ;
+	static int ready;
 	int i=0;
 	private Fallen fallen ;
 	private LoadData cartas;
@@ -426,9 +427,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.top4.setVisible(false);
 		this.top5.setVisible(false);
 		phases.draw.addActionListener(this);
+		tuto.ok.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		
+		if( e.getSource()==tuto.ok)
+		{
+			
+			tuto.animation.stop();
+			
+			tuto.setVisible(false);
+			
+			
+		}
+		
 	
 		int done=0;
 		if (e.getSource()==player.pdeck.btnNewButton_1)// si se le da click al boton de fallen 
@@ -638,7 +651,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				phases.change(phases.actual+1);
 		
 			}else{
+				if(ready==1){
 				phases.change(0);
+			}
 		
 			}
 			System.out.println(""+turno);
@@ -675,8 +690,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						//disable end turn
 					}
 					else{
-						
 					
+						
 						ai.aideck.btnNewButton.addActionListener(this);
 						try {
 							Aiturn();
@@ -782,6 +797,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				break;
 				//end turn
 				case 4:
+					System.out.println("juana la cubana"+ready);
+					if(ready==1){
+					ready=0;//para que la vaina espere al hilo
 					
 					this.phases.end.removeActionListener(this);
 					this.phases.setup.addActionListener(this);
@@ -829,12 +847,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					repaint();
 					this.contTurn++;
 					this.atkDest=this.atkOrigin=-1;
-				break;
+				
+				
+			}else
+			{
+				tuto.end();
+				ready=1;
+				
 				
 			}
-			if(this.phases.actual==4){
-				this.phases.setup.doClick();	
-			}
+					break;	
+		}
+			
+			
 			repaint();
 			done=0;
 		}

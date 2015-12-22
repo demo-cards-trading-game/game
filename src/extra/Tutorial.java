@@ -42,6 +42,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 		 ok2.setBackground(Color.WHITE);
 		 ok2.setBounds(150,120,100,40);
 		 ok2.addActionListener(this);
+		
 		 animation=new AnimatedButton(0,0);
 		 add(animation);
 		 
@@ -107,17 +108,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if( e.getSource()==ok)
-		{
-			
-			animation.stop();
-			
-			this.setVisible(false);
-			
-			
-		}
-		
+
 		if( e.getSource()==ok2)
 		{
 			System.out.println("ok2");
@@ -133,7 +124,15 @@ public class Tutorial extends JPanel implements ActionListener  {
 		}
 		
 	}
-	
+	public void end()
+	{
+				animation.setLocation(650,150);
+		
+		lblSms.setText("click on end button to end this turn");
+		animation.anim();
+		this.setVisible(true);
+		
+	}
 	
 	
 }
