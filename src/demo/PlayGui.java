@@ -96,7 +96,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
 	public JButton aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
-	//public Effects effects;
+	//esto es para ssd-08
+	public JButton ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
+	public JButton aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -562,6 +564,74 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet3.setVisible(false);
 		this.aitarjet4.setVisible(false);
 		this.aitarjet5.setVisible(false);
+		
+		
+		
+		
+		
+		this.ptarjet81= new JButton("tarjet");
+		this.ptarjet81.setBounds(230,380, 69, 20);
+		this.ptarjet82= new JButton("tarjet");
+		this.ptarjet82.setBounds(340,380, 69, 20);
+		this.ptarjet83= new JButton("tarjet");
+		this.ptarjet83.setBounds(450,380, 69, 20);
+		this.ptarjet84= new JButton("tarjet");
+		this.ptarjet84.setBounds(560,380, 69, 20);
+		this.ptarjet85= new JButton("tarjet");
+		this.ptarjet85.setBounds(670,380, 69, 20);
+		add(ptarjet81);
+		add(ptarjet82);
+		add(ptarjet83);
+		add(ptarjet84);
+		add(ptarjet85);
+		this.moveToFront(ptarjet81);
+		this.moveToFront(ptarjet82);
+		this.moveToFront(ptarjet83);
+		this.moveToFront(ptarjet84);
+		this.moveToFront(ptarjet85);
+		
+		this.aitarjet81= new JButton("tarjet");
+		this.aitarjet81.setBounds(230, 210, 69, 20);
+		this.aitarjet82= new JButton("tarjet");
+		this.aitarjet82.setBounds(340,210, 69, 20);
+		this.aitarjet83= new JButton("tarjet");
+		this.aitarjet83.setBounds(450,210, 69, 20);
+		this.aitarjet84= new JButton("tarjet");
+		this.aitarjet84.setBounds(560,210, 69, 20);
+		this.aitarjet85= new JButton("tarjet");
+		this.aitarjet85.setBounds(670,210, 69, 20);
+		add(aitarjet81);
+		add(aitarjet82);
+		add(aitarjet83);
+		add(aitarjet84);
+		add(aitarjet85);
+		this.moveToFront(aitarjet81);
+		this.moveToFront(aitarjet82);
+		this.moveToFront(aitarjet83);
+		this.moveToFront(aitarjet84);
+		this.moveToFront(aitarjet85);
+		
+		this.ptarjet81.addActionListener(this);
+		this.ptarjet82.addActionListener(this);
+		this.ptarjet83.addActionListener(this);
+		this.ptarjet84.addActionListener(this);
+		this.ptarjet85.addActionListener(this);
+		this.aitarjet81.addActionListener(this);
+		this.aitarjet82.addActionListener(this);
+		this.aitarjet83.addActionListener(this);
+		this.aitarjet84.addActionListener(this);
+		this.aitarjet85.addActionListener(this);
+		
+		this.ptarjet81.setVisible(false);
+		this.ptarjet82.setVisible(false);
+		this.ptarjet83.setVisible(false);
+		this.ptarjet84.setVisible(false);
+		this.ptarjet85.setVisible(false);
+		this.aitarjet81.setVisible(false);
+		this.aitarjet82.setVisible(false);
+		this.aitarjet83.setVisible(false);
+		this.aitarjet84.setVisible(false);
+		this.aitarjet85.setVisible(false);
 		tuto.ok.addActionListener(this);
 	}
 	
@@ -1331,6 +1401,67 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
 		}
+		
+		if(e.getSource()==this.ptarjet81||e.getSource()==this.ptarjet82||e.getSource()==this.ptarjet83||e.getSource()==this.ptarjet84||e.getSource()==this.ptarjet85||e.getSource()==this.aitarjet81||e.getSource()==this.aitarjet82||e.getSource()==this.aitarjet83||e.getSource()==this.aitarjet84||e.getSource()==this.aitarjet85){
+			this.selected=-1;
+			int pos;
+			
+			this.ptarjet81.setVisible(false);
+			this.ptarjet82.setVisible(false);
+			this.ptarjet83.setVisible(false);
+			this.ptarjet84.setVisible(false);
+			this.ptarjet85.setVisible(false);
+			this.aitarjet81.setVisible(false);
+			this.aitarjet82.setVisible(false);
+			this.aitarjet83.setVisible(false);
+			this.aitarjet84.setVisible(false);
+			this.aitarjet85.setVisible(false);
+			
+			if(e.getSource()==this.ptarjet81){
+				this.selected=1;
+			}
+			if(e.getSource()==this.ptarjet82){
+				this.selected=2;
+			}
+			if(e.getSource()==this.ptarjet83){
+				this.selected=3;
+			}
+			if(e.getSource()==this.ptarjet84){
+				this.selected=4;
+			}
+			if(e.getSource()==this.ptarjet85){
+				this.selected=5;
+			}
+			
+			if(this.selected==-1){
+				if(e.getSource()==this.aitarjet81){
+					this.selected=1;
+				}
+				if(e.getSource()==this.aitarjet82){
+					this.selected=2;
+				}
+				if(e.getSource()==this.aitarjet83){
+					this.selected=3;
+				}
+				if(e.getSource()==this.aitarjet84){
+					this.selected=4;
+				}
+				if(e.getSource()==this.aitarjet85){
+					this.selected=5;
+				}
+				pos= this.ai.aihand.draw(this.ai.aifield.cards[this.selected-1].getcard());
+				this.ai.aifield.quitar(this.selected-1);
+			}
+			else{
+				pos= player.hand.draw(this.player.field.cards[this.selected-1].getcard());
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				 player.field.quitar(this.selected-1);
+			}
+			
+			repaint();
+			JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
+		}
 	}
 
 
@@ -1987,6 +2118,44 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				if(this.player.field.cards[4]!=null){
 					this.ptarjet5.setVisible(true);
+				}
+			}
+			
+			if(id.equals("SSD-08")){
+				JOptionPane.showMessageDialog(null, "please select a card from the field");
+				if(this.player.field.cards[0]!=null){
+					this.ptarjet81.setVisible(true);
+				}
+				if(this.player.field.cards[1]!=null){
+					this.ptarjet82.setVisible(true);				
+				}
+				if(this.player.field.cards[2]!=null){
+					this.ptarjet83.setVisible(true);
+				}
+				if(this.player.field.cards[3]!=null){
+					this.ptarjet84.setVisible(true);
+				}
+				if(this.player.field.cards[4]!=null){
+					this.ptarjet85.setVisible(true);
+				}
+				if(this.ai.aifield.cards[0]!=null){
+					this.aitarjet81.setVisible(true);
+				}
+				
+				if(this.ai.aifield.cards[1]!=null){
+					this.aitarjet82.setVisible(true);
+				}
+				
+				if(this.ai.aifield.cards[2]!=null){
+					this.aitarjet83.setVisible(true);
+				}
+				
+				if(this.ai.aifield.cards[3]!=null){
+					this.aitarjet84.setVisible(true);
+				}
+				
+				if(this.ai.aifield.cards[4]!=null){
+					this.aitarjet85.setVisible(true);
 				}
 			}
 				
