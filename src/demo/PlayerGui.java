@@ -23,7 +23,7 @@ public class PlayerGui extends JLayeredPane {
 		hand= new HandGui (0,0);
 		field = new fieldGui(220,350);
 		hand.setLocation(179, 510);
-		powers=new Drained_2(15,570,name);
+		powers=new Drained_2(15,550,name);
 		pdeck = new DeckGui(0,0);
 		pdeck.setSize(250, 343);
 		pdeck.setLocation(770, 361);

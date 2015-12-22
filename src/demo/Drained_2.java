@@ -46,7 +46,8 @@ public class Drained_2 extends JPanel {
 	    add(u);
 	    
 	    JLabel lblName = new JLabel(name);
-	    lblName.setFont(new Font("Yu Gothic", Font.BOLD, 11));
+	    lblName.setForeground(new Color(152, 251, 152));
+	    lblName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 	    lblName.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblName.setBounds(10, 133, 130, 21);
 	    add(lblName);
