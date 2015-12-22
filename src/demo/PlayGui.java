@@ -785,12 +785,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 1  
 		{
-			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
-				play(0);
-				
+			
+			if(player.hand.cards[0].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
-			done=1;
+			else{
+				if(done==0){
+					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
+					play(0);
+					
+				}
+				done=1;
+			}
 			
 		}
 		if(e.getSource()==player.hand.handgui[1].Discard)//si se le da play a la carta 1  
@@ -889,27 +895,46 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(e.getSource()==player.hand.handgui[1].Play)//si se le da play a la carta 2  
 		{
-			if(done==0)
-			play(1);
-			done=1;
-			
+			if(player.hand.cards[1].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
+			}
+			else{
+				if(done==0)
+					play(1);
+					done=1;
+			}
 			
 		}if(e.getSource()==player.hand.handgui[2].Play)//si se le da play a la carta 3
 		{
-			if(done==0)
-			play(2);
-			done=1;
+			if(player.hand.cards[2].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
+			}
+			else{
+				if(done==0)
+					play(2);
+					done=1;
+			}
 			
 		}if(e.getSource()==player.hand.handgui[3].Play)//si se le da play a la carta 4 
 		{
-			if(done==0)
-			play(3);
-			done=1;
+			if(player.hand.cards[3].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
+			}
+			else{
+				if(done==0)
+					play(3);
+					done=1;
+			}
 		}if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 5
 		{
-			if(done==0)
-			play(4);
-			done=1;
+			if(player.hand.cards[4].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
+			}
+			else{
+				if(done==0)
+					play(4);
+					done=1;
+			}
 			
 		}
 		
@@ -2343,5 +2368,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	
-	
+	public int contarBarriers(){
+		int cont=0;
+		for(int i=0; i<5; i++){
+			if(player.barriers.cards[i]!=null){
+				cont++;
+			}
+		}
+		return cont;
+	}
 }
