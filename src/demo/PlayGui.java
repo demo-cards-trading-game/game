@@ -194,7 +194,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	
 		fallen=new Fallen();
 		add(fallen);
-		
+		player.pdeck.btnNewButton_1.addActionListener(this);
 		
 		op=new  optionpane();
 		//swords
