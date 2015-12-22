@@ -99,6 +99,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	//esto es para ssd-08
 	public JButton ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JButton aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
+	//esto es para sdd-09
+	public JButton ptarjet91, ptarjet92, ptarjet93, ptarjet94, ptarjet95;
+	public JButton aitarjet91, aitarjet92, aitarjet93, aitarjet94, aitarjet95;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -632,6 +635,73 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet83.setVisible(false);
 		this.aitarjet84.setVisible(false);
 		this.aitarjet85.setVisible(false);
+		
+		
+		
+		
+		this.ptarjet91= new JButton("tarjet");
+		this.ptarjet91.setBounds(230,380, 69, 20);
+		this.ptarjet92= new JButton("tarjet");
+		this.ptarjet92.setBounds(340,380, 69, 20);
+		this.ptarjet93= new JButton("tarjet");
+		this.ptarjet93.setBounds(450,380, 69, 20);
+		this.ptarjet94= new JButton("tarjet");
+		this.ptarjet94.setBounds(560,380, 69, 20);
+		this.ptarjet95= new JButton("tarjet");
+		this.ptarjet95.setBounds(670,380, 69, 20);
+		add(ptarjet91);
+		add(ptarjet92);
+		add(ptarjet93);
+		add(ptarjet94);
+		add(ptarjet95);
+		this.moveToFront(ptarjet91);
+		this.moveToFront(ptarjet92);
+		this.moveToFront(ptarjet93);
+		this.moveToFront(ptarjet94);
+		this.moveToFront(ptarjet95);
+		
+		this.aitarjet91= new JButton("tarjet");
+		this.aitarjet91.setBounds(230, 210, 69, 20);
+		this.aitarjet92= new JButton("tarjet");
+		this.aitarjet92.setBounds(340,210, 69, 20);
+		this.aitarjet93= new JButton("tarjet");
+		this.aitarjet93.setBounds(450,210, 69, 20);
+		this.aitarjet94= new JButton("tarjet");
+		this.aitarjet94.setBounds(560,210, 69, 20);
+		this.aitarjet95= new JButton("tarjet");
+		this.aitarjet95.setBounds(670,210, 69, 20);
+		add(aitarjet91);
+		add(aitarjet92);
+		add(aitarjet93);
+		add(aitarjet94);
+		add(aitarjet95);
+		this.moveToFront(aitarjet91);
+		this.moveToFront(aitarjet92);
+		this.moveToFront(aitarjet93);
+		this.moveToFront(aitarjet94);
+		this.moveToFront(aitarjet95);
+		
+		this.ptarjet91.addActionListener(this);
+		this.ptarjet92.addActionListener(this);
+		this.ptarjet93.addActionListener(this);
+		this.ptarjet94.addActionListener(this);
+		this.ptarjet95.addActionListener(this);
+		this.aitarjet91.addActionListener(this);
+		this.aitarjet92.addActionListener(this);
+		this.aitarjet93.addActionListener(this);
+		this.aitarjet94.addActionListener(this);
+		this.aitarjet95.addActionListener(this);
+		
+		this.ptarjet91.setVisible(false);
+		this.ptarjet92.setVisible(false);
+		this.ptarjet93.setVisible(false);
+		this.ptarjet94.setVisible(false);
+		this.ptarjet95.setVisible(false);
+		this.aitarjet91.setVisible(false);
+		this.aitarjet92.setVisible(false);
+		this.aitarjet93.setVisible(false);
+		this.aitarjet94.setVisible(false);
+		this.aitarjet95.setVisible(false);
 		tuto.ok.addActionListener(this);
 	}
 	
@@ -1462,6 +1532,67 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 			JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
 		}
+		
+		if(e.getSource()==this.ptarjet91||e.getSource()==this.ptarjet92||e.getSource()==this.ptarjet93||e.getSource()==this.ptarjet94||e.getSource()==this.ptarjet95){
+			
+			this.ptarjet91.setVisible(false);
+			this.ptarjet92.setVisible(false);
+			this.ptarjet93.setVisible(false);
+			this.ptarjet94.setVisible(false);
+			this.ptarjet95.setVisible(false);
+			
+			this.player.field.quitar(this.selected);
+			JOptionPane.showMessageDialog(null, "select an ai card to destroy");
+			
+			if(this.ai.aifield.cards[0]!=null){
+				this.aitarjet91.setVisible(true);
+			}
+			
+			if(this.ai.aifield.cards[1]!=null){
+				this.aitarjet92.setVisible(true);
+			}
+			
+			if(this.ai.aifield.cards[2]!=null){
+				this.aitarjet93.setVisible(true);
+			}
+			
+			if(this.ai.aifield.cards[3]!=null){
+				this.aitarjet94.setVisible(true);
+			}
+			
+			if(this.ai.aifield.cards[4]!=null){
+				this.aitarjet95.setVisible(true);
+			}
+		}
+		
+		if(e.getSource()==this.aitarjet91||e.getSource()==this.aitarjet92||e.getSource()==this.aitarjet93||e.getSource()==this.aitarjet94||e.getSource()==this.aitarjet95){
+			if(e.getSource()==this.aitarjet91){
+				this.ai.aifield.quitar(0);
+			}
+			if(e.getSource()==this.aitarjet92){
+				this.ai.aifield.quitar(1);
+			}
+			if(e.getSource()==this.aitarjet93){
+				this.ai.aifield.quitar(2);
+			}
+			if(e.getSource()==this.aitarjet94){
+				this.ai.aifield.quitar(3);
+			}
+			if(e.getSource()==this.aitarjet95){
+				this.ai.aifield.quitar(4);
+			}
+			
+			this.selected=-1;
+			
+			this.aitarjet91.setVisible(false);
+			this.aitarjet92.setVisible(false);
+			this.aitarjet93.setVisible(false);
+			this.aitarjet94.setVisible(false);
+			this.aitarjet95.setVisible(false);
+			
+			JOptionPane.showMessageDialog(null, "destroyed succefully");
+			repaint();
+		}
 	}
 
 
@@ -2156,6 +2287,35 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 				if(this.ai.aifield.cards[4]!=null){
 					this.aitarjet85.setVisible(true);
+				}
+			}
+			
+			if(id.equals("SSD-09")){
+				JOptionPane.showMessageDialog(null, "please select a Siren Character");
+				this.selected=-1;
+				if(this.player.field.cards[0].getcard().Getid().equals("SSD-03")){
+					this.ptarjet91.setVisible(true);
+					this.selected=0;
+				}
+				if(this.player.field.cards[1].getcard().Getid().equals("SSD-03")){
+					this.ptarjet92.setVisible(true);
+					this.selected=1;
+				}
+				if(this.player.field.cards[2].getcard().Getid().equals("SSD-03")){
+					this.ptarjet93.setVisible(true);
+					this.selected=2;
+				}
+				if(this.player.field.cards[3].getcard().Getid().equals("SSD-03")){
+					this.ptarjet94.setVisible(true);
+					this.selected=3;
+				}
+				if(this.player.field.cards[4].getcard().Getid().equals("SSD-03")){
+					this.ptarjet95.setVisible(true);
+					this.selected=4;
+				}
+				
+				if(this.selected==-1){
+					JOptionPane.showMessageDialog(null, "sorry, you don't contain a Siren Character in the field");
 				}
 			}
 				
