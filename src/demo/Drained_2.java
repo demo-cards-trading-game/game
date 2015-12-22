@@ -14,14 +14,15 @@ public class Drained_2 extends JPanel {
 	public  int currentdrained;
 	public  int currentundrained;
 	public static JLabel d,u;
-	public Drained_2(int x , int y)
+	public Drained_2(int x , int y,String name)
 	{
 		setOpaque(false);
 		setBackground(new Color(0, 0, 0));
-		setBounds(x,y,150,141);
+		setBounds(x,y,150,206);
 		setLayout(null);
 	    
-	    d = new JLabel("");
+	    d = new JLabel("0");
+	    d.setForeground(Color.WHITE);
 	    
 	 
 	
@@ -34,7 +35,7 @@ public class Drained_2 extends JPanel {
 	     d.setOpaque(true);
 	      add(d);
 	    
-	    u = new JLabel("");
+	    u = new JLabel("0");
 	    u.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
 	    u.setHorizontalAlignment(SwingConstants.CENTER);
 	    u.setForeground(Color.WHITE);
@@ -44,18 +45,25 @@ public class Drained_2 extends JPanel {
 	    u.setOpaque(true);
 	    add(u);
 	    
-		currentdrained=currentundrained=6;
+	    JLabel lblName = new JLabel(name);
+	    lblName.setFont(new Font("Yu Gothic", Font.BOLD, 11));
+	    lblName.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblName.setBounds(10, 133, 130, 21);
+	    add(lblName);
+	    
+		currentdrained=currentundrained=0;
 		
 	
 		
 	}
+	
 	void init()
 	{
 		  d.setText(""+currentdrained);
 		  u.setText(""+currentundrained);
 	} 
 	
-	void get (int n)
+	void set (int n)
 	{
 		u.setText(""+(currentundrained+n));
 		currentundrained+=n;

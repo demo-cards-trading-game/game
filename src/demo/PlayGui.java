@@ -174,7 +174,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.barriers.addMouseListener(this);
 		
 		
-		aidra=new Drained_2(860,0);//mover al ai 
+		aidra=new Drained_2(860,0,"AI PLAYER");//mover al ai 
 		add(aidra);
 		repaint();
 		for(int i=1;i<=5;i++)
@@ -271,8 +271,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.turnoLabel = new JLabel("");
 		if(turn==1){//turno player 1
 			this.turnoLabel.setText("Turn Player");
+			
 		}else{ //turno player 2
 			this.turnoLabel.setText("Turn AI Player");
+			this.phases.end.addActionListener(this);
 		}
 		this.turnoLabel.setBounds(800, 300, 140, 20);
 		this.turnoLabel.setForeground(new Color(255, 248, 220));
@@ -844,7 +846,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet114.setVisible(false);
 		this.aitarjet115.setVisible(false);
 		tuto.ok.addActionListener(this);
-		tuto.ok.addActionListener(this);
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -1240,6 +1242,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				//end turn
 				case 4:
 					if(ready==1){//funciona como segunda oportunidad
+						
+						
+						
 						ready=0;
 					this.phases.end.removeActionListener(this);
 					this.phases.setup.addActionListener(this);
@@ -2403,7 +2408,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
 		int which;
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
-		aidra.get(1);
+		aidra.set(1);
 		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
 		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 		phases.change(phases.actual+1);
