@@ -49,7 +49,7 @@ public class AnimatedButton extends JPanel {
 				moving = true;
 				
 				while (moving) {
-					while (i <= 100) {
+					while (i <= 100 && moving ) {
 						panel.setLocation(0,i);
 						i++;
 						try {
@@ -60,7 +60,7 @@ public class AnimatedButton extends JPanel {
 						}
 
 					}
-					while (i >= 0) {
+					while (i >= 0  && moving) {
 						panel.setLocation(0,i);
 						i--;
 						try {

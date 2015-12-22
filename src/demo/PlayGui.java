@@ -499,7 +499,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	
 		this.top4.setVisible(false);
 		this.top5.setVisible(false);
-		phases.draw.addActionListener(this);
+		
 		
 		this.ptarjet1= new JButton("tarjet");
 		this.ptarjet1.setBounds(230,380, 69, 20);
