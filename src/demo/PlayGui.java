@@ -262,13 +262,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		this.turnoLabel = new JLabel("");
 		if(turn==1){//turno player 1
-			this.turnoLabel.setText("Turn Player");
+			this.turnoLabel.setText("Player's Turn");
 			
 		}else{ //turno player 2
-			this.turnoLabel.setText("Turn AI Player");
+			this.turnoLabel.setText("Ai Player's Turn");
 			this.phases.end.addActionListener(this);
 		}
-		this.turnoLabel.setBounds(800, 300, 140, 20);
+		this.turnoLabel.setBounds(50, 320, 200, 20);
 		this.turnoLabel.setForeground(new Color(255, 248, 220));
 		this.turnoLabel.setBackground(Color.WHITE);
 		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1275,10 +1275,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					
 					if(turn==1){
 						turn=2;
-						this.turnoLabel.setText("Turn AI Player");
+						this.turnoLabel.setText("Ai Player's Turn");
 					}else{
 						turn=1;
-						this.turnoLabel.setText("Turn Player");
+						this.turnoLabel.setText("Player's Turn");
 					}
 					
 					repaint();
@@ -2525,7 +2525,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.sworda5.setVisible(false);
 			turn=1;
 			
-			this.turnoLabel.setText("Turn Player");
+			this.turnoLabel.setText("Player's Turn");
 			this.contTurn++;
 			changePhase.doClick();
 		}
