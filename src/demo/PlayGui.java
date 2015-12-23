@@ -2657,7 +2657,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 			
-			if(id.equals("SSD-10")){
+			if(id.equals("SSD-10")){//aca debes poner atencion
 				JOptionPane.showMessageDialog(null, "select an ai card to destroy");
 				if(this.player.field.cards[0]!=null){
 					this.ptarjet101.setVisible(true);
