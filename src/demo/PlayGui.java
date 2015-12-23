@@ -139,13 +139,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
-		JLabel name_1 = new JLabel("Player : "+ name);
-		add(name_1);
-		name_1.setForeground(new Color(255, 248, 220));
-		name_1.setBackground(Color.WHITE);
-		name_1.setHorizontalAlignment(SwingConstants.CENTER);
-		name_1.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-		name_1.setBounds(780, 450, 176, 64);
+		
 		
 
 		pane = new JInternalFrame("THE FALLEN");
