@@ -1117,6 +1117,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					{
 						
 						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+						
 						tuto.draw();
 						player.powers.set(1);
 						this.phases.setup.removeActionListener(this);
@@ -2117,10 +2118,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[0].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.drain(player.field.cards[0].getcard().GetCost()*4);
+						player.powers.undrain(player.field.cards[0].getcard().GetCost()*4);
 					}
 					else{
-						player.powers.undrain(player.field.cards[0].getcard().GetCost());
+						player.powers.play(player.field.cards[0].getcard().GetCost());
 					}
 					
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[0].getcard());
@@ -2130,7 +2131,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[1].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.drain(player.field.cards[1].getcard().GetCost()*4);
+						player.powers.play(player.field.cards[1].getcard().GetCost()*4);
 					}
 					else{
 						player.powers.undrain(player.field.cards[1].getcard().GetCost());
@@ -2142,7 +2143,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[2].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.drain(player.field.cards[2].getcard().GetCost()*4);
+						player.powers.play(player.field.cards[2].getcard().GetCost()*4);
 					}
 					else{
 						player.powers.undrain(player.field.cards[2].getcard().GetCost());
@@ -2154,7 +2155,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[3].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.drain(player.field.cards[3].getcard().GetCost()*4);
+						player.powers.play(player.field.cards[3].getcard().GetCost()*4);
 					}
 					else{
 						player.powers.undrain(player.field.cards[3].getcard().GetCost());
@@ -2166,7 +2167,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[4].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.drain(player.field.cards[4].getcard().GetCost()*4);
+						player.powers.play(player.field.cards[4].getcard().GetCost()*4);
 					}
 					else{
 						player.powers.undrain(player.field.cards[4].getcard().GetCost());
@@ -2348,7 +2349,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	void play(int pos)// plays a card on field
 	{
 	
-		if (player.hand.handgui[pos].getcard().GetCost() + player.powers.currentundrained <= 12) {//verifica que haya mana
+		if ( player.powers.currentundrained - player.hand.handgui[pos].getcard().GetCost()>0 ) {//verifica que haya mana
 
 			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
 				int where = player.field.findwhere();// busca en donde poner la carta
@@ -2372,7 +2373,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							carta = new SmallCard(false, player.hand.handgui[pos].getcard());
 							
 						}
-						player.powers.drain(player.hand.handgui[pos].getcard().GetCost());
+						player.powers.play(player.hand.handgui[pos].getcard().GetCost());
 						
 						repaint();
 						carta.addMouseListener(this);
