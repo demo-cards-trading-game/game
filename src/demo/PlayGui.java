@@ -1316,6 +1316,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(e.getSource()==this.attack5){
 				this.atkOrigin=5;
 			}
+			if(ai.aifield.countcards()==0)
+			{
+				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
+			}else{
 			JOptionPane.showMessageDialog(null, "Select Your Target");
 			if(ai.aifield.cards[0]!=null){
 				this.dest1.setVisible(true);
@@ -1331,6 +1335,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(ai.aifield.cards[4]!=null){
 				this.dest5.setVisible(true);
+			}
 			}
 		}
 		

@@ -208,4 +208,20 @@ public class fieldGui extends JPanel {
 		
 		return x;
 	}
+	
+	 
+	 public int countcards()//cuenta las cartas en la mano
+		{
+			int cant=0;
+			int i = 0;
+			while(i<5)
+			{
+				if(cards[i]!=null)
+					cant++;
+				i++;
+				
+			}
+			
+			return cant;
+		}
 }
