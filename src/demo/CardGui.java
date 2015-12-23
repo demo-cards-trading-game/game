@@ -66,7 +66,11 @@ import javax.swing.border.LineBorder;
 		/******************************************************/
 		
 		
-		
+		JLabel lblMpp = new JLabel(""+x.GetCost());
+		lblMpp.setForeground(Color.WHITE);
+		lblMpp.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
+		lblMpp.setBounds(8,5,15,15);
+		add(lblMpp);
 	
 		
 		CirclePanel panel = new CirclePanel();
@@ -216,10 +220,12 @@ import javax.swing.border.LineBorder;
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(43, 165, 77, 21);
+		add(lblNewLabel);
+		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
 		lblNewLabel.setForeground(new Color(128, 0, 0));
-		lblNewLabel.setBounds(10, 0, 77, 21);
-		add(lblNewLabel);
 		
 		JLabel lblType = new JLabel(x.GetType());
 		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -228,6 +234,18 @@ import javax.swing.border.LineBorder;
 		add(lblType);
 		add(menu);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(false);
+		panel_1.setBounds(-10, -12, 42, 29);
+		add(panel_1);
+		try {
+			panel_1.add(new JLabel(new ImageIcon(ImageIO.read(new File("mp.png")))));
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
