@@ -68,13 +68,7 @@ public class Drained_2 extends JPanel {
 		currentundrained+=n;
 		
 	}
-	void undrain(int n)
-	{
-		u.setText(""+(currentundrained+n));
-		d.setText(""+(currentdrained-n));
-		currentundrained+=n;
-		init();
-	}
+	
 	
 	void play(int n)
 	{

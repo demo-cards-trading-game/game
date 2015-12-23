@@ -1318,7 +1318,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(ai.aifield.countcards()==0)
 			{
+				int which=ai.barriers.findwhich();//verifica que exista un barrier
 				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
+				if(ai.aihand.current!=5){	
+				
+					if(which!=-1)//existe un barrier
+					{
+						int pos= ai.aihand.draw(ai.barriers.cards[which]);
+						ai.barriers.removebarrier(which);
+						
+					}
+				}	
 			}else{
 			JOptionPane.showMessageDialog(null, "Select Your Target");
 			if(ai.aifield.cards[0]!=null){
@@ -2115,7 +2125,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[0].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.undrain(player.field.cards[0].getcard().GetCost()*4);
+						player.powers.set(player.field.cards[0].getcard().GetCost()*4);
 					}
 					else{
 						player.powers.play(player.field.cards[0].getcard().GetCost());
@@ -2128,10 +2138,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[1].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.play(player.field.cards[1].getcard().GetCost()*4);
+						player.powers.set(player.field.cards[1].getcard().GetCost()*4);
 					}
 					else{
-						player.powers.undrain(player.field.cards[1].getcard().GetCost());
+						player.powers.play(player.field.cards[1].getcard().GetCost());
 					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[1].getcard());
 					player.field.quitar(1);
@@ -2140,10 +2150,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[2].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.play(player.field.cards[2].getcard().GetCost()*4);
+						player.powers.set(player.field.cards[2].getcard().GetCost()*4);
 					}
 					else{
-						player.powers.undrain(player.field.cards[2].getcard().GetCost());
+						player.powers.play(player.field.cards[2].getcard().GetCost());
 					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[2].getcard());
 					player.field.quitar(2);
@@ -2152,10 +2162,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[3].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.play(player.field.cards[3].getcard().GetCost()*4);
+						player.powers.set(player.field.cards[3].getcard().GetCost()*4);
 					}
 					else{
-						player.powers.undrain(player.field.cards[3].getcard().GetCost());
+						player.powers.play(player.field.cards[3].getcard().GetCost());
 					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[3].getcard());
 					player.field.quitar(3);
@@ -2164,10 +2174,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(player.field.cards[4].getcard().Getid().equals("SSD-01")){
 						JOptionPane.showMessageDialog(null, "This card referred to 4 water power");
-						player.powers.play(player.field.cards[4].getcard().GetCost()*4);
+						player.powers.set(player.field.cards[4].getcard().GetCost()*4);
 					}
 					else{
-						player.powers.undrain(player.field.cards[4].getcard().GetCost());
+						player.powers.play(player.field.cards[4].getcard().GetCost());
 					}
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[4].getcard());
 					player.field.quitar(4);
@@ -2545,7 +2555,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(id.equals("SSD-05")){
 				JOptionPane.showMessageDialog(null, "power undrained");
-				player.powers.undrain(player.field.cards[pos].getcard().GetCost());
+				player.powers.play(player.field.cards[pos].getcard().GetCost());
 				repaint();
 			}
 			if(id.equals("SSD-04")){
