@@ -52,7 +52,20 @@ public  class HandGui extends JPanel //implements MouseListener
 		
 	
 	}
-	
+	public int countcards()//cuenta las cartas en la mano
+	{
+		int cant=0;
+		int i = 0;
+		while(i<5)
+		{
+			if(handgui[i]!=null)
+				cant++;
+			i++;
+			
+		}
+		
+		return cant;
+	}
 	 public void discard(int pos)
 	    {
 	     int i;
