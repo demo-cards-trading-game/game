@@ -16,6 +16,7 @@ public class AIGui extends JPanel {
 	public AiHand aihand;
 	public int warriorPlayed;
 	public Barriers2 barriers;
+	public Drained_2 aidra;
 	public AIGui()
 	{
 		setBounds(0,0,1024,600);
@@ -29,7 +30,9 @@ public class AIGui extends JPanel {
 		add (aifield);
 		add(barriers);
 		setOpaque(false);
-		
+		aidra=new Drained_2(860,0,"AI PLAYER");//mover al ai 
+		add(aidra);
+		repaint();
 		for (int i=1;i<=5;i++)
 		{
 			aihand.draw(aideck.Deck.extraerR());
@@ -45,8 +48,10 @@ public class AIGui extends JPanel {
 			SmallCard carta;
 		
 			carta = new Reverse(false,aihand.handgui[pos].GetCard());
+			if(aidra.currentundrained - aihand.handgui[pos].GetCard().GetCost()>0){
 			aifield.poner(carta, where);
-			aihand.discard(1);
+			aihand.discard(pos);
+			}
 			repaint();
 		}
 		
@@ -54,6 +59,7 @@ public class AIGui extends JPanel {
 	
 	void smartPlay() throws IOException
 	{
+		
 		int which ;
 		which=aihand.findwarrior();
 		

@@ -78,7 +78,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
-	private Drained_2 aidra;
+	
 	int warriorPlayed; //indica que se jugo un warrior en el turno
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
@@ -174,9 +174,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.barriers.addMouseListener(this);
 		
 		
-		aidra=new Drained_2(860,0,"AI PLAYER");//mover al ai 
-		add(aidra);
-		repaint();
+	
 		for(int i=1;i<=5;i++)
 		{
 			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
@@ -2409,7 +2407,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
 		int which;
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
-		aidra.set(1);
+		ai.aidra.set(1);
 		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
 		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 		phases.change(phases.actual+1);
