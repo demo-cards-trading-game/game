@@ -2662,7 +2662,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(this.player.field.cards[0]!=null){
 					this.ptarjet101.setVisible(true);
 				}
-				if(this.player.field.cards[1]!=null){
+				if(this.player.field.cards[1]!=null){//
 					this.ptarjet102.setVisible(true);				
 				}
 				if(this.player.field.cards[2]!=null){
