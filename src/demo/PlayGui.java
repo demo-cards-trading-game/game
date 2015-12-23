@@ -922,7 +922,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 1  
 		{
 			
-			if(player.hand.cards[0].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+			if(player.hand.cards[0].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
@@ -1031,7 +1031,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(e.getSource()==player.hand.handgui[1].Play)//si se le da play a la carta 2  
 		{
-			if(player.hand.cards[1].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+			if(player.hand.cards[1].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
@@ -1042,7 +1042,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 		}if(e.getSource()==player.hand.handgui[2].Play)//si se le da play a la carta 3
 		{
-			if(player.hand.cards[2].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+			if(player.hand.cards[2].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
@@ -1053,7 +1053,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 		}if(e.getSource()==player.hand.handgui[3].Play)//si se le da play a la carta 4 
 		{
-			if(player.hand.cards[3].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+			if(player.hand.cards[3].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
@@ -1063,7 +1063,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		}if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 5
 		{
-			if(player.hand.cards[4].Getid().equals("SSD-10")&&(contarBarriers()>0)){
+			if(player.hand.cards[4].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
@@ -1318,17 +1318,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(ai.aifield.countcards()==0)
 			{
+				
 				int which=ai.barriers.findwhich();//verifica que exista un barrier
 				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
-				if(ai.aihand.current!=5){	
-				
+				if(ai.aihand.current==5){	
+					ai.aihand.discard(5);
+				}
+					
 					if(which!=-1)//existe un barrier
 					{
 						int pos= ai.aihand.draw(ai.barriers.cards[which]);
 						ai.barriers.removebarrier(which);
 						
 					}
-				}	
+				
+					
 			}else{
 			JOptionPane.showMessageDialog(null, "Select Your Target");
 			if(ai.aifield.cards[0]!=null){
