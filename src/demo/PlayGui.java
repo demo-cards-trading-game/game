@@ -1442,7 +1442,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.discard(1);
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
-			
+			p= -1;
 			p=this.player.pdeck.Deck.posCard("SSD-15");
 			if(p==-1){
 				JOptionPane.showMessageDialog(null, "cannot find a water power");
@@ -2527,6 +2527,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
 					{
 						player.field.quitar(atkDest);
+						this.makeAiEffect(this.ai.aifield.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
 					}
 					add(phases);
 					}
@@ -2784,11 +2785,72 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					this.player.pdeck.textField.repaint();
 				}
 			}
+			
+			if(id.equals("SSD-12")){
+				JOptionPane.showMessageDialog(null, "you get 4 volatile power, use it wisely");
+				player.powers.set(4);
+			}	
+
 			repaint();
 		}
 		
 	}
 
+	public void makeAiEffect(String id, int pos){
+		if(this.phases.actual==2){
+			
+			if(id.equals("SSD-2")){
+				int p;
+				JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+				p= -1;
+				p=this.ai.aideck.Deck.posCard("SSD-15");
+				if(p==-1){
+					JOptionPane.showMessageDialog(null, "cannot find a water power");
+				}else{
+					
+					int poss = ai.aihand.draw(ai.aideck.Deck.ConsultarYextraer(p));
+					this.ai.aideck.textField.setText("cards left "+this.ai.aideck.Deck.cardsLeft());
+					this.ai.aideck.textField.repaint();
+				}
+			}
+			
+			if(id.equals("SSD-4")){
+				int p;
+				
+				JOptionPane.showMessageDialog(null, "AI cards' player will be placed on top of the deck");
+				Card c = new Card();
+				Random randomGenerator = new Random();
+				int test = randomGenerator.nextInt(this.ai.aihand.countcards());
+				c=ai.aihand.cards[test];
+				ai.aideck.Deck.insertar(c);
+				ai.aihand.discard(test);
+				
+				JOptionPane.showMessageDialog(null, "adding a water power from the deck");
+				p= -1;
+				p=this.ai.aideck.Deck.posCard("SSD-15");
+				if(p==-1){
+					JOptionPane.showMessageDialog(null, "cannot find a water power");
+				}else{
+					
+					int poss = ai.aihand.draw(ai.aideck.Deck.ConsultarYextraer(p));
+					this.ai.aideck.textField.setText("cards left "+this.ai.aideck.Deck.cardsLeft());
+					this.ai.aideck.textField.repaint();
+				}
+			}
+			
+			if(id.equals("SSD-05")){
+				
+			}
+			
+			if(id.equals("SSD-06")){
+				
+			}
+			repaint();
+		}
+		if(this.phases.actual==3){
+			repaint();
+		}
+	}
 	
 	public int contarBarriers(){
 		int cont=0;
