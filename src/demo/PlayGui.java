@@ -2845,6 +2845,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(id.equals("SSD-06")){
 				
 			}
+			
+			if(id.equals("SSD-07")){
+				
+			}
+			
 			repaint();
 		}
 		if(this.phases.actual==3){
