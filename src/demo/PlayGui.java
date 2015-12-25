@@ -2847,6 +2847,131 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			
 			if(id.equals("SSD-07")){
+					for(int i=0; i<5; i++){
+						this.aiAttack[i]=-1;
+						this.aiDest[i]=-1;
+					}
+					contTargetAttack=0;
+					for(int i=0;i<5;i++){
+						if(ai.aifield.cards[i]!=null){
+							this.aiAttack[i]=1;
+							contTargetAttack++;
+						}
+						else{
+							this.aiAttack[i]=0;
+						}
+					}	
+					atkOrigin=-1;
+					atkDest=-1;
+					int band=0;
+					i=0;
+					while(band==0 && i<6){
+						Random r = new Random();
+						int a = r.nextInt(5);
+						if(this.aiAttack[a]==1){
+							this.atkOrigin=a;
+							band=1;
+						}
+						i++;
+					}
+					
+					for(int i=0;i<5;i++){
+						if(this.player.field.cards[i]!=null){
+							this.aiDest[i]=1;
+						}
+						else{
+							this.aiDest[i]=0;
+						}
+					}	
+					
+					band=0;
+					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+					while(band==0 && i<6){
+						Random r = new Random();
+						int a = r.nextInt(5);
+						if(this.aiDest[a]==1){
+							this.atkDest=a;
+							band=1;
+						}
+						i++;
+					}
+					
+					//dest
+					int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
+					player.hand.handgui[this.atkDest].addMouseListener(this);
+					 //Addlisteners2Card(pos-1);
+					 player.field.quitar(this.atkDest);
+					
+					 //origin
+					 pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
+						this.ai.aifield.quitar(this.atkOrigin); 
+			}
+			
+			if(id.equals("SSD-08")){
+					for(int i=0; i<5; i++){
+						this.aiAttack[i]=-1;
+						this.aiDest[i]=-1;
+					}
+					contTargetAttack=0;
+					for(int i=0;i<5;i++){
+						if(ai.aifield.cards[i]!=null){
+							this.aiAttack[i]=1;
+							contTargetAttack++;
+						}
+						else{
+							this.aiAttack[i]=0;
+						}
+					}	
+					atkOrigin=-1;
+					atkDest=-1;
+					int band=0;
+					i=0;
+					while(band==0 && i<6){
+						Random r = new Random();
+						int a = r.nextInt(5);
+						if(this.aiAttack[a]==1){
+							this.atkOrigin=a;
+							band=1;
+						}
+						i++;
+					}
+					
+					for(int i=0;i<5;i++){
+						if(this.player.field.cards[i]!=null){
+							this.aiDest[i]=1;
+						}
+						else{
+							this.aiDest[i]=0;
+						}
+					}	
+					
+					band=0;
+					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+					while(band==0 && i<6){
+						Random r = new Random();
+						int a = r.nextInt(5);
+						if(this.aiDest[a]==1){
+							this.atkDest=a;
+							band=1;
+						}
+						i++;
+					}
+					
+					if(this.atkDest!=-1){
+						//dest
+						int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
+						player.hand.handgui[this.atkDest].addMouseListener(this);
+						 //Addlisteners2Card(pos-1);
+						 player.field.quitar(this.atkDest);
+						
+					}else{
+						//origin
+						 pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
+							this.ai.aifield.quitar(this.atkOrigin);
+					}
+			}
+			
+			if(id.equals("SSD-09")){
 				
 			}
 			
