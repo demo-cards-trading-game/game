@@ -3086,6 +3086,80 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 			
+			if(id.equals("SSD-11")){
+				for(int i=0; i<5; i++){
+					this.aiAttack[i]=-1;
+					this.aiDest[i]=-1;
+				}
+				contTargetAttack=0;
+				for(int i=0;i<5;i++){
+					if(ai.aifield.cards[i]!=null){
+						this.aiAttack[i]=1;
+						contTargetAttack++;
+					}
+					else{
+						this.aiAttack[i]=0;
+					}
+				}	
+				atkOrigin=-1;
+				atkDest=-1;
+				int band=0;
+				i=0;
+				while(band==0 && i<6){
+					Random r = new Random();
+					int a = r.nextInt(5);
+					if(this.aiAttack[a]==1){
+						this.atkOrigin=a;
+						band=1;
+					}
+					i++;
+				}
+				
+				for(int i=0;i<5;i++){
+					if(this.player.field.cards[i]!=null){
+						this.aiDest[i]=1;
+					}
+					else{
+						this.aiDest[i]=0;
+					}
+				}	
+				
+				band=0;
+				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+				while(band==0 && i<6){
+					Random r = new Random();
+					int a = r.nextInt(5);
+					if(this.aiDest[a]==1){
+						this.atkDest=a;
+						band=1;
+					}
+					i++;
+				}
+			
+				Card c = new Card();
+				
+				if(this.atkDest!=-1){
+					c=this.player.field.cards[this.atkDest].getcard();
+					this.player.field.quitar(this.atkDest);
+					try {
+						this.player.field.poner(new SmallCard(true,c), this.atkDest);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else{
+					c=this.ai.aifield.cards[this.atkOrigin].getcard();
+					this.ai.aifield.quitar(this.atkOrigin);
+					try {
+						this.ai.aifield.poner(new SmallCard(true,c), this.atkOrigin);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+			}
+			
 			repaint();
 		}
 		if(this.phases.actual==3){
