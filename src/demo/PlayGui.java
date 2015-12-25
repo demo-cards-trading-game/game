@@ -2645,23 +2645,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(id.equals("SSD-09")){
 				JOptionPane.showMessageDialog(null, "please select a Siren Character");
 				this.selected=-1;
-				if(this.player.field.cards[0].getcard().Getid().equals("SSD-03")){
+				if(this.player.field.cards[0]!=null&&this.player.field.cards[0].getcard().Getid().equals("SSD-03")){
 					this.ptarjet91.setVisible(true);
 					this.selected=0;
 				}
-				if(this.player.field.cards[1].getcard().Getid().equals("SSD-03")){
+				if(this.player.field.cards[1]!=null&&this.player.field.cards[1].getcard().Getid().equals("SSD-03")){
 					this.ptarjet92.setVisible(true);
 					this.selected=1;
 				}
-				if(this.player.field.cards[2].getcard().Getid().equals("SSD-03")){
+				if(this.player.field.cards[2]!=null&&this.player.field.cards[2].getcard().Getid().equals("SSD-03")){
 					this.ptarjet93.setVisible(true);
 					this.selected=2;
 				}
-				if(this.player.field.cards[3].getcard().Getid().equals("SSD-03")){
+				if(this.player.field.cards[3]!=null&&this.player.field.cards[3].getcard().Getid().equals("SSD-03")){
 					this.ptarjet94.setVisible(true);
 					this.selected=3;
 				}
-				if(this.player.field.cards[4].getcard().Getid().equals("SSD-03")){
+				if(this.player.field.cards[4]!=null&&this.player.field.cards[4].getcard().Getid().equals("SSD-03")){
 					this.ptarjet95.setVisible(true);
 					this.selected=4;
 				}
@@ -2973,19 +2973,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				if(this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
 					this.selected=0;
 				}
-				if(this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
 					this.selected=1;
 				}
-				if(this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
 					this.selected=2;
 				}
-				if(this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
 					this.selected=3;
 				}
-				if(this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
 					this.selected=4;
 				}
 				if(this.selected==-1){
