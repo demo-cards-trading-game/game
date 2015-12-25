@@ -158,11 +158,10 @@ public class Gui extends JFrame implements ActionListener
 					
 
 					
-					if(player1.player.barriers.findwhere()!=-1)
-					{
+					
 						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
-							player1.player.barriers.addbarrier(player1.player.pdeck.Deck.extraerR());
+							int pos =player1.player.hand.draw(player1.player.pdeck.Deck.extraerR());
 							player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
 							player1.cardDrawn=1;
 							player1.player.pdeck.textField.repaint();
@@ -199,10 +198,7 @@ public class Gui extends JFrame implements ActionListener
 						}
 						
 		
-					}else
-					{
-						JOptionPane.showMessageDialog(null, "Sorry , there is no place on your barriers spot");
-					}
+					
 				}else
 				{
 					JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
