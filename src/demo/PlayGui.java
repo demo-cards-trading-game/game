@@ -2972,7 +2972,62 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			
 			if(id.equals("SSD-09")){
-				
+				this.selected=-1;
+				if(this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
+					this.selected=0;
+				}
+				if(this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
+					this.selected=1;
+				}
+				if(this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
+					this.selected=2;
+				}
+				if(this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
+					this.selected=3;
+				}
+				if(this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
+					this.selected=4;
+				}
+				if(this.selected==-1){
+					JOptionPane.showMessageDialog(null, "cannot find a Siren");
+				}else{
+					this.ai.aifield.quitar(this.selected);
+					
+					for(int i=0; i<5; i++){
+						this.aiDest[i]=-1;
+					}
+					
+					atkDest=-1;
+					
+					for(int i=0;i<5;i++){
+						if(this.player.field.cards[i]!=null){
+							this.aiDest[i]=1;
+						}
+						else{
+							this.aiDest[i]=0;
+						}
+					}	
+					
+					int band=0;
+					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+					while(band==0 && i<6){
+						Random r = new Random();
+						int a = r.nextInt(5);
+						if(this.aiDest[a]==1){
+							this.atkDest=a;
+							band=1;
+						}
+						i++;
+					}
+					
+					if(this.atkDest!=-1){
+						//dest
+						this.player.field.quitar(this.atkDest);
+					}else{
+						JOptionPane.showMessageDialog(null, "can't find a target");
+					}
+				}
+					
 			}
 			
 			repaint();
