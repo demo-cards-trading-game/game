@@ -165,7 +165,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.add(preview);
 		
 	
-
+		player.barriers.addMouseListener(this);
 		
 		
 	
@@ -1176,7 +1176,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					
 					//disable deck: done
 					//disable barriers
-					
+					for (int i=0;i<5;i++)
+						player.barriers.barriers[i].addMouseListener(this);
 				
 					//disable hand
 					for(int i=0;i<5;i++)
@@ -1233,7 +1234,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				case 4:
 					if(ready==1){//funciona como segunda oportunidad
 						
-						
+						for (int i=0;i<5;i++)
+							player.barriers.barriers[i].removeMouseListener(this);
 						
 						ready=0;
 					this.phases.end.removeActionListener(this);
@@ -1975,7 +1977,62 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getButton() == MouseEvent.BUTTON1)
 		{if(e.getClickCount()==1)
 		{
-					
+			if(barierpicked==0)
+			{
+				
+			if(e.getSource()==player.barriers.barriers[0])//si se da click a la barrera 0
+			{
+				int pos= player.hand.draw(player.barriers.cards[0]);
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				player.barriers.removebarrier(0);
+				barierpicked=1;
+				repaint();
+			}
+			if(e.getSource()==player.barriers.barriers[1])
+			{
+				int pos= player.hand.draw(player.barriers.cards[1]);
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				player.barriers.removebarrier(1);
+				barierpicked=1;
+				repaint();
+			}
+			if(e.getSource()==player.barriers.barriers[2])
+			{
+				int pos= player.hand.draw(player.barriers.cards[2]);
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				player.barriers.removebarrier(2);
+				barierpicked=1;
+				repaint();
+			}
+			if(e.getSource()==player.barriers.barriers[3])
+			{
+				int pos= player.hand.draw(player.barriers.cards[3]);
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				player.barriers.removebarrier(3);
+				barierpicked=1;
+				repaint();
+			}
+			if(e.getSource()==player.barriers.barriers[4])
+			{
+				int pos= player.hand.draw(player.barriers.cards[4]);
+				player.hand.handgui[pos-1].addMouseListener(this);
+				 Addlisteners2Card(pos-1);
+				player.barriers.removebarrier(4);
+				barierpicked=1;
+				repaint();
+			}
+			
+		}else
+		{
+			if(phases.actual==1){
+				JOptionPane.showMessageDialog(op, "sorry u can only get a card from barriers per turn");
+			}	
+			
+		}				
 			
 			if(e.getSource()==player.hand.handgui[0])
 			{

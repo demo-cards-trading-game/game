@@ -35,7 +35,7 @@ public class Gui extends JFrame implements ActionListener
 	String Nombre1;//nombre del jugador1
 	private JMenuBar mb;
 	private JMenu menu1,menu2;
-	private JMenuItem mi1,mi2,mi3;
+	private JMenuItem mi1,mi2,mi3,quit;
 	static LoadData data;
 	private JPanel contentPane;
 	private PlayGui player1;
@@ -48,8 +48,14 @@ public class Gui extends JFrame implements ActionListener
    
 	public Gui()
 	{  
-		setBounds(0,0, 1024, 768);  
-		
+	
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		int xSize = ((int) tk.getScreenSize().getWidth());
+		int ySize = ((int) tk.getScreenSize().getHeight());
+		setSize(xSize, ySize);
+		setUndecorated(true);
+
+
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -75,10 +81,12 @@ public class Gui extends JFrame implements ActionListener
 
 		mb=new JMenuBar();
 		setJMenuBar(mb);
-		menu1=new JMenu("Opciones");
+		menu1=new JMenu("OPTIONS");
 		mb.add(menu1);
+		quit= new JMenuItem("EXIT");
 		menu2=new JMenu("resolucion");
 		menu1.add(menu2);
+		mb.add(quit);
 		mi1=new JMenuItem("900,650(default)");
 		mi1.addActionListener(this);
 		menu2.add(mi1);
@@ -87,6 +95,7 @@ public class Gui extends JFrame implements ActionListener
 		menu2.add(mi2);
 		mi3=new JMenuItem("1024x768");
 		mi3.addActionListener(this);
+		quit.addActionListener(this);
 		menu2.add(mi3);         
 
 		/***************************************/
@@ -131,18 +140,25 @@ public class Gui extends JFrame implements ActionListener
 		setResizable(false);
 
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 		setVisible(true);
-
+		show();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource()==mi2)
 		{
-			System.out.println("entro rico");
-			this.setBounds(0,0,800,100);
+		
+			this.setBounds(0,0,800,600);
+			
+			
+		}
+		if (e.getSource()==quit)
+		{
+			System.out.println("deberia cerrarse");
+			this.dispose();
 			
 			
 		}
