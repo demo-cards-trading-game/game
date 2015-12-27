@@ -6,6 +6,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
+import javax.swing.JLayeredPane;
+
 import demo.Hand;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
@@ -13,8 +15,12 @@ import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 import demo.Card;
 import demo.CardGui;
+
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -26,7 +32,12 @@ import java.util.Random;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.Point;
-public  class HandGui extends JPanel //implements MouseListener
+import java.awt.RenderingHints;
+
+import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+public  class HandGui extends JLayeredPane //implements MouseListener
 {
 	/**
 	 * 
@@ -38,13 +49,19 @@ public  class HandGui extends JPanel //implements MouseListener
 	int curX = -1, curY = -1;
     boolean dragging = false;
     int sX = -1, sY = -1;
-
+    public JPanel panel;
 	public HandGui(int posx,int posy) {
 		
 		current=0;
 		setOpaque(false);
 		setBounds(posx,posy, 620, 206);
 		setLayout(null);
+		
+	    panel = new JPanel();
+	    panel.setBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 3, (Color) new Color(0, 191, 255)), new LineBorder(new Color(47, 79, 79), 4, true)));
+		panel.setBackground(new Color(34, 139, 34));
+		panel.setBounds(0, 20, 620, 186);
+		add(panel);
 	
 		
 		
@@ -52,6 +69,8 @@ public  class HandGui extends JPanel //implements MouseListener
 		
 	
 	}
+	
+	
 	public int countcards()//cuenta las cartas en la mano
 	{
 		int cant=0;
@@ -82,14 +101,17 @@ public  class HandGui extends JPanel //implements MouseListener
 	      compactar();
 	      removeAll();
 	      addall();
+	      
 	      repaint();
 	    }
 	 void addall()
 	 {
+		 add(panel);
 		 for (int i=0;i<current;i++)
 	      {
 	   
 	      add(handgui[i]);
+	      moveToFront(handgui[i]);
 	      }
 		 
 		 
@@ -125,6 +147,7 @@ public  class HandGui extends JPanel //implements MouseListener
 		     // x.addMouseListener(this);
 		      handgui[current]=x;
 		      add(handgui[current]);
+		      moveToFront(handgui[current]);
 		      current=current+1;
 		      repaint();
 			return(current);

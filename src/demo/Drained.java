@@ -36,10 +36,10 @@ public class Drained extends JLayeredPane {
 		panel.setBounds(10, 29, 130, 71);
 		add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-		
+		panel.setOpaque(false);
 		JLabel lblUndrained = new JLabel("UNDRAINED");
 		lblUndrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblUndrained.setForeground(Color.WHITE);
+		lblUndrained.setForeground(Color.BLACK);
 		lblUndrained.setBounds(10, 11, 100, 14);
 		add(lblUndrained);
 

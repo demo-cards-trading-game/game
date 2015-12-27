@@ -53,9 +53,9 @@ public class Gui extends JFrame implements ActionListener
 		int xSize = ((int) tk.getScreenSize().getWidth());
 		int ySize = ((int) tk.getScreenSize().getHeight());
 		setSize(xSize, ySize);
-		setUndecorated(true);
-
-
+		//setUndecorated(true);
+		setBackground(Color.RED);
+	
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -140,7 +140,7 @@ public class Gui extends JFrame implements ActionListener
 		setResizable(false);
 
 
-		
+		setBackground(new Color(204, 204, 204));
 
 		setVisible(true);
 		show();
@@ -191,7 +191,7 @@ public class Gui extends JFrame implements ActionListener
 							
 						
 							try {
-							
+								setBackground(Color.RED);
 								player1=new PlayGui(0,0,Nombre1);
 								
 		
@@ -377,7 +377,10 @@ public class Gui extends JFrame implements ActionListener
 			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
 			player1.player.pdeck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
 			player1.player.pdeck.btnNewButton.addActionListener(this);
+			
 			addbackground3(this);
+		
+			getContentPane().setBackground(new Color(153, 204, 204));
 			getContentPane().setLayout(null);
 			player1.repaint.addActionListener(this);
 			add(player1);

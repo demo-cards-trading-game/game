@@ -135,17 +135,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setBounds(0,0, 1024, 768);
 		cardDrawn=0;
 		tuto= new Tutorial();
-		add(tuto);
+		//add(tuto);
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
-		this.add(fight);
+		//this.add(fight);
 		
 		
 
 		pane = new JInternalFrame("THE FALLEN");
 
 		phases=new Phases(220,300);
-		add(phases);
+		//add(phases);
 		
 		this.add(player);
 		repaint=new JButton();
@@ -156,13 +156,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	
 		
-		this.add(ai);
+		//this.add(ai);
 
 		/*******************************************/
 		
 
 	
-		this.add(preview);
+		//this.add(preview);
 		
 	
 		player.barriers.addMouseListener(this);
@@ -185,19 +185,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	;
 	
 		fallen=new Fallen();
-		add(fallen);
+		//add(fallen);
 		player.pdeck.btnNewButton_1.addActionListener(this);
 		
 		op=new  optionpane();
 		//swords
 		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
 		swordp1.setBounds(0, 0, 535, 830);
-		add(swordp1);
+		//add(swordp1);
 		this.moveToFront(swordp1);
 		
 		sworda1= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
 		sworda1.setBounds(0, 0, 540, 385);
-		add(sworda1);
+		//add(sworda1);
 		this.moveToFront(sworda1);
 		
 		swordp2= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));

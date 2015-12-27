@@ -7,6 +7,8 @@ import javax.swing.JButton;
 
 import java.awt.Color;
 import java.util.Random;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
 public class fieldGui extends JPanel {
 	public JButton btn;
 	public JPanel panel2,panel,panel3,panel4,panel1,panel5; 
@@ -22,26 +24,26 @@ public class fieldGui extends JPanel {
 		panel.setOpaque(true);
 		panel.setLayout(null);
 		panel.setForeground(Color.WHITE);
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel.setBackground(new Color(204, 204, 204));
+		panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel.setBackground(new Color(169, 169, 169));
 		panel.setBounds(0, 0, 100, 145);
 		add(panel);
 	
 		 panel2 = new JPanel();
 		panel2.setOpaque(true);
 		panel2.setLayout(null);
-		panel2.setForeground(Color.WHITE);
-		panel2.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel2.setBackground(new Color(204, 204, 204));
+		panel2.setForeground(new Color(147, 112, 219));
+		panel2.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel2.setBackground(new Color(169, 169, 169));
 		panel2.setBounds(110, 0, 100, 145);
 		add(panel2);
 		
 		panel3 = new JPanel();
 		panel3.setOpaque(true);
 		panel3.setLayout(null);
-		panel3.setForeground(Color.WHITE);
-		panel3.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel3.setBackground(new Color(204, 204, 204));
+		panel3.setForeground(new Color(192, 192, 192));
+		panel3.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel3.setBackground(new Color(169, 169, 169));
 		panel3.setBounds(220, 0, 100, 145);
 		add(panel3);
 		
@@ -49,8 +51,8 @@ public class fieldGui extends JPanel {
 		panel4.setOpaque(true);
 		panel4.setLayout(null);
 		panel4.setForeground(Color.WHITE);
-		panel4.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel4.setBackground(new Color(204, 204, 204));
+		panel4.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel4.setBackground(new Color(169, 169, 169));
 		panel4.setBounds(330, 0, 100, 145);
 		add(panel4);
 		
@@ -58,8 +60,8 @@ public class fieldGui extends JPanel {
 		panel5.setOpaque(true);
 		panel5.setLayout(null);
 		panel5.setForeground(Color.WHITE);
-		panel5.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel5.setBackground(new Color(204, 204, 204));
+		panel5.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel5.setBackground(new Color(169, 169, 169));
 		panel5.setBounds(440, 0, 100, 145);
 		add(panel5);
 			

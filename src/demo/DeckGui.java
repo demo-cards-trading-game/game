@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import demo.deck;
+import extra.RoundButton;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
@@ -20,6 +22,8 @@ import java.awt.event.FocusEvent;
 import java.io.IOException;
 
 import javax.swing.JTextPane;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
 public class DeckGui extends JPanel {
 	public JTextField textField;
 
@@ -58,7 +62,7 @@ public class DeckGui extends JPanel {
 		setOpaque(false);
 		setLayout(null);
 		
-		btnNewButton = new JButton();
+		btnNewButton = new JButton("");
 		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setOpaque(false);
 		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
@@ -75,10 +79,11 @@ public class DeckGui extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-	 lblDeck = new JLabel("DECK");
+	 lblDeck = new JLabel("Deck");
+	 lblDeck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDeck.setForeground(new Color(50, 205, 50));
 		lblDeck.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblDeck.setBounds(187, 244, 53, 14);
+		lblDeck.setBounds(168, 244, 53, 14);
 		add(lblDeck);
 		
 		btnNewButton_1 = new JButton();
@@ -89,6 +94,7 @@ public class DeckGui extends JPanel {
 		add(btnNewButton_1);
 		
 	    lblTheFallen = new JLabel("The Fallen");
+	    lblTheFallen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTheFallen.setForeground(new Color(30, 144, 255));
 		lblTheFallen.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblTheFallen.setBounds(160, 168, 80, 14);
@@ -103,19 +109,20 @@ public class DeckGui extends JPanel {
 		add(btnNewButton_2);
 		
 	  lblForgotten = new JLabel("Forgotten");
+	  lblForgotten.setHorizontalAlignment(SwingConstants.CENTER);
 		lblForgotten.setBorder(null);
 		lblForgotten.setForeground(new Color(153, 102, 255));
 		lblForgotten.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblForgotten.setBounds(160, 99, 117, 14);
+		lblForgotten.setBounds(133, 98, 117, 14);
 		add(lblForgotten);
 		
 		 panel= new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		panel.setBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 2, (Color) new Color(0, 0, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
 		
 		
 		panel.setLayout(null);
-		panel.setBackground(new Color(204, 153, 51));
-		panel.setBounds(41, 168, 100, 145);
+		panel.setBackground(new Color(0, 128, 0));
+		panel.setBounds(39, 195, 100, 145);
 		add(panel);
 	
 		

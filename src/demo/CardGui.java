@@ -15,6 +15,8 @@ import data.LoadData;
 import demo.Card;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
 
 
 
@@ -36,7 +38,7 @@ import javax.swing.border.LineBorder;
 	setBounds(a, b, 124, 186);	
 	
 		
-		setBorder(new LineBorder(new Color(102, 51, 0), 2));
+		setBorder(new CompoundBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(0, 0, 205)), new MatteBorder(0, 2, 0, 0, (Color) new Color(102, 204, 0))), new LineBorder(new Color(0, 0, 0), 3, true)));
 		setLayout(null);
 		
 		
@@ -67,7 +69,7 @@ import javax.swing.border.LineBorder;
 		
 		
 		JLabel lblMpp = new JLabel(""+x.GetCost());
-		lblMpp.setForeground(Color.WHITE);
+		lblMpp.setForeground(new Color(0, 0, 0));
 		lblMpp.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
 		lblMpp.setBounds(8,5,15,15);
 		add(lblMpp);
@@ -139,7 +141,7 @@ import javax.swing.border.LineBorder;
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
 			menu.setBackground(new Color(204, 153, 51));//the menu bacckground is added
-			setBackground(new Color(204, 153, 51));
+			setBackground(new Color(255, 215, 0));
 			panel.setForeground(new Color(204, 153, 51));
 			
 		}else if(x.GetType()=="Disruption")
@@ -152,7 +154,7 @@ import javax.swing.border.LineBorder;
 		}else if(x.GetType()=="Event")
 		{
 			txtpnTexto.setBackground(new Color(216, 191, 216));
-			setBackground(new Color(147, 112, 219));
+			setBackground(new Color(102, 0, 255));
 			panel.setForeground(new Color(147, 112, 219));
 			menu.setBackground(new Color(147, 112, 219));
 		}else
