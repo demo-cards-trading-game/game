@@ -7,6 +7,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
@@ -29,6 +30,7 @@ public class Drained extends JLayeredPane {
 	public JPanel[]  drained  = new JPanel[20];
 	public JPanel[]  undrained  = new JPanel[20];
 	public JPanel panel; 
+	public  JScrollPane scrollPane;
 	public Drained(int x , int y,String name)
 	{
 		setBounds(x,y,150,384);
@@ -39,13 +41,18 @@ public class Drained extends JLayeredPane {
 		
 		
 		panel.setOpaque(true);
-		 JScrollPane scrollPane = new JScrollPane(panel);
+		  scrollPane = new JScrollPane();
+		 panel.setLayout(new GridLayout(1, 0, 0, 0));
 		 
 		 
 		
 	        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	        scrollPane.getHorizontalScrollBar().setUnitIncrement(10);
+	      
+
 	        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 	        scrollPane.setBounds(0, 30, 75, 37);
+	        scrollPane.setViewportView(panel); 
 	        add(scrollPane);
 	     
 		JLabel lblUndrained = new JLabel("UNDRAINED");
