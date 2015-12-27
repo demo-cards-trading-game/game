@@ -48,12 +48,13 @@ public class Gui extends JFrame implements ActionListener
    
 	public Gui()
 	{  
-	
+	/*
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		int xSize = ((int) tk.getScreenSize().getWidth());
 		int ySize = ((int) tk.getScreenSize().getHeight());
-		setSize(xSize, ySize);
+		setSize(xSize, ySize);*/
 		//setUndecorated(true);
+		setSize(1024,768);
 		setBackground(Color.RED);
 	
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/
