@@ -30,7 +30,7 @@ public class Drained extends JLayeredPane {
 	/**
 	 * Create the panel.
 	 */
-	public  int currentdrained;
+	public  int currentdrained,used;
 	public  int currentundrained,currentoken;
 	
 	public JPanel[]  drained  = new JPanel[20];
@@ -89,12 +89,9 @@ public class Drained extends JLayeredPane {
 		/*************************se asignan a una posicion correspondiente ***********************************/
 
 		currentdrained=0;
+		used=0;
 		currentoken=currentundrained=0;
-		token();
-		token();
-		token();
-		set(6);
-		drain(2);
+	
 	}
 	
 	void set()
@@ -136,12 +133,23 @@ public class Drained extends JLayeredPane {
 	{
 		
 			currentundrained=currentundrained-1;
+			used++;
 			panel.remove(undrained[currentundrained]);
 			setVisible(true);
 			repaint();
 		
 	}
 	
+	void take2()
+	{
+		
+			currentdrained=currentdrained-1;
+			
+			panel_2.remove(drained[currentdrained]);
+			setVisible(true);
+			repaint();
+		
+	}
 	void drain()
 	{
 		drained[currentdrained] = new JPanel();
@@ -211,6 +219,15 @@ public class Drained extends JLayeredPane {
 		repaint();
 		
 		
+	}
+	void reset()
+	{
+		for( int i=0;i<used;i++)
+		{
+			set();
+			take2();
+		}
+		used=0;
 	}
 	void play(int n)
 	{

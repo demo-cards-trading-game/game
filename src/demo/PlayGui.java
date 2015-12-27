@@ -1108,7 +1108,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
 						
 						tuto.draw();
-						player.powers.set(1);
+						player.powers.reset();
+						player.powers.token();
 						this.phases.setup.removeActionListener(this);
 						this.phases.draw.removeActionListener(this);
 						this.phases.draw.addActionListener(this);
