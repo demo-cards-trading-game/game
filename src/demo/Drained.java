@@ -16,9 +16,14 @@ import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
+
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import java.awt.LayoutManager;
+import java.io.File;
+import java.io.IOException;
 
 public class Drained extends JLayeredPane {
 
@@ -26,10 +31,11 @@ public class Drained extends JLayeredPane {
 	 * Create the panel.
 	 */
 	public  int currentdrained;
-	public  int currentundrained;
-	public int volatiles;
+	public  int currentundrained,currentoken;
+	
 	public JPanel[]  drained  = new JPanel[20];
 	public JPanel[]  undrained  = new JPanel[20];
+	public JLabel[]  tokens = new JLabel[20];
 	public JPanel panel,panel_1,panel_2; 
 	public Drained(int x , int y,String name)
 	{
@@ -38,43 +44,57 @@ public class Drained extends JLayeredPane {
 	     
 		JLabel lblUndrained = new JLabel("UNDRAINED");
 		lblUndrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblUndrained.setForeground(Color.BLACK);
+		lblUndrained.setForeground(new Color(0, 153, 255));
 		lblUndrained.setBounds(10, 11, 100, 14);
 		add(lblUndrained);
 		
 		panel=new JPanel(null);
 		add(panel);
 		panel.setOpaque(false);
-		panel.setBounds(0, 36, 200, 60);
+		panel.setBounds(0, 36, 200, 75);
 		
 		
-		panel.setOpaque(true);
+	
 		panel.setLayout(null);
 		
 		 panel_1 = new JPanel((LayoutManager) null);
 		panel_1.setLayout(null);
 		panel_1.setOpaque(false);
-		panel_1.setBounds(0, 150, 200, 60);
+		panel_1.setBounds(0, 132, 200, 75);
 		add(panel_1);
 		
 		JLabel lblDrained = new JLabel("DRAINED");
-		lblDrained.setForeground(Color.BLACK);
+		lblDrained.setForeground(new Color(51, 102, 255));
 		lblDrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDrained.setBounds(10, 125, 100, 14);
+		lblDrained.setBounds(10, 107, 100, 14);
 		add(lblDrained);
-		set();
+		
+		 panel_2 = new JPanel();
+		panel_2.setBounds(0, 237, 145, 56);
+		add(panel_2);
+		panel_2.setLayout(null);
+		panel_2.setOpaque(false);
+		
+		JLabel lblVolatile = new JLabel("VOLATILE");
+		lblVolatile.setForeground(new Color(204, 255, 255));
+		lblVolatile.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblVolatile.setBounds(10, 212, 100, 14);
+		add(lblVolatile);
+		
 		/***************************se crean los paneles ***************************************/
 		
-		
-	
 		
 		/********************************************************************************/
 		
 		/*************************se asignan a una posicion correspondiente ***********************************/
 
 		currentdrained=0;
-		volatiles=currentundrained=0;
-		
+		currentoken=currentundrained=0;
+		token();
+		token();
+		token();
+		set(6);
+		drain(2);
 	}
 	
 	void set()
@@ -106,8 +126,9 @@ public class Drained extends JLayeredPane {
 	void set(int n)
 	{
 		int i ;
-		for(i= currentdrained;i<= currentdrained+n;i++){
+		for(i= 0;i<n;i++){
 		set();
+		System.out.println(currentundrained);
 		}
 		
 	}
@@ -151,13 +172,44 @@ public class Drained extends JLayeredPane {
 	{
 		if(currentundrained>=n){
 		int i ;
-		for(i= currentdrained;i<= currentdrained+n;i++){	
+		for(i= 0;i< n;i++){	
 		
 		drain();
 		take();
 		}
 		
 		}
+		
+	}
+	void token()
+	{
+
+		try {
+			tokens[currentoken]=new JLabel(new ImageIcon(ImageIO.read(new File("token.png"))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		panel_2.add(tokens[currentoken]);
+		
+		if(currentoken<5)
+		{
+		tokens[currentoken].setBounds(currentoken*25, 0, 20, 20);
+		}else{
+			if(currentoken<10)
+			{
+			tokens[currentoken].setBounds((currentoken-5)*25,25 , 20, 20);
+			}else
+			{
+				tokens[currentoken].setBounds((currentoken*10)*25,50 , 20, 20);
+			}
+			
+		}	
+		currentoken++;
+		setVisible(true);
+		repaint();
+		
 		
 	}
 	void play(int n)

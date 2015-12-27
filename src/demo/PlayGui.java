@@ -145,7 +145,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		pane = new JInternalFrame("THE FALLEN");
 
 		phases=new Phases(220,300);
-		//add(phases);
+		add(phases);
 		
 		this.add(player);
 		repaint=new JButton();
@@ -372,11 +372,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.dest4.addActionListener(this);
 		this.dest5.addActionListener(this);
 		
-		j = new JButton("prueba de listar cartas de deck para efectos");
-		j.setBounds(100, 100, 120, 50);
-		add(j);
-		j.addActionListener(this);
-		this.moveToFront(this.j);
+	
+	
 		changePhase=new JButton();
 		changePhase.setVisible(false);
 		changePhase.addActionListener(this);
