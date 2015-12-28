@@ -172,6 +172,7 @@ public class Drained extends JLayeredPane {
 			
 		}	
 		currentdrained++;
+		take();
 		setVisible(true);
 		repaint();
 		
@@ -183,7 +184,7 @@ public class Drained extends JLayeredPane {
 		for(i= 0;i< n;i++){	
 		
 		drain();
-		take();
+		
 		}
 		
 		}
@@ -222,10 +223,14 @@ public class Drained extends JLayeredPane {
 	}
 	void reset()
 	{
+		System.out.println("entro reset con"+used);
 		for( int i=0;i<used;i++)
 		{
+			
 			set();
 			take2();
+			System.out.println("currentundrained"+currentundrained);
+			System.out.println("currentdrained"+currentdrained);
 		}
 		used=0;
 	}

@@ -179,6 +179,7 @@ public class Gui extends JFrame implements ActionListener
 						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
 							int pos =player1.player.hand.draw(player1.player.pdeck.Deck.extraerR());
+							player1.draw(pos-1);
 							player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
 							player1.cardDrawn=1;
 							player1.player.pdeck.textField.repaint();

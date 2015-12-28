@@ -1968,6 +1968,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public DeckGui getDeck() {
 		return player.pdeck;
 	}
+	public void draw(int p)
+	{
+		player.hand.handgui[p].addMouseListener(this);
+		player.hand.handgui[p].Play.addActionListener(this);
+		player.hand.handgui[p].Discard.addActionListener(this);
+		player.hand.handgui[p].Preview.addActionListener(this);
+		player.hand.handgui[p].Set.addActionListener(this);
+	}
 
 	public void mouseClicked(MouseEvent e) 
 	{
