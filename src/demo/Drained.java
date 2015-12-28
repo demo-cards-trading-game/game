@@ -7,6 +7,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.border.CompoundBorder;
@@ -24,8 +25,11 @@ import javax.swing.JScrollBar;
 import java.awt.LayoutManager;
 import java.io.File;
 import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Drained extends JLayeredPane {
+public class Drained extends JLayeredPane implements MouseListener{
 
 	/**
 	 * Create the panel.
@@ -37,6 +41,7 @@ public class Drained extends JLayeredPane {
 	public JPanel[]  undrained  = new JPanel[20];
 	public JLabel[]  tokens = new JLabel[20];
 	public JPanel panel,panel_1,panel_2; 
+	int paying;
 	public Drained(int x , int y,String name)
 	{
 		setBounds(x,y,145,384);
@@ -51,7 +56,7 @@ public class Drained extends JLayeredPane {
 		panel=new JPanel(null);
 		add(panel);
 		panel.setOpaque(false);
-		panel.setBounds(0, 36, 200, 75);
+		panel.setBounds(0, 30, 200, 85);
 		
 		
 	
@@ -70,6 +75,7 @@ public class Drained extends JLayeredPane {
 		add(lblDrained);
 		
 		 panel_2 = new JPanel();
+		
 		panel_2.setBounds(0, 237, 145, 56);
 		add(panel_2);
 		panel_2.setLayout(null);
@@ -87,7 +93,7 @@ public class Drained extends JLayeredPane {
 		/********************************************************************************/
 		
 		/*************************se asignan a una posicion correspondiente ***********************************/
-
+		paying=0;
 		currentdrained=0;
 		used=0;
 		currentoken=currentundrained=0;
@@ -100,19 +106,20 @@ public class Drained extends JLayeredPane {
 		undrained[currentundrained] = new JPanel();
 		undrained[currentundrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
 		undrained[currentundrained].setBackground(Color.RED);
-		
+		undrained[currentundrained].addMouseListener(this);
+			 
 		panel.add(undrained[currentundrained]);
 		
 		if(currentundrained<5)
 		{
-		undrained[currentundrained].setBounds(currentundrained*30, 0, 25, 20);
+		undrained[currentundrained].setBounds(currentundrained*30, 10, 25, 20);
 		}else{
 			if(currentundrained<10)
 			{
-			undrained[currentundrained].setBounds((currentundrained-5)*30,25 , 25, 20);
+			undrained[currentundrained].setBounds((currentundrained-5)*30,35 , 25, 20);
 			}else
 			{
-				undrained[currentundrained].setBounds((currentundrained-10)*30,50 , 25, 20);
+				undrained[currentundrained].setBounds((currentundrained-10)*30,60 , 25, 20);
 			}
 			
 		}	
@@ -242,5 +249,70 @@ public class Drained extends JLayeredPane {
 	void play(int n)
 	{
 		drain(n);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) 
+	{
+		
+		if(e.getSource()==undrained[0])
+			
+		{
+			
+			
+			if(undrained[0].getY()==10)
+			{
+				System.out.println("entro a y");
+				undrained[0].setBounds(0,0,25,20);
+			}else
+			{
+				System.out.println("entro a else");
+				undrained[0].setBounds(0,10,25,20);
+			}
+		}
+		if(e.getSource()==undrained[1])
+		
+		{
+			
+			
+			if(undrained[1].getY()==10)
+			{
+				System.out.println("entro a y");
+				undrained[1].setBounds(30,0,25,20);
+			}else
+			{
+				System.out.println("entro a else");
+				undrained[1].setBounds(30,10,25,20);
+			}
+		}
+		repaint();
+		panel.repaint();
+		setVisible(true);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
