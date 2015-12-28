@@ -99,7 +99,7 @@ public class Drained extends JLayeredPane {
 		
 		undrained[currentundrained] = new JPanel();
 		undrained[currentundrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
-		undrained[currentundrained].setBackground(new Color(51, 51, 204));
+		undrained[currentundrained].setBackground(Color.RED);
 		
 		panel.add(undrained[currentundrained]);
 		
@@ -127,6 +127,8 @@ public class Drained extends JLayeredPane {
 		set();
 		System.out.println(currentundrained);
 		}
+		setVisible(true);
+		repaint();
 		
 	}
 	void take()
@@ -143,9 +145,10 @@ public class Drained extends JLayeredPane {
 	void take2()
 	{
 		
+		repaint();
 			currentdrained=currentdrained-1;
 			
-			panel_2.remove(drained[currentdrained]);
+			panel_1.remove(drained[currentdrained]);
 			setVisible(true);
 			repaint();
 		
@@ -173,9 +176,9 @@ public class Drained extends JLayeredPane {
 		}	
 		currentdrained++;
 		take();
-		setVisible(true);
+		panel_2.setVisible(true);
 		repaint();
-		
+		panel_2.setVisible(true);
 	}
 	void drain(int n)
 	{
@@ -233,6 +236,8 @@ public class Drained extends JLayeredPane {
 			System.out.println("currentdrained"+currentdrained);
 		}
 		used=0;
+		repaint();
+		setVisible(true);
 	}
 	void play(int n)
 	{
