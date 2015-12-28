@@ -78,7 +78,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
-	
+	private Card BeingPlayed;
 	int warriorPlayed; //indica que se jugo un warrior en el turno
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
@@ -2366,50 +2366,57 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 	}
 	
+	void set(int pos,int where)
+	{
+
+		SmallCard carta;
+		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
+			
+			
+			warriorPlayed = 1;
+			System.out.println(this.warriorPlayed);
+
+		}
+		try {
+			Random randomGenerator = new Random();
+			int test = randomGenerator.nextInt(10);
+			if (test % 2 == 0) {
+				carta = new SmallCard(true,player.hand.handgui[pos].getcard());
+
+			} else {
+				carta = new SmallCard(false, player.hand.handgui[pos].getcard());
+				
+			}
+			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
+			
+			repaint();
+			carta.addMouseListener(this);
+
+			player.field.poner(carta, where);
+			player.hand.discard(1);
+
+			repaint();
+
+			this.makeEffect(carta.actual.Getid(),where);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		
+		
+	}
 	void play(int pos)// plays a card on field
 	{
 	
-		if ( player.powers.currentundrained - player.hand.handgui[pos].getcard().GetCost()>0 ) {//verifica que haya mana
+		if ( player.powers.currentundrained+player.powers.currentoken - player.hand.handgui[pos].getcard().GetCost()>0 ) {//verifica que haya mana
 
 			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
 				int where = player.field.findwhere();// busca en donde poner la carta
-				if (where != -1) {
-
-					SmallCard carta;
-					if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
-						
-						
-						warriorPlayed = 1;
-						System.out.println(this.warriorPlayed);
-
-					}
-					try {
-						Random randomGenerator = new Random();
-						int test = randomGenerator.nextInt(10);
-						if (test % 2 == 0) {
-							carta = new SmallCard(true,player.hand.handgui[pos].getcard());
-
-						} else {
-							carta = new SmallCard(false, player.hand.handgui[pos].getcard());
-							
-						}
-						player.powers.play(player.hand.handgui[pos].getcard().GetCost());
-						
-						repaint();
-						carta.addMouseListener(this);
-
-						player.field.poner(carta, where);
-						player.hand.discard(1);
-
-						repaint();
-
-						this.makeEffect(carta.actual.Getid(),where);
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
+				if (where != -1)
+				{
+					set(pos,where);
 				}
 			}else
 			{
