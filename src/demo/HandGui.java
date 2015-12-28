@@ -58,7 +58,7 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 		setLayout(null);
 		
 	    panel = new JPanel();
-	    panel.setBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 3, (Color) new Color(0, 191, 255)), new LineBorder(new Color(47, 79, 79), 4, true)));
+	    panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 255, 0)), new LineBorder(new Color(47, 79, 79), 4, true)));
 		panel.setBackground(new Color(34, 139, 34));
 		panel.setBounds(0, 20, 620, 186);
 		add(panel);

@@ -117,7 +117,7 @@ public class DeckGui extends JPanel {
 		add(lblForgotten);
 		
 		 panel= new JPanel();
-		panel.setBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 2, (Color) new Color(0, 0, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(124, 252, 0)), new LineBorder(new Color(0, 0, 0), 3, true)));
 		
 		
 		panel.setLayout(null);
