@@ -108,6 +108,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	//esto es para ssd-11
 	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
+	//pagar costo
+	public prueba3 costo;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -387,14 +389,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
-		this.listAll = new prueba2(player.pdeck.Deck);
 		
-		this.listAll.setBounds(150, 100, 620, 420);
-		add(this.listAll);
-		this.moveToFront(this.listAll);
 		
-		this.listAll.aceptar.addActionListener(this);
-		this.listAll.setVisible(false);
+		this.costo = new prueba3(player.pdeck.Deck);
+		
+		this.costo.setBounds(150, 100, 620, 420);
+		add(this.costo);
+		this.moveToFront(this.costo);
+		
+		this.costo.aceptar.addActionListener(this);
+		this.costo.setVisible(true);
 		
 		this.top1=new JButton("tarjet");
 		this.top1.setBounds(200,580,80,30);
