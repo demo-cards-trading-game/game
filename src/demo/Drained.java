@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class Drained extends JLayeredPane implements MouseListener{
 
@@ -36,15 +38,17 @@ public class Drained extends JLayeredPane implements MouseListener{
 	 */
 	public  int currentdrained,used;
 	public  int currentundrained,currentoken;
+	public int paying;
 	
 	public JPanel[]  drained  = new JPanel[20];
 	public JPanel[]  undrained  = new JPanel[20];
 	public JLabel[]  tokens = new JLabel[20];
 	public JPanel panel,panel_1,panel_2; 
-	int paying;
+	JLabel label;
+
 	public Drained(int x , int y,String name)
 	{
-		setBounds(x,y,145,384);
+		setBounds(x,y,196,384);
 		setLayout(null);
 	     
 		JLabel lblUndrained = new JLabel("UNDRAINED");
@@ -56,7 +60,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		panel=new JPanel(null);
 		add(panel);
 		panel.setOpaque(false);
-		panel.setBounds(0, 30, 200, 85);
+		panel.setBounds(0, 30, 170, 85);
 		
 		
 	
@@ -65,18 +69,18 @@ public class Drained extends JLayeredPane implements MouseListener{
 		 panel_1 = new JPanel((LayoutManager) null);
 		panel_1.setLayout(null);
 		panel_1.setOpaque(false);
-		panel_1.setBounds(0, 132, 200, 75);
+		panel_1.setBounds(0, 283, 200, 75);
 		add(panel_1);
 		
 		JLabel lblDrained = new JLabel("DRAINED");
 		lblDrained.setForeground(new Color(51, 102, 255));
 		lblDrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDrained.setBounds(10, 107, 100, 14);
+		lblDrained.setBounds(10, 264, 100, 14);
 		add(lblDrained);
 		
 		 panel_2 = new JPanel();
 		
-		panel_2.setBounds(0, 237, 145, 56);
+		panel_2.setBounds(10, 151, 145, 56);
 		add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setOpaque(false);
@@ -84,8 +88,17 @@ public class Drained extends JLayeredPane implements MouseListener{
 		JLabel lblVolatile = new JLabel("VOLATILE");
 		lblVolatile.setForeground(new Color(204, 255, 255));
 		lblVolatile.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblVolatile.setBounds(10, 212, 100, 14);
+		lblVolatile.setBounds(10, 126, 100, 14);
 		add(lblVolatile);
+		
+		 label = new JLabel("0");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		label.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "PAYING", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
+		label.setBackground(Color.BLACK);
+		label.setBounds(10, 218, 100, 35);
+		add(label);
 		
 		/***************************se crean los paneles ***************************************/
 		
@@ -262,14 +275,17 @@ public class Drained extends JLayeredPane implements MouseListener{
 			
 			if(undrained[0].getY()==10)
 			{
-				System.out.println("entro a y");
+				paying++;
 				undrained[0].setBounds(0,0,25,20);
+				label.setText(""+paying);
 			}else
 			{
-				System.out.println("entro a else");
+				paying--;
 				undrained[0].setBounds(0,10,25,20);
+				label.setText(""+paying);
 			}
 		}
+		
 		if(e.getSource()==undrained[1])
 		
 		{
@@ -277,11 +293,14 @@ public class Drained extends JLayeredPane implements MouseListener{
 			
 			if(undrained[1].getY()==10)
 			{
-				System.out.println("entro a y");
+				paying++;
+				label.setText(""+paying);
 				undrained[1].setBounds(30,0,25,20);
 			}else
 			{
-				System.out.println("entro a else");
+			
+				paying--;
+				label.setText(""+paying);
 				undrained[1].setBounds(30,10,25,20);
 			}
 		}
