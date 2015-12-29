@@ -111,6 +111,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//pagar costo
 	public JInternalFrame costo;
+	public JButton up1,up2, down1,down2, costoAceptar;
+	public JLabel lb1, lb2, cVolatile, cUndrained, cPayed, lblPay;
+	public int pVolatile=0, pUndrained=0, cost=0, payed=0;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -845,54 +848,57 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(costo);
 		costo.moveToFront();
 		
-		JButton up1 = new JButton("up");
+		up1 = new JButton("up");
 		up1.setBounds(50, 50, 65, 20);
 		costo.getContentPane().add(up1);
 		
-		JButton up2 = new JButton("up");
+		up2 = new JButton("up");
 		up2.setBounds(200, 50, 65, 20);
 		costo.getContentPane().add(up2);
 		
-		JButton down1 = new JButton("down");
+		down1 = new JButton("down");
 		down1.setBounds(50, 200, 65, 20);
 		costo.getContentPane().add(down1);
 		
-		JButton down2 = new JButton("down");
+		down2 = new JButton("down");
 		down2.setBounds(200, 200, 65, 20);
 		costo.getContentPane().add(down2);
 		
-		JLabel lb1= new JLabel("Undrained");
+		lb1= new JLabel("Undrained");
 		lb1.setBounds(50,10,65,20);
 		costo.getContentPane().add(lb1);
 		
-		JLabel lb2= new JLabel("Volatile");
+		lb2= new JLabel("Volatile");
 		lb2.setBounds(200,10,65,20);
 		costo.getContentPane().add(lb2);
 		
-		int pVolatile=0;
-		int pUndrained=0;
-		int cost=3;
-		int payed=0;
-		
-		JLabel cVolatile= new JLabel(""+pVolatile);
+		cVolatile= new JLabel(""+pVolatile);
 		cVolatile.setBounds(75, 125, 65, 20);
 		costo.getContentPane().add(cVolatile);
 		
-		JLabel cUndrained= new JLabel(""+pUndrained);
+		cUndrained= new JLabel(""+pUndrained);
 		cUndrained.setBounds(225, 125, 65, 20);
 		costo.getContentPane().add(cUndrained);
 		
-		JButton aceptar = new JButton("aceptar");
-		aceptar.setBounds(180, 250, 85, 20);
-		costo.getContentPane().add(aceptar);
+		costoAceptar = new JButton("aceptar");
+		costoAceptar.setBounds(180, 250, 85, 20);
+		costo.getContentPane().add(costoAceptar);
 		
-		JLabel lblPay= new JLabel("Cost to pay: "+cost);
+		lblPay= new JLabel("Cost to pay: "+cost);
 		lblPay.setBounds(50, 250, 95, 20);
 		costo.getContentPane().add(lblPay);
 		
-		JLabel cPayed= new JLabel(""+payed);
+		cPayed= new JLabel(""+payed);
 		cPayed.setBounds(150, 125, 65, 20);
 		costo.getContentPane().add(cPayed);
+		
+		up1.addActionListener(this);
+		up2.addActionListener(this);
+		down1.addActionListener(this);
+		down2.addActionListener(this);
+		costoAceptar.addActionListener(this);
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
