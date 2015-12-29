@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 
 public class Tutorial extends JPanel implements ActionListener  {
 
-	public JButton ok,ok2;
+	public JButton ok,ok2,ok3,cancel;
 	public AnimatedButton animation;
 	JLabel clickon;
 	public JLabel lblSms ;
@@ -46,7 +46,20 @@ public class Tutorial extends JPanel implements ActionListener  {
 		 ok2.setBackground(Color.WHITE);
 		 ok2.setBounds(150,120,100,40);
 		 ok2.addActionListener(this);
-		
+		 ok3=new JButton("Continue");
+		 ok3.setSelectedIcon(null);
+		 ok3.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
+		 ok3.setForeground(new Color(0, 0, 0));
+		 ok3.setBackground(Color.WHITE);
+		 ok3.setBounds(152-50,142,100,40);
+		 ok3.addActionListener(this);
+		 cancel=new JButton("Cancel");
+		 cancel.setSelectedIcon(null);
+		 cancel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
+		 cancel.setForeground(new Color(0, 0, 0));
+		 cancel.setBackground(Color.WHITE);
+		 cancel.setBounds(152+50,142,100,40);
+		 cancel.addActionListener(this);
 		 animation=new AnimatedButton(0,0);
 		 add(animation);
 		 
@@ -135,6 +148,9 @@ public class Tutorial extends JPanel implements ActionListener  {
 	}
 	public void play()
 	{
+		remove(ok);
+		add(ok3);
+		add(cancel);
 		animation.setLocation(179,515);
 		lblSms.setText("SELECT POWERS TO DRAIN");
 		animation.anim();

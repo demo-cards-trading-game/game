@@ -137,7 +137,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setBounds(0,0, 1024, 768);
 		cardDrawn=0;
 		tuto= new Tutorial();
-		//add(tuto);
+		add(tuto);
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
 		//this.add(fight);
@@ -839,6 +839,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet114.setVisible(false);
 		this.aitarjet115.setVisible(false);
 		tuto.ok.addActionListener(this);
+		tuto.ok3.addActionListener(this);
+		tuto.cancel.addActionListener(this);
 		
 	}
 	
@@ -851,6 +853,34 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.animation.stop();
 			
 		
+			tuto.animation.stop();
+			tuto.setVisible(false);
+			
+		
+			
+		}
+		if( e.getSource()==tuto.ok3)
+		{
+			
+			tuto.animation.stop();
+			
+		    
+			tuto.animation.stop();
+			tuto.setVisible(false);
+			
+			
+			tuto.panel.remove(tuto.ok3);
+			tuto.panel.remove(tuto.cancel);
+		
+			
+		}
+		if( e.getSource()==tuto.cancel)
+		{
+			
+			tuto.animation.stop();
+			
+			tuto.panel.remove(tuto.ok3);
+			tuto.panel.remove(tuto.cancel);
 			tuto.animation.stop();
 			tuto.setVisible(false);
 			
@@ -2416,7 +2446,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				int where = player.field.findwhere();// busca en donde poner la carta
 				if (where != -1)
 				{
-					set(pos,where);
+					System.out.println("entrara tuto");
+					tuto.play();
 				}
 			}else
 			{
