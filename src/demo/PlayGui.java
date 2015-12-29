@@ -59,12 +59,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	
 	
 	public fightpane fight;//panel donde se muestra la animacion de peleas
-	public PlayerGui player;//aca estan el hand el deck y lo demas
+	public static PlayerGui player;//aca estan el hand el deck y lo demas
 	public AIGui ai;//lo mismo pero en el ai
 	public Previewpane preview;//aca se muestra la carta
-	int p,w;
+	int p,w,c;//pos , where, cost
 	public Tutorial tuto;
-
+	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	
 	optionpane op;
 	int turn, contTurn=0;
@@ -856,7 +856,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 			tuto.animation.stop();
 			tuto.setVisible(false);
-			
+			checking=false;
 		
 			
 		}
@@ -871,8 +871,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			
 			set(p,w);
+			checking=false;
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
+			tuto.panel.add(tuto.ok);
+			player.powers.paying=0;
 		
 			
 		}
@@ -885,7 +888,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.panel.remove(tuto.cancel);
 			tuto.animation.stop();
 			tuto.setVisible(false);
-			
+			tuto.panel.add(tuto.ok);
 		
 			
 		}
@@ -2439,10 +2442,46 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		
 	}
+
+	void hilo() {
+
+		Thread t = new Thread(new Runnable() {
+
+			public void start() {
+				this.start();
+			}
+
+			public void run() {
+
+				checking = true;
+
+				while (checking) {
+
+					try {
+						Thread.sleep(15);
+						System.out.println("entro hilo");
+						System.out.println(""+player.powers.paying+" p " + c);
+						if(player.powers.paying==c)
+						{
+							tuto.ok3.setEnabled(true);
+							
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+
+					}
+
+				}
+
+			}
+		});
+		t.start();
+		
+	}
 	void play(int pos)// plays a card on field
 	{
-	
-		if ( player.powers.currentundrained+player.powers.currentoken - player.hand.handgui[pos].getcard().GetCost()>0 ) {//verifica que haya mana
+	 c=player.hand.handgui[pos].getcard().GetCost();
+		if ( player.powers.currentundrained+player.powers.currentoken - c >=0 ) {//verifica que haya mana
 
 			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
 				int where = player.field.findwhere();// busca en donde poner la carta
@@ -2452,6 +2491,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					p=pos;
 					w=where;
 					tuto.play();
+					hilo();
 				}
 			}else
 			{

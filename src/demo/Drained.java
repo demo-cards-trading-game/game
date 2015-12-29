@@ -80,7 +80,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		
 		 panel_2 = new JPanel();
 		
-		panel_2.setBounds(10, 151, 145, 56);
+		panel_2.setBounds(10, 151, 145, 75);
 		add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setOpaque(false);
@@ -97,7 +97,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		label.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "PAYING", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
 		label.setBackground(Color.BLACK);
-		label.setBounds(10, 218, 100, 35);
+		label.setBounds(86, 246, 100, 35);
 		add(label);
 		
 		/***************************se crean los paneles ***************************************/
@@ -118,7 +118,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		
 		undrained[currentundrained] = new JPanel();
 		undrained[currentundrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
-		undrained[currentundrained].setBackground(Color.RED);
+		undrained[currentundrained].setBackground(Color.BLUE);
 		undrained[currentundrained].addMouseListener(this);
 			 
 		panel.add(undrained[currentundrained]);
@@ -222,19 +222,19 @@ public class Drained extends JLayeredPane implements MouseListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		tokens[currentoken].addMouseListener(this);
 		panel_2.add(tokens[currentoken]);
 		
 		if(currentoken<5)
 		{
-		tokens[currentoken].setBounds(currentoken*25, 0, 20, 20);
+		tokens[currentoken].setBounds(currentoken*25, 10, 20, 20);
 		}else{
 			if(currentoken<10)
 			{
-			tokens[currentoken].setBounds((currentoken-5)*25,25 , 20, 20);
+			tokens[currentoken].setBounds((currentoken-5)*25,25 , 30, 20);
 			}else
 			{
-				tokens[currentoken].setBounds((currentoken*10)*25,50 , 20, 20);
+				tokens[currentoken].setBounds((currentoken*10)*25,60 , 20, 20);
 			}
 			
 		}	
@@ -277,12 +277,14 @@ public class Drained extends JLayeredPane implements MouseListener{
 			{
 				paying++;
 				undrained[0].setBounds(0,0,25,20);
+				undrained[0].setBackground(Color.red);
 				label.setText(""+paying);
 			}else
 			{
 				paying--;
 				undrained[0].setBounds(0,10,25,20);
 				label.setText(""+paying);
+				undrained[0].setBackground(Color.blue);
 			}
 		}
 		
@@ -296,20 +298,201 @@ public class Drained extends JLayeredPane implements MouseListener{
 				paying++;
 				label.setText(""+paying);
 				undrained[1].setBounds(30,0,25,20);
+				undrained[1].setBackground(Color.red);
 			}else
 			{
-			
+				undrained[1].setBackground(Color.blue);
 				paying--;
 				label.setText(""+paying);
 				undrained[1].setBounds(30,10,25,20);
 			}
 		}
-		repaint();
-		panel.repaint();
-		setVisible(true);
-		// TODO Auto-generated method stub
-		
+		if(e.getSource()==undrained[2])
+			
+		{
+			
+			
+			if(undrained[2].getY()==10)
+			{
+				paying++;
+				label.setText(""+paying);
+				undrained[2].setBounds(60,0,25,20);
+				undrained[2].setBackground(Color.red);
+			}else
+			{
+				undrained[2].setBackground(Color.blue);
+				paying--;
+				label.setText(""+paying);
+				undrained[2].setBounds(60,10,25,20);
+			}
+		}
+		if(e.getSource()==undrained[3])
+			
+		{
+			
+			
+			if(undrained[3].getY()==10)
+			{
+				paying++;
+				label.setText(""+paying);
+				undrained[3].setBounds(90,0,25,20);
+				undrained[3].setBackground(Color.red);
+			}else
+			{
+				undrained[3].setBackground(Color.blue);
+				paying--;
+				label.setText(""+paying);
+				undrained[3].setBounds(90,10,25,20);
+			}
+		}	
+			if(e.getSource()==undrained[4])
+				
+			{
+				
+				
+				if(undrained[4].getY()==10)
+				{
+					paying++;
+					label.setText(""+paying);
+					undrained[4].setBounds(120,0,25,20);
+					undrained[4].setBackground(Color.red);
+				}else
+				{
+					undrained[4].setBackground(Color.blue);
+					paying--;
+					label.setText(""+paying);
+					undrained[4].setBounds(120,10,25,20);
+				}
+			}
+			
+if(e.getSource()==undrained[5])
+				
+			{
+				
+				
+				if(undrained[5].getY()==35)
+				{
+					paying++;
+					label.setText(""+paying);
+					undrained[5].setBounds(0,25,25,20);
+					undrained[5].setBackground(Color.red);
+				}else
+				{
+					undrained[5].setBackground(Color.blue);
+					paying--;
+					label.setText(""+paying);
+					undrained[5].setBounds(0,35,25,20);
+				}
+			}
+			
+if(e.getSource()==undrained[6])
+	
+{
+	
+	
+	if(undrained[6].getY()==35)
+	{
+		paying++;
+		label.setText(""+paying);
+		undrained[6].setBounds(30,25,25,20);
+		undrained[6].setBackground(Color.red);
+	}else
+	{
+		undrained[6].setBackground(Color.blue);
+		paying--;
+		label.setText(""+paying);
+		undrained[6].setBounds(30,35,25,20);
 	}
+}
+if(e.getSource()==undrained[7])
+	
+{
+	
+	
+	if(undrained[7].getY()==35)
+	{
+		paying++;
+		label.setText(""+paying);
+		undrained[7].setBounds(60,25,25,20);
+		undrained[7].setBackground(Color.red);
+	}else
+	{
+		undrained[7].setBackground(Color.blue);
+		paying--;
+		label.setText(""+paying);
+		undrained[7].setBounds(60,35,25,20);
+	}
+}
+		
+	
+		
+
+
+	if(e.getSource()==undrained[8])
+		
+	{
+		
+		
+		if(undrained[8].getY()==35)
+		{
+			paying++;
+			label.setText(""+paying);
+			undrained[8].setBounds(90,25,25,20);
+			undrained[8].setBackground(Color.red);
+		}else
+		{
+			undrained[8].setBackground(Color.blue);
+			paying--;
+			label.setText(""+paying);
+			undrained[8].setBounds(90,35,25,20);
+		}
+	}
+	if(e.getSource()==undrained[9])
+		
+	{
+		
+		
+		if(undrained[9].getY()==35)
+		{
+			paying++;
+			label.setText(""+paying);
+			undrained[9].setBounds(120,25,25,20);
+			undrained[9].setBackground(Color.red);
+		}else
+		{
+			undrained[9].setBackground(Color.blue);
+			paying--;
+			label.setText(""+paying);
+			undrained[9].setBounds(120,35,25,20);
+		}
+	}
+	
+	if(e.getSource()==tokens[0])
+		
+	{
+		
+		
+		if(tokens[0].getY()==10)
+		{
+			paying++;
+			label.setText(""+paying);
+			tokens[0].setBounds(0,0,20,20);
+			
+		}else
+		{
+			
+			paying--;
+			label.setText(""+paying);
+			tokens[0].setBounds(0,10,20,20);
+		}
+	}
+			
+			repaint();
+			panel.repaint();
+			setVisible(true);
+			// TODO Auto-generated method stub
+			
+		}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
