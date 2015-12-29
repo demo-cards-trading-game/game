@@ -392,14 +392,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.listAll.aceptar.addActionListener(this);
 		
 		
-		this.costo = new prueba3(player.pdeck.Deck);
-		
-		this.costo.setBounds(150, 100, 620, 420);
-		add(this.costo);
-		this.moveToFront(this.costo);
-		
-		this.costo.aceptar.addActionListener(this);
-		this.costo.setVisible(true);
 		
 		this.top1=new JButton("tarjet");
 		this.top1.setBounds(200,580,80,30);
@@ -842,6 +834,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		tuto.ok.addActionListener(this);
 		tuto.ok3.addActionListener(this);
 		tuto.cancel.addActionListener(this);
+		
+		
+		
+		this.costo = new prueba3(player.pdeck.Deck);
+		
+		this.costo.setBounds(150, 100, 620, 420);
+		add(this.costo);
+		this.moveToFront(this.costo);
+		
+		this.costo.aceptar.addActionListener(this);
+		this.costo.setVisible(true);
 		
 	}
 	
