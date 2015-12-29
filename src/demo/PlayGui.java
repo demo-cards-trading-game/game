@@ -872,6 +872,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		int pVolatile=0;
 		int pUndrained=0;
 		int cost=3;
+		int payed=0;
 		
 		JLabel cVolatile= new JLabel(""+pVolatile);
 		cVolatile.setBounds(75, 125, 65, 20);
@@ -888,6 +889,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JLabel lblPay= new JLabel("Cost to pay: "+cost);
 		lblPay.setBounds(50, 250, 95, 20);
 		costo.getContentPane().add(lblPay);
+		
+		JLabel cPayed= new JLabel(""+payed);
+		cPayed.setBounds(150, 125, 65, 20);
+		costo.getContentPane().add(cPayed);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
