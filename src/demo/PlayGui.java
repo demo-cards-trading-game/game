@@ -884,6 +884,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		costoAceptar.setBounds(180, 250, 85, 20);
 		costo.getContentPane().add(costoAceptar);
 		
+		this.cost=3;
 		lblPay= new JLabel("Cost to pay: "+cost);
 		lblPay.setBounds(50, 250, 95, 20);
 		costo.getContentPane().add(lblPay);
@@ -892,12 +893,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		cPayed.setBounds(150, 125, 65, 20);
 		costo.getContentPane().add(cPayed);
 		
+		//first turn
+		this.down1.setEnabled(false);
+		this.down2.setEnabled(false);
+		this.costoAceptar.setEnabled(false);
+		
 		up1.addActionListener(this);
 		up2.addActionListener(this);
 		down1.addActionListener(this);
 		down2.addActionListener(this);
 		costoAceptar.addActionListener(this);
-		
 		
 	}
 	
@@ -2032,6 +2037,42 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 			JOptionPane.showMessageDialog(null, "face down succefully");
 			repaint();
+		}
+		
+		/*
+		 public JButton up1,up2, down1,down2, costoAceptar;
+		public JLabel lb1, lb2, cVolatile, cUndrained, cPayed, lblPay;
+		public int pVolatile=0, pUndrained=0, cost=0, payed=0;
+		 */
+		if(e.getSource()==this.up1){
+			
+		}
+		
+		if(e.getSource()==this.up2){
+			
+		}
+		
+		if(e.getSource()==this.down1){
+			if(this.cost==this.payed){
+				this.up1.setEnabled(true);
+				this.up2.setEnabled(true);
+			}
+			
+			this.payed=this.payed-1;
+			this.pUndrained=this.pUndrained-1;
+			if(this.pUndrained==0){
+				this.down1.setEnabled(false);
+			}
+			
+			
+		}
+		
+		if(e.getSource()==this.down2){
+			
+		}
+		
+		if(e.getSource()==this.costoAceptar){
+			
 		}
 	}
 
