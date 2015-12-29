@@ -62,6 +62,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public PlayerGui player;//aca estan el hand el deck y lo demas
 	public AIGui ai;//lo mismo pero en el ai
 	public Previewpane preview;//aca se muestra la carta
+	int p,w;
 	public Tutorial tuto;
 
 	
@@ -869,6 +870,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.setVisible(false);
 			
 			
+			set(p,w);
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 		
@@ -2446,7 +2448,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				int where = player.field.findwhere();// busca en donde poner la carta
 				if (where != -1)
 				{
-					System.out.println("entrara tuto");
+					
+					p=pos;
+					w=where;
 					tuto.play();
 				}
 			}else
