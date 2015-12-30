@@ -2045,55 +2045,80 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		
-		/*
-		 public JButton up1,up2, down1,down2, costoAceptar;
-		public JLabel lb1, lb2, cVolatile, cUndrained, cPayed, lblPay;
-		public int pVolatile=0, pUndrained=0, cost=0, payed=0;
-		 */
-		if(e.getSource()==this.up1){
-			
-		}
 		
-		if(e.getSource()==this.up2){
-			
-		}
-		
-		if(e.getSource()==this.down1){
-			if(this.cost==this.payed){
-				if(this.totalUndrained>this.pUndrained){
-					this.up1.setEnabled(true);
+		if(e.getSource()==this.up1||e.getSource()==this.up2||e.getSource()==this.down1||e.getSource()==this.down2){
+			if(e.getSource()==this.up1){
+				this.payed=this.payed+1;
+				this.pUndrained=this.pUndrained+1;
+				
+				if(this.cost==this.payed){
+					this.up1.setEnabled(false);
+					this.up2.setEnabled(false);
+					this.costoAceptar.setVisible(true);
 				}
-				if(this.totalVolatile>this.pVolatile){
-					this.up2.setEnabled(true);
-				}
-			}
-			
-			this.payed=this.payed-1;
-			this.pUndrained=this.pUndrained-1;
-			
-			if(this.pUndrained==0){
-				this.down1.setEnabled(false);
-			}
-			
-			
-			repaint();
-		}
-		
-		if(e.getSource()==this.down2){
-			if(this.cost==this.payed){
-				if(this.totalUndrained>this.pUndrained){
-					this.up1.setEnabled(true);
-				}
-				if(this.totalVolatile>this.pVolatile){
-					this.up2.setEnabled(true);
+				
+				if(this.totalUndrained==this.pUndrained){
+					this.up1.setEnabled(false);
 				}
 			}
 			
-			this.payed=this.payed-1;
-			this.pVolatile=this.pVolatile-1;
-			if(this.pVolatile==0){
-				this.down2.setEnabled(false);
+			if(e.getSource()==this.up2){
+				this.payed=this.payed+1;
+				this.pVolatile=this.pVolatile+1;
+				
+				if(this.cost==this.payed){
+					this.up1.setEnabled(false);
+					this.up2.setEnabled(false);
+					this.costoAceptar.setVisible(true);
+				}
+				
+				if(this.totalVolatile==this.pVolatile){
+					this.up2.setEnabled(false);
+				}
 			}
+			
+			if(e.getSource()==this.down1){
+				if(this.cost==this.payed){
+					if(this.totalUndrained>this.pUndrained){
+						this.up1.setEnabled(true);
+					}
+					if(this.totalVolatile>this.pVolatile){
+						this.up2.setEnabled(true);
+					}
+				}
+				
+				this.payed=this.payed-1;
+				this.pUndrained=this.pUndrained-1;
+				
+				if(this.pUndrained==0){
+					this.down1.setEnabled(false);
+				}
+			}
+			
+			if(e.getSource()==this.down2){
+				if(this.cost==this.payed){
+					if(this.totalUndrained>this.pUndrained){
+						this.up1.setEnabled(true);
+					}
+					if(this.totalVolatile>this.pVolatile){
+						this.up2.setEnabled(true);
+					}
+				}
+				
+				this.payed=this.payed-1;
+				this.pVolatile=this.pVolatile-1;
+				if(this.pVolatile==0){
+					this.down2.setEnabled(false);
+				}	
+			}
+			/*
+			 public JButton up1,up2, down1,down2, costoAceptar;
+			public JLabel lb1, lb2, cVolatile, cUndrained, cPayed, lblPay;
+			public int pVolatile=0, pUndrained=0, cost=0, payed=0;
+			 */
+			this.cVolatile.setText(""+pVolatile);
+			this.cUndrained.setText(""+this.pUndrained);
+			this.cPayed.setText(""+payed);
 			
 			repaint();
 		}
