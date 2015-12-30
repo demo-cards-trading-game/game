@@ -63,6 +63,7 @@ public class DeckGui extends JPanel {
 		setLayout(null);
 		
 		btnNewButton = new JButton("");
+		btnNewButton.setBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)));
 		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setOpaque(false);
 		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
@@ -87,6 +88,7 @@ public class DeckGui extends JPanel {
 		add(lblDeck);
 		
 		btnNewButton_1 = new JButton();
+		btnNewButton_1.setBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)));
 		
 		btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
 		
@@ -101,6 +103,7 @@ public class DeckGui extends JPanel {
 		add(lblTheFallen);
 		
 		btnNewButton_2 = new JButton();
+		btnNewButton_2.setBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)));
 	
 		
 		btnNewButton_2.setIcon(new ImageIcon("Forgotten.JPG"));
@@ -117,7 +120,7 @@ public class DeckGui extends JPanel {
 		add(lblForgotten);
 		
 		 panel= new JPanel();
-		panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(124, 252, 0)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
 		
 		
 		panel.setLayout(null);

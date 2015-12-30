@@ -395,8 +395,8 @@ public JButton j;
 		this.costo = new prueba3(player.pdeck.Deck);
 		
 		this.costo.setBounds(150, 100, 620, 420);
-		add(this.costo);
-		this.moveToFront(this.costo);
+		//add(this.costo);
+		//this.moveToFront(this.costo);
 		
 		this.costo.aceptar.addActionListener(this);
 		this.costo.setVisible(true);
@@ -877,6 +877,7 @@ public JButton j;
 			tuto.panel.remove(tuto.cancel);
 			tuto.panel.add(tuto.ok);
 			player.powers.paying=0;
+			player.powers.tokenused=0;
 		
 			
 		}
@@ -1444,7 +1445,7 @@ public JButton j;
 			this.moveToFront(this.listAll);
 			
 			this.listAll.aceptar.addActionListener(this);
-			this.listAll.setVisible(true);
+			//this.listAll.setVisible(true);
 			 
 			 
 		}
@@ -2460,9 +2461,9 @@ public JButton j;
 
 					try {
 						Thread.sleep(15);
-						System.out.println("entro hilo");
-						System.out.println(""+player.powers.paying+" p " + c);
-						if(player.powers.paying==c)
+						
+						
+						if(player.powers.paying + player.powers.tokenused==c)
 						{
 							tuto.ok3.setEnabled(true);
 							

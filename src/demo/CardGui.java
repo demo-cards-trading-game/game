@@ -38,7 +38,7 @@ import javax.swing.border.MatteBorder;
 	setBounds(a, b, 124, 186);	
 	
 		
-		setBorder(new CompoundBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(0, 0, 205)), new MatteBorder(0, 2, 0, 0, (Color) new Color(102, 204, 0))), new LineBorder(new Color(0, 0, 0), 3, true)));
+		setBorder(new CompoundBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(0, 0, 205)), new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255))), new LineBorder(new Color(0, 0, 0), 3, true)));
 		setLayout(null);
 		
 		

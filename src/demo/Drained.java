@@ -38,7 +38,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	 */
 	public  int currentdrained,used;
 	public  int currentundrained,currentoken;
-	public int paying;
+	public int paying,tokenused;
 	
 	public JPanel[]  drained  = new JPanel[20];
 	public JPanel[]  undrained  = new JPanel[20];
@@ -69,18 +69,18 @@ public class Drained extends JLayeredPane implements MouseListener{
 		 panel_1 = new JPanel((LayoutManager) null);
 		panel_1.setLayout(null);
 		panel_1.setOpaque(false);
-		panel_1.setBounds(0, 262, 200, 75);
+		panel_1.setBounds(0, 251, 200, 75);
 		add(panel_1);
 		
 		JLabel lblDrained = new JLabel("DRAINED");
 		lblDrained.setForeground(new Color(51, 102, 255));
 		lblDrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDrained.setBounds(10, 237, 100, 14);
+		lblDrained.setBounds(10, 226, 100, 14);
 		add(lblDrained);
 		
 		 panel_2 = new JPanel();
 		
-		panel_2.setBounds(10, 140, 145, 75);
+		panel_2.setBounds(0, 140, 145, 75);
 		add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setOpaque(false);
@@ -98,7 +98,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		label.setBackground(Color.ORANGE);
-		label.setBounds(113, 224, 73, 35);
+		label.setBounds(113, 349, 73, 35);
 		add(label);
 		
 		/***************************se crean los paneles ***************************************/
@@ -174,6 +174,16 @@ public class Drained extends JLayeredPane implements MouseListener{
 			repaint();
 		
 	}
+	
+	void take3()
+	{
+		repaint();
+		currentoken=currentoken-1;
+		
+		panel_2.remove(tokens[currentoken]);
+		setVisible(true);
+		repaint();
+	}
 	void drain()
 	{
 		drained[currentdrained] = new JPanel();
@@ -196,20 +206,27 @@ public class Drained extends JLayeredPane implements MouseListener{
 			
 		}	
 		currentdrained++;
-		take();
+		
 		panel_2.setVisible(true);
 		repaint();
 		panel_2.setVisible(true);
 	}
 	void drain(int n)
 	{
-		if(currentundrained>=n){
-		int i ;
-		for(i= 0;i< n;i++){	
-		
-		drain();
-		
-		}
+		System.out.println("se pagara "+paying+"+"+tokenused);
+		if(paying+currentoken==n){
+			while(paying>=1)
+			{
+				drain();
+				take();
+				paying--;
+			}
+			while(tokenused>=1)
+			{
+				drain();
+				take3();
+				tokenused--;
+			}
 		
 		}
 		
@@ -255,6 +272,10 @@ public class Drained extends JLayeredPane implements MouseListener{
 			take2();
 			System.out.println("currentundrained"+currentundrained);
 			System.out.println("currentdrained"+currentdrained);
+		}
+		while(currentdrained>0)
+		{
+			take2();
 		}
 		used=0;
 		repaint();
@@ -475,14 +496,14 @@ if(e.getSource()==undrained[7])
 		
 		if(tokens[0].getY()==10)
 		{
-			paying++;
+			tokenused++;
 			label.setText(""+paying);
 			tokens[0].setBounds(0,0,20,20);
 			
 		}else
 		{
 			
-			paying--;
+			tokenused--;
 			label.setText(""+paying);
 			tokens[0].setBounds(0,10,20,20);
 		}
@@ -494,15 +515,15 @@ if(e.getSource()==tokens[1])
 		
 		if(tokens[1].getY()==10)
 		{
-			paying++;
-			label.setText(""+paying);
+			tokenused++;
+			
 			tokens[1].setBounds(25,0,20,20);
 			
 		}else
 		{
 			
-			paying--;
-			label.setText(""+paying);
+			tokenused--;
+		
 			tokens[1].setBounds(25,10,20,20);
 		}
 	}
@@ -513,15 +534,14 @@ if(e.getSource()==tokens[2])
 	
 	if(tokens[2].getY()==10)
 	{
-		paying++;
-		label.setText(""+paying);
+		tokenused++;
 		tokens[2].setBounds(50,0,20,20);
 		
 	}else
 	{
 		
-		paying--;
-		label.setText(""+paying);
+		tokenused--;
+	
 		tokens[2].setBounds(50,10,20,20);
 	}
 }
@@ -532,15 +552,15 @@ if(e.getSource()==tokens[3])
 	
 	if(tokens[3].getY()==10)
 	{
-		paying++;
-		label.setText(""+paying);
+		tokenused++;
+	
 		tokens[3].setBounds(75,0,20,20);
 		
 	}else
 	{
 		
-		paying--;
-		label.setText(""+paying);
+		tokenused--;
+	
 		tokens[3].setBounds(75,10,20,20);
 	}
 }
@@ -548,15 +568,15 @@ if(e.getSource()==tokens[4])
 {
 if(tokens[4].getY()==10)
 {
-	paying++;
-	label.setText(""+paying);
+	tokenused++;
+	
 	tokens[4].setBounds(100,0,20,20);
 	
 }else
 {
 	
-	paying--;
-	label.setText(""+paying);
+	tokenused--;
+	
 	tokens[4].setBounds(100,10,20,20);
 }
 }
@@ -565,15 +585,15 @@ if(e.getSource()==tokens[5])
 {
 if(tokens[5].getY()==10)
 {
-	paying++;
-	label.setText(""+paying);
+	tokenused++;
+
 	tokens[5].setBounds(125,0,20,20);
 	
 }else
 {
 	
-	paying--;
-	label.setText(""+paying);
+	tokenused--;
+
 	tokens[5].setBounds(125,10,20,20);
 }
 }
