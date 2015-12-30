@@ -91,7 +91,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int [] aiAttack= new int[5];
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
-	public JButton j;
+public JButton j;
 	public prueba2 listAll;
 	public JButton top1,top2,top3,top4,top5;
 	public JButton ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
@@ -386,7 +386,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		this.listAll.setBounds(150, 100, 620, 420);
 		this.listAll.setVisible(false);
-		add(this.listAll);
+		//add(this.listAll);
 		this.moveToFront(this.listAll);
 		
 		this.listAll.aceptar.addActionListener(this);
