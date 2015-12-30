@@ -114,6 +114,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton up1,up2, down1,down2, costoAceptar;
 	public JLabel lb1, lb2, cVolatile, cUndrained, cPayed, lblPay;
 	public int pVolatile=0, pUndrained=0, cost=0, payed=0;
+	public int totalVolatile, totalUndrained; 
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -848,6 +849,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(costo);
 		costo.moveToFront();
 		
+		//para efectos de ejemplo
+				this.totalUndrained=2;
+				this.totalVolatile=1;
+				this.cost=3;
+		
 		up1 = new JButton("up");
 		up1.setBounds(50, 50, 65, 20);
 		costo.getContentPane().add(up1);
@@ -864,11 +870,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		down2.setBounds(200, 200, 65, 20);
 		costo.getContentPane().add(down2);
 		
-		lb1= new JLabel("Undrained");
+		lb1= new JLabel("Undrained: "+this.totalUndrained);
 		lb1.setBounds(50,10,65,20);
 		costo.getContentPane().add(lb1);
 		
-		lb2= new JLabel("Volatile");
+		lb2= new JLabel("Volatile: "+this.totalVolatile);
 		lb2.setBounds(200,10,65,20);
 		costo.getContentPane().add(lb2);
 		
@@ -884,7 +890,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		costoAceptar.setBounds(180, 250, 85, 20);
 		costo.getContentPane().add(costoAceptar);
 		
-		this.cost=3;
 		lblPay= new JLabel("Cost to pay: "+cost);
 		lblPay.setBounds(50, 250, 95, 20);
 		costo.getContentPane().add(lblPay);
@@ -904,6 +909,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		down2.addActionListener(this);
 		costoAceptar.addActionListener(this);
 		
+		//cuando se haga visible este panel se debe preguntar si hay undrained o volatile para desabilitar los botones
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -2054,21 +2060,42 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(e.getSource()==this.down1){
 			if(this.cost==this.payed){
-				this.up1.setEnabled(true);
-				this.up2.setEnabled(true);
+				if(this.totalUndrained>this.pUndrained){
+					this.up1.setEnabled(true);
+				}
+				if(this.totalVolatile>this.pVolatile){
+					this.up2.setEnabled(true);
+				}
 			}
 			
 			this.payed=this.payed-1;
 			this.pUndrained=this.pUndrained-1;
+			
 			if(this.pUndrained==0){
 				this.down1.setEnabled(false);
 			}
 			
 			
+			repaint();
 		}
 		
 		if(e.getSource()==this.down2){
+			if(this.cost==this.payed){
+				if(this.totalUndrained>this.pUndrained){
+					this.up1.setEnabled(true);
+				}
+				if(this.totalVolatile>this.pVolatile){
+					this.up2.setEnabled(true);
+				}
+			}
 			
+			this.payed=this.payed-1;
+			this.pVolatile=this.pVolatile-1;
+			if(this.pVolatile==0){
+				this.down2.setEnabled(false);
+			}
+			
+			repaint();
 		}
 		
 		if(e.getSource()==this.costoAceptar){
