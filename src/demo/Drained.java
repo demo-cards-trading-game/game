@@ -69,18 +69,18 @@ public class Drained extends JLayeredPane implements MouseListener{
 		 panel_1 = new JPanel((LayoutManager) null);
 		panel_1.setLayout(null);
 		panel_1.setOpaque(false);
-		panel_1.setBounds(0, 283, 200, 75);
+		panel_1.setBounds(0, 262, 200, 75);
 		add(panel_1);
 		
 		JLabel lblDrained = new JLabel("DRAINED");
 		lblDrained.setForeground(new Color(51, 102, 255));
 		lblDrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDrained.setBounds(10, 264, 100, 14);
+		lblDrained.setBounds(10, 237, 100, 14);
 		add(lblDrained);
 		
 		 panel_2 = new JPanel();
 		
-		panel_2.setBounds(10, 151, 145, 75);
+		panel_2.setBounds(10, 140, 145, 75);
 		add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setOpaque(false);
@@ -88,16 +88,17 @@ public class Drained extends JLayeredPane implements MouseListener{
 		JLabel lblVolatile = new JLabel("VOLATILE");
 		lblVolatile.setForeground(new Color(204, 255, 255));
 		lblVolatile.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblVolatile.setBounds(10, 126, 100, 14);
+		lblVolatile.setBounds(10, 115, 100, 14);
 		add(lblVolatile);
 		
 		 label = new JLabel("0");
+		 label.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		 label.setOpaque(true);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.WHITE);
+		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		label.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "PAYING", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
-		label.setBackground(Color.BLACK);
-		label.setBounds(86, 246, 100, 35);
+		label.setBackground(Color.ORANGE);
+		label.setBounds(113, 224, 73, 35);
 		add(label);
 		
 		/***************************se crean los paneles ***************************************/
@@ -225,11 +226,11 @@ public class Drained extends JLayeredPane implements MouseListener{
 		tokens[currentoken].addMouseListener(this);
 		panel_2.add(tokens[currentoken]);
 		
-		if(currentoken<5)
+		if(currentoken<=5)
 		{
 		tokens[currentoken].setBounds(currentoken*25, 10, 20, 20);
 		}else{
-			if(currentoken<10)
+			if(currentoken<=10)
 			{
 			tokens[currentoken].setBounds((currentoken-5)*25,25 , 30, 20);
 			}else
@@ -486,6 +487,96 @@ if(e.getSource()==undrained[7])
 			tokens[0].setBounds(0,10,20,20);
 		}
 	}
+if(e.getSource()==tokens[1])
+		
+	{
+		
+		
+		if(tokens[1].getY()==10)
+		{
+			paying++;
+			label.setText(""+paying);
+			tokens[1].setBounds(25,0,20,20);
+			
+		}else
+		{
+			
+			paying--;
+			label.setText(""+paying);
+			tokens[1].setBounds(25,10,20,20);
+		}
+	}
+if(e.getSource()==tokens[2])
+	
+{
+	
+	
+	if(tokens[2].getY()==10)
+	{
+		paying++;
+		label.setText(""+paying);
+		tokens[2].setBounds(50,0,20,20);
+		
+	}else
+	{
+		
+		paying--;
+		label.setText(""+paying);
+		tokens[2].setBounds(50,10,20,20);
+	}
+}
+if(e.getSource()==tokens[3])
+	
+{
+	
+	
+	if(tokens[3].getY()==10)
+	{
+		paying++;
+		label.setText(""+paying);
+		tokens[3].setBounds(75,0,20,20);
+		
+	}else
+	{
+		
+		paying--;
+		label.setText(""+paying);
+		tokens[3].setBounds(75,10,20,20);
+	}
+}
+if(e.getSource()==tokens[4])
+{
+if(tokens[4].getY()==10)
+{
+	paying++;
+	label.setText(""+paying);
+	tokens[4].setBounds(100,0,20,20);
+	
+}else
+{
+	
+	paying--;
+	label.setText(""+paying);
+	tokens[4].setBounds(100,10,20,20);
+}
+}
+
+if(e.getSource()==tokens[5])
+{
+if(tokens[5].getY()==10)
+{
+	paying++;
+	label.setText(""+paying);
+	tokens[5].setBounds(125,0,20,20);
+	
+}else
+{
+	
+	paying--;
+	label.setText(""+paying);
+	tokens[5].setBounds(125,10,20,20);
+}
+}
 			
 			repaint();
 			panel.repaint();

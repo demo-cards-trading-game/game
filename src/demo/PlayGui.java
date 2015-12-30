@@ -842,7 +842,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		tuto.ok.addActionListener(this);
 		tuto.ok3.addActionListener(this);
 		tuto.cancel.addActionListener(this);
-		
+		tuto.panel.add(player.powers.label);
+		player.powers.label.setVisible(false);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -857,7 +858,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.animation.stop();
 			tuto.setVisible(false);
 			checking=false;
-		
+			
 			
 		}
 		if( e.getSource()==tuto.ok3)
@@ -869,7 +870,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.animation.stop();
 			tuto.setVisible(false);
 			
-			
+			player.powers.label.setVisible(false);
 			set(p,w);
 			checking=false;
 			tuto.panel.remove(tuto.ok3);
@@ -883,7 +884,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			
 			tuto.animation.stop();
-			
+			player.powers.label.setVisible(false);
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 			tuto.animation.stop();
@@ -2491,6 +2492,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					p=pos;
 					w=where;
 					tuto.play();
+					
+					player.powers.label.setVisible(true);
+					
 					hilo();
 				}
 			}else
