@@ -879,11 +879,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		costo.getContentPane().add(lb2);
 		
 		cVolatile= new JLabel(""+pVolatile);
-		cVolatile.setBounds(75, 125, 65, 20);
+		cVolatile.setBounds(225, 125, 65, 20);
 		costo.getContentPane().add(cVolatile);
 		
 		cUndrained= new JLabel(""+pUndrained);
-		cUndrained.setBounds(225, 125, 65, 20);
+		cUndrained.setBounds(75, 125, 65, 20);
 		costo.getContentPane().add(cUndrained);
 		
 		costoAceptar = new JButton("aceptar");
@@ -901,7 +901,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		//first turn
 		this.down1.setEnabled(false);
 		this.down2.setEnabled(false);
-		this.costoAceptar.setEnabled(false);
+		this.costoAceptar.setVisible(false);
 		
 		up1.addActionListener(this);
 		up2.addActionListener(this);
@@ -2051,9 +2051,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				this.payed=this.payed+1;
 				this.pUndrained=this.pUndrained+1;
 				
+				if(!this.down1.isVisible()){
+					this.down1.setVisible(true);
+				}
+				
 				if(this.cost==this.payed){
 					this.up1.setEnabled(false);
 					this.up2.setEnabled(false);
+					System.out.println("hola1");
 					this.costoAceptar.setVisible(true);
 				}
 				
@@ -2066,9 +2071,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				this.payed=this.payed+1;
 				this.pVolatile=this.pVolatile+1;
 				
+				if(!this.down2.isVisible()){
+					this.down2.setVisible(true);
+				}
+				
 				if(this.cost==this.payed){
 					this.up1.setEnabled(false);
 					this.up2.setEnabled(false);
+					System.out.println("hola1");
 					this.costoAceptar.setVisible(true);
 				}
 				
