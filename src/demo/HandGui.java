@@ -43,8 +43,8 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public CardGui[]  handgui  = new CardGui[5];
-	Card[]  cards  = new Card[5];
+	public CardGui[]  handgui  = new CardGui[30];
+	Card[]  cards  = new Card[30];
 	public int current;
 	int curX = -1, curY = -1;
     boolean dragging = false;
@@ -97,28 +97,56 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 	      }
 	   
 	      current=current-1;
-	      remove(current);
-	      compactar();
-	      removeAll();
-	      addall();
+	      if(current>=5){
+	    	  
+	    	  handgui[0]=new CardGui(cards[0],0,20);
+	    	  handgui[1]=new CardGui(cards[1],124,20);
+	    	  handgui[2]=new CardGui(cards[2],248,20);
+	    	  handgui[3]=new CardGui(cards[3],372,20);
+	    	  handgui[4]=new CardGui(cards[4],496,20);
+	    	 
+	    	  compactar();
+		      removeAll();
+		      addall();
+	    	  
+	      }
+	      else{
+	    	  remove(current);
+		      compactar();
+		      removeAll();
+		      addall();
+		        
+	      }
 	      
 	      repaint();
+	      
+	      System.out.println("current: "+current);
 	    }
 	 void addall()
 	 {
 		 add(panel);
-		 for (int i=0;i<current;i++)
-	      {
-	   
-	      add(handgui[i]);
-	      moveToFront(handgui[i]);
-	      }
-		 
+		 if(current>5){
+			 for (int i=0;i<5;i++)
+		      {
+		   
+		      add(handgui[i]);
+		      moveToFront(handgui[i]);
+		      }
+		 }
+		 else{
+			 for (int i=0;i<current;i++)
+		      {
+		   
+		      add(handgui[i]);
+		      moveToFront(handgui[i]);
+		      } 
+		 }
 		 
 	 }
 	 public int draw(Card a)
 	 {
 		 music();
+		 /*
 		 if(current==5)
 		 {
 			 Random randomGenerator = new Random();
@@ -127,6 +155,7 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 			
 		  
 		 }
+			*/
 			 
 			 CardGui x = null;
 			 cards[current]=a;
@@ -146,10 +175,14 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 		      }
 		     // x.addMouseListener(this);
 		      handgui[current]=x;
-		      add(handgui[current]);
-		      moveToFront(handgui[current]);
+		      if(current<5){
+		    	  add(handgui[current]);
+			      moveToFront(handgui[current]);  
+		      }
 		      current=current+1;
 		      repaint();
+		      
+		      System.out.println("current: "+current);
 			return(current);
 		 }
 	 public void compactar()
