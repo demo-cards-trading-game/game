@@ -109,6 +109,8 @@ public JButton j;
 	//esto es para ssd-11
 	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
+	//visor de las cartas totales
+	public JLabel allCards;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -835,7 +837,11 @@ public JButton j;
 		player.powers.label.setVisible(false);
 
 		
-		
+		this.allCards = new JLabel(""+this.player.hand.current);
+		this.allCards.setBounds(30, 30, 30, 30);
+		this.allCards.setVisible(false);
+		add(this.allCards);
+		this.moveToFront(this.allCards);
 		
 		
 	}
@@ -902,8 +908,11 @@ public JButton j;
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
 				player.powers.set(1);
 				player.hand.discard(1);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -915,8 +924,11 @@ public JButton j;
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);	
 				player.powers.set(1);
 				player.hand.discard(2);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -928,8 +940,11 @@ public JButton j;
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);	
 				player.powers.set(1);
 				player.hand.discard(3);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -941,8 +956,11 @@ public JButton j;
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);	
 				player.powers.set(1);
 				player.hand.discard(4);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -954,8 +972,11 @@ public JButton j;
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);	
 				player.powers.set(1);
 				player.hand.discard(5);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -971,8 +992,11 @@ public JButton j;
 				if(done==0){
 					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
 					play(0);
-					if(this.player.hand.current>=5){
+					if(this.player.hand.current>5){
 						this.repairListeners();
+					}
+					else{
+						this.allCards.setVisible(false);
 					}
 				}
 				done=1;
@@ -984,8 +1008,11 @@ public JButton j;
 			if(done==0){
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);
 				player.hand.discard(2);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -997,8 +1024,11 @@ public JButton j;
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);
 				player.hand.discard(3);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -1010,8 +1040,11 @@ public JButton j;
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);
 				player.hand.discard(4);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -1023,8 +1056,11 @@ public JButton j;
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);
 				player.hand.discard(5);
-				if(this.player.hand.current>=5){
+				if(this.player.hand.current>5){
 					this.repairListeners();
+				}
+				else{
+					this.allCards.setVisible(false);
 				}
 			}
 			done=1;
@@ -1080,8 +1116,11 @@ public JButton j;
 		{
 			if(done==0)
 				player.hand.discard(1);
-			if(this.player.hand.current>=5){
+			if(this.player.hand.current>5){
 				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
 			}
 			done=1;
 			
@@ -1096,8 +1135,11 @@ public JButton j;
 				if(done==0)
 					play(1);
 					done=1;
-					if(this.player.hand.current>=5){
+					if(this.player.hand.current>5){
 						this.repairListeners();
+					}
+					else{
+						this.allCards.setVisible(false);
 					}
 			}
 			
@@ -1110,8 +1152,11 @@ public JButton j;
 				if(done==0)
 					play(2);
 					done=1;
-					if(this.player.hand.current>=5){
+					if(this.player.hand.current>5){
 						this.repairListeners();
+					}
+					else{
+						this.allCards.setVisible(false);
 					}
 			}
 			
@@ -1124,8 +1169,11 @@ public JButton j;
 				if(done==0)
 					play(3);
 					done=1;
-					if(this.player.hand.current>=5){
+					if(this.player.hand.current>5){
 						this.repairListeners();
+					}
+					else{
+						this.allCards.setVisible(false);
 					}
 			}
 		}if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 5
@@ -1137,8 +1185,11 @@ public JButton j;
 				if(done==0)
 					play(4);
 					done=1;
-					if(this.player.hand.current>=5){
+					if(this.player.hand.current>5){
 						this.repairListeners();
+					}
+					else{
+						this.allCards.setVisible(false);
 					}
 			}
 			
@@ -3320,6 +3371,10 @@ public JButton j;
 		for(int i=0;i<5;i++){
 			 Addlisteners2Card(i);
 				player.hand.handgui[i].addMouseListener(this);	
+		}
+		if(this.player.hand.current>5){
+			this.allCards.setText(""+(this.player.hand.current-5));
+			this.allCards.setVisible(true);
 		}
 	}
 }
