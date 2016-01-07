@@ -2735,12 +2735,17 @@ public JButton j;
 		if(this.phases.actual==2){
 			if(id.equals("SSD-06")){
 				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
-				player.powers.set(2);
+				player.powers.reset();
+				player.powers.token();
+				player.powers.reset();
+				player.powers.token();
 				repaint();
+				
 			}
 			if(id.equals("SSD-05")){
 				JOptionPane.showMessageDialog(null, "power undrained");
-				player.powers.play(player.field.cards[pos].getcard().GetCost());
+				//player.powers.play(player.field.cards[pos].getcard().GetCost());
+				player.powers.set(1);
 				repaint();
 			}
 			if(id.equals("SSD-04")){
@@ -2977,6 +2982,7 @@ public JButton j;
 	}
 
 	public void makeAiEffect(String id, int pos){
+		
 		if(this.phases.actual==2){
 			
 			if(id.equals("SSD-2")){
@@ -3019,11 +3025,11 @@ public JButton j;
 			}
 			
 			if(id.equals("SSD-05")){
-				
+				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
 			}
 			
 			if(id.equals("SSD-06")){
-				
+				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
 			}
 			
 			if(id.equals("SSD-07")){
