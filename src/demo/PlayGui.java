@@ -1561,6 +1561,12 @@ public JButton j;
 			c=player.hand.cards[0];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(1);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p= -1;
@@ -1591,6 +1597,12 @@ public JButton j;
 			c=player.hand.cards[1];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(2);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			
@@ -1621,6 +1633,12 @@ public JButton j;
 			c=player.hand.cards[2];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(3);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -1650,6 +1668,12 @@ public JButton j;
 			c=player.hand.cards[3];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(4);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -1679,6 +1703,12 @@ public JButton j;
 			c=player.hand.cards[4];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(5);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -2515,6 +2545,12 @@ public JButton j;
 
 			player.field.poner(carta, where);
 			player.hand.discard(1);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 
 			repaint();
 
