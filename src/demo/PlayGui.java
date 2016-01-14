@@ -1561,6 +1561,12 @@ public JButton j;
 			c=player.hand.cards[0];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(1);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p= -1;
@@ -1591,6 +1597,12 @@ public JButton j;
 			c=player.hand.cards[1];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(2);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			
@@ -1621,6 +1633,12 @@ public JButton j;
 			c=player.hand.cards[2];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(3);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -1650,6 +1668,12 @@ public JButton j;
 			c=player.hand.cards[3];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(4);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -1679,6 +1703,12 @@ public JButton j;
 			c=player.hand.cards[4];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(5);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -2515,6 +2545,12 @@ public JButton j;
 
 			player.field.poner(carta, where);
 			player.hand.discard(1);
+			if(this.player.hand.current>5){
+				this.repairListeners();
+			}
+			else{
+				this.allCards.setVisible(false);
+			}
 
 			repaint();
 
@@ -2735,12 +2771,17 @@ public JButton j;
 		if(this.phases.actual==2){
 			if(id.equals("SSD-06")){
 				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
-				player.powers.set(2);
+				player.powers.reset();
+				player.powers.token();
+				player.powers.reset();
+				player.powers.token();
 				repaint();
+				
 			}
 			if(id.equals("SSD-05")){
 				JOptionPane.showMessageDialog(null, "power undrained");
-				player.powers.play(player.field.cards[pos].getcard().GetCost());
+				//player.powers.play(player.field.cards[pos].getcard().GetCost());
+				player.powers.set(1);
 				repaint();
 			}
 			if(id.equals("SSD-04")){
@@ -2977,6 +3018,7 @@ public JButton j;
 	}
 
 	public void makeAiEffect(String id, int pos){
+		
 		if(this.phases.actual==2){
 			
 			if(id.equals("SSD-2")){
@@ -3019,11 +3061,11 @@ public JButton j;
 			}
 			
 			if(id.equals("SSD-05")){
-				
+				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
 			}
 			
 			if(id.equals("SSD-06")){
-				
+				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
 			}
 			
 			if(id.equals("SSD-07")){

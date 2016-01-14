@@ -37,7 +37,7 @@ import java.awt.RenderingHints;
 import javax.swing.border.LineBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
-public  class HandGui extends JLayeredPane //implements MouseListener
+public  class HandGui extends JLayeredPane 
 {
 	/**
 	 * 
@@ -73,18 +73,9 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 	
 	public int countcards()//cuenta las cartas en la mano
 	{
-		int cant=0;
-		int i = 0;
-		while(i<5)
-		{
-			if(handgui[i]!=null)
-				cant++;
-			i++;
-			
-		}
-		
-		return cant;
+	return current;
 	}
+	
 	 public void discard(int pos)
 	    {
 	     int i;
@@ -106,15 +97,13 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 	    	  handgui[4]=new CardGui(cards[4],496,20);
 	    	 
 	    	  compactar();
-		      removeAll();
-		      addall();
+		   
 	    	  
 	      }
 	      else{
 	    	  remove(current);
 		      compactar();
-		      removeAll();
-		      addall();
+		
 		        
 	      }
 	      
@@ -125,61 +114,41 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 	 void addall()
 	 {
 		 add(panel);
-		 if(current>5){
-			 for (int i=0;i<5;i++)
-		      {
-		   
-		      add(handgui[i]);
-		      moveToFront(handgui[i]);
-		      }
-		 }
-		 else{
+		
 			 for (int i=0;i<current;i++)
 		      {
 		   
 		      add(handgui[i]);
 		      moveToFront(handgui[i]);
-		      } 
-		 }
+		   
+		      }
+		 
+		 
+		 
 		 
 	 }
 	 public int draw(Card a)
 	 {
 		 music();
-		 /*
-		 if(current==5)
-		 {
-			 Random randomGenerator = new Random();
-		 	int randomInt = randomGenerator.nextInt(4);
-			 discard(randomInt+1);
-			
-		  
-		 }
-			*/
+	
 			 
 			 CardGui x = null;
 			 cards[current]=a;
-		      
-		      switch(current)
-		      {
-		      case 0:x= new CardGui(a,0,20);
-		    	  break;
-		      case 1:x= new CardGui(a,124,20);
-		    	  break;
-		      case 2:x= new CardGui(a,248,20);
-		    	  break;
-		      case 3:x= new CardGui(a,372,20);
-		    	  break;
-		      case 4:x= new CardGui(a,496,20);
-		    	  break;
-		      }
-		     // x.addMouseListener(this);
-		      handgui[current]=x;
-		      if(current<5){
-		    	  add(handgui[current]);
-			      moveToFront(handgui[current]);  
-		      }
+			 
+			if (current<5){
+			 x=new CardGui(a,current*124,20);
+			
+			 handgui[current]=x;
+			 add(handgui[current],current);
 		      current=current+1;
+			}else{
+			     current=current+1;
+				compactar();
+				
+			}
+		  
+		  
+		
 		      repaint();
 		      
 		      System.out.println("current: "+current);
@@ -187,22 +156,30 @@ public  class HandGui extends JLayeredPane //implements MouseListener
 		 }
 	 public void compactar()
 	 {
-		 for (int i=0;i<current;i++)
+		 removeAll();
+		 int Factor_de_compresion;
+		 if(current<5)
 		 {
-			 switch(i){
-			 	case 0:handgui[i].setBounds(0, 20, 124, 186);
-			 		break;
-			 	case 1:handgui[i].setBounds(124, 20, 124, 186);
-			 		break;
-			 	case 2:handgui[i].setBounds(248, 20, 124, 186);
-			 		break;
-			 	case 3:handgui[i].setBounds(372, 20, 124, 186);
-			 		break;
-			 	case 4:handgui[i].setBounds(496, 20, 124, 186);
-			 		break;
+			 Factor_de_compresion=124;
+			 for (int i=0;i<current;i++)
+			 {
+				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i,20);
+				 
+				
 			 }
-			
+		 }else 
+		 { 
+			 Factor_de_compresion=496/ (current-1);
+			 for (int i=0;i<current-1;i++)
+			 {
+				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i,20);
+				 
+				
+			 }
+			 handgui[current-1]=new CardGui(cards[current-1],498,20);
 		 }
+		 
+		 addall();
 	 }
 
 		 public static void music() 
