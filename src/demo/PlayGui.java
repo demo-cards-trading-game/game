@@ -70,6 +70,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	int turn, contTurn=0;
     public int ready=0;
 	int acampo=-1;
+	int pr,s,pl,d;
 	int i=0;
 	private Fallen fallen ;
 	private LoadData cartas;
@@ -110,7 +111,7 @@ public JButton j;
 	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//visor de las cartas totales
-	public JLabel allCards;
+
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -141,7 +142,7 @@ public JButton j;
 		add(tuto);
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
-		//this.add(fight);
+		this.add(fight);
 		
 		
 
@@ -159,13 +160,13 @@ public JButton j;
 
 	
 		
-		//this.add(ai);
+		this.add(ai);
 
 		/*******************************************/
 		
 
 	
-		//this.add(preview);
+		this.add(preview);
 		
 	
 		player.barriers.addMouseListener(this);
@@ -195,12 +196,12 @@ public JButton j;
 		//swords
 		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
 		swordp1.setBounds(0, 0, 535, 830);
-		//add(swordp1);
+		add(swordp1);
 		this.moveToFront(swordp1);
 		
 		sworda1= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
 		sworda1.setBounds(0, 0, 540, 385);
-		//add(sworda1);
+		add(sworda1);
 		this.moveToFront(sworda1);
 		
 		swordp2= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
@@ -837,11 +838,7 @@ public JButton j;
 		player.powers.label.setVisible(false);
 
 		
-		this.allCards = new JLabel(""+this.player.hand.current);
-		this.allCards.setBounds(30, 30, 30, 30);
-		this.allCards.setVisible(false);
-		add(this.allCards);
-		this.moveToFront(this.allCards);
+	
 		
 		
 	}
@@ -901,19 +898,12 @@ public JButton j;
 			moveToFront(fallen);
 
 		}
-		
+		s=-1;
 		if(e.getSource()==player.hand.handgui[0].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
-				player.powers.set(1);
-				player.hand.discard(1);
-				if(this.player.hand.current>5){
-					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				s=0;
+				
 			}
 			done=1;
 			
@@ -921,15 +911,9 @@ public JButton j;
 		if(e.getSource()==player.hand.handgui[1].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);	
-				player.powers.set(1);
-				player.hand.discard(2);
-				if(this.player.hand.current>5){
-					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				s=1;
+				
+				
 			}
 			done=1;
 			
@@ -937,15 +921,8 @@ public JButton j;
 		if(e.getSource()==player.hand.handgui[2].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);	
-				player.powers.set(1);
-				player.hand.discard(3);
-				if(this.player.hand.current>5){
-					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				s=2;
+				
 			}
 			done=1;
 			
@@ -953,15 +930,9 @@ public JButton j;
 		if(e.getSource()==player.hand.handgui[3].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);	
-				player.powers.set(1);
-				player.hand.discard(4);
-				if(this.player.hand.current>5){
-					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+			s=3;
+
+
 			}
 			done=1;
 			
@@ -969,51 +940,47 @@ public JButton j;
 		if(e.getSource()==player.hand.handgui[4].Set)
 		{
 			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);	
-				player.powers.set(1);
-				player.hand.discard(5);
-				if(this.player.hand.current>5){
-					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				s=4;
+				
+				
+					
+			
 			}
 			done=1;
 			
 		}
-		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 1  
+
+		if(s!=-1)
 		{
 			
-			if(player.hand.cards[0].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
-				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
-			}
-			else{
-				if(done==0){
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[0]);	
-					play(0);
-					if(this.player.hand.current>5){
-						this.repairListeners();
-					}
-					else{
-						this.allCards.setVisible(false);
-					}
-				}
-				done=1;
-			}
+				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[s]);	
+				if(player.hand.cards[s].GetName()=="Water power")
+				player.powers.setwp();
+				else
+					player.powers.set();
+				
+				player.hand.discard(s+1);
+			
+					this.repairListeners();
+				
+				
+					
+			
 			
 		}
+
+			
+		
+		
 		if(e.getSource()==player.hand.handgui[1].Discard)//si se le da play a la carta 1  
 		{
 			if(done==0){
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);
 				player.hand.discard(2);
-				if(this.player.hand.current>5){
+				
 					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				
+				
 			}
 			done=1;
 			
@@ -1024,12 +991,10 @@ public JButton j;
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);
 				player.hand.discard(3);
-				if(this.player.hand.current>5){
+			
 					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				
+			
 			}
 			done=1;
 			
@@ -1040,12 +1005,10 @@ public JButton j;
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);
 				player.hand.discard(4);
-				if(this.player.hand.current>5){
+			
 					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				
+			
 			}
 			done=1;
 			
@@ -1055,13 +1018,10 @@ public JButton j;
 			if(done==0)
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);
-				player.hand.discard(5);
-				if(this.player.hand.current>5){
+				
 					this.repairListeners();
-				}
-				else{
-					this.allCards.setVisible(false);
-				}
+				
+			
 			}
 			done=1;
 			
@@ -1116,84 +1076,80 @@ public JButton j;
 		{
 			if(done==0)
 				player.hand.discard(1);
-			if(this.player.hand.current>5){
+			
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+			
+			
 			done=1;
 			
 		}
-		
+		pl=-1;
+		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 2  
+		{
+			pl=0;
+				
+					
+		}
 		if(e.getSource()==player.hand.handgui[1].Play)//si se le da play a la carta 2  
 		{
-			if(player.hand.cards[1].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
+			pl=1;
+				
+					
+		}
+		if(e.getSource()==player.hand.handgui[2].Play)//si se le da play a la carta 2  
+		{
+			pl=2;
+				
+					
+		}
+		if(e.getSource()==player.hand.handgui[3].Play)//si se le da play a la carta 2  
+		{
+			pl=3;
+				
+					
+		}
+		if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 2  
+		{
+			pl=4;
+				
+					
+		}
+		if(player.hand.handgui[5]!=null){
+		if(e.getSource()==player.hand.handgui[5].Play)//si se le da play a la carta 2  
+		{
+			pl=5;
+				
+					
+		}
+		}
+		
+		if(player.hand.handgui[6]!=null){
+			if(e.getSource()==player.hand.handgui[6].Play)//si se le da play a la carta 2  
+			{
+				pl=6;
+					
+						
+			}
+		}
+		
+		if(pl!=-1)
+		{
+
+			if(player.hand.cards[pl].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
 				if(done==0)
-					play(1);
+					play(pl);
 					done=1;
-					if(this.player.hand.current>5){
-						this.repairListeners();
-					}
-					else{
-						this.allCards.setVisible(false);
-					}
-			}
 			
-		}if(e.getSource()==player.hand.handgui[2].Play)//si se le da play a la carta 3
-		{
-			if(player.hand.cards[2].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
-				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
-			}
-			else{
-				if(done==0)
-					play(2);
-					done=1;
-					if(this.player.hand.current>5){
 						this.repairListeners();
-					}
-					else{
-						this.allCards.setVisible(false);
-					}
-			}
-			
-		}if(e.getSource()==player.hand.handgui[3].Play)//si se le da play a la carta 4 
-		{
-			if(player.hand.cards[3].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
-				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
-			}
-			else{
-				if(done==0)
-					play(3);
-					done=1;
-					if(this.player.hand.current>5){
-						this.repairListeners();
-					}
-					else{
-						this.allCards.setVisible(false);
-					}
-			}
-		}if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 5
-		{
-			if(player.hand.cards[4].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
-				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
-			}
-			else{
-				if(done==0)
-					play(4);
-					done=1;
-					if(this.player.hand.current>5){
-						this.repairListeners();
-					}
-					else{
-						this.allCards.setVisible(false);
-					}
+					
+					
 			}
 			
 		}
+		
 		
 		if(e.getSource()==ai.aideck.btnNewButton){
 			System.out.println("toque deck ai");
@@ -1561,12 +1517,10 @@ public JButton j;
 			c=player.hand.cards[0];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(1);
-			if(this.player.hand.current>5){
+			
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+		
+			
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p= -1;
@@ -1597,12 +1551,10 @@ public JButton j;
 			c=player.hand.cards[1];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(2);
-			if(this.player.hand.current>5){
+			
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+			
+			
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			
@@ -1633,12 +1585,10 @@ public JButton j;
 			c=player.hand.cards[2];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(3);
-			if(this.player.hand.current>5){
+			
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+			
+			
 
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -1668,12 +1618,10 @@ public JButton j;
 			c=player.hand.cards[3];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(4);
-			if(this.player.hand.current>5){
+	
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+			
+			
 
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -1703,12 +1651,10 @@ public JButton j;
 			c=player.hand.cards[4];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(5);
-			if(this.player.hand.current>5){
+	
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+			
+			
 			
 			JOptionPane.showMessageDialog(null, "adding a water power from the deck");
 			p=this.player.pdeck.Deck.posCard("SSD-15");
@@ -2123,14 +2069,7 @@ public JButton j;
 	public DeckGui getDeck() {
 		return player.pdeck;
 	}
-	public void draw(int p)
-	{
-		player.hand.handgui[p].addMouseListener(this);
-		player.hand.handgui[p].Play.addActionListener(this);
-		player.hand.handgui[p].Discard.addActionListener(this);
-		player.hand.handgui[p].Preview.addActionListener(this);
-		player.hand.handgui[p].Set.addActionListener(this);
-	}
+	
 
 	public void mouseClicked(MouseEvent e) 
 	{
@@ -2194,46 +2133,51 @@ public JButton j;
 			}	
 			
 		}				
-			
+			int x=-1; //destino
 			if(e.getSource()==player.hand.handgui[0])
 			{
-				player.hand.handgui[0].menu.setVisible(true);
-				player.hand.handgui[1].menu.setVisible(false);
-				player.hand.handgui[2].menu.setVisible(false);
-				player.hand.handgui[3].menu.setVisible(false);
-				player.hand.handgui[4].menu.setVisible(false);
+				x=0;
 			}
 			else if(e.getSource()==player.hand.handgui[1])
 			{
-				player.hand.handgui[1].menu.setVisible(true);
-				player.hand.handgui[0].menu.setVisible(false);
-				player.hand.handgui[2].menu.setVisible(false);
-				player.hand.handgui[3].menu.setVisible(false);
-				player.hand.handgui[4].menu.setVisible(false);
+				x=1;
 			}
 			else if(e.getSource()==player.hand.handgui[2])
 			{
-				player.hand.handgui[2].menu.setVisible(true);
-				player.hand.handgui[0].menu.setVisible(false);
-				player.hand.handgui[1].menu.setVisible(false);
-				player.hand.handgui[3].menu.setVisible(false);
-				player.hand.handgui[4].menu.setVisible(false);
+				x=2;
 			}
 			else if(e.getSource()==player.hand.handgui[3])
 			{
-				player.hand.handgui[3].menu.setVisible(true);
-				player.hand.handgui[0].menu.setVisible(false);
-				player.hand.handgui[1].menu.setVisible(false);
-				player.hand.handgui[2].menu.setVisible(false);
-				player.hand.handgui[4].menu.setVisible(false);
+				x=3;
 				
 			}else if(e.getSource()==player.hand.handgui[4])
 			{
-				player.hand.handgui[4].menu.setVisible(true);
-				player.hand.handgui[0].menu.setVisible(false);
-				player.hand.handgui[1].menu.setVisible(false);
-				player.hand.handgui[2].menu.setVisible(false);
-				player.hand.handgui[3].menu.setVisible(false);
+				x=4;
+			}
+			else if(e.getSource()==player.hand.handgui[5])
+			{
+				x=5;
+			}
+			else if(e.getSource()==player.hand.handgui[6])
+			{
+				x=6;
+			}
+			else if(e.getSource()==player.hand.handgui[7])
+			{
+				x=7;
+			}
+			if(x!=-1)
+			{
+				for(int j=0;j<player.hand.current;j++)
+				{
+					if(x!=j)
+					{
+						player.hand.handgui[j].menu.setVisible(false);
+					}else
+					{
+						player.hand.handgui[j].menu.setVisible(true);
+					}
+				}	
 			}
 			if(phases.actual==3&&this.contTurn>0){
 				if(e.getSource()==player.field.cards[0]&&!player.field.cards[0].down)
@@ -2367,30 +2311,71 @@ public JButton j;
 
 
 	public void mouseExited(MouseEvent e) {
+		int x=-1;
+		
+		int x2=498/(player.hand.current-1);
+		if(player.hand.current<5)
+			x2=124;
 		if(e.getSource()==player.hand.handgui[0])
 		{
-			player.hand.handgui[0].setBounds(0, 20, 124, 186);
+			x=0;
 			preview.Remove();
 		}
 		else if(e.getSource()==player.hand.handgui[1])
 		{
-			player.hand.handgui[1].setBounds(124, 20, 124, 186);
+			x=1;
 			preview.Remove();
 		}
 		else if(e.getSource()==player.hand.handgui[2])
 		{
-			player.hand.handgui[2].setBounds(248, 20, 124, 186);
+			x=2;
 			preview.Remove();
 		}
 		else if(e.getSource()==player.hand.handgui[3])
 		{
-			player.hand.handgui[3].setBounds(372, 20, 124, 186);
+			x=3;
 			preview.Remove();
 		}else if(e.getSource()==player.hand.handgui[4])
 		{
-			player.hand.handgui[4].setBounds(496, 20, 124, 186);
+			x=4;
 			preview.Remove();
+		}else if(e.getSource()==player.hand.handgui[5])
+		{
+			x=5;
+			
+		}else if(e.getSource()==player.hand.handgui[6])
+		{
+			x=6;
+			
+		}else if(e.getSource()==player.hand.handgui[7])
+		{
+			x=7;
+			
+		}else if(e.getSource()==player.hand.handgui[8])
+		{
+			x=8;
+			
+		}else if(e.getSource()==player.hand.handgui[9])
+		{
+			x=9;
+			
 		}
+		
+		if(x!=-1)
+		{	
+			
+			if(x!=player.hand.current-1 || x<5){
+				
+			player.hand.handgui[x].setBounds(x*x2+30,20,124,186);
+			
+			}else
+			{
+				player.hand.handgui[x].setBounds(528,20,124,186);
+				
+			}
+			
+		}
+		
 		if(e.getSource()==player.field.cards[0])
 		{
 			
@@ -2438,29 +2423,67 @@ public JButton j;
 	public void mouseEntered(MouseEvent e) 
 	
 	{
+		int x=-1;
+		int x2;
+		if(player.hand.current<5)
+			x2=124;
+		else
+			x2=498/(player.hand.current-1);
+		
 		if(e.getSource()==player.hand.handgui[0])
 		{
-			player.hand.handgui[0].setBounds(0, 0, 124, 186);
+			x=0;
+		
+			
 			
 		}
 		else if(e.getSource()==player.hand.handgui[1])
 		{
-			player.hand.handgui[1].setBounds(124, 0, 124, 186);
+			x=1;
 			
 		}
 		else if(e.getSource()==player.hand.handgui[2])
 		{
-			player.hand.handgui[2].setBounds(248, 0, 124, 186);
+			x=2;
 			
 		}
 		else if(e.getSource()==player.hand.handgui[3])
 		{
-			player.hand.handgui[3].setBounds(372, 0, 124, 186);
+			x=3;
 			
 		}else if(e.getSource()==player.hand.handgui[4])
 		{
-			player.hand.handgui[4].setBounds(496, 0, 124, 186);
+			x=4;
 		
+		}
+		else if(e.getSource()==player.hand.handgui[5])
+		{
+			x=5;
+			
+		}else if(e.getSource()==player.hand.handgui[6])
+		{
+			x=6;
+			
+		}else if(e.getSource()==player.hand.handgui[7])
+		{
+			x=7;
+			
+		}else if(e.getSource()==player.hand.handgui[8])
+		{
+			x=8;
+			
+		}else if(e.getSource()==player.hand.handgui[9])
+		{
+			x=9;
+			
+		}
+		if(x!=-1)
+		{	
+			if(x!=player.hand.current){
+				System.out.println(x2);
+			player.hand.handgui[x].setBounds(x*x2,0,124,186);
+			player.hand.moveToFront(player.hand.handgui[x]);
+			}
 		}
 		
 		if(e.getSource()==player.field.cards[0])
@@ -2545,12 +2568,9 @@ public JButton j;
 
 			player.field.poner(carta, where);
 			player.hand.discard(1);
-			if(this.player.hand.current>5){
+			
 				this.repairListeners();
-			}
-			else{
-				this.allCards.setVisible(false);
-			}
+		
 
 			repaint();
 
@@ -3409,14 +3429,23 @@ public JButton j;
 		return cont;
 	}
 	
-	public void repairListeners(){
-		for(int i=0;i<5;i++){
+	public void repairListeners()
+	{
+		
+		for(int i=0;i<player.hand.current;i++)
+		{
+			player.hand.handgui[i].removeMouseListener(this);
+		}
+		
+		for(int i=0;i<player.hand.current;i++){
 			 Addlisteners2Card(i);
 				player.hand.handgui[i].addMouseListener(this);	
 		}
-		if(this.player.hand.current>5){
-			this.allCards.setText(""+(this.player.hand.current-5));
-			this.allCards.setVisible(true);
+		if(player.hand.handgui[player.hand.current]!=null)
+		{
+			 Addlisteners2Card(player.hand.current);
+				player.hand.handgui[player.hand.current].addMouseListener(this);	
 		}
+		
 	}
 }

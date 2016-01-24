@@ -77,8 +77,12 @@ import javax.swing.border.MatteBorder;
 		
 		CirclePanel panel = new CirclePanel();
 		JTextPane txtpnTexto = new JTextPane();
+		txtpnTexto.setRequestFocusEnabled(false);
+		txtpnTexto.setFocusTraversalKeysEnabled(false);
+		txtpnTexto.setFocusCycleRoot(false);
+		txtpnTexto.setFocusable(false);
 		txtpnTexto.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		txtpnTexto.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		txtpnTexto.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		txtpnTexto.setVerifyInputWhenFocusTarget(false);
 		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 8));
 		txtpnTexto.setText(x.GetDescription());
