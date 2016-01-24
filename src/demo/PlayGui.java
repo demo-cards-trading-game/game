@@ -2567,13 +2567,34 @@ public JButton j;
 			carta.addMouseListener(this);
 
 			player.field.poner(carta, where);
+			player.hand.music();
+			player.hand.handgui[pos].Preview.doClick();
 			player.hand.discard(1);
 			
 				this.repairListeners();
 		
 
 			repaint();
+			
+			Thread t = new Thread(new Runnable() {
 
+				public void start() {
+					this.start();
+				}
+
+				public void run() {
+					try {
+						Thread.sleep(2000);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					preview.Remove();
+					repaint();
+				}
+			});
+			t.start();
+			
 			this.makeEffect(carta.actual.Getid(),where);
 
 		} catch (IOException e1) {
