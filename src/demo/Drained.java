@@ -113,7 +113,38 @@ public class Drained extends JLayeredPane implements MouseListener{
 		currentoken=currentundrained=0;
 	
 	}
-	
+	void setwp()
+	{
+		undrained[currentundrained] = new JPanel();
+		undrained[currentundrained].setLayout(null);
+		try {
+			undrained[currentundrained].add(new JLabel(new ImageIcon(ImageIO.read(new File("frame4.jpg")))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		undrained[currentundrained].addMouseListener(this);
+			 
+		panel.add(undrained[currentundrained]);
+		
+		if(currentundrained<5)
+		{
+		undrained[currentundrained].setBounds(currentundrained*30, 10, 25, 20);
+		}else{
+			if(currentundrained<10)
+			{
+			undrained[currentundrained].setBounds((currentundrained-5)*30,35 , 25, 20);
+			}else
+			{
+				undrained[currentundrained].setBounds((currentundrained-10)*30,60 , 25, 20);
+			}
+			
+		}	
+		currentundrained++;
+		setVisible(true);
+		repaint();
+		
+	}
 	void set()
 	{
 		

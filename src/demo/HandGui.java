@@ -50,17 +50,18 @@ public  class HandGui extends JLayeredPane
     boolean dragging = false;
     int sX = -1, sY = -1;
     public JPanel panel;
+    public  int Factor_de_compresion=124;
 	public HandGui(int posx,int posy) {
 		
 		current=0;
 		setOpaque(false);
-		setBounds(posx,posy, 620, 206);
+		setBounds(posx-15,posy, 650, 206);
 		setLayout(null);
 		
 	    panel = new JPanel();
 	    panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(47, 79, 79), 4, true)));
 		panel.setBackground(new Color(34, 139, 34));
-		panel.setBounds(0, 20, 620, 186);
+		panel.setBounds(30, 20, 620, 186);
 		add(panel);
 	
 		
@@ -84,33 +85,23 @@ public  class HandGui extends JLayeredPane
 	      for (i=pos;i<current;i++)
 	      {
 	      cards[i-1]=cards[i];
-	      handgui[i-1]=handgui[i];
-	      }
 	   
+	      }
 	      current=current-1;
-	      if(current>=5){
-	    	  
-	    	  handgui[0]=new CardGui(cards[0],0,20);
-	    	  handgui[1]=new CardGui(cards[1],124,20);
-	    	  handgui[2]=new CardGui(cards[2],248,20);
-	    	  handgui[3]=new CardGui(cards[3],372,20);
-	    	  handgui[4]=new CardGui(cards[4],496,20);
+
 	    	 
 	    	  compactar();
 		   
-	    	  
-	      }
-	      else{
-	    	  remove(current);
-		      compactar();
+	    	  repaint();  
+	    
+	    
 		
 		        
 	      }
 	      
-	      repaint();
 	      
-	      System.out.println("current: "+current);
-	    }
+	      
+	    
 	 void addall()
 	 {
 		 add(panel);
@@ -136,7 +127,7 @@ public  class HandGui extends JLayeredPane
 			 cards[current]=a;
 			 
 			if (current<5){
-			 x=new CardGui(a,current*124,20);
+			 x=new CardGui(a,current*124+30,20);
 			
 			 handgui[current]=x;
 			 add(handgui[current],current);
@@ -157,13 +148,13 @@ public  class HandGui extends JLayeredPane
 	 public void compactar()
 	 {
 		 removeAll();
-		 int Factor_de_compresion;
+		System.out.println("entro compactar");
 		 if(current<5)
 		 {
 			 Factor_de_compresion=124;
 			 for (int i=0;i<current;i++)
 			 {
-				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i,20);
+				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);
 				 
 				
 			 }
@@ -172,11 +163,11 @@ public  class HandGui extends JLayeredPane
 			 Factor_de_compresion=496/ (current-1);
 			 for (int i=0;i<current-1;i++)
 			 {
-				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i,20);
+				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);
 				 
 				
 			 }
-			 handgui[current-1]=new CardGui(cards[current-1],498,20);
+			 handgui[current-1]=new CardGui(cards[current-1],498+30,20);
 		 }
 		 
 		 addall();
