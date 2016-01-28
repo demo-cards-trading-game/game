@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import demo.deck;
 import extra.RoundButton;
+import extra.RoundedPanel;
 
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -63,7 +64,6 @@ public class DeckGui extends JPanel {
 		setLayout(null);
 		
 		btnNewButton = new JButton("");
-		btnNewButton.setBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)));
 		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setOpaque(false);
 		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
@@ -75,7 +75,7 @@ public class DeckGui extends JPanel {
 		textField.setForeground(new Color(255, 255, 255));
 		textField.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
 		textField.setText("Cards left "+ Deck.cardsLeft());
-		textField.setBackground(new Color(139, 69, 19));
+		textField.setBackground(Color.BLACK);
 		textField.setBounds(160, 320, 80, 20);
 		add(textField);
 		textField.setColumns(10);
@@ -88,7 +88,6 @@ public class DeckGui extends JPanel {
 		add(lblDeck);
 		
 		btnNewButton_1 = new JButton();
-		btnNewButton_1.setBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)));
 		
 		btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
 		
@@ -103,7 +102,6 @@ public class DeckGui extends JPanel {
 		add(lblTheFallen);
 		
 		btnNewButton_2 = new JButton();
-		btnNewButton_2.setBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)));
 	
 		
 		btnNewButton_2.setIcon(new ImageIcon("Forgotten.JPG"));
@@ -119,12 +117,11 @@ public class DeckGui extends JPanel {
 		lblForgotten.setBounds(133, 98, 117, 14);
 		add(lblForgotten);
 		
-		 panel= new JPanel();
-		panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		 panel= new RoundedPanel();
 		
 		
 		panel.setLayout(null);
-		panel.setBackground(new Color(0, 128, 0));
+		panel.setBackground(new Color(204, 153, 0));
 		panel.setBounds(39, 195, 100, 145);
 		add(panel);
 	

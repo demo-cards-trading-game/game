@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLayeredPane;
 
 import demo.Hand;
+import extra.RoundedPanel;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -58,9 +59,8 @@ public  class HandGui extends JLayeredPane
 		setBounds(posx-15,posy, 650, 206);
 		setLayout(null);
 		
-	    panel = new JPanel();
-	    panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(47, 79, 79), 4, true)));
-		panel.setBackground(new Color(34, 139, 34));
+	    panel = new RoundedPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(30, 20, 620, 186);
 		add(panel);
 	

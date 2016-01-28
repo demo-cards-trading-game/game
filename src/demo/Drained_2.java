@@ -1,96 +1,664 @@
 package demo;
 
-import javax.swing.JLabel;
+
+
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JSeparator;
+import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.UIManager;
+import javax.swing.border.MatteBorder;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
 
-public class Drained_2 extends JPanel {
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollBar;
+import java.awt.LayoutManager;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
-	public  int currentdrained;
-	public  int currentundrained;
-	public int  volatil;
-	public  JLabel d,u;
+public class Drained_2 extends JLayeredPane implements MouseListener{
+
+	/**
+	 * Create the panel.
+	 */
+	public  int currentdrained,used;
+	public  int currentundrained,currentoken;
+	public int paying,tokenused;
+	
+	public JPanel[]  drained  = new JPanel[20];
+	public JPanel[]  undrained  = new JPanel[20];
+	public JLabel[]  tokens = new JLabel[20];
+	public JPanel panel,panel_1,panel_2; 
+	JLabel label;
+
 	public Drained_2(int x , int y,String name)
 	{
-		setOpaque(false);
-		setBackground(new Color(0, 0, 0));
-		setBounds(x,y,150,206);
+		setBounds(x,y,196,384);
 		setLayout(null);
-	    
-	    d = new JLabel("0");
-	    d.setForeground(Color.WHITE);
-	    
-	 
+	     
+		JLabel lblUndrained = new JLabel("UNDRAINED");
+		lblUndrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblUndrained.setForeground(new Color(0, 153, 255));
+		lblUndrained.setBounds(10, 11, 100, 14);
+		add(lblUndrained);
+		
+		panel=new JPanel(null);
+		add(panel);
+		panel.setOpaque(false);
+		panel.setBounds(0, 30, 170, 85);
+		
+		
 	
-	      d.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
-	      
-	      d.setBackground(Color.BLACK);
-	      d.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "DRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-	      d.setHorizontalAlignment(SwingConstants.CENTER);
-	     d.setBounds(10, 11, 130, 49);
-	      add(d);
-	    
-	    u = new JLabel("  0");
-	    u.setHorizontalAlignment(SwingConstants.LEFT);
-	    u.setFont(new Font("Comic Sans MS", Font.PLAIN, 27));
-	    u.setForeground(Color.WHITE);
-	    u.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "UNDRAINED", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-	    u.setBackground(Color.BLACK);
-	    u.setBounds(10, 71, 130, 49);
-	    add(u);
-	    
-	    JLabel lblName = new JLabel(name);
-	    lblName.setForeground(new Color(152, 251, 152));
-	    lblName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-	    lblName.setHorizontalAlignment(SwingConstants.CENTER);
-	    lblName.setBounds(10, 123, 130, 21);
-	    add(lblName);
-	    
-	    JLabel label = new JLabel("0");
-	    label.setHorizontalAlignment(SwingConstants.CENTER);
-	    label.setForeground(Color.WHITE);
-	    label.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
-	    label.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "volatile", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-	    label.setBackground(Color.BLACK);
-	    label.setBounds(71, 85, 66, 31);
-	    add(label);
-	    
-		volatil=currentdrained=currentundrained=0;
-		init();
+		panel.setLayout(null);
+		
+		 panel_1 = new JPanel((LayoutManager) null);
+		panel_1.setLayout(null);
+		panel_1.setOpaque(false);
+		panel_1.setBounds(0, 251, 200, 75);
+		add(panel_1);
+		
+		JLabel lblDrained = new JLabel("DRAINED");
+		lblDrained.setForeground(new Color(51, 102, 255));
+		lblDrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblDrained.setBounds(10, 226, 100, 14);
+		add(lblDrained);
+		
+		 panel_2 = new JPanel();
+		
+		panel_2.setBounds(0, 140, 145, 75);
+		add(panel_2);
+		panel_2.setLayout(null);
+		panel_2.setOpaque(false);
+		
+		JLabel lblVolatile = new JLabel("VOLATILE");
+		lblVolatile.setForeground(new Color(204, 255, 255));
+		lblVolatile.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		lblVolatile.setBounds(10, 115, 100, 14);
+		add(lblVolatile);
+		
+		 label = new JLabel("0");
+		 label.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		 label.setOpaque(true);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.BLACK);
+		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		label.setBackground(Color.ORANGE);
+		label.setBounds(113, 349, 73, 35);
+		add(label);
+		
+		/***************************se crean los paneles ***************************************/
+		
+		
+		/********************************************************************************/
+		
+		/*************************se asignan a una posicion correspondiente ***********************************/
+		paying=0;
+		currentdrained=0;
+		used=0;
+		currentoken=currentundrained=0;
 	
+	}
+	void setwp()
+	{
+		undrained[currentundrained] = new JPanel();
+		undrained[currentundrained].setLayout(null);
+		try {
+			undrained[currentundrained].add(new JLabel(new ImageIcon(ImageIO.read(new File("frame4.jpg")))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		undrained[currentundrained].addMouseListener(this);
+			 
+		panel.add(undrained[currentundrained]);
+		
+		if(currentundrained<5)
+		{
+		undrained[currentundrained].setBounds(currentundrained*30, 10, 25, 20);
+		}else{
+			if(currentundrained<10)
+			{
+			undrained[currentundrained].setBounds((currentundrained-5)*30,35 , 25, 20);
+			}else
+			{
+				undrained[currentundrained].setBounds((currentundrained-10)*30,60 , 25, 20);
+			}
+			
+		}	
+		currentundrained++;
+		setVisible(true);
+		repaint();
+		
+	}
+	void set()
+	{
+		
+		undrained[currentundrained] = new JPanel();
+		undrained[currentundrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
+		undrained[currentundrained].setBackground(Color.BLUE);
+		undrained[currentundrained].addMouseListener(this);
+			 
+		panel.add(undrained[currentundrained]);
+		
+		if(currentundrained<5)
+		{
+		undrained[currentundrained].setBounds(currentundrained*30, 10, 25, 20);
+		}else{
+			if(currentundrained<10)
+			{
+			undrained[currentundrained].setBounds((currentundrained-5)*30,35 , 25, 20);
+			}else
+			{
+				undrained[currentundrained].setBounds((currentundrained-10)*30,60 , 25, 20);
+			}
+			
+		}	
+		currentundrained++;
+		setVisible(true);
+		repaint();
+	}
+	void set(int n)
+	{
+		int i ;
+		for(i= 0;i<n;i++){
+		set();
+		System.out.println(currentundrained);
+		}
+		setVisible(true);
+		repaint();
+		
+	}
+	void take()
+	{
+		
+			currentundrained=currentundrained-1;
+			used++;
+			panel.remove(undrained[currentundrained]);
+			setVisible(true);
+			repaint();
 		
 	}
 	
-	void init()
-	{
-		  d.setText(""+currentdrained);
-		  u.setText(""+currentundrained);
-	} 
-	void initTurn()// aca es algo raro
+	void take2()
 	{
 		
-		
-		
-	}
-	void set (int n)
-	{
-		u.setText(""+(currentundrained+n));
-		currentundrained+=n;
+		repaint();
+			currentdrained=currentdrained-1;
+			
+			panel_1.remove(drained[currentdrained]);
+			setVisible(true);
+			repaint();
 		
 	}
 	
-	
+	void take3()
+	{
+		repaint();
+		currentoken=currentoken-1;
+		
+		panel_2.remove(tokens[currentoken]);
+		setVisible(true);
+		repaint();
+	}
+	void drain()
+	{
+		drained[currentdrained] = new JPanel();
+		drained[currentdrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
+		drained[currentdrained].setBackground(new Color(51, 51, 204));
+		
+		panel_1.add(drained[currentdrained]);
+		
+		if(currentdrained<5)
+		{
+		drained[currentdrained].setBounds(currentdrained*30, 0, 25, 20);
+		}else{
+			if(currentdrained<10)
+			{
+			drained[currentdrained].setBounds((currentdrained-5)*30,25 , 25, 20);
+			}else
+			{
+				drained[currentdrained].setBounds((currentdrained-10)*30,50 , 25, 20);
+			}
+			
+		}	
+		currentdrained++;
+		
+		panel_2.setVisible(true);
+		repaint();
+		panel_2.setVisible(true);
+	}
+	void drain(int n)
+	{
+		System.out.println("se pagara "+paying+"+"+tokenused);
+		if(paying+currentoken==n){
+			while(paying>=1)
+			{
+				drain();
+				take();
+				paying--;
+			}
+			while(tokenused>=1)
+			{
+				drain();
+				take3();
+				tokenused--;
+			}
+		
+		}
+		
+	}
+	void token()
+	{
+
+		try {
+			tokens[currentoken]=new JLabel(new ImageIcon(ImageIO.read(new File("token.png"))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tokens[currentoken].addMouseListener(this);
+		panel_2.add(tokens[currentoken]);
+		
+		if(currentoken<=5)
+		{
+		tokens[currentoken].setBounds(currentoken*25, 10, 20, 20);
+		}else{
+			if(currentoken<=10)
+			{
+			tokens[currentoken].setBounds((currentoken-5)*25,25 , 30, 20);
+			}else
+			{
+				tokens[currentoken].setBounds((currentoken*10)*25,60 , 20, 20);
+			}
+			
+		}	
+		currentoken++;
+		setVisible(true);
+		repaint();
+		
+		
+	}
+	void reset()
+	{
+		System.out.println("entro reset con"+used);
+		for( int i=0;i<used;i++)
+		{
+			
+			set();
+			take2();
+			System.out.println("currentundrained"+currentundrained);
+			System.out.println("currentdrained"+currentdrained);
+		}
+		while(currentdrained>0)
+		{
+			take2();
+		}
+		used=0;
+		repaint();
+		setVisible(true);
+	}
 	void play(int n)
 	{
-		u.setText(""+(currentundrained-n));
-		d.setText(""+(currentdrained+n));
-		currentundrained-=n;
-		currentdrained+=n;
-		init();
+		drain(n);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) 
+	{
+		
+		if(e.getSource()==undrained[0])
+			
+		{
+			
+			
+			if(undrained[0].getY()==10)
+			{
+				paying++;
+				undrained[0].setBounds(0,0,25,20);
+				undrained[0].setBackground(Color.red);
+				label.setText(""+paying);
+			}else
+			{
+				paying--;
+				undrained[0].setBounds(0,10,25,20);
+				label.setText(""+paying);
+				undrained[0].setBackground(Color.blue);
+			}
+		}
+		
+		if(e.getSource()==undrained[1])
+		
+		{
+			
+			
+			if(undrained[1].getY()==10)
+			{
+				paying++;
+				label.setText(""+paying);
+				undrained[1].setBounds(30,0,25,20);
+				undrained[1].setBackground(Color.red);
+			}else
+			{
+				undrained[1].setBackground(Color.blue);
+				paying--;
+				label.setText(""+paying);
+				undrained[1].setBounds(30,10,25,20);
+			}
+		}
+		if(e.getSource()==undrained[2])
+			
+		{
+			
+			
+			if(undrained[2].getY()==10)
+			{
+				paying++;
+				label.setText(""+paying);
+				undrained[2].setBounds(60,0,25,20);
+				undrained[2].setBackground(Color.red);
+			}else
+			{
+				undrained[2].setBackground(Color.blue);
+				paying--;
+				label.setText(""+paying);
+				undrained[2].setBounds(60,10,25,20);
+			}
+		}
+		if(e.getSource()==undrained[3])
+			
+		{
+			
+			
+			if(undrained[3].getY()==10)
+			{
+				paying++;
+				label.setText(""+paying);
+				undrained[3].setBounds(90,0,25,20);
+				undrained[3].setBackground(Color.red);
+			}else
+			{
+				undrained[3].setBackground(Color.blue);
+				paying--;
+				label.setText(""+paying);
+				undrained[3].setBounds(90,10,25,20);
+			}
+		}	
+			if(e.getSource()==undrained[4])
+				
+			{
+				
+				
+				if(undrained[4].getY()==10)
+				{
+					paying++;
+					label.setText(""+paying);
+					undrained[4].setBounds(120,0,25,20);
+					undrained[4].setBackground(Color.red);
+				}else
+				{
+					undrained[4].setBackground(Color.blue);
+					paying--;
+					label.setText(""+paying);
+					undrained[4].setBounds(120,10,25,20);
+				}
+			}
+			
+if(e.getSource()==undrained[5])
+				
+			{
+				
+				
+				if(undrained[5].getY()==35)
+				{
+					paying++;
+					label.setText(""+paying);
+					undrained[5].setBounds(0,25,25,20);
+					undrained[5].setBackground(Color.red);
+				}else
+				{
+					undrained[5].setBackground(Color.blue);
+					paying--;
+					label.setText(""+paying);
+					undrained[5].setBounds(0,35,25,20);
+				}
+			}
+			
+if(e.getSource()==undrained[6])
+	
+{
+	
+	
+	if(undrained[6].getY()==35)
+	{
+		paying++;
+		label.setText(""+paying);
+		undrained[6].setBounds(30,25,25,20);
+		undrained[6].setBackground(Color.red);
+	}else
+	{
+		undrained[6].setBackground(Color.blue);
+		paying--;
+		label.setText(""+paying);
+		undrained[6].setBounds(30,35,25,20);
+	}
+}
+if(e.getSource()==undrained[7])
+	
+{
+	
+	
+	if(undrained[7].getY()==35)
+	{
+		paying++;
+		label.setText(""+paying);
+		undrained[7].setBounds(60,25,25,20);
+		undrained[7].setBackground(Color.red);
+	}else
+	{
+		undrained[7].setBackground(Color.blue);
+		paying--;
+		label.setText(""+paying);
+		undrained[7].setBounds(60,35,25,20);
+	}
+}
+		
+	
+		
+
+
+	if(e.getSource()==undrained[8])
+		
+	{
+		
+		
+		if(undrained[8].getY()==35)
+		{
+			paying++;
+			label.setText(""+paying);
+			undrained[8].setBounds(90,25,25,20);
+			undrained[8].setBackground(Color.red);
+		}else
+		{
+			undrained[8].setBackground(Color.blue);
+			paying--;
+			label.setText(""+paying);
+			undrained[8].setBounds(90,35,25,20);
+		}
+	}
+	if(e.getSource()==undrained[9])
+		
+	{
+		
+		
+		if(undrained[9].getY()==35)
+		{
+			paying++;
+			label.setText(""+paying);
+			undrained[9].setBounds(120,25,25,20);
+			undrained[9].setBackground(Color.red);
+		}else
+		{
+			undrained[9].setBackground(Color.blue);
+			paying--;
+			label.setText(""+paying);
+			undrained[9].setBounds(120,35,25,20);
+		}
+	}
+	
+	if(e.getSource()==tokens[0])
+		
+	{
+		
+		
+		if(tokens[0].getY()==10)
+		{
+			tokenused++;
+			label.setText(""+paying);
+			tokens[0].setBounds(0,0,20,20);
+			
+		}else
+		{
+			
+			tokenused--;
+			label.setText(""+paying);
+			tokens[0].setBounds(0,10,20,20);
+		}
+	}
+if(e.getSource()==tokens[1])
+		
+	{
+		
+		
+		if(tokens[1].getY()==10)
+		{
+			tokenused++;
+			
+			tokens[1].setBounds(25,0,20,20);
+			
+		}else
+		{
+			
+			tokenused--;
+		
+			tokens[1].setBounds(25,10,20,20);
+		}
+	}
+if(e.getSource()==tokens[2])
+	
+{
+	
+	
+	if(tokens[2].getY()==10)
+	{
+		tokenused++;
+		tokens[2].setBounds(50,0,20,20);
+		
+	}else
+	{
+		
+		tokenused--;
+	
+		tokens[2].setBounds(50,10,20,20);
+	}
+}
+if(e.getSource()==tokens[3])
+	
+{
+	
+	
+	if(tokens[3].getY()==10)
+	{
+		tokenused++;
+	
+		tokens[3].setBounds(75,0,20,20);
+		
+	}else
+	{
+		
+		tokenused--;
+	
+		tokens[3].setBounds(75,10,20,20);
+	}
+}
+if(e.getSource()==tokens[4])
+{
+if(tokens[4].getY()==10)
+{
+	tokenused++;
+	
+	tokens[4].setBounds(100,0,20,20);
+	
+}else
+{
+	
+	tokenused--;
+	
+	tokens[4].setBounds(100,10,20,20);
+}
+}
+
+if(e.getSource()==tokens[5])
+{
+if(tokens[5].getY()==10)
+{
+	tokenused++;
+
+	tokens[5].setBounds(125,0,20,20);
+	
+}else
+{
+	
+	tokenused--;
+
+	tokens[5].setBounds(125,10,20,20);
+}
+}
+			
+			repaint();
+			panel.repaint();
+			setVisible(true);
+			// TODO Auto-generated method stub
+			
+		}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		//  
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -28,17 +28,30 @@ import javax.swing.border.MatteBorder;
 	private Card  actual;
 	public JInternalFrame menu;
 	public JButton Play, Preview,Discard,Set; 
+	   /** Stroke size. it is recommended to set it to 1 for better view */
+    protected int strokeSize = 1;
+    /** Color of shadow */
+    protected Color shadowColor = Color.BLACK;
+    /** Sets if it drops shadow */
+    protected boolean shady = true;
+    /** Sets if it has an High Quality view */
+    protected boolean highQuality = true;
+    /** Double values for Horizontal and Vertical radius of corner arcs */
+    protected Dimension arcs = new Dimension(20, 20);
+    /** Distance between shadow border and opaque panel border */
+    protected int shadowGap = 5;
+    /** The offset of shadow.  */
+    protected int shadowOffset = 5;
+    /** The transparency value of shadow. ( 0 - 255) */
+    protected int shadowAlpha = 150;
+
 	/**
 	 * Create the panel.
 	 */
 	
 	public CardGui(Card x, int a ,int b) {
-		setOpaque(true);
 		
-	setBounds(a, b, 124, 186);	
-	
-		
-		setBorder(new CompoundBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(0, 0, 205)), new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255))), new LineBorder(new Color(0, 0, 0), 3, true)));
+	setBounds(a, b, 124, 186);
 		setLayout(null);
 		
 		
@@ -96,7 +109,7 @@ import javax.swing.border.MatteBorder;
 		JLabel lblSource = new JLabel(x.GetSource());
 		lblSource.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 	
-		lblSource.setBounds(64, 32, 60, 14);
+		lblSource.setBounds(74, 32, 45, 14);
 		lblSource.setOpaque(true);
 		add(lblSource);
 		switch (x.GetSource())
@@ -127,20 +140,20 @@ import javax.swing.border.MatteBorder;
 			JLabel lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
-			lblAtaque.setBounds(94, 56, 46, 10);
+			lblAtaque.setBounds(84, 56, 35, 10);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
 			add(lblAtaque);
 			
 			JLabel lblDefensa = new JLabel(" " + x.GetMp());
-			lblDefensa.setBounds(94, 81, 46, 10);
+			lblDefensa.setBounds(84, 81, 35, 10);
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
 			add(lblDefensa);
 			
 			JLabel lblSupport = new JLabel(" "+ x.GetSup());
-			lblSupport.setBounds(78, 101, 46, 14);
+			lblSupport.setBounds(84, 101, 35, 14);
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
@@ -238,11 +251,11 @@ import javax.swing.border.MatteBorder;
 		lblType.setForeground(new Color(255, 255, 255));
 		lblType.setBounds(52, 2, 62, 14);
 		add(lblType);
-		add(menu);
+		//add(menu);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setOpaque(false);
-		panel_1.setBounds(-10, -12, 42, 29);
+		panel_1.setBounds(-10, -10, 42, 29);
 		add(panel_1);
 		try {
 			panel_1.add(new JLabel(new ImageIcon(ImageIO.read(new File("mp.png")))));
@@ -255,17 +268,49 @@ import javax.swing.border.MatteBorder;
 
 	}
 
-	 @Override
-     public void paintComponent(Graphics g)
-     {
-		 
-         int height = 200;
-         int width = 120;
-         g.setColor(Color.gray);
-         g.drawRoundRect(0, 0, width, height, 20, 30);
-        
-        
-     }
+	  @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        int width = getWidth();
+	        int height = getHeight();
+	        int shadowGap = this.shadowGap;
+	        Color shadowColorA = new Color(shadowColor.getRed(),
+	    shadowColor.getGreen(), shadowColor.getBlue(), shadowAlpha);
+	        Graphics2D graphics = (Graphics2D) g;
+
+	        //Sets antialiasing if HQ.
+	        if (highQuality) {
+	            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+	            RenderingHints.VALUE_ANTIALIAS_ON);
+	        }
+
+	        //Draws shadow borders if any.
+	        if (shady) {
+	            graphics.setColor(shadowColorA);
+	            graphics.fillRoundRect(
+	                    shadowOffset,// X position
+	                    shadowOffset,// Y position
+	                    width - strokeSize - shadowOffset, // width
+	                    height - strokeSize - shadowOffset, // height
+	                    arcs.width, arcs.height);// arc Dimension
+	        } else {
+	            shadowGap = 1;
+	        }
+
+	        //Draws the rounded opaque panel with borders.
+	        graphics.setColor(getBackground());
+	        graphics.fillRoundRect(0, 0, width - shadowGap,
+	        height - shadowGap, arcs.width, arcs.height);
+	        graphics.setColor(getForeground());
+	        graphics.setStroke(new BasicStroke(strokeSize));
+	        graphics.drawRoundRect(0, 0, width - shadowGap,
+	        height - shadowGap, arcs.width, arcs.height);
+
+	        //Sets strokes to default, is better.
+	        graphics.setStroke(new BasicStroke());
+	    }
+
+	    
 	public Card getcard()
 	{
 		return actual;
@@ -279,4 +324,6 @@ import javax.swing.border.MatteBorder;
 	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 	    }
 	}
+		
+		
 }

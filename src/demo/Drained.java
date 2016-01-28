@@ -29,6 +29,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.border.TitledBorder;
+
+import extra.RoundedPanel;
+
 import javax.swing.SwingConstants;
 
 public class Drained extends JLayeredPane implements MouseListener{
@@ -115,7 +118,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void setwp()
 	{
-		undrained[currentundrained] = new JPanel();
+		undrained[currentundrained] = new RoundedPanel();
 		undrained[currentundrained].setLayout(null);
 		try {
 			undrained[currentundrained].add(new JLabel(new ImageIcon(ImageIO.read(new File("frame4.jpg")))));

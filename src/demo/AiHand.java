@@ -41,7 +41,7 @@ public  class AiHand extends JPanel //implements MouseListener
 		
 		current=0;
 		setOpaque(false);
-		setBounds(posx,posy, 500, 111);
+		setBounds(posx-10,posy, 500, 111);
 		setLayout(null);
 
 		
@@ -98,13 +98,13 @@ public  class AiHand extends JPanel //implements MouseListener
 		      {
 		      case 0:x= new AIcard(a,0,20);
 		    	  break;
-		      case 1:x= new AIcard(a,90,20);
+		      case 1:x= new AIcard(a,80,20);
 		    	  break;
-		      case 2:x= new AIcard(a,180,20);
+		      case 2:x= new AIcard(a,170,20);
 		    	  break;
-		      case 3:x= new AIcard(a,270,20);
+		      case 3:x= new AIcard(a,260,20);
 		    	  break;
-		      case 4:x= new AIcard(a,360,20);
+		      case 4:x= new AIcard(a,350,20);
 		    	  break;
 		      }
 		     // x.addMouseListener(this);

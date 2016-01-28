@@ -3398,42 +3398,42 @@ public JButton j;
 					}
 					i++;
 				}
-			
+
 				Card c = new Card();
-				
-				if(this.atkDest!=-1){
-					c=this.player.field.cards[this.atkDest].getcard();
+
+				if (this.atkDest != -1) {
+					c = this.player.field.cards[this.atkDest].getcard();
 					this.player.field.quitar(this.atkDest);
 					try {
-						this.player.field.poner(new SmallCard(true,c), this.atkDest);
+						this.player.field.poner(new SmallCard(true, c), this.atkDest);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}else{
-					c=this.ai.aifield.cards[this.atkOrigin].getcard();
+				} else {
+					c = this.ai.aifield.cards[this.atkOrigin].getcard();
 					this.ai.aifield.quitar(this.atkOrigin);
 					try {
-						this.ai.aifield.poner(new SmallCard(true,c), this.atkOrigin);
+						this.ai.aifield.poner(new SmallCard(true, c), this.atkOrigin);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-				
+
 			}
-			
+
 			repaint();
 		}
-		if(this.phases.actual==3){
+		if (this.phases.actual == 3) {
 			repaint();
 		}
 	}
-	
-	public int contarBarriers(){
-		int cont=0;
-		for(int i=0; i<5; i++){
-			if(player.barriers.cards[i]!=null){
+
+	public int contarBarriers() {
+		int cont = 0;
+		for (int i = 0; i < 5; i++) {
+			if (player.barriers.cards[i] != null) {
 				cont++;
 			}
 		}
