@@ -1,5 +1,6 @@
 package demo;
 import demo.HandGui;
+import extra.Pane;
 import extra.Tutorial;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
@@ -134,6 +135,8 @@ public JButton j;
 		player=new PlayerGui(x,y,name);
 		preview= new Previewpane();
 		player.hand.addMouseListener(this);
+		
+	
 		setOpaque(false);
 		setLayout(null);
 		setBounds(0,0, 1024, 768);
@@ -2312,10 +2315,12 @@ public JButton j;
 
 	public void mouseExited(MouseEvent e) {
 		int x=-1;
+		int x2;
 		
-		int x2=498/(player.hand.current-1);
 		if(player.hand.current<5)
 			x2=124;
+		else
+		 x2=498/(player.hand.current-1);
 		if(e.getSource()==player.hand.handgui[0])
 		{
 			x=0;

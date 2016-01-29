@@ -1,17 +1,18 @@
 package demo;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
 import java.awt.Color;
-import java.util.Random;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.media.j3d.Canvas3D;
+import com.sun.j3d.utils.universe.SimpleUniverse;
+
 public class fieldGui extends JPanel {
 	public JButton btn;
 	public JPanel panel2,panel,panel3,panel4,panel1,panel5; 
+	
 	public SmallCard[]  cards  = new SmallCard[5];
 
 	public fieldGui(int posx,int posy) {

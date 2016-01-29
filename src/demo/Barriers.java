@@ -28,7 +28,7 @@ public class Barriers extends JPanel {
 		removeall();
 		setLayout(null);
 		setOpaque(false);
-		setBounds(x,y,600,50);//se fija el tamaño y la posicion
+		setBounds(x,y+10,600,50);//se fija el tamaño y la posicion
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 128, 128));
 		panel.setForeground(new Color(0, 102, 0));

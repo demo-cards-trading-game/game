@@ -251,7 +251,7 @@ import javax.swing.border.MatteBorder;
 		lblType.setForeground(new Color(255, 255, 255));
 		lblType.setBounds(52, 2, 62, 14);
 		add(lblType);
-		//add(menu);
+		add(menu);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setOpaque(false);

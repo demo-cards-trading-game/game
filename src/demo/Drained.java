@@ -151,8 +151,8 @@ public class Drained extends JLayeredPane implements MouseListener{
 	void set()
 	{
 		
-		undrained[currentundrained] = new JPanel();
-		undrained[currentundrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
+		undrained[currentundrained] = new RoundedPanel();
+	
 		undrained[currentundrained].setBackground(Color.BLUE);
 		undrained[currentundrained].addMouseListener(this);
 			 
