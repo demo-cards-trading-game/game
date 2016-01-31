@@ -43,8 +43,8 @@ public class Drained extends JLayeredPane implements MouseListener{
 	public  int currentundrained,currentoken;
 	public int paying,tokenused;
 	
-	public JPanel[]  drained  = new JPanel[20];
-	public JPanel[]  undrained  = new JPanel[20];
+	public RoundedPanel[]  drained  = new RoundedPanel[20];
+	public RoundedPanel[]  undrained  = new RoundedPanel[20];
 	public JLabel[]  tokens = new JLabel[20];
 	public JPanel panel,panel_1,panel_2; 
 	JLabel label;
@@ -155,7 +155,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	
 		undrained[currentundrained].setBackground(Color.BLUE);
 		undrained[currentundrained].addMouseListener(this);
-			 
+		undrained[currentundrained].arcs = new Dimension(20, 20); 
 		panel.add(undrained[currentundrained]);
 		
 		if(currentundrained<5)
@@ -220,7 +220,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void drain()
 	{
-		drained[currentdrained] = new JPanel();
+		drained[currentdrained] = new RoundedPanel();
 		drained[currentdrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
 		drained[currentdrained].setBackground(new Color(51, 51, 204));
 		
