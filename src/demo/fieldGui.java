@@ -9,9 +9,11 @@ import javax.swing.border.MatteBorder;
 import javax.media.j3d.Canvas3D;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
+import extra.RoundedPanel;
+
 public class fieldGui extends JPanel {
 	public JButton btn;
-	public JPanel panel2,panel,panel3,panel4,panel1,panel5; 
+	public RoundedPanel panel2,panel,panel3,panel4,panel1,panel5; 
 	
 	public SmallCard[]  cards  = new SmallCard[5];
 
@@ -21,47 +23,37 @@ public class fieldGui extends JPanel {
 		setBounds(posx,posy, 544, 145);
 		setLayout(null);
 		
-		 panel = new JPanel();
-		panel.setOpaque(true);
+		 panel = new RoundedPanel();
 		panel.setLayout(null);
-		panel.setForeground(Color.WHITE);
-		panel.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel.setForeground(Color.GREEN);
 		panel.setBackground(new Color(169, 169, 169));
 		panel.setBounds(0, 0, 100, 145);
 		add(panel);
 	
-		 panel2 = new JPanel();
-		panel2.setOpaque(true);
+		 panel2 = new RoundedPanel();
 		panel2.setLayout(null);
 		panel2.setForeground(new Color(147, 112, 219));
-		panel2.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
 		panel2.setBackground(new Color(169, 169, 169));
 		panel2.setBounds(110, 0, 100, 145);
 		add(panel2);
 		
-		panel3 = new JPanel();
-		panel3.setOpaque(true);
+		panel3 = new RoundedPanel();
 		panel3.setLayout(null);
-		panel3.setForeground(new Color(192, 192, 192));
-		panel3.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel3.setForeground(Color.ORANGE);
 		panel3.setBackground(new Color(169, 169, 169));
 		panel3.setBounds(220, 0, 100, 145);
 		add(panel3);
 		
-		panel4 = new JPanel();
-		panel4.setOpaque(true);
+		panel4 = new RoundedPanel();
 		panel4.setLayout(null);
-		panel4.setForeground(Color.WHITE);
-		panel4.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel4.setForeground(Color.MAGENTA);
 		panel4.setBackground(new Color(169, 169, 169));
 		panel4.setBounds(330, 0, 100, 145);
 		add(panel4);
 		
-		panel5 = new JPanel();
-		panel5.setOpaque(true);
+		panel5 = new RoundedPanel();
 		panel5.setLayout(null);
-		panel5.setForeground(Color.WHITE);
-		panel5.setBorder(new CompoundBorder(new MatteBorder(0, 2, 1, 0, (Color) new Color(0, 191, 255)), new LineBorder(new Color(0, 0, 0), 3, true)));
+		panel5.setForeground(Color.CYAN);
 		panel5.setBackground(new Color(169, 169, 169));
 		panel5.setBounds(440, 0, 100, 145);
 		add(panel5);

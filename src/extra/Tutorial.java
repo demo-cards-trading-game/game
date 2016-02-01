@@ -24,7 +24,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 	public AnimatedButton animation;
 	JLabel clickon;
 	public JLabel lblSms ;
-	public JPanel panel;
+	public RoundedPanel panel;
 	public Tutorial() 
 	{
 		setBorder(new CompoundBorder(new LineBorder(new Color(0, 0, 0), 2), new LineBorder(new Color(0, 191, 255))));
@@ -63,8 +63,8 @@ public class Tutorial extends JPanel implements ActionListener  {
 		 animation=new AnimatedButton(0,0);
 		 add(animation);
 		 
-		panel= new JPanel();
-		 panel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 0, 0), 4), new MatteBorder(3, 2, 1, 2, (Color) new Color(255, 255, 255))));
+		panel= new RoundedPanel();
+		
 		 panel.setBackground(new Color(0, 128, 128));
 		 panel.setBounds(519, 177, 397, 193);
 		 panel.add(ok);

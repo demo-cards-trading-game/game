@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import demo.deck;
+import extra.Rlabel;
 import extra.RoundButton;
 import extra.RoundedPanel;
 
@@ -39,7 +40,7 @@ public class DeckGui extends JPanel {
 	public JLabel lblTheFallen;
 	public JPanel panel;
 	public JLabel lblDeck; 
-	public JLabel lblForgotten ;
+	public Rlabel lblForgotten ;
 	
 	
 	
@@ -109,12 +110,17 @@ public class DeckGui extends JPanel {
 		btnNewButton_2.setBounds(175, 117, 46, 40);
 		add(btnNewButton_2);
 		
-	  lblForgotten = new JLabel("Forgotten");
-	  lblForgotten.setHorizontalAlignment(SwingConstants.CENTER);
+	  lblForgotten = new Rlabel("Forgotten",0);
+	  lblForgotten.setText("FORGOTTEN");
+	  lblForgotten.setRightShadow(1,1,Color.black);
+	  lblForgotten.setLeftShadow(-1,-1, new Color(0xccccff));
+	  lblForgotten.setForeground(new Color(0x8888ff));
+	  lblForgotten.setFont(lblForgotten.getFont().deriveFont(140f));
+	  lblForgotten.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblForgotten.setBorder(null);
 		lblForgotten.setForeground(new Color(153, 102, 255));
 		lblForgotten.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblForgotten.setBounds(133, 98, 117, 14);
+		lblForgotten.setBounds(160, 100, 117, 14);
 		add(lblForgotten);
 		
 		 panel= new RoundedPanel();

@@ -155,7 +155,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	
 		undrained[currentundrained].setBackground(Color.BLUE);
 		undrained[currentundrained].addMouseListener(this);
-		undrained[currentundrained].arcs = new Dimension(20, 20); 
+		undrained[currentundrained].arcs = new Dimension(5, 5); 
 		panel.add(undrained[currentundrained]);
 		
 		if(currentundrained<5)

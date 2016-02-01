@@ -44,6 +44,7 @@ public class Gui extends JFrame implements ActionListener
 	RollDice dados;
 	
 	private FileWriter turno = null;
+	
     private PrintWriter pw = null;
    
 	public Gui()
