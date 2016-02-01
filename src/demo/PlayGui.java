@@ -876,8 +876,8 @@ public JButton j;
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 			tuto.panel.add(tuto.ok);
-			player.powers.paying=0;
-			player.powers.tokenused=0;
+			player.powers.disselect();
+			;
 		
 			
 		}
@@ -2658,6 +2658,8 @@ public JButton j;
 					
 					p=pos;
 					w=where;
+					tuto.panel.add(player.powers.label);
+					player.powers.label.setBounds(150, 100, 73, 35);	
 					tuto.play();
 					
 					player.powers.label.setVisible(true);

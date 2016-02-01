@@ -220,7 +220,6 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 	void drain()
 	{
 		drained[currentdrained] = new JPanel();
-		drained[currentdrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
 		drained[currentdrained].setBackground(new Color(51, 51, 204));
 		
 		panel_1.add(drained[currentdrained]);
@@ -240,19 +239,20 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		}	
 		currentdrained++;
 		
-		panel_2.setVisible(true);
+		
 		repaint();
 		panel_2.setVisible(true);
 	}
 	void drain(int n)
 	{
 		System.out.println("se pagara "+paying+"+"+tokenused);
+		
 		if(paying+currentoken==n){
-			while(paying>=1)
+			for(int i =1;i<=paying;i++)
 			{
 				drain();
 				take();
-				paying--;
+				System.out.println("drain +take ");
 			}
 			while(tokenused>=1)
 			{

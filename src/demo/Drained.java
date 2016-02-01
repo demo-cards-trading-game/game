@@ -102,7 +102,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		label.setBackground(Color.ORANGE);
 		label.setBounds(113, 349, 73, 35);
-		add(label);
+		//add(label);
 		
 		/***************************se crean los paneles ***************************************/
 		
@@ -121,7 +121,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		undrained[currentundrained] = new RoundedPanel();
 		undrained[currentundrained].setLayout(null);
 		try {
-			undrained[currentundrained].add(new JLabel(new ImageIcon(ImageIO.read(new File("frame4.jpg")))));
+			undrained[currentundrained].add(new JLabel(new ImageIcon(ImageIO.read(new File("waterp.jpg")))));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -296,6 +296,27 @@ public class Drained extends JLayeredPane implements MouseListener{
 		
 		
 	}
+	
+	void disselect()
+	{
+		for( int i=0;i<currentundrained;i++)
+		{
+			if(i<5)
+			{
+			undrained[i].setBounds(i*30, 10, 25, 20);
+			}else{
+				if(i<10)
+				{
+				undrained[i].setBounds((i-5)*30,35 , 25, 20);
+				}else
+				{
+					undrained[i].setBounds((i-10)*30,60 , 25, 20);
+				}
+			}
+		tokenused=used=paying=0;
+		}
+		
+	}
 	void reset()
 	{
 		System.out.println("entro reset con"+used);
@@ -304,14 +325,15 @@ public class Drained extends JLayeredPane implements MouseListener{
 			
 			set();
 			take2();
-			System.out.println("currentundrained"+currentundrained);
-			System.out.println("currentdrained"+currentdrained);
+			
 		}
 		while(currentdrained>0)
 		{
 			take2();
 		}
+		disselect();
 		used=0;
+		paying=0;
 		repaint();
 		setVisible(true);
 	}
@@ -319,6 +341,8 @@ public class Drained extends JLayeredPane implements MouseListener{
 	{
 		drain(n);
 	}
+	
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) 

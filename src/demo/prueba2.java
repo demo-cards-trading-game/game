@@ -42,7 +42,7 @@ public class prueba2 extends JInternalFrame
 	
 	public prueba2(deck d)
 	{
-		this.current=new BigCard();
+		
 		this.mazo= new deck();
 		this.mazo=d;
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));

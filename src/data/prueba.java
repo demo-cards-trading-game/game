@@ -17,7 +17,7 @@ import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
 
-public class prueba extends JPanel 
+public class prueba extends JLayeredPane
 {
 	private boolean band,band1;
 	private JTable leftTable;
@@ -169,6 +169,7 @@ public class prueba extends JPanel
 	                		current=new BigCard(data.Data.Consultar(x),520,120);
 	                	}
 	                	add (current);
+	                	moveToFront(current);
 	                }
 	                
        			 repaint();

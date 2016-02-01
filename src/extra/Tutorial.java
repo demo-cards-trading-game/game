@@ -150,6 +150,7 @@ public class Tutorial extends JPanel implements ActionListener  {
 		panel.remove(ok);
 		panel.add(ok3);
 		panel.add(cancel);
+		
 		ok3.setEnabled(false);
 		animation.setLocation(20,180);
 		lblSms.setText("SELECT POWERS TO DRAIN");

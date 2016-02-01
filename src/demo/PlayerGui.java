@@ -51,47 +51,6 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-if(e.getSource()==powers.undrained[0])
-			
-		{
-			
-			
-			if(powers.undrained[0].getY()==10)
-			{
-				powers.paying++;
-				powers.undrained[0].setBounds(0,0,25,20);
-				powers.label.setText(""+powers.paying);
-			}else
-			{
-				powers.paying--;
-				powers.undrained[0].setBounds(0,10,25,20);
-				powers.label.setText(""+powers.paying);
-			}
-		}
-		
-		if(e.getSource()==powers.undrained[1])
-		
-		{
-			
-			
-			if(powers.undrained[1].getY()==10)
-			{
-				powers.paying++;
-				powers.label.setText(""+powers.paying);
-				powers.undrained[1].setBounds(30,0,25,20);
-			}else
-			{
-			
-				powers.paying--;
-				powers.label.setText(""+powers.paying);
-				powers.undrained[1].setBounds(30,10,25,20);
-			}
-		}
-		repaint();
-		powers.panel.repaint();
-		setVisible(true);
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {

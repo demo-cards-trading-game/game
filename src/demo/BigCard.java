@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
+import extra.RoundedPanel;
 import data.LoadData;
 
 
@@ -21,16 +22,14 @@ import javax.swing.border.LineBorder;
 
 
 
-public class BigCard extends JPanel {
+public class BigCard extends RoundedPanel {
 	private JTextField textField;
 	public Card  actual;
 	/**
 	 * Create the panel.
 	 */
 	
-	public BigCard(){
-		
-	}
+	
 	
 	public BigCard(Card x, int a ,int b) {
 		
@@ -41,7 +40,7 @@ public class BigCard extends JPanel {
 		
 		
 		
-		setForeground(Color.WHITE);
+		setForeground(Color.green);
 	
 		
 		CirclePanel panel = new CirclePanel();//aca va la imagen
@@ -108,7 +107,7 @@ public class BigCard extends JPanel {
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
 			
-			setBackground(new Color(204, 153, 51));
+			setBackground(new Color(255, 215, 0));
 			panel.setForeground(new Color(204, 153, 51));
 			panel.setBackground(new Color(204, 153, 51));
 		}else if(x.GetType()=="Disruption")
@@ -137,7 +136,7 @@ public class BigCard extends JPanel {
 	
 		
 		setBounds(a, b, 235, 322);	
-		setBorder(new LineBorder(new Color(102, 51, 0), 2));
+		
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel(x.GetName());
