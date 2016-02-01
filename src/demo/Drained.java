@@ -247,13 +247,14 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void drain(int n)
 	{
-		System.out.println("se pagara "+paying+"+"+tokenused);
-		if(paying+currentoken==n){
-			while(paying>=1)
+		System.out.println("se pagara "+paying+"+"+tokenused +"n ="+ n);
+		
+			for(int i=0;i<paying;i++)
 			{
+				
 				drain();
 				take();
-				paying--;
+				
 			}
 			while(tokenused>=1)
 			{
@@ -262,7 +263,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 				tokenused--;
 			}
 		
-		}
+		
 		
 	}
 	void token()

@@ -55,7 +55,7 @@ public  class AiHand extends JPanel //implements MouseListener
 	    {
 	     int i;
 	     
-	     
+	     if(pos>0){
 	      for (i=pos;i<current;i++)
 	      {
 	      cards[i-1]=cards[i];
@@ -68,6 +68,7 @@ public  class AiHand extends JPanel //implements MouseListener
 	      removeAll();
 	      addall();
 	      repaint();
+	     }
 	    }
 	 void addall()
 	 {
