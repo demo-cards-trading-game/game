@@ -255,11 +255,12 @@ public class Drained extends JLayeredPane implements MouseListener{
 			take();
 			used--;
 			
+			
 		}
 		System.out.println("token"+tokenused);	
 			while(tokenused>=1)
 			{
-				drain();
+				
 				take3();
 				tokenused--;
 			}
