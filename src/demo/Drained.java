@@ -221,8 +221,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	void drain()
 	{
 		drained[currentdrained] = new RoundedPanel();
-		drained[currentdrained].setBorder(new MatteBorder(4, 3, 1, 3, (Color) new Color(0, 0, 0)));
-		drained[currentdrained].setBackground(new Color(51, 51, 204));
+		drained[currentdrained].arcs=new Dimension(5, 5);
 		
 		panel_1.add(drained[currentdrained]);
 		
@@ -247,9 +246,9 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void drain(int n)
 	{
-		System.out.println("se pagara "+paying+"+"+tokenused +"n ="+ n);
 		
-			for(int i=0;i<paying;i++)
+		
+			for(int i=0;i<used;i++)
 			{
 				
 				drain();
@@ -302,6 +301,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	{
 		for( int i=0;i<currentundrained;i++)
 		{
+			undrained[i].setBackground(Color.blue);
 			if(i<5)
 			{
 			undrained[i].setBounds(i*30, 10, 25, 20);
@@ -315,6 +315,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 				}
 			}
 		tokenused=used=paying=0;
+		label.setText(""+paying);
 		}
 		
 	}
@@ -357,12 +358,14 @@ public class Drained extends JLayeredPane implements MouseListener{
 			if(undrained[0].getY()==10)
 			{
 				paying++;
+				used++;
 				undrained[0].setBounds(0,0,25,20);
 				undrained[0].setBackground(Color.red);
 				label.setText(""+paying);
 			}else
 			{
 				paying--;
+				used--;
 				undrained[0].setBounds(0,10,25,20);
 				label.setText(""+paying);
 				undrained[0].setBackground(Color.blue);
@@ -377,6 +380,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			if(undrained[1].getY()==10)
 			{
 				paying++;
+				used++;
 				label.setText(""+paying);
 				undrained[1].setBounds(30,0,25,20);
 				undrained[1].setBackground(Color.red);
@@ -384,6 +388,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			{
 				undrained[1].setBackground(Color.blue);
 				paying--;
+				used--;
 				label.setText(""+paying);
 				undrained[1].setBounds(30,10,25,20);
 			}
@@ -396,6 +401,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			if(undrained[2].getY()==10)
 			{
 				paying++;
+				used++;
 				label.setText(""+paying);
 				undrained[2].setBounds(60,0,25,20);
 				undrained[2].setBackground(Color.red);
@@ -403,6 +409,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			{
 				undrained[2].setBackground(Color.blue);
 				paying--;
+				used--;
 				label.setText(""+paying);
 				undrained[2].setBounds(60,10,25,20);
 			}
@@ -415,6 +422,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			if(undrained[3].getY()==10)
 			{
 				paying++;
+				used++;
 				label.setText(""+paying);
 				undrained[3].setBounds(90,0,25,20);
 				undrained[3].setBackground(Color.red);
@@ -422,6 +430,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			{
 				undrained[3].setBackground(Color.blue);
 				paying--;
+				used--;
 				label.setText(""+paying);
 				undrained[3].setBounds(90,10,25,20);
 			}
@@ -434,6 +443,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 				if(undrained[4].getY()==10)
 				{
 					paying++;
+					used++;
 					label.setText(""+paying);
 					undrained[4].setBounds(120,0,25,20);
 					undrained[4].setBackground(Color.red);
@@ -441,6 +451,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 				{
 					undrained[4].setBackground(Color.blue);
 					paying--;
+					used--;
 					label.setText(""+paying);
 					undrained[4].setBounds(120,10,25,20);
 				}
@@ -454,11 +465,13 @@ if(e.getSource()==undrained[5])
 				if(undrained[5].getY()==35)
 				{
 					paying++;
+					used++;
 					label.setText(""+paying);
 					undrained[5].setBounds(0,25,25,20);
 					undrained[5].setBackground(Color.red);
 				}else
 				{
+					used--;
 					undrained[5].setBackground(Color.blue);
 					paying--;
 					label.setText(""+paying);
@@ -474,11 +487,13 @@ if(e.getSource()==undrained[6])
 	if(undrained[6].getY()==35)
 	{
 		paying++;
+		used++;
 		label.setText(""+paying);
 		undrained[6].setBounds(30,25,25,20);
 		undrained[6].setBackground(Color.red);
 	}else
 	{
+		used--;
 		undrained[6].setBackground(Color.blue);
 		paying--;
 		label.setText(""+paying);
@@ -493,6 +508,7 @@ if(e.getSource()==undrained[7])
 	if(undrained[7].getY()==35)
 	{
 		paying++;
+		used++;
 		label.setText(""+paying);
 		undrained[7].setBounds(60,25,25,20);
 		undrained[7].setBackground(Color.red);
@@ -500,6 +516,7 @@ if(e.getSource()==undrained[7])
 	{
 		undrained[7].setBackground(Color.blue);
 		paying--;
+		used--;
 		label.setText(""+paying);
 		undrained[7].setBounds(60,35,25,20);
 	}
@@ -517,6 +534,7 @@ if(e.getSource()==undrained[7])
 		if(undrained[8].getY()==35)
 		{
 			paying++;
+			used++;
 			label.setText(""+paying);
 			undrained[8].setBounds(90,25,25,20);
 			undrained[8].setBackground(Color.red);
@@ -524,6 +542,7 @@ if(e.getSource()==undrained[7])
 		{
 			undrained[8].setBackground(Color.blue);
 			paying--;
+			used--;
 			label.setText(""+paying);
 			undrained[8].setBounds(90,35,25,20);
 		}
@@ -536,6 +555,7 @@ if(e.getSource()==undrained[7])
 		if(undrained[9].getY()==35)
 		{
 			paying++;
+			used++;
 			label.setText(""+paying);
 			undrained[9].setBounds(120,25,25,20);
 			undrained[9].setBackground(Color.red);
@@ -543,6 +563,7 @@ if(e.getSource()==undrained[7])
 		{
 			undrained[9].setBackground(Color.blue);
 			paying--;
+			used--;
 			label.setText(""+paying);
 			undrained[9].setBounds(120,35,25,20);
 		}
@@ -556,12 +577,13 @@ if(e.getSource()==undrained[7])
 		if(tokens[0].getY()==10)
 		{
 			tokenused++;
+			paying++;
 			label.setText(""+paying);
 			tokens[0].setBounds(0,0,20,20);
 			
 		}else
 		{
-			
+			paying--;
 			tokenused--;
 			label.setText(""+paying);
 			tokens[0].setBounds(0,10,20,20);
@@ -575,14 +597,15 @@ if(e.getSource()==tokens[1])
 		if(tokens[1].getY()==10)
 		{
 			tokenused++;
-			
+			paying++;
+			label.setText(""+paying);
 			tokens[1].setBounds(25,0,20,20);
 			
 		}else
 		{
-			
+			paying--;
 			tokenused--;
-		
+			label.setText(""+paying);
 			tokens[1].setBounds(25,10,20,20);
 		}
 	}
@@ -612,14 +635,17 @@ if(e.getSource()==tokens[3])
 	if(tokens[3].getY()==10)
 	{
 		tokenused++;
-	
+	paying++;
+	label.setText(""+paying);
 		tokens[3].setBounds(75,0,20,20);
 		
 	}else
 	{
 		
 		tokenused--;
-	
+		paying--;
+		label.setText(""+paying);
+		
 		tokens[3].setBounds(75,10,20,20);
 	}
 }
@@ -628,12 +654,14 @@ if(e.getSource()==tokens[4])
 if(tokens[4].getY()==10)
 {
 	tokenused++;
-	
+	paying++;
+	label.setText(""+paying);
 	tokens[4].setBounds(100,0,20,20);
 	
 }else
 {
-	
+	paying--;
+	label.setText(""+paying);
 	tokenused--;
 	
 	tokens[4].setBounds(100,10,20,20);
@@ -645,14 +673,16 @@ if(e.getSource()==tokens[5])
 if(tokens[5].getY()==10)
 {
 	tokenused++;
-
+	paying++;
+	label.setText(""+paying);
 	tokens[5].setBounds(125,0,20,20);
 	
 }else
 {
 	
 	tokenused--;
-
+	paying--;
+	label.setText(""+paying);
 	tokens[5].setBounds(125,10,20,20);
 }
 }
