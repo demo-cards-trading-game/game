@@ -6,14 +6,16 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
-public class AIcard extends JPanel {
+import extra.RoundedPanel;
+
+public class AIcard extends RoundedPanel {
 
 	/** 
 	 * Create the panel.
 	 */
 	private Card Current;
 	public AIcard(Card c ,int x ,int y) {
-		setBorder(new LineBorder(Color.LIGHT_GRAY, 2, true));
+		setForeground(Color.GREEN);
 		setBackground(Color.BLACK);
 		setBounds(x,y,65,90);
 		setLayout(null);
@@ -22,7 +24,7 @@ public class AIcard extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon("back2.JPG"));
 		lblNewLabel.setBackground(Color.BLACK);
 		
-		lblNewLabel.setBounds(0, 0, 65, 90);
+		lblNewLabel.setBounds(0, 0, 65, 85);
 		add(lblNewLabel);
 		Current=c;
 	}

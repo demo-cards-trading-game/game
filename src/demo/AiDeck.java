@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import data.LoadData;
+import extra.RoundedPanel;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class AiDeck extends JPanel {
 	public JButton btnNewButton_1;
 	public JButton btnNewButton_2;
 	public JLabel lblTheFallen;
-	public JPanel panel;
+	public RoundedPanel panel;
 	public JLabel lblDeck; 
 	public JLabel lblForgotten ;
 	public JTextField textField;
@@ -76,8 +77,8 @@ public class AiDeck extends JPanel {
 		lblForgotten.setBounds(160, 99, 117, 14);
 		add(lblForgotten);
 
-		panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		panel = new RoundedPanel();
+		
 
 		panel.setLayout(null);
 		panel.setBackground(new Color(204, 153, 51));
