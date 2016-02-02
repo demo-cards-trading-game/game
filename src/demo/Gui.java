@@ -312,7 +312,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		}
 		
 			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
-			player1.player.pdeck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
+			player1.player.pdeck.btnNewButton_1.addMouseListener(this);//para que se puedan usar los botones del deck
 			player1.player.pdeck.btnNewButton.addMouseListener(this);
 			
 			addbackground3(this);

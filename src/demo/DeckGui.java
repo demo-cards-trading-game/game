@@ -34,19 +34,13 @@ public class DeckGui extends JPanel {
 	private JTextField txtHero;
 	private JTextField txtCharacter;
 	private JTextField txtSection;
-//	public JButton btnNewButton; 
 	public JLabel btnNewButton;
-	public JButton btnNewButton_1;
-	public JButton btnNewButton_2;
+	public JLabel btnNewButton_1;
+	public JLabel btnNewButton_2;
 	public JLabel lblTheFallen;
 	public JPanel panel;
 	public JLabel lblDeck; 
 	public Rlabel lblForgotten ;
-	
-	
-	
-	
-	
 	
 	public DeckGui(int x,int y) {
 		this.Deck=new deck();
@@ -89,9 +83,9 @@ public class DeckGui extends JPanel {
 		lblDeck.setBounds(168, 244, 53, 14);
 		add(lblDeck);
 		
-		btnNewButton_1 = new JButton();
+		btnNewButton_1 = new JLabel();
 		
-		btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
+		btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
 		
 		btnNewButton_1.setBounds(175, 193, 46, 40);
 		add(btnNewButton_1);
@@ -103,10 +97,10 @@ public class DeckGui extends JPanel {
 		lblTheFallen.setBounds(160, 168, 80, 14);
 		add(lblTheFallen);
 		
-		btnNewButton_2 = new JButton();
+		btnNewButton_2 = new JLabel();
 	
 		
-		btnNewButton_2.setIcon(new ImageIcon("Forgotten.JPG"));
+		btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 	
 		btnNewButton_2.setBounds(175, 117, 46, 40);
 		add(btnNewButton_2);

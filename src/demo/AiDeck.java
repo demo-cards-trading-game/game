@@ -27,9 +27,9 @@ public class AiDeck extends JPanel {
 	private JTextField txtHero;
 	private JTextField txtCharacter;
 	private JTextField txtSection;
-	public JButton btnNewButton; 
-	public JButton btnNewButton_1;
-	public JButton btnNewButton_2;
+	public JLabel btnNewButton; 
+	public JLabel btnNewButton_1;
+	public JLabel btnNewButton_2;
 	public JLabel lblTheFallen;
 	public RoundedPanel panel;
 	public JLabel lblDeck; 
@@ -52,10 +52,10 @@ public class AiDeck extends JPanel {
 		textField.setBounds(160, 320, 80, 20);
 		add(textField);
 		textField.setColumns(10);
-		btnNewButton = new JButton();
-		btnNewButton.setBackground(new Color(139, 69, 19));
-		btnNewButton.setOpaque(false);
-		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
+		btnNewButton = new JLabel();
+//		btnNewButton.setBackground(new Color(139, 69, 19));
+//		btnNewButton.setOpaque(false);
+		btnNewButton.setIcon(new ImageIcon("draw1.png"));
 		btnNewButton.setBounds(175, 269, 46, 40);
 		add(btnNewButton);
 		
@@ -90,16 +90,16 @@ public class AiDeck extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 btnNewButton_1 = new JButton();
+		 btnNewButton_1 = new JLabel();
 			
-			btnNewButton_1.setIcon(new ImageIcon("Fallen.JPG"));
+			btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
 			
 			btnNewButton_1.setBounds(175, 193, 46, 40);
 			add(btnNewButton_1);
-			btnNewButton_2 = new JButton();
+			btnNewButton_2 = new JLabel();
 			
 			
-			btnNewButton_2.setIcon(new ImageIcon("Forgotten.JPG"));
+			btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		
 			btnNewButton_2.setBounds(175, 117, 46, 40);
 			add(btnNewButton_2);
