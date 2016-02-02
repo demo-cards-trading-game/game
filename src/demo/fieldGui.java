@@ -6,8 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-import javax.media.j3d.Canvas3D;
-import com.sun.j3d.utils.universe.SimpleUniverse;
 
 import extra.RoundedPanel;
 

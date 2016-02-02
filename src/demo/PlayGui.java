@@ -1,6 +1,5 @@
 package demo;
 import demo.HandGui;
-import extra.Pane;
 import extra.Tutorial;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
