@@ -395,31 +395,31 @@ public JButton j;
 		
 		this.listAll.aceptar.addActionListener(this);
 		
-		this.top1=new JButton("tarjet");
+		this.top1=new JButton("target");
 		this.top1.setBounds(200,580,80,30);
 		add(top1);
 		this.moveToFront(top1);
 		this.top1.addActionListener(this);
 		
-		this.top2=new JButton("tarjet");
+		this.top2=new JButton("target");
 		this.top2.setBounds(330,580,80,30);
 		add(top2);
 		this.moveToFront(top2);
 		this.top2.addActionListener(this);
 		
-		this.top3=new JButton("tarjet");
+		this.top3=new JButton("target");
 		this.top3.setBounds(450,580,80,30);
 		add(top3);
 		this.moveToFront(top3);
 		this.top3.addActionListener(this);
 		
-		this.top4=new JButton("tarjet");
+		this.top4=new JButton("target");
 		this.top4.setBounds(570,580,80,30);
 		add(top4);
 		this.moveToFront(top4);
 		this.top4.addActionListener(this);
 		
-		this.top5=new JButton("tarjet");
+		this.top5=new JButton("target");
 		this.top5.setBounds(700,580,80,30);
 		add(top5);
 		this.moveToFront(top5);
@@ -432,15 +432,15 @@ public JButton j;
 		this.top5.setVisible(false);
 		phases.draw.addActionListener(this);
 		
-		this.ptarjet1= new JButton("tarjet");
+		this.ptarjet1= new JButton("target");
 		this.ptarjet1.setBounds(230,380, 69, 20);
-		this.ptarjet2= new JButton("tarjet");
+		this.ptarjet2= new JButton("target");
 		this.ptarjet2.setBounds(340,380, 69, 20);
-		this.ptarjet3= new JButton("tarjet");
+		this.ptarjet3= new JButton("target");
 		this.ptarjet3.setBounds(450,380, 69, 20);
-		this.ptarjet4= new JButton("tarjet");
+		this.ptarjet4= new JButton("target");
 		this.ptarjet4.setBounds(560,380, 69, 20);
-		this.ptarjet5= new JButton("tarjet");
+		this.ptarjet5= new JButton("target");
 		this.ptarjet5.setBounds(670,380, 69, 20);
 		add(ptarjet1);
 		add(ptarjet2);
@@ -453,15 +453,15 @@ public JButton j;
 		this.moveToFront(ptarjet4);
 		this.moveToFront(ptarjet5);
 		
-		this.aitarjet1= new JButton("tarjet");
+		this.aitarjet1= new JButton("target");
 		this.aitarjet1.setBounds(230, 210, 69, 20);
-		this.aitarjet2= new JButton("tarjet");
+		this.aitarjet2= new JButton("target");
 		this.aitarjet2.setBounds(340,210, 69, 20);
-		this.aitarjet3= new JButton("tarjet");
+		this.aitarjet3= new JButton("target");
 		this.aitarjet3.setBounds(450,210, 69, 20);
-		this.aitarjet4= new JButton("tarjet");
+		this.aitarjet4= new JButton("target");
 		this.aitarjet4.setBounds(560,210, 69, 20);
-		this.aitarjet5= new JButton("tarjet");
+		this.aitarjet5= new JButton("target");
 		this.aitarjet5.setBounds(670,210, 69, 20);
 		add(aitarjet1);
 		add(aitarjet2);
@@ -2629,7 +2629,7 @@ public JButton j;
 						Thread.sleep(15);
 						
 						
-						if(player.powers.paying + player.powers.tokenused==c)
+						if(player.powers.used + player.powers.tokenused==c)
 						{
 							tuto.ok3.setEnabled(true);
 							

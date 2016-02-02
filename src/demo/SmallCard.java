@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
+import extra.RoundedPanel;
 import data.LoadData;
 
 
@@ -23,7 +24,7 @@ import javax.swing.border.LineBorder;
 
 
 
-public class SmallCard extends JLayeredPane{
+public class SmallCard extends RoundedPanel{
 	private JTextField textField;
 	public Card  actual;
 	public JInternalFrame menu;
@@ -42,6 +43,7 @@ public class SmallCard extends JLayeredPane{
 		setOpaque(true);
 		actual=x;
 		this.down=bocabajo;
+		
 		/**********************menu******************************/
 		menu = new JInternalFrame();
 		menu.setClosable(true);
@@ -85,7 +87,7 @@ public class SmallCard extends JLayeredPane{
 	{
 		
 
-		setBorder(new LineBorder(new Color(102, 51, 0), 2));
+		
 		actual=x;//el objeto carta que se pinta
 		
 		
@@ -260,7 +262,7 @@ public class SmallCard extends JLayeredPane{
 		lblType.setBounds(55, 2, 52, 14);
 		add(lblType);
 		
-		
+		setOpaque(false);
 		
 		
 	}

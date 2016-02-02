@@ -39,7 +39,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	/**
 	 * Create the panel.
 	 */
-	public  int currentdrained,used;
+	public  int currentdrained,used,drain;
 	public  int currentundrained,currentoken;
 	public int paying,tokenused;
 	
@@ -112,7 +112,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		/*************************se asignan a una posicion correspondiente ***********************************/
 		paying=0;
 		currentdrained=0;
-		used=0;
+		used=drain=0;
 		currentoken=currentundrained=0;
 	
 	}
@@ -190,7 +190,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	{
 		
 			currentundrained=currentundrained-1;
-			used++;
+			drain++;
 			panel.remove(undrained[currentundrained]);
 			setVisible(true);
 			repaint();
@@ -212,7 +212,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	void take3()
 	{
 		repaint();
-		currentoken=currentoken-1;
+		
 		
 		panel_2.remove(tokens[currentoken]);
 		setVisible(true);
@@ -246,15 +246,14 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void drain(int n)
 	{
+	System.out.println(""+used);	
 		
-		
-			for(int i=0;i<used;i++)
-			{
-				
-				drain();
-				take();
-				
-			}
+		while(used>=1)
+		{
+			drain();
+			take();
+			used--;
+		}
 			while(tokenused>=1)
 			{
 				drain();
@@ -314,7 +313,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 					undrained[i].setBounds((i-10)*30,60 , 25, 20);
 				}
 			}
-		tokenused=used=paying=0;
+		tokenused=used=paying=drain=0;
 		label.setText(""+paying);
 		}
 		
@@ -322,7 +321,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	void reset()
 	{
 		System.out.println("entro reset con"+used);
-		for( int i=0;i<used;i++)
+		for( int i=0;i<drain;i++)
 		{
 			
 			set();
@@ -334,7 +333,8 @@ public class Drained extends JLayeredPane implements MouseListener{
 			take2();
 		}
 		disselect();
-		used=0;
+		used=drain=0;
+		tokenused=0;
 		paying=0;
 		repaint();
 		setVisible(true);

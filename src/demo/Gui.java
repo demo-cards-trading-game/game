@@ -319,7 +319,7 @@ public class Gui extends JFrame implements ActionListener
 								
 						
 						if(dados.pane.text.getText()=="1"){
-							dados.label.setText("Fist turn is yours");
+							dados.label.setText("FIRST TURN IS YOURS");
 							pw.println(1);
 						}
 						else{
