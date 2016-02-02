@@ -118,7 +118,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//visor de las cartas totales
-	public JButton abc;
 	public int done;
 	
 	public int getPhaseActual(){
@@ -849,19 +848,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.pdeck.btnNewButton_2.addMouseListener(this);
 		
-		abc = new JButton("presioname");
-		abc.setBounds(100, 100, 50, 50);
-		this.add(abc);
-		abc.addActionListener(this);
-		this.moveToFront(abc);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 
-		if(e.getSource()==abc){
-			
-		}
-		
 		done=0;
 		if( e.getSource()==tuto.ok)
 		{
