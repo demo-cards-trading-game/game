@@ -93,15 +93,7 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		lblVolatile.setBounds(10, 115, 100, 14);
 		add(lblVolatile);
 		
-		 label = new JLabel("0");
-		 label.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		 label.setOpaque(true);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.BLACK);
-		label.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		label.setBackground(Color.ORANGE);
-		label.setBounds(113, 349, 73, 35);
-		add(label);
+	
 		
 		/***************************se crean los paneles ***************************************/
 		

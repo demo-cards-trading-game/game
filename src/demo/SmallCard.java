@@ -145,7 +145,7 @@ public class SmallCard extends RoundedPanel{
 			lblAtaque = new JLabel();
 			lblAtaque.setText(""+x.GetHp());
 			
-			lblAtaque.setBounds(75, 56, 24, 9);
+			lblAtaque.setBounds(75, 56, 19, 9);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
 			lblAtaque.setVisible(true);
