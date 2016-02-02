@@ -34,7 +34,8 @@ public class DeckGui extends JPanel {
 	private JTextField txtHero;
 	private JTextField txtCharacter;
 	private JTextField txtSection;
-	public JButton btnNewButton; 
+//	public JButton btnNewButton; 
+	public JLabel btnNewButton;
 	public JButton btnNewButton_1;
 	public JButton btnNewButton_2;
 	public JLabel lblTheFallen;
@@ -64,10 +65,10 @@ public class DeckGui extends JPanel {
 		setOpaque(false);
 		setLayout(null);
 		
-		btnNewButton = new JButton("");
-		btnNewButton.setBackground(new Color(139, 69, 19));
-		btnNewButton.setOpaque(false);
-		btnNewButton.setIcon(new ImageIcon("draw.JPG"));
+		btnNewButton = new JLabel("");
+		//btnNewButton.setBackground(new Color(139, 69, 19));
+		//btnNewButton.setOpaque(false);
+		btnNewButton.setIcon(new ImageIcon("draw1.png"));
 		btnNewButton.setBounds(175, 269, 46, 40);
 		add(btnNewButton);
 		

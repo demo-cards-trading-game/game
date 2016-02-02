@@ -1,12 +1,16 @@
 package demo;
 import demo.HandGui;
+import extra.RoundedPanel;
 import extra.Tutorial;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
 import demo.CardGui;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -41,15 +45,20 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.FontMetrics;
 
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
+
 import java.awt.Canvas;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextPane;
+
 import java.awt.Rectangle;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
@@ -111,7 +120,6 @@ public JButton j;
 	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//visor de las cartas totales
-
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -838,11 +846,6 @@ public JButton j;
 
 		tuto.panel.add(player.powers.label);
 		player.powers.label.setVisible(false);
-
-		
-	
-		
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -2298,14 +2301,6 @@ public JButton j;
 		}
 	}
 
-	public void mousePressed(MouseEvent e)
-	{
-
-	}
-	public void mouseReleased(MouseEvent e) {
-
-	}
-
 	public void mouseDragged(MouseEvent e)
 	{
 
@@ -3473,6 +3468,16 @@ public JButton j;
 			 Addlisteners2Card(player.hand.current);
 				player.hand.handgui[player.hand.current].addMouseListener(this);	
 		}
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

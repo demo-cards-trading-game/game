@@ -3,8 +3,10 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
 import extra.*;
 import demo.DeckGui;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -25,8 +27,9 @@ import data.LoadData;
 import data.deckCreator;
 
 import java.util.Random;
+
 import demo.HandGui;
-public class Gui extends JFrame implements ActionListener
+public class Gui extends JFrame implements ActionListener, MouseListener
 {
 	JPanel jp1,jp2,jp3;
 	JButton b1,b2,b3;
@@ -162,76 +165,6 @@ public class Gui extends JFrame implements ActionListener
 			System.out.println("deberia cerrarse");
 			this.dispose();
 			
-			
-		}
-		if(player1!=null){
-			if (e.getSource()==player1.player.pdeck.btnNewButton)
-				
-			{
-				player1.tuto.ok.doClick();
-				if(this.player1.getPhaseActual()==0)
-				{	
-					
-				if(player1.cardDrawn==0){
-					
-
-					
-					
-						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
-						{
-							int pos =player1.player.hand.draw(player1.player.pdeck.Deck.extraerR());
-							
-							player1.repairListeners();
-							player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
-							player1.cardDrawn=1;
-							player1.player.pdeck.textField.repaint();
-						
-							setVisible(true);
-							repaint();
-						}else
-						{
-							
-							gameover(this);
-							
-						
-							try {
-								setBackground(Color.RED);
-								player1=new PlayGui(0,0,Nombre1);
-								
-		
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						
-							b2 = new JButton("rematch");
-							b2.setBackground(Color.BLACK);
-							b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-							b2.setForeground(Color.WHITE);
-							b2.setBounds(70, 50, 132, 43);
-							b2.addActionListener(this);
-							add(b2);
-							repaint();
-							setVisible(true);
-						
-							
-						}
-						
-		
-					
-				}else
-				{
-					JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
-				}
-			}else
-			{
-				
-					
-					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
-				
-				
-			}
-			}
 			
 		}
 		if(e.getSource()==b1)
@@ -380,7 +313,7 @@ public class Gui extends JFrame implements ActionListener
 		
 			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
 			player1.player.pdeck.btnNewButton_1.addActionListener(this);//para que se puedan usar los botones del deck
-			player1.player.pdeck.btnNewButton.addActionListener(this);
+			player1.player.pdeck.btnNewButton.addMouseListener(this);
 			
 			addbackground3(this);
 		
@@ -675,4 +608,85 @@ public class Gui extends JFrame implements ActionListener
 		
 	}
 	*/
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(player1!=null){
+			if (e.getSource()==player1.player.pdeck.btnNewButton)
+			{
+				player1.tuto.ok.doClick();
+				if(this.player1.getPhaseActual()==0)
+				{	
+					if(player1.cardDrawn==0){
+						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
+						{
+							int pos =player1.player.hand.draw(player1.player.pdeck.Deck.extraerR());
+							player1.repairListeners();
+							player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
+							player1.cardDrawn=1;
+							player1.player.pdeck.textField.repaint();
+							setVisible(true);
+							repaint();
+						}else
+						{
+							gameover(this);
+							try {
+								setBackground(Color.RED);
+								player1=new PlayGui(0,0,Nombre1);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							b2 = new JButton("rematch");
+							b2.setBackground(Color.BLACK);
+							b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+							b2.setForeground(Color.WHITE);
+							b2.setBounds(70, 50, 132, 43);
+							b2.addActionListener(this);
+							add(b2);
+							repaint();
+							setVisible(true);
+						}
+					}else
+					{
+						JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
+					}
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
+				}
+			}
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if (e.getSource()==player1.player.pdeck.btnNewButton)
+		{
+			player1.player.pdeck.btnNewButton.setIcon(new ImageIcon("draw2.png"));
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (e.getSource()==player1.player.pdeck.btnNewButton)
+		{
+			player1.player.pdeck.btnNewButton.setIcon(new ImageIcon("draw1.png"));
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		if (e.getSource()==player1.player.pdeck.btnNewButton)
+		{
+			player1.player.pdeck.btnNewButton.setIcon(new ImageIcon("draw3.png"));
+		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		if (e.getSource()==player1.player.pdeck.btnNewButton)
+		{
+			player1.player.pdeck.btnNewButton.setIcon(new ImageIcon("draw1.png"));
+		}
+	}
 }
