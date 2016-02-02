@@ -39,6 +39,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -117,7 +118,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//visor de las cartas totales
-
+	public JButton abc;
+	public int done;
+	
 	public int getPhaseActual(){
 		return phases.actual;
 	}
@@ -845,11 +848,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.label.setVisible(false);
 
 		player.pdeck.btnNewButton_2.addMouseListener(this);
+		
+		abc = new JButton("presioname");
+		abc.setBounds(100, 100, 50, 50);
+		this.add(abc);
+		abc.addActionListener(this);
+		this.moveToFront(abc);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 
-		int done=0;
+		if(e.getSource()==abc){
+			
+		}
+		
+		done=0;
 		if( e.getSource()==tuto.ok)
 		{
 
@@ -2819,7 +2832,61 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		this.turnoLabel.setText("Player's Turn");
 		this.contTurn++;
-		changePhase.doClick();
+		//changePhase.doClick();
+
+		//primer turno del user
+
+		done=1;
+
+		if(phases.actual<4){
+			phases.change(phases.actual+1);
+
+		}else{
+			if(ready==1){
+				phases.change(0);
+			}
+		}
+		System.out.println(""+turno);
+		barierpicked=0;
+		warriorPlayed=0;
+		cardDrawn=0;
+
+		for(int i=0;i<5;i++)
+			player.hand.handgui[i].Play.setEnabled(false);
+
+		if(turn==1)
+		{
+
+			JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+
+			tuto.draw();
+			player.powers.reset();
+			player.powers.token();
+			this.phases.setup.removeActionListener(this);
+			this.phases.draw.removeActionListener(this);
+			this.phases.draw.addActionListener(this);
+
+			//enable deck
+			//disable barriers
+
+			//disable hand
+
+			//disable field
+			//disable battle phase
+			//disable end turn
+		}
+		else{
+
+
+			ai.aideck.btnNewButton.addMouseListener(this);
+			try {
+				Aiturn();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+			
 	}
 
 	public void makeEffect(String id, int pos){
