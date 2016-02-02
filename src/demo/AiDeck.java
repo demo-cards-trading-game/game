@@ -55,7 +55,7 @@ public class AiDeck extends JPanel {
 		btnNewButton = new JLabel();
 //		btnNewButton.setBackground(new Color(139, 69, 19));
 //		btnNewButton.setOpaque(false);
-		btnNewButton.setIcon(new ImageIcon("draw1.png"));
+		btnNewButton.setIcon(new ImageIcon("draw4.png"));
 		btnNewButton.setBounds(175, 269, 46, 40);
 		add(btnNewButton);
 		
@@ -92,14 +92,14 @@ public class AiDeck extends JPanel {
 		}
 		 btnNewButton_1 = new JLabel();
 			
-			btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
+			btnNewButton_1.setIcon(new ImageIcon("fallen4.png"));
 			
 			btnNewButton_1.setBounds(175, 193, 46, 40);
 			add(btnNewButton_1);
 			btnNewButton_2 = new JLabel();
 			
 			
-			btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
+			btnNewButton_2.setIcon(new ImageIcon("forgotten4.png"));
 		
 			btnNewButton_2.setBounds(175, 117, 46, 40);
 			add(btnNewButton_2);

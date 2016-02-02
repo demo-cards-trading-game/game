@@ -64,10 +64,7 @@ import javax.swing.JOptionPane;
 
 
 public class PlayGui extends JLayeredPane implements ActionListener, MouseListener {
-
-
-
-	public fightpane fight;//panel donde se muestra la animacion de peleas
+	public fightpane fight;
 	public static PlayerGui player;//aca estan el hand el deck y lo demas
 	public AIGui ai;//lo mismo pero en el ai
 	public Previewpane preview;//aca se muestra la carta
@@ -846,7 +843,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		tuto.panel.add(player.powers.label);
 		player.powers.label.setVisible(false);
-		
+
 		player.pdeck.btnNewButton_2.addMouseListener(this);
 	}
 
@@ -2225,7 +2222,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallen.setVisible(true);
 				moveToFront(fallen);
 			}
-			
+
 			if(e.getSource()==ai.aideck.btnNewButton){
 				System.out.println("toque deck ai");
 			}
@@ -2411,12 +2408,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			preview.Remove();
 		}
-		
+
 		if (e.getSource()==player.pdeck.btnNewButton_1)
 		{
 			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
 		}
-		
+
 		if (e.getSource()==player.pdeck.btnNewButton_2)
 		{
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
@@ -2544,12 +2541,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			preview.addCard(new BigCard(ai.aifield.cards[4].getcard(),0,0));
 		}
-		
+
 		if (e.getSource()==player.pdeck.btnNewButton_1)
 		{
 			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen3.png"));
 		}
-		
+
 		if (e.getSource()==player.pdeck.btnNewButton_2)
 		{
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten3.png"));
@@ -2663,7 +2660,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if ( player.powers.currentundrained+player.powers.currentoken - c >=0 ) {//verifica que haya mana
 
 			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
-				int where = player.field.findwhere();// busca en donde poner la carta
+				int where = player.field.findwhere();
 				if (where != -1)
 				{
 
