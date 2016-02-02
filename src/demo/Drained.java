@@ -213,8 +213,9 @@ public class Drained extends JLayeredPane implements MouseListener{
 	{
 		repaint();
 		
-		
+		currentoken--;
 		panel_2.remove(tokens[currentoken]);
+		
 		setVisible(true);
 		repaint();
 	}
@@ -246,14 +247,16 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void drain(int n)
 	{
-	System.out.println(""+used);	
+
 		
 		while(used>=1)
 		{
 			drain();
 			take();
 			used--;
+			
 		}
+		System.out.println("token"+tokenused);	
 			while(tokenused>=1)
 			{
 				drain();
