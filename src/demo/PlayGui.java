@@ -83,7 +83,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	private LoadData cartas;
 	JInternalFrame pane; 
 	public Phases phases;
-	public  JButton changePhase,repaint;
+	public  JButton repaint;
 	private FileReader turno;
 	private BufferedReader br;
 	private JLabel turnoLabel;
@@ -279,7 +279,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		}else{ //turno player 2
 			this.turnoLabel.setText("Ai Player's Turn");
-			this.phases.end.addActionListener(this);
+			this.phases.end.addMouseListener(this);
 		}
 		this.turnoLabel.setBounds(50, 320, 200, 20);
 		this.turnoLabel.setForeground(new Color(255, 248, 220));
@@ -387,9 +387,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 
-		changePhase=new JButton();
-		changePhase.setVisible(false);
-		changePhase.addActionListener(this);
 		player.field.addMouseListener(this);
 
 		this.listAll = new prueba2(player.pdeck.Deck);
@@ -436,7 +433,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.top3.setVisible(false);
 		this.top4.setVisible(false);
 		this.top5.setVisible(false);
-		phases.draw.addActionListener(this);
+		phases.draw.addMouseListener(this);
 
 		this.ptarjet1= new JButton("target");
 		this.ptarjet1.setBounds(230,380, 69, 20);
@@ -1149,226 +1146,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			}
 
-		}
-
-
-		if((e.getSource()==changePhase)||(e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
-		{
-			//System.out.println(turn);
-
-			done=1;
-
-			if(phases.actual<4){
-				phases.change(phases.actual+1);
-
-			}else{
-				if(ready==1){
-					phases.change(0);
-				}
-			}
-			System.out.println(""+turno);
-			switch(phases.actual){
-			//setup
-
-			case 0:
-
-				barierpicked=0;
-				warriorPlayed=0;
-				cardDrawn=0;
-
-				for(int i=0;i<5;i++)
-					player.hand.handgui[i].Play.setEnabled(false);
-
-				if(turn==1)
-				{
-
-					JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
-
-					tuto.draw();
-					player.powers.reset();
-					player.powers.token();
-					this.phases.setup.removeActionListener(this);
-					this.phases.draw.removeActionListener(this);
-					this.phases.draw.addActionListener(this);
-
-					//enable deck
-					//disable barriers
-
-					//disable hand
-
-					//disable field
-					//disable battle phase
-					//disable end turn
-				}
-				else{
-
-
-					ai.aideck.btnNewButton.addMouseListener(this);
-					try {
-						Aiturn();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				break;
-				//draw
-			case 1:
-				tuto.barrier();
-				this.phases.draw.removeActionListener(this);
-				this.phases.action.addActionListener(this);
-
-				//disable deck: done
-				//enable barriers
-
-				//disable hand
-
-				//disable field
-				//disable battle phase
-				//disable end turn
-				break;
-				//action
-			case 2:
-				tuto.Action();
-				this.phases.action.removeActionListener(this);
-				this.phases.attack.addActionListener(this);
-
-				//disable deck: done
-				//disable barriers
-
-				for(int i=0;i<5;i++)
-					player.hand.handgui[i].Play.setEnabled(true);
-				//enable field
-				//disable battle phase
-				//disable end turn
-				break;
-				//attack
-			case 3:
-				battle();
-				this.phases.attack.removeActionListener(this);
-				this.phases.end.addActionListener(this);
-
-				//disable deck: done
-				//disable barriers
-				for (int i=0;i<5;i++)
-					player.barriers.barriers[i].addMouseListener(this);
-
-				//disable hand
-				for(int i=0;i<5;i++)
-					player.hand.handgui[i].Play.setEnabled(false);
-				//enable field
-				//enable battle phase
-				if(this.turn==1&&this.contTurn>0){
-					for(int i=0;i<5;i++){
-						if(player.field.cards[i]!=null){
-							switch(i){
-							case 0:
-								if(!this.player.field.cards[0].down){
-									this.swordp1.setVisible(true);
-								}
-								break;
-							case 1:
-								if(!this.player.field.cards[1].down){
-									this.swordp2.setVisible(true);
-								}
-								break;
-							case 2:
-								if(!this.player.field.cards[2].down){
-									this.swordp3.setVisible(true);
-								}
-								break;
-							case 3:
-								if(!this.player.field.cards[3].down){
-									this.swordp4.setVisible(true);
-								}
-								break;
-							case 4:
-								if(!this.player.field.cards[4].down){
-									this.swordp5.setVisible(true);
-								}
-								break;
-							}
-						}
-					}
-				}
-				else{
-					/*this.sworda1.setVisible(true);
-						this.sworda2.setVisible(true);
-						this.sworda3.setVisible(true);
-						this.sworda4.setVisible(true);
-						this.sworda5.setVisible(true);*/
-				}
-
-				//disable end turn
-
-
-
-				break;
-				//end turn
-			case 4:
-				if(ready==1){//funciona como segunda oportunidad
-
-					for (int i=0;i<5;i++)
-						player.barriers.barriers[i].removeMouseListener(this);
-
-					ready=0;
-					this.phases.end.removeActionListener(this);
-					this.phases.setup.addActionListener(this);
-
-					//disable deck: done
-					//disable barriers
-
-					//disable hand
-
-					//disable field
-					//disable battle phase
-					this.swordp1.setVisible(false);
-					this.swordp2.setVisible(false);
-					this.swordp3.setVisible(false);
-					this.swordp4.setVisible(false);
-					this.swordp5.setVisible(false);
-					this.sworda1.setVisible(false);
-					this.sworda2.setVisible(false);
-					this.sworda3.setVisible(false);
-					this.sworda4.setVisible(false);
-					this.sworda5.setVisible(false);
-
-					this.menu1.setVisible(false);
-					this.menu2.setVisible(false);
-					this.menu3.setVisible(false);
-					this.menu4.setVisible(false);
-					this.menu5.setVisible(false);
-
-					this.dest1.setVisible(false);
-					this.dest2.setVisible(false);
-					this.dest3.setVisible(false);
-					this.dest4.setVisible(false);
-					this.dest5.setVisible(false);
-					//enable end turn
-
-					if(turn==1){
-						turn=2;
-						this.turnoLabel.setText("Ai Player's Turn");
-					}else{
-						turn=1;
-						this.turnoLabel.setText("Player's Turn");
-					}
-
-					repaint();
-					repaint();
-					this.contTurn++;
-					this.atkDest=this.atkOrigin=-1;
-
-
-				}else
-				{
-					tuto.end();
-					ready=1;
-				}
-				break;
-			}
-			repaint();
-			done=0;
 		}
 
 
@@ -2129,7 +1906,228 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						JOptionPane.showMessageDialog(op, "sorry u can only get a card from barriers per turn");
 					}	
 
-				}				
+				}	
+				
+				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
+				{
+					//System.out.println(turn);
+
+					done=1;
+
+					if(phases.actual<4){
+						phases.change(phases.actual+1);
+
+					}else{
+						if(ready==1){
+							phases.change(0);
+						}
+					}
+					System.out.println(""+turno);
+					switch(phases.actual){
+					//setup
+
+					case 0:
+
+						barierpicked=0;
+						warriorPlayed=0;
+						cardDrawn=0;
+
+						for(int i=0;i<5;i++)
+							player.hand.handgui[i].Play.setEnabled(false);
+
+						if(turn==1)
+						{
+
+							JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+
+							tuto.draw();
+							player.powers.reset();
+							player.powers.token();
+							this.phases.setup.removeMouseListener(this);
+							this.phases.draw.removeMouseListener(this);
+							this.phases.draw.addMouseListener(this);
+
+							//enable deck
+							//disable barriers
+
+							//disable hand
+
+							//disable field
+							//disable battle phase
+							//disable end turn
+						}
+						else{
+
+
+							ai.aideck.btnNewButton.addMouseListener(this);
+							try {
+								Aiturn();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						break;
+						//draw
+					case 1:
+						tuto.barrier();
+						this.phases.draw.removeMouseListener(this);
+						this.phases.action.addMouseListener(this);
+
+						//disable deck: done
+						//enable barriers
+
+						//disable hand
+
+						//disable field
+						//disable battle phase
+						//disable end turn
+						break;
+						//action
+					case 2:
+						tuto.Action();
+						this.phases.action.removeMouseListener(this);
+						this.phases.attack.addMouseListener(this);
+
+						//disable deck: done
+						//disable barriers
+
+						for(int i=0;i<5;i++)
+							player.hand.handgui[i].Play.setEnabled(true);
+						//enable field
+						//disable battle phase
+						//disable end turn
+						break;
+						//attack
+					case 3:
+						battle();
+						this.phases.attack.removeMouseListener(this);
+						this.phases.end.addMouseListener(this);
+
+						//disable deck: done
+						//disable barriers
+						for (int i=0;i<5;i++)
+							player.barriers.barriers[i].addMouseListener(this);
+
+						//disable hand
+						for(int i=0;i<5;i++)
+							player.hand.handgui[i].Play.setEnabled(false);
+						//enable field
+						//enable battle phase
+						if(this.turn==1&&this.contTurn>0){
+							for(int i=0;i<5;i++){
+								if(player.field.cards[i]!=null){
+									switch(i){
+									case 0:
+										if(!this.player.field.cards[0].down){
+											this.swordp1.setVisible(true);
+										}
+										break;
+									case 1:
+										if(!this.player.field.cards[1].down){
+											this.swordp2.setVisible(true);
+										}
+										break;
+									case 2:
+										if(!this.player.field.cards[2].down){
+											this.swordp3.setVisible(true);
+										}
+										break;
+									case 3:
+										if(!this.player.field.cards[3].down){
+											this.swordp4.setVisible(true);
+										}
+										break;
+									case 4:
+										if(!this.player.field.cards[4].down){
+											this.swordp5.setVisible(true);
+										}
+										break;
+									}
+								}
+							}
+						}
+						else{
+							/*this.sworda1.setVisible(true);
+								this.sworda2.setVisible(true);
+								this.sworda3.setVisible(true);
+								this.sworda4.setVisible(true);
+								this.sworda5.setVisible(true);*/
+						}
+
+						//disable end turn
+
+
+
+						break;
+						//end turn
+					case 4:
+						if(ready==1){//funciona como segunda oportunidad
+
+							for (int i=0;i<5;i++)
+								player.barriers.barriers[i].removeMouseListener(this);
+
+							ready=0;
+							this.phases.end.removeMouseListener(this);
+							this.phases.setup.addMouseListener(this);
+
+							//disable deck: done
+							//disable barriers
+
+							//disable hand
+
+							//disable field
+							//disable battle phase
+							this.swordp1.setVisible(false);
+							this.swordp2.setVisible(false);
+							this.swordp3.setVisible(false);
+							this.swordp4.setVisible(false);
+							this.swordp5.setVisible(false);
+							this.sworda1.setVisible(false);
+							this.sworda2.setVisible(false);
+							this.sworda3.setVisible(false);
+							this.sworda4.setVisible(false);
+							this.sworda5.setVisible(false);
+
+							this.menu1.setVisible(false);
+							this.menu2.setVisible(false);
+							this.menu3.setVisible(false);
+							this.menu4.setVisible(false);
+							this.menu5.setVisible(false);
+
+							this.dest1.setVisible(false);
+							this.dest2.setVisible(false);
+							this.dest3.setVisible(false);
+							this.dest4.setVisible(false);
+							this.dest5.setVisible(false);
+							//enable end turn
+
+							if(turn==1){
+								turn=2;
+								this.turnoLabel.setText("Ai Player's Turn");
+							}else{
+								turn=1;
+								this.turnoLabel.setText("Player's Turn");
+							}
+
+							repaint();
+							repaint();
+							this.contTurn++;
+							this.atkDest=this.atkOrigin=-1;
+
+
+						}else
+						{
+							tuto.end();
+							ready=1;
+						}
+						break;
+					}
+					repaint();
+					done=0;
+				}
+				
+				
 				int x=-1; //destino
 				if(e.getSource()==player.hand.handgui[0])
 				{
@@ -2421,6 +2419,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
+		
+		if(e.getSource()==phases.setup){
+			phases.setup.setIcon(new ImageIcon(("setup.png")));
+		}
+		if(e.getSource()==phases.action){
+			phases.action.setIcon(new ImageIcon(("action.png")));
+		}
+		if(e.getSource()==phases.draw){
+			phases.draw.setIcon(new ImageIcon(("draw.png")));
+		}
+		if(e.getSource()==phases.attack){
+			phases.attack.setIcon(new ImageIcon(("attack.png")));
+		}
+		if(e.getSource()==phases.end){
+			phases.end.setIcon(new ImageIcon(("end.png")));
+		}
 	}
 
 
@@ -2553,6 +2567,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (e.getSource()==player.pdeck.btnNewButton_2)
 		{
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten3.png"));
+		}
+		
+		if(e.getSource()==phases.setup){
+			phases.setup.setIcon(new ImageIcon(("setup3.png")));
+		}
+		if(e.getSource()==phases.action){
+			phases.action.setIcon(new ImageIcon(("action3.png")));
+		}
+		if(e.getSource()==phases.draw){
+			phases.draw.setIcon(new ImageIcon(("draw33.png")));
+		}
+		if(e.getSource()==phases.attack){
+			phases.attack.setIcon(new ImageIcon(("attack3.png")));
+		}
+		if(e.getSource()==phases.end){
+			phases.end.setIcon(new ImageIcon(("end3.png")));
 		}
 	}
 
@@ -2822,7 +2852,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		this.turnoLabel.setText("Player's Turn");
 		this.contTurn++;
-		//changePhase.doClick();
 
 		//primer turno del user
 
@@ -2852,9 +2881,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.draw();
 			player.powers.reset();
 			player.powers.token();
-			this.phases.setup.removeActionListener(this);
-			this.phases.draw.removeActionListener(this);
-			this.phases.draw.addActionListener(this);
+			this.phases.setup.removeMouseListener(this);
+			this.phases.draw.removeMouseListener(this);
+			this.phases.draw.addMouseListener(this);
 
 			//enable deck
 			//disable barriers
@@ -3551,6 +3580,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten2.png"));
 		}
+		if(e.getSource()==phases.setup){
+			phases.setup.setIcon(new ImageIcon(("setup2.png")));
+		}
+		if(e.getSource()==phases.action){
+			phases.action.setIcon(new ImageIcon(("action2.png")));
+		}
+		if(e.getSource()==phases.draw){
+			phases.draw.setIcon(new ImageIcon(("draw22.png")));
+		}
+		if(e.getSource()==phases.attack){
+			phases.attack.setIcon(new ImageIcon(("attack2.png")));
+		}
+		if(e.getSource()==phases.end){
+			phases.end.setIcon(new ImageIcon(("end2.png")));
+		}
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -3561,6 +3605,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (e.getSource()==player.pdeck.btnNewButton_2)
 		{
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
+		}
+		if(e.getSource()==phases.setup){
+			phases.setup.setIcon(new ImageIcon(("setup.png")));
+		}
+		if(e.getSource()==phases.action){
+			phases.action.setIcon(new ImageIcon(("action.png")));
+		}
+		if(e.getSource()==phases.draw){
+			phases.draw.setIcon(new ImageIcon(("draw.png")));
+		}
+		if(e.getSource()==phases.attack){
+			phases.attack.setIcon(new ImageIcon(("attack.png")));
+		}
+		if(e.getSource()==phases.end){
+			phases.end.setIcon(new ImageIcon(("end.png")));
 		}
 	}
 }
