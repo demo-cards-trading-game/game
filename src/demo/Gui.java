@@ -301,6 +301,9 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 							e1.printStackTrace();
 						}
 					}
+			        else {
+						player1.firstPlayerTurn();
+					}
 				}
 			});
 			t.start();

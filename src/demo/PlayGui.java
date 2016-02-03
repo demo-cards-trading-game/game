@@ -859,7 +859,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.pdeck.btnNewButton_2.addMouseListener(this);
 		
 	}
-
 	public void actionPerformed(ActionEvent e) {
 
 		done=0;
@@ -1948,24 +1947,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
 
-					/*	if(turn==1)
-						{*/
 							JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
 							tuto.draw();
 							player.powers.reset();
 							player.powers.token();
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
-							this.phases.draw.addMouseListener(this);
-					/*	}
-						else{
-							ai.aideck.btnNewButton.addMouseListener(this);
-							try {
-								Aiturn();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-						}*/
 						break;
 					case 1:
 						tuto.barrier();
@@ -3570,5 +3557,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end.png")));
 		}
+	}
+	
+	public void firstPlayerTurn(){
+		barierpicked=0;
+		warriorPlayed=0;
+		cardDrawn=0;
+
+		for(int i=0;i<5;i++)
+			player.hand.handgui[i].Play.setEnabled(false);
+
+		JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+		tuto.draw();
+		player.powers.reset();
+		player.powers.token();
+		this.phases.setup.removeMouseListener(this);
+		this.phases.draw.removeMouseListener(this);
 	}
 }
