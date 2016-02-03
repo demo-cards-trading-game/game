@@ -288,13 +288,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		turnoLabel.setLeftShadow(-3,-3, new Color(0xccccff));
 		turnoLabel.setForeground(Color.green);
 		turnoLabel.setFont(turnoLabel.getFont().deriveFont(140f));
-
+		
 		if(turn==1){//turno player 1
 			this.turnoLabel.setText("PLAYER'S TURN");
 
 		}else{ //turno player 2
 			this.turnoLabel.setText("AI PLAYER'S TURN");
-			//this.phases.end.addMouseListener(this);
+			
 		}
 		this.turnoLabel.setBounds(50, 320, 200, 20);
 		
@@ -865,6 +865,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 //		this.add(abc);
 //		abc.addActionListener(this);
 //		this.moveToFront(abc);
+		for(int i=0;i<player.hand.current;i++)
+			player.hand.handgui[i].Play.setEnabled(false);
 	}
 	public void actionPerformed(ActionEvent e) {
 //		if(e.getSource()==abc){
@@ -1953,7 +1955,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						warriorPlayed=0;
 						cardDrawn=0;
 
-						for(int i=0;i<5;i++)
+						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
 
 							JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
@@ -1974,7 +1976,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.phases.action.removeMouseListener(this);
 						this.phases.attack.addMouseListener(this);
 
-						for(int i=0;i<5;i++)
+						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
 						break;
 					case 3:
@@ -2811,7 +2813,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 		phases.change(phases.actual+1);
-		JOptionPane.showMessageDialog(null,"ai is finishing your turn" );
+		JOptionPane.showMessageDialog(null,"AI IS FINISHING IT'S TURN" );
 		this.sworda1.setVisible(false);
 		this.sworda2.setVisible(false);
 		this.sworda3.setVisible(false);
@@ -2843,7 +2845,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
 		tuto.draw();
 		player.powers.reset();
-		player.powers.token();
+		//player.powers.token();
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
@@ -3508,6 +3510,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
+		
+			player.hand.handgui[i].Play.setEnabled(false);
 			player.hand.handgui[i].addMouseListener(this);	
 		}
 		if(player.hand.handgui[player.hand.current]!=null)
@@ -3578,10 +3582,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<5;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 
-		JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+
 		tuto.draw();
 		player.powers.reset();
-		player.powers.token();
+	
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
