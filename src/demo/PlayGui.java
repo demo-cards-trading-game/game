@@ -120,6 +120,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//visor de las cartas totales
 	public int done;
+	public int bugPrimerTurnoUSer=0;
+	public int liberarTutoEnd=1;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -1946,85 +1948,50 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
 
-						if(turn==1)
-						{
-
+					/*	if(turn==1)
+						{*/
 							JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
-
 							tuto.draw();
 							player.powers.reset();
 							player.powers.token();
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
 							this.phases.draw.addMouseListener(this);
-
-							//enable deck
-							//disable barriers
-
-							//disable hand
-
-							//disable field
-							//disable battle phase
-							//disable end turn
-						}
+					/*	}
 						else{
-
-
 							ai.aideck.btnNewButton.addMouseListener(this);
 							try {
 								Aiturn();
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-						}
+						}*/
 						break;
-						//draw
 					case 1:
 						tuto.barrier();
 						this.phases.draw.removeMouseListener(this);
 						this.phases.action.addMouseListener(this);
-
-						//disable deck: done
-						//enable barriers
-
-						//disable hand
-
-						//disable field
-						//disable battle phase
-						//disable end turn
 						break;
-						//action
 					case 2:
 						tuto.Action();
 						this.phases.action.removeMouseListener(this);
 						this.phases.attack.addMouseListener(this);
 
-						//disable deck: done
-						//disable barriers
-
 						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
-						//enable field
-						//disable battle phase
-						//disable end turn
 						break;
-						//attack
 					case 3:
+						liberarTutoEnd=0;
 						battle();
 						this.phases.attack.removeMouseListener(this);
 						this.phases.end.addMouseListener(this);
 
-						//disable deck: done
-						//disable barriers
 						for (int i=0;i<5;i++)
 							player.barriers.barriers[i].addMouseListener(this);
 
-						//disable hand
 						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
-						//enable field
-						//enable battle phase
+						
 						if(this.turn==1&&this.contTurn>0){
 							for(int i=0;i<5;i++){
 								if(player.field.cards[i]!=null){
@@ -2065,13 +2032,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								this.sworda4.setVisible(true);
 								this.sworda5.setVisible(true);*/
 						}
-
-						//disable end turn
-
-
-
 						break;
-						//end turn
 					case 4:
 						if(ready==1){//funciona como segunda oportunidad
 
@@ -2082,13 +2043,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.phases.end.removeMouseListener(this);
 							this.phases.setup.addMouseListener(this);
 
-							//disable deck: done
-							//disable barriers
-
-							//disable hand
-
-							//disable field
-							//disable battle phase
 							this.swordp1.setVisible(false);
 							this.swordp2.setVisible(false);
 							this.swordp3.setVisible(false);
@@ -2111,8 +2065,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.dest3.setVisible(false);
 							this.dest4.setVisible(false);
 							this.dest5.setVisible(false);
-							//enable end turn
-
 							if(turn==1){
 								turn=2;
 								this.turnoLabel.setText("AI PLAYER'S TURN");
@@ -2120,17 +2072,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								turn=1;
 								this.turnoLabel.setText("PLAYER'S TURN");
 							}
-
 							repaint();
 							repaint();
 							this.contTurn++;
 							this.atkDest=this.atkOrigin=-1;
-
-
 						}else
 						{
-							tuto.end();
+//							tuto.end();
 							ready=1;
+						}
+						//turno del oponente
+						phases.change(0);
+						ai.aideck.btnNewButton.addMouseListener(this);
+						try {
+							Aiturn();
+						} catch (IOException e1) {
+							e1.printStackTrace();
 						}
 						break;
 					}
@@ -2594,6 +2551,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end3.png")));
+			if (liberarTutoEnd==0) {
+				tuto.end();
+				liberarTutoEnd=1;
+			}
 		}
 	}
 
@@ -2733,7 +2694,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void Aiturn() throws IOException//aqui se programara a lo salvaje el turno del ai
 	{
-		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
+		//JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
 		int which;
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
 		ai.aidra.set(1);
@@ -2865,18 +2826,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.contTurn++;
 
 		//primer turno del user
-
+		ready=1;
 		done=1;
-
 		if(phases.actual<4){
 			phases.change(phases.actual+1);
 
 		}else{
 			if(ready==1){
-				phases.change(0);
+				phases.change(-1);
 			}
 		}
-		System.out.println(""+turno);
 		barierpicked=0;
 		warriorPlayed=0;
 		cardDrawn=0;
@@ -2884,39 +2843,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<5;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 
-		if(turn==1)
-		{
-
-			JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
-
-			tuto.draw();
-			player.powers.reset();
-			player.powers.token();
-			this.phases.setup.removeMouseListener(this);
-			this.phases.draw.removeMouseListener(this);
-			this.phases.draw.addMouseListener(this);
-
-			//enable deck
-			//disable barriers
-
-			//disable hand
-
-			//disable field
-			//disable battle phase
-			//disable end turn
+		JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+		tuto.draw();
+		player.powers.reset();
+		player.powers.token();
+		this.phases.setup.removeMouseListener(this);
+		this.phases.draw.removeMouseListener(this);
+		this.phases.draw.addMouseListener(this);
+		
+		if(bugPrimerTurnoUSer==0){
+			bugPrimerTurnoUSer=1;
+			phases.change(phases.actual+1);
 		}
-		else{
-
-
-			ai.aideck.btnNewButton.addMouseListener(this);
-			try {
-				Aiturn();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-			
 	}
 
 	public void makeEffect(String id, int pos){
