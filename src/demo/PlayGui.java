@@ -2641,6 +2641,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						{
 							tuto.ok3.setEnabled(true);
 
+						}else{
+							tuto.ok3.setEnabled(false);//lo desactiva
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
