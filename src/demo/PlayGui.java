@@ -123,6 +123,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int bugPrimerTurnoUSer=0;
 	public int liberarTutoEnd=1;
 	
+	public JButton abc;
+	
 	public int getPhaseActual(){
 		return phases.actual;
 	}
@@ -292,7 +294,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		}else{ //turno player 2
 			this.turnoLabel.setText("AI PLAYER'S TURN");
-			this.phases.end.addMouseListener(this);
+			//this.phases.end.addMouseListener(this);
 		}
 		this.turnoLabel.setBounds(50, 320, 200, 20);
 		
@@ -858,9 +860,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.pdeck.btnNewButton_2.addMouseListener(this);
 		
+//		abc= new JButton("presionamwe");
+//		abc.setBounds(100, 100, 50, 50);
+//		this.add(abc);
+//		abc.addActionListener(this);
+//		this.moveToFront(abc);
 	}
 	public void actionPerformed(ActionEvent e) {
-
+//		if(e.getSource()==abc){
+//			this.avisoGenerico("h");
+//		}
 		done=0;
 		if( e.getSource()==tuto.ok)
 		{
@@ -1953,6 +1962,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							player.powers.token();
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
+							this.phases.draw.addMouseListener(this);
 						break;
 					case 1:
 						tuto.barrier();
@@ -2841,6 +2851,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(bugPrimerTurnoUSer==0){
 			bugPrimerTurnoUSer=1;
 			phases.change(phases.actual+1);
+			repaint();
 		}
 	}
 
@@ -3573,5 +3584,29 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.token();
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
+		this.phases.draw.addMouseListener(this);
 	}
+	
+	/*public void avisoGenerico(String s){
+		 tuto.aviso(s);
+		Thread t = new Thread(new Runnable(){
+			
+			public void start(){
+				this.start();
+			}
+			
+			public void run(){
+
+		        try {
+		            Thread.sleep(1000); 
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+		        //aca va el codigo de visibilidad
+		       tuto.closeAviso();
+		       repaint();
+			}
+		});
+		t.start();
+	}*/
 }

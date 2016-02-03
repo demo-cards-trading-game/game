@@ -166,4 +166,17 @@ public class Tutorial extends JPanel implements ActionListener  {
 		this.setVisible(true);
 		
 	}
+	
+	public void aviso(String s)
+	{
+		panel.setLocation(330, 201);
+		lblSms.setText(s);
+		ok.setVisible(false);
+		this.setVisible(true);
+	}
+	
+	public void closeAviso(){
+		ok.setVisible(true);
+		this.setVisible(false);
+	}
 }
