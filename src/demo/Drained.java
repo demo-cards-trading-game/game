@@ -316,7 +316,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 					undrained[i].setBounds((i-10)*30,60 , 25, 20);
 				}
 			}
-		tokenused=used=paying=drain=0;
+		tokenused=paying=drain=0;
 		label.setText(""+paying);
 		}
 		

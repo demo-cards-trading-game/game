@@ -2567,15 +2567,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		}
 		try {
-			Random randomGenerator = new Random();
-			int test = randomGenerator.nextInt(10);
-			if (test % 2 == 0) {
-				carta = new SmallCard(true,player.hand.handgui[pos].getcard());
+		
+			
+			carta = new SmallCard(false,player.hand.handgui[pos].getcard());
 
-			} else {
-				carta = new SmallCard(false, player.hand.handgui[pos].getcard());
+			
 
-			}
+			
 			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
 
 			repaint();
