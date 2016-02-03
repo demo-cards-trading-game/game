@@ -162,7 +162,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		}
 		if (e.getSource()==quit)
 		{
-			System.out.println("deberia cerrarse");
+			
 			this.dispose();
 			
 			

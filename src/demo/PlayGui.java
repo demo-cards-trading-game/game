@@ -1954,14 +1954,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						barierpicked=0;
 						warriorPlayed=0;
 						cardDrawn=0;
-
+						
 						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
 
-							JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+						
 							tuto.draw();
-							player.powers.reset();
-							player.powers.token();
+						
+						
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
 							this.phases.draw.addMouseListener(this);
@@ -2039,7 +2039,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								player.barriers.barriers[i].removeMouseListener(this);
 
 							ready=0;
-							this.phases.end.removeMouseListener(this);
+						
 							this.phases.setup.addMouseListener(this);
 
 							this.swordp1.setVisible(false);
@@ -2079,6 +2079,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						{
 //							tuto.end();
 							ready=1;
+							this.phases.end.removeMouseListener(this);
 						}
 						//turno del oponente
 						phases.change(0);
@@ -2552,6 +2553,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.end.setIcon(new ImageIcon(("end3.png")));
 			if (liberarTutoEnd==0) {
 				tuto.end();
+				
 				liberarTutoEnd=1;
 			}
 		}
@@ -2843,9 +2845,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.handgui[i].Play.setEnabled(false);
 
 		JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
+		player.powers.token();
 		tuto.draw();
 		player.powers.reset();
-		//player.powers.token();
+		
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
@@ -3545,6 +3548,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end2.png")));
+			
+				tuto.ok.doClick();
+			
 		}
 	}
 	@Override
@@ -3584,8 +3590,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 		tuto.draw();
-		player.powers.reset();
-	
+		player.powers.reset(); 
+	    player.powers.token();
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
