@@ -35,6 +35,8 @@ public class RoundedPanel extends JPanel {
     
     public RoundedPanel() {
         super();
+        setBackground(new Color(0, 191, 255));
+       
         setOpaque(false);
     }
     @Override

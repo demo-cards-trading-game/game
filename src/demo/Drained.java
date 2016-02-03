@@ -45,7 +45,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	
 	public RoundedPanel[]  drained  = new RoundedPanel[20];
 	public RoundedPanel[]  undrained  = new RoundedPanel[20];
-	public JLabel[]  tokens = new JLabel[20];
+	public RoundedPanel[]  tokens = new RoundedPanel[20];
 	public JPanel panel,panel_1,panel_2; 
 	JLabel label;
 
@@ -271,12 +271,11 @@ public class Drained extends JLayeredPane implements MouseListener{
 	void token()
 	{
 
-		try {
-			tokens[currentoken]=new JLabel(new ImageIcon(ImageIO.read(new File("token.png"))));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			tokens[currentoken]=new RoundedPanel();
+			tokens[currentoken].arcs=new Dimension(20,20);
+			tokens[currentoken].setBackground(new Color(127, 255, 0));
+			
 		tokens[currentoken].addMouseListener(this);
 		panel_2.add(tokens[currentoken]);
 		

@@ -1,5 +1,6 @@
 package demo;
 import demo.HandGui;
+import extra.Rlabel;
 import extra.RoundedPanel;
 import extra.Tutorial;
 import demo.Fallen.SimpleColorTableModel;
@@ -86,7 +87,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public  JButton repaint;
 	private FileReader turno;
 	private BufferedReader br;
-	private JLabel turnoLabel;
+	private Rlabel turnoLabel;
 	private Card BeingPlayed;
 	int warriorPlayed; //indica que se jugo un warrior en el turno
 	public int cardDrawn, barierpicked;
@@ -273,17 +274,27 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			e2.printStackTrace();
 		}
 
-		this.turnoLabel = new JLabel("");
+		this.turnoLabel = new Rlabel("",0);
+		turnoLabel.setRightShadow(1, 1, Color.white);
+		turnoLabel.setLeftShadow(1, 1, Color.black);
+		
+		turnoLabel.setFont(new Font("Comic Sans MS", turnoLabel.getFont().getStyle(), 20));
+
+		turnoLabel.setRightShadow(3,3,Color.black);
+		turnoLabel.setLeftShadow(-3,-3, new Color(0xccccff));
+		turnoLabel.setForeground(Color.green);
+		turnoLabel.setFont(turnoLabel.getFont().deriveFont(140f));
+
 		if(turn==1){//turno player 1
-			this.turnoLabel.setText("Player's Turn");
+			this.turnoLabel.setText("PLAYER'S TURN");
 
 		}else{ //turno player 2
-			this.turnoLabel.setText("Ai Player's Turn");
+			this.turnoLabel.setText("AI PLAYER'S TURN");
 			this.phases.end.addMouseListener(this);
 		}
 		this.turnoLabel.setBounds(50, 320, 200, 20);
-		this.turnoLabel.setForeground(new Color(255, 248, 220));
-		this.turnoLabel.setBackground(Color.WHITE);
+		
+	
 		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
@@ -2104,10 +2115,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 							if(turn==1){
 								turn=2;
-								this.turnoLabel.setText("Ai Player's Turn");
+								this.turnoLabel.setText("AI PLAYER'S TURN");
 							}else{
 								turn=1;
-								this.turnoLabel.setText("Player's Turn");
+								this.turnoLabel.setText("PLAYER'S TURN");
 							}
 
 							repaint();
@@ -2850,7 +2861,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.sworda5.setVisible(false);
 		turn=1;
 
-		this.turnoLabel.setText("Player's Turn");
+		this.turnoLabel.setText("PLAYER'S TURN");
 		this.contTurn++;
 
 		//primer turno del user
