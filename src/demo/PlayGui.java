@@ -103,21 +103,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JButton j;
 	public prueba2 listAll;
 	public JButton top1,top2,top3,top4,top5;
-	public JButton ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
-	public JButton aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
+	public JLabel ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
+	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
 	//esto es para ssd-08
-	public JButton ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
-	public JButton aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
+	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
+	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
 	//esto es para sdd-09
-	public JButton ptarjet91, ptarjet92, ptarjet93, ptarjet94, ptarjet95;
-	public JButton aitarjet91, aitarjet92, aitarjet93, aitarjet94, aitarjet95;
+	public JLabel ptarjet91, ptarjet92, ptarjet93, ptarjet94, ptarjet95;
+	public JLabel aitarjet91, aitarjet92, aitarjet93, aitarjet94, aitarjet95;
 	//esto es para ssd-10
-	public JButton ptarjet101, ptarjet102, ptarjet103, ptarjet104, ptarjet105;
-	public JButton aitarjet101, aitarjet102, aitarjet103, aitarjet104, aitarjet105;
+	public JLabel ptarjet101, ptarjet102, ptarjet103, ptarjet104, ptarjet105;
+	public JLabel aitarjet101, aitarjet102, aitarjet103, aitarjet104, aitarjet105;
 	//esto es para ssd-11
-	public JButton ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
-	public JButton aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
+	public JLabel ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
+	public JLabel aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	//visor de las cartas totales
 	public int done;
 	public int bugPrimerTurnoUSer=0;
@@ -450,16 +450,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.top5.setVisible(false);
 		phases.draw.addMouseListener(this);
 
-		this.ptarjet1= new JButton("target");
-		this.ptarjet1.setBounds(230,380, 69, 20);
-		this.ptarjet2= new JButton("target");
-		this.ptarjet2.setBounds(340,380, 69, 20);
-		this.ptarjet3= new JButton("target");
-		this.ptarjet3.setBounds(450,380, 69, 20);
-		this.ptarjet4= new JButton("target");
-		this.ptarjet4.setBounds(560,380, 69, 20);
-		this.ptarjet5= new JButton("target");
-		this.ptarjet5.setBounds(670,380, 69, 20);
+		this.ptarjet1= new JLabel();
+		this.ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet1.setBounds(230,380, 50, 50);
+		this.ptarjet2= new JLabel();
+		this.ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet2.setBounds(340,380, 50, 50);
+		this.ptarjet3= new JLabel();
+		this.ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet3.setBounds(450,380, 50, 50);
+		this.ptarjet4= new JLabel();
+		this.ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet4.setBounds(560,380, 50, 50);
+		this.ptarjet5= new JLabel();
+		this.ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet5.setBounds(670,380, 50, 50);
 		add(ptarjet1);
 		add(ptarjet2);
 		add(ptarjet3);
@@ -471,16 +476,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet4);
 		this.moveToFront(ptarjet5);
 
-		this.aitarjet1= new JButton("target");
-		this.aitarjet1.setBounds(230, 210, 69, 20);
-		this.aitarjet2= new JButton("target");
-		this.aitarjet2.setBounds(340,210, 69, 20);
-		this.aitarjet3= new JButton("target");
-		this.aitarjet3.setBounds(450,210, 69, 20);
-		this.aitarjet4= new JButton("target");
-		this.aitarjet4.setBounds(560,210, 69, 20);
-		this.aitarjet5= new JButton("target");
-		this.aitarjet5.setBounds(670,210, 69, 20);
+		this.aitarjet1= new JLabel();
+		this.aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet1.setBounds(230, 210, 50, 50);
+		this.aitarjet2= new JLabel();
+		this.aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet2.setBounds(340,210, 50, 50);
+		this.aitarjet3= new JLabel();
+		this.aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet3.setBounds(450,210, 50, 50);
+		this.aitarjet4= new JLabel();
+		this.aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet4.setBounds(560,210, 50, 50);
+		this.aitarjet5= new JLabel();
+		this.aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet5.setBounds(670,210, 50, 50);
 		add(aitarjet1);
 		add(aitarjet2);
 		add(aitarjet3);
@@ -492,16 +502,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(aitarjet4);
 		this.moveToFront(aitarjet5);
 
-		this.ptarjet1.addActionListener(this);
-		this.ptarjet2.addActionListener(this);
-		this.ptarjet3.addActionListener(this);
-		this.ptarjet4.addActionListener(this);
-		this.ptarjet5.addActionListener(this);
-		this.aitarjet1.addActionListener(this);
-		this.aitarjet2.addActionListener(this);
-		this.aitarjet3.addActionListener(this);
-		this.aitarjet4.addActionListener(this);
-		this.aitarjet5.addActionListener(this);
+		this.ptarjet1.addMouseListener(this);
+		this.ptarjet2.addMouseListener(this);
+		this.ptarjet3.addMouseListener(this);
+		this.ptarjet4.addMouseListener(this);
+		this.ptarjet5.addMouseListener(this);
+		this.aitarjet1.addMouseListener(this);
+		this.aitarjet2.addMouseListener(this);
+		this.aitarjet3.addMouseListener(this);
+		this.aitarjet4.addMouseListener(this);
+		this.aitarjet5.addMouseListener(this);
 
 		this.ptarjet1.setVisible(false);
 		this.ptarjet2.setVisible(false);
@@ -518,16 +528,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.top5.setVisible(false);
 
 
-		this.ptarjet1= new JButton("tarjet");
-		this.ptarjet1.setBounds(230,380, 69, 20);
-		this.ptarjet2= new JButton("tarjet");
-		this.ptarjet2.setBounds(340,380, 69, 20);
-		this.ptarjet3= new JButton("tarjet");
-		this.ptarjet3.setBounds(450,380, 69, 20);
-		this.ptarjet4= new JButton("tarjet");
-		this.ptarjet4.setBounds(560,380, 69, 20);
-		this.ptarjet5= new JButton("tarjet");
-		this.ptarjet5.setBounds(670,380, 69, 20);
+		this.ptarjet1= new JLabel();
+		this.ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet1.setBounds(230,380, 50, 50);
+		this.ptarjet2= new JLabel();
+		this.ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet2.setBounds(340,380, 50, 50);
+		this.ptarjet3= new JLabel();
+		this.ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet3.setBounds(450,380, 50, 50);
+		this.ptarjet4= new JLabel();
+		this.ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet4.setBounds(560,380, 50, 50);
+		this.ptarjet5= new JLabel();
+		this.ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet5.setBounds(670,380, 50, 50);
 		add(ptarjet1);
 		add(ptarjet2);
 		add(ptarjet3);
@@ -539,16 +554,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet4);
 		this.moveToFront(ptarjet5);
 
-		this.aitarjet1= new JButton("tarjet");
-		this.aitarjet1.setBounds(230, 210, 69, 20);
-		this.aitarjet2= new JButton("tarjet");
-		this.aitarjet2.setBounds(340,210, 69, 20);
-		this.aitarjet3= new JButton("tarjet");
-		this.aitarjet3.setBounds(450,210, 69, 20);
-		this.aitarjet4= new JButton("tarjet");
-		this.aitarjet4.setBounds(560,210, 69, 20);
-		this.aitarjet5= new JButton("tarjet");
-		this.aitarjet5.setBounds(670,210, 69, 20);
+		this.aitarjet1= new JLabel();
+		this.aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet1.setBounds(230, 210, 50, 50);
+		this.aitarjet2= new JLabel();
+		this.aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet2.setBounds(340,210, 50, 50);
+		this.aitarjet3= new JLabel();
+		this.aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet3.setBounds(450,210, 50, 50);
+		this.aitarjet4= new JLabel();
+		this.aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet4.setBounds(560,210, 50, 50);
+		this.aitarjet5= new JLabel();
+		this.aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet5.setBounds(670,210, 50, 50);
 		add(aitarjet1);
 		add(aitarjet2);
 		add(aitarjet3);
@@ -560,16 +580,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(aitarjet4);
 		this.moveToFront(aitarjet5);
 
-		this.ptarjet1.addActionListener(this);
-		this.ptarjet2.addActionListener(this);
-		this.ptarjet3.addActionListener(this);
-		this.ptarjet4.addActionListener(this);
-		this.ptarjet5.addActionListener(this);
-		this.aitarjet1.addActionListener(this);
-		this.aitarjet2.addActionListener(this);
-		this.aitarjet3.addActionListener(this);
-		this.aitarjet4.addActionListener(this);
-		this.aitarjet5.addActionListener(this);
+		this.ptarjet1.addMouseListener(this);
+		this.ptarjet2.addMouseListener(this);
+		this.ptarjet3.addMouseListener(this);
+		this.ptarjet4.addMouseListener(this);
+		this.ptarjet5.addMouseListener(this);
+		this.aitarjet1.addMouseListener(this);
+		this.aitarjet2.addMouseListener(this);
+		this.aitarjet3.addMouseListener(this);
+		this.aitarjet4.addMouseListener(this);
+		this.aitarjet5.addMouseListener(this);
 
 		this.ptarjet1.setVisible(false);
 		this.ptarjet2.setVisible(false);
@@ -586,16 +606,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 
-		this.ptarjet81= new JButton("tarjet");
-		this.ptarjet81.setBounds(230,380, 69, 20);
-		this.ptarjet82= new JButton("tarjet");
-		this.ptarjet82.setBounds(340,380, 69, 20);
-		this.ptarjet83= new JButton("tarjet");
-		this.ptarjet83.setBounds(450,380, 69, 20);
-		this.ptarjet84= new JButton("tarjet");
-		this.ptarjet84.setBounds(560,380, 69, 20);
-		this.ptarjet85= new JButton("tarjet");
-		this.ptarjet85.setBounds(670,380, 69, 20);
+		this.ptarjet81= new JLabel();
+		this.ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet81.setBounds(230,380, 50, 50);
+		this.ptarjet82= new JLabel();
+		this.ptarjet82.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet82.setBounds(340,380, 50, 50);
+		this.ptarjet83= new JLabel();
+		this.ptarjet83.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet83.setBounds(450,380, 50, 50);
+		this.ptarjet84= new JLabel();
+		this.ptarjet84.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet84.setBounds(560,380, 50, 50);
+		this.ptarjet85= new JLabel();
+		this.ptarjet85.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet85.setBounds(670,380, 50, 50);
 		add(ptarjet81);
 		add(ptarjet82);
 		add(ptarjet83);
@@ -607,16 +632,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet84);
 		this.moveToFront(ptarjet85);
 
-		this.aitarjet81= new JButton("tarjet");
-		this.aitarjet81.setBounds(230, 210, 69, 20);
-		this.aitarjet82= new JButton("tarjet");
-		this.aitarjet82.setBounds(340,210, 69, 20);
-		this.aitarjet83= new JButton("tarjet");
-		this.aitarjet83.setBounds(450,210, 69, 20);
-		this.aitarjet84= new JButton("tarjet");
-		this.aitarjet84.setBounds(560,210, 69, 20);
-		this.aitarjet85= new JButton("tarjet");
-		this.aitarjet85.setBounds(670,210, 69, 20);
+		this.aitarjet81= new JLabel();
+		this.aitarjet81.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet81.setBounds(230, 210, 50, 50);
+		this.aitarjet82= new JLabel();
+		this.aitarjet82.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet82.setBounds(340,210, 50, 50);
+		this.aitarjet83= new JLabel();
+		this.aitarjet83.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet83.setBounds(450,210, 50, 50);
+		this.aitarjet84= new JLabel();
+		this.aitarjet84.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet84.setBounds(560,210, 50, 50);
+		this.aitarjet85= new JLabel();
+		this.aitarjet85.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet85.setBounds(670,210, 50, 50);
 		add(aitarjet81);
 		add(aitarjet82);
 		add(aitarjet83);
@@ -628,16 +658,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(aitarjet84);
 		this.moveToFront(aitarjet85);
 
-		this.ptarjet81.addActionListener(this);
-		this.ptarjet82.addActionListener(this);
-		this.ptarjet83.addActionListener(this);
-		this.ptarjet84.addActionListener(this);
-		this.ptarjet85.addActionListener(this);
-		this.aitarjet81.addActionListener(this);
-		this.aitarjet82.addActionListener(this);
-		this.aitarjet83.addActionListener(this);
-		this.aitarjet84.addActionListener(this);
-		this.aitarjet85.addActionListener(this);
+		this.ptarjet81.addMouseListener(this);
+		this.ptarjet82.addMouseListener(this);
+		this.ptarjet83.addMouseListener(this);
+		this.ptarjet84.addMouseListener(this);
+		this.ptarjet85.addMouseListener(this);
+		this.aitarjet81.addMouseListener(this);
+		this.aitarjet82.addMouseListener(this);
+		this.aitarjet83.addMouseListener(this);
+		this.aitarjet84.addMouseListener(this);
+		this.aitarjet85.addMouseListener(this);
 
 		this.ptarjet81.setVisible(false);
 		this.ptarjet82.setVisible(false);
@@ -653,16 +683,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 
-		this.ptarjet91= new JButton("tarjet");
-		this.ptarjet91.setBounds(230,380, 69, 20);
-		this.ptarjet92= new JButton("tarjet");
-		this.ptarjet92.setBounds(340,380, 69, 20);
-		this.ptarjet93= new JButton("tarjet");
-		this.ptarjet93.setBounds(450,380, 69, 20);
-		this.ptarjet94= new JButton("tarjet");
-		this.ptarjet94.setBounds(560,380, 69, 20);
-		this.ptarjet95= new JButton("tarjet");
-		this.ptarjet95.setBounds(670,380, 69, 20);
+		this.ptarjet91= new JLabel();
+		this.ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet91.setBounds(230,380, 50, 50);
+		this.ptarjet92= new JLabel();
+		this.ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet92.setBounds(340,380, 50, 50);
+		this.ptarjet93= new JLabel();
+		this.ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet93.setBounds(450,380, 50, 50);
+		this.ptarjet94= new JLabel();
+		this.ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet94.setBounds(560,380, 50, 50);
+		this.ptarjet95= new JLabel();
+		this.ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet95.setBounds(670,380, 50, 50);
 		add(ptarjet91);
 		add(ptarjet92);
 		add(ptarjet93);
@@ -674,16 +709,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet94);
 		this.moveToFront(ptarjet95);
 
-		this.aitarjet91= new JButton("tarjet");
-		this.aitarjet91.setBounds(230, 210, 69, 20);
-		this.aitarjet92= new JButton("tarjet");
-		this.aitarjet92.setBounds(340,210, 69, 20);
-		this.aitarjet93= new JButton("tarjet");
-		this.aitarjet93.setBounds(450,210, 69, 20);
-		this.aitarjet94= new JButton("tarjet");
-		this.aitarjet94.setBounds(560,210, 69, 20);
-		this.aitarjet95= new JButton("tarjet");
-		this.aitarjet95.setBounds(670,210, 69, 20);
+		this.aitarjet91= new JLabel();
+		this.aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet91.setBounds(230, 210, 50, 50);
+		this.aitarjet92= new JLabel();
+		this.aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet92.setBounds(340,210, 50, 50);
+		this.aitarjet93= new JLabel();
+		this.aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet93.setBounds(450,210, 50, 50);
+		this.aitarjet94= new JLabel();
+		this.aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet94.setBounds(560,210, 50, 50);
+		this.aitarjet95= new JLabel();
+		this.aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet95.setBounds(670,210, 50, 50);
 		add(aitarjet91);
 		add(aitarjet92);
 		add(aitarjet93);
@@ -695,16 +735,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(aitarjet94);
 		this.moveToFront(aitarjet95);
 
-		this.ptarjet91.addActionListener(this);
-		this.ptarjet92.addActionListener(this);
-		this.ptarjet93.addActionListener(this);
-		this.ptarjet94.addActionListener(this);
-		this.ptarjet95.addActionListener(this);
-		this.aitarjet91.addActionListener(this);
-		this.aitarjet92.addActionListener(this);
-		this.aitarjet93.addActionListener(this);
-		this.aitarjet94.addActionListener(this);
-		this.aitarjet95.addActionListener(this);
+		this.ptarjet91.addMouseListener(this);
+		this.ptarjet92.addMouseListener(this);
+		this.ptarjet93.addMouseListener(this);
+		this.ptarjet94.addMouseListener(this);
+		this.ptarjet95.addMouseListener(this);
+		this.aitarjet91.addMouseListener(this);
+		this.aitarjet92.addMouseListener(this);
+		this.aitarjet93.addMouseListener(this);
+		this.aitarjet94.addMouseListener(this);
+		this.aitarjet95.addMouseListener(this);
 
 		this.ptarjet91.setVisible(false);
 		this.ptarjet92.setVisible(false);
@@ -720,16 +760,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 
-		this.ptarjet101= new JButton("tarjet");
-		this.ptarjet101.setBounds(230,380, 69, 20);
-		this.ptarjet102= new JButton("tarjet");
-		this.ptarjet102.setBounds(340,380, 69, 20);
-		this.ptarjet103= new JButton("tarjet");
-		this.ptarjet103.setBounds(450,380, 69, 20);
-		this.ptarjet104= new JButton("tarjet");
-		this.ptarjet104.setBounds(560,380, 69, 20);
-		this.ptarjet105= new JButton("tarjet");
-		this.ptarjet105.setBounds(670,380, 69, 20);
+		this.ptarjet101= new JLabel();
+		this.ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet101.setBounds(230,380, 50, 50);
+		this.ptarjet102= new JLabel();
+		this.ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet102.setBounds(340,380, 50, 50);
+		this.ptarjet103= new JLabel();
+		this.ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet103.setBounds(450,380, 50, 50);
+		this.ptarjet104= new JLabel();
+		this.ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet104.setBounds(560,380, 50, 50);
+		this.ptarjet105= new JLabel();
+		this.ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet105.setBounds(670,380, 50, 50);
 		add(ptarjet101);
 		add(ptarjet102);
 		add(ptarjet103);
@@ -741,19 +786,24 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet104);
 		this.moveToFront(ptarjet105);
 
-		this.aitarjet101= new JButton("tarjet");
-		this.aitarjet101.setBounds(230, 210, 69, 20);
-		this.aitarjet102= new JButton("tarjet");
-		this.aitarjet102.setBounds(340,210, 69, 20);
-		this.aitarjet103= new JButton("tarjet");
-		this.aitarjet103.setBounds(450,210, 69, 20);
-		this.aitarjet104= new JButton("tarjet");
-		this.aitarjet104.setBounds(560,210, 69, 20);
-		this.aitarjet105= new JButton("tarjet");
-		this.aitarjet105.setBounds(670,210, 69, 20);
+		this.aitarjet101= new JLabel();
+		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet101.setBounds(230, 210, 50, 50);
+		this.aitarjet102= new JLabel();
+		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet102.setBounds(340,210, 50, 50);
+		this.aitarjet103= new JLabel();
+		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet103.setBounds(450,210, 50, 50);
+		this.aitarjet104= new JLabel();
+		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet104.setBounds(560,210, 50, 50);
+		this.aitarjet105= new JLabel();
+		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet105.setBounds(670,210, 50, 50);
 		add(aitarjet101);
-		add(aitarjet102);
 		add(aitarjet103);
+		add(aitarjet102);
 		add(aitarjet104);
 		add(aitarjet105);
 		this.moveToFront(aitarjet101);
@@ -761,17 +811,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(aitarjet103);
 		this.moveToFront(aitarjet104);
 		this.moveToFront(aitarjet105);
+		this.aitarjet102.addMouseListener(this);
 
-		this.ptarjet101.addActionListener(this);
-		this.ptarjet102.addActionListener(this);
-		this.ptarjet103.addActionListener(this);
-		this.ptarjet104.addActionListener(this);
-		this.ptarjet105.addActionListener(this);
-		this.aitarjet101.addActionListener(this);
-		this.aitarjet102.addActionListener(this);
-		this.aitarjet103.addActionListener(this);
-		this.aitarjet104.addActionListener(this);
-		this.aitarjet105.addActionListener(this);
+		this.ptarjet102.addMouseListener(this);
+		this.ptarjet101.addMouseListener(this);
+		this.ptarjet103.addMouseListener(this);
+		this.ptarjet104.addMouseListener(this);
+		this.ptarjet105.addMouseListener(this);
+		this.aitarjet101.addMouseListener(this);
+		this.aitarjet103.addMouseListener(this);
+		this.aitarjet104.addMouseListener(this);
+		this.aitarjet105.addMouseListener(this);
 
 		this.ptarjet101.setVisible(false);
 		this.ptarjet102.setVisible(false);
@@ -788,16 +838,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 
-		this.ptarjet111= new JButton("tarjet");
-		this.ptarjet111.setBounds(230,380, 69, 20);
-		this.ptarjet112= new JButton("tarjet");
-		this.ptarjet112.setBounds(340,380, 69, 20);
-		this.ptarjet113= new JButton("tarjet");
-		this.ptarjet113.setBounds(450,380, 69, 20);
-		this.ptarjet114= new JButton("tarjet");
-		this.ptarjet114.setBounds(560,380, 69, 20);
-		this.ptarjet115= new JButton("tarjet");
-		this.ptarjet115.setBounds(670,380, 69, 20);
+		this.ptarjet111= new JLabel();
+		this.ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet111.setBounds(230,380, 50, 50);
+		this.ptarjet112= new JLabel();
+		this.ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet112.setBounds(340,380, 50, 50);
+		this.ptarjet113= new JLabel();
+		this.ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet113.setBounds(450,380, 50, 50);
+		this.ptarjet114= new JLabel();
+		this.ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet114.setBounds(560,380, 50, 50);
+		this.ptarjet115= new JLabel();
+		this.ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
+		this.ptarjet115.setBounds(670,380, 50, 50);
 		add(ptarjet111);
 		add(ptarjet112);
 		add(ptarjet113);
@@ -809,16 +864,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet114);
 		this.moveToFront(ptarjet115);
 
-		this.aitarjet111= new JButton("tarjet");
-		this.aitarjet111.setBounds(230, 210, 69, 20);
-		this.aitarjet112= new JButton("tarjet");
-		this.aitarjet112.setBounds(340,210, 69, 20);
-		this.aitarjet113= new JButton("tarjet");
-		this.aitarjet113.setBounds(450,210, 69, 20);
-		this.aitarjet114= new JButton("tarjet");
-		this.aitarjet114.setBounds(560,210, 69, 20);
-		this.aitarjet115= new JButton("tarjet");
-		this.aitarjet115.setBounds(670,210, 69, 20);
+		this.aitarjet111= new JLabel();
+		this.aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet111.setBounds(230, 210, 50, 50);
+		this.aitarjet112= new JLabel();
+		this.aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet112.setBounds(340,210, 50, 50);
+		this.aitarjet113= new JLabel();
+		this.aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet113.setBounds(450,210, 50, 50);
+		this.aitarjet114= new JLabel();
+		this.aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet114.setBounds(560,210, 50, 50);
+		this.aitarjet115= new JLabel();
+		this.aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
+		this.aitarjet115.setBounds(670,210, 50, 50);
 		add(aitarjet111);
 		add(aitarjet112);
 		add(aitarjet113);
@@ -830,16 +890,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(aitarjet114);
 		this.moveToFront(aitarjet115);
 
-		this.ptarjet111.addActionListener(this);
-		this.ptarjet112.addActionListener(this);
-		this.ptarjet113.addActionListener(this);
-		this.ptarjet114.addActionListener(this);
-		this.ptarjet115.addActionListener(this);
-		this.aitarjet111.addActionListener(this);
-		this.aitarjet112.addActionListener(this);
-		this.aitarjet113.addActionListener(this);
-		this.aitarjet114.addActionListener(this);
-		this.aitarjet115.addActionListener(this);
+		this.ptarjet111.addMouseListener(this);
+		this.ptarjet112.addMouseListener(this);
+		this.ptarjet113.addMouseListener(this);
+		this.ptarjet114.addMouseListener(this);
+		this.ptarjet115.addMouseListener(this);
+		this.aitarjet111.addMouseListener(this);
+		this.aitarjet112.addMouseListener(this);
+		this.aitarjet113.addMouseListener(this);
+		this.aitarjet114.addMouseListener(this);
+		this.aitarjet115.addMouseListener(this);
 
 		this.ptarjet111.setVisible(false);
 		this.ptarjet112.setVisible(false);
@@ -860,18 +920,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.pdeck.btnNewButton_2.addMouseListener(this);
 		
-//		abc= new JButton("presionamwe");
-//		abc.setBounds(100, 100, 50, 50);
-//		this.add(abc);
-//		abc.addActionListener(this);
-//		this.moveToFront(abc);
 		for(int i=0;i<player.hand.current;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
+		
+//		JLabel label = new JLabel();
+//		label.setIcon(new ImageIcon("redArrow1.png"));
+//		label.setBounds(100,100,50,50);
+//		this.add(label);
+//		this.moveToFront(label);
 	}
 	public void actionPerformed(ActionEvent e) {
-//		if(e.getSource()==abc){
-//			this.avisoGenerico("h");
-//		}
 		done=0;
 		if( e.getSource()==tuto.ok)
 		{
@@ -1467,376 +1525,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 
-		if(e.getSource()==this.ptarjet1||e.getSource()==this.ptarjet2||e.getSource()==this.ptarjet3||e.getSource()==this.ptarjet4||e.getSource()==this.ptarjet5){
-			if(e.getSource()==this.ptarjet1){
-				this.selected=1;
-			}
-			if(e.getSource()==this.ptarjet2){
-				this.selected=2;
-			}
-			if(e.getSource()==this.ptarjet3){
-				this.selected=3;
-			}
-			if(e.getSource()==this.ptarjet4){
-				this.selected=4;
-			}
-			if(e.getSource()==this.ptarjet5){
-				this.selected=5;
-			}
-			this.ptarjet1.setVisible(false);
-			this.ptarjet2.setVisible(false);
-			this.ptarjet3.setVisible(false);
-			this.ptarjet4.setVisible(false);
-			this.ptarjet5.setVisible(false);
-
-			if(this.ai.aifield.cards[0]!=null){
-				this.aitarjet1.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[1]!=null){
-				this.aitarjet2.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[2]!=null){
-				this.aitarjet3.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[3]!=null){
-				this.aitarjet4.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[4]!=null){
-				this.aitarjet5.setVisible(true);
-			}
-
-			repaint();
-			JOptionPane.showMessageDialog(null, "please select a card from ai field");
-			repaint();
-		}
-
-		if(e.getSource()==this.aitarjet1||e.getSource()==this.aitarjet2||e.getSource()==this.aitarjet3||e.getSource()==this.aitarjet4||e.getSource()==this.aitarjet5){
-
-			int pos= player.hand.draw(this.player.field.cards[this.selected-1].getcard());
-			player.hand.handgui[pos-1].addMouseListener(this);
-			Addlisteners2Card(pos-1);
-			player.field.quitar(this.selected-1);
-
-			this.selected=-1;
-			if(e.getSource()==this.aitarjet1){
-				this.selected=1;
-			}
-			if(e.getSource()==this.aitarjet2){
-				this.selected=2;
-			}
-			if(e.getSource()==this.aitarjet3){
-				this.selected=3;
-			}
-			if(e.getSource()==this.aitarjet4){
-				this.selected=4;
-			}
-			if(e.getSource()==this.aitarjet5){
-				this.selected=5;
-			}
-			this.aitarjet1.setVisible(false);
-			this.aitarjet2.setVisible(false);
-			this.aitarjet3.setVisible(false);
-			this.aitarjet4.setVisible(false);
-			this.aitarjet5.setVisible(false);
-
-			pos= this.ai.aihand.draw(this.ai.aifield.cards[this.selected-1].getcard());
-			this.ai.aifield.quitar(this.selected-1); 
-
-			JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
-		}
-
-		if(e.getSource()==this.ptarjet81||e.getSource()==this.ptarjet82||e.getSource()==this.ptarjet83||e.getSource()==this.ptarjet84||e.getSource()==this.ptarjet85||e.getSource()==this.aitarjet81||e.getSource()==this.aitarjet82||e.getSource()==this.aitarjet83||e.getSource()==this.aitarjet84||e.getSource()==this.aitarjet85){
-			this.selected=-1;
-			int pos;
-
-			this.ptarjet81.setVisible(false);
-			this.ptarjet82.setVisible(false);
-			this.ptarjet83.setVisible(false);
-			this.ptarjet84.setVisible(false);
-			this.ptarjet85.setVisible(false);
-			this.aitarjet81.setVisible(false);
-			this.aitarjet82.setVisible(false);
-			this.aitarjet83.setVisible(false);
-			this.aitarjet84.setVisible(false);
-			this.aitarjet85.setVisible(false);
-
-			if(e.getSource()==this.ptarjet81){
-				this.selected=1;
-			}
-			if(e.getSource()==this.ptarjet82){
-				this.selected=2;
-			}
-			if(e.getSource()==this.ptarjet83){
-				this.selected=3;
-			}
-			if(e.getSource()==this.ptarjet84){
-				this.selected=4;
-			}
-			if(e.getSource()==this.ptarjet85){
-				this.selected=5;
-			}
-
-			if(this.selected==-1){
-				if(e.getSource()==this.aitarjet81){
-					this.selected=1;
-				}
-				if(e.getSource()==this.aitarjet82){
-					this.selected=2;
-				}
-				if(e.getSource()==this.aitarjet83){
-					this.selected=3;
-				}
-				if(e.getSource()==this.aitarjet84){
-					this.selected=4;
-				}
-				if(e.getSource()==this.aitarjet85){
-					this.selected=5;
-				}
-				pos= this.ai.aihand.draw(this.ai.aifield.cards[this.selected-1].getcard());
-				this.ai.aifield.quitar(this.selected-1);
-			}
-			else{
-				pos= player.hand.draw(this.player.field.cards[this.selected-1].getcard());
-				player.hand.handgui[pos-1].addMouseListener(this);
-				Addlisteners2Card(pos-1);
-				player.field.quitar(this.selected-1);
-			}
-
-			repaint();
-			JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
-		}
-
-		if(e.getSource()==this.ptarjet91||e.getSource()==this.ptarjet92||e.getSource()==this.ptarjet93||e.getSource()==this.ptarjet94||e.getSource()==this.ptarjet95){
-
-			this.ptarjet91.setVisible(false);
-			this.ptarjet92.setVisible(false);
-			this.ptarjet93.setVisible(false);
-			this.ptarjet94.setVisible(false);
-			this.ptarjet95.setVisible(false);
-
-			this.player.field.quitar(this.selected);
-			JOptionPane.showMessageDialog(null, "select an ai card to destroy");
-
-			if(this.ai.aifield.cards[0]!=null){
-				this.aitarjet91.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[1]!=null){
-				this.aitarjet92.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[2]!=null){
-				this.aitarjet93.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[3]!=null){
-				this.aitarjet94.setVisible(true);
-			}
-
-			if(this.ai.aifield.cards[4]!=null){
-				this.aitarjet95.setVisible(true);
-			}
-		}
-
-		if(e.getSource()==this.aitarjet91||e.getSource()==this.aitarjet92||e.getSource()==this.aitarjet93||e.getSource()==this.aitarjet94||e.getSource()==this.aitarjet95){
-			if(e.getSource()==this.aitarjet91){
-				this.ai.aifield.quitar(0);
-			}
-			if(e.getSource()==this.aitarjet92){
-				this.ai.aifield.quitar(1);
-			}
-			if(e.getSource()==this.aitarjet93){
-				this.ai.aifield.quitar(2);
-			}
-			if(e.getSource()==this.aitarjet94){
-				this.ai.aifield.quitar(3);
-			}
-			if(e.getSource()==this.aitarjet95){
-				this.ai.aifield.quitar(4);
-			}
-
-			this.selected=-1;
-
-			this.aitarjet91.setVisible(false);
-			this.aitarjet92.setVisible(false);
-			this.aitarjet93.setVisible(false);
-			this.aitarjet94.setVisible(false);
-			this.aitarjet95.setVisible(false);
-
-			JOptionPane.showMessageDialog(null, "destroyed succefully");
-			repaint();
-		}
-
-		if(e.getSource()==this.ptarjet101||e.getSource()==this.ptarjet102||e.getSource()==this.ptarjet103||e.getSource()==this.ptarjet104||e.getSource()==this.ptarjet105||e.getSource()==this.aitarjet101||e.getSource()==this.aitarjet102||e.getSource()==this.aitarjet103||e.getSource()==this.aitarjet104||e.getSource()==this.aitarjet105){
-
-			this.ptarjet101.setVisible(false);
-			this.ptarjet102.setVisible(false);
-			this.ptarjet103.setVisible(false);
-			this.ptarjet104.setVisible(false);
-			this.ptarjet105.setVisible(false);
-			this.aitarjet101.setVisible(false);
-			this.aitarjet102.setVisible(false);
-			this.aitarjet103.setVisible(false);
-			this.aitarjet104.setVisible(false);
-			this.aitarjet105.setVisible(false);
-
-			if(e.getSource()==this.ptarjet101){
-				this.player.field.quitar(0);
-			}
-			if(e.getSource()==this.ptarjet102){
-				this.player.field.quitar(1);
-			}
-			if(e.getSource()==this.ptarjet103){
-				this.player.field.quitar(2);
-			}
-			if(e.getSource()==this.ptarjet104){
-				this.player.field.quitar(3);
-			}
-			if(e.getSource()==this.ptarjet105){
-				this.player.field.quitar(4);
-			}
-			if(e.getSource()==this.aitarjet101){
-				this.ai.aifield.quitar(0);
-			}
-			if(e.getSource()==this.aitarjet102){
-				this.ai.aifield.quitar(1);
-			}
-			if(e.getSource()==this.aitarjet103){
-				this.ai.aifield.quitar(2);
-			}
-			if(e.getSource()==this.aitarjet104){
-				this.ai.aifield.quitar(3);
-			}
-			if(e.getSource()==this.aitarjet105){
-				this.ai.aifield.quitar(4);
-			}
-
-			JOptionPane.showMessageDialog(null, "destroyed succefully");
-			repaint();
-		}
-
-		if(e.getSource()==this.ptarjet111||e.getSource()==this.ptarjet112||e.getSource()==this.ptarjet113||e.getSource()==this.ptarjet114||e.getSource()==this.ptarjet115||e.getSource()==this.aitarjet111||e.getSource()==this.aitarjet112||e.getSource()==this.aitarjet113||e.getSource()==this.aitarjet114||e.getSource()==this.aitarjet115){
-			Card c = new Card();
-
-			this.ptarjet111.setVisible(false);
-			this.ptarjet112.setVisible(false);
-			this.ptarjet113.setVisible(false);
-			this.ptarjet114.setVisible(false);
-			this.ptarjet115.setVisible(false);
-			this.aitarjet111.setVisible(false);
-			this.aitarjet112.setVisible(false);
-			this.aitarjet113.setVisible(false);
-			this.aitarjet114.setVisible(false);
-			this.aitarjet115.setVisible(false);
-
-			if(e.getSource()==this.ptarjet111){
-				c=this.player.field.cards[0].getcard();
-				this.player.field.quitar(0);
-				try {
-					this.player.field.poner(new SmallCard(true,c), 0);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.ptarjet112){
-				c=this.player.field.cards[1].getcard();
-				this.player.field.quitar(1);
-				try {
-					this.player.field.poner(new SmallCard(true,c), 1);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.ptarjet113){
-				c=this.player.field.cards[2].getcard();
-				this.player.field.quitar(2);
-				try {
-					this.player.field.poner(new SmallCard(true,c), 2);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.ptarjet114){
-				c=this.player.field.cards[3].getcard();
-				this.player.field.quitar(3);
-				try {
-					this.player.field.poner(new SmallCard(true,c), 3);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.ptarjet115){
-				c=this.player.field.cards[4].getcard();
-				this.player.field.quitar(4);
-				try {
-					this.player.field.poner(new SmallCard(true,c), 4);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.aitarjet111){
-				c=this.ai.aifield.cards[0].getcard();
-				this.ai.aifield.quitar(0);
-				try {
-					this.ai.aifield.poner(new SmallCard(true,c), 0);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.aitarjet112){
-				c=this.ai.aifield.cards[1].getcard();
-				this.ai.aifield.quitar(1);
-				try {
-					this.ai.aifield.poner(new SmallCard(true,c), 1);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.aitarjet113){
-				c=this.ai.aifield.cards[2].getcard();
-				this.ai.aifield.quitar(2);
-				try {
-					this.ai.aifield.poner(new SmallCard(true,c), 2);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.aitarjet114){
-				c=this.ai.aifield.cards[3].getcard();
-				this.ai.aifield.quitar(3);
-				try {
-					this.ai.aifield.poner(new SmallCard(true,c), 3);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if(e.getSource()==this.aitarjet115){
-				c=this.ai.aifield.cards[4].getcard();
-				this.ai.aifield.quitar(4);
-				try {
-					this.ai.aifield.poner(new SmallCard(true,c), 4);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			repaint();
-			JOptionPane.showMessageDialog(null, "face down succefully");
-			repaint();
-		}
 
 	}
 
@@ -2184,6 +1872,378 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.menu4.setVisible(false);
 					}
 				}
+				
+				if(e.getSource()==this.ptarjet1||e.getSource()==this.ptarjet2||e.getSource()==this.ptarjet3||e.getSource()==this.ptarjet4||e.getSource()==this.ptarjet5){
+					if(e.getSource()==this.ptarjet1){
+						this.selected=1;
+					}
+					if(e.getSource()==this.ptarjet2){
+						this.selected=2;
+					}
+					if(e.getSource()==this.ptarjet3){
+						this.selected=3;
+					}
+					if(e.getSource()==this.ptarjet4){
+						this.selected=4;
+					}
+					if(e.getSource()==this.ptarjet5){
+						this.selected=5;
+					}
+					this.ptarjet1.setVisible(false);
+					this.ptarjet2.setVisible(false);
+					this.ptarjet3.setVisible(false);
+					this.ptarjet4.setVisible(false);
+					this.ptarjet5.setVisible(false);
+
+					if(this.ai.aifield.cards[0]!=null){
+						this.aitarjet1.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[1]!=null){
+						this.aitarjet2.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[2]!=null){
+						this.aitarjet3.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[3]!=null){
+						this.aitarjet4.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[4]!=null){
+						this.aitarjet5.setVisible(true);
+					}
+
+					repaint();
+					JOptionPane.showMessageDialog(null, "please select a card from ai field");
+					repaint();
+				}
+
+				if(e.getSource()==this.aitarjet1||e.getSource()==this.aitarjet2||e.getSource()==this.aitarjet3||e.getSource()==this.aitarjet4||e.getSource()==this.aitarjet5){
+
+					int pos= player.hand.draw(this.player.field.cards[this.selected-1].getcard());
+					player.hand.handgui[pos-1].addMouseListener(this);
+					Addlisteners2Card(pos-1);
+					player.field.quitar(this.selected-1);
+
+					this.selected=-1;
+					if(e.getSource()==this.aitarjet1){
+						this.selected=1;
+					}
+					if(e.getSource()==this.aitarjet2){
+						this.selected=2;
+					}
+					if(e.getSource()==this.aitarjet3){
+						this.selected=3;
+					}
+					if(e.getSource()==this.aitarjet4){
+						this.selected=4;
+					}
+					if(e.getSource()==this.aitarjet5){
+						this.selected=5;
+					}
+					this.aitarjet1.setVisible(false);
+					this.aitarjet2.setVisible(false);
+					this.aitarjet3.setVisible(false);
+					this.aitarjet4.setVisible(false);
+					this.aitarjet5.setVisible(false);
+
+					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.selected-1].getcard());
+					this.ai.aifield.quitar(this.selected-1); 
+
+					JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
+				}
+
+				if(e.getSource()==this.ptarjet81||e.getSource()==this.ptarjet82||e.getSource()==this.ptarjet83||e.getSource()==this.ptarjet84||e.getSource()==this.ptarjet85||e.getSource()==this.aitarjet81||e.getSource()==this.aitarjet82||e.getSource()==this.aitarjet83||e.getSource()==this.aitarjet84||e.getSource()==this.aitarjet85){
+					this.selected=-1;
+					int pos;
+
+					this.ptarjet81.setVisible(false);
+					this.ptarjet82.setVisible(false);
+					this.ptarjet83.setVisible(false);
+					this.ptarjet84.setVisible(false);
+					this.ptarjet85.setVisible(false);
+					this.aitarjet81.setVisible(false);
+					this.aitarjet82.setVisible(false);
+					this.aitarjet83.setVisible(false);
+					this.aitarjet84.setVisible(false);
+					this.aitarjet85.setVisible(false);
+
+					if(e.getSource()==this.ptarjet81){
+						this.selected=1;
+					}
+					if(e.getSource()==this.ptarjet82){
+						this.selected=2;
+					}
+					if(e.getSource()==this.ptarjet83){
+						this.selected=3;
+					}
+					if(e.getSource()==this.ptarjet84){
+						this.selected=4;
+					}
+					if(e.getSource()==this.ptarjet85){
+						this.selected=5;
+					}
+
+					if(this.selected==-1){
+						if(e.getSource()==this.aitarjet81){
+							this.selected=1;
+						}
+						if(e.getSource()==this.aitarjet82){
+							this.selected=2;
+						}
+						if(e.getSource()==this.aitarjet83){
+							this.selected=3;
+						}
+						if(e.getSource()==this.aitarjet84){
+							this.selected=4;
+						}
+						if(e.getSource()==this.aitarjet85){
+							this.selected=5;
+						}
+						pos= this.ai.aihand.draw(this.ai.aifield.cards[this.selected-1].getcard());
+						this.ai.aifield.quitar(this.selected-1);
+					}
+					else{
+						pos= player.hand.draw(this.player.field.cards[this.selected-1].getcard());
+						player.hand.handgui[pos-1].addMouseListener(this);
+						Addlisteners2Card(pos-1);
+						player.field.quitar(this.selected-1);
+					}
+
+					repaint();
+					JOptionPane.showMessageDialog(null, "cards were returned to the hands of owners");
+				}
+
+				if(e.getSource()==this.ptarjet91||e.getSource()==this.ptarjet92||e.getSource()==this.ptarjet93||e.getSource()==this.ptarjet94||e.getSource()==this.ptarjet95){
+
+					this.ptarjet91.setVisible(false);
+					this.ptarjet92.setVisible(false);
+					this.ptarjet93.setVisible(false);
+					this.ptarjet94.setVisible(false);
+					this.ptarjet95.setVisible(false);
+
+					this.player.field.quitar(this.selected);
+					JOptionPane.showMessageDialog(null, "select an ai card to destroy");
+
+					if(this.ai.aifield.cards[0]!=null){
+						this.aitarjet91.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[1]!=null){
+						this.aitarjet92.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[2]!=null){
+						this.aitarjet93.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[3]!=null){
+						this.aitarjet94.setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[4]!=null){
+						this.aitarjet95.setVisible(true);
+					}
+				}
+
+				if(e.getSource()==this.aitarjet91||e.getSource()==this.aitarjet92||e.getSource()==this.aitarjet93||e.getSource()==this.aitarjet94||e.getSource()==this.aitarjet95){
+					if(e.getSource()==this.aitarjet91){
+						this.ai.aifield.quitar(0);
+					}
+					if(e.getSource()==this.aitarjet92){
+						this.ai.aifield.quitar(1);
+					}
+					if(e.getSource()==this.aitarjet93){
+						this.ai.aifield.quitar(2);
+					}
+					if(e.getSource()==this.aitarjet94){
+						this.ai.aifield.quitar(3);
+					}
+					if(e.getSource()==this.aitarjet95){
+						this.ai.aifield.quitar(4);
+					}
+
+					this.selected=-1;
+
+					this.aitarjet91.setVisible(false);
+					this.aitarjet92.setVisible(false);
+					this.aitarjet93.setVisible(false);
+					this.aitarjet94.setVisible(false);
+					this.aitarjet95.setVisible(false);
+
+					JOptionPane.showMessageDialog(null, "destroyed succefully");
+					repaint();
+				}
+
+				if(e.getSource()==this.ptarjet101||e.getSource()==this.ptarjet102||e.getSource()==this.ptarjet103||e.getSource()==this.ptarjet104||e.getSource()==this.ptarjet105||e.getSource()==this.aitarjet101||e.getSource()==this.aitarjet102||e.getSource()==this.aitarjet103||e.getSource()==this.aitarjet104||e.getSource()==this.aitarjet105){
+
+					this.ptarjet101.setVisible(false);
+					this.ptarjet102.setVisible(false);
+					this.ptarjet103.setVisible(false);
+					this.ptarjet104.setVisible(false);
+					this.ptarjet105.setVisible(false);
+					this.aitarjet101.setVisible(false);
+					this.aitarjet102.setVisible(false);
+					this.aitarjet103.setVisible(false);
+					this.aitarjet104.setVisible(false);
+					this.aitarjet105.setVisible(false);
+
+					if(e.getSource()==this.ptarjet101){
+						this.player.field.quitar(0);
+					}
+					if(e.getSource()==this.ptarjet102){
+						this.player.field.quitar(1);
+					}
+					if(e.getSource()==this.ptarjet103){
+						this.player.field.quitar(2);
+					}
+					if(e.getSource()==this.ptarjet104){
+						this.player.field.quitar(3);
+					}
+					if(e.getSource()==this.ptarjet105){
+						this.player.field.quitar(4);
+					}
+					if(e.getSource()==this.aitarjet101){
+						this.ai.aifield.quitar(0);
+					}
+					if(e.getSource()==this.aitarjet102){
+						this.ai.aifield.quitar(1);
+					}
+					if(e.getSource()==this.aitarjet103){
+						this.ai.aifield.quitar(2);
+					}
+					if(e.getSource()==this.aitarjet104){
+						this.ai.aifield.quitar(3);
+					}
+					if(e.getSource()==this.aitarjet105){
+						this.ai.aifield.quitar(4);
+					}
+
+					JOptionPane.showMessageDialog(null, "destroyed succefully");
+					repaint();
+				}
+
+				if(e.getSource()==this.ptarjet111||e.getSource()==this.ptarjet112||e.getSource()==this.ptarjet113||e.getSource()==this.ptarjet114||e.getSource()==this.ptarjet115||e.getSource()==this.aitarjet111||e.getSource()==this.aitarjet112||e.getSource()==this.aitarjet113||e.getSource()==this.aitarjet114||e.getSource()==this.aitarjet115){
+					Card c = new Card();
+
+					this.ptarjet111.setVisible(false);
+					this.ptarjet112.setVisible(false);
+					this.ptarjet113.setVisible(false);
+					this.ptarjet114.setVisible(false);
+					this.ptarjet115.setVisible(false);
+					this.aitarjet111.setVisible(false);
+					this.aitarjet112.setVisible(false);
+					this.aitarjet113.setVisible(false);
+					this.aitarjet114.setVisible(false);
+					this.aitarjet115.setVisible(false);
+
+					if(e.getSource()==this.ptarjet111){
+						c=this.player.field.cards[0].getcard();
+						this.player.field.quitar(0);
+						try {
+							this.player.field.poner(new SmallCard(true,c), 0);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.ptarjet112){
+						c=this.player.field.cards[1].getcard();
+						this.player.field.quitar(1);
+						try {
+							this.player.field.poner(new SmallCard(true,c), 1);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.ptarjet113){
+						c=this.player.field.cards[2].getcard();
+						this.player.field.quitar(2);
+						try {
+							this.player.field.poner(new SmallCard(true,c), 2);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.ptarjet114){
+						c=this.player.field.cards[3].getcard();
+						this.player.field.quitar(3);
+						try {
+							this.player.field.poner(new SmallCard(true,c), 3);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.ptarjet115){
+						c=this.player.field.cards[4].getcard();
+						this.player.field.quitar(4);
+						try {
+							this.player.field.poner(new SmallCard(true,c), 4);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.aitarjet111){
+						c=this.ai.aifield.cards[0].getcard();
+						this.ai.aifield.quitar(0);
+						try {
+							this.ai.aifield.poner(new SmallCard(true,c), 0);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.aitarjet112){
+						c=this.ai.aifield.cards[1].getcard();
+						this.ai.aifield.quitar(1);
+						try {
+							this.ai.aifield.poner(new SmallCard(true,c), 1);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.aitarjet113){
+						c=this.ai.aifield.cards[2].getcard();
+						this.ai.aifield.quitar(2);
+						try {
+							this.ai.aifield.poner(new SmallCard(true,c), 2);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.aitarjet114){
+						c=this.ai.aifield.cards[3].getcard();
+						this.ai.aifield.quitar(3);
+						try {
+							this.ai.aifield.poner(new SmallCard(true,c), 3);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					if(e.getSource()==this.aitarjet115){
+						c=this.ai.aifield.cards[4].getcard();
+						this.ai.aifield.quitar(4);
+						try {
+							this.ai.aifield.poner(new SmallCard(true,c), 4);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					repaint();
+					JOptionPane.showMessageDialog(null, "face down succefully");
+					repaint();
+				}
+
 			}
 
 			if (e.getSource()==player.pdeck.btnNewButton_1)// si se le da click al boton de fallen 
@@ -2403,6 +2463,166 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end.png")));
 		}
+		
+		if(e.getSource()==ptarjet1){
+			ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet2){
+			ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet3){
+			ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet4){
+			ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet5){
+			ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet1){
+			aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet2){
+			aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet3){
+			aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet4){
+			aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet5){
+			aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==ptarjet81){
+			ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet82){
+			ptarjet82.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet83){
+			ptarjet83.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet84){
+			ptarjet84.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet85){
+			ptarjet85.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet81){
+			aitarjet81.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet82){
+			aitarjet82.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet83){
+			aitarjet83.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet84){
+			aitarjet84.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet85){
+			aitarjet85.setIcon(new ImageIcon("redTarget1.png"));
+		}
+
+		if(e.getSource()==ptarjet91){
+			ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet92){
+			ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet93){
+			ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet94){
+			ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet95){
+			ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet91){
+			aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet92){
+			aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet93){
+			aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet94){
+			aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet95){
+			aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
+		}
+
+		if(e.getSource()==ptarjet101){
+			ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet102){
+			ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet103){
+			ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet104){
+			ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet105){
+			ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet101){
+			aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet102){
+			aitarjet102.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet103){
+			aitarjet103.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet104){
+			aitarjet104.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet105){
+			aitarjet105.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==ptarjet111){
+			ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet112){
+			ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet113){
+			ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet114){
+			ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet115){
+			ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet111){
+			aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet112){
+			aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet113){
+			aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet114){
+			aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet115){
+			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
+		}
 	}
 
 
@@ -2556,6 +2776,166 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 				liberarTutoEnd=1;
 			}
+		}
+		
+		if(e.getSource()==ptarjet1){
+			ptarjet1.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet2){
+			ptarjet2.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet3){
+			ptarjet3.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet4){
+			ptarjet4.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet5){
+			ptarjet5.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==aitarjet1){
+			aitarjet1.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet2){
+			aitarjet2.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet3){
+			aitarjet3.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet4){
+			aitarjet4.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet5){
+			aitarjet5.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==ptarjet81){
+			ptarjet81.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet82){
+			ptarjet82.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet83){
+			ptarjet83.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet84){
+			ptarjet84.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet85){
+			ptarjet85.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==aitarjet81){
+			aitarjet81.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet82){
+			aitarjet82.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet83){
+			aitarjet83.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet84){
+			aitarjet84.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet85){
+			aitarjet85.setIcon(new ImageIcon("redTarget3.png"));
+		}
+
+		if(e.getSource()==ptarjet91){
+			ptarjet91.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet92){
+			ptarjet92.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet93){
+			ptarjet93.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet94){
+			ptarjet94.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet95){
+			ptarjet95.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==aitarjet91){
+			aitarjet91.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet92){
+			aitarjet92.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet93){
+			aitarjet93.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet94){
+			aitarjet94.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet95){
+			aitarjet95.setIcon(new ImageIcon("redTarget3.png"));
+		}
+
+		if(e.getSource()==ptarjet101){
+			ptarjet101.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet102){
+			ptarjet102.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet103){
+			ptarjet103.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet104){
+			ptarjet104.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet105){
+			ptarjet105.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==aitarjet101){
+			aitarjet101.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet102){
+			aitarjet102.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet103){
+			aitarjet103.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet104){
+			aitarjet104.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet105){
+			aitarjet105.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==ptarjet111){
+			ptarjet111.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet112){
+			ptarjet112.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet113){
+			ptarjet113.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet114){
+			ptarjet114.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==ptarjet115){
+			ptarjet115.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		
+		if(e.getSource()==aitarjet111){
+			aitarjet111.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet112){
+			aitarjet112.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet113){
+			aitarjet113.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet114){
+			aitarjet114.setIcon(new ImageIcon("redTarget3.png"));
+		}
+		if(e.getSource()==aitarjet115){
+			aitarjet115.setIcon(new ImageIcon("redTarget3.png"));
 		}
 	}
 
@@ -3552,6 +3932,167 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				tuto.ok.doClick();
 			
 		}
+		
+		if(e.getSource()==ptarjet1){
+			ptarjet1.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet2){
+			ptarjet2.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet3){
+			ptarjet3.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet4){
+			ptarjet4.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet5){
+			ptarjet5.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==aitarjet1){
+			aitarjet1.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet2){
+			aitarjet2.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet3){
+			aitarjet3.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet4){
+			aitarjet4.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet5){
+			aitarjet5.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==ptarjet81){
+			ptarjet81.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet82){
+			ptarjet82.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet83){
+			ptarjet83.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet84){
+			ptarjet84.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet85){
+			ptarjet85.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==aitarjet81){
+			aitarjet81.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet82){
+			aitarjet82.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet83){
+			aitarjet83.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet84){
+			aitarjet84.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet85){
+			aitarjet85.setIcon(new ImageIcon("redTarget2.png"));
+		}
+
+		if(e.getSource()==ptarjet91){
+			ptarjet91.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet92){
+			ptarjet92.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet93){
+			ptarjet93.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet94){
+			ptarjet94.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet95){
+			ptarjet95.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==aitarjet91){
+			aitarjet91.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet92){
+			aitarjet92.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet93){
+			aitarjet93.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet94){
+			aitarjet94.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet95){
+			aitarjet95.setIcon(new ImageIcon("redTarget2.png"));
+		}
+
+		if(e.getSource()==ptarjet101){
+			ptarjet101.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet102){
+			ptarjet102.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet103){
+			ptarjet103.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet104){
+			ptarjet104.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet105){
+			ptarjet105.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==aitarjet101){
+			aitarjet101.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet102){
+			aitarjet102.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet103){
+			aitarjet103.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet104){
+			aitarjet104.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet105){
+			aitarjet105.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==ptarjet111){
+			ptarjet111.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet112){
+			ptarjet112.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet113){
+			ptarjet113.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet114){
+			ptarjet114.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==ptarjet115){
+			ptarjet115.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
+		if(e.getSource()==aitarjet111){
+			aitarjet111.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet112){
+			aitarjet112.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet113){
+			aitarjet113.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet114){
+			aitarjet114.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		if(e.getSource()==aitarjet115){
+			aitarjet115.setIcon(new ImageIcon("redTarget2.png"));
+		}
+		
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -3577,6 +4118,166 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end.png")));
+		}
+		
+		if(e.getSource()==ptarjet1){
+			ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet2){
+			ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet3){
+			ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet4){
+			ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet5){
+			ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet1){
+			aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet2){
+			aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet3){
+			aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet4){
+			aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet5){
+			aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==ptarjet81){
+			ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet82){
+			ptarjet82.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet83){
+			ptarjet83.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet84){
+			ptarjet84.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet85){
+			ptarjet85.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet81){
+			aitarjet81.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet82){
+			aitarjet82.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet83){
+			aitarjet83.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet84){
+			aitarjet84.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet85){
+			aitarjet85.setIcon(new ImageIcon("redTarget1.png"));
+		}
+
+		if(e.getSource()==ptarjet91){
+			ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet92){
+			ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet93){
+			ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet94){
+			ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet95){
+			ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet91){
+			aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet92){
+			aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet93){
+			aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet94){
+			aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet95){
+			aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
+		}
+
+		if(e.getSource()==ptarjet101){
+			ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet102){
+			ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet103){
+			ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet104){
+			ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet105){
+			ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet101){
+			aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet102){
+			aitarjet102.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet103){
+			aitarjet103.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet104){
+			aitarjet104.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet105){
+			aitarjet105.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==ptarjet111){
+			ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet112){
+			ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet113){
+			ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet114){
+			ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==ptarjet115){
+			ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		
+		if(e.getSource()==aitarjet111){
+			aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet112){
+			aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet113){
+			aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet114){
+			aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
+		}
+		if(e.getSource()==aitarjet115){
+			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
 		}
 	}
 	
