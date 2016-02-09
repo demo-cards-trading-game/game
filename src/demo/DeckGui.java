@@ -30,7 +30,7 @@ public class DeckGui extends JPanel {
 	public JTextField textField;
 
 	public deck Deck;
-	public LoadData loadData;
+	
 	private JTextField txtHero;
 	private JTextField txtCharacter;
 	private JTextField txtSection;
@@ -136,7 +136,7 @@ public class DeckGui extends JPanel {
 
 	 public void addhero(Card x) throws IOException
 		{
-			panel.add(new SmallCard(true,x));
+			panel.add(new SmallCard(false,x));
 			repaint();
 			
 		}	

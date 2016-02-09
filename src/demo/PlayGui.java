@@ -923,6 +923,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 		
+		
 //		JLabel label = new JLabel();
 //		label.setIcon(new ImageIcon("redArrow1.png"));
 //		label.setBounds(100,100,50,50);

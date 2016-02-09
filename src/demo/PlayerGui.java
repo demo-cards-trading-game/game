@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -40,6 +41,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		pdeck.setSize(250, 343);
 		pdeck.setLocation(770, 361);
 		this.add(pdeck);
+		pdeck.Deck.lista.Data.imprimir();
+		try {
+			pdeck.addhero(pdeck.Deck.lista.Data.Consultar(8));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

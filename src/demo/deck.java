@@ -16,7 +16,7 @@ public class deck{
 	public   Card[]  cards  = new Card[40];
 	
 	private boolean[]  verif  = new boolean[40];
-	private LoadData lista;
+	public LoadData lista;
 	
      /**
       * As cards are dealt from the deck, the number of 

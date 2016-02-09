@@ -85,6 +85,7 @@ public  class List{
        ultimo=nuevo;
 	   }else
 	   {
+		   System.out.println("inserto primero");
 		   insertar(1,x);
 		   
 	   }
@@ -120,17 +121,21 @@ public  class List{
     public Card Consultar(int pos)
     {
     	Card informacion=new Card();
-    	if (pos == 1) 
-    	{
-            informacion = raiz.info;
-    	}else
-    	{
+    	boolean encontrado=false;
+    	
     		Nodo reco;
             reco = raiz;
-            for (int f = 2 ; f < pos  ; f++)
-                reco = reco.sig;
-            informacion=reco.info;
-    	}
+            while(!encontrado && reco!=null){
+           
+                if(pos==reco.info.GetCardNumber())
+                {
+                	encontrado=true;
+                	informacion=reco.info;
+                }
+            		reco = reco.sig;
+            }
+            
+    	
     	return informacion;
     }
 
@@ -155,21 +160,7 @@ public  class List{
         }
     }
     
-    public void intercambiar (int pos1, int pos2) {
-        if (pos1 <= cantidad  && pos2 <= cantidad )    {
-            Nodo reco1 = raiz;
-            for (int f = 1 ; f < pos1 ; f++)
-                reco1 = reco1.sig;
-            Nodo reco2 = raiz;
-            for (int f = 1 ; f < pos2 ; f++)
-                reco2 = reco2.sig;
-            Card aux = new Card();
-              aux.asignar(reco1.info);
-            reco1.info.asignar( reco2.info);
-            reco2.info = aux;
-        }
-    }
-
+ 
     public void imprimir ()
      {
       int contador=1;
