@@ -13,7 +13,7 @@ import javax.swing.Icon;
 public class Phases extends JPanel {
 	public final JPanel panel_4 = new JPanel();
 	public JLabel arrow;
-	int actual;
+	public int actual;
 	
 	public JPanel panel, panel_1, panel_2, panel_3;
 	public JLabel setup, draw, action, attack, end;

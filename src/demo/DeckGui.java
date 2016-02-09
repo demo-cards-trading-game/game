@@ -70,13 +70,13 @@ public class DeckGui extends JPanel {
 		textField.setEditable(false);
 		textField.setForeground(new Color(255, 255, 255));
 		textField.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		textField.setText("Cards left "+ Deck.cardsLeft());
+		textField.setText("CARDS LEFT "+ Deck.cardsLeft());
 		textField.setBackground(Color.BLACK);
 		textField.setBounds(160, 320, 80, 20);
 		add(textField);
 		textField.setColumns(10);
 		
-	 lblDeck = new JLabel("Deck");
+	 lblDeck = new JLabel("DECK");
 	 lblDeck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDeck.setForeground(new Color(50, 205, 50));
 		lblDeck.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));

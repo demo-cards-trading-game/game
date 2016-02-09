@@ -1040,7 +1040,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			player.hand.discard(s+1);
 
-			this.repairListeners();
+			this.repairListeners(false);
 
 
 
@@ -1057,9 +1057,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);
 				player.hand.discard(2);
 
-				this.repairListeners();
-
-
+				if(phases.actual==2){
+					this.repairListeners(true);
+					}else
+					{
+						this.repairListeners(false);
+					}
 			}
 			done=1;
 
@@ -1070,9 +1073,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);
 				player.hand.discard(3);
-
-				this.repairListeners();
-
+				if(phases.actual==2){
+					this.repairListeners(true);
+					}else
+					{
+						this.repairListeners(false);
+					}
 
 			}
 			done=1;
@@ -1084,9 +1090,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);
 				player.hand.discard(4);
-
-				this.repairListeners();
-
+				if(phases.actual==2){
+					this.repairListeners(true);
+					}else
+					{
+						this.repairListeners(false);
+					}
 
 			}
 			done=1;
@@ -1098,7 +1107,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			{
 				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);
 
-				this.repairListeners();
+				if(phases.actual==2){
+					this.repairListeners(true);
+					}else
+					{
+						this.repairListeners(false);
+					}
 
 
 			}
@@ -1156,7 +1170,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(done==0)
 				player.hand.discard(1);
 
-			this.repairListeners();
+			if(phases.actual==2){
+				this.repairListeners(true);
+				}else
+				{
+					this.repairListeners(false);
+				}
 
 
 			done=1;
@@ -1222,7 +1241,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					play(pl);
 				done=1;
 
-				this.repairListeners();
+				this.repairListeners(true);
 
 
 			}
@@ -1372,7 +1391,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(1);
 
-			this.repairListeners();
+			this.repairListeners(true);
 
 
 
@@ -1406,7 +1425,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(2);
 
-			this.repairListeners();
+			this.repairListeners(true);
 
 
 
@@ -1440,7 +1459,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(3);
 
-			this.repairListeners();
+			this.repairListeners(true);
 
 
 
@@ -1473,7 +1492,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(4);
 
-			this.repairListeners();
+			this.repairListeners(true);
 
 
 
@@ -1506,7 +1525,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(5);
 
-			this.repairListeners();
+			this.repairListeners(true);
 
 
 
@@ -2968,7 +2987,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.handgui[pos].Preview.doClick();
 			player.hand.discard(1);
 
-			this.repairListeners();
+			this.repairListeners(true);
 
 
 			repaint();
@@ -3883,7 +3902,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		return cont;
 	}
 
-	public void repairListeners()
+	public void repairListeners(boolean enabled)//enabled dice si el boton playesta on o no
 	{
 
 		for(int i=0;i<player.hand.current;i++)
@@ -3894,7 +3913,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
 		
-			player.hand.handgui[i].Play.setEnabled(true);
+			player.hand.handgui[i].Play.setEnabled(enabled);
 			player.hand.handgui[i].addMouseListener(this);	
 		}
 		if(player.hand.handgui[player.hand.current]!=null)
