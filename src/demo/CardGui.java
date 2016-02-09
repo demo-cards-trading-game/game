@@ -235,7 +235,7 @@ import javax.swing.border.MatteBorder;
 		lblAbility.setBounds(10, 109, 46, 14);
 		add(lblAbility);
 		
-		
+		//check
 		
 		
 		
