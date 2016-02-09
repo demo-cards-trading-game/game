@@ -41,7 +41,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		pdeck.setSize(250, 343);
 		pdeck.setLocation(770, 361);
 		this.add(pdeck);
-		pdeck.Deck.lista.Data.imprimir();
+		
 		try {
 			pdeck.addhero(pdeck.Deck.lista.Data.Consultar(8));
 		} catch (IOException e) {

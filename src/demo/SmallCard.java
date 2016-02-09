@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
+import extra.RoundedLabel;
 import extra.RoundedPanel;
 import data.LoadData;
 
@@ -27,7 +28,6 @@ import javax.swing.border.LineBorder;
 public class SmallCard extends RoundedPanel{
 	private JTextField textField;
 	public Card  actual;
-	public JInternalFrame menu;
 	Graphics2D g2d;
 	public JLabel lblAtaque;
     boolean rotating = false;
@@ -40,14 +40,11 @@ public class SmallCard extends RoundedPanel{
 	
 	public SmallCard(boolean bocabajo,Card x ) throws IOException {
 		
-		setOpaque(true);
 		actual=x;
 		this.down=bocabajo;
 		
 		/**********************menu******************************/
-		menu = new JInternalFrame();
-		menu.setClosable(true);
-		menu.setBounds(0,0,100,145);
+	
 		/******************************************************/
 		//setBounds(new Rectangle(0, 0, 100, 145));
 		setBounds(0,0, 100, 145);	
@@ -64,7 +61,7 @@ public class SmallCard extends RoundedPanel{
 	{
 		
 		try {
-			JPanel panel_1= new JPanel();
+			JPanel panel_1= new RoundedPanel();
 			panel_1.setBounds(0, 0, 100, 145);
 			panel_1.setOpaque(true);
 			panel_1.setVisible(true);
@@ -95,7 +92,7 @@ public class SmallCard extends RoundedPanel{
 		setForeground(Color.WHITE);
 	
 		
-		CirclePanel panel = new CirclePanel();//aca va la imagen
+		JPanel panel = new JPanel();//aca va la imagen
 		
 		
 			
@@ -131,7 +128,7 @@ public class SmallCard extends RoundedPanel{
 		}
 		
 		panel.setBorder(null);
-		panel.setOpaque(true);
+	
 		panel.setVisible(true);
 		panel.setBounds(10, 36, 60, 55);
 		
@@ -163,14 +160,14 @@ public class SmallCard extends RoundedPanel{
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
 			
-			setBackground(new Color(204, 153, 51));
-			menu.setBackground(new Color(204, 153, 51));//the menu bacckground is added
+			setBackground(Color.ORANGE);
+		
 			panel.setForeground(new Color(204, 153, 51));
 			
 		}else if(x.GetType()=="Disruption")
 		{
 			txtpnTexto.setBackground(new Color(255, 105, 180));
-			menu.setBackground(new Color(255, 105, 180));//the menu bacckground is added
+			
 			setBackground(new Color(255, 0, 153));
 			panel.setForeground(new Color(255, 0, 153));
 			
@@ -179,14 +176,14 @@ public class SmallCard extends RoundedPanel{
 		{
 			txtpnTexto.setBackground(new Color(216, 191, 216));
 			setBackground(new Color(147, 112, 219));
-			menu.setBackground(new Color(147, 112, 219));
+			
 			panel.setForeground(new Color(147, 112, 219));
 			
 		}else
 		{
 			txtpnTexto.setBackground(new Color(255, 228, 181));
 			setBackground(new Color(0, 255, 0));
-			menu.setBackground(new Color(0, 255, 0));
+			
 			panel.setForeground(new Color(0, 255, 0));
 			
 			
@@ -210,7 +207,7 @@ public class SmallCard extends RoundedPanel{
 				
 			  switch(x.GetCardNumber()){
 			  case 1:
-				  	panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01.png")))));
+				  	panel.add(new RoundedLabel(new ImageIcon(ImageIO.read(new File("01.png")))));
 				  	break;
 			  case 2: panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));
 			  		break;
