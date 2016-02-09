@@ -3894,7 +3894,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
 		
-			player.hand.handgui[i].Play.setEnabled(false);
+			player.hand.handgui[i].Play.setEnabled(true);
 			player.hand.handgui[i].addMouseListener(this);	
 		}
 		if(player.hand.handgui[player.hand.current]!=null)
