@@ -259,7 +259,7 @@ public class SmallCard extends RoundedPanel{
 		lblType.setBounds(55, 2, 52, 14);
 		add(lblType);
 		
-		setOpaque(false);
+		panel.setOpaque(false);
 		
 		
 	}
