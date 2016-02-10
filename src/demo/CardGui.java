@@ -130,7 +130,7 @@ import javax.swing.border.MatteBorder;
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(10, 36, 102, 72);
+		panel.setBounds(04, 36, 112, 82);
 	
 		if(x.GetType()=="Warrior")
 		{
@@ -241,11 +241,12 @@ import javax.swing.border.MatteBorder;
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(43, 165, 77, 21);
+		lblNewLabel.setBounds(38, 160, 77, 21);
 		add(lblNewLabel);
+		moveToFront(lblNewLabel);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
-		lblNewLabel.setForeground(new Color(128, 0, 0));
+		lblNewLabel.setForeground(Color.black);
 		
 		JLabel lblType = new JLabel(x.GetType());
 		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
