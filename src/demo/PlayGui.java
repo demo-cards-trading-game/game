@@ -686,18 +686,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.ptarjet91= new JLabel();
 		this.ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet91.setBounds(230,380, 50, 50);
-		this.ptarjet92= new JLabel();
+		this.ptarjet92 = new JLabel();
 		this.ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet92.setBounds(340,380, 50, 50);
-		this.ptarjet93= new JLabel();
+		this.ptarjet92.setBounds(340, 380, 50, 50);
+		this.ptarjet93 = new JLabel();
 		this.ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet93.setBounds(450,380, 50, 50);
-		this.ptarjet94= new JLabel();
+		this.ptarjet93.setBounds(450, 380, 50, 50);
+		this.ptarjet94 = new JLabel();
 		this.ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet94.setBounds(560,380, 50, 50);
-		this.ptarjet95= new JLabel();
+		this.ptarjet94.setBounds(560, 380, 50, 50);
+		this.ptarjet95 = new JLabel();
 		this.ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet95.setBounds(670,380, 50, 50);
+		this.ptarjet95.setBounds(670, 380, 50, 50);
 		add(ptarjet91);
 		add(ptarjet92);
 		add(ptarjet93);
@@ -709,21 +709,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet94);
 		this.moveToFront(ptarjet95);
 
-		this.aitarjet91= new JLabel();
+		this.aitarjet91 = new JLabel();
 		this.aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet91.setBounds(230, 210, 50, 50);
-		this.aitarjet92= new JLabel();
+		this.aitarjet92 = new JLabel();
 		this.aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet92.setBounds(340,210, 50, 50);
-		this.aitarjet93= new JLabel();
+		this.aitarjet92.setBounds(340, 210, 50, 50);
+		this.aitarjet93 = new JLabel();
 		this.aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet93.setBounds(450,210, 50, 50);
-		this.aitarjet94= new JLabel();
+		this.aitarjet93.setBounds(450, 210, 50, 50);
+		this.aitarjet94 = new JLabel();
 		this.aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet94.setBounds(560,210, 50, 50);
-		this.aitarjet95= new JLabel();
+		this.aitarjet94.setBounds(560, 210, 50, 50);
+		this.aitarjet95 = new JLabel();
 		this.aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet95.setBounds(670,210, 50, 50);
+		this.aitarjet95.setBounds(670, 210, 50, 50);
 		add(aitarjet91);
 		add(aitarjet92);
 		add(aitarjet93);
@@ -757,24 +757,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet94.setVisible(false);
 		this.aitarjet95.setVisible(false);
 
-
-
-
-		this.ptarjet101= new JLabel();
+		this.ptarjet101 = new JLabel();
 		this.ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet101.setBounds(230,380, 50, 50);
-		this.ptarjet102= new JLabel();
+		this.ptarjet101.setBounds(230, 380, 50, 50);
+		this.ptarjet102 = new JLabel();
 		this.ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet102.setBounds(340,380, 50, 50);
-		this.ptarjet103= new JLabel();
+		this.ptarjet102.setBounds(340, 380, 50, 50);
+		this.ptarjet103 = new JLabel();
 		this.ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet103.setBounds(450,380, 50, 50);
-		this.ptarjet104= new JLabel();
+		this.ptarjet103.setBounds(450, 380, 50, 50);
+		this.ptarjet104 = new JLabel();
 		this.ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet104.setBounds(560,380, 50, 50);
-		this.ptarjet105= new JLabel();
+		this.ptarjet104.setBounds(560, 380, 50, 50);
+		this.ptarjet105 = new JLabel();
 		this.ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet105.setBounds(670,380, 50, 50);
+		this.ptarjet105.setBounds(670, 380, 50, 50);
 		add(ptarjet101);
 		add(ptarjet102);
 		add(ptarjet103);
@@ -786,21 +783,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet104);
 		this.moveToFront(ptarjet105);
 
-		this.aitarjet101= new JLabel();
+		this.aitarjet101 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet101.setBounds(230, 210, 50, 50);
-		this.aitarjet102= new JLabel();
+		this.aitarjet102 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet102.setBounds(340,210, 50, 50);
-		this.aitarjet103= new JLabel();
+		this.aitarjet102.setBounds(340, 210, 50, 50);
+		this.aitarjet103 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet103.setBounds(450,210, 50, 50);
-		this.aitarjet104= new JLabel();
+		this.aitarjet103.setBounds(450, 210, 50, 50);
+		this.aitarjet104 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet104.setBounds(560,210, 50, 50);
-		this.aitarjet105= new JLabel();
+		this.aitarjet104.setBounds(560, 210, 50, 50);
+		this.aitarjet105 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet105.setBounds(670,210, 50, 50);
+		this.aitarjet105.setBounds(670, 210, 50, 50);
 		add(aitarjet101);
 		add(aitarjet103);
 		add(aitarjet102);
@@ -834,25 +831,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet104.setVisible(false);
 		this.aitarjet105.setVisible(false);
 
-
-
-
-
-		this.ptarjet111= new JLabel();
+		this.ptarjet111 = new JLabel();
 		this.ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet111.setBounds(230,380, 50, 50);
-		this.ptarjet112= new JLabel();
+		this.ptarjet111.setBounds(230, 380, 50, 50);
+		this.ptarjet112 = new JLabel();
 		this.ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet112.setBounds(340,380, 50, 50);
-		this.ptarjet113= new JLabel();
+		this.ptarjet112.setBounds(340, 380, 50, 50);
+		this.ptarjet113 = new JLabel();
 		this.ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet113.setBounds(450,380, 50, 50);
-		this.ptarjet114= new JLabel();
+		this.ptarjet113.setBounds(450, 380, 50, 50);
+		this.ptarjet114 = new JLabel();
 		this.ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet114.setBounds(560,380, 50, 50);
-		this.ptarjet115= new JLabel();
+		this.ptarjet114.setBounds(560, 380, 50, 50);
+		this.ptarjet115 = new JLabel();
 		this.ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet115.setBounds(670,380, 50, 50);
+		this.ptarjet115.setBounds(670, 380, 50, 50);
 		add(ptarjet111);
 		add(ptarjet112);
 		add(ptarjet113);
@@ -864,21 +857,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet114);
 		this.moveToFront(ptarjet115);
 
-		this.aitarjet111= new JLabel();
+		this.aitarjet111 = new JLabel();
 		this.aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet111.setBounds(230, 210, 50, 50);
-		this.aitarjet112= new JLabel();
+		this.aitarjet112 = new JLabel();
 		this.aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet112.setBounds(340,210, 50, 50);
-		this.aitarjet113= new JLabel();
+		this.aitarjet112.setBounds(340, 210, 50, 50);
+		this.aitarjet113 = new JLabel();
 		this.aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet113.setBounds(450,210, 50, 50);
-		this.aitarjet114= new JLabel();
+		this.aitarjet113.setBounds(450, 210, 50, 50);
+		this.aitarjet114 = new JLabel();
 		this.aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet114.setBounds(560,210, 50, 50);
-		this.aitarjet115= new JLabel();
+		this.aitarjet114.setBounds(560, 210, 50, 50);
+		this.aitarjet115 = new JLabel();
 		this.aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet115.setBounds(670,210, 50, 50);
+		this.aitarjet115.setBounds(670, 210, 50, 50);
 		add(aitarjet111);
 		add(aitarjet112);
 		add(aitarjet113);
@@ -919,54 +912,48 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.label.setVisible(false);
 
 		player.pdeck.btnNewButton_2.addMouseListener(this);
-		
-		for(int i=0;i<player.hand.current;i++)
+
+		for (int i = 0; i < player.hand.current; i++)
 			player.hand.handgui[i].Play.setEnabled(false);
-		
+
 		player.pdeck.Play.addActionListener(this);
 		player.pdeck.Preview.addActionListener(this);
-//		JLabel label = new JLabel();
-//		label.setIcon(new ImageIcon("redArrow1.png"));
-//		label.setBounds(100,100,50,50);
-//		this.add(label);
-//		this.moveToFront(label);
+		// JLabel label = new JLabel();
+		// label.setIcon(new ImageIcon("redArrow1.png"));
+		// label.setBounds(100,100,50,50);
+		// this.add(label);
+		// this.moveToFront(label);
 	}
+
 	public void actionPerformed(ActionEvent e) {
-		done=0;
-		if( e.getSource()==tuto.ok)
-		{
+		done = 0;
+		if (e.getSource() == tuto.ok) {
 
 			tuto.animation.stop();
-
 
 			tuto.animation.stop();
 			tuto.setVisible(false);
-			checking=false;
-
+			checking = false;
 
 		}
-		if( e.getSource()==tuto.ok3)
-		{
+		if (e.getSource() == tuto.ok3) {
 
 			tuto.animation.stop();
-
 
 			tuto.animation.stop();
 			tuto.setVisible(false);
 
 			player.powers.label.setVisible(false);
-			set(p,w);
-			checking=false;
+			set(p, w);
+			checking = false;
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 			tuto.panel.add(tuto.ok);
 			player.powers.disselect();
 			;
 
-
 		}
-		if( e.getSource()==tuto.cancel)
-		{
+		if (e.getSource() == tuto.cancel) {
 
 			tuto.animation.stop();
 			player.powers.label.setVisible(false);
@@ -976,74 +963,69 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.setVisible(false);
 			tuto.panel.add(tuto.ok);
 
-
 		}
 
-		s=-1;
-		if(e.getSource()==player.hand.handgui[0].Set)
-		{
-			if(done==0){
-				s=0;
+		s = -1;
+		if (e.getSource() == player.hand.handgui[0].Set) {
+			if (done == 0) {
+				s = 0;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[1].Set)
-		{
-			if(done==0){
-				s=1;
-
+		if (e.getSource() == player.hand.handgui[1].Set) {
+			if (done == 0) {
+				s = 1;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[2].Set)
-		{
-			if(done==0){
-				s=2;
+		if (e.getSource() == player.hand.handgui[2].Set) {
+			if (done == 0) {
+				s = 2;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[3].Set)
-		{
-			if(done==0){
-				s=3;
-
+		if (e.getSource() == player.hand.handgui[3].Set) {
+			if (done == 0) {
+				s = 3;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[4].Set)
-		{
-			if(done==0){
-				s=4;
-
-
-
+		if (e.getSource() == player.hand.handgui[4].Set) {
+			if (done == 0) {
+				s = 4;
 
 			}
-			done=1;
+			done = 1;
 
 		}
+		if (player.hand.handgui[5] != null) {
+			if (e.getSource() == player.hand.handgui[5].Set) {
+				if (done == 0) {
+					s = 5;
+				}
+				done = 1;
 
-		if(s!=-1)
-		{
+			}
+		}
+		if (s != -1) {
 
-			fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[s]);	
-			if(player.hand.cards[s].GetName()=="Water power")
+			fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.hand.cards[s]);
+			if (player.hand.cards[s].GetName() == "Water power")
 				player.powers.setwp();
 			else
 				player.powers.set();
 
-			player.hand.discard(s+1);
+			player.hand.discard(s + 1);
 
 			this.repairListeners(false);
-
 
 
 
@@ -1117,6 +1099,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 
 
+			}
+			done=1;
+
+		}
+		
+		if(e.getSource()==player.pdeck.Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(player.pdeck.Hero.getcard(),0,0));
 			}
 			done=1;
 
@@ -1704,6 +1696,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
+						player.pdeck.Play.setEnabled(true);
+						
 						break;
 					case 3:
 						liberarTutoEnd=0;
@@ -4348,7 +4342,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<5;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 
-
+		player.pdeck.Play.setEnabled(false);
 		tuto.draw();
 		player.powers.reset(); 
 	    

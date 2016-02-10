@@ -159,6 +159,7 @@ public class DeckGui extends JPanel {
 			Preview.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 10));
 			menu.setClosable(true);
 			menu.setBounds(0,0,100,145);
+			menu.setBackground(Color.ORANGE);
 			menu.setVisible(false);
 			panel.add(menu);
 			menu.setOpaque(true);

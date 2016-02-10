@@ -285,7 +285,6 @@ import javax.swing.border.MatteBorder;
 	            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 	            RenderingHints.VALUE_ANTIALIAS_ON);
 	        }
-
 	        //Draws shadow borders if any.
 	        if (shady) {
 	            graphics.setColor(shadowColorA);
