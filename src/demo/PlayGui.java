@@ -3952,11 +3952,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.handgui[i].Play.setEnabled(enabled);
 			player.hand.handgui[i].addMouseListener(this);	
 		}
+		player.pdeck.Play.setEnabled(enabled);
 		if(player.hand.handgui[player.hand.current]!=null)
 		{
 			Addlisteners2Card(player.hand.current);
 			player.hand.handgui[player.hand.current].addMouseListener(this);	
 		}
+		
 
 	}
 	@Override
@@ -4346,8 +4348,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 		tuto.draw();
-		player.powers.reset(); 
-	    player.powers.token();
+		player.powers.reset();  
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
