@@ -106,7 +106,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
 	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
-	//esto es para ssd-08
+	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
 	//esto es para sdd-09
