@@ -1293,7 +1293,26 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				}
 
-
+				if(e.getSource()==this.attack1){
+					this.menu1.setVisible(false);
+					this.swordp1.setVisible(false);
+				}
+				if(e.getSource()==this.attack2){
+					this.menu2.setVisible(false);
+					this.swordp2.setVisible(false);
+				}
+				if(e.getSource()==this.attack3){
+					this.menu3.setVisible(false);
+					this.swordp3.setVisible(false);
+				}
+				if(e.getSource()==this.attack4){
+					this.menu4.setVisible(false);
+					this.swordp4.setVisible(false);
+				}
+				if(e.getSource()==this.attack5){
+					this.menu5.setVisible(false);
+					this.swordp5.setVisible(false);
+				}
 			}else{
 				JOptionPane.showMessageDialog(null, "Select Your Target");
 				if(ai.aifield.cards[0]!=null){
