@@ -69,7 +69,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public fightpane fight;
 	public static PlayerGui player;//aca estan el hand el deck y lo demas
 	public AIGui ai;//lo mismo pero en el ai
-	public Previewpane preview;//aca se muestra la carta
+	public Previewpane preview;
 	int p,w,c;//pos , where, cost
 	public Tutorial tuto;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
