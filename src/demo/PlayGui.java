@@ -1025,7 +1025,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			player.hand.discard(s + 1);
 
-			this.repairListeners(false);
+			if(phases.actual==2){
+				this.repairListeners(true);
+				}else
+				{
+					this.repairListeners(false);
+				}
 
 
 
@@ -2999,7 +3004,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 			warriorPlayed = 1;
-			System.out.println(this.warriorPlayed);
+		
 
 		}
 		}else
@@ -3008,7 +3013,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		try {
 			
-			System.out.println("ps= "+pos );
+			
 			if(pos>=0){
 				
 			carta = new SmallCard(false,player.hand.handgui[pos].getcard());
