@@ -49,6 +49,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 			e.printStackTrace();
 		}
 		
+		pdeck.panel.addMouseListener(this);
 		
 	}
 	@Override
@@ -58,6 +59,17 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(e.getClickCount()==1)
+		{
+			
+			if(e.getSource()==pdeck.panel)
+			{
+				pdeck.menu.setVisible(true);
+				
+			}
+			
+			
+		}
 		// TODO Auto-generated method stub
 	}
 	@Override
