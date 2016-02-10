@@ -69,7 +69,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public fightpane fight;
 	public static PlayerGui player;//aca estan el hand el deck y lo demas
 	public AIGui ai;//lo mismo pero en el ai
-	public Previewpane preview;
+	public Previewpane preview;//aca se muestra la carta
 	int p,w,c;//pos , where, cost
 	public Tutorial tuto;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
@@ -1188,7 +1188,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==player.pdeck.Play)
 		{
 			pl=-2;
-			System.out.println("laloo");
+			
 		}
 		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 2  
 		{
@@ -2291,7 +2291,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(e.getSource()==ai.aideck.btnNewButton){
-				System.out.println("toque deck ai");
+			
 			}
 
 		}	    
@@ -2994,12 +2994,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			warriorPlayed = 1;
 		}
 		try {
-		
-			if(pos>0){
+			
+			System.out.println("ps= "+pos );
+			if(pos>=0){
+				
 			carta = new SmallCard(false,player.hand.handgui[pos].getcard());
 			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
 			player.hand.handgui[pos].Preview.doClick();
-			player.hand.discard(pos);
+			player.hand.discard(pos+1);
 			}else {
 			carta = new SmallCard(false,player.pdeck.Hero.getcard());
 			player.pdeck.panel.remove(player.pdeck.Hero);
@@ -4348,7 +4350,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 		tuto.draw();
-		player.powers.reset();  
+		player.powers.reset(); 
+	    
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);

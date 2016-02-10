@@ -180,7 +180,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		int i ;
 		for(i= 0;i<n;i++){
 		set();
-		System.out.println(currentundrained);
+		
 		}
 		setVisible(true);
 		repaint();
