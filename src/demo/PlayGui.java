@@ -74,7 +74,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public Tutorial tuto;
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
-
+	int donde;
 	optionpane op;
 	int turn, contTurn=0;
 	public int ready=0;
@@ -107,6 +107,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
 	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
+	RoundedPanel unleash;
 	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
@@ -159,9 +160,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
 
-
-
-		pane = new JInternalFrame("THE FALLEN");
+		unleash=new RoundedPanel();
+		unleash.setBounds(0,0,100,145);
+        unleash.add (new JLabel(new ImageIcon(ImageIO.read(new File("unleash.png")))));
+ 		pane = new JInternalFrame("THE FALLEN");
 
 		phases=new Phases(220,300);
 		add(phases);
@@ -2396,6 +2398,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 	public void mouseExited(MouseEvent e) {
+	
+		
+		if(e.getSource()==Hero)
+		{
+			
+		
+			remove(unleash);
+			
+			
+			repaint();
+			
+		}
+		
+		
 		int x=-1;
 		int x2;
 
@@ -2692,6 +2708,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseEntered(MouseEvent e) 
 	{
+		if(e.getSource()==Hero)
+		{
+			
+			unleash.setBounds(Hero.getX()+220,Hero.getY()+350,100,150);
+			add(unleash);
+			moveToFront(unleash);
+			
+			repaint();
+			
+		}
 		int x=-1;
 		int x2;
 		if(player.hand.current<5)
@@ -3027,7 +3053,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.field.poner(carta, where);
 			this.makeEffect(carta.actual.Getid(),where);
 			}else {
+				donde=w;
            Hero = new SmallCard(false,player.pdeck.Hero.getcard());
+           Hero.addMouseListener(this);
 			player.pdeck.panel.remove(player.pdeck.Hero);
 			player.pdeck.panel.remove(player.pdeck.menu);
 			player.powers.play(player.pdeck.Hero.getcard().GetCost());
