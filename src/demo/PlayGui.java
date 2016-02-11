@@ -2419,6 +2419,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			x2=124;
 		else
 			x2=498/(player.hand.current-1);
+		
+//		if (e.getSource()==player.hand.handgui[0].menu) {
+//			player.hand.handgui[0].menu.setVisible(false);
+//		}
+//		if (e.getSource()==player.hand.handgui[1].menu) {
+//			player.hand.handgui[1].menu.setVisible(false);
+//		}
+//		if (e.getSource()==player.hand.handgui[2].menu) {
+//			player.hand.handgui[2].menu.setVisible(false);
+//		}
+//		if (e.getSource()==player.hand.handgui[3].menu) {
+//			player.hand.handgui[3].menu.setVisible(false);
+//		}
+//		if (e.getSource()==player.hand.handgui[4].menu) {
+//			player.hand.handgui[4].menu.setVisible(false);
+//		}
+		
 		if(e.getSource()==player.hand.handgui[0])
 		{
 			x=0;
