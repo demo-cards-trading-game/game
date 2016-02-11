@@ -257,7 +257,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 			
 			
 		}
-		System.out.println("token"+tokenused);	
+		
 			while(tokenused>=1)
 			{
 				
@@ -323,7 +323,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void reset()
 	{
-		System.out.println("entro reset con"+used);
+		
 		for( int i=0;i<drain;i++)
 		{
 			
