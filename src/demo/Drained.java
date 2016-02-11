@@ -268,7 +268,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void borrar(int pos)
 	{
-		panel.remove(undrained[currentundrained]);
+		panel.remove(undrained[pos]);
 		setVisible(true);
 		repaint();
 	
@@ -378,6 +378,20 @@ public class Drained extends JLayeredPane implements MouseListener{
 		int i=0;
 		
 		while(!marks[i])
+		{
+			
+			i++;
+			
+			
+			
+		}
+		return i;
+	}
+	int find2()
+	{
+		int i=0;
+		
+		while(marks[i])
 		{
 			
 			i++;
