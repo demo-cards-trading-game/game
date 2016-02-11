@@ -72,6 +72,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public Previewpane preview;
 	int p,w,c;//pos , where, cost
 	public Tutorial tuto;
+	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 
 	optionpane op;
@@ -3022,24 +3023,29 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
 			player.hand.handgui[pos].Preview.doClick();
 			player.hand.discard(pos+1);
+			carta.addMouseListener(this);
+			player.field.poner(carta, where);
+			this.makeEffect(carta.actual.Getid(),where);
 			}else {
-			carta = new SmallCard(false,player.pdeck.Hero.getcard());
+           Hero = new SmallCard(false,player.pdeck.Hero.getcard());
 			player.pdeck.panel.remove(player.pdeck.Hero);
 			player.pdeck.panel.remove(player.pdeck.menu);
 			player.powers.play(player.pdeck.Hero.getcard().GetCost());
 			RoundedPanel show=new RoundedPanel();
 			show.setBounds(0,0,100,145);
 			player.pdeck.panel.add(show);
+			player.field.poner(Hero, where);
 			}
 			
-
+			player.powers. disselect();
 			
 			
 
 			repaint();
-			carta.addMouseListener(this);
+		
+			
 
-			player.field.poner(carta, where);
+			
 			player.hand.music();
 		
 			this.repairListeners(true);
@@ -3066,7 +3072,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			});
 			t.start();
 
-			this.makeEffect(carta.actual.Getid(),where);
+			
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
