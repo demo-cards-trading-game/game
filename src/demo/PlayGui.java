@@ -1702,7 +1702,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						
 							tuto.draw();
-						
+							this.phases.end.removeMouseListener(this);
 						
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
@@ -1711,6 +1711,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					case 1:
 						tuto.barrier();
 						this.phases.draw.removeMouseListener(this);
+						this.phases.end.removeMouseListener(this);
 						this.phases.action.addMouseListener(this);
 						break;
 					case 2:
@@ -1824,6 +1825,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 //							tuto.end();
 							ready=1;
 							this.phases.end.removeMouseListener(this);
+							
 						}
 						//turno del oponente
 						phases.change(0);
