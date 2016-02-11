@@ -195,6 +195,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
 			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
 
+			
 			Addlisteners2Card(pos-1);
 			player.hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
 			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
@@ -203,8 +204,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 		}
-		;
-
+			
 		fallen=new Fallen();
 		add(fallen);
 		player.pdeck.btnNewButton_1.addMouseListener(this);
@@ -1021,7 +1021,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (s != -1) {
 
 			fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.hand.cards[s]);
-			if (player.hand.cards[s].GetName() == "Water power")
+			if (player.hand.cards[s].GetCardNumber() == 18)
 				player.powers.setwp();
 			else
 				player.powers.set();
@@ -1615,6 +1615,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public void mouseClicked(MouseEvent e) 
 	{
 
+		if(e.getSource()==Hero)
+		{
+			
+		
+			remove(unleash);
+			play(-3);
+			
+			repaint();
+			
+		}
 		if(e.getButton() == MouseEvent.BUTTON1)
 		{
 			if(e.getClickCount()==1)
@@ -2301,7 +2311,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 					}
 					repaint();
-					JOptionPane.showMessageDialog(null, "face down succefully");
+					JOptionPane.showMessageDialog(null, "face down succesfully");
 					repaint();
 				}
 
@@ -2419,23 +2429,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			x2=124;
 		else
 			x2=498/(player.hand.current-1);
-		
-//		if (e.getSource()==player.hand.handgui[0].menu) {
-//			player.hand.handgui[0].menu.setVisible(false);
-//		}
-//		if (e.getSource()==player.hand.handgui[1].menu) {
-//			player.hand.handgui[1].menu.setVisible(false);
-//		}
-//		if (e.getSource()==player.hand.handgui[2].menu) {
-//			player.hand.handgui[2].menu.setVisible(false);
-//		}
-//		if (e.getSource()==player.hand.handgui[3].menu) {
-//			player.hand.handgui[3].menu.setVisible(false);
-//		}
-//		if (e.getSource()==player.hand.handgui[4].menu) {
-//			player.hand.handgui[4].menu.setVisible(false);
-//		}
-		
 		if(e.getSource()==player.hand.handgui[0])
 		{
 			x=0;
@@ -3045,7 +3038,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	{
 
 		SmallCard carta;
-		if(pos!=-2){
+		if(pos!=-2 && pos!=-3){
 		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 
 
@@ -3053,10 +3046,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 
 		}
-		}else
-		{
-			warriorPlayed = 1;
-		}
+	}
 		try {
 			
 			
@@ -3069,9 +3059,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			carta.addMouseListener(this);
 			player.field.poner(carta, where);
 			this.makeEffect(carta.actual.Getid(),where);
-			}else {
+			}
+			if(pos==-2){
 				donde=w;
            Hero = new SmallCard(false,player.pdeck.Hero.getcard());
+           Hero.shadowColor=Color.black.darker();
            Hero.addMouseListener(this);
 			player.pdeck.panel.remove(player.pdeck.Hero);
 			player.pdeck.panel.remove(player.pdeck.menu);
@@ -3080,6 +3072,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			show.setBounds(0,0,100,145);
 			player.pdeck.panel.add(show);
 			player.field.poner(Hero, where);
+			}
+			if(pos==-3)
+			{
+				Hero=new SmallCard(false,player.pdeck.Deck.lista.Data.Consultar(9));
+				player.field.quitar(donde);
+				player.powers.play(Hero.getcard().GetCost());
+				player.field.poner(Hero, donde);
 			}
 			
 			player.powers. disselect();
@@ -3165,15 +3164,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		t.start();
 
 	}
-	void play(int pos)// plays a card on field
-	{
-		if(pos!=-2)
+	void play(int pos){// plays a card on field
+	
+	boolean allowed = true;
+		if(pos>=0){
 		c=player.hand.handgui[pos].getcard().GetCost();
+		allowed= warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 );
+		}else if (pos==-3)
+			c=player.pdeck.Deck.lista.Data.Consultar(9).GetCost();
 		else
 			c=player.pdeck.Hero.getcard().GetCost();
+		
 		if ( player.powers.currentundrained+player.powers.currentoken - c >=0 ) {//verifica que haya mana
 
-			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
+	
+			if (allowed) {//verifica que un warrior no se ha jugado en ese turno
 				int where = player.field.findwhere();
 				if (where != -1)
 				{
@@ -4022,9 +4027,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
 		
+			if(player.hand.handgui[i].getcard().GetCardNumber()!=18  )
+			{
 			player.hand.handgui[i].Play.setEnabled(enabled);
+			}else
+			{
+				player.hand.handgui[i].Play.setEnabled(false);
+			}
 			player.hand.handgui[i].addMouseListener(this);	
 		}
+		
 		player.pdeck.Play.setEnabled(enabled);
 		if(player.hand.handgui[player.hand.current]!=null)
 		{

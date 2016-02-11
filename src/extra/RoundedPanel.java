@@ -16,7 +16,7 @@ public class RoundedPanel extends JPanel {
     /** Stroke size. it is recommended to set it to 1 for better view */
     protected int strokeSize = 1;
     /** Color of shadow */
-    protected Color shadowColor = Color.black;
+    public Color shadowColor = Color.black;
     /** Sets if it drops shadow */
     protected boolean shady = true;
     /** Sets if it has an High Quality view */
