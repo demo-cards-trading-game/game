@@ -367,10 +367,27 @@ public class Drained extends JLayeredPane implements MouseListener{
 					undrained[i].setBounds((i-10)*30,60 , 25, 20);
 				}
 			}
-		tokenused=paying=drain=0;
+		
+	
 		label.setText(""+paying);
 		}
-		
+		for( int i=0;i<currentoken;i++)
+		{
+		if(i<=5)
+		{
+		tokens[i].setBounds(i*25, 10, 20, 20);
+		}else{
+			if(i<=10)
+			{
+			tokens[i].setBounds((i-5)*25,25 , 30, 20);
+			}else
+			{
+				tokens[i].setBounds((i*10)*25,60 , 20, 20);
+			}
+			
+		}
+	}
+		tokenused=paying=drain=0;
 	}
 	int find()
 	{
@@ -403,7 +420,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 	void reset()
 	{
 		
-		for( int i=0;i<drain;i++)
+		for( int i=0;i<used-2*N;i++)
 		{
 			
 			set();
@@ -434,7 +451,7 @@ public class Drained extends JLayeredPane implements MouseListener{
 		for( int i=0;i<N;i++)
 		{
 			
-			System.out.println("wp");
+		
 			drainwp();
 			borrar(find());
 			
