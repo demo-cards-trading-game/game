@@ -3319,6 +3319,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setVisible(true);
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
 		ai.smartPlay();
+		
 		phases.change(phases.actual+1);
 		//attack phase 
 		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );

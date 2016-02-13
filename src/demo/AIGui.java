@@ -17,6 +17,7 @@ public class AIGui extends JPanel {
 	public int warriorPlayed;
 	public Barriers2 barriers;
 	public Drained_2 aidra;
+	public int where;
 	public AIGui()
 	{
 		setBounds(0,0,1024,600);
@@ -42,7 +43,7 @@ public class AIGui extends JPanel {
 
 	void aiPlay(int pos) throws IOException
 	{
-		int where = aifield.findwhere();// busca en donde poner la carta el ai
+		where = aifield.findwhere();// busca en donde poner la carta el ai
 		if(where!=-1)
 		{
 			SmallCard carta;
