@@ -142,13 +142,13 @@ public  class HandGui extends JLayeredPane
 		
 		      repaint();
 		      
-		      System.out.println("current: "+current);
+		      
 			return(current);
 		 }
 	 public void compactar()
 	 {
 		 removeAll();
-		System.out.println("entro compactar");
+		
 		 if(current<5)
 		 {
 			 Factor_de_compresion=124;

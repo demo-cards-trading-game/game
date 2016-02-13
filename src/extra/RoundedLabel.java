@@ -1,5 +1,7 @@
 package extra;
 
+
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,18 +9,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
 
-public class RoundedPanel extends JPanel {
+public class RoundedLabel extends JLabel {
 
     /** Stroke size. it is recommended to set it to 1 for better view */
     protected int strokeSize = 1;
     /** Color of shadow */
-    public Color shadowColor = Color.black;
+    protected Color shadowColor = Color.black;
     /** Sets if it drops shadow */
-    protected boolean shady = true;
+    protected boolean shady = false;
     /** Sets if it has an High Quality view */
     protected boolean highQuality = true;
     /** Double values for Horizontal and Vertical radius of corner arcs */
@@ -33,11 +37,11 @@ public class RoundedPanel extends JPanel {
 
 	//FOLLOWING CODES GOES HERE
     
-    public RoundedPanel() {
-        super();
-        setBackground(Color.ORANGE);
+    public RoundedLabel(ImageIcon k) {
+        super(k);
+        
        
-        setOpaque(false);
+       setOpaque(false);
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -83,6 +87,7 @@ public class RoundedPanel extends JPanel {
 
     
 } 
+
 
 
 

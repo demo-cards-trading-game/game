@@ -85,7 +85,7 @@ public  class List{
        ultimo=nuevo;
 	   }else
 	   {
-		   System.out.println("inserto primero");
+		   
 		   insertar(1,x);
 		   
 	   }

@@ -107,7 +107,7 @@ public class BigCard extends RoundedPanel {
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
 			
-			setBackground(new Color(204, 153, 51));
+			setBackground(Color.ORANGE);
 			panel.setForeground(new Color(204, 153, 51));
 			panel.setBackground(new Color(204, 153, 51));
 		}else if(x.GetType()=="Disruption")

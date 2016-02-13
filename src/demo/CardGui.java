@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
+import extra.RoundButton;
 import data.LoadData;
 
 
@@ -88,7 +89,7 @@ import javax.swing.border.MatteBorder;
 		add(lblMpp);
 	
 		
-		CirclePanel panel = new CirclePanel();
+		JPanel panel = new JPanel();
 		JTextPane txtpnTexto = new JTextPane();
 		txtpnTexto.setRequestFocusEnabled(false);
 		txtpnTexto.setFocusTraversalKeysEnabled(false);
@@ -129,7 +130,7 @@ import javax.swing.border.MatteBorder;
 		
 		panel.setBorder(null);
 		
-		panel.setBounds(10, 36, 102, 72);
+		panel.setBounds(04, 36, 112, 82);
 	
 		if(x.GetType()=="Warrior")
 		{
@@ -157,7 +158,7 @@ import javax.swing.border.MatteBorder;
 			lblSupport.setOpaque(true);
 			add(lblSupport);
 			lblSupport.setBackground(new Color(204, 153, 255));
-			menu.setBackground(new Color(204, 153, 51));//the menu bacckground is added
+			menu.setBackground(Color.ORANGE);//the menu bacckground is added
 			setBackground(new Color(255, 215, 0));
 			panel.setForeground(new Color(204, 153, 51));
 			
@@ -234,17 +235,18 @@ import javax.swing.border.MatteBorder;
 		lblAbility.setBounds(10, 109, 46, 14);
 		add(lblAbility);
 		
-		
+		//check
 		
 		
 		
 		JLabel lblNewLabel = new JLabel(""+x.Getid());
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(43, 165, 77, 21);
+		lblNewLabel.setBounds(38, 160, 77, 21);
 		add(lblNewLabel);
+		moveToFront(lblNewLabel);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 9));
-		lblNewLabel.setForeground(new Color(128, 0, 0));
+		lblNewLabel.setForeground(Color.black);
 		
 		JLabel lblType = new JLabel(x.GetType());
 		lblType.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -252,7 +254,7 @@ import javax.swing.border.MatteBorder;
 		lblType.setBounds(52, 2, 62, 14);
 		add(lblType);
 		add(menu);
-		
+		panel.setOpaque(false);
 		JPanel panel_1 = new JPanel();
 		panel_1.setOpaque(false);
 		panel_1.setBounds(-10, -10, 42, 29);
@@ -283,7 +285,6 @@ import javax.swing.border.MatteBorder;
 	            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 	            RenderingHints.VALUE_ANTIALIAS_ON);
 	        }
-
 	        //Draws shadow borders if any.
 	        if (shady) {
 	            graphics.setColor(shadowColorA);

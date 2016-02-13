@@ -3,6 +3,8 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
@@ -19,6 +21,8 @@ import extra.RoundedPanel;
 
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.IOException;
@@ -38,9 +42,12 @@ public class DeckGui extends JPanel {
 	public JLabel btnNewButton_1;
 	public JLabel btnNewButton_2;
 	public JLabel lblTheFallen;
-	public JPanel panel;
+	public JLayeredPane panel;
 	public JLabel lblDeck; 
 	public Rlabel lblForgotten ;
+	public JInternalFrame menu;
+	public SmallCard Hero;
+	public JButton Play, Preview;
 	
 	public DeckGui(int x,int y) {
 		this.Deck=new deck();
@@ -52,7 +59,7 @@ public class DeckGui extends JPanel {
 			e.printStackTrace();
 		}
 
-		 	System.out.println("" + Deck.longitud);
+		 	
 		 
 		setBackground(new Color(255, 165, 0));
 		setBounds(x, y, 250, 340);
@@ -118,7 +125,8 @@ public class DeckGui extends JPanel {
 		lblForgotten.setBounds(160, 100, 117, 14);
 		add(lblForgotten);
 		
-		 panel= new RoundedPanel();
+		 panel= new JLayeredPane();
+				 panel.add(new RoundedPanel());
 		
 		
 		panel.setLayout(null);
@@ -136,8 +144,26 @@ public class DeckGui extends JPanel {
 
 	 public void addhero(Card x) throws IOException
 		{
-			panel.add(new SmallCard(false,x));
+		Hero=new SmallCard(false,x);	
+		 panel.add(Hero);
+		 menu = new JInternalFrame();
+			menu.getContentPane().setLayout(null);
 			repaint();
-			
+			Play = new JButton("Play");
+			Play.setBounds(5, 11, 80, 23);
+			Play.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 9));
+			menu.getContentPane().add(Play);
+			Preview = new JButton("Preview");
+			Preview.setBounds(5, 59, 80, 23);
+			menu.getContentPane().add(Preview);
+			Preview.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 10));
+			menu.setClosable(true);
+			menu.setBounds(0,0,100,145);
+			menu.setBackground(Color.ORANGE);
+			menu.setVisible(false);
+			panel.add(menu);
+			menu.setOpaque(true);
 		}	
+	 
+	 
 }

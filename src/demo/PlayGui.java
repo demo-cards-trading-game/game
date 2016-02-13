@@ -69,11 +69,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public fightpane fight;
 	public static PlayerGui player;//aca estan el hand el deck y lo demas
 	public AIGui ai;//lo mismo pero en el ai
-	public Previewpane preview;//aca se muestra la carta
+	public Previewpane preview;
 	int p,w,c;//pos , where, cost
 	public Tutorial tuto;
+	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
-
+	int donde;
 	optionpane op;
 	int turn, contTurn=0;
 	public int ready=0;
@@ -93,9 +94,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
-	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
-	public JButton attack1, attack2, attack3, attack4, attack5, undrain;
-	public JButton dest1, dest2, dest3, dest4, dest5;
+	public JButton undrain;
+	public JLabel dest1, dest2, dest3, dest4, dest5;
 	public int atkDest=-1, atkOrigin=-1;
 	public int [] aiAttack= new int[5];
 	public int [] aiDest= new int[5];
@@ -106,7 +106,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
 	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
-	//esto es para ssd-08
+	RoundedPanel unleash;
+	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
 	//esto es para sdd-09
@@ -158,9 +159,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
 
-
-
-		pane = new JInternalFrame("THE FALLEN");
+		unleash=new RoundedPanel();
+		unleash.setBounds(0,0,100,145);
+        unleash.add (new JLabel(new ImageIcon(ImageIO.read(new File("unleash.png")))));
+ 		pane = new JInternalFrame("THE FALLEN");
 
 		phases=new Phases(220,300);
 		add(phases);
@@ -192,6 +194,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
 			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
 
+			
 			Addlisteners2Card(pos-1);
 			player.hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
 			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
@@ -200,8 +203,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 		}
-		;
-
+			
 		fallen=new Fallen();
 		add(fallen);
 		player.pdeck.btnNewButton_1.addMouseListener(this);
@@ -209,7 +211,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		op=new  optionpane();
 		//swords
 		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp1.setBounds(0, 0, 535, 830);
+		swordp1.setBounds(240, 350, 50, 120);
 		add(swordp1);
 		this.moveToFront(swordp1);
 
@@ -219,7 +221,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda1);
 
 		swordp2= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp2.setBounds(0, 0, 760, 830);
+		swordp2.setBounds(350, 350, 50, 120);
 		add(swordp2);
 		this.moveToFront(swordp2);
 
@@ -229,7 +231,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda2);
 
 		swordp3= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp3.setBounds(0, 0, 980, 830);
+		swordp3.setBounds(460, 350, 50, 120);
 		add(swordp3);
 		this.moveToFront(swordp3);
 
@@ -239,7 +241,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda3);
 
 		swordp4= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp4.setBounds(0, 0, 1200, 830);
+		swordp4.setBounds(570, 350, 50, 120);
 		add(swordp4);
 		this.moveToFront(swordp4);
 
@@ -249,7 +251,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda4);
 
 		swordp5= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp5.setBounds(0, 0, 1420, 830);
+		swordp5.setBounds(680, 350, 50, 120);
 		add(swordp5);
 		this.moveToFront(swordp5);
 
@@ -258,6 +260,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(sworda5);
 		this.moveToFront(sworda5);
 
+		
 		this.swordp1.setVisible(false);
 		this.swordp2.setVisible(false);
 		this.swordp3.setVisible(false);
@@ -269,6 +272,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.sworda4.setVisible(false);
 		this.sworda5.setVisible(false);
 
+		swordp1.addMouseListener(this);
+		swordp2.addMouseListener(this);
+		swordp3.addMouseListener(this);
+		swordp4.addMouseListener(this);
+		swordp5.addMouseListener(this);
+		
 		try{
 			turno = new FileReader(new File("turno.txt"));
 			br= new BufferedReader(turno);
@@ -303,102 +312,46 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
 
-		menu1 = new JInternalFrame();
-		menu1.getContentPane().setLayout(null);
-		attack1 = new JButton("A");
-		attack1.setBounds(15, 11, 49, 20);
-		menu1.getContentPane().add(attack1);
-		menu1.setClosable(true);
-		menu1.setBounds(230,380,80,70);
-		menu1.setVisible(false);
-		add(menu1);
-		menu1.moveToFront();
-
-		menu2 = new JInternalFrame();
-		menu2.getContentPane().setLayout(null);
-		attack2 = new JButton("A");
-		attack2.setBounds(15, 11, 49, 20);
-		menu2.getContentPane().add(attack2);
-		menu2.setClosable(true);
-		menu2.setBounds(340,380,80,70);
-		menu2.setVisible(false);
-		add(menu2);
-		menu2.moveToFront();
-
-		menu3 = new JInternalFrame();
-		menu3.getContentPane().setLayout(null);
-		attack3 = new JButton("A");
-		attack3.setBounds(15, 11, 49, 20);
-		menu3.getContentPane().add(attack3);
-		menu3.setClosable(true);
-		menu3.setBounds(450,380,80,70);
-		menu3.setVisible(false);
-		add(menu3);
-		menu3.moveToFront();
-
-		menu4= new JInternalFrame();
-		menu4.getContentPane().setLayout(null);
-		attack4 = new JButton("A");
-		attack4.setBounds(15, 11, 49, 20);
-		menu4.getContentPane().add(attack4);
-		menu4.setClosable(true);
-		menu4.setBounds(560,380,80,70);
-		menu4.setVisible(false);
-		add(menu4);
-		menu4.moveToFront();
-
-		menu5= new JInternalFrame();
-		menu5.getContentPane().setLayout(null);
-		attack5 = new JButton("A");
-		attack5.setBounds(15, 11, 49, 20);
-		menu5.getContentPane().add(attack5);
-		menu5.setClosable(true);
-		menu5.setBounds(670,380,80,70);
-		menu5.setVisible(false);
-		add(menu5);
-		menu5.moveToFront();
-
-		this.dest1 = new JButton("Target");
-		this.dest1.setBounds(230, 210, 80, 20);
+		this.dest1 = new JLabel();
+		dest1.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest1.setBounds(230, 210, 50, 50);
 		this.dest1.setVisible(false);
 		add(dest1);
 		this.moveToFront(this.dest1);
 
-		this.dest2 = new JButton("Target");
-		this.dest2.setBounds(340, 210, 80, 20);
+		this.dest2 = new JLabel();
+		dest2.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest2.setBounds(340, 210, 50, 50);
 		this.dest2.setVisible(false);
 		add(dest2);
 		this.moveToFront(this.dest2);
 
-		this.dest3 = new JButton("Target");
-		this.dest3.setBounds(450, 210, 80, 20);
+		this.dest3 = new JLabel();
+		dest3.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest3.setBounds(450, 210, 50, 50);
 		this.dest3.setVisible(false);
 		add(dest3);
 		this.moveToFront(this.dest3);
 
-		this.dest4 = new JButton("Target");
-		this.dest4.setBounds(560, 210, 80, 20);
+		this.dest4 = new JLabel();
+		dest4.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest4.setBounds(560, 210, 50, 50);
 		this.dest4.setVisible(false);
 		add(dest4);
 		this.moveToFront(this.dest4);
 
-		this.dest5 = new JButton("Target");
-		this.dest5.setBounds(670, 210, 80, 20);
+		this.dest5 = new JLabel();
+		dest5.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest5.setBounds(670, 210, 50, 50);
 		this.dest5.setVisible(false);
 		add(dest5);
 		this.moveToFront(this.dest5);
 
-		this.attack1.addActionListener(this);
-		this.attack2.addActionListener(this);
-		this.attack3.addActionListener(this);
-		this.attack4.addActionListener(this);
-		this.attack5.addActionListener(this);
-
-		this.dest1.addActionListener(this);
-		this.dest2.addActionListener(this);
-		this.dest3.addActionListener(this);
-		this.dest4.addActionListener(this);
-		this.dest5.addActionListener(this);
+		this.dest1.addMouseListener(this);
+		this.dest2.addMouseListener(this);
+		this.dest3.addMouseListener(this);
+		this.dest4.addMouseListener(this);
+		this.dest5.addMouseListener(this);
 
 
 
@@ -686,18 +639,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.ptarjet91= new JLabel();
 		this.ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet91.setBounds(230,380, 50, 50);
-		this.ptarjet92= new JLabel();
+		this.ptarjet92 = new JLabel();
 		this.ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet92.setBounds(340,380, 50, 50);
-		this.ptarjet93= new JLabel();
+		this.ptarjet92.setBounds(340, 380, 50, 50);
+		this.ptarjet93 = new JLabel();
 		this.ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet93.setBounds(450,380, 50, 50);
-		this.ptarjet94= new JLabel();
+		this.ptarjet93.setBounds(450, 380, 50, 50);
+		this.ptarjet94 = new JLabel();
 		this.ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet94.setBounds(560,380, 50, 50);
-		this.ptarjet95= new JLabel();
+		this.ptarjet94.setBounds(560, 380, 50, 50);
+		this.ptarjet95 = new JLabel();
 		this.ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet95.setBounds(670,380, 50, 50);
+		this.ptarjet95.setBounds(670, 380, 50, 50);
 		add(ptarjet91);
 		add(ptarjet92);
 		add(ptarjet93);
@@ -709,21 +662,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet94);
 		this.moveToFront(ptarjet95);
 
-		this.aitarjet91= new JLabel();
+		this.aitarjet91 = new JLabel();
 		this.aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet91.setBounds(230, 210, 50, 50);
-		this.aitarjet92= new JLabel();
+		this.aitarjet92 = new JLabel();
 		this.aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet92.setBounds(340,210, 50, 50);
-		this.aitarjet93= new JLabel();
+		this.aitarjet92.setBounds(340, 210, 50, 50);
+		this.aitarjet93 = new JLabel();
 		this.aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet93.setBounds(450,210, 50, 50);
-		this.aitarjet94= new JLabel();
+		this.aitarjet93.setBounds(450, 210, 50, 50);
+		this.aitarjet94 = new JLabel();
 		this.aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet94.setBounds(560,210, 50, 50);
-		this.aitarjet95= new JLabel();
+		this.aitarjet94.setBounds(560, 210, 50, 50);
+		this.aitarjet95 = new JLabel();
 		this.aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet95.setBounds(670,210, 50, 50);
+		this.aitarjet95.setBounds(670, 210, 50, 50);
 		add(aitarjet91);
 		add(aitarjet92);
 		add(aitarjet93);
@@ -757,24 +710,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet94.setVisible(false);
 		this.aitarjet95.setVisible(false);
 
-
-
-
-		this.ptarjet101= new JLabel();
+		this.ptarjet101 = new JLabel();
 		this.ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet101.setBounds(230,380, 50, 50);
-		this.ptarjet102= new JLabel();
+		this.ptarjet101.setBounds(230, 380, 50, 50);
+		this.ptarjet102 = new JLabel();
 		this.ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet102.setBounds(340,380, 50, 50);
-		this.ptarjet103= new JLabel();
+		this.ptarjet102.setBounds(340, 380, 50, 50);
+		this.ptarjet103 = new JLabel();
 		this.ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet103.setBounds(450,380, 50, 50);
-		this.ptarjet104= new JLabel();
+		this.ptarjet103.setBounds(450, 380, 50, 50);
+		this.ptarjet104 = new JLabel();
 		this.ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet104.setBounds(560,380, 50, 50);
-		this.ptarjet105= new JLabel();
+		this.ptarjet104.setBounds(560, 380, 50, 50);
+		this.ptarjet105 = new JLabel();
 		this.ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet105.setBounds(670,380, 50, 50);
+		this.ptarjet105.setBounds(670, 380, 50, 50);
 		add(ptarjet101);
 		add(ptarjet102);
 		add(ptarjet103);
@@ -786,21 +736,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet104);
 		this.moveToFront(ptarjet105);
 
-		this.aitarjet101= new JLabel();
+		this.aitarjet101 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet101.setBounds(230, 210, 50, 50);
-		this.aitarjet102= new JLabel();
+		this.aitarjet102 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet102.setBounds(340,210, 50, 50);
-		this.aitarjet103= new JLabel();
+		this.aitarjet102.setBounds(340, 210, 50, 50);
+		this.aitarjet103 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet103.setBounds(450,210, 50, 50);
-		this.aitarjet104= new JLabel();
+		this.aitarjet103.setBounds(450, 210, 50, 50);
+		this.aitarjet104 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet104.setBounds(560,210, 50, 50);
-		this.aitarjet105= new JLabel();
+		this.aitarjet104.setBounds(560, 210, 50, 50);
+		this.aitarjet105 = new JLabel();
 		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet105.setBounds(670,210, 50, 50);
+		this.aitarjet105.setBounds(670, 210, 50, 50);
 		add(aitarjet101);
 		add(aitarjet103);
 		add(aitarjet102);
@@ -834,25 +784,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet104.setVisible(false);
 		this.aitarjet105.setVisible(false);
 
-
-
-
-
-		this.ptarjet111= new JLabel();
+		this.ptarjet111 = new JLabel();
 		this.ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet111.setBounds(230,380, 50, 50);
-		this.ptarjet112= new JLabel();
+		this.ptarjet111.setBounds(230, 380, 50, 50);
+		this.ptarjet112 = new JLabel();
 		this.ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet112.setBounds(340,380, 50, 50);
-		this.ptarjet113= new JLabel();
+		this.ptarjet112.setBounds(340, 380, 50, 50);
+		this.ptarjet113 = new JLabel();
 		this.ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet113.setBounds(450,380, 50, 50);
-		this.ptarjet114= new JLabel();
+		this.ptarjet113.setBounds(450, 380, 50, 50);
+		this.ptarjet114 = new JLabel();
 		this.ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet114.setBounds(560,380, 50, 50);
-		this.ptarjet115= new JLabel();
+		this.ptarjet114.setBounds(560, 380, 50, 50);
+		this.ptarjet115 = new JLabel();
 		this.ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet115.setBounds(670,380, 50, 50);
+		this.ptarjet115.setBounds(670, 380, 50, 50);
 		add(ptarjet111);
 		add(ptarjet112);
 		add(ptarjet113);
@@ -864,21 +810,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(ptarjet114);
 		this.moveToFront(ptarjet115);
 
-		this.aitarjet111= new JLabel();
+		this.aitarjet111 = new JLabel();
 		this.aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet111.setBounds(230, 210, 50, 50);
-		this.aitarjet112= new JLabel();
+		this.aitarjet112 = new JLabel();
 		this.aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet112.setBounds(340,210, 50, 50);
-		this.aitarjet113= new JLabel();
+		this.aitarjet112.setBounds(340, 210, 50, 50);
+		this.aitarjet113 = new JLabel();
 		this.aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet113.setBounds(450,210, 50, 50);
-		this.aitarjet114= new JLabel();
+		this.aitarjet113.setBounds(450, 210, 50, 50);
+		this.aitarjet114 = new JLabel();
 		this.aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet114.setBounds(560,210, 50, 50);
-		this.aitarjet115= new JLabel();
+		this.aitarjet114.setBounds(560, 210, 50, 50);
+		this.aitarjet115 = new JLabel();
 		this.aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet115.setBounds(670,210, 50, 50);
+		this.aitarjet115.setBounds(670, 210, 50, 50);
 		add(aitarjet111);
 		add(aitarjet112);
 		add(aitarjet113);
@@ -919,53 +865,48 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.label.setVisible(false);
 
 		player.pdeck.btnNewButton_2.addMouseListener(this);
-		
-		for(int i=0;i<player.hand.current;i++)
+
+		for (int i = 0; i < player.hand.current; i++)
 			player.hand.handgui[i].Play.setEnabled(false);
-		
-		
-//		JLabel label = new JLabel();
-//		label.setIcon(new ImageIcon("redArrow1.png"));
-//		label.setBounds(100,100,50,50);
-//		this.add(label);
-//		this.moveToFront(label);
+
+		player.pdeck.Play.addActionListener(this);
+		player.pdeck.Preview.addActionListener(this);
+		// JLabel label = new JLabel();
+		// label.setIcon(new ImageIcon("redArrow1.png"));
+		// label.setBounds(100,100,50,50);
+		// this.add(label);
+		// this.moveToFront(label);
 	}
+
 	public void actionPerformed(ActionEvent e) {
-		done=0;
-		if( e.getSource()==tuto.ok)
-		{
+		done = 0;
+		if (e.getSource() == tuto.ok) {
 
 			tuto.animation.stop();
-
 
 			tuto.animation.stop();
 			tuto.setVisible(false);
-			checking=false;
-
+			checking = false;
 
 		}
-		if( e.getSource()==tuto.ok3)
-		{
+		if (e.getSource() == tuto.ok3) {
 
 			tuto.animation.stop();
-
 
 			tuto.animation.stop();
 			tuto.setVisible(false);
 
 			player.powers.label.setVisible(false);
-			set(p,w);
-			checking=false;
+			set(p, w);
+			checking = false;
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 			tuto.panel.add(tuto.ok);
 			player.powers.disselect();
 			;
 
-
 		}
-		if( e.getSource()==tuto.cancel)
-		{
+		if (e.getSource() == tuto.cancel) {
 
 			tuto.animation.stop();
 			player.powers.label.setVisible(false);
@@ -975,74 +916,74 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.setVisible(false);
 			tuto.panel.add(tuto.ok);
 
-
 		}
 
-		s=-1;
-		if(e.getSource()==player.hand.handgui[0].Set)
-		{
-			if(done==0){
-				s=0;
+		s = -1;
+		if (e.getSource() == player.hand.handgui[0].Set) {
+			if (done == 0) {
+				s = 0;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[1].Set)
-		{
-			if(done==0){
-				s=1;
-
+		if (e.getSource() == player.hand.handgui[1].Set) {
+			if (done == 0) {
+				s = 1;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[2].Set)
-		{
-			if(done==0){
-				s=2;
+		if (e.getSource() == player.hand.handgui[2].Set) {
+			if (done == 0) {
+				s = 2;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[3].Set)
-		{
-			if(done==0){
-				s=3;
-
+		if (e.getSource() == player.hand.handgui[3].Set) {
+			if (done == 0) {
+				s = 3;
 
 			}
-			done=1;
+			done = 1;
 
 		}
-		if(e.getSource()==player.hand.handgui[4].Set)
-		{
-			if(done==0){
-				s=4;
-
-
-
+		if (e.getSource() == player.hand.handgui[4].Set) {
+			if (done == 0) {
+				s = 4;
 
 			}
-			done=1;
+			done = 1;
 
 		}
+		if (player.hand.handgui[5] != null) {
+			if (e.getSource() == player.hand.handgui[5].Set) {
+				if (done == 0) {
+					s = 5;
+				}
+				done = 1;
 
-		if(s!=-1)
-		{
+			}
+		}
+		if (s != -1) {
 
-			fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[s]);	
-			if(player.hand.cards[s].GetName()=="Water power")
+			fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.hand.cards[s]);
+			if (player.hand.cards[s].GetCardNumber() == 18)
 				player.powers.setwp();
 			else
 				player.powers.set();
 
-			player.hand.discard(s+1);
+			player.hand.discard(s + 1);
 
-			this.repairListeners(false);
-
+			if(phases.actual==2){
+				this.repairListeners(true);
+				}else
+				{
+					this.repairListeners(false);
+				}
 
 
 
@@ -1120,6 +1061,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			done=1;
 
 		}
+		
+		if(e.getSource()==player.pdeck.Preview)//muestra la carta 1 
+		{
+			if(done==0)
+			{
+				preview.addCard(new BigCard(player.pdeck.Hero.getcard(),0,0));
+			}
+			done=1;
+
+		}
 		if(e.getSource()==player.hand.handgui[0].Preview)//muestra la carta 1 
 		{
 			if(done==0)
@@ -1182,7 +1133,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			done=1;
 
 		}
+		
 		pl=-1;
+		if(e.getSource()==player.pdeck.Play)
+		{
+			pl=-2;
+			
+		}
 		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 2  
 		{
 			pl=0;
@@ -1233,122 +1190,152 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		if(pl!=-1)
 		{
-
-			if(player.hand.cards[pl].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
+			if(pl!=-2){
+				if(player.hand.cards[pl].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
 				JOptionPane.showMessageDialog(null, "You must have 0 barriers to play this card");
 			}
 			else{
+					if(done==0)
+					play(pl);
+					
+					done=1;
+
+					this.repairListeners(true);
+			}
+
+		}else
+			{
 				if(done==0)
 					play(pl);
 				done=1;
 
 				this.repairListeners(true);
-
-
 			}
+			
+	}
 
-		}
-
-
-		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
-
-			if(e.getSource()==this.attack1){
-				this.atkOrigin=1;
-			}
-			if(e.getSource()==this.attack2){
-				this.atkOrigin=2;
-			}
-			if(e.getSource()==this.attack3){
-				this.atkOrigin=3;
-			}
-			if(e.getSource()==this.attack4){
-				this.atkOrigin=4;
-			}
-			if(e.getSource()==this.attack5){
-				this.atkOrigin=5;
-			}
-			if(ai.aifield.countcards()==0)
-			{
-
-				int which=ai.barriers.findwhich();//verifica que exista un barrier
-				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
-				if(ai.aihand.current==5){	
-					ai.aihand.discard(5);
-				}
-
-				if(which!=-1)//existe un barrier
-				{
-					int pos= ai.aihand.draw(ai.barriers.cards[which]);
-					ai.barriers.removebarrier(which);
-
-				}
+		
 
 
-			}else{
-				JOptionPane.showMessageDialog(null, "Select Your Target");
-				if(ai.aifield.cards[0]!=null){
-					this.dest1.setVisible(true);
-				}
-				if(ai.aifield.cards[1]!=null){
-					this.dest2.setVisible(true);
-				}
-				if(ai.aifield.cards[2]!=null){
-					this.dest3.setVisible(true);
-				}
-				if(ai.aifield.cards[3]!=null){
-					this.dest4.setVisible(true);
-				}
-				if(ai.aifield.cards[4]!=null){
-					this.dest5.setVisible(true);
-				}
-			}
-		}
 
-		if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
-			if(e.getSource()==this.dest1){
-				this.atkDest=1;
-			}
-			if(e.getSource()==this.dest2){
-				this.atkDest=2;
-			}
-			if(e.getSource()==this.dest3){
-				this.atkDest=3;
-			}
-			if(e.getSource()==this.dest4){
-				this.atkDest=4;
-			}
-			if(e.getSource()==this.dest5){
-				this.atkDest=5;
-			}
+//		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
+//
+//			if(e.getSource()==this.attack1){
+//				this.atkOrigin=1;
+//			}
+//			if(e.getSource()==this.attack2){
+//				this.atkOrigin=2;
+//			}
+//			if(e.getSource()==this.attack3){
+//				this.atkOrigin=3;
+//			}
+//			if(e.getSource()==this.attack4){
+//				this.atkOrigin=4;
+//			}
+//			if(e.getSource()==this.attack5){
+//				this.atkOrigin=5;
+//			}
+//			if(ai.aifield.countcards()==0)
+//			{
+//
+//				int which=ai.barriers.findwhich();//verifica que exista un barrier
+//				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
+//				if(ai.aihand.current==5){	
+//					ai.aihand.discard(5);
+//				}
+//
+//				if(which!=-1)//existe un barrier
+//				{
+//					int pos= ai.aihand.draw(ai.barriers.cards[which]);
+//					ai.barriers.removebarrier(which);
+//
+//				}
+//
+//				if(e.getSource()==this.attack1){
+//					this.menu1.setVisible(false);
+//					this.swordp1.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack2){
+//					this.menu2.setVisible(false);
+//					this.swordp2.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack3){
+//					this.menu3.setVisible(false);
+//					this.swordp3.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack4){
+//					this.menu4.setVisible(false);
+//					this.swordp4.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack5){
+//					this.menu5.setVisible(false);
+//					this.swordp5.setVisible(false);
+//				}
+//			}else{
+//				JOptionPane.showMessageDialog(null, "Select Your Target");
+//				if(ai.aifield.cards[0]!=null){
+//					this.dest1.setVisible(true);
+//				}
+//				if(ai.aifield.cards[1]!=null){
+//					this.dest2.setVisible(true);
+//				}
+//				if(ai.aifield.cards[2]!=null){
+//					this.dest3.setVisible(true);
+//				}
+//				if(ai.aifield.cards[3]!=null){
+//					this.dest4.setVisible(true);
+//				}
+//				if(ai.aifield.cards[4]!=null){
+//					this.dest5.setVisible(true);
+//				}
+//			}
+//		}
 
-			this.menu1.setVisible(false);
-			this.menu2.setVisible(false);
-			this.menu3.setVisible(false);
-			this.menu4.setVisible(false);
-			this.menu5.setVisible(false);
-
-			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
-			remove(phases);
-			if(!fight.isVisible()){
-				fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
-			}
-			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
-			{
-				ai.aifield.quitar(atkDest-1);
-				this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
-
-			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
-			{
-				player.field.quitar(atkOrigin-1);
-			}
-			add(phases);
-			this.dest1.setVisible(false);
-			this.dest2.setVisible(false);
-			this.dest3.setVisible(false);
-			this.dest4.setVisible(false);
-			this.dest5.setVisible(false);
-
-		}
+//		if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
+//			if(e.getSource()==this.dest1){
+//				this.atkDest=1;
+//			}
+//			if(e.getSource()==this.dest2){
+//				this.atkDest=2;
+//			}
+//			if(e.getSource()==this.dest3){
+//				this.atkDest=3;
+//			}
+//			if(e.getSource()==this.dest4){
+//				this.atkDest=4;
+//			}
+//			if(e.getSource()==this.dest5){
+//				this.atkDest=5;
+//			}
+//
+//			this.menu1.setVisible(false);
+//			this.menu2.setVisible(false);
+//			this.menu3.setVisible(false);
+//			this.menu4.setVisible(false);
+//			this.menu5.setVisible(false);
+//
+//			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+//			remove(phases);
+//			if(!fight.isVisible()){
+//				fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
+//			}
+//			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
+//			{
+//				ai.aifield.quitar(atkDest-1);
+//				this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+//
+//			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
+//			{
+//				player.field.quitar(atkOrigin-1);
+//			}
+//			add(phases);
+//			this.dest1.setVisible(false);
+//			this.dest2.setVisible(false);
+//			this.dest3.setVisible(false);
+//			this.dest4.setVisible(false);
+//			this.dest5.setVisible(false);
+//
+//		}
 
 		if(e.getSource()==j){
 			this.listAll = new prueba2(player.pdeck.Deck);
@@ -1578,6 +1565,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public void mouseClicked(MouseEvent e) 
 	{
 
+		if(e.getSource()==Hero)
+		{
+			
+		
+			remove(unleash);
+			play(-3);
+			
+			repaint();
+			
+		}
 		if(e.getButton() == MouseEvent.BUTTON1)
 		{
 			if(e.getClickCount()==1)
@@ -1668,7 +1665,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						
 							tuto.draw();
-						
+							this.phases.end.removeMouseListener(this);
 						
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
@@ -1677,6 +1674,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					case 1:
 						tuto.barrier();
 						this.phases.draw.removeMouseListener(this);
+						this.phases.end.removeMouseListener(this);
 						this.phases.action.addMouseListener(this);
 						break;
 					case 2:
@@ -1686,6 +1684,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
+						player.pdeck.Play.setEnabled(true);
+						
 						break;
 					case 3:
 						liberarTutoEnd=0;
@@ -1761,12 +1761,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.sworda4.setVisible(false);
 							this.sworda5.setVisible(false);
 
-							this.menu1.setVisible(false);
-							this.menu2.setVisible(false);
-							this.menu3.setVisible(false);
-							this.menu4.setVisible(false);
-							this.menu5.setVisible(false);
-
 							this.dest1.setVisible(false);
 							this.dest2.setVisible(false);
 							this.dest3.setVisible(false);
@@ -1788,6 +1782,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 //							tuto.end();
 							ready=1;
 							this.phases.end.removeMouseListener(this);
+							
 						}
 						//turno del oponente
 						phases.change(0);
@@ -1853,43 +1848,43 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(phases.actual==3&&this.contTurn>0){
 					if(e.getSource()==player.field.cards[0]&&!player.field.cards[0].down)
 					{
-						this.menu1.setVisible(true);
-						this.menu2.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu4.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp1.setVisible(true);
+						this.swordp2.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp4.setVisible(false);
+						this.swordp5.setVisible(false);
 					}	
 					if(e.getSource()==player.field.cards[1]&&!player.field.cards[1].down)
 					{
-						this.menu2.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu4.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp2.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp4.setVisible(false);
+						this.swordp5.setVisible(false);
 					}
 					if(e.getSource()==player.field.cards[2]&&!player.field.cards[2].down)
 					{
-						this.menu3.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu2.setVisible(false);
-						this.menu4.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp3.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp2.setVisible(false);
+						this.swordp4.setVisible(false);
+						this.swordp5.setVisible(false);
 					}
 					if(e.getSource()==player.field.cards[3]&&!player.field.cards[3].down)
 					{
-						this.menu4.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu2.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp4.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp2.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp5.setVisible(false);
 
 					}if(e.getSource()==player.field.cards[4]&&!player.field.cards[4].down)
 					{
-						this.menu5.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu2.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu4.setVisible(false);
+						this.swordp5.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp2.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp4.setVisible(false);
 					}
 				}
 				
@@ -2260,10 +2255,122 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 					}
 					repaint();
-					JOptionPane.showMessageDialog(null, "face down succefully");
+					JOptionPane.showMessageDialog(null, "face down succesfully");
 					repaint();
 				}
 
+				if(e.getSource()==this.swordp1||e.getSource()==this.swordp2||e.getSource()==this.swordp3||e.getSource()==this.swordp4||e.getSource()==this.swordp5){
+
+					if(e.getSource()==this.swordp1){
+						this.atkOrigin=1;
+					}
+					if(e.getSource()==this.swordp2){
+						this.atkOrigin=2;
+					}
+					if(e.getSource()==this.swordp3){
+						this.atkOrigin=3;
+					}
+					if(e.getSource()==this.swordp4){
+						this.atkOrigin=4;
+					}
+					if(e.getSource()==this.swordp5){
+						this.atkOrigin=5;
+					}
+					if(ai.aifield.countcards()==0)
+					{
+
+						int which=ai.barriers.findwhich();//verifica que exista un barrier
+						JOptionPane.showMessageDialog(null, "congratulations , direct hit");
+						if(ai.aihand.current==5){	
+							ai.aihand.discard(5);
+						}
+
+						if(which!=-1)//existe un barrier
+						{
+							int pos= ai.aihand.draw(ai.barriers.cards[which]);
+							ai.barriers.removebarrier(which);
+
+						}
+
+						if(e.getSource()==this.swordp1){
+							this.swordp1.setVisible(false);
+						}
+						if(e.getSource()==this.swordp2){
+							this.swordp2.setVisible(false);
+						}
+						if(e.getSource()==this.swordp3){
+							this.swordp3.setVisible(false);
+						}
+						if(e.getSource()==this.swordp4){
+							this.swordp4.setVisible(false);
+						}
+						if(e.getSource()==this.swordp5){
+							this.swordp5.setVisible(false);
+						}
+					}else{
+						JOptionPane.showMessageDialog(null, "Select Your Target");
+						if(ai.aifield.cards[0]!=null){
+							this.dest1.setVisible(true);
+						}
+						if(ai.aifield.cards[1]!=null){
+							this.dest2.setVisible(true);
+						}
+						if(ai.aifield.cards[2]!=null){
+							this.dest3.setVisible(true);
+						}
+						if(ai.aifield.cards[3]!=null){
+							this.dest4.setVisible(true);
+						}
+						if(ai.aifield.cards[4]!=null){
+							this.dest5.setVisible(true);
+						}
+					}
+				}
+				
+				if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
+					if(e.getSource()==this.dest1){
+						this.atkDest=1;
+					}
+					if(e.getSource()==this.dest2){
+						this.atkDest=2;
+					}
+					if(e.getSource()==this.dest3){
+						this.atkDest=3;
+					}
+					if(e.getSource()==this.dest4){
+						this.atkDest=4;
+					}
+					if(e.getSource()==this.dest5){
+						this.atkDest=5;
+					}
+
+					swordp1.setVisible(false);
+					swordp2.setVisible(false);
+					swordp3.setVisible(false);
+					swordp4.setVisible(false);
+					swordp5.setVisible(false);
+
+					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+					remove(phases);
+					if(!fight.isVisible()){
+						fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
+					}
+					if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
+					{
+						ai.aifield.quitar(atkDest-1);
+						this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+
+					}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
+					{
+						player.field.quitar(atkOrigin-1);
+					}
+					add(phases);
+					this.dest1.setVisible(false);
+					this.dest2.setVisible(false);
+					this.dest3.setVisible(false);
+					this.dest4.setVisible(false);
+					this.dest5.setVisible(false);
+				}
 			}
 
 			if (e.getSource()==player.pdeck.btnNewButton_1)// si se le da click al boton de fallen 
@@ -2273,7 +2380,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(e.getSource()==ai.aideck.btnNewButton){
-				System.out.println("toque deck ai");
+			
 			}
 
 		}	    
@@ -2357,6 +2464,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 	public void mouseExited(MouseEvent e) {
+	
+		
+		if(e.getSource()==Hero)
+		{
+			
+		
+			remove(unleash);
+			
+			
+			repaint();
+			
+		}
+		
+		
 		int x=-1;
 		int x2;
 
@@ -2643,6 +2764,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==aitarjet115){
 			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
 		}
+		if (e.getSource()==swordp1) {
+			swordp1.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp2) {
+			swordp2.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp3) {
+			swordp3.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp4) {
+			swordp4.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp5) {
+			swordp5.setIcon(new ImageIcon("sword.png"));
+		}
+		repaint();
 	}
 
 
@@ -2653,6 +2790,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseEntered(MouseEvent e) 
 	{
+		if(e.getSource()==Hero)
+		{
+			
+			unleash.setBounds(Hero.getX()+220,Hero.getY()+350,100,150);
+			add(unleash);
+			moveToFront(unleash);
+			
+			repaint();
+			
+		}
 		int x=-1;
 		int x2;
 		if(player.hand.current<5)
@@ -2957,37 +3104,82 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==aitarjet115){
 			aitarjet115.setIcon(new ImageIcon("redTarget3.png"));
 		}
+		if (e.getSource()==swordp1) {
+			swordp1.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp2) {
+			swordp2.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp3) {
+			swordp3.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp4) {
+			swordp4.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp5) {
+			swordp5.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		repaint();
 	}
 
 	void set(int pos,int where)
 	{
 
 		SmallCard carta;
+		if(pos!=-2 && pos!=-3){
 		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 
 
 			warriorPlayed = 1;
-			System.out.println(this.warriorPlayed);
+		
 
 		}
+	}
 		try {
-		
 			
+			
+			if(pos>=0){
+				
 			carta = new SmallCard(false,player.hand.handgui[pos].getcard());
-
-			
-
-			
 			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
+			player.hand.handgui[pos].Preview.doClick();
+			player.hand.discard(pos+1);
+			carta.addMouseListener(this);
+			player.field.poner(carta, where);
+			this.makeEffect(carta.actual.Getid(),where);
+			}
+			if(pos==-2){
+				donde=w;
+           Hero = new SmallCard(false,player.pdeck.Hero.getcard());
+           Hero.shadowColor=Color.black.darker();
+           Hero.addMouseListener(this);
+			player.pdeck.panel.remove(player.pdeck.Hero);
+			player.pdeck.panel.remove(player.pdeck.menu);
+			player.powers.play(player.pdeck.Hero.getcard().GetCost());
+			RoundedPanel show=new RoundedPanel();
+			show.setBounds(0,0,100,145);
+			player.pdeck.panel.add(show);
+			player.field.poner(Hero, where);
+			}
+			if(pos==-3)
+			{
+				Hero=new SmallCard(false,player.pdeck.Deck.lista.Data.Consultar(9));
+				player.field.quitar(donde);
+				player.powers.play(Hero.getcard().GetCost());
+				player.field.poner(Hero, donde);
+			}
+			
+			player.powers. disselect();
+			
+			
 
 			repaint();
-			carta.addMouseListener(this);
+		
+			
 
-			player.field.poner(carta, where);
+			
 			player.hand.music();
-			player.hand.handgui[pos].Preview.doClick();
-			player.hand.discard(1);
-
+		
 			this.repairListeners(true);
 
 
@@ -3012,7 +3204,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			});
 			t.start();
 
-			this.makeEffect(carta.actual.Getid(),where);
+			
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -3060,12 +3252,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		t.start();
 
 	}
-	void play(int pos)// plays a card on field
-	{
+	void play(int pos){// plays a card on field
+	
+	boolean allowed = true;
+		if(pos>=0){
 		c=player.hand.handgui[pos].getcard().GetCost();
+		allowed= warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 );
+		}else if (pos==-3)
+			c=player.pdeck.Deck.lista.Data.Consultar(9).GetCost();
+		else
+			c=player.pdeck.Hero.getcard().GetCost();
+		
 		if ( player.powers.currentundrained+player.powers.currentoken - c >=0 ) {//verifica que haya mana
 
-			if ( warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 )) {//verifica que un warrior no se ha jugado en ese turno
+	
+			if (allowed) {//verifica que un warrior no se ha jugado en ese turno
 				int where = player.field.findwhere();
 				if (where != -1)
 				{
@@ -3914,14 +4115,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
 		
+			if(player.hand.handgui[i].getcard().GetCardNumber()!=18  )
+			{
 			player.hand.handgui[i].Play.setEnabled(enabled);
+			}else
+			{
+				player.hand.handgui[i].Play.setEnabled(false);
+			}
 			player.hand.handgui[i].addMouseListener(this);	
 		}
+		
+		player.pdeck.Play.setEnabled(enabled);
 		if(player.hand.handgui[player.hand.current]!=null)
 		{
 			Addlisteners2Card(player.hand.current);
 			player.hand.handgui[player.hand.current].addMouseListener(this);	
 		}
+		
 
 	}
 	@Override
@@ -4309,10 +4519,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<5;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 
-
+		player.pdeck.Play.setEnabled(false);
 		tuto.draw();
 		player.powers.reset(); 
-	    player.powers.token();
+	    
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
