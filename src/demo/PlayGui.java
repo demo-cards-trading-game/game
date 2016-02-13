@@ -278,6 +278,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.sworda4.setVisible(false);
 		this.sworda5.setVisible(false);
 
+		swordp1.addMouseListener(this);
+		swordp2.addMouseListener(this);
+		swordp3.addMouseListener(this);
+		swordp4.addMouseListener(this);
+		swordp5.addMouseListener(this);
+		
 		try{
 			turno = new FileReader(new File("turno.txt"));
 			br= new BufferedReader(turno);
@@ -2714,6 +2720,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==aitarjet115){
 			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
 		}
+		if (e.getSource()==swordp1) {
+			swordp1.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp2) {
+			swordp2.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp3) {
+			swordp3.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp4) {
+			swordp4.setIcon(new ImageIcon("sword.png"));
+		}
+		if (e.getSource()==swordp5) {
+			swordp5.setIcon(new ImageIcon("sword.png"));
+		}
+		repaint();
 	}
 
 
@@ -3038,6 +3060,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==aitarjet115){
 			aitarjet115.setIcon(new ImageIcon("redTarget3.png"));
 		}
+		if (e.getSource()==swordp1) {
+			swordp1.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp2) {
+			swordp2.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp3) {
+			swordp3.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp4) {
+			swordp4.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		if (e.getSource()==swordp5) {
+			swordp5.setIcon(new ImageIcon("swordEnfoqued.png"));
+		}
+		repaint();
 	}
 
 	void set(int pos,int where)
