@@ -94,9 +94,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
-	public JInternalFrame menu1, menu2, menu3, menu4, menu5;
-	public JButton attack1, attack2, attack3, attack4, attack5, undrain;
-	public JButton dest1, dest2, dest3, dest4, dest5;
+	public JButton undrain;
+	public JLabel dest1, dest2, dest3, dest4, dest5;
 	public int atkDest=-1, atkOrigin=-1;
 	public int [] aiAttack= new int[5];
 	public int [] aiDest= new int[5];
@@ -262,11 +261,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda5);
 
 		
-//		this.swordp1.setVisible(true);
-//		this.swordp2.setVisible(true);
-//		this.swordp3.setVisible(true);
-//		this.swordp4.setVisible(true);
-//		this.swordp5.setVisible(true);
 		this.swordp1.setVisible(false);
 		this.swordp2.setVisible(false);
 		this.swordp3.setVisible(false);
@@ -318,102 +312,46 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
 
-		menu1 = new JInternalFrame();
-		menu1.getContentPane().setLayout(null);
-		attack1 = new JButton("A");
-		attack1.setBounds(15, 11, 49, 20);
-		menu1.getContentPane().add(attack1);
-		menu1.setClosable(true);
-		menu1.setBounds(230,380,80,70);
-		menu1.setVisible(false);
-		add(menu1);
-		menu1.moveToFront();
-
-		menu2 = new JInternalFrame();
-		menu2.getContentPane().setLayout(null);
-		attack2 = new JButton("A");
-		attack2.setBounds(15, 11, 49, 20);
-		menu2.getContentPane().add(attack2);
-		menu2.setClosable(true);
-		menu2.setBounds(340,380,80,70);
-		menu2.setVisible(false);
-		add(menu2);
-		menu2.moveToFront();
-
-		menu3 = new JInternalFrame();
-		menu3.getContentPane().setLayout(null);
-		attack3 = new JButton("A");
-		attack3.setBounds(15, 11, 49, 20);
-		menu3.getContentPane().add(attack3);
-		menu3.setClosable(true);
-		menu3.setBounds(450,380,80,70);
-		menu3.setVisible(false);
-		add(menu3);
-		menu3.moveToFront();
-
-		menu4= new JInternalFrame();
-		menu4.getContentPane().setLayout(null);
-		attack4 = new JButton("A");
-		attack4.setBounds(15, 11, 49, 20);
-		menu4.getContentPane().add(attack4);
-		menu4.setClosable(true);
-		menu4.setBounds(560,380,80,70);
-		menu4.setVisible(false);
-		add(menu4);
-		menu4.moveToFront();
-
-		menu5= new JInternalFrame();
-		menu5.getContentPane().setLayout(null);
-		attack5 = new JButton("A");
-		attack5.setBounds(15, 11, 49, 20);
-		menu5.getContentPane().add(attack5);
-		menu5.setClosable(true);
-		menu5.setBounds(670,380,80,70);
-		menu5.setVisible(false);
-		add(menu5);
-		menu5.moveToFront();
-
-		this.dest1 = new JButton("Target");
-		this.dest1.setBounds(230, 210, 80, 20);
+		this.dest1 = new JLabel();
+		dest1.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest1.setBounds(230, 210, 50, 50);
 		this.dest1.setVisible(false);
 		add(dest1);
 		this.moveToFront(this.dest1);
 
-		this.dest2 = new JButton("Target");
-		this.dest2.setBounds(340, 210, 80, 20);
+		this.dest2 = new JLabel();
+		dest2.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest2.setBounds(340, 210, 50, 50);
 		this.dest2.setVisible(false);
 		add(dest2);
 		this.moveToFront(this.dest2);
 
-		this.dest3 = new JButton("Target");
-		this.dest3.setBounds(450, 210, 80, 20);
+		this.dest3 = new JLabel();
+		dest3.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest3.setBounds(450, 210, 50, 50);
 		this.dest3.setVisible(false);
 		add(dest3);
 		this.moveToFront(this.dest3);
 
-		this.dest4 = new JButton("Target");
-		this.dest4.setBounds(560, 210, 80, 20);
+		this.dest4 = new JLabel();
+		dest4.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest4.setBounds(560, 210, 50, 50);
 		this.dest4.setVisible(false);
 		add(dest4);
 		this.moveToFront(this.dest4);
 
-		this.dest5 = new JButton("Target");
-		this.dest5.setBounds(670, 210, 80, 20);
+		this.dest5 = new JLabel();
+		dest5.setIcon(new ImageIcon("redTarget1.png"));
+		this.dest5.setBounds(670, 210, 50, 50);
 		this.dest5.setVisible(false);
 		add(dest5);
 		this.moveToFront(this.dest5);
 
-		this.attack1.addActionListener(this);
-		this.attack2.addActionListener(this);
-		this.attack3.addActionListener(this);
-		this.attack4.addActionListener(this);
-		this.attack5.addActionListener(this);
-
-		this.dest1.addActionListener(this);
-		this.dest2.addActionListener(this);
-		this.dest3.addActionListener(this);
-		this.dest4.addActionListener(this);
-		this.dest5.addActionListener(this);
+		this.dest1.addMouseListener(this);
+		this.dest2.addMouseListener(this);
+		this.dest3.addMouseListener(this);
+		this.dest4.addMouseListener(this);
+		this.dest5.addMouseListener(this);
 
 
 
@@ -1280,124 +1218,124 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 
 
-		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
+//		if(e.getSource()==this.attack1||e.getSource()==this.attack2||e.getSource()==this.attack3||e.getSource()==this.attack4||e.getSource()==this.attack5){
+//
+//			if(e.getSource()==this.attack1){
+//				this.atkOrigin=1;
+//			}
+//			if(e.getSource()==this.attack2){
+//				this.atkOrigin=2;
+//			}
+//			if(e.getSource()==this.attack3){
+//				this.atkOrigin=3;
+//			}
+//			if(e.getSource()==this.attack4){
+//				this.atkOrigin=4;
+//			}
+//			if(e.getSource()==this.attack5){
+//				this.atkOrigin=5;
+//			}
+//			if(ai.aifield.countcards()==0)
+//			{
+//
+//				int which=ai.barriers.findwhich();//verifica que exista un barrier
+//				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
+//				if(ai.aihand.current==5){	
+//					ai.aihand.discard(5);
+//				}
+//
+//				if(which!=-1)//existe un barrier
+//				{
+//					int pos= ai.aihand.draw(ai.barriers.cards[which]);
+//					ai.barriers.removebarrier(which);
+//
+//				}
+//
+//				if(e.getSource()==this.attack1){
+//					this.menu1.setVisible(false);
+//					this.swordp1.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack2){
+//					this.menu2.setVisible(false);
+//					this.swordp2.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack3){
+//					this.menu3.setVisible(false);
+//					this.swordp3.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack4){
+//					this.menu4.setVisible(false);
+//					this.swordp4.setVisible(false);
+//				}
+//				if(e.getSource()==this.attack5){
+//					this.menu5.setVisible(false);
+//					this.swordp5.setVisible(false);
+//				}
+//			}else{
+//				JOptionPane.showMessageDialog(null, "Select Your Target");
+//				if(ai.aifield.cards[0]!=null){
+//					this.dest1.setVisible(true);
+//				}
+//				if(ai.aifield.cards[1]!=null){
+//					this.dest2.setVisible(true);
+//				}
+//				if(ai.aifield.cards[2]!=null){
+//					this.dest3.setVisible(true);
+//				}
+//				if(ai.aifield.cards[3]!=null){
+//					this.dest4.setVisible(true);
+//				}
+//				if(ai.aifield.cards[4]!=null){
+//					this.dest5.setVisible(true);
+//				}
+//			}
+//		}
 
-			if(e.getSource()==this.attack1){
-				this.atkOrigin=1;
-			}
-			if(e.getSource()==this.attack2){
-				this.atkOrigin=2;
-			}
-			if(e.getSource()==this.attack3){
-				this.atkOrigin=3;
-			}
-			if(e.getSource()==this.attack4){
-				this.atkOrigin=4;
-			}
-			if(e.getSource()==this.attack5){
-				this.atkOrigin=5;
-			}
-			if(ai.aifield.countcards()==0)
-			{
-
-				int which=ai.barriers.findwhich();//verifica que exista un barrier
-				JOptionPane.showMessageDialog(null, "congratulations , direct hit");
-				if(ai.aihand.current==5){	
-					ai.aihand.discard(5);
-				}
-
-				if(which!=-1)//existe un barrier
-				{
-					int pos= ai.aihand.draw(ai.barriers.cards[which]);
-					ai.barriers.removebarrier(which);
-
-				}
-
-				if(e.getSource()==this.attack1){
-					this.menu1.setVisible(false);
-					this.swordp1.setVisible(false);
-				}
-				if(e.getSource()==this.attack2){
-					this.menu2.setVisible(false);
-					this.swordp2.setVisible(false);
-				}
-				if(e.getSource()==this.attack3){
-					this.menu3.setVisible(false);
-					this.swordp3.setVisible(false);
-				}
-				if(e.getSource()==this.attack4){
-					this.menu4.setVisible(false);
-					this.swordp4.setVisible(false);
-				}
-				if(e.getSource()==this.attack5){
-					this.menu5.setVisible(false);
-					this.swordp5.setVisible(false);
-				}
-			}else{
-				JOptionPane.showMessageDialog(null, "Select Your Target");
-				if(ai.aifield.cards[0]!=null){
-					this.dest1.setVisible(true);
-				}
-				if(ai.aifield.cards[1]!=null){
-					this.dest2.setVisible(true);
-				}
-				if(ai.aifield.cards[2]!=null){
-					this.dest3.setVisible(true);
-				}
-				if(ai.aifield.cards[3]!=null){
-					this.dest4.setVisible(true);
-				}
-				if(ai.aifield.cards[4]!=null){
-					this.dest5.setVisible(true);
-				}
-			}
-		}
-
-		if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
-			if(e.getSource()==this.dest1){
-				this.atkDest=1;
-			}
-			if(e.getSource()==this.dest2){
-				this.atkDest=2;
-			}
-			if(e.getSource()==this.dest3){
-				this.atkDest=3;
-			}
-			if(e.getSource()==this.dest4){
-				this.atkDest=4;
-			}
-			if(e.getSource()==this.dest5){
-				this.atkDest=5;
-			}
-
-			this.menu1.setVisible(false);
-			this.menu2.setVisible(false);
-			this.menu3.setVisible(false);
-			this.menu4.setVisible(false);
-			this.menu5.setVisible(false);
-
-			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
-			remove(phases);
-			if(!fight.isVisible()){
-				fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
-			}
-			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
-			{
-				ai.aifield.quitar(atkDest-1);
-				this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
-
-			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
-			{
-				player.field.quitar(atkOrigin-1);
-			}
-			add(phases);
-			this.dest1.setVisible(false);
-			this.dest2.setVisible(false);
-			this.dest3.setVisible(false);
-			this.dest4.setVisible(false);
-			this.dest5.setVisible(false);
-
-		}
+//		if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
+//			if(e.getSource()==this.dest1){
+//				this.atkDest=1;
+//			}
+//			if(e.getSource()==this.dest2){
+//				this.atkDest=2;
+//			}
+//			if(e.getSource()==this.dest3){
+//				this.atkDest=3;
+//			}
+//			if(e.getSource()==this.dest4){
+//				this.atkDest=4;
+//			}
+//			if(e.getSource()==this.dest5){
+//				this.atkDest=5;
+//			}
+//
+//			this.menu1.setVisible(false);
+//			this.menu2.setVisible(false);
+//			this.menu3.setVisible(false);
+//			this.menu4.setVisible(false);
+//			this.menu5.setVisible(false);
+//
+//			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+//			remove(phases);
+//			if(!fight.isVisible()){
+//				fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
+//			}
+//			if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
+//			{
+//				ai.aifield.quitar(atkDest-1);
+//				this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+//
+//			}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
+//			{
+//				player.field.quitar(atkOrigin-1);
+//			}
+//			add(phases);
+//			this.dest1.setVisible(false);
+//			this.dest2.setVisible(false);
+//			this.dest3.setVisible(false);
+//			this.dest4.setVisible(false);
+//			this.dest5.setVisible(false);
+//
+//		}
 
 		if(e.getSource()==j){
 			this.listAll = new prueba2(player.pdeck.Deck);
@@ -1823,12 +1761,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.sworda4.setVisible(false);
 							this.sworda5.setVisible(false);
 
-							this.menu1.setVisible(false);
-							this.menu2.setVisible(false);
-							this.menu3.setVisible(false);
-							this.menu4.setVisible(false);
-							this.menu5.setVisible(false);
-
 							this.dest1.setVisible(false);
 							this.dest2.setVisible(false);
 							this.dest3.setVisible(false);
@@ -1916,43 +1848,43 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(phases.actual==3&&this.contTurn>0){
 					if(e.getSource()==player.field.cards[0]&&!player.field.cards[0].down)
 					{
-						this.menu1.setVisible(true);
-						this.menu2.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu4.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp1.setVisible(true);
+						this.swordp2.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp4.setVisible(false);
+						this.swordp5.setVisible(false);
 					}	
 					if(e.getSource()==player.field.cards[1]&&!player.field.cards[1].down)
 					{
-						this.menu2.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu4.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp2.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp4.setVisible(false);
+						this.swordp5.setVisible(false);
 					}
 					if(e.getSource()==player.field.cards[2]&&!player.field.cards[2].down)
 					{
-						this.menu3.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu2.setVisible(false);
-						this.menu4.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp3.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp2.setVisible(false);
+						this.swordp4.setVisible(false);
+						this.swordp5.setVisible(false);
 					}
 					if(e.getSource()==player.field.cards[3]&&!player.field.cards[3].down)
 					{
-						this.menu4.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu2.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu5.setVisible(false);
+						this.swordp4.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp2.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp5.setVisible(false);
 
 					}if(e.getSource()==player.field.cards[4]&&!player.field.cards[4].down)
 					{
-						this.menu5.setVisible(true);
-						this.menu1.setVisible(false);
-						this.menu2.setVisible(false);
-						this.menu3.setVisible(false);
-						this.menu4.setVisible(false);
+						this.swordp5.setVisible(true);
+						this.swordp1.setVisible(false);
+						this.swordp2.setVisible(false);
+						this.swordp3.setVisible(false);
+						this.swordp4.setVisible(false);
 					}
 				}
 				
@@ -2327,6 +2259,118 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					repaint();
 				}
 
+				if(e.getSource()==this.swordp1||e.getSource()==this.swordp2||e.getSource()==this.swordp3||e.getSource()==this.swordp4||e.getSource()==this.swordp5){
+
+					if(e.getSource()==this.swordp1){
+						this.atkOrigin=1;
+					}
+					if(e.getSource()==this.swordp2){
+						this.atkOrigin=2;
+					}
+					if(e.getSource()==this.swordp3){
+						this.atkOrigin=3;
+					}
+					if(e.getSource()==this.swordp4){
+						this.atkOrigin=4;
+					}
+					if(e.getSource()==this.swordp5){
+						this.atkOrigin=5;
+					}
+					if(ai.aifield.countcards()==0)
+					{
+
+						int which=ai.barriers.findwhich();//verifica que exista un barrier
+						JOptionPane.showMessageDialog(null, "congratulations , direct hit");
+						if(ai.aihand.current==5){	
+							ai.aihand.discard(5);
+						}
+
+						if(which!=-1)//existe un barrier
+						{
+							int pos= ai.aihand.draw(ai.barriers.cards[which]);
+							ai.barriers.removebarrier(which);
+
+						}
+
+						if(e.getSource()==this.swordp1){
+							this.swordp1.setVisible(false);
+						}
+						if(e.getSource()==this.swordp2){
+							this.swordp2.setVisible(false);
+						}
+						if(e.getSource()==this.swordp3){
+							this.swordp3.setVisible(false);
+						}
+						if(e.getSource()==this.swordp4){
+							this.swordp4.setVisible(false);
+						}
+						if(e.getSource()==this.swordp5){
+							this.swordp5.setVisible(false);
+						}
+					}else{
+						JOptionPane.showMessageDialog(null, "Select Your Target");
+						if(ai.aifield.cards[0]!=null){
+							this.dest1.setVisible(true);
+						}
+						if(ai.aifield.cards[1]!=null){
+							this.dest2.setVisible(true);
+						}
+						if(ai.aifield.cards[2]!=null){
+							this.dest3.setVisible(true);
+						}
+						if(ai.aifield.cards[3]!=null){
+							this.dest4.setVisible(true);
+						}
+						if(ai.aifield.cards[4]!=null){
+							this.dest5.setVisible(true);
+						}
+					}
+				}
+				
+				if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
+					if(e.getSource()==this.dest1){
+						this.atkDest=1;
+					}
+					if(e.getSource()==this.dest2){
+						this.atkDest=2;
+					}
+					if(e.getSource()==this.dest3){
+						this.atkDest=3;
+					}
+					if(e.getSource()==this.dest4){
+						this.atkDest=4;
+					}
+					if(e.getSource()==this.dest5){
+						this.atkDest=5;
+					}
+
+					swordp1.setVisible(false);
+					swordp2.setVisible(false);
+					swordp3.setVisible(false);
+					swordp4.setVisible(false);
+					swordp5.setVisible(false);
+
+					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
+					remove(phases);
+					if(!fight.isVisible()){
+						fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
+					}
+					if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
+					{
+						ai.aifield.quitar(atkDest-1);
+						this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+
+					}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
+					{
+						player.field.quitar(atkOrigin-1);
+					}
+					add(phases);
+					this.dest1.setVisible(false);
+					this.dest2.setVisible(false);
+					this.dest3.setVisible(false);
+					this.dest4.setVisible(false);
+					this.dest5.setVisible(false);
+				}
 			}
 
 			if (e.getSource()==player.pdeck.btnNewButton_1)// si se le da click al boton de fallen 
