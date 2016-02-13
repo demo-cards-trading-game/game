@@ -212,7 +212,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		op=new  optionpane();
 		//swords
 		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp1.setBounds(0, 0, 535, 830);
+		swordp1.setBounds(240, 350, 50, 120);
 		add(swordp1);
 		this.moveToFront(swordp1);
 
@@ -222,7 +222,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda1);
 
 		swordp2= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp2.setBounds(0, 0, 760, 830);
+		swordp2.setBounds(350, 350, 50, 120);
 		add(swordp2);
 		this.moveToFront(swordp2);
 
@@ -232,7 +232,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda2);
 
 		swordp3= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp3.setBounds(0, 0, 980, 830);
+		swordp3.setBounds(460, 350, 50, 120);
 		add(swordp3);
 		this.moveToFront(swordp3);
 
@@ -242,7 +242,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda3);
 
 		swordp4= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp4.setBounds(0, 0, 1200, 830);
+		swordp4.setBounds(570, 350, 50, 120);
 		add(swordp4);
 		this.moveToFront(swordp4);
 
@@ -252,7 +252,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(sworda4);
 
 		swordp5= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp5.setBounds(0, 0, 1420, 830);
+		swordp5.setBounds(680, 350, 50, 120);
 		add(swordp5);
 		this.moveToFront(swordp5);
 
@@ -261,6 +261,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(sworda5);
 		this.moveToFront(sworda5);
 
+		
+//		this.swordp1.setVisible(true);
+//		this.swordp2.setVisible(true);
+//		this.swordp3.setVisible(true);
+//		this.swordp4.setVisible(true);
+//		this.swordp5.setVisible(true);
 		this.swordp1.setVisible(false);
 		this.swordp2.setVisible(false);
 		this.swordp3.setVisible(false);
