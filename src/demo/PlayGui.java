@@ -877,6 +877,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		// label.setBounds(100,100,50,50);
 		// this.add(label);
 		// this.moveToFront(label);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -3140,7 +3141,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			
 			if(pos>=0){
-
 				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
 				player.powers.play(player.hand.handgui[pos].getcard().GetCost());
 				player.hand.handgui[pos].Preview.doClick();
@@ -3199,7 +3199,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			repaint();
 		
-			
 
 			
 			player.hand.music();
@@ -3325,26 +3324,48 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
 		ai.aidra.set(1);
 		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
-		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
+		int pos= ai.aihand.draw(ai.aideck.Deck.extraerR());
+		//ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 		phases.change(phases.actual+1);
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
 		JOptionPane.showMessageDialog(null, "ai gets a card from barriers");
 		phases.change(phases.actual+1);
-		which=ai.barriers.findwhich();//verifica que exista un barrier
-		if(ai.aihand.current!=5){	
-			if(which!=-1)//existe un barrier
-			{
-				int pos= ai.aihand.draw(ai.barriers.cards[which]);
-				ai.barriers.removebarrier(which);
-
-			}
-		}	
+//		which=ai.barriers.findwhich();//verifica que exista un barrier
+//		if(ai.aihand.current!=5){	
+//			if(which!=-1)//existe un barrier
+//			{
+//				int pos= ai.aihand.draw(ai.barriers.cards[which]);
+//				ai.barriers.removebarrier(which);
+//
+//			}
+//		}	
 		setVisible(true);
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
 		ai.smartPlay();
 		if (ai.whereInvoqued!=-1) {			
 			this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
+			if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
+				Thread t1 = new Thread(new Runnable() {
+					
+					public void start() {
+						this.start();
+					}
+					
+					public void run() {
+						try {
+							Thread.sleep(2500);
+							
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ai.aifield.quitar(ai.whereInvoqued);
+						repaint();
+					}
+				});
+				t1.start();
+				
+			}
 		}
 		phases.change(phases.actual+1);
 		//attack phase 
