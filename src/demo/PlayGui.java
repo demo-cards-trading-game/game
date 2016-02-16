@@ -876,6 +876,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		// label.setBounds(100,100,50,50);
 		// this.add(label);
 		// this.moveToFront(label);
+	
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -3452,7 +3453,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.token();
 		tuto.draw();
 		player.powers.reset();
-		
+		repaint();
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
@@ -3707,7 +3708,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-12")){
 				JOptionPane.showMessageDialog(null, "you get 4 volatile power, use it wisely");
-				player.powers.set(4);
+				player.powers.token();
+				player.powers.token();
+				player.powers.token();
+				player.powers.token();
+				tuto.draw();
+				player.powers.reset();
 			}	
 
 			repaint();
@@ -3817,14 +3823,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 				//dest
-				int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
-				player.hand.handgui[this.atkDest].addMouseListener(this);
-				//Addlisteners2Card(pos-1);
-				player.field.quitar(this.atkDest);
+				if (atkDest!=-1 && atkOrigin!=-1) {
+					int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
+					player.hand.handgui[this.atkDest].addMouseListener(this);
+					//Addlisteners2Card(pos-1);
+					player.field.quitar(this.atkDest);
 
-				//origin
-				pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
-				this.ai.aifield.quitar(this.atkOrigin); 
+					//origin
+					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
+					this.ai.aifield.quitar(this.atkOrigin); 
+				}
 			}
 
 			if(id.equals("SSD-08")){

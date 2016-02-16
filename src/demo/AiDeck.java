@@ -84,6 +84,22 @@ public class AiDeck extends JPanel {
 		panel.setBackground(new Color(204, 153, 51));
 		panel.setBounds(41, 168, 100, 145);
 		add(panel);
+//		Card c = new Card();
+//		c.SetCardNumber(10);
+//		c.SetClass("Mercenary");
+//		c.SetCost(1);
+//		c.SetDescription("hola");
+//		c.SetHp(0);
+//		c.SetMp(0);
+//		c.SetId("SSD-07");
+//		c.SetLimit(4);
+//		c.SetName("Truce");
+//		c.SetSource("Wind");
+//		c.SetType("Disruption");
+//		c.SetSup(0);
+//		for (int i = 0; i < 40; i++) {
+//			Deck.insertar(c);
+//		}
 		 try {
 			Deck.Load("resources/siren.in");
 		} catch (IOException e) {
