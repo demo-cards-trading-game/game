@@ -3345,6 +3345,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai.smartPlay();
 		if (ai.whereInvoqued!=-1) {			
 			this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
+			preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
 			if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
 				Thread t1 = new Thread(new Runnable() {
 					
@@ -3360,6 +3361,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							e.printStackTrace();
 						}
 						ai.aifield.quitar(ai.whereInvoqued);
+						preview.Remove();
 						repaint();
 					}
 				});
