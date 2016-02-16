@@ -125,6 +125,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int liberarTutoEnd=1;
 	
 	public JButton abc;
+	public int ubicacionDeCarta;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -876,7 +877,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		// label.setBounds(100,100,50,50);
 		// this.add(label);
 		// this.moveToFront(label);
-	
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -3140,27 +3140,50 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			
 			if(pos>=0){
-				
-			carta = new SmallCard(false,player.hand.handgui[pos].getcard());
-			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
-			player.hand.handgui[pos].Preview.doClick();
-			player.hand.discard(pos+1);
-			carta.addMouseListener(this);
-			player.field.poner(carta, where);
-			this.makeEffect(carta.actual.Getid(),where);
+
+				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
+				player.powers.play(player.hand.handgui[pos].getcard().GetCost());
+				player.hand.handgui[pos].Preview.doClick();
+				player.hand.discard(pos+1);
+				carta.addMouseListener(this);
+				player.field.poner(carta, where);
+				this.makeEffect(carta.actual.Getid(),where);
+				ubicacionDeCarta = where;
+				repaint();
+				if (carta.actual.GetType()!="Warrior") {
+					Thread t1 = new Thread(new Runnable() {
+
+						public void start() {
+							this.start();
+						}
+
+						public void run() {
+							try {
+								Thread.sleep(750);
+
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							player.field.quitar(ubicacionDeCarta);
+							repaint();
+						}
+					});
+					t1.start();
+					
+				}
 			}
 			if(pos==-2){
 				donde=w;
-           Hero = new SmallCard(false,player.pdeck.Hero.getcard());
-           Hero.shadowColor=Color.black.darker();
-           Hero.addMouseListener(this);
-			player.pdeck.panel.remove(player.pdeck.Hero);
-			player.pdeck.panel.remove(player.pdeck.menu);
-			player.powers.play(player.pdeck.Hero.getcard().GetCost());
-			RoundedPanel show=new RoundedPanel();
-			show.setBounds(0,0,100,145);
-			player.pdeck.panel.add(show);
-			player.field.poner(Hero, where);
+				Hero = new SmallCard(false,player.pdeck.Hero.getcard());
+				Hero.shadowColor=Color.black.darker();
+				Hero.addMouseListener(this);
+				player.pdeck.panel.remove(player.pdeck.Hero);
+				player.pdeck.panel.remove(player.pdeck.menu);
+				player.powers.play(player.pdeck.Hero.getcard().GetCost());
+				RoundedPanel show=new RoundedPanel();
+				show.setBounds(0,0,100,145);
+				player.pdeck.panel.add(show);
+				player.field.poner(Hero, where);
 			}
 			if(pos==-3)
 			{
@@ -3169,7 +3192,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				player.powers.play(Hero.getcard().GetCost());
 				player.field.poner(Hero, donde);
 			}
-			
+
 			player.powers. disselect();
 			
 			
@@ -3194,7 +3217,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				public void run() {
 					try {
-						Thread.sleep(2000);
+						Thread.sleep(3000);
 
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -3708,12 +3731,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-12")){
 				JOptionPane.showMessageDialog(null, "you get 4 volatile power, use it wisely");
-				player.powers.token();
-				player.powers.token();
-				player.powers.token();
-				player.powers.token();
-				tuto.draw();
-				player.powers.reset();
+				player.powers.set();
 			}	
 
 			repaint();
