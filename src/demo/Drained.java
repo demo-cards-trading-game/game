@@ -811,6 +811,7 @@ if(e.getSource()==tokens[2])
 	if(tokens[2].getY()==10)
 	{
 		tokenused++;
+		paying++;
 		label.setText(""+paying);
 		tokens[2].setBounds(50,0,20,20);
 		
@@ -818,6 +819,7 @@ if(e.getSource()==tokens[2])
 	{
 		
 		tokenused--;
+		paying--;
 		label.setText(""+paying);
 		tokens[2].setBounds(50,10,20,20);
 	}
