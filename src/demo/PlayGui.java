@@ -4209,7 +4209,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.attack.setIcon(new ImageIcon(("attack2.png")));
 		}
 		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end2.png")));
+			phases.end.setIcon(new ImageIcon(("endz.png")));
 			
 				tuto.ok.doClick();
 			
