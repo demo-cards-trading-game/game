@@ -3131,7 +3131,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint();
 	}
 
-	void set(final int pos,int where)
+	void set(final int pos,final int where)
 	{
 
 		SmallCard carta;
@@ -3150,7 +3150,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(pos>=0){
 				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
 				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
+				
 				animations.add(moving);
+				moveToFront(moving);
 				Thread t = new Thread(new Runnable() {
 
 					
@@ -3163,9 +3165,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 						
 						
-						moving.setBounds(680+player.hand.handgui[pos].getY(),226+player.hand.handgui[pos].getX(),0,0);
-						
-					
+						moving.setBounds(650+20,player.hand.handgui[pos].getX(),0,0);
+						System.out.println(player.hand.handgui[pos].getX());
+						System.out.println(player.hand.handgui[pos].getY());
 						
 						int i=0,j=0;
 						while (i<=100 || j<=145) {
@@ -3173,12 +3175,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							try {
 								if(i<=100){
 								i++;
-								moving.setBounds(680+player.hand.handgui[pos].getY(),226+player.hand.handgui[pos].getX(),i,j);
+								moving.setBounds(200+player.hand.handgui[pos].getX(),player.hand.handgui[pos].getY()+600,i,j);
 								Thread.sleep(3);
 								}
 								if(j<=145){
 								j++;
-								moving.setBounds(680+player.hand.handgui[pos].getY(),226+player.hand.handgui[pos].getX(),i,j);
+								moving.setBounds(180+player.hand.handgui[pos].getX(),player.hand.handgui[pos].getY()+550,i,j);
 							
 								Thread.sleep(3);
 								}
@@ -3189,7 +3191,57 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}
 							
 						}
+						int x=0,y=350;
+						i=180+player.hand.handgui[pos].getX();
+						j=player.hand.handgui[pos].getY()+550;
+						switch(where)
+						{
+						case 0: x= 220;
+							break;
+						case 1: x=330;
+							break;
+						case 2: x=440;
+							break;
+						case 3: x=550;
+							break;
+						case 4 : x=440;
+							break;
 						
+						
+						}
+						while (i!=x || j!=y) {
+							
+							try {
+								if(i<x){
+								i++;
+								moving.setBounds(i,j,100,145);
+								Thread.sleep(3);
+								}
+								if(i>x){
+									i--;
+									moving.setBounds(i,j,100,145);
+									Thread.sleep(3);
+									}
+								
+								if(j<y){
+								j++;
+								moving.setBounds(i,j,100,145);
+							
+								Thread.sleep(3);
+								}
+								if(j>y){
+									j--;
+									moving.setBounds(i,j,100,145);
+								
+									Thread.sleep(3);
+									}
+							
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+
+							}
+							
+						}
 						
 						animations.remove(moving);
 						
