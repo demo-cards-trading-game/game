@@ -3,6 +3,7 @@ import demo.HandGui;
 import extra.Rlabel;
 import extra.RoundedPanel;
 import extra.Tutorial;
+import extra.movePanel;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
 import demo.CardGui;
@@ -75,6 +76,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	int donde;
+	movePanel animations;
 	optionpane op;
 	int turn, contTurn=0;
 	public int ready=0;
@@ -872,6 +874,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.pdeck.Play.addActionListener(this);
 		player.pdeck.Preview.addActionListener(this);
+		animations= new movePanel();
+		add(animations);
+		moveToFront(animations);
+		animations.setOpaque(false);
 		// JLabel label = new JLabel();
 		// label.setIcon(new ImageIcon("redArrow1.png"));
 		// label.setBounds(100,100,50,50);
