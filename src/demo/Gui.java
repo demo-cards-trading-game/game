@@ -35,6 +35,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 	JButton b1,b2,b3;
 	JLabel l1,demo, validar;
 	JTextArea text, val1,val2;
+	CardGui moving;
 	String Nombre1;//nombre del jugador1
 	private JMenuBar mb;
 	private JMenu menu1,menu2;
@@ -624,23 +625,13 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
 							CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
-							player1.animations.appear(nueva);
+							appear(nueva);
 					
-							while(player1.animations.animating==false)
-							{
-								System.out.println("not yet");
-							}
+							
 							
 						
 					
-							int pos =player1.player.hand.draw(nueva);
 							
-							player1.repairListeners(false);
-							player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
-							player1.cardDrawn=1;
-							player1.player.pdeck.textField.repaint();
-							setVisible(true);
-							repaint();
 						}else
 						{
 							gameover(this);
@@ -703,4 +694,72 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			player1.player.pdeck.btnNewButton.setIcon(new ImageIcon("draw1.png"));
 		}
 	}
+	public void appear(final CardGui card) {
+		moving=card;
+		player1.animations.add(moving);
+		Thread t = new Thread(new Runnable() {
+
+			
+			public void start() {
+				this.start();
+			}
+
+			public void run() {
+				
+		
+				
+				
+				moving.setBounds(925-62,609-93,0,0);
+				
+			
+				
+				int i=0,j=0;
+				while (i<=124 || j<=186) {
+					
+					try {
+						if(i<=124){
+						i++;
+						moving.setBounds(925-62,609-93,i,j);
+						Thread.sleep(1);
+						}
+						if(j<=186){
+						j++;
+						moving.setBounds(925-62,609-93,i,j);
+					
+						Thread.sleep(1);
+						}
+					
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+
+					}
+					
+				}
+				i=925-62;
+				while(i>=652)
+				{
+					i--;
+					try {
+						Thread.sleep(1);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					moving.setLocation(i, 609-93);
+				}
+				player1.animations.remove(moving);
+				int pos =player1.player.hand.draw(moving);
+				
+				player1.repairListeners(false);
+				player1.player.pdeck.textField.setText("cards left "+player1.player.pdeck.Deck.cardsLeft());
+				player1.cardDrawn=1;
+				player1.player.pdeck.textField.repaint();
+				setVisible(true);
+				repaint();
+			}
+		});
+		t.start();
+
+	}
+
 }
