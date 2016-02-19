@@ -3134,7 +3134,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	void set(final int pos,final int where)
 	{
 
-		SmallCard carta;
+		final SmallCard carta;
 		if(pos!=-2 && pos!=-3){
 		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 
@@ -3244,13 +3244,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 						
 						animations.remove(moving);
+						player.powers.play(player.hand.handgui[pos].getcard().GetCost());
+						player.hand.handgui[pos].Preview.doClick();
+						player.hand.discard(pos+1);
 						
 					}
 				});
 				t.start();
-				player.powers.play(player.hand.handgui[pos].getcard().GetCost());
-				player.hand.handgui[pos].Preview.doClick();
-				player.hand.discard(pos+1);
 				carta.addMouseListener(this);
 				player.field.poner(carta, where);
 				this.makeEffect(carta.actual.Getid(),where);
@@ -3277,6 +3277,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					t1.start();
 					
 				}
+				
 			}
 			if(pos==-2){
 				donde=w;
