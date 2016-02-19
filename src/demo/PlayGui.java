@@ -76,6 +76,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	int donde;
+	SmallCard moving;
 	movePanel animations;
 	optionpane op;
 	int turn, contTurn=0;
@@ -903,7 +904,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			tuto.animation.stop();
 			tuto.setVisible(false);
-
+			
 			player.powers.label.setVisible(false);
 			set(p, w);
 			checking = false;
@@ -3130,7 +3131,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint();
 	}
 
-	void set(int pos,int where)
+	void set(final int pos,int where)
 	{
 
 		SmallCard carta;
@@ -3148,6 +3149,53 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			if(pos>=0){
 				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
+				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
+				animations.add(moving);
+				Thread t = new Thread(new Runnable() {
+
+					
+					public void start() {
+						this.start();
+					}
+
+					public void run() {
+						
+				
+						
+						
+						moving.setBounds(680+player.hand.handgui[pos].getY(),226+player.hand.handgui[pos].getX(),0,0);
+						
+					
+						
+						int i=0,j=0;
+						while (i<=100 || j<=145) {
+							
+							try {
+								if(i<=100){
+								i++;
+								moving.setBounds(680+player.hand.handgui[pos].getY(),226+player.hand.handgui[pos].getX(),i,j);
+								Thread.sleep(3);
+								}
+								if(j<=145){
+								j++;
+								moving.setBounds(680+player.hand.handgui[pos].getY(),226+player.hand.handgui[pos].getX(),i,j);
+							
+								Thread.sleep(3);
+								}
+							
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+
+							}
+							
+						}
+						
+						
+						animations.remove(moving);
+						
+					}
+				});
+				t.start();
 				player.powers.play(player.hand.handgui[pos].getcard().GetCost());
 				player.hand.handgui[pos].Preview.doClick();
 				player.hand.discard(pos+1);
@@ -4585,7 +4633,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
 	}
+	public void PLAY(final SmallCard card) {
 	
+
+	}
 	/*public void avisoGenerico(String s){
 		 tuto.aviso(s);
 		Thread t = new Thread(new Runnable(){
