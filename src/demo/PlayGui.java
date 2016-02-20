@@ -3907,7 +3907,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(p==-1){
 					JOptionPane.showMessageDialog(null, "cannot find a water power");
 				}else{
-
 					int poss = ai.aihand.draw(ai.aideck.Deck.ConsultarYextraer(p));
 					this.ai.aideck.textField.setText("cards left "+this.ai.aideck.Deck.cardsLeft());
 					this.ai.aideck.textField.repaint();
@@ -3943,7 +3942,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(id.equals("SSD-06")){
-				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
+				ai.aidra.set(1);
+				ai.aidra.set(1);
 			}
 
 			if(id.equals("SSD-07")){
@@ -3953,7 +3953,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				contTargetAttack=0;
 				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null){
+					if(ai.aifield.cards[i]!=null&&pos!=i){
 						this.aiAttack[i]=1;
 						contTargetAttack++;
 					}
@@ -3965,12 +3965,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -3986,12 +3987,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
 						this.atkDest=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -3999,13 +4001,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				//dest
 				if (atkDest!=-1 && atkOrigin!=-1) {
 					int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
-					player.hand.handgui[this.atkDest].addMouseListener(this);
+					//player.hand.handgui[this.atkDest].addMouseListener(this);
 					//Addlisteners2Card(pos-1);
 					player.field.quitar(this.atkDest);
 
 					//origin
 					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
 					this.ai.aifield.quitar(this.atkOrigin); 
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "cannot find targets");
 				}
 			}
 
@@ -4016,7 +4021,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				contTargetAttack=0;
 				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null){
+					if(ai.aifield.cards[i]!=null&&pos!=i){
 						this.aiAttack[i]=1;
 						contTargetAttack++;
 					}
@@ -4028,18 +4033,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
 
 				for(int i=0;i<5;i++){
-					if(this.player.field.cards[i]!=null){
+					if(this.player.field.cards[i]!=null&&pos!=i){
 						this.aiDest[i]=1;
 					}
 					else{
@@ -4049,12 +4055,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
 						this.atkDest=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -4074,19 +4081,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")&&pos!=0){
 					this.selected=0;
 				}
-				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")&&pos!=1){
 					this.selected=1;
 				}
-				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")&&pos!=2){
 					this.selected=2;
 				}
-				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")&&pos!=3){
 					this.selected=3;
 				}
-				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")&&pos!=4){
 					this.selected=4;
 				}
 				if(this.selected==-1){
@@ -4111,12 +4118,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					int band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<6){
+					while(band==0 && i<16){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
 							this.atkDest=a;
 							band=1;
+							break;
 						}
 						i++;
 					}
@@ -4136,7 +4144,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					contTargetAttack=0;
 					for(int i=0;i<5;i++){
-						if(ai.aifield.cards[i]!=null){
+						if(ai.aifield.cards[i]!=null&&pos!=i){
 							this.aiAttack[i]=1;
 							contTargetAttack++;
 						}
@@ -4148,12 +4156,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					atkDest=-1;
 					int band=0;
 					i=0;
-					while(band==0 && i<6){
+					while(band==0 && i<16){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiAttack[a]==1){
 							this.atkOrigin=a;
 							band=1;
+							break;
 						}
 						i++;
 					}
@@ -4169,12 +4178,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<6){
+					while(band==0 && i<16){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
 							this.atkDest=a;
 							band=1;
+							break;
 						}
 						i++;
 					}
@@ -4195,7 +4205,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				contTargetAttack=0;
 				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null){
+					if(ai.aifield.cards[i]!=null&&pos!=i){
 						this.aiAttack[i]=1;
 						contTargetAttack++;
 					}
@@ -4207,12 +4217,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -4261,7 +4272,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 			}
-
+			
+			if (id.equals("SSD-10")) {
+				ai.aidra.set(1);
+				ai.aidra.set(1);
+				ai.aidra.set(1);
+				ai.aidra.set(1);
+			}
 			repaint();
 		}
 		if (this.phases.actual == 3) {
