@@ -126,6 +126,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int done;
 	public int bugPrimerTurnoUSer=0;
 	public int liberarTutoEnd=1;
+	public int ContClickEndPhase=0;
 	
 	public JButton abc;
 	public int ubicacionDeCarta;
@@ -884,7 +885,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		// label.setBounds(100,100,50,50);
 		// this.add(label);
 		// this.moveToFront(label);
-		
+		if(turn==1){
+			this.phases.end.addMouseListener(this);
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -1647,16 +1650,33 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
 				{
+					repaint();
 					//System.out.println(turn);
-
 					done=1;
 
-					if(phases.actual<4){
-						phases.change(phases.actual+1);
-
-					}else{
-						if(ready==1){
-							phases.change(0);
+					if (e.getSource()==phases.end && phases.actual < 3) {
+						//cuando se quiere terminar el turno en las tres primeras phases
+						barierpicked=0;
+						warriorPlayed=0;
+						cardDrawn=0;
+						
+						for(int i=0;i<player.hand.current;i++)
+							player.hand.handgui[i].Play.setEnabled(false);
+						
+						this.phases.setup.removeMouseListener(this);
+						this.phases.draw.removeMouseListener(this);
+						this.phases.action.removeMouseListener(this);
+						this.phases.attack.removeMouseListener(this);
+						
+						phases.change(4);
+					}
+					else {
+						if(phases.actual<4){
+							phases.change(phases.actual+1);
+						}else{
+							if(ready==1){
+								phases.change(0);
+							}
 						}
 					}
 					System.out.println(""+turno);
@@ -1674,7 +1694,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						
 							tuto.draw();
-							this.phases.end.removeMouseListener(this);
+							//this.phases.end.removeMouseListener(this);
 						
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
@@ -1683,7 +1703,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					case 1:
 						tuto.barrier();
 						this.phases.draw.removeMouseListener(this);
-						this.phases.end.removeMouseListener(this);
+						//this.phases.end.removeMouseListener(this);
 						this.phases.action.addMouseListener(this);
 						break;
 					case 2:
@@ -1700,7 +1720,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						liberarTutoEnd=0;
 						battle();
 						this.phases.attack.removeMouseListener(this);
-						this.phases.end.addMouseListener(this);
+						//this.phases.end.addMouseListener(this);
 
 						for (int i=0;i<5;i++)
 							player.barriers.barriers[i].addMouseListener(this);
@@ -1790,9 +1810,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						{
 //							tuto.end();
 							ready=1;
-							this.phases.end.removeMouseListener(this);
 							
 						}
+						this.phases.end.removeMouseListener(this);
 						//turno del oponente
 						phases.change(0);
 						ai.aideck.btnNewButton.addMouseListener(this);
@@ -3451,7 +3471,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
 		ai.smartPlay();
 		if (ai.whereInvoqued!=-1) {			
-			this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
+			//this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
 			preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
 			if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
 				Thread t1 = new Thread(new Runnable() {
@@ -3616,6 +3636,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.change(phases.actual+1);
 			repaint();
 		}
+		this.phases.end.addMouseListener(this);
+		if(phases.actual==-1){
+			phases.change(phases.actual+1);
+			repaint();
+		}
+		System.out.println("Debug manual     "+ phases.actual);
 	}
 
 	public void makeEffect(String id, int pos){
