@@ -188,7 +188,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 				b2.addActionListener(this);
 				add(b2);
 				
-				//validacion para entrar directamente con enter
+				//validacion para entrar directamente con enterkk
 				val1 = new JTextArea();   
 				val1.setBounds(480, 580, 0, 0);
 				val1.setVisible(true);

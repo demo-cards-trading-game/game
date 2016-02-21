@@ -1703,15 +1703,26 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					case 1:
 						tuto.barrier();
 						this.phases.draw.removeMouseListener(this);
-						//this.phases.end.removeMouseListener(this);
+						for(int i=0;i<5;i++)
+						{
+							if(player.barriers.barriers[i]!=null){
+							player.barriers.barriers[i].addMouseListener(this);
+							}
+						}
 						this.phases.action.addMouseListener(this);
 						break;
 					case 2:
 						tuto.Action();
+						for(int i=0;i<5;i++)
+						{
+							if(player.barriers.barriers[i]!=null){
+							player.barriers.barriers[i].removeMouseListener(this);
+							}
+						}
 						this.phases.action.removeMouseListener(this);
 						this.phases.attack.addMouseListener(this);
 
-						for(int i=0;i<player.hand.current;i++)
+						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
 						player.pdeck.Play.setEnabled(true);
 						
@@ -1722,8 +1733,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.phases.attack.removeMouseListener(this);
 						//this.phases.end.addMouseListener(this);
 
-						for (int i=0;i<5;i++)
-							player.barriers.barriers[i].addMouseListener(this);
+					
 
 						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
@@ -2494,6 +2504,37 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseExited(MouseEvent e) {
 	
+		setBackground(new Color(128, 128, 128));
+		if(e.getSource()==player.barriers.barriers[0])
+		{
+			player.barriers.barriers[0].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[1])
+		{
+			player.barriers.barriers[1].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[2])
+		{
+			player.barriers.barriers[2].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[3])
+		{
+			player.barriers.barriers[3].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[4])
+		{
+			player.barriers.barriers[4].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
 		
 		if(e.getSource()==Hero)
 		{
@@ -2819,6 +2860,38 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseEntered(MouseEvent e) 
 	{
+		
+		if(e.getSource()==player.barriers.barriers[0])
+		{
+			player.barriers.barriers[0].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[1])
+		{
+			player.barriers.barriers[1].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[2])
+		{
+			player.barriers.barriers[2].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[3])
+		{
+			player.barriers.barriers[3].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[4])
+		{
+			player.barriers.barriers[4].setBackground(Color.red);
+			
+			repaint();
+		}
+		
 		if(e.getSource()==Hero)
 		{
 			
@@ -3641,6 +3714,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.change(phases.actual+1);
 			repaint();
 		}
+		
 		System.out.println("Debug manual     "+ phases.actual);
 	}
 
