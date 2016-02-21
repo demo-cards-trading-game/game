@@ -229,7 +229,8 @@ public class SmallCard extends RoundedPanel{
 			  		break;
 			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));		
 		  		break;	
-		  		
+			  case 8:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("16short.png")))));		
+				  break;
 			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
 		  		break;	
 		  		
