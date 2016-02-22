@@ -3587,7 +3587,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			contTargetAttack=0;
 			for(int i=0;i<5;i++){
-				if(ai.aifield.cards[i]!=null){
+				if(ai.aifield.cards[i]!=null && ai.aifield.cards[i].getcard().GetType()=="Warrior"){
 					this.aiAttack[i]=1;
 					contTargetAttack++;
 
@@ -3670,7 +3670,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			}
 		}
-
+		
 
 		phases.change(phases.actual+1);
 		JOptionPane.showMessageDialog(null,"AI IS FINISHING IT'S TURN" );
