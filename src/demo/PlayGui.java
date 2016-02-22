@@ -3612,62 +3612,89 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				else{
 					this.aiAttack[i]=0;
 				}
-			}	
-			atkOrigin=-1;
-			atkDest=-1;
-			int band=0;
-			i=0;
-			while(band==0 && i<6){
-				Random r = new Random();
-				int a = r.nextInt(5);
-				if(this.aiAttack[a]==1){
-					this.atkOrigin=a;
-					band=1;
-				}
-				i++;
 			}
-
-			for(int i=0;i<5;i++){
-				if(this.player.field.cards[i]!=null){
-					this.aiDest[i]=1;
-				}
-				else{
-					this.aiDest[i]=0;
-				}
-			}	
-
-			band=0;
-			i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-			while(band==0 && i<6){
-				Random r = new Random();
-				int a = r.nextInt(5);
-				if(this.aiDest[a]==1){
-					this.atkDest=a;
-					band=1;
-				}
-				i++;
-			}
-			JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
-			if(atkDest!=-1 && atkOrigin!=-1  )
-			{
-
-				if(!player.field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
-					remove(phases);
-					if(!fight.isVisible()){
-						fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
+			
+			Random rr = new Random();
+			int cantidadPosiblesAtaques = rr.nextInt(contTargetAttack);
+			for (int iterador = 0; iterador < cantidadPosiblesAtaques; iterador++) {
+				atkOrigin=-1;
+				atkDest=-1;
+				int band=0;
+				i=0;
+				while(band==0 && i<16){
+					Random r = new Random();
+					int a = r.nextInt(5);
+					if(this.aiAttack[a]==1){
+						this.atkOrigin=a;
+						band=1;
+						break;
 					}
-					if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
-					{
-						ai.aifield.quitar(atkOrigin);
-
-					}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
-					{
-						player.field.quitar(atkDest);
-						this.makeAiEffect(this.ai.aifield.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+					i++;
+				}
+	
+				for(int i=0;i<5;i++){
+					if(this.player.field.cards[i]!=null){
+						this.aiDest[i]=1;
 					}
-					add(phases);
+					else{
+						this.aiDest[i]=0;
+					}
+				}	
+	
+				band=0;
+				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+				while(band==0 && i<16){
+					Random r = new Random();
+					int a = r.nextInt(5);
+					if(this.aiDest[a]==1){
+						this.atkDest=a;
+						band=1;
+						break;
+					}
+					i++;
+				}
+				JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
+				
+				if (this.atkOrigin==0) {
+					this.sworda1.setVisible(false);
+				}
+				if (this.atkOrigin==1) {
+					this.sworda2.setVisible(false);
+				}
+				if (this.atkOrigin==2) {
+					this.sworda3.setVisible(false);
+				}
+				if (this.atkOrigin==3) {
+					this.sworda4.setVisible(false);
+				}
+				if (this.atkOrigin==4) {
+					this.sworda5.setVisible(false);
 				}
 
+				this.aiAttack[atkOrigin]=0;
+				
+				if(atkDest!=-1 && atkOrigin!=-1  )
+				{
+	
+					if(!player.field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
+						remove(phases);
+						if(!fight.isVisible()){
+							fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
+						}
+						if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
+						{
+							ai.aifield.quitar(atkOrigin);
+	
+						}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
+						{
+							player.field.quitar(atkDest);
+							this.makeAiEffect(this.ai.aifield.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+						}
+						add(phases);
+					}
+	
+				}
+				repaint();
 			}
 		}
 		
