@@ -145,6 +145,34 @@ public  class HandGui extends JLayeredPane
 		      
 			return(current);
 		 }
+	 public int draw(CardGui a)
+	 {
+		 music();
+	
+			 
+			 CardGui x = null;
+			 cards[current]=a.getcard();
+			 
+			if (current<5){
+			 x=new CardGui(a.getcard(),current*124+30,20);
+			
+			 handgui[current]=x;
+			 add(handgui[current],current);
+		      current=current+1;
+			}else{
+			     current=current+1;
+				compactar();
+				
+			}
+		  
+		  
+		
+		      repaint();
+		      
+		      
+			return(current);
+		 }
+	 
 	 public void compactar()
 	 {
 		 removeAll();

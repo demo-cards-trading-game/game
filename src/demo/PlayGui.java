@@ -3,6 +3,7 @@ import demo.HandGui;
 import extra.Rlabel;
 import extra.RoundedPanel;
 import extra.Tutorial;
+import extra.movePanel;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
 import demo.CardGui;
@@ -75,6 +76,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	int donde;
+	SmallCard moving;
+	movePanel animations;
 	optionpane op;
 	int turn, contTurn=0;
 	public int ready=0;
@@ -123,8 +126,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int done;
 	public int bugPrimerTurnoUSer=0;
 	public int liberarTutoEnd=1;
+	public int ContClickEndPhase=0;
 	
 	public JButton abc;
+	public int ubicacionDeCarta;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -871,11 +876,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.pdeck.Play.addActionListener(this);
 		player.pdeck.Preview.addActionListener(this);
+		animations= new movePanel();
+		add(animations);
+		moveToFront(animations);
+		animations.setOpaque(false);
 		// JLabel label = new JLabel();
 		// label.setIcon(new ImageIcon("redArrow1.png"));
 		// label.setBounds(100,100,50,50);
 		// this.add(label);
 		// this.moveToFront(label);
+		if(turn==1){
+			this.phases.end.addMouseListener(this);
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -895,7 +907,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			tuto.animation.stop();
 			tuto.setVisible(false);
-
+			
 			player.powers.label.setVisible(false);
 			set(p, w);
 			checking = false;
@@ -1638,16 +1650,33 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
 				{
+					repaint();
 					//System.out.println(turn);
-
 					done=1;
 
-					if(phases.actual<4){
-						phases.change(phases.actual+1);
-
-					}else{
-						if(ready==1){
-							phases.change(0);
+					if (e.getSource()==phases.end && phases.actual < 3) {
+						//cuando se quiere terminar el turno en las tres primeras phases
+						barierpicked=0;
+						warriorPlayed=0;
+						cardDrawn=0;
+						
+						for(int i=0;i<player.hand.current;i++)
+							player.hand.handgui[i].Play.setEnabled(false);
+						
+						this.phases.setup.removeMouseListener(this);
+						this.phases.draw.removeMouseListener(this);
+						this.phases.action.removeMouseListener(this);
+						this.phases.attack.removeMouseListener(this);
+						
+						phases.change(4);
+					}
+					else {
+						if(phases.actual<4){
+							phases.change(phases.actual+1);
+						}else{
+							if(ready==1){
+								phases.change(0);
+							}
 						}
 					}
 					System.out.println(""+turno);
@@ -1665,7 +1694,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						
 							tuto.draw();
-							this.phases.end.removeMouseListener(this);
+							//this.phases.end.removeMouseListener(this);
 						
 							this.phases.setup.removeMouseListener(this);
 							this.phases.draw.removeMouseListener(this);
@@ -1674,15 +1703,26 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					case 1:
 						tuto.barrier();
 						this.phases.draw.removeMouseListener(this);
-						this.phases.end.removeMouseListener(this);
+						for(int i=0;i<5;i++)
+						{
+							if(player.barriers.barriers[i]!=null){
+							player.barriers.barriers[i].addMouseListener(this);
+							}
+						}
 						this.phases.action.addMouseListener(this);
 						break;
 					case 2:
 						tuto.Action();
+						for(int i=0;i<5;i++)
+						{
+							if(player.barriers.barriers[i]!=null){
+							player.barriers.barriers[i].removeMouseListener(this);
+							}
+						}
 						this.phases.action.removeMouseListener(this);
 						this.phases.attack.addMouseListener(this);
 
-						for(int i=0;i<player.hand.current;i++)
+						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
 						player.pdeck.Play.setEnabled(true);
 						
@@ -1691,10 +1731,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						liberarTutoEnd=0;
 						battle();
 						this.phases.attack.removeMouseListener(this);
-						this.phases.end.addMouseListener(this);
+						//this.phases.end.addMouseListener(this);
 
-						for (int i=0;i<5;i++)
-							player.barriers.barriers[i].addMouseListener(this);
+					
 
 						for(int i=0;i<5;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
@@ -1781,9 +1820,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						{
 //							tuto.end();
 							ready=1;
-							this.phases.end.removeMouseListener(this);
 							
 						}
+						this.phases.end.removeMouseListener(this);
 						//turno del oponente
 						phases.change(0);
 						ai.aideck.btnNewButton.addMouseListener(this);
@@ -2465,6 +2504,37 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseExited(MouseEvent e) {
 	
+		setBackground(new Color(128, 128, 128));
+		if(e.getSource()==player.barriers.barriers[0])
+		{
+			player.barriers.barriers[0].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[1])
+		{
+			player.barriers.barriers[1].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[2])
+		{
+			player.barriers.barriers[2].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[3])
+		{
+			player.barriers.barriers[3].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[4])
+		{
+			player.barriers.barriers[4].setBackground(new Color(128, 128, 128));;
+			
+			repaint();
+		}
 		
 		if(e.getSource()==Hero)
 		{
@@ -2790,6 +2860,38 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseEntered(MouseEvent e) 
 	{
+		
+		if(e.getSource()==player.barriers.barriers[0])
+		{
+			player.barriers.barriers[0].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[1])
+		{
+			player.barriers.barriers[1].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[2])
+		{
+			player.barriers.barriers[2].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[3])
+		{
+			player.barriers.barriers[3].setBackground(Color.red);
+			
+			repaint();
+		}
+		if(e.getSource()==player.barriers.barriers[4])
+		{
+			player.barriers.barriers[4].setBackground(Color.red);
+			
+			repaint();
+		}
+		
 		if(e.getSource()==Hero)
 		{
 			
@@ -3122,10 +3224,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint();
 	}
 
-	void set(int pos,int where)
+	void set(final int pos,final int where)
 	{
 
-		SmallCard carta;
+		final SmallCard carta;
 		if(pos!=-2 && pos!=-3){
 		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 
@@ -3139,27 +3241,149 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			
 			if(pos>=0){
+				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
+				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
 				
-			carta = new SmallCard(false,player.hand.handgui[pos].getcard());
-			player.powers.play(player.hand.handgui[pos].getcard().GetCost());
-			player.hand.handgui[pos].Preview.doClick();
-			player.hand.discard(pos+1);
-			carta.addMouseListener(this);
-			player.field.poner(carta, where);
-			this.makeEffect(carta.actual.Getid(),where);
+				animations.add(moving);
+				moveToFront(moving);
+				Thread t = new Thread(new Runnable() {
+
+					
+					public void start() {
+						this.start();
+					}
+
+					public void run() {
+						
+				
+						
+						
+						moving.setBounds(650+20,player.hand.handgui[pos].getX(),0,0);
+						System.out.println(player.hand.handgui[pos].getX());
+						System.out.println(player.hand.handgui[pos].getY());
+						
+						int i=0,j=0;
+						while (i<=100 || j<=145) {
+							
+							try {
+								if(i<=100){
+								i++;
+								moving.setBounds(200+player.hand.handgui[pos].getX(),player.hand.handgui[pos].getY()+600,i,j);
+								Thread.sleep(3);
+								}
+								if(j<=145){
+								j++;
+								moving.setBounds(180+player.hand.handgui[pos].getX(),player.hand.handgui[pos].getY()+550,i,j);
+							
+								Thread.sleep(3);
+								}
+							
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+
+							}
+							
+						}
+						int x=0,y=350;
+						i=180+player.hand.handgui[pos].getX();
+						j=player.hand.handgui[pos].getY()+550;
+						switch(where)
+						{
+						case 0: x= 220;
+							break;
+						case 1: x=330;
+							break;
+						case 2: x=440;
+							break;
+						case 3: x=550;
+							break;
+						case 4 : x=440;
+							break;
+						
+						
+						}
+						while (i!=x || j!=y) {
+							
+							try {
+								if(i<x){
+								i++;
+								moving.setBounds(i,j,100,145);
+								Thread.sleep(3);
+								}
+								if(i>x){
+									i--;
+									moving.setBounds(i,j,100,145);
+									Thread.sleep(3);
+									}
+								
+								if(j<y){
+								j++;
+								moving.setBounds(i,j,100,145);
+							
+								Thread.sleep(3);
+								}
+								if(j>y){
+									j--;
+									moving.setBounds(i,j,100,145);
+								
+									Thread.sleep(3);
+									}
+							
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+
+							}
+							
+						}
+						
+						animations.remove(moving);
+						player.powers.play(player.hand.handgui[pos].getcard().GetCost());
+						player.hand.handgui[pos].Preview.doClick();
+						player.hand.discard(pos+1);
+						
+					}
+				});
+				t.start();
+				carta.addMouseListener(this);
+				player.field.poner(carta, where);
+				this.makeEffect(carta.actual.Getid(),where);
+				ubicacionDeCarta = where;
+				repaint();
+				if (carta.actual.GetType()!="Warrior") {
+					Thread t1 = new Thread(new Runnable() {
+
+						public void start() {
+							this.start();
+						}
+
+						public void run() {
+							try {
+								Thread.sleep(750);
+
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							player.field.quitar(ubicacionDeCarta);
+							repaint();
+						}
+					});
+					t1.start();
+					
+				}
+				
 			}
 			if(pos==-2){
 				donde=w;
-           Hero = new SmallCard(false,player.pdeck.Hero.getcard());
-           Hero.shadowColor=Color.black.darker();
-           Hero.addMouseListener(this);
-			player.pdeck.panel.remove(player.pdeck.Hero);
-			player.pdeck.panel.remove(player.pdeck.menu);
-			player.powers.play(player.pdeck.Hero.getcard().GetCost());
-			RoundedPanel show=new RoundedPanel();
-			show.setBounds(0,0,100,145);
-			player.pdeck.panel.add(show);
-			player.field.poner(Hero, where);
+				Hero = new SmallCard(false,player.pdeck.Hero.getcard());
+				Hero.shadowColor=Color.black.darker();
+				Hero.addMouseListener(this);
+				player.pdeck.panel.remove(player.pdeck.Hero);
+				player.pdeck.panel.remove(player.pdeck.menu);
+				player.powers.play(player.pdeck.Hero.getcard().GetCost());
+				RoundedPanel show=new RoundedPanel();
+				show.setBounds(0,0,100,145);
+				player.pdeck.panel.add(show);
+				player.field.poner(Hero, where);
 			}
 			if(pos==-3)
 			{
@@ -3168,14 +3392,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				player.powers.play(Hero.getcard().GetCost());
 				player.field.poner(Hero, donde);
 			}
-			
+
 			player.powers. disselect();
 			
 			
 
 			repaint();
 		
-			
 
 			
 			player.hand.music();
@@ -3193,7 +3416,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				public void run() {
 					try {
-						Thread.sleep(2000);
+						Thread.sleep(3000);
 
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -3301,24 +3524,51 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
 		ai.aidra.set(1);
 		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
-		ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
+		int pos= ai.aihand.draw(ai.aideck.Deck.extraerR());
+		//ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 		phases.change(phases.actual+1);
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
 		JOptionPane.showMessageDialog(null, "ai gets a card from barriers");
 		phases.change(phases.actual+1);
-		which=ai.barriers.findwhich();//verifica que exista un barrier
-		if(ai.aihand.current!=5){	
-			if(which!=-1)//existe un barrier
-			{
-				int pos= ai.aihand.draw(ai.barriers.cards[which]);
-				ai.barriers.removebarrier(which);
-
-			}
-		}	
+//		which=ai.barriers.findwhich();//verifica que exista un barrier
+//		if(ai.aihand.current!=5){	
+//			if(which!=-1)//existe un barrier
+//			{
+//				int pos= ai.aihand.draw(ai.barriers.cards[which]);
+//				ai.barriers.removebarrier(which);
+//
+//			}
+//		}	
 		setVisible(true);
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
 		ai.smartPlay();
+		if (ai.whereInvoqued!=-1) {			
+			//this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
+			preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
+			if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
+				Thread t1 = new Thread(new Runnable() {
+					
+					public void start() {
+						this.start();
+					}
+					
+					public void run() {
+						try {
+							Thread.sleep(2500);
+							
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ai.aifield.quitar(ai.whereInvoqued);
+						preview.Remove();
+						repaint();
+					}
+				});
+				t1.start();
+				
+			}
+		}
 		phases.change(phases.actual+1);
 		//attack phase 
 		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
@@ -3449,7 +3699,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.token();
 		tuto.draw();
 		player.powers.reset();
-		
+		repaint();
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
@@ -3459,6 +3709,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.change(phases.actual+1);
 			repaint();
 		}
+		this.phases.end.addMouseListener(this);
+		if(phases.actual==-1){
+			phases.change(phases.actual+1);
+			repaint();
+		}
+		
+		System.out.println("Debug manual     "+ phases.actual);
 	}
 
 	public void makeEffect(String id, int pos){
@@ -3704,7 +3961,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-12")){
 				JOptionPane.showMessageDialog(null, "you get 4 volatile power, use it wisely");
-				player.powers.set(4);
+				player.powers.set();
 			}	
 
 			repaint();
@@ -3724,7 +3981,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(p==-1){
 					JOptionPane.showMessageDialog(null, "cannot find a water power");
 				}else{
-
 					int poss = ai.aihand.draw(ai.aideck.Deck.ConsultarYextraer(p));
 					this.ai.aideck.textField.setText("cards left "+this.ai.aideck.Deck.cardsLeft());
 					this.ai.aideck.textField.repaint();
@@ -3760,7 +4016,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(id.equals("SSD-06")){
-				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
+				ai.aidra.set(1);
+				ai.aidra.set(1);
 			}
 
 			if(id.equals("SSD-07")){
@@ -3770,7 +4027,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				contTargetAttack=0;
 				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null){
+					if(ai.aifield.cards[i]!=null&&pos!=i){
 						this.aiAttack[i]=1;
 						contTargetAttack++;
 					}
@@ -3782,12 +4039,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -3803,25 +4061,31 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
 						this.atkDest=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
 
 				//dest
-				int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
-				player.hand.handgui[this.atkDest].addMouseListener(this);
-				//Addlisteners2Card(pos-1);
-				player.field.quitar(this.atkDest);
+				if (atkDest!=-1 && atkOrigin!=-1) {
+					int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
+					//player.hand.handgui[this.atkDest].addMouseListener(this);
+					//Addlisteners2Card(pos-1);
+					player.field.quitar(this.atkDest);
 
-				//origin
-				pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
-				this.ai.aifield.quitar(this.atkOrigin); 
+					//origin
+					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
+					this.ai.aifield.quitar(this.atkOrigin); 
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "cannot find targets");
+				}
 			}
 
 			if(id.equals("SSD-08")){
@@ -3831,7 +4095,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				contTargetAttack=0;
 				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null){
+					if(ai.aifield.cards[i]!=null&&pos!=i){
 						this.aiAttack[i]=1;
 						contTargetAttack++;
 					}
@@ -3843,18 +4107,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
 
 				for(int i=0;i<5;i++){
-					if(this.player.field.cards[i]!=null){
+					if(this.player.field.cards[i]!=null&&pos!=i){
 						this.aiDest[i]=1;
 					}
 					else{
@@ -3864,12 +4129,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
 						this.atkDest=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -3889,19 +4155,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")&&pos!=0){
 					this.selected=0;
 				}
-				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")&&pos!=1){
 					this.selected=1;
 				}
-				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")&&pos!=2){
 					this.selected=2;
 				}
-				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")&&pos!=3){
 					this.selected=3;
 				}
-				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
+				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")&&pos!=4){
 					this.selected=4;
 				}
 				if(this.selected==-1){
@@ -3926,12 +4192,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					int band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<6){
+					while(band==0 && i<16){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
 							this.atkDest=a;
 							band=1;
+							break;
 						}
 						i++;
 					}
@@ -3951,7 +4218,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					contTargetAttack=0;
 					for(int i=0;i<5;i++){
-						if(ai.aifield.cards[i]!=null){
+						if(ai.aifield.cards[i]!=null&&pos!=i){
 							this.aiAttack[i]=1;
 							contTargetAttack++;
 						}
@@ -3963,12 +4230,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					atkDest=-1;
 					int band=0;
 					i=0;
-					while(band==0 && i<6){
+					while(band==0 && i<16){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiAttack[a]==1){
 							this.atkOrigin=a;
 							band=1;
+							break;
 						}
 						i++;
 					}
@@ -3984,12 +4252,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<6){
+					while(band==0 && i<16){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
 							this.atkDest=a;
 							band=1;
+							break;
 						}
 						i++;
 					}
@@ -4010,7 +4279,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				contTargetAttack=0;
 				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null){
+					if(ai.aifield.cards[i]!=null&&pos!=i){
 						this.aiAttack[i]=1;
 						contTargetAttack++;
 					}
@@ -4022,12 +4291,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<6){
+				while(band==0 && i<16){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
 						this.atkOrigin=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -4076,7 +4346,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 			}
-
+			
+			if (id.equals("SSD-10")) {
+				ai.aidra.set(1);
+				ai.aidra.set(1);
+				ai.aidra.set(1);
+				ai.aidra.set(1);
+			}
 			repaint();
 		}
 		if (this.phases.actual == 3) {
@@ -4157,7 +4433,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.attack.setIcon(new ImageIcon(("attack2.png")));
 		}
 		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end2.png")));
+			phases.end.setIcon(new ImageIcon(("endz.png")));
 			
 				tuto.ok.doClick();
 			
@@ -4527,7 +4803,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
 	}
+	public void PLAY(final SmallCard card) {
 	
+
+	}
 	/*public void avisoGenerico(String s){
 		 tuto.aviso(s);
 		Thread t = new Thread(new Runnable(){

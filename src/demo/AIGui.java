@@ -17,6 +17,7 @@ public class AIGui extends JPanel {
 	public int warriorPlayed;
 	public Barriers2 barriers;
 	public Drained_2 aidra;
+	public int where, whereInvoqued;
 	public AIGui()
 	{
 		setBounds(0,0,1024,600);
@@ -42,19 +43,20 @@ public class AIGui extends JPanel {
 
 	void aiPlay(int pos) throws IOException
 	{
-		int where = aifield.findwhere();// busca en donde poner la carta el ai
+		whereInvoqued=-1;
+		where = aifield.findwhere();// busca en donde poner la carta el ai
 		if(where!=-1)
 		{
 			SmallCard carta;
 		
 			carta = new Reverse(false,aihand.handgui[pos].GetCard());
 			if(aidra.currentundrained - aihand.handgui[pos].GetCard().GetCost()>0){
-			aifield.poner(carta, where);
-			aihand.discard(pos);
+				aifield.poner(carta, where);
+				aihand.discard(pos);
+				whereInvoqued=where;
 			}
 			repaint();
 		}
-		
 	}
 	
 	void smartPlay() throws IOException

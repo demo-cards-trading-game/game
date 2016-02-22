@@ -32,7 +32,7 @@ public class Barriers extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 128, 128));
 		panel.setForeground(new Color(0, 102, 0));
-		panel.setBounds(5, 0, 100, 50);
+		panel.setBounds(5, 0, 100, 39);
 		barriers[0]=panel;
 		
 		panel_1 = new JPanel();
@@ -40,7 +40,7 @@ public class Barriers extends JPanel {
 		panel_1.setForeground(Color.WHITE);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_1.setBackground(new Color(128, 128, 128));
-		panel_1.setBounds(133, 0, 100, 50);
+		panel_1.setBounds(133, 0, 100, 39);
 		add(panel_1);
 		
 		panel_2 = new JPanel();
@@ -48,7 +48,7 @@ public class Barriers extends JPanel {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_2.setBackground(new Color(128, 128, 128));
-		panel_2.setBounds(254, 0, 100, 50);
+		panel_2.setBounds(254, 0, 100, 39);
 		add(panel_2);
 		
 		panel_3 = new JPanel();
@@ -56,7 +56,7 @@ public class Barriers extends JPanel {
 		panel_3.setForeground(Color.WHITE);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_3.setBackground(new Color(128, 128, 128));
-		panel_3.setBounds(376, 0, 100, 50);
+		panel_3.setBounds(376, 0, 100, 39);
 		add(panel_3);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel.setLayout(null);
@@ -66,7 +66,7 @@ public class Barriers extends JPanel {
 		panel_4.setForeground(Color.WHITE);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_4.setBackground(new Color(128, 128, 128));
-		panel_4.setBounds(500, 0, 100, 50);
+		panel_4.setBounds(500, 0, 100, 39);
 		add(panel_4);
 		barriers[1]=panel_1;
 		

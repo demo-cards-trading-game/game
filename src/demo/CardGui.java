@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import demo.CardGui;
 import extra.RoundButton;
+import extra.RoundedPanel;
 import data.LoadData;
 
 
@@ -30,7 +31,7 @@ import javax.swing.border.MatteBorder;
 	public JInternalFrame menu;
 	public JButton Play, Preview,Discard,Set; 
 	   /** Stroke size. it is recommended to set it to 1 for better view */
-    protected int strokeSize = 1;
+    protected int strokeSize = 2;
     /** Color of shadow */
     protected Color shadowColor = Color.BLACK;
     /** Sets if it drops shadow */
@@ -129,13 +130,14 @@ import javax.swing.border.MatteBorder;
 		}
 		
 		panel.setBorder(null);
-		
-		panel.setBounds(04, 36, 112, 82);
+		RoundedPanel panelfondo = new RoundedPanel();
+		panel.setBounds(04, 23, 112, 82);
 	
 		if(x.GetType()=="Warrior")
 		{
 			
 			txtpnTexto.setBackground(new Color(255, 228, 181));
+			panelfondo.setBackground(new Color(255, 228, 181));
 			//panel.setBounds(10, 36, 77, 62);
 			
 			JLabel lblAtaque = new JLabel();
@@ -165,6 +167,7 @@ import javax.swing.border.MatteBorder;
 		}else if(x.GetType()=="Disruption")
 		{
 			txtpnTexto.setBackground(new Color(255, 105, 180));
+			panelfondo.setBackground(new Color(255, 105, 180));
 			setBackground(new Color(255, 0, 153));
 			panel.setForeground(new Color(255, 0, 153));
 			menu.setBackground(new Color(255, 105, 180));//the menu bacckground is added
@@ -172,12 +175,14 @@ import javax.swing.border.MatteBorder;
 		}else if(x.GetType()=="Event")
 		{
 			txtpnTexto.setBackground(new Color(216, 191, 216));
+			panelfondo.setBackground(new Color(216, 191, 216));
 			setBackground(new Color(102, 0, 255));
 			panel.setForeground(new Color(147, 112, 219));
 			menu.setBackground(new Color(147, 112, 219));
 		}else
 		{
 			txtpnTexto.setBackground(new Color(255, 228, 181));
+			panelfondo.setBackground(new Color(255, 228, 181));
 			setBackground(new Color(0, 255, 0));
 			panel.setForeground(new Color(0, 255, 0));
 			menu.setBackground(new Color(0, 255, 0));
@@ -208,18 +213,18 @@ import javax.swing.border.MatteBorder;
 			  		
 			  case 3:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.png")))));
 			  		break;
-			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03.png")))));		
+			  case 4:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("a.png")))));		
 			  		break;
 			  case 5:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02.png")))));		
 		  		break;	
 		  		
-			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
+			  case 10:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("s.png")))));		
 		  		break;	
 		  		
-			  case 13:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04.png")))));		
+			  case 13:panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.png")))));		
 		  		break;	
 		  		
-			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("cardtest.png")))));
+			  default :panel.add(new JLabel(new ImageIcon(ImageIO.read(new File("t.png")))));
 			  
 			  }
 		      
@@ -230,7 +235,12 @@ import javax.swing.border.MatteBorder;
 		  
 		 add(panel);
 		
-		
+		 
+		 panelfondo.arcs= new Dimension(40,40);
+		 panelfondo.strokeSize=0;
+			panelfondo.setBounds(04,26,112,82);
+			panelfondo.shady=false;
+				add(panelfondo);
 		JLabel lblAbility = new JLabel("Ability");
 		lblAbility.setBounds(10, 109, 46, 14);
 		add(lblAbility);

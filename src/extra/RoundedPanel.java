@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 public class RoundedPanel extends JPanel {
 
     /** Stroke size. it is recommended to set it to 1 for better view */
-    protected int strokeSize = 1;
+    public int strokeSize = 1;
     /** Color of shadow */
     public Color shadowColor = Color.black;
     /** Sets if it drops shadow */
-    protected boolean shady = true;
+    public boolean shady = true;
     /** Sets if it has an High Quality view */
     protected boolean highQuality = true;
     /** Double values for Horizontal and Vertical radius of corner arcs */

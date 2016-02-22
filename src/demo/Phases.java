@@ -1,5 +1,7 @@
 package demo;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Icon;
 
-public class Phases extends JPanel {
+public class Phases extends JPanel implements MouseListener {
 	public final JPanel panel_4 = new JPanel();
 	public JLabel arrow;
 	public int actual;
@@ -88,19 +90,57 @@ public class Phases extends JPanel {
 		switch(actual)
 		{
 		case 0:arrow.setLocation(27+60, 45);
+		
+			setup.setIcon(new ImageIcon("setup4.png"));
+			end.setIcon(new ImageIcon("end.png"));
 			break;
 		
 		case 1:arrow.setLocation(130+60, 45);
+		setup.setIcon(new ImageIcon("setup.png"));
+		draw.setIcon(new ImageIcon("draw44.png"));
 			break;
 			
 		case 2:arrow.setLocation(245+60, 45);
+		draw.setIcon(new ImageIcon("draw.png"));
+		action.setIcon(new ImageIcon("action4.png"));
+		
 			break;
 		case 3:arrow.setLocation(360+60, 45);
+		action.setIcon(new ImageIcon("action.png"));
+		attack.setIcon(new ImageIcon("attack4.png"));
 			break;
 		case 4:arrow.setLocation(475+60, 45);
+		attack.setIcon(new ImageIcon("attack.png"));
+		end.setIcon(new ImageIcon("end4.png"));
+		
 		break;
 		
 		}
+		
+	}
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 }

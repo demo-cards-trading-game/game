@@ -321,8 +321,6 @@ public class Drained extends JLayeredPane implements MouseListener{
 	}
 	void token()
 	{
-
-		
 			tokens[currentoken]=new RoundedPanel();
 			tokens[currentoken].arcs=new Dimension(20,20);
 			tokens[currentoken].setBackground(new Color(127, 255, 0));
@@ -813,6 +811,7 @@ if(e.getSource()==tokens[2])
 	if(tokens[2].getY()==10)
 	{
 		tokenused++;
+		paying++;
 		label.setText(""+paying);
 		tokens[2].setBounds(50,0,20,20);
 		
@@ -820,6 +819,7 @@ if(e.getSource()==tokens[2])
 	{
 		
 		tokenused--;
+		paying--;
 		label.setText(""+paying);
 		tokens[2].setBounds(50,10,20,20);
 	}
