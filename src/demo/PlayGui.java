@@ -3486,6 +3486,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		else
 			c=player.pdeck.Hero.getcard().GetCost();
 		
+		 
 		if ( player.powers.currentundrained+player.powers.currentoken - c >=0 ) {//verifica que haya mana
 
 	
@@ -3496,6 +3497,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					p=pos;
 					w=where;
+					if(c==0)
+					{
+						set(p, w);
+						
+					}else{
 					tuto.panel.add(player.powers.label);
 					player.powers.label.setBounds(150, 100, 73, 35);	
 					tuto.play();
@@ -3503,6 +3509,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					player.powers.label.setVisible(true);
 
 					hilo();
+					}
 				}
 			}else
 			{
