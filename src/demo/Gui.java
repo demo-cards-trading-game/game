@@ -31,21 +31,21 @@ import java.util.Random;
 import demo.HandGui;
 public class Gui extends JFrame implements ActionListener, MouseListener
 {
-	JPanel jp1,jp2,jp3;
-	JButton b1,b2,b3;
-	JLabel l1,demo, validar;
-	JTextArea text, val1,val2;
-	CardGui moving;
-	String Nombre1;//nombre del jugador1
-	private JMenuBar mb;
-	private JMenu menu1,menu2;
-	private JMenuItem mi1,mi2,mi3,quit;
+	public JPanel jp1,jp2,jp3;
+	public JButton b1,b2,b3, accionarAgarreAutomatico;
+	public JLabel l1,demo, validar;
+	public JTextArea text, val1,val2;
+	public CardGui moving;
+	public String Nombre1;//nombre del jugador1
+	public JMenuBar mb;
+	public JMenu menu1,menu2;
+	public JMenuItem mi1,mi2,mi3,quit;
 	static LoadData data;
-	private JPanel contentPane;
-	private PlayGui player1;
-	private deckCreator crear;
-	JInternalFrame crea;
-	RollDice dados;
+	public JPanel contentPane;
+	public PlayGui player1;
+	public deckCreator crear;
+	public JInternalFrame crea;
+	public RollDice dados;
 	
 	private FileWriter turno = null;
 	
@@ -136,7 +136,10 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		demo.setBounds(870,660,300,30); //esto se mueve como horizontal vertical 100= h 200=v
 		this.add(demo);
 		
-		
+		accionarAgarreAutomatico = new JButton();
+		accionarAgarreAutomatico.setVisible(false);
+		add(accionarAgarreAutomatico);
+		accionarAgarreAutomatico.addActionListener(this);
 
 		/*********************************/
 
@@ -279,7 +282,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 	if(e.getSource()==dados.btnPlay)
 		{
 		try {
-			player1=new PlayGui(0,0,Nombre1);
+			player1=new PlayGui(0,0,Nombre1, this);
             Thread t = new Thread(new Runnable(){
 				
 				public void start(){
@@ -397,11 +400,50 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			pack();
 		}   
 		if (player1!=null){
-		if(e.getSource()==player1.repaint)
-		{
-			repaint();
+			if(e.getSource()==player1.repaint)
+			{
+				repaint();
+				
+			}
 			
-		}
+			if (e.getSource()==accionarAgarreAutomatico)
+			{
+				//player1.tuto.ok.doClick();
+				if(this.player1.getPhaseActual()==0)
+				{	
+					if(player1.cardDrawn==0){
+						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
+						{
+							CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
+							appear(nueva);
+						}else
+						{
+							gameover(this);
+							try {
+								setBackground(Color.RED);
+								player1=new PlayGui(0,0,Nombre1,this);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							b2 = new JButton("rematch");
+							b2.setBackground(Color.BLACK);
+							b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+							b2.setForeground(Color.WHITE);
+							b2.setBounds(70, 50, 132, 43);
+							b2.addActionListener(this);
+							add(b2);
+							repaint();
+							setVisible(true);
+						}
+					}else
+					{
+						JOptionPane.showMessageDialog(null, "Sorry , u can pick only a card per turn");
+					}
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
+				}
+			}
 		}
 	}
 	
@@ -618,7 +660,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		if(player1!=null){
 			if (e.getSource()==player1.player.pdeck.btnNewButton)
 			{
-				player1.tuto.ok.doClick();
+				//player1.tuto.ok.doClick();
 				if(this.player1.getPhaseActual()==0)
 				{	
 					if(player1.cardDrawn==0){
@@ -637,7 +679,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 							gameover(this);
 							try {
 								setBackground(Color.RED);
-								player1=new PlayGui(0,0,Nombre1);
+								player1=new PlayGui(0,0,Nombre1,this);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}

@@ -130,6 +130,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	
 	public JButton abc;
 	public int ubicacionDeCarta;
+	public Gui instanciaGui;
 	
 	public int getPhaseActual(){
 		return phases.actual;
@@ -147,7 +148,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 	}
 
-	public PlayGui(int x , int y, String name) throws IOException {
+	public PlayGui(int x , int y, String name, Gui g) throws IOException {
 		setBorder(null);
 		player=new PlayerGui(x,y,name);
 		preview= new Previewpane();
@@ -887,7 +888,29 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		// this.moveToFront(label);
 		if(turn==1){
 			this.phases.end.addMouseListener(this);
+
+			Thread t = new Thread(new Runnable(){
+
+				public void start(){
+					this.start();
+				}
+
+				public void run(){
+
+					try {
+						Thread.sleep(1000); 
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					//aca va el codigo de visibilidad
+					instanciaGui.accionarAgarreAutomatico.doClick();
+				}
+			});
+			t.start();
+
 		}
+		
+		this.instanciaGui = g;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -1693,7 +1716,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							player.hand.handgui[i].Play.setEnabled(false);
 
 						
-							tuto.draw();
+//							tuto.draw();
 							//this.phases.end.removeMouseListener(this);
 						
 							this.phases.setup.removeMouseListener(this);
@@ -3739,9 +3762,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		JOptionPane.showMessageDialog(null, "you get 1 volatile power, use it wisely");
 		player.powers.token();
-		tuto.draw();
+		//tuto.draw();
 		player.powers.reset();
 		repaint();
+		
 		this.phases.setup.removeMouseListener(this);
 		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
@@ -3749,15 +3773,47 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(bugPrimerTurnoUSer==0){
 			bugPrimerTurnoUSer=1;
 			phases.change(phases.actual+1);
+			this.instanciaGui.accionarAgarreAutomatico.doClick();
 			repaint();
 		}
 		this.phases.end.addMouseListener(this);
 		if(phases.actual==-1){
 			phases.change(phases.actual+1);
+			this.instanciaGui.accionarAgarreAutomatico.doClick();
 			repaint();
 		}
 		
-	
+		//setup phase
+		this.phases.draw.removeMouseListener(this);
+		for(int i=0;i<5;i++)
+		{
+			if(player.barriers.barriers[i]!=null){
+			player.barriers.barriers[i].addMouseListener(this);
+			}
+		}
+		this.phases.action.addMouseListener(this);
+		
+		Thread t = new Thread(new Runnable(){
+			
+			public void start(){
+				this.start();
+			}
+			
+			public void run(){
+
+		        try {
+		            Thread.sleep(1000); 
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+		        //aca va el codigo de visibilidad
+		        tuto.barrier();
+				phases.change(phases.actual+1);
+				repaint();
+			}
+		});
+		t.start();
+		
 	}
 
 	public void makeEffect(String id, int pos){
@@ -4832,7 +4888,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.handgui[i].Play.setEnabled(false);
 
 		player.pdeck.Play.setEnabled(false);
-		tuto.draw();
+//		tuto.draw();
 		player.powers.reset(); 
 	    
 		this.phases.setup.removeMouseListener(this);
