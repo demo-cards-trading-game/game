@@ -16,7 +16,7 @@ import data.LoadData;
 import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
-
+//esta es una prueba en la que verifico si el merge tool sirve o el plugin de eclipse
 public class prueba extends JLayeredPane
 {
 	private boolean band,band1;
@@ -65,7 +65,7 @@ public class prueba extends JLayeredPane
 		removeButton = new JButton("Remove from deck");
 		removeButton.setBounds(367, 203, 121, 34);
 		setLayout(null);
-
+//esta es una prueba en la que verifico si el merge tool sirve o el plugin de eclipse
 		add(addButton);
 		add(removeButton);
 		JScrollPane scrollPane = new JScrollPane();
@@ -93,7 +93,7 @@ public class prueba extends JLayeredPane
 		setupTable(leftTable);
 		populate((SimpleColorTableModel) leftTable.getModel());
 		setSize(800, 600);
-
+//esta es una prueba en la que verifico si el merge tool sirve o el plugin de eclipse
 		addButton.setEnabled(false);
 		removeButton.setEnabled(false);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -289,3 +289,4 @@ public class prueba extends JLayeredPane
 		}
 	}
 }
+//esta es una prueba en la que verifico si el merge tool sirve o el plugin de eclipse
