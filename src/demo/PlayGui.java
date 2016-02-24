@@ -3576,6 +3576,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 //		}	
 		setVisible(true);
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
+//		ESTO VOLARA A PARTIR DE AQUI CON LA HEURISTICA
 		ai.smartPlay();
 		if (ai.whereInvoqued!=-1) {			
 			//this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
@@ -3603,6 +3604,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 			}
 		}
+//		ESTO VOLARA HASTA AQUI CON LA HEURISTICA
+		
+		/*if(ExistCardsInAiField()){
+			Random al = new Random();
+			int aleatorio = al.nextInt(2); //retornara 0 o 1
+			if (aleatorio==0) {
+				possiblesAiMovements();
+			}
+		}
+		else {
+			possiblesAiMovements();
+		}
+		*/
 		phases.change(phases.actual+1);
 		//attack phase 
 		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
@@ -3643,7 +3657,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 			Random rr = new Random();
 			if (contTargetAttack>0) {
-				int aux= rr.nextInt(contTargetAttack);
+				int aux= rr.nextInt(contTargetAttack+1);
 				
 				int cantidadPosiblesAtaques = aux;
 				for (int iterador = 0; iterador < cantidadPosiblesAtaques; iterador++) {
@@ -4899,26 +4913,149 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	
 
 	}
-	/*public void avisoGenerico(String s){
-		 tuto.aviso(s);
-		Thread t = new Thread(new Runnable(){
-			
-			public void start(){
-				this.start();
-			}
-			
-			public void run(){
+	
+	public boolean ExistCardsInAiField(){
+		boolean band= false;
 
-		        try {
-		            Thread.sleep(1000); 
-		        } catch (InterruptedException e) {
-		            e.printStackTrace();
-		        }
-		        //aca va el codigo de visibilidad
-		       tuto.closeAviso();
-		       repaint();
+		for(int i=0;i<5;i++){
+			if(ai.aifield.cards[i]!=null){
+				band = true;
+				break;
 			}
-		});
-		t.start();
-	}*/
+		}
+		return band;
+	}
+	
+	public boolean ExistWarriorsInHand(){
+		boolean band = false;
+		
+		for (int i = 0; i < 5; i++) {
+			if (ai.aifield.cards[i]!=null && ai.aifield.cards[i].getcard().GetType()=="Warrior") {
+				band=true;
+				break;
+			}
+		}
+		return band;
+	}
+	
+	public boolean canInvoqueWarriorToHand(){
+		boolean band=false;
+		
+		for (int i = 0; i < getCantAiHandCards(); i++) {
+			if (ai.aihand.cards[i].GetType()=="Warrior" && ai.aihand.cards[i].GetCost()<(getCantVolatilePower()+getCantUndrainedPower())) {
+				band = true;
+				break;
+			}
+		}
+		return band;
+	}
+	
+	public boolean existPowerToPlayAnotherCard(){
+		boolean band = false;
+		
+		for (int i = 0; i < getCantAiHandCards(); i++) {
+			if (ai.aihand.cards[i].GetType()!="Warrior" && ai.aihand.cards[i].GetCost()<(getCantVolatilePower()+getCantUndrainedPower())) {
+				band = true;
+				break;
+			}
+		}
+		return band;
+	}
+	
+	public int getCantAiHandCards(){
+		return ai.aihand.current;
+	}
+	
+	public int getCantAiFieldCards(){
+		return ai.aifield.countcards();
+	}
+	
+	public int getCantVolatilePower(){
+		return ai.aidra.currentoken;
+	}
+	
+	public int getCantUndrainedPower(){
+		return ai.aidra.currentundrained;
+	}
+	public void possiblesAiMovements(){
+		Random al = new Random();
+		int aleatorio;
+//		verificamos los recursos que ai tiene por si acaso
+		int cantAiHandCards=0;
+		int cantAiFieldCards=0;
+		int cantVolatilePower=0;
+		int cantUndrainedPower=0;
+
+		cantAiHandCards = getCantAiHandCards();
+		cantAiFieldCards = getCantAiFieldCards();
+		cantVolatilePower = getCantVolatilePower();
+		cantUndrainedPower = getCantUndrainedPower();
+		
+		if (cantAiFieldCards<5) {
+			if(ExistWarriorsInHand()){
+				if(canInvoqueWarriorToHand()){
+					//SE JUEGA EL WARRIOR
+				}else {
+					if (existPowerToPlayAnotherCard()) {
+						aleatorio = al.nextInt(2); 
+						if (aleatorio == 0) {
+							//JUGAR UNA SOLA CARTA Y ?
+							aleatorio = al.nextInt(2);
+							if (aleatorio == 0 && cantAiHandCards>1) {
+								//SET A CARTA ALEATORIAMENTE DE LA MANO
+							}
+						}else {
+							//JUGAR DOS CARTAS
+							if (cantAiHandCards>1) {
+								
+							}
+						}
+					}
+					else {
+						//SET A CARD
+						aleatorio = al.nextInt(2);
+						if (aleatorio == 0){
+							if(ExistWarriorsInHand()){
+								if(canInvoqueWarriorToHand()){
+									//SE JUEGA EL WARRIOR
+								}
+							}	
+						}
+					}
+				}
+			}else {
+				//SET A RANDOM CARD
+			}
+		}
+	}
 }
+
+/*
+ 	ai.smartPlay();
+		if (ai.whereInvoqued!=-1) {			
+			//this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
+			preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
+			if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
+				Thread t1 = new Thread(new Runnable() {
+					
+					public void start() {
+						this.start();
+					}
+					
+					public void run() {
+						try {
+							Thread.sleep(2500);
+							
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ai.aifield.quitar(ai.whereInvoqued);
+						preview.Remove();
+						repaint();
+					}
+				});
+				t1.start();
+				
+			}
+		}
+ * */
