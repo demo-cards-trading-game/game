@@ -175,7 +175,6 @@ public class prueba3 extends JInternalFrame
 	            			num=num+Integer.parseInt(""+a);;
 	            		}
 	            		
-	            		//System.out.println(num);
 	            		
 	            	int count = leftTable.getSelectedRowCount();
 	                
