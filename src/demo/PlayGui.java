@@ -3533,7 +3533,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		//JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
 		int which;
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
-		ai.aidra.set(1);
+		ai.aidra.token();
+		ai.aidra.reset();
 		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
 		int pos= ai.aihand.draw(ai.aideck.Deck.extraerR());
 		//ai.barriers.addbarrier(ai.aideck.Deck.extraerR());

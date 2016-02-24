@@ -1,7 +1,5 @@
 package demo;
 
-
-
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -43,11 +41,13 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 	 */
 	public  int currentdrained,used,drain;
 	public  int currentundrained,currentoken;
-	public int paying,tokenused;
+	public int paying,tokenused,N=0;
+	
 	
 	public RoundedPanel[]  drained  = new RoundedPanel[20];
 	public RoundedPanel[]  undrained  = new RoundedPanel[20];
 	public RoundedPanel[]  tokens = new RoundedPanel[20];
+	public boolean[]  marks = new boolean[20];
 	public JPanel panel,panel_1,panel_2; 
 	JLabel label;
 
@@ -105,7 +105,10 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		label.setBackground(Color.ORANGE);
 		label.setBounds(113, 349, 73, 35);
 		//add(label);
-		
+		for(int i=0;i<20;i++)
+		{
+			marks[i]=false;
+		}
 		/***************************se crean los paneles ***************************************/
 		
 		
@@ -122,8 +125,13 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 	{
 		undrained[currentundrained] = new RoundedPanel();
 		undrained[currentundrained].setLayout(null);
+		marks[currentundrained]=true;
 		try {
-			undrained[currentundrained].add(new JLabel(new ImageIcon(ImageIO.read(new File("waterp.jpg")))));
+			undrained[currentundrained].setLayout(null);
+			
+			 JLabel l  = new JLabel(new ImageIcon(ImageIO.read(new File("waterp.jpg"))));
+			 l.setBounds(0, 0,25,20);
+			 undrained[currentundrained].add(l);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -182,7 +190,7 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		int i ;
 		for(i= 0;i<n;i++){
 		set();
-		System.out.println(currentundrained);
+		
 		}
 		setVisible(true);
 		repaint();
@@ -191,9 +199,7 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 	void take()
 	{
 		
-			currentundrained=currentundrained-1;
-			drain++;
-			panel.remove(undrained[currentundrained]);
+			borrar(find2());
 			setVisible(true);
 			repaint();
 		
@@ -220,6 +226,58 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		
 		setVisible(true);
 		repaint();
+	}
+	
+	void drainwp()
+	{
+		drained[currentdrained] = new RoundedPanel();
+		drained[currentdrained].arcs=new Dimension(5, 5);
+		try {
+			drained[currentdrained].setLayout(null);
+			
+			 JLabel l  = new JLabel(new ImageIcon(ImageIO.read(new File("waterp.jpg"))));
+			 l.setBounds(0, 0,25,20);
+			 
+			 drained[currentdrained].add(l);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		panel_1.add(drained[currentdrained]);
+		
+		if(currentdrained<5)
+		{
+		drained[currentdrained].setBounds(currentdrained*30, 0, 25, 20);
+		}else{
+			if(currentdrained<10)
+			{
+			drained[currentdrained].setBounds((currentdrained-5)*30,25 , 25, 20);
+			}else
+			{
+				drained[currentdrained].setBounds((currentdrained-10)*30,50 , 25, 20);
+			}
+			
+		}	
+		currentdrained++;
+		
+		panel_2.setVisible(true);
+		repaint();
+		panel_2.setVisible(true);
+	}
+	void borrar(int pos)
+	{
+		panel.remove(undrained[pos]);
+		setVisible(true);
+		repaint();
+	
+		
+		for(int i=pos;i<currentundrained;i++)
+		{
+			undrained[i]=undrained[i+1];
+			marks[i]=marks[i+1];
+		}
+		currentundrained--;
+		
 	}
 	void drain()
 	{
@@ -250,30 +308,19 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 	void drain(int n)
 	{
 
-		
-		while(used>=1)
+		System.out.println("drain n="+"n="+n);
+		while(n>=1)
 		{
 			drain();
 			take();
-			used--;
+			n--;
 			
 			
 		}
-		System.out.println("token"+tokenused);	
-			while(tokenused>=1)
-			{
-				
-				take3();
-				tokenused--;
-			}
-		
-		
 		
 	}
 	void token()
 	{
-
-		
 			tokens[currentoken]=new RoundedPanel();
 			tokens[currentoken].arcs=new Dimension(20,20);
 			tokens[currentoken].setBackground(new Color(127, 255, 0));
@@ -318,15 +365,60 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 					undrained[i].setBounds((i-10)*30,60 , 25, 20);
 				}
 			}
-		tokenused=used=paying=drain=0;
+		
+	
 		label.setText(""+paying);
 		}
+		for( int i=0;i<currentoken;i++)
+		{
+		if(i<=5)
+		{
+		tokens[i].setBounds(i*25, 10, 20, 20);
+		}else{
+			if(i<=10)
+			{
+			tokens[i].setBounds((i-5)*25,25 , 30, 20);
+			}else
+			{
+				tokens[i].setBounds((i*10)*25,60 , 20, 20);
+			}
+			
+		}
+	}
+		tokenused=paying=drain=0;
+	}
+	int find()
+	{
+		int i=0;
 		
+		while(!marks[i])
+		{
+			
+			i++;
+			
+			
+			
+		}
+		return i;
+	}
+	int find2()
+	{
+		int i=0;
+		
+		while(marks[i])
+		{
+			
+			i++;
+			
+			
+			
+		}
+		return i;
 	}
 	void reset()
 	{
-		System.out.println("entro reset con"+used);
-		for( int i=0;i<drain;i++)
+		
+		for( int i=0;i<used-2*N;i++)
 		{
 			
 			set();
@@ -337,16 +429,39 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		{
 			take2();
 		}
+		while(N>0)
+		{
+		setwp();	
+		N--;
+		}
 		disselect();
 		used=drain=0;
 		tokenused=0;
 		paying=0;
+		N=0;
 		repaint();
 		setVisible(true);
 	}
 	void play(int n)
 	{
-		drain(n);
+		System.out.println("N="+N+"n="+n);
+		drain(used-2*N);
+		for( int i=0;i<N;i++)
+		{
+			
+		
+			drainwp();
+			borrar(find());
+			
+			
+		}
+		while(tokenused>=1)
+		{
+			
+			take3();
+			tokenused--;
+		}
+		
 	}
 	
 	
@@ -366,14 +481,28 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 				used++;
 				undrained[0].setBounds(0,0,25,20);
 				undrained[0].setBackground(Color.red);
+				
+				if(marks[0])
+				{
+					paying++;
+					used++;
+					N++;
+				}
 				label.setText(""+paying);
 			}else
 			{
 				paying--;
 				used--;
 				undrained[0].setBounds(0,10,25,20);
-				label.setText(""+paying);
+				
 				undrained[0].setBackground(Color.blue);
+					if(marks[0])
+				{
+					paying--;
+					N--;
+					used--;
+				}
+					label.setText(""+paying);
 			}
 		}
 		
@@ -389,6 +518,16 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 				label.setText(""+paying);
 				undrained[1].setBounds(30,0,25,20);
 				undrained[1].setBackground(Color.red);
+				
+				if(marks[1])
+				{
+					paying++;
+					N++;
+					used++;
+				
+				}
+				label.setText(""+paying);
+				System.out.println(""+used);
 			}else
 			{
 				undrained[1].setBackground(Color.blue);
@@ -396,6 +535,13 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 				used--;
 				label.setText(""+paying);
 				undrained[1].setBounds(30,10,25,20);
+				if(marks[1])
+				{
+					paying--;
+					N--;
+					used--;
+				}
+				label.setText(""+paying);
 			}
 		}
 		if(e.getSource()==undrained[2])
@@ -410,6 +556,14 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 				label.setText(""+paying);
 				undrained[2].setBounds(60,0,25,20);
 				undrained[2].setBackground(Color.red);
+				if(marks[2])
+				{
+					paying++;
+					N++;
+					used++;
+				}
+				label.setText(""+paying);
+				
 			}else
 			{
 				undrained[2].setBackground(Color.blue);
@@ -417,6 +571,13 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 				used--;
 				label.setText(""+paying);
 				undrained[2].setBounds(60,10,25,20);
+				if(marks[2])
+				{
+					paying--;
+					N--;
+					used--;
+				}
+				label.setText(""+paying);
 			}
 		}
 		if(e.getSource()==undrained[3])
@@ -428,16 +589,30 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 			{
 				paying++;
 				used++;
-				label.setText(""+paying);
+			
 				undrained[3].setBounds(90,0,25,20);
 				undrained[3].setBackground(Color.red);
+				if(marks[3])
+				{
+					paying++;
+					N++;
+					used++;
+				}
+				label.setText(""+paying);
 			}else
 			{
 				undrained[3].setBackground(Color.blue);
 				paying--;
 				used--;
-				label.setText(""+paying);
+				
 				undrained[3].setBounds(90,10,25,20);
+					if(marks[3])
+				{
+					paying--;
+					N--;
+					used--;
+				}
+					label.setText(""+paying);
 			}
 		}	
 			if(e.getSource()==undrained[4])
@@ -449,9 +624,16 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 				{
 					paying++;
 					used++;
-					label.setText(""+paying);
+				
 					undrained[4].setBounds(120,0,25,20);
 					undrained[4].setBackground(Color.red);
+					if(marks[4])
+					{
+						paying++;
+						N++;
+						used++;
+					}
+					label.setText(""+paying);
 				}else
 				{
 					undrained[4].setBackground(Color.blue);
@@ -459,6 +641,13 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 					used--;
 					label.setText(""+paying);
 					undrained[4].setBounds(120,10,25,20);
+					if(marks[4])
+					{
+						paying--;
+						N--;
+						used--;
+					}
+					label.setText(""+paying);
 				}
 			}
 			
@@ -622,13 +811,16 @@ if(e.getSource()==tokens[2])
 	if(tokens[2].getY()==10)
 	{
 		tokenused++;
+		paying++;
+		label.setText(""+paying);
 		tokens[2].setBounds(50,0,20,20);
 		
 	}else
 	{
 		
 		tokenused--;
-	
+		paying--;
+		label.setText(""+paying);
 		tokens[2].setBounds(50,10,20,20);
 	}
 }
