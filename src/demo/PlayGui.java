@@ -4977,9 +4977,130 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int getCantUndrainedPower(){
 		return ai.aidra.currentundrained;
 	}
+	
+	public int getCardAiHandLocation(String type){
+		int location = -1;
+		
+		for (int i = 0; i < getCantAiHandCards(); i++) {
+			if (ai.aihand.cards[i].GetCost()<(getCantVolatilePower()+getCantUndrainedPower())){
+				if (type == "Warrior") {
+					if (ai.aihand.cards[i].GetType()=="Warrior") {
+						location = i;
+						break;
+					}
+				}
+				else {
+					location = i;
+					break;
+				}
+			}
+		}
+		return location;
+	}
+	
+	public void randomSetCardToHand(){
+		Random al = new Random();
+		int aleatorio;
+		
+		aleatorio = al.nextInt(getCantAiHandCards()+1);
+		
+		//JOSHUA: NOSE SI ESTO LO MANEJAS ASI EN PLAYER
+		ai.aidra.set();
+		if (ai.aihand.cards[aleatorio].Getid()=="SSD-15") {
+			ai.aidra.set();
+		}
+		ai.aihand.discard(aleatorio);
+		repaint();
+	}
+	
+	public int getCardAiFieldLocation(){
+		int location = -1;
+		
+		for (int i = 0; i < 5; i++) {
+			if (ai.aifield.cards[i]==null){
+				location = i;
+				break;
+			}
+		}
+		return location;
+	}
+	
+	public void removeCardToFieldThread(){
+		Thread t1 = new Thread(new Runnable() {
+			
+			public void start() {
+				this.start();
+			}
+			
+			public void run() {
+				try {
+					Thread.sleep(2500);
+					
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ai.aifield.quitar(ai.whereInvoqued);
+				preview.Remove();
+				repaint();
+			}
+		});
+		t1.start();
+	}
+	
+	public void waitToPlayAnotherCard(){
+		Thread t1 = new Thread(new Runnable() {
+
+			public void start() {
+				this.start();
+			}
+
+			public void run() {
+				try {
+					Thread.sleep(2500);
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				playAiCard("anywhere");
+			}
+		});
+		t1.start();
+	}
+	
+	public void playAiCard(String type){
+//		fase 1 : invocacion
+		int cardAiHandLocation = getCardAiHandLocation(type); //ubicar la carta a colocar en hand
+		int cardAiFieldLocation = getCardAiFieldLocation();  //ubicar la carta en una posicion del fiel disponible
+		
+		SmallCard carta = null;
+		
+		try {
+			carta = new Reverse(false,ai.aihand.handgui[cardAiHandLocation].GetCard());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			ai.aifield.poner(carta, cardAiFieldLocation);
+			ai.aihand.discard(cardAiHandLocation);
+			ai.whereInvoqued=cardAiFieldLocation;
+		repaint();
+		
+		//JOSHUA: SE DEBE HACER LOS CALCULOS DEL COSTO DE LA CARTA
+		
+//		fase 2: efecto correspondiente
+		this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
+//		fase 3: preview
+		preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
+//		fase 4: hilo de ejecucion
+		if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
+			removeCardToFieldThread();
+		}
+		repaint();
+	}
+	
 	public void possiblesAiMovements(){
 		Random al = new Random();
 		int aleatorio;
+		ai.whereInvoqued=-1;
 //		verificamos los recursos que ai tiene por si acaso
 		int cantAiHandCards=0;
 		int cantAiFieldCards=0;
@@ -4994,30 +5115,35 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (cantAiFieldCards<5) {
 			if(ExistWarriorsInHand()){
 				if(canInvoqueWarriorToHand()){
-					//SE JUEGA EL WARRIOR
+					playAiCard("Warrior");
 				}else {
 					if (existPowerToPlayAnotherCard()) {
 						aleatorio = al.nextInt(2); 
 						if (aleatorio == 0) {
-							//JUGAR UNA SOLA CARTA Y ?
+							//JUGAR UNA SOLA CARTA
+							playAiCard("anywhere");
 							aleatorio = al.nextInt(2);
 							if (aleatorio == 0 && cantAiHandCards>1) {
 								//SET A CARTA ALEATORIAMENTE DE LA MANO
+								randomSetCardToHand();
 							}
 						}else {
 							//JUGAR DOS CARTAS
 							if (cantAiHandCards>1) {
-								
+								playAiCard("anywhere");
+								waitToPlayAnotherCard();
 							}
 						}
 					}
 					else {
 						//SET A CARD
+						randomSetCardToHand();
 						aleatorio = al.nextInt(2);
 						if (aleatorio == 0){
 							if(ExistWarriorsInHand()){
 								if(canInvoqueWarriorToHand()){
 									//SE JUEGA EL WARRIOR
+									playAiCard("Warrior");
 								}
 							}	
 						}
@@ -5025,37 +5151,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}else {
 				//SET A RANDOM CARD
+				randomSetCardToHand();
 			}
 		}
 	}
 }
-
-/*
- 	ai.smartPlay();
-		if (ai.whereInvoqued!=-1) {			
-			//this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
-			preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
-			if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
-				Thread t1 = new Thread(new Runnable() {
-					
-					public void start() {
-						this.start();
-					}
-					
-					public void run() {
-						try {
-							Thread.sleep(2500);
-							
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						ai.aifield.quitar(ai.whereInvoqued);
-						preview.Remove();
-						repaint();
-					}
-				});
-				t1.start();
-				
-			}
-		}
- * */
