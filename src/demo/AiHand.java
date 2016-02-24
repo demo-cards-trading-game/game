@@ -170,12 +170,12 @@ public  class AiHand extends JPanel //implements MouseListener
 			int found=0;
 			while (i<5&& found==0)
 			{
-				System.out.println(cards[i].GetType());
+			
 				if(cards[i].GetType()=="Warrior")
 				{
 					which=i;
 					found=1;
-					System.out.println("encontrowarrior");
+				
 				}
 				i++;
 			}
@@ -207,7 +207,7 @@ public  class AiHand extends JPanel //implements MouseListener
 			
 				if(cards[i].GetType()=="Disruption")
 				{
-					System.out.println("encontrodisruption");
+					
 					which=i;
 					found=1;
 				}

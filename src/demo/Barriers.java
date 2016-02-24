@@ -135,7 +135,6 @@ public class Barriers extends JPanel {
 	{
 		int i = findwhere();
 		cards[i]=recieved;
-		System.out.println(""+recieved.GetName());
 		barriers[i].setVisible(true);
 		repaint();
 		

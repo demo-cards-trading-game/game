@@ -1651,7 +1651,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
 				{
 					repaint();
-					//System.out.println(turn);
+					
 					done=1;
 
 					if (e.getSource()==phases.end && phases.actual < 3) {
@@ -1679,7 +1679,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}
 						}
 					}
-					System.out.println(""+turno);
+					
 					switch(phases.actual){
 					//setup
 
@@ -1722,7 +1722,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.phases.action.removeMouseListener(this);
 						this.phases.attack.addMouseListener(this);
 
-						for(int i=0;i<5;i++)
+						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(true);
 						player.pdeck.Play.setEnabled(true);
 						
@@ -2959,7 +2959,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(x!=-1)
 		{	
 			if(x!=player.hand.current){
-				System.out.println(x2);
+			
 				player.hand.handgui[x].setBounds(x*x2,0,124,186);
 				player.hand.moveToFront(player.hand.handgui[x]);
 			}
@@ -3259,8 +3259,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						
 						
 						moving.setBounds(650+20,player.hand.handgui[pos].getX(),0,0);
-						System.out.println(player.hand.handgui[pos].getX());
-						System.out.println(player.hand.handgui[pos].getY());
+					
 						
 						int i=0,j=0;
 						while (i<=100 || j<=145) {
@@ -3622,7 +3621,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			Random rr = new Random();
 			if (contTargetAttack>0) {
 				int aux= rr.nextInt(contTargetAttack);
-				System.out.println("debug mode on:  "+aux+ " "+contTargetAttack+" ");
+				
 				int cantidadPosiblesAtaques = aux;
 				for (int iterador = 0; iterador < cantidadPosiblesAtaques; iterador++) {
 					atkOrigin=-1;
@@ -3758,7 +3757,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		
-		System.out.println("Debug manual     "+ phases.actual);
+	
 	}
 
 	public void makeEffect(String id, int pos){

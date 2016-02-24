@@ -163,9 +163,7 @@ public class prueba3 extends JInternalFrame
 	            	String aux;
 	            	char a;
 	            	
-	            		//System.out.println(e.getSource().toString());
-		            	//System.out.println(e.getSource().toString().substring(e.getSource().toString().length()-2, e.getSource().toString().length()-1));
-		            	//num=Integer.parseInt(e.getSource().toString().substring(e.getSource().toString().length()-2, e.getSource().toString().length()-1));
+	            		
 	            		aux = e.getSource().toString();
 	            		indice= e.getSource().toString().indexOf("{")+1;
 	            		a= aux.charAt(indice);
@@ -177,7 +175,6 @@ public class prueba3 extends JInternalFrame
 	            			num=num+Integer.parseInt(""+a);;
 	            		}
 	            		
-	            		//System.out.println(num);
 	            		
 	            	int count = leftTable.getSelectedRowCount();
 	                
