@@ -3364,6 +3364,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								e.printStackTrace();
 							}
 							player.field.quitar(ubicacionDeCarta);
+							if(carta.getcard().GetCardNumber()==18)
+							{
+								player.powers.setwp();
+							}
 							repaint();
 						}
 					});
@@ -4429,13 +4433,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
 		
-			if(player.hand.handgui[i].getcard().GetCardNumber()!=18  )
-			{
 			player.hand.handgui[i].Play.setEnabled(enabled);
-			}else
-			{
-				player.hand.handgui[i].Play.setEnabled(false);
-			}
 			player.hand.handgui[i].addMouseListener(this);	
 		}
 		
