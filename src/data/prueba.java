@@ -16,7 +16,8 @@ import data.LoadData;
 import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
-
+//hola
+//hola2
 public class prueba extends JLayeredPane
 {
 	private boolean band,band1;
