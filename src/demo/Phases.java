@@ -20,6 +20,7 @@ public class Phases extends JPanel implements MouseListener {
 	public JPanel panel, panel_1, panel_2, panel_3;
 	public JLabel setup, draw, action, attack, end;
 	
+	
 	/**
 	 * Create the panel.
 	 * @throws IOException 

@@ -30,6 +30,7 @@ public class Fallen extends JInternalFrame
 	BigCard current;
 	public JPanel panel;
 	private JPanel panel_1;
+	public JButton confirmcardsfromfallen;
 	public static int c;
 	 
 	public Fallen()
@@ -50,7 +51,7 @@ public class Fallen extends JInternalFrame
 		}
 		cant=data.Data.getCantidad();
 	        getContentPane().setLayout(null);
-	        setSize(736, 380);
+	        setSize(736, 400);
 	      
 
 	        JScrollPane scrollPane_1 = new JScrollPane();
@@ -59,9 +60,12 @@ public class Fallen extends JInternalFrame
 	        getContentPane().add(scrollPane_1);
 	        leftTable = new JTable(new SimpleColorTableModel());
 	        leftTable.setOpaque(false);
-	     
-	        scrollPane_1.setViewportView(leftTable);
 	        
+	        scrollPane_1.setViewportView(leftTable);
+	        confirmcardsfromfallen=new JButton("Select");
+	        confirmcardsfromfallen.setEnabled(false);
+	        confirmcardsfromfallen.setBounds(127,320,122,40);
+	       getContentPane().add(confirmcardsfromfallen);
 	        	        setupTable(leftTable);
 	        	        
 	        	       
@@ -71,14 +75,14 @@ public class Fallen extends JInternalFrame
 	        panel_1 = new JPanel();
 	        panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 	        panel_1.setBackground(new Color(102, 204, 255));
-	        panel_1.setBounds(105, 27, 176, 29);
+	        panel_1.setBounds(91, 29, 176, 29);
 	        getContentPane().add(panel_1);
 	         panel_1.setLayout(null);
 	        	        
 	        	        	       
 	        	        
 	        	        	        JLabel label = new JLabel("Available Choices");
-	        	        	        label.setBounds(21, 11, 131, 14);
+	        	        	        label.setBounds(23, 11, 131, 14);
 	        	        	        panel_1.add(label);
 	        	        	        label.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
 	        	        	        label.setHorizontalAlignment(SwingConstants.CENTER);

@@ -881,6 +881,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(animations);
 		moveToFront(animations);
 		animations.setOpaque(false);
+		fallen.confirmcardsfromfallen.addActionListener(this);
 		// JLabel label = new JLabel();
 		// label.setIcon(new ImageIcon("redArrow1.png"));
 		// label.setBounds(100,100,50,50);
@@ -3252,18 +3253,48 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						
 						
 						player.field.poner(carta, where);
+						carta.repaint();
 						
 					}
 				});
 				t.start();
 				carta.addMouseListener(this);
+				carta.repaint();
 				System.out.println(""+ carta.getcard().GetCardNumber() + " "+ carta.getcard().GetName());
+				/***************************EFECTOS*******************************/
 				if(carta.getcard().GetCardNumber()==15)
 				{
 					player.powers.token();
 					player.powers.token();
 					player.powers.token();
 					player.powers.token();
+				}
+				if(carta.getcard().GetCardNumber()==16)
+				{
+					t = new Thread(new Runnable() {
+
+						
+						public void start() {
+							this.start();
+						}
+
+						public void run() {
+							
+					
+							fallen.setVisible(true);
+							fallen.confirmcardsfromfallen.setEnabled(true);
+							
+						
+							int count=fallen. leftTable.getSelectedRowCount();
+							System.out.println(count);
+							
+							
+						
+		
+							
+						}
+					});
+					t.start();
 				}
 				this.makeEffect(carta.actual.Getid(),where);
 				ubicacionDeCarta = where;
@@ -5012,6 +5043,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			e.printStackTrace();
 		}
 			ai.aifield.poner(carta, cardAiFieldLocation);
+			if(carta.getcard().GetCardNumber()==15)
+			{
+				ai.aidra.token();
+				ai.aidra.token();
+				ai.aidra.token();
+				ai.aidra.token();
+			
+			}
 			ai.aihand.discard(cardAiHandLocation);
 			ai.whereInvoqued=cardAiFieldLocation;
 		repaint();
