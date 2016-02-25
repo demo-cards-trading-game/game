@@ -76,6 +76,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	int donde;
+	int number;
 	SmallCard moving;
 	movePanel animations;
 	optionpane op;
@@ -916,6 +917,56 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void actionPerformed(ActionEvent e) {
 		done = 0;
+		if(e.getSource()==fallen.confirmcardsfromfallen)
+		{
+				SmallCard aux = null;
+				System.out.println("entro");
+		 final int where=player.field.findwhere();
+		 
+		
+		   System.out.println(where);
+		 
+				try {
+					aux = new SmallCard(false,fallen.current.getcard());
+					number  =aux.getcard().GetCardNumber();
+					player.field.poner(aux,where);
+					fallen.remove();
+					fallen.confirmcardsfromfallen.setEnabled(false);
+					fallen.effectnumber=0;
+					fallen.setVisible(false);
+				} catch (IOException e1) 
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					if (aux.actual.GetType()!="Warrior") {
+					
+						Thread t1 = new Thread(new Runnable() {
+
+							public void start() {
+								this.start();
+							}
+
+							public void run() {
+								try {
+									Thread.sleep(750);
+
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								player.field.quitar(where);
+								if(number==18)
+								{
+									player.powers.setwp();
+								}
+								repaint();
+								
+							}
+						});
+						t1.start();
+			
+		}
+				}
 		if (e.getSource() == tuto.ok) {
 
 			tuto.animation.stop();
@@ -3271,30 +3322,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				if(carta.getcard().GetCardNumber()==16)
 				{
-					t = new Thread(new Runnable() {
-
-						
-						public void start() {
-							this.start();
-						}
-
-						public void run() {
-							
 					
 							fallen.setVisible(true);
-							fallen.confirmcardsfromfallen.setEnabled(true);
 							
-						
-							int count=fallen. leftTable.getSelectedRowCount();
-							System.out.println(count);
-							
-							
-						
-		
-							
-						}
-					});
-					t.start();
+							fallen.effectnumber=13;
 				}
 				this.makeEffect(carta.actual.Getid(),where);
 				ubicacionDeCarta = where;
@@ -3774,9 +3805,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(this.phases.actual==2){
 			if(id.equals("SSD-06")){
 				JOptionPane.showMessageDialog(null, "you get 2 volatile power, use it wisely");
-				player.powers.reset();
+				
 				player.powers.token();
-				player.powers.reset();
+				
 				player.powers.token();
 				repaint();
 

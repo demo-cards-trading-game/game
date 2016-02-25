@@ -414,8 +414,10 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					if(player1.cardDrawn==0){
 						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
-							CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
-							appear(nueva);
+							//CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
+							//appear(nueva);
+							CardGui otra= new CardGui(player1.player.pdeck.Deck.lista.Data.Consultar(16),0,0); 
+							appear(otra);
 						}else
 						{
 							gameover(this);
@@ -667,7 +669,9 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 						if(player1.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
 							CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
+							
 							appear(nueva);
+					
 					
 							
 							

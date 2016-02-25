@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import data.LoadData;
 import data.prueba.ColorTableCellRenderer;
+import data.prueba.SimpleColorTableModel;
 import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
@@ -31,6 +32,8 @@ public class Fallen extends JInternalFrame
 	public JPanel panel;
 	private JPanel panel_1;
 	public JButton confirmcardsfromfallen;
+	int effectnumber;
+	int position;
 	public static int c;
 	 
 	public Fallen()
@@ -109,10 +112,15 @@ public class Fallen extends JInternalFrame
 	                	{
 
 	                		Vector rowValue = (Vector) fromModel.getDataVector().get(index);
-	                		int x=(int) rowValue.get(0);
-	                		current=new BigCard(data.Data.Consultar(x),470,15);
+	                		position=(int) rowValue.get(0);
+	                		
+	                		current=new BigCard(data.Data.Consultar(position),470,15);
 	                	}
 	                	getContentPane().add (current);
+	                	if(effectnumber==13)
+	                	{
+	                		confirmcardsfromfallen.setEnabled(true);
+	                	}
 	                }
 	                
        			 repaint();
@@ -123,7 +131,11 @@ public class Fallen extends JInternalFrame
 }
 
 	        
-
+public void remove()
+{
+	SimpleColorTableModel fromModel = (SimpleColorTableModel) leftTable.getModel();
+	fromModel.removeRow(leftTable.getSelectedRow());
+}
 
 
 	
