@@ -3872,38 +3872,38 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(id.equals("SSD-07")){
 				JOptionPane.showMessageDialog(null, "please select a card from your field");
-				if(this.player.field.cards[0]!=null){
+				if(this.player.field.cards[0]!=null && pos!=0){
 					this.ptarjet1.setVisible(true);
 				}
-				if(this.player.field.cards[1]!=null){
+				if(this.player.field.cards[1]!=null && pos!=1){
 					this.ptarjet2.setVisible(true);				
 				}
-				if(this.player.field.cards[2]!=null){
+				if(this.player.field.cards[2]!=null && pos!=2){
 					this.ptarjet3.setVisible(true);
 				}
-				if(this.player.field.cards[3]!=null){
+				if(this.player.field.cards[3]!=null && pos!=3){
 					this.ptarjet4.setVisible(true);
 				}
-				if(this.player.field.cards[4]!=null){
+				if(this.player.field.cards[4]!=null && pos!=4){
 					this.ptarjet5.setVisible(true);
 				}
 			}
 
 			if(id.equals("SSD-08")){
 				JOptionPane.showMessageDialog(null, "please select a card from the field");
-				if(this.player.field.cards[0]!=null){
+				if(this.player.field.cards[0]!=null && pos!=0){
 					this.ptarjet81.setVisible(true);
 				}
-				if(this.player.field.cards[1]!=null){
+				if(this.player.field.cards[1]!=null && pos!=1){
 					this.ptarjet82.setVisible(true);				
 				}
-				if(this.player.field.cards[2]!=null){
+				if(this.player.field.cards[2]!=null && pos!=2){
 					this.ptarjet83.setVisible(true);
 				}
-				if(this.player.field.cards[3]!=null){
+				if(this.player.field.cards[3]!=null && pos!=3){
 					this.ptarjet84.setVisible(true);
 				}
-				if(this.player.field.cards[4]!=null){
+				if(this.player.field.cards[4]!=null && pos!=4){
 					this.ptarjet85.setVisible(true);
 				}
 				if(this.ai.aifield.cards[0]!=null){
@@ -3958,19 +3958,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-10")){//aca debes poner atencion
 				JOptionPane.showMessageDialog(null, "select an ai card to destroy");
-				if(this.player.field.cards[0]!=null){
+				if(this.player.field.cards[0]!=null && pos!=0){
 					this.ptarjet101.setVisible(true);
 				}
-				if(this.player.field.cards[1]!=null){//
+				if(this.player.field.cards[1]!=null && pos!=1){//
 					this.ptarjet102.setVisible(true);				
 				}
-				if(this.player.field.cards[2]!=null){
+				if(this.player.field.cards[2]!=null && pos!=2){
 					this.ptarjet103.setVisible(true);
 				}
-				if(this.player.field.cards[3]!=null){
+				if(this.player.field.cards[3]!=null && pos!=3){
 					this.ptarjet104.setVisible(true);
 				}
-				if(this.player.field.cards[4]!=null){
+				if(this.player.field.cards[4]!=null && pos!=4){
 					this.ptarjet105.setVisible(true);
 				}
 				if(this.ai.aifield.cards[0]!=null){
@@ -3996,27 +3996,27 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-11")){
 				JOptionPane.showMessageDialog(null, "select 1 Character to Turn face-down");
-				if(this.player.field.cards[0]!=null){
+				if(this.player.field.cards[0]!=null && pos!=0){
 					if(!this.player.field.cards[0].down){
 						this.ptarjet111.setVisible(true);
 					}	
 				}
-				if(this.player.field.cards[1]!=null){
+				if(this.player.field.cards[1]!=null && pos!=1){
 					if(!this.player.field.cards[1].down){
 						this.ptarjet112.setVisible(true);
 					}				
 				}
-				if(this.player.field.cards[2]!=null){
+				if(this.player.field.cards[2]!=null && pos!=2){
 					if(!this.player.field.cards[2].down){
 						this.ptarjet113.setVisible(true);
 					}
 				}
-				if(this.player.field.cards[3]!=null){
+				if(this.player.field.cards[3]!=null && pos!=3){
 					if(!this.player.field.cards[3].down){
 						this.ptarjet114.setVisible(true);
 					}
 				}
-				if(this.player.field.cards[4]!=null){
+				if(this.player.field.cards[4]!=null && pos!=4){
 					if(!this.player.field.cards[4].down){
 						this.ptarjet115.setVisible(true);
 					}
