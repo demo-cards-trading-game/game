@@ -3133,7 +3133,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	void set(final int pos,final int where)
 	{
 
-		final SmallCard carta ;
+		final SmallCard carta  ;
 		final int X,Y;
 		X=player.hand.handgui[pos].getX();
 		Y=player.hand.handgui[pos].getY();
@@ -3154,6 +3154,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
 				
 				player.hand.discard(pos+1);
+				
 				animations.add(moving);
 				moveToFront(moving);
 				Thread t = new Thread(new Runnable() {
@@ -3256,7 +3257,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				});
 				t.start();
 				carta.addMouseListener(this);
-				
+				System.out.println(""+ carta.getcard().GetCardNumber() + " "+ carta.getcard().GetName());
+				if(carta.getcard().GetCardNumber()==15)
+				{
+					player.powers.token();
+					player.powers.token();
+					player.powers.token();
+					player.powers.token();
+				}
 				this.makeEffect(carta.actual.Getid(),where);
 				ubicacionDeCarta = where;
 				repaint();
@@ -3337,7 +3345,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						e.printStackTrace();
 					}
 					preview.Remove();
-					
+				
 				}
 			});
 			t.start();
