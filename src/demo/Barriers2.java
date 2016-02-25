@@ -30,7 +30,7 @@ public class Barriers2 extends JPanel {
 		removeall();
 		setLayout(null);
 		setOpaque(false);
-		setBounds(x,y,600,50);//se fija el tamaño y la posicion
+		setBounds(x,y,600,50);//se fija el tamaï¿½o y la posicion
 		
 		panel_1 = new RPanel();
 		panel_1.setLayout(null);
@@ -167,16 +167,14 @@ public class Barriers2 extends JPanel {
 	{
 		int which=-1,i=0;
 		int found=0;
-		while(i<4 && found==0)
+		while(i<5 && found==0)
 		{
 			if(barriers[i].isVisible())
 			{
 				which=i;
 				found=1;
-				
-				
 			}
-			
+			i++;
 		}
 		return(which);
 	

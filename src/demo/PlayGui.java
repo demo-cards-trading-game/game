@@ -2351,7 +2351,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						{
 							int pos= ai.aihand.draw(ai.barriers.cards[which]);
 							ai.barriers.removebarrier(which);
-
+							ai.barriers.barriers[which].setVisible(false);
 						}
 
 						if(e.getSource()==this.swordp1){
@@ -3671,7 +3671,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					atkDest=-1;
 					int band=0;
 					i=0;
-					while(band==0 && i<16){
+					while(band==0 && i<26){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiAttack[a]==1){
@@ -3693,7 +3693,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					
 					band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<16){
+					while(band==0 && i<26){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
@@ -3723,6 +3723,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					
 					this.aiAttack[atkOrigin]=0;
 					
+					if(atkOrigin!=-1 && atkDest==-1 && countCardsInPlayerField()==0){
+						int location = findPlayerBarrierToRemove();
+						JOptionPane.showMessageDialog(null, "Ai player get a direct hit");
+
+						if(location!=-1)//existe un barrier
+						{
+							player.hand.draw(player.barriers.cards[location]);
+							player.barriers.removebarrier(location);
+							player.barriers.barriers[location].setVisible(false);
+						}
+					}
+					
 					if(atkDest!=-1 && atkOrigin!=-1  )
 					{
 						
@@ -3738,11 +3750,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
 							{
 								player.field.quitar(atkDest);
-								this.makeAiEffect(this.ai.aifield.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+								this.makeAiEffect(this.ai.aifield.cards[atkOrigin].getcard().Getid(),atkOrigin );
 							}
 							add(phases);
 						}
-						
 					}
 					repaint();
 				}
@@ -4157,7 +4168,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<16){
+				while(band==0 && i<26){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
@@ -4179,7 +4190,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<16){
+				while(band==0 && i<26){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
@@ -4225,7 +4236,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<16){
+				while(band==0 && i<26){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
@@ -4247,7 +4258,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<16){
+				while(band==0 && i<26){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
@@ -4273,19 +4284,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")&&pos!=0){
+				if(this.ai.aifield.cards[0]!=null&&pos!=0&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
 					this.selected=0;
 				}
-				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")&&pos!=1){
+				if(this.ai.aifield.cards[1]!=null&&pos!=1&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
 					this.selected=1;
 				}
-				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")&&pos!=2){
+				if(this.ai.aifield.cards[2]!=null&&pos!=2&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
 					this.selected=2;
 				}
-				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")&&pos!=3){
+				if(this.ai.aifield.cards[3]!=null&&pos!=3&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
 					this.selected=3;
 				}
-				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")&&pos!=4){
+				if(this.ai.aifield.cards[4]!=null&&pos!=4&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
 					this.selected=4;
 				}
 				if(this.selected==-1){
@@ -4310,7 +4321,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					int band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<16){
+					while(band==0 && i<26){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
@@ -4348,7 +4359,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					atkDest=-1;
 					int band=0;
 					i=0;
-					while(band==0 && i<16){
+					while(band==0 && i<26){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiAttack[a]==1){
@@ -4370,7 +4381,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					band=0;
 					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<16){
+					while(band==0 && i<26){
 						Random r = new Random();
 						int a = r.nextInt(5);
 						if(this.aiDest[a]==1){
@@ -4380,14 +4391,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 						i++;
 					}
+					if(this.atkDest!=-1){
+						this.player.field.quitar(this.atkDest);
+					}
+					else{
+						this.ai.aifield.quitar(this.atkOrigin);
+					}
 				}
 
-				if(this.atkDest!=-1){
-					this.player.field.quitar(this.atkDest);
-				}
-				else{
-					this.ai.aifield.quitar(this.atkOrigin);
-				}
 			}
 
 			if(id.equals("SSD-11")){
@@ -4409,7 +4420,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				atkDest=-1;
 				int band=0;
 				i=0;
-				while(band==0 && i<16){
+				while(band==0 && i<26){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiAttack[a]==1){
@@ -4431,12 +4442,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				band=0;
 				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<6){
+				while(band==0 && i<26){
 					Random r = new Random();
 					int a = r.nextInt(5);
 					if(this.aiDest[a]==1){
 						this.atkDest=a;
 						band=1;
+						break;
 					}
 					i++;
 				}
@@ -4920,6 +4932,29 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	}
 	
+	public int countCardsInPlayerField(){
+		int aux=0;
+		
+		for (int i = 0; i < 5; i++) {
+			if (player.field.cards[i]!=null) {
+				aux++;
+			}
+		}
+		return aux;
+	}
+	
+	public int findPlayerBarrierToRemove(){
+		int aux=-1;
+		
+		for (int i = 0; i < 5; i++) {
+			if (player.barriers.barriers[i].isVisible()) {
+				aux=i;
+				break;
+			}
+		}
+		return aux;
+	}
+	
 	public boolean ExistCardsInAiField(){
 		boolean band= false;
 
@@ -5157,7 +5192,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}else {
 				//SET A RANDOM CARD
-				randomSetCardToHand();
+				aleatorio = al.nextInt(2);
+				if (aleatorio==0) {
+					randomSetCardToHand();
+				}
+				else {
+					if (existPowerToPlayAnotherCard()) {
+						playAiCard("anywhere");
+					}
+				}
 			}
 		}
 	}
