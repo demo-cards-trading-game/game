@@ -3250,7 +3250,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	void set(final int pos,final int where)
 	{
 
-		final SmallCard carta;
+		final SmallCard carta ;
+		final int X,Y;
+		X=player.hand.handgui[pos].getX();
+		Y=player.hand.handgui[pos].getY();
 		if(pos!=-2 && pos!=-3){
 		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 
@@ -3267,6 +3270,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
 				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
 				
+				player.hand.discard(pos+1);
 				animations.add(moving);
 				moveToFront(moving);
 				Thread t = new Thread(new Runnable() {
@@ -3281,7 +3285,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 						
 						
-						moving.setBounds(650+20,player.hand.handgui[pos].getX(),0,0);
+						moving.setBounds(650+20,X,0,0);
 					
 						
 						int i=0,j=0;
@@ -3290,12 +3294,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							try {
 								if(i<=100){
 								i++;
-								moving.setBounds(200+player.hand.handgui[pos].getX(),player.hand.handgui[pos].getY()+600,i,j);
+								moving.setBounds(200+X,Y+600,i,j);
 								Thread.sleep(3);
 								}
 								if(j<=145){
 								j++;
-								moving.setBounds(180+player.hand.handgui[pos].getX(),player.hand.handgui[pos].getY()+550,i,j);
+								moving.setBounds(180+X,Y+550,i,j);
 							
 								Thread.sleep(3);
 								}
@@ -3307,8 +3311,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							
 						}
 						int x=0,y=350;
-						i=180+player.hand.handgui[pos].getX();
-						j=player.hand.handgui[pos].getY()+550;
+						i=180+X;
+						j=Y+550;
 						switch(where)
 						{
 						case 0: x= 220;
@@ -3325,6 +3329,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						
 						}
 						while (i!=x || j!=y) {
+							
 							
 							try {
 								if(i<x){
@@ -3355,19 +3360,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								e.printStackTrace();
 
 							}
-							
+					
 						}
-						
+						repaint();
 						animations.remove(moving);
-						player.powers.play(player.hand.handgui[pos].getcard().GetCost());
-						player.hand.handgui[pos].Preview.doClick();
-						player.hand.discard(pos+1);
+						player.powers.play(carta.getcard().GetCost());
+						
+						
+						player.field.poner(carta, where);
 						
 					}
 				});
 				t.start();
 				carta.addMouseListener(this);
-				player.field.poner(carta, where);
+				
 				this.makeEffect(carta.actual.Getid(),where);
 				ubicacionDeCarta = where;
 				repaint();
@@ -3448,12 +3454,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						e.printStackTrace();
 					}
 					preview.Remove();
-					repaint();
+					
 				}
 			});
 			t.start();
 
-			
+			repaint();
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
