@@ -3604,7 +3604,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				
 			}
 		}*/
-//		ESTO VOLARA HASTA AQUI CON LA HEURISTICA
+//		ESTO VOLARA HASTA AQUI CON LA HEURISTICA IT WORKS
 		
 		if(ExistCardsInAiField()){
 			Random al = new Random();
