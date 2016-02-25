@@ -3577,7 +3577,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setVisible(true);
 		JOptionPane.showMessageDialog(null,"ai is playing a card" );
 //		ESTO VOLARA A PARTIR DE AQUI CON LA HEURISTICA
-		ai.smartPlay();
+		/*ai.smartPlay();
 		if (ai.whereInvoqued!=-1) {			
 			//this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
 			preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
@@ -3603,10 +3603,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				t1.start();
 				
 			}
-		}
+		}*/
 //		ESTO VOLARA HASTA AQUI CON LA HEURISTICA
 		
-		/*if(ExistCardsInAiField()){
+		if(ExistCardsInAiField()){
 			Random al = new Random();
 			int aleatorio = al.nextInt(2); //retornara 0 o 1
 			if (aleatorio==0) {
@@ -3616,7 +3616,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		else {
 			possiblesAiMovements();
 		}
-		*/
+		
 		phases.change(phases.actual+1);
 		//attack phase 
 		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
@@ -4929,8 +4929,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public boolean ExistWarriorsInHand(){
 		boolean band = false;
 		
-		for (int i = 0; i < 5; i++) {
-			if (ai.aifield.cards[i]!=null && ai.aifield.cards[i].getcard().GetType()=="Warrior") {
+		for (int i = 0; i < getCantAiHandCards(); i++) {
+			if (ai.aihand.cards[i]!=null && ai.aihand.cards[i].GetType()=="Warrior") {
 				band=true;
 				break;
 			}
@@ -5006,9 +5006,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		//JOSHUA: NOSE SI ESTO LO MANEJAS ASI EN PLAYER
 		ai.aidra.set();
-		if (ai.aihand.cards[aleatorio].Getid()=="SSD-15") {
+		/*if (ai.aihand.cards[aleatorio].Getid()=="SSD-15") {
 			ai.aidra.set();
-		}
+		}*/
 		ai.aihand.discard(aleatorio);
 		repaint();
 	}
