@@ -2351,7 +2351,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						{
 							int pos= ai.aihand.draw(ai.barriers.cards[which]);
 							ai.barriers.removebarrier(which);
-
+							ai.barriers.barriers[which].setVisible(false);
 						}
 
 						if(e.getSource()==this.swordp1){
@@ -4267,19 +4267,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				if(this.ai.aifield.cards[0]!=null&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")&&pos!=0){
+				if(this.ai.aifield.cards[0]!=null&&pos!=0&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
 					this.selected=0;
 				}
-				if(this.ai.aifield.cards[1]!=null&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")&&pos!=1){
+				if(this.ai.aifield.cards[1]!=null&&pos!=1&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
 					this.selected=1;
 				}
-				if(this.ai.aifield.cards[2]!=null&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")&&pos!=2){
+				if(this.ai.aifield.cards[2]!=null&&pos!=2&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
 					this.selected=2;
 				}
-				if(this.ai.aifield.cards[3]!=null&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")&&pos!=3){
+				if(this.ai.aifield.cards[3]!=null&&pos!=3&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
 					this.selected=3;
 				}
-				if(this.ai.aifield.cards[4]!=null&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")&&pos!=4){
+				if(this.ai.aifield.cards[4]!=null&&pos!=4&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
 					this.selected=4;
 				}
 				if(this.selected==-1){
@@ -4374,14 +4374,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 						i++;
 					}
+					if(this.atkDest!=-1){
+						this.player.field.quitar(this.atkDest);
+					}
+					else{
+						this.ai.aifield.quitar(this.atkOrigin);
+					}
 				}
 
-				if(this.atkDest!=-1){
-					this.player.field.quitar(this.atkDest);
-				}
-				else{
-					this.ai.aifield.quitar(this.atkOrigin);
-				}
 			}
 
 			if(id.equals("SSD-11")){
@@ -5151,7 +5151,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}else {
 				//SET A RANDOM CARD
-				randomSetCardToHand();
+				aleatorio = al.nextInt(2);
+				if (aleatorio==0) {
+					randomSetCardToHand();
+				}
+				else {
+					if (existPowerToPlayAnotherCard()) {
+						playAiCard("anywhere");
+					}
+				}
 			}
 		}
 	}
