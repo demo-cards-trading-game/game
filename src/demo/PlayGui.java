@@ -4450,6 +4450,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		if (this.phases.actual == 3) {
+			if(id.equals("SSD-02")){
+				int p;
+				//System.out.println("adding a water power from the deck");
+
+				p=this.ai.aideck.Deck.posCard("SSD-15");
+				if(p==-1){
+					JOptionPane.showMessageDialog(null, "cannot find a water power");
+				}else{
+					int poss= ai.aihand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+					this.ai.aideck.textField.setText("cards left "+this.ai.aideck.Deck.cardsLeft());
+					this.ai.aideck.textField.repaint();
+				}
+			}
+
 			repaint();
 		}
 	}
