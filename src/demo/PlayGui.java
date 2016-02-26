@@ -3419,7 +3419,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			e1.printStackTrace();
 		}
 
-
+		removeNoWarriorsToPlayerFiedl();
 
 	}
 
@@ -5189,5 +5189,31 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 		}
+	}
+	
+	public void removeNoWarriorsToPlayerFiedl(){
+		Thread t1 = new Thread(new Runnable() {
+			
+			public void start() {
+				this.start();
+			}
+			
+			public void run() {
+				try {
+					Thread.sleep(3000);
+					
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				for (int i = 0; i < 5; i++) {
+					if(player.field.cards[i]!=null && player.field.cards[i].getcard().GetType()!="Warrior"){
+						player.field.quitar(i);
+					}
+				}
+				preview.Remove();
+				repaint();
+			}
+		});
+		t1.start();
 	}
 }
