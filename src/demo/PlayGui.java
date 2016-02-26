@@ -3926,7 +3926,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 
-			if(id.equals("SSD-10")){//aca debes poner atencion
+			if(id.equals("SSD-10")){
 				JOptionPane.showMessageDialog(null, "select an ai card to destroy");
 				if(this.player.field.cards[0]!=null && pos!=0){
 					this.ptarjet101.setVisible(true);
@@ -4094,7 +4094,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(id.equals("SSD-05")){
-				//NO HAY IMPLEMENTACION DE POWERS EN AI PLAYER
+				ai.aidra.set(1);
 			}
 
 			if(id.equals("SSD-06")){
@@ -4221,17 +4221,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					i++;
 				}
-				if(this.atkDest!=-1){
-					//dest
-					int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
-					player.hand.handgui[this.atkDest].addMouseListener(this);
-					//Addlisteners2Card(pos-1);
-					player.field.quitar(this.atkDest);
-
-				}else{
-					//origin
-					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
-					this.ai.aifield.quitar(this.atkOrigin);
+				if (this.atkDest!=-1 || this.atkOrigin!=-1) {
+					if(this.atkDest!=-1){
+						//dest
+						int poss= player.hand.draw(this.player.field.cards[this.atkDest].getcard());
+						player.hand.handgui[this.atkDest].addMouseListener(this);
+						//Addlisteners2Card(pos-1);
+						player.field.quitar(this.atkDest);
+						
+					}else{
+						//origin
+						pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
+						this.ai.aifield.quitar(this.atkOrigin);
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "cannot find targets");
 				}
 			}
 
@@ -4344,11 +4348,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 						i++;
 					}
-					if(this.atkDest!=-1){
-						this.player.field.quitar(this.atkDest);
-					}
-					else{
-						this.ai.aifield.quitar(this.atkOrigin);
+					if (this.atkDest!=-1 || this.atkOrigin!=-1) {
+						if(this.atkDest!=-1){
+							this.player.field.quitar(this.atkDest);
+						}
+						else{
+							this.ai.aifield.quitar(this.atkOrigin);
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "can't find a target");
 					}
 				}
 
@@ -4408,26 +4416,29 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				Card c = new Card();
 
-				if (this.atkDest != -1) {
-					c = this.player.field.cards[this.atkDest].getcard();
-					this.player.field.quitar(this.atkDest);
-					try {
-						this.player.field.poner(new SmallCard(true, c), this.atkDest);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				if (this.atkDest!=-1 || this.atkOrigin!=-1) {
+					if (this.atkDest != -1) {
+						c = this.player.field.cards[this.atkDest].getcard();
+						this.player.field.quitar(this.atkDest);
+						try {
+							this.player.field.poner(new SmallCard(true, c), this.atkDest);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} else {
+						c = this.ai.aifield.cards[this.atkOrigin].getcard();
+						this.ai.aifield.quitar(this.atkOrigin);
+						try {
+							this.ai.aifield.poner(new SmallCard(true, c), this.atkOrigin);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
-				} else {
-					c = this.ai.aifield.cards[this.atkOrigin].getcard();
-					this.ai.aifield.quitar(this.atkOrigin);
-					try {
-						this.ai.aifield.poner(new SmallCard(true, c), this.atkOrigin);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				}else {
+					JOptionPane.showMessageDialog(null, "can't find a target");
 				}
-
 			}
 			
 			if (id.equals("SSD-10")) {
