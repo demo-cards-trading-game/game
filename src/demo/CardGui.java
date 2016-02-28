@@ -25,10 +25,11 @@ import javax.swing.border.MatteBorder;
 
 
 
- 	public class CardGui extends JLayeredPane   {
+ 	public class CardGui extends JLayeredPane  implements ActionListener  {
 	private JTextField textField;
 	private Card  actual;
-	public JInternalFrame menu;
+	public RoundedPanel menu;
+	public JButton btnNewButton;
 	public JButton Play, Preview,Discard,Set; 
 	   /** Stroke size. it is recommended to set it to 1 for better view */
     protected int strokeSize = 2;
@@ -59,25 +60,24 @@ import javax.swing.border.MatteBorder;
 		
 		actual=x;
 		/**********************menu******************************/
-		menu = new JInternalFrame();
-		menu.getContentPane().setLayout(null);
+		menu = new RoundedPanel();
+		menu.setLayout(null);
 		
 		Play = new JButton("Play");
 		Play.setBounds(15, 11, 89, 23);
-		menu.getContentPane().add(Play);
+		menu.add(Play);
 		
 		Discard = new JButton("Discard");
 		Discard.setBounds(15, 45, 89, 23);
-		menu.getContentPane().add(Discard);
+		menu.add(Discard);
 		
 		Preview = new JButton("Preview");
 		Preview.setBounds(15, 79, 89, 23);
-		menu.getContentPane().add(Preview);
+		menu.add(Preview);
 		
 		Set = new JButton("Set");
-		Set.setBounds(15, 113, 89, 23);
-		menu.getContentPane().add(Set);
-		menu.setClosable(true);
+		Set.setBounds(15, 110, 89, 23);
+		menu.add(Set);
 		menu.setBounds(0,0,124,186);
 		menu.setVisible(false);
 		/******************************************************/
@@ -264,6 +264,10 @@ import javax.swing.border.MatteBorder;
 		lblType.setBounds(52, 2, 62, 14);
 		add(lblType);
 		add(menu);
+		
+		btnNewButton = new JButton("close");
+		btnNewButton.setBounds(15,140, 89, 23);
+		menu.add(btnNewButton);
 		panel.setOpaque(false);
 		JPanel panel_1 = new JPanel();
 		panel_1.setOpaque(false);
@@ -277,7 +281,8 @@ import javax.swing.border.MatteBorder;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+moveToFront(menu);
+btnNewButton.addActionListener(this);
 	}
 
 	  @Override
@@ -335,6 +340,13 @@ import javax.swing.border.MatteBorder;
 	        g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
 	    }
 	}
-		
-		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if(e.getSource()==btnNewButton)
+			{
+				menu.setVisible(false);
+			}
+			
+		}
 }
