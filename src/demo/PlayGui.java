@@ -76,7 +76,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	int donde;
-	int number;
+	int number,X,Y;
 	SmallCard moving;
 	movePanel animations;
 	optionpane op;
@@ -3229,10 +3229,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	{
 
 		final SmallCard carta  ;
-		final int X,Y;
-		X=player.hand.handgui[pos].getX();
-		Y=player.hand.handgui[pos].getY();
+	
+	
+		
 		if(pos!=-2 && pos!=-3){
+			X=player.hand.handgui[pos].getX();
+			Y=player.hand.handgui[pos].getY();
 		if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
 
 
