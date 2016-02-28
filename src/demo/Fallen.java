@@ -19,7 +19,7 @@ import demo.BigCard;
 import demo.Card;
 import demo.CardGui;
 
-public class Fallen extends JInternalFrame 
+public class Fallen extends JInternalFrame implements ActionListener
 
 {
 	private boolean band,band1;
@@ -29,13 +29,18 @@ public class Fallen extends JInternalFrame
 	public int cant;
 	//CardGui current;
 	BigCard current;
+	int selecting=0;
 	public JPanel panel;
 	private JPanel panel_1;
 	public JButton confirmcardsfromfallen;
 	int effectnumber;
 	int position;
+	SmallCard[] cards=new SmallCard[4];
 	public static int c;
+	public JButton button;
+	public int a,b;
 	 
+	
 	public Fallen()
 	{
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -54,7 +59,7 @@ public class Fallen extends JInternalFrame
 		}
 		cant=data.Data.getCantidad();
 	        getContentPane().setLayout(null);
-	        setSize(736, 400);
+	        setSize(836, 400);
 	      
 
 	        JScrollPane scrollPane_1 = new JScrollPane();
@@ -65,9 +70,9 @@ public class Fallen extends JInternalFrame
 	        leftTable.setOpaque(false);
 	        
 	        scrollPane_1.setViewportView(leftTable);
-	        confirmcardsfromfallen=new JButton("Select");
+	        confirmcardsfromfallen=new JButton("CONFIRM");
 	        confirmcardsfromfallen.setEnabled(false);
-	        confirmcardsfromfallen.setBounds(127,320,122,40);
+	        confirmcardsfromfallen.setBounds(390,320,122,40);
 	       getContentPane().add(confirmcardsfromfallen);
 	        	        setupTable(leftTable);
 	        	        
@@ -89,6 +94,22 @@ public class Fallen extends JInternalFrame
 	        	        	        panel_1.add(label);
 	        	        	        label.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
 	        	        	        label.setHorizontalAlignment(SwingConstants.CENTER);
+	        	        	        
+	        	        	        button = new JButton("Select");
+	        	        	        button.addActionListener(new ActionListener() {
+	        	        	        	public void actionPerformed(ActionEvent arg0) {
+	        	        	        	}
+	        	        	        });
+	        	        	        button.setEnabled(false);
+	        	        	        button.setBounds(119, 320, 122, 40);
+	        	        	        button.addActionListener(this);
+	        	        	        getContentPane().add(button);
+	        	        	        
+	        	        	        JLabel lblSelecting = new JLabel("selecting");
+	        	        	        lblSelecting.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+	        	        	        lblSelecting.setHorizontalAlignment(SwingConstants.CENTER);
+	        	        	        lblSelecting.setBounds(390, 11, 122, 29);
+	        	        	        getContentPane().add(lblSelecting);
 	     
 	       
 	       
@@ -114,8 +135,26 @@ public class Fallen extends JInternalFrame
 	                		Vector rowValue = (Vector) fromModel.getDataVector().get(index);
 	                		position=(int) rowValue.get(0);
 	                		
-	                		current=new BigCard(data.Data.Consultar(position),470,15);
+	                		current=new BigCard(data.Data.Consultar(position),570,15);
+	                		if(cards[selecting]!=null)
+	                			remove(cards[selecting]);
+	                		
 	                	}
+	                	try {
+							cards[selecting]=new SmallCard(false,current.getcard());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+                		switch(selecting)
+                		{
+                		case 0:cards[selecting].setBounds(400,40,100,145);
+                			break;
+                		case 1: cards[selecting].setBounds(390,220,100,145);
+                			break;
+                		
+                		}
+                		getContentPane().add(cards[selecting]);
 	                	getContentPane().add (current);
 	                	if(effectnumber==13)
 	                	{
@@ -238,6 +277,27 @@ public void remove()
 
 	    }
 
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==button)
+		{
+			if(effectnumber==13)
+			{
+				confirmcardsfromfallen.setEnabled(true);
+			}else
+			{
+				
+				if(cards[selecting].getcard().GetSource()=="Water")
+				{
+				selecting++;
+				remove();
+				}
+			}
+		}
+		
 	}
 }
 

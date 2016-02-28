@@ -927,20 +927,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		   System.out.println(where);
 		 
 				try {
-					aux = new SmallCard(false,fallen.current.getcard());
+					aux = new SmallCard(false,fallen.cards[0].getcard());
+					if(fallen.effectnumber==13)//si es el efecto 13
+					{	
+					
 					number  =aux.getcard().GetCardNumber();
 					player.field.poner(aux,where);
 					fallen.remove();
 					fallen.confirmcardsfromfallen.setEnabled(false);
+					fallen.button.setEnabled(false);
 					fallen.effectnumber=0;
 					fallen.setVisible(false);
-				} catch (IOException e1) 
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 					if (aux.actual.GetType()!="Warrior") {
-					
+						
 						Thread t1 = new Thread(new Runnable() {
 
 							public void start() {
@@ -966,6 +965,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						t1.start();
 			
 		}
+					}
+					else{
+						player.hand.draw(fallen.cards[0].getcard() );
+						player.hand.draw(fallen.cards[1].getcard() );
+					}
+					fallen.selecting=0;
+				} catch (IOException e1) 
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
 				}
 		if (e.getSource() == tuto.ok) {
 
@@ -3358,6 +3369,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							fallen.setVisible(true);
 							
 							fallen.effectnumber=13;
+							fallen.button.setEnabled(true);
+				}
+				if(carta.getcard().GetCardNumber()==17)
+				{
+					
+							fallen.setVisible(true);
+							fallen.button.setEnabled(true);
+							fallen.effectnumber=14;
 				}
 				this.makeEffect(carta.actual.Getid(),where);
 				ubicacionDeCarta = where;
@@ -5243,5 +5262,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		});
 		t1.start();
+	}
+	void effect16foraiplayer()
+	{
+		
 	}
 }
