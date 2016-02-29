@@ -913,9 +913,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		this.instanciaGui = g;
+		
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
 		done = 0;
 		if(e.getSource()==fallen.confirmcardsfromfallen)
 		{
@@ -2323,6 +2326,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							int pos= ai.aihand.draw(ai.barriers.cards[which]);
 							ai.barriers.removebarrier(which);
 							ai.barriers.barriers[which].setVisible(false);
+							instanciaGui.doWin();
+							repaint();
+						}
+						else{
+							//gana el usuario
+							instanciaGui.doWin();
+							repaint();
 						}
 
 						if(e.getSource()==this.swordp1){
@@ -3566,6 +3576,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public void Aiturn() throws IOException//aqui se programara a lo salvaje el turno del ai
 	{
 		int which;
+		
+		if (ai.aideck.Deck.cardsLeft()==0) {
+			instanciaGui.doWin();
+			repaint();
+		}
+		
 		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
 //		System.out.println("ai gets a volatile powers");
 		ai.aidra.token();
@@ -3709,6 +3725,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							player.barriers.removebarrier(location);
 							player.barriers.barriers[location].setVisible(false);
 						}
+						else {
+							instanciaGui.doGameOver();
+							repaint();
+						}
+						
 					}
 					
 					if(atkDest!=-1 && atkOrigin!=-1  )

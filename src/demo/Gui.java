@@ -561,6 +561,17 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		}
 
 	}
+	
+	void winner(JFrame jfm)
+	{
+		try {
+			jfm.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("frame3.jpg")))));
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 	void addbackground2(JFrame jfm)
 	{
 		try {
@@ -616,6 +627,44 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		jfm.add(text);
 	}
 
+	public void doGameOver(){
+		gameover(this);
+		try {
+			setBackground(Color.RED);
+			player1=new PlayGui(0,0,Nombre1,this);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		b2 = new JButton("rematch");
+		b2.setBackground(Color.BLACK);
+		b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		b2.setForeground(Color.WHITE);
+		b2.setBounds(70, 50, 132, 43);
+		b2.addActionListener(this);
+		add(b2);
+		repaint();
+		setVisible(true);
+	}
+	
+	public void doWin(){
+		winner(this);
+		try {
+			setBackground(Color.RED);
+			player1=new PlayGui(0,0,Nombre1,this);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		b2 = new JButton("rematch");
+		b2.setBackground(Color.BLACK);
+		b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		b2.setForeground(Color.WHITE);
+		b2.setBounds(70, 50, 132, 43);
+		b2.addActionListener(this);
+		add(b2);
+		
+		repaint();
+		setVisible(true);
+	}
 	/************************/
 
 
