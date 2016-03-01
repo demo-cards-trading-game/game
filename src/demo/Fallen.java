@@ -44,7 +44,7 @@ public class Fallen extends JInternalFrame implements ActionListener
 	public Fallen()
 	{
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		
+	
 		
 		setClosable(true);
 		c=0;
@@ -59,7 +59,7 @@ public class Fallen extends JInternalFrame implements ActionListener
 		}
 		cant=data.Data.getCantidad();
 	        getContentPane().setLayout(null);
-	        setSize(836, 400);
+	        setSize(836, 450);
 	      
 
 	        JScrollPane scrollPane_1 = new JScrollPane();
@@ -72,7 +72,7 @@ public class Fallen extends JInternalFrame implements ActionListener
 	        scrollPane_1.setViewportView(leftTable);
 	        confirmcardsfromfallen=new JButton("CONFIRM");
 	        confirmcardsfromfallen.setEnabled(false);
-	        confirmcardsfromfallen.setBounds(390,320,122,40);
+	        confirmcardsfromfallen.setBounds(390,370,122,40);
 	       getContentPane().add(confirmcardsfromfallen);
 	        	        setupTable(leftTable);
 	        	        
@@ -101,7 +101,7 @@ public class Fallen extends JInternalFrame implements ActionListener
 	        	        	        	}
 	        	        	        });
 	        	        	        button.setEnabled(false);
-	        	        	        button.setBounds(119, 320, 122, 40);
+	        	        	        button.setBounds(119, 370, 122, 40);
 	        	        	        button.addActionListener(this);
 	        	        	        getContentPane().add(button);
 	        	        	        
@@ -135,7 +135,7 @@ public class Fallen extends JInternalFrame implements ActionListener
 	                		Vector rowValue = (Vector) fromModel.getDataVector().get(index);
 	                		position=(int) rowValue.get(0);
 	                		
-	                		current=new BigCard(data.Data.Consultar(position),570,15);
+	                		current=new BigCard(data.Data.Consultar(position),570,30);
 	                		if(cards[selecting]!=null)
 	                			remove(cards[selecting]);
 	                		
@@ -150,12 +150,12 @@ public class Fallen extends JInternalFrame implements ActionListener
                 		{
                 		case 0:cards[selecting].setBounds(400,40,100,145);
                 			break;
-                		case 1: cards[selecting].setBounds(390,220,100,145);
+                		case 1: cards[selecting].setBounds(400,200,100,145);
                 			break;
                 		
                 		}
-                		getContentPane().add(cards[selecting]);
-	                	getContentPane().add (current);
+                		add(cards[selecting]);
+	                	add (current);
 	                	if(effectnumber==13)
 	                	{
 	                		confirmcardsfromfallen.setEnabled(true);
@@ -174,6 +174,7 @@ public void remove()
 {
 	SimpleColorTableModel fromModel = (SimpleColorTableModel) leftTable.getModel();
 	fromModel.removeRow(leftTable.getSelectedRow());
+	
 }
 
 
@@ -289,11 +290,20 @@ public void remove()
 				confirmcardsfromfallen.setEnabled(true);
 			}else
 			{
-				
-				if(cards[selecting].getcard().GetSource()=="Water")
+				System.out.println(cards[selecting].getcard().GetSource().equals("Water"));
+				System.out.println(true);
+				if(cards[selecting].getcard().GetSource().equals("Water")){
+	
+				if (selecting < 1)
 				{
-				selecting++;
-				remove();
+					selecting++;
+					remove();
+				}else
+				{
+						confirmcardsfromfallen.setEnabled(true);
+						
+				}
+				
 				}
 			}
 		}

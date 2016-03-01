@@ -972,6 +972,22 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					else{
 						player.hand.draw(fallen.cards[0].getcard() );
 						player.hand.draw(fallen.cards[1].getcard() );
+						fallen.confirmcardsfromfallen.setEnabled(false);
+						if(fallen.cards[0]!=null)
+						{
+							fallen.remove(fallen.cards[0]);
+						}
+						if(fallen.cards[1]!=null)
+						{
+							fallen.remove(fallen.cards[1]);
+						}
+						if(fallen.cards[2]!=null)
+						{
+							fallen.remove(fallen.cards[2]);
+						}
+						fallen.setVisible(false);
+						fallen.button.setEnabled(false);
+						
 					}
 					fallen.selecting=0;
 				} catch (IOException e1) 
