@@ -89,6 +89,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	private LoadData cartas;
 	JInternalFrame pane; 
 	public Phases phases;
+	public Fallen fallenAi;
 	public  JButton repaint;
 	private FileReader turno;
 	private BufferedReader br;
@@ -187,7 +188,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		/*******************************************/
 
-
+		fallenAi=new Fallen();
+		add(fallenAi);
 
 		this.add(preview);
 
@@ -883,6 +885,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		moveToFront(animations);
 		animations.setOpaque(false);
 		fallen.confirmcardsfromfallen.addActionListener(this);
+		fallenAi.confirmcardsfromfallen.addActionListener(this);
+		ai.aideck.btnNewButton_1.addMouseListener(this);
 		// JLabel label = new JLabel();
 		// label.setIcon(new ImageIcon("redArrow1.png"));
 		// label.setBounds(100,100,50,50);
@@ -1595,6 +1599,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{
 			if(e.getClickCount()==1)
 			{
+				if(e.getSource()==ai.aideck.btnNewButton_1){
+					fallenAi.setVisible(true);
+					moveToFront(fallenAi);
+					}
+
 				if(barierpicked==0)
 				{
 
@@ -2440,10 +2449,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				moveToFront(fallen);
 			}
 
-			if(e.getSource()==ai.aideck.btnNewButton){
 			
-			}
-
 		}	    
 		else if(e.getButton() == MouseEvent.BUTTON3)
 		{
@@ -5144,6 +5150,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), ai.aifield.cards[ai.whereInvoqued].getcard());
 				ai.aifield.quitar(ai.whereInvoqued);
 				preview.Remove();
 				repaint();
@@ -5185,6 +5192,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			e.printStackTrace();
 		}
 			ai.aifield.poner(carta, cardAiFieldLocation);
+		
 			if(carta.getcard().GetCardNumber()==15)
 			{
 				ai.aidra.token();
@@ -5293,6 +5301,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 				for (int i = 0; i < 5; i++) {
 					if(player.field.cards[i]!=null && player.field.cards[i].getcard().GetType()!="Warrior"){
+						
 						player.field.quitar(i);
 					}
 				}
