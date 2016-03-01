@@ -17,6 +17,7 @@ public class AIGui extends JPanel {
 	public int warriorPlayed;
 	public Barriers2 barriers;
 	public Drained_2 aidra;
+	public Fallen fallen;
 	public int where, whereInvoqued;
 	public AIGui()
 	{
@@ -26,6 +27,7 @@ public class AIGui extends JPanel {
 		barriers=new Barriers2(220,100);
 		aideck=new AiDeck(10,10);
 		aihand=new AiHand(278,-10);
+		fallen=new Fallen();
 		add(aihand);
 		add(aideck);
 		add (aifield);
