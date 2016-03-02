@@ -3765,10 +3765,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
 							{
 								ai.aifield.quitar(atkOrigin);
+								fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[atkOrigin].getcard());
 								
 							}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
 							{
 								player.field.quitar(atkDest);
+								fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[atkDest].getcard());
 								this.makeAiEffect(this.ai.aifield.cards[atkOrigin].getcard().Getid(),atkOrigin );
 							}
 							add(phases);
@@ -5120,6 +5122,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		/*if (ai.aihand.cards[aleatorio].Getid()=="SSD-15") {
 			ai.aidra.set();
 		}*/
+		System.out.println(aleatorio);
+		if(aleatorio>0)
+		fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[aleatorio-1].getcard());
 		ai.aihand.discard(aleatorio);
 		repaint();
 	}
@@ -5302,7 +5307,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				for (int i = 0; i < 5; i++) {
 					if(player.field.cards[i]!=null && player.field.cards[i].getcard().GetType()!="Warrior"){
 						
+						fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[i].getcard());
 						player.field.quitar(i);
+						
 					}
 				}
 				preview.Remove();
