@@ -416,7 +416,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 						{
 							//CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
 							//appear(nueva);
-							CardGui otra= new CardGui(player1.player.pdeck.Deck.lista.Data.Consultar(17),0,0); 
+							CardGui otra= new CardGui(player1.player.pdeck.Deck.lista.Data.Consultar(16),0,0); 
 							appear(otra);
 						}else
 						{
