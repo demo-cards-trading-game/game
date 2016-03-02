@@ -924,6 +924,58 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public void actionPerformed(ActionEvent e) {
 		
 		done = 0;
+		if (e.getSource() == fallenAi.confirmcardsfromfallen) {
+			SmallCard aux = null;
+			System.out.println("entro");
+			
+				try {
+					aux = new SmallCard(false, fallenAi.cards[0].getcard());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+			final int where = ai.aifield.findwhere();
+			if (fallenAi.effectnumber == 13) // si es el efecto 13
+			{
+
+				number = aux.getcard().GetCardNumber();
+				ai.aifield.poner(aux, where);
+				fallenAi.remove();
+				fallenAi.confirmcardsfromfallen.setEnabled(false);
+				fallenAi.button.setEnabled(false);
+				fallenAi.effectnumber = 0;
+				fallenAi.setVisible(false);
+				if (aux.actual.GetType() != "Warrior") {
+
+					Thread t1 = new Thread(new Runnable() {
+
+						public void start() {
+							this.start();
+						}
+
+						public void run() {
+							try {
+								Thread.sleep(750);
+
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							ai.aifield.quitar(where);
+							if (number == 18) {
+								ai.aidra.setwp();
+							}
+							repaint();
+							
+						}
+					});
+					t1.start();
+
+				}
+
+			}
+
+		}
 		if(e.getSource()==fallen.confirmcardsfromfallen)
 		{
 				SmallCard aux = null;
@@ -966,7 +1018,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 									player.powers.setwp();
 								}
 								repaint();
+								fallenAi.setVisible(true);
 								
+								fallenAi.effectnumber=13;
+								fallenAi.button.setEnabled(true);
 							}
 						});
 						t1.start();
@@ -5124,7 +5179,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}*/
 		System.out.println(aleatorio);
 		if(aleatorio>0)
-		fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[aleatorio-1].getcard());
+		fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), ai.aihand.cards[aleatorio-1]);
 		ai.aihand.discard(aleatorio);
 		repaint();
 	}
