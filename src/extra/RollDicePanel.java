@@ -38,10 +38,10 @@ public class RollDicePanel extends JPanel implements ActionListener{
 		dice1 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
 
 
-	 dice1.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
+	// dice1.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 	 dice1.setBounds(-66, 51, 244, 244);
      dice2 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
-     dice2.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
+    // dice2.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
      dice2.setBounds(542, 51, 244, 244);
      rollButton = new JButton("Let them roll");
      rollButton.setBounds(71, 317, 440, 41);
