@@ -1670,6 +1670,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						player.barriers.removebarrier(0);
 						barierpicked=1;
 						repaint();
+						repairListeners(false);
 					}
 					if(e.getSource()==player.barriers.barriers[1])
 					{
@@ -1679,6 +1680,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						player.barriers.removebarrier(1);
 						barierpicked=1;
 						repaint();
+						repairListeners(false);
 					}
 					if(e.getSource()==player.barriers.barriers[2])
 					{
@@ -1687,6 +1689,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(2);
 						barierpicked=1;
+						repairListeners(false);
 						repaint();
 					}
 					if(e.getSource()==player.barriers.barriers[3])
@@ -1696,6 +1699,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(3);
 						barierpicked=1;
+						repairListeners(false);
 						repaint();
 					}
 					if(e.getSource()==player.barriers.barriers[4])
@@ -1705,6 +1709,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(4);
 						barierpicked=1;
+						repairListeners(false);
 						repaint();
 					}
 
