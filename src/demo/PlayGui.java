@@ -1,4 +1,5 @@
 package demo;
+import extra.rain;
 import demo.HandGui;
 import extra.Rlabel;
 import extra.RoundedPanel;
@@ -112,6 +113,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
 	RoundedPanel unleash;
+	public rain lluvia;
 	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
@@ -917,7 +919,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		this.instanciaGui = g;
-		
+		lluvia=new rain();
+		lluvia.setBounds(0,0,1164,768);
+		lluvia.setVisible(true);
+		lluvia.setOpaque(false);
+		animations.add(lluvia);
 		
 	}
 
