@@ -4182,11 +4182,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 
-			if(id.equals("SSD-12")){
-//				JOptionPane.showMessageDialog(null, "you get 4 volatile power, use it wisely");
-				System.out.println("you get 4 volatile power, use it wisely");
-				player.powers.set();
-			}	
+			
 
 			repaint();
 		}
