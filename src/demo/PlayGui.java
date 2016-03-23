@@ -2417,7 +2417,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							int pos= ai.aihand.draw(ai.barriers.cards[which]);
 							ai.barriers.removebarrier(which);
 							ai.barriers.barriers[which].setVisible(false);
-							instanciaGui.doWin();
 							repaint();
 						}
 						else{
