@@ -43,10 +43,10 @@ private float mWind = 2.05f;
 private float mGravity = 9.8f;
 private double mRainChance = 0.99; // from 0 to 1
 
-private int mRepaintTimeMS = 16;
-private float mRainWidth=1;
-private double mDdropInitialVelocity = 10;
-private double mDropDiam = 1;
+private int mRepaintTimeMS = 20;
+private float mRainWidth= 0.5f;
+private double mDdropInitialVelocity = 5;
+private double mDropDiam = 4;
 private Color mColor=Color.white;
 //*********************************************
 

@@ -919,11 +919,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		this.instanciaGui = g;
+	/*
 		lluvia=new rain();
 		lluvia.setBounds(0,0,1164,768);
 		lluvia.setVisible(true);
 		lluvia.setOpaque(false);
-		animations.add(lluvia);
+		add(lluvia);
+		this.moveToBack(lluvia);
+		*/
 		
 	}
 

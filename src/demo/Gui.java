@@ -53,34 +53,25 @@ public class Gui extends JFrame implements ActionListener, MouseListener
    
 	public Gui()
 	{  
-	/*
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		int xSize = ((int) tk.getScreenSize().getWidth());
-		int ySize = ((int) tk.getScreenSize().getHeight());
-		setSize(xSize, ySize);*/
-		//setUndecorated(true);
+	
 		setSize(1024,768);
 		setBackground(Color.RED);
 	
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
-		setContentPane(contentPane);
+		
+		addbackgound(this);
+		this.getContentPane().setLayout(null);
+		b2 = new JButton("Play");
+		b2.setBackground(Color.BLACK);
+		b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
+		b2.setForeground(Color.WHITE);
+		b2.setBounds(450, 550, 132, 43);
+		b2.addActionListener(this);
+		add(b2);
 		setVisible(true);
 
-		crea = new JInternalFrame("Crear deck");
-		crear= new deckCreator(112,84);
-
-
-
-
-
-
-
-		setLayout(new CardLayout(0, 0));
 
 	
 		/***********pruebas******************/
@@ -104,29 +95,12 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		quit.addActionListener(this);
 		menu2.add(mi3);         
 
-		/***************************************/
-		addbackgound(this);
-		addjlabel1(this);
 
-		text = new JTextArea();   
-		text.setBounds(480, 580, 90, 20);
-		text.setEditable(true);
-		add(text);
+
 		
-		validar = new JLabel("please, input a valid name and press enter!");
-		validar.setBounds(580, 580, 250, 20);
-		validar.setVisible(false);
-		add(validar);
+	
 		
-		b1=new JButton("Play");
-		b1.setBackground(Color.white);
-		b1.setBorder(null);
-		b1.setBounds(380 ,560,60,30);
-		b1.setBorder(BorderFactory.createEmptyBorder());
-		b1.addActionListener(this);
-		add(b1);
-		text.requestFocusInWindow();
-		text.addKeyListener(new myKeyState1());
+	
 
 
 
@@ -136,10 +110,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		demo.setBounds(870,660,300,30); //esto se mueve como horizontal vertical 100= h 200=v
 		this.add(demo);
 		
-		accionarAgarreAutomatico = new JButton();
-		accionarAgarreAutomatico.setVisible(false);
-		add(accionarAgarreAutomatico);
-		accionarAgarreAutomatico.addActionListener(this);
+	
 
 		/*********************************/
 
@@ -171,44 +142,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			
 			
 		}
-		if(e.getSource()==b1)
-		{
-			
-			if(text.getText().trim().length()==0){
-				
-				validar.setVisible(true);
-			}
-			else{
-				validar.setVisible(false);
-				b1.setEnabled(true);
-		      
-				addbackground2(this);
-				b2 = new JButton("Play");
-				b2.setBackground(Color.BLACK);
-				b2.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-				b2.setForeground(Color.WHITE);
-				b2.setBounds(70, 50, 132, 43);
-				b2.addActionListener(this);
-				add(b2);
-				
-				//validacion para entrar directamente con enterkk
-				val1 = new JTextArea();   
-				val1.setBounds(480, 580, 0, 0);
-				val1.setVisible(true);
-				add(val1);
-				val1.requestFocusInWindow();
-				val1.addKeyListener(new myKeyState2());
-				
-				b3=new JButton("Deck menu");
-				b3.setForeground(Color.BLACK);
-				b3.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 11));
-				b3.setBackground(Color.WHITE);
-				b3.setBounds(70, 130, 132, 43);
-				b3.addActionListener(this);
-				add(b3);
-				setVisible(true);
-		    }
-		}
+	
 	if(dados!=null){
 		if(e.getSource()==dados.pane.rollButton)//dados
 		{
@@ -318,7 +252,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			e1.printStackTrace();
 		}
 		
-			Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
+	
 			player1.player.pdeck.btnNewButton_1.addMouseListener(this);//para que se puedan usar los botones del deck
 			player1.player.pdeck.btnNewButton.addMouseListener(this);
 			
@@ -341,7 +275,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 				{
 
 
-					Nombre1=text.getText();//guarda el nombre del jugador en Nombre1
+				
 					try {
 						dados= new RollDice();
 					} catch (IOException e1) {
