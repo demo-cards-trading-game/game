@@ -872,10 +872,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		tuto.ok3.addActionListener(this);
 		tuto.cancel.addActionListener(this);
 
-		tuto.panel.add(player.powers.label);
-		player.powers.label.setVisible(false);
-
-		player.pdeck.btnNewButton_2.addMouseListener(this);
+	
 
 		for (int i = 0; i < player.hand.current; i++)
 			player.hand.handgui[i].Play.setEnabled(false);
@@ -911,7 +908,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						e.printStackTrace();
 					}
 					//aca va el codigo de visibilidad
-					instanciaGui.accionarAgarreAutomatico.doClick();
+					//instanciaGui.accionarAgarreAutomatico.doClick();
 				}
 			});
 			t.start();
@@ -1081,20 +1078,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			tuto.animation.stop();
 			tuto.setVisible(false);
 			
-			player.powers.label.setVisible(false);
+	
 			set(p, w);
 			checking = false;
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 			tuto.panel.add(tuto.ok);
-			player.powers.disselect();
+			
 			;
 
 		}
 		if (e.getSource() == tuto.cancel) {
 
 			tuto.animation.stop();
-			player.powers.label.setVisible(false);
 			tuto.panel.remove(tuto.ok3);
 			tuto.panel.remove(tuto.cancel);
 			tuto.animation.stop();
@@ -3531,7 +3527,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				player.field.poner(Hero, donde);
 			}
 
-			player.powers. disselect();
 			
 			
 
@@ -3594,7 +3589,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						Thread.sleep(15);
 
 
-						if(player.powers.used + player.powers.tokenused==c)
+						if(player.powers.power >=c)
 						{
 							tuto.ok3.setEnabled(true);
 
@@ -3625,7 +3620,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			c=player.pdeck.Hero.getcard().GetCost();
 		
 		 
-		if ( player.powers.currentundrained+player.powers.currentoken - c >=0 ) {//verifica que haya mana
+		if ( player.powers.power+player.powers.Volatile - c >=0 ) {//verifica que haya mana
 
 	
 			if (allowed) {//verifica que un warrior no se ha jugado en ese turno
@@ -3640,11 +3635,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						set(p, w);
 						
 					}else{
-					tuto.panel.add(player.powers.label);
-					player.powers.label.setBounds(150, 100, 73, 35);	
+					;	
 					tuto.play();
 
-					player.powers.label.setVisible(true);
+					
 
 					hilo();
 					}
@@ -3894,14 +3888,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(bugPrimerTurnoUSer==0){
 			bugPrimerTurnoUSer=1;
-			phases.change(phases.actual+1);
-			this.instanciaGui.accionarAgarreAutomatico.doClick();
+			//phases.change(phases.actual+1);
+			//this.instanciaGui.accionarAgarreAutomatico.doClick();
 			repaint();
 		}
 		this.phases.end.addMouseListener(this);
 		if(phases.actual==-1){
 			phases.change(phases.actual+1);
-			this.instanciaGui.accionarAgarreAutomatico.doClick();
+		//	this.instanciaGui.accionarAgarreAutomatico.doClick();
 			repaint();
 		}
 		
