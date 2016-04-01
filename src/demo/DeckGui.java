@@ -44,7 +44,7 @@ public class DeckGui extends JPanel {
 	public JLabel lblTheFallen;
 	public JLayeredPane panel;
 	public JLabel lblDeck; 
-	public Rlabel lblForgotten ;
+	public JLabel lblForgotten ;
 	public JInternalFrame menu;
 	public SmallCard Hero;
 	public JButton Play, Preview;
@@ -83,10 +83,10 @@ public class DeckGui extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-	 lblDeck = new JLabel("DECK");
+	 lblDeck = new JLabel("Deck");
 	 lblDeck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDeck.setForeground(new Color(50, 205, 50));
-		lblDeck.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
+		lblDeck.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		lblDeck.setBounds(168, 244, 53, 14);
 		add(lblDeck);
 		
@@ -100,8 +100,8 @@ public class DeckGui extends JPanel {
 	    lblTheFallen = new JLabel("The Fallen");
 	    lblTheFallen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTheFallen.setForeground(new Color(30, 144, 255));
-		lblTheFallen.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblTheFallen.setBounds(160, 168, 80, 14);
+		lblTheFallen.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
+		lblTheFallen.setBounds(140, 168, 100, 14);
 		add(lblTheFallen);
 		
 		btnNewButton_2 = new JLabel();
@@ -112,17 +112,15 @@ public class DeckGui extends JPanel {
 		btnNewButton_2.setBounds(175, 117, 46, 40);
 		add(btnNewButton_2);
 		
-	  lblForgotten = new Rlabel("Forgotten",0);
-	  lblForgotten.setText("FORGOTTEN");
-	  lblForgotten.setRightShadow(1,1,Color.black);
-	  lblForgotten.setLeftShadow(-1,-1, new Color(0xccccff));
+	  lblForgotten = new JLabel("Forgotten");
+	
 	  lblForgotten.setForeground(new Color(0x8888ff));
-	  lblForgotten.setFont(lblForgotten.getFont().deriveFont(140f));
-	  lblForgotten.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblForgotten.setBorder(null);
+	  lblForgotten.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
+
+	
 		lblForgotten.setForeground(new Color(153, 102, 255));
-		lblForgotten.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
-		lblForgotten.setBounds(160, 100, 117, 14);
+		
+		lblForgotten.setBounds(149, 92, 117, 14);
 		add(lblForgotten);
 		
 		 panel= new JLayeredPane();
