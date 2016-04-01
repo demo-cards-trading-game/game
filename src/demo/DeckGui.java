@@ -76,10 +76,10 @@ public class DeckGui extends JPanel {
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setForeground(new Color(255, 255, 255));
-		textField.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		textField.setText("CARDS LEFT "+ Deck.cardsLeft());
+		textField.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 10));
+		textField.setText("Cards Left "+ Deck.cardsLeft());
 		textField.setBackground(Color.BLACK);
-		textField.setBounds(160, 320, 80, 20);
+		textField.setBounds(149, 320, 91, 20);
 		add(textField);
 		textField.setColumns(10);
 		

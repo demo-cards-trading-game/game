@@ -1,9 +1,10 @@
 package demo;
 import extra.rain;
 import demo.HandGui;
+import extra.Pago;
 import extra.Rlabel;
 import extra.RoundedPanel;
-import extra.Tutorial;
+
 import extra.movePanel;
 import demo.Fallen.SimpleColorTableModel;
 import demo.DeckGui;
@@ -73,7 +74,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public AIGui ai;//lo mismo pero en el ai
 	public Previewpane preview;
 	int p,w,c;//pos , where, cost
-	public Tutorial tuto;
+
 	SmallCard Hero;
 	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
 	int donde;
@@ -94,7 +95,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public  JButton repaint;
 	private FileReader turno;
 	private BufferedReader br;
-	private Rlabel turnoLabel;
+	private JLabel turnoLabel;
 	private Card BeingPlayed;
 	int warriorPlayed; //indica que se jugo un warrior en el turno
 	public int cardDrawn, barierpicked;
@@ -114,6 +115,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int selected=-1;
 	RoundedPanel unleash;
 	public rain lluvia;
+	public Pago pay;
 	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
@@ -145,10 +147,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		if(pos!=-1)
 		{
-			tuto.animation.setLocation(210+pos*115,250);
-			tuto.lblSms.setText("select a warrior to fight");
-			tuto.animation.anim();
-			tuto.setVisible(true);
+			/**aca va algo de la pelea*/
 		}
 	}
 
@@ -163,8 +162,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		setLayout(null);
 		setBounds(0,0, 1024, 768);
 		cardDrawn=0;
-		tuto= new Tutorial();
-		add(tuto);
+	
+		
 		fight=new fightpane();
 		moveToFront(fight);//takes to front fightpane
 		this.add(fight);
@@ -298,29 +297,25 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			e2.printStackTrace();
 		}
 
-		this.turnoLabel = new Rlabel("",0);
-		turnoLabel.setRightShadow(1, 1, Color.white);
-		turnoLabel.setLeftShadow(1, 1, Color.black);
+		this.turnoLabel = new JLabel();
 		
 		turnoLabel.setFont(new Font("Comic Sans MS", turnoLabel.getFont().getStyle(), 20));
 
-		turnoLabel.setRightShadow(3,3,Color.black);
-		turnoLabel.setLeftShadow(-3,-3, new Color(0xccccff));
 		turnoLabel.setForeground(Color.green);
-		turnoLabel.setFont(turnoLabel.getFont().deriveFont(140f));
+		
 		
 		if(turn==1){//turno player 1
-			this.turnoLabel.setText("PLAYER'S TURN");
+			this.turnoLabel.setText("Player'S turn");
 
 		}else{ //turno player 2
-			this.turnoLabel.setText("AI PLAYER'S TURN");
+			this.turnoLabel.setText("AI Player'S turn");
 			
 		}
 		this.turnoLabel.setBounds(50, 320, 200, 20);
 		
 	
 		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.turnoLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 15));
+		this.turnoLabel.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
 
 		this.dest1 = new JLabel();
@@ -868,9 +863,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet113.setVisible(false);
 		this.aitarjet114.setVisible(false);
 		this.aitarjet115.setVisible(false);
-		tuto.ok.addActionListener(this);
-		tuto.ok3.addActionListener(this);
-		tuto.cancel.addActionListener(this);
+		
 
 	
 
@@ -924,7 +917,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(lluvia);
 		this.moveToBack(lluvia);
 		*/
-		
+		pay=new Pago();
+		add(pay);
+		moveToFront(pay);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -1062,42 +1057,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 					
 				}
-		if (e.getSource() == tuto.ok) {
-
-			tuto.animation.stop();
-
-			tuto.animation.stop();
-			tuto.setVisible(false);
-			checking = false;
-
-		}
-		if (e.getSource() == tuto.ok3) {
-
-			tuto.animation.stop();
-
-			tuto.animation.stop();
-			tuto.setVisible(false);
-			
-	
-			set(p, w);
-			checking = false;
-			tuto.panel.remove(tuto.ok3);
-			tuto.panel.remove(tuto.cancel);
-			tuto.panel.add(tuto.ok);
-			
-			;
-
-		}
-		if (e.getSource() == tuto.cancel) {
-
-			tuto.animation.stop();
-			tuto.panel.remove(tuto.ok3);
-			tuto.panel.remove(tuto.cancel);
-			tuto.animation.stop();
-			tuto.setVisible(false);
-			tuto.panel.add(tuto.ok);
-
-		}
 
 		s = -1;
 		if (e.getSource() == player.hand.handgui[0].Set) {
@@ -1780,7 +1739,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.phases.draw.addMouseListener(this);
 						break;
 					case 1:
-						tuto.barrier();
+						
 						this.phases.draw.removeMouseListener(this);
 						for(int i=0;i<5;i++)
 						{
@@ -1791,7 +1750,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.phases.action.addMouseListener(this);
 						break;
 					case 2:
-						tuto.Action();
+						
 						for(int i=0;i<5;i++)
 						{
 							if(player.barriers.barriers[i]!=null){
@@ -1886,10 +1845,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.dest5.setVisible(false);
 							if(turn==1){
 								turn=2;
-								this.turnoLabel.setText("AI PLAYER'S TURN");
+								this.turnoLabel.setText("AI Player'S turn");
 							}else{
 								turn=1;
-								this.turnoLabel.setText("PLAYER'S TURN");
+								this.turnoLabel.setText("Player'S turn");
 							}
 							repaint();
 							repaint();
@@ -3138,7 +3097,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end3.png")));
 			if (liberarTutoEnd==0) {
-				tuto.end();
+		
 				
 				liberarTutoEnd=1;
 			}
@@ -3591,10 +3550,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						if(player.powers.power >=c)
 						{
-							tuto.ok3.setEnabled(true);
+							//tuto.ok3.setEnabled(true);
 
 						}else{
-							tuto.ok3.setEnabled(false);//lo desactiva
+							//tuto.ok3.setEnabled(false);//lo desactiva
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -3636,7 +3595,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						
 					}else{
 					;	
-					tuto.play();
+					//tuto.play();
 
 					
 
@@ -3666,23 +3625,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 		
-		JOptionPane.showMessageDialog(null, "ai gets a volatile powers");
+	
 //		System.out.println("ai gets a volatile powers");
 		ai.aidra.token();
 		ai.aidra.reset();
-		JOptionPane.showMessageDialog(null, "ai gets a card from deck");
+
 //		System.out.println("ai gets a card from deck");
 		int pos= ai.aihand.draw(ai.aideck.Deck.extraerR());
 		//ai.barriers.addbarrier(ai.aideck.Deck.extraerR());
 		phases.change(phases.actual+1);
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
-		JOptionPane.showMessageDialog(null, "ai gets a card from barriers");
+
 //		System.out.println("ai gets a card from barriers");
 		phases.change(phases.actual+1);
 
 		setVisible(true);
-		JOptionPane.showMessageDialog(null,"ai is playing a card" );
+	
 //		System.out.println("ai is playing a card");
 		
 		if(ExistCardsInAiField()){
@@ -3698,7 +3657,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		phases.change(phases.actual+1);
 		//attack phase 
-		JOptionPane.showMessageDialog(null,"ai is preparing an attack" );
+
 //		System.out.println("ai is preparing an attack");
 
 		if(this.contTurn>0){
@@ -3800,7 +3759,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					
 					if(atkOrigin!=-1 && atkDest==-1 && countCardsInPlayerField()==0){
 						int location = findPlayerBarrierToRemove();
-						JOptionPane.showMessageDialog(null, "Ai player get a direct hit");
+					
 //						System.out.println("Ai player get a direct hit");
 
 						if(location!=-1)//existe un barrier
@@ -3845,7 +3804,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 
 		phases.change(phases.actual+1);
-		JOptionPane.showMessageDialog(null,"AI IS FINISHING IT'S TURN" );
+		
 //		System.out.println("AI IS FINISHING IT'S TURN");
 		this.sworda1.setVisible(false);
 		this.sworda2.setVisible(false);
@@ -3854,7 +3813,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.sworda5.setVisible(false);
 		turn=1;
 
-		this.turnoLabel.setText("PLAYER'S TURN");
+		this.turnoLabel.setText("Player'S turn");
 		this.contTurn++;
 
 		//primer turno del user
@@ -3923,7 +3882,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		            e.printStackTrace();
 		        }
 		        //aca va el codigo de visibilidad
-		        tuto.barrier();
+		        //tuto.barrier();
 				phases.change(phases.actual+1);
 				repaint();
 			}
@@ -4689,7 +4648,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("endz.png")));
 			
-				tuto.ok.doClick();
+				//tuto.ok.doClick();
 			
 		}
 		

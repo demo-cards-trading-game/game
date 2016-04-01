@@ -69,7 +69,7 @@ public class AIGui extends JPanel {
 		
 		if(which!=-1)
 		{
-			JOptionPane.showMessageDialog(null, "ai is playing a warrior");
+		
 			aiPlay(which);
 			
 		}else{
@@ -77,11 +77,11 @@ public class AIGui extends JPanel {
 			which=aihand.finddisruption();
 			if(which!=-1)
 			{
-				JOptionPane.showMessageDialog(null, "ai is playing a disruption card");
+				
 				aiPlay(which);
 			}else
 			{
-				JOptionPane.showMessageDialog(null, "else");
+			
 				aiPlay(0);
 			}
 			
