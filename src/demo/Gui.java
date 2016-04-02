@@ -37,9 +37,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 	public JTextArea text, val1,val2;
 	public CardGui moving;
 	public String Nombre1;//nombre del jugador1
-	public JMenuBar mb;
-	public JMenu menu1,menu2;
-	public JMenuItem mi1,mi2,mi3,quit;
+	
 	static LoadData data;
 	public JPanel contentPane;
 	public PlayGui player1;
@@ -75,25 +73,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 
 	
 		/***********pruebas******************/
-
-		mb=new JMenuBar();
-		setJMenuBar(mb);
-		menu1=new JMenu("OPTIONS");
-		mb.add(menu1);
-		quit= new JMenuItem("EXIT");
-		menu2=new JMenu("resolucion");
-		menu1.add(menu2);
-		mb.add(quit);
-		mi1=new JMenuItem("900,650(default)");
-		mi1.addActionListener(this);
-		menu2.add(mi1);
-		mi2=new JMenuItem("800x600");
-		mi2.addActionListener(this);
-		menu2.add(mi2);
-		mi3=new JMenuItem("1024x768");
-		mi3.addActionListener(this);
-		quit.addActionListener(this);
-		menu2.add(mi3);         
+  
 
 
 
@@ -128,20 +108,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource()==mi2)
-		{
-		
-			this.setBounds(0,0,800,600);
-			
-			
-		}
-		if (e.getSource()==quit)
-		{
-			
-			this.dispose();
-			
-			
-		}
+
 	
 	if(dados!=null){
 		if(e.getSource()==dados.pane.rollButton)//dados
@@ -324,15 +291,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		
 		
 
-		if (e.getSource()==mi1) {
-			setSize(900,650);
-			pack();
-		}
 		
-		if (e.getSource()==mi3) {
-			setSize(1024,768);
-			pack();
-		}   
 		if (player1!=null){
 			if(e.getSource()==player1.repaint)
 			{

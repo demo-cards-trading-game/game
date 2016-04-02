@@ -2560,7 +2560,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void mouseExited(MouseEvent e) {
 	
-		setBackground(new Color(128, 128, 128));
+		
 		if(e.getSource()==player.barriers.barriers[0])
 		{
 			player.barriers.barriers[0].setBackground(new Color(128, 128, 128));;
@@ -2608,9 +2608,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		int x2;
 
 		if(player.hand.current<5)
-			x2=124;
+			x2=100;
 		else
-			x2=498/(player.hand.current-1);
+			x2=400/(player.hand.current-1);
 		if(e.getSource()==player.hand.handgui[0])
 		{
 			x=0;
@@ -2661,11 +2661,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(x!=player.hand.current-1 || x<5){
 
-				player.hand.handgui[x].setBounds(x*x2+30,20,124,186);
+				player.hand.handgui[x].setBounds(x*x2+30,20,100,145);
 
 			}else
 			{
-				player.hand.handgui[x].setBounds(528,20,124,186);
+				player.hand.handgui[x].setBounds(528,20,100,145);
 
 			}
 
@@ -3016,7 +3016,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		{	
 			if(x!=player.hand.current){
 			
-				player.hand.handgui[x].setBounds(x*x2,0,124,186);
+				player.hand.handgui[x].setBounds(x*x2,0,100,145);
 				player.hand.moveToFront(player.hand.handgui[x]);
 			}
 		}

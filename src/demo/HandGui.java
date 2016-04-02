@@ -51,17 +51,18 @@ public  class HandGui extends JLayeredPane
     boolean dragging = false;
     int sX = -1, sY = -1;
     public JPanel panel;
-    public  int Factor_de_compresion=124;
+    public  int Factor_de_compresion=100;
 	public HandGui(int posx,int posy) {
 		
 		current=0;
 		setOpaque(false);
-		setBounds(posx-15,posy, 650, 206);
+		setBounds(posx-15,posy, 560, 206);
 		setLayout(null);
 		
-	    panel = new RoundedPanel();
+	    panel = new JPanel();
+	    panel.setOpaque(false);
 		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(30, 20, 620, 186);
+		panel.setBounds(30, 20, 500, 186);
 		add(panel);
 	
 		
@@ -127,7 +128,7 @@ public  class HandGui extends JLayeredPane
 			 cards[current]=a;
 			 
 			if (current<5){
-			 x=new CardGui(a,current*124+30,20);
+			 x=new CardGui(a,current*100+30,20);
 			
 			 handgui[current]=x;
 			 add(handgui[current],current);
@@ -154,7 +155,7 @@ public  class HandGui extends JLayeredPane
 			 cards[current]=a.getcard();
 			 
 			if (current<5){
-			 x=new CardGui(a.getcard(),current*124+30,20);
+			 x=new CardGui(a.getcard(),current*100+30,20);
 			
 			 handgui[current]=x;
 			 add(handgui[current],current);
@@ -179,7 +180,7 @@ public  class HandGui extends JLayeredPane
 		
 		 if(current<5)
 		 {
-			 Factor_de_compresion=124;
+			 Factor_de_compresion=100;
 			 for (int i=0;i<current;i++)
 			 {
 				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);
