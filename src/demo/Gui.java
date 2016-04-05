@@ -52,7 +52,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 	public Gui()
 	{  
 	
-		setSize(1024,768);
+		setSize(1024,798);
 		setBackground(Color.RED);
 	
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/

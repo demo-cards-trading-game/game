@@ -1,7 +1,7 @@
 package demo;
 import extra.rain;
 import demo.HandGui;
-import extra.Pago;
+
 import extra.Rlabel;
 import extra.RoundedPanel;
 
@@ -115,7 +115,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int selected=-1;
 	RoundedPanel unleash;
 	public rain lluvia;
-	public Pago pay;
+
 	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
@@ -917,9 +917,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(lluvia);
 		this.moveToBack(lluvia);
 		*/
-		pay=new Pago();
-		add(pay);
-		moveToFront(pay);
+	
 	}
 
 	public void actionPerformed(ActionEvent e) {
