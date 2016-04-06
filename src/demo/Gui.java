@@ -32,8 +32,8 @@ import demo.HandGui;
 public class Gui extends JFrame implements ActionListener, MouseListener
 {
 	public JPanel jp1,jp2,jp3;
-	public JButton b1,b2,b3, accionarAgarreAutomatico;
-	public JLabel l1,demo, validar;
+	public JButton b1,b2,b3, accionarAgarreAutomatico,Aifirst,playerfirst;
+	public JLabel l1,demo, validar,ai,player;
 	public JTextArea text, val1,val2;
 	public CardGui moving;
 	public String Nombre1;//nombre del jugador1
@@ -53,7 +53,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 	{  
 	
 		setSize(1024,798);
-		setBackground(Color.RED);
+		setBackground(Color.white);
 	
 		this.setTitle("Dyna-stryfe"); /*adds jframe title*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,7 +105,12 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		setVisible(true);
 		show();
 	}
-
+	public void addlistenerstoselectionbuttons()
+	{
+	 	playerfirst.addActionListener(this);
+	 	Aifirst.addActionListener(this);
+		
+	}
 	public void actionPerformed(ActionEvent e) {
 
 
@@ -143,9 +148,9 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 						//repaint();
 			        }
 			        else{
-			        	dados.label.setBounds(100, 316, 507, 41);
+			        	dados.label.setBounds(150, 316, 507, 41);
 			        	dados.pane.rollButton.setVisible(false);
-						dados.btnPlay.setVisible(true);
+						
 						
 						try {
 							turno= new FileWriter("turno.txt");
@@ -157,15 +162,60 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 								
 						
 						if(dados.pane.text.getText()=="1"){
-							dados.label.setText("FIRST TURN IS YOURS");
+							dados.label.setText("Congratulations , fate is on your side");
+							dados.label.setVisible(true);
+							
+							
+							  try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							  setContentPane(new Container());
+							 
+							  add(dados.label);
+							  dados.label.setText("Now select who is playing first");
+							  dados.label.setBounds(295, 316, 507, 41);
+							        	Aifirst= new JButton();
+							        	Aifirst.setBounds(650,400,200,200);
+							        	Aifirst.setIcon(new ImageIcon("fish.png"));
+							        	add(Aifirst);
+							        	playerfirst= new JButton();
+							        	playerfirst.setBounds(250,400,200,200);
+							        	playerfirst.setIcon(new ImageIcon("star.png"));
+							        	add(playerfirst);
+							        	player=new JLabel("Player");
+							        	player.setBounds(350 ,620,200,30);
+							        	player.setAlignmentX(CENTER_ALIGNMENT);
+							        	add(player);
+							        	ai=new JLabel("Ai");
+							        	ai.setBounds(750 ,620,200,30);
+							        	ai.setAlignmentX(CENTER_ALIGNMENT);
+							        	add(ai);
+							        	addlistenerstoselectionbuttons();
+							        	
+							        	//playerfirst
+							        	//dados.btnPlay.setVisible(true);
+							        	
+							        	repaint();
+									
+							        
+							       
+								
+					
+						
+							
 							pw.println(1);
 						}
 						else{
 							dados.label.setText("AI player gets the  first turn");
+							dados.label.setVisible(true);
+							dados.btnPlay.setVisible(true);
 							pw.println(2);
 						}
-						dados.label.setVisible(true);
-						dados.btnPlay.setVisible(true);
+						
+						
 						
 						try {
 							turno.close();
@@ -179,7 +229,18 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			});
 			t.start();
 		}
-			
+	if(e.getSource()==Aifirst)
+	{
+		dados.pane.text.setText("2"); //para decir que comienza el ai
+		dados.btnPlay.doClick();
+	}		
+	
+	if(e.getSource()==playerfirst)
+	{
+		dados.pane.text.setText("1"); //para decir que comienza el player
+		dados.btnPlay.doClick();
+	}		
+	
 	if(e.getSource()==dados.btnPlay)
 		{
 		try {
