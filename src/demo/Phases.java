@@ -103,12 +103,12 @@ public class Phases extends JPanel implements MouseListener {
 			
 		case 2:arrow.setLocation(245+60, 45);
 		draw.setIcon(new ImageIcon("draw.png"));
-		action.setIcon(new ImageIcon("action4.png"));
+		action.setIcon(new ImageIcon("action.png"));
 		
 			break;
 		case 3:arrow.setLocation(360+60, 45);
 		action.setIcon(new ImageIcon("action.png"));
-		attack.setIcon(new ImageIcon("attack4.png"));
+		attack.setIcon(new ImageIcon("attack.png"));
 			break;
 		case 4:arrow.setLocation(475+60, 45);
 		attack.setIcon(new ImageIcon("attack.png"));
