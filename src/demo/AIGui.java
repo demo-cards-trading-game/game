@@ -1,23 +1,16 @@
 package demo;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
 
 public class AIGui extends JPanel {
-
 	/**
 	 * Create the panel.
 	 */
 	public fieldGui aifield;
 	public AiDeck aideck;
 	public AiHand aihand;
-	public int warriorPlayed;
 	public Barriers2 barriers;
 	public Drained_2 aidra;
-
 	public int where, whereInvoqued;
 	public AIGui()
 	{
@@ -50,7 +43,6 @@ public class AIGui extends JPanel {
 		if(where!=-1)
 		{
 			SmallCard carta;
-		
 			carta = new Reverse(false,aihand.handgui[pos].GetCard());
 			if(aidra.currentundrained - aihand.handgui[pos].GetCard().GetCost()>0){
 				aifield.poner(carta, where);
@@ -63,30 +55,21 @@ public class AIGui extends JPanel {
 	
 	void smartPlay() throws IOException
 	{
-		
 		int which ;
 		which=aihand.findwarrior();
 		
 		if(which!=-1)
 		{
-		
 			aiPlay(which);
-			
 		}else{
-			
 			which=aihand.finddisruption();
 			if(which!=-1)
 			{
-				
 				aiPlay(which);
 			}else
 			{
-			
 				aiPlay(0);
 			}
-			
 		}
-		
 	}
-	
 }

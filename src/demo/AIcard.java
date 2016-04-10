@@ -1,15 +1,10 @@
 package demo;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import javax.swing.border.LineBorder;
-
 import extra.RoundedPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class AIcard extends RoundedPanel {
-
 	/** 
 	 * Create the panel.
 	 */
@@ -23,7 +18,6 @@ public class AIcard extends RoundedPanel {
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("back2.JPG"));
 		lblNewLabel.setBackground(Color.BLACK);
-		
 		lblNewLabel.setBounds(0, 0, 65, 85);
 		add(lblNewLabel);
 		Current=c;
@@ -32,6 +26,5 @@ public class AIcard extends RoundedPanel {
 	 Card GetCard()
 	 {
 		 return Current;
-		 
 	 }
 }

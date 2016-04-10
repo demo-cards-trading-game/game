@@ -1,7 +1,6 @@
 package demo;
 public class Card
 {
-
   private String SetNumber; /*id de la carta*/
   private int Cost;    /*costo de mana */
   private String Name; /*nombre de la carta*/
@@ -13,12 +12,8 @@ public class Card
   private int Mp;
   private int Sup;
   private String Type;
-  private int Effectid;
   private int CardNumber;
-  
-  /*template el fondo gay de la carta ...depende del tipo de carta*/
-  
-  
+
   public Card()/*constructor*/
   {
     this.SetNumber="";
@@ -48,17 +43,14 @@ public class Card
   {
     return(this.Name);
   }
-
   public String GetSource()
   {
   return (this.Source);
   }
-  
   public String GetClass()
   {
     return (this.Class);
   }
-  
   public int GetLimit()
   {
   return (this.Limit);
@@ -80,13 +72,10 @@ public class Card
     return(this.CardNumber);
   }
     /**********************modificadores****************************/
-   
   public void SetCardNumber(int New)
   {
     this.CardNumber=New;
   }
-  
-  
   public void SetHp(int New)
   {
     this.Hp=New;
@@ -111,27 +100,22 @@ public class Card
   {
     this.SetNumber=New;
   }
- 
   public void SetCost(int New)
   {
     this.Cost=New;
   }
-  
   public void SetName(String New)
   {
     this.Name=New;
-  } 
-    
+  }
   public void SetSource(String New)
   {
     this.Source=New;
-  } 
-   
+  }
   public void SetClass(String New)
   {
     this.Class=New;
-  }   
-  
+  }
   public void SetLimit(int New)
   {
     this.Limit=New;
