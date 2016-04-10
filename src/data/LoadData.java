@@ -11,11 +11,11 @@ import java.util.Scanner;
 public class LoadData {
 	public List Data ;
 
-	public void cargaWarriors(String archivo) throws FileNotFoundException, IOException 
+	public void cargaWarriors(String archivo) throws IOException
 	{
 		String cadena , concat;
 		Card Created;
-		Scanner s = null;
+		Scanner s;
 		FileReader f = new FileReader(archivo);
 		BufferedReader b = new BufferedReader(f);
 
@@ -51,11 +51,11 @@ public class LoadData {
 		}
 		b.close();
 	}
-	public  void cargaDisruptions(String archivo) throws FileNotFoundException, IOException 
+	public  void cargaDisruptions(String archivo) throws IOException
 	{
 		String cadena , concat;
 		Card Created;
-		Scanner s = null;
+		Scanner s;
 		FileReader f = new FileReader(archivo);
 		BufferedReader b = new BufferedReader(f);
 
@@ -72,7 +72,6 @@ public class LoadData {
 					concat=concat.concat(" "); 
 				}
 				Created.SetName(concat);
-
 				Created.SetCost( Integer.parseInt(s.next()));//costo 
 				Created.SetLimit(Integer.parseInt(s.next()));//limite
 				Created.SetSource(s.next());//carga el elemento 
@@ -95,7 +94,7 @@ public class LoadData {
 	{
 		String cadena , concat;
 		Card Created;
-		Scanner s = null;
+		Scanner s;
 		FileReader f = new FileReader(archivo);
 		BufferedReader b = new BufferedReader(f);
 
@@ -111,7 +110,6 @@ public class LoadData {
 					concat=concat.concat(" "); 
 				}
 				Created.SetName(concat);
-
 				Created.SetCost( Integer.parseInt(s.next()));//costo 
 				Created.SetLimit(Integer.parseInt(s.next()));//limite
 				Created.SetSource(s.next());//carga el elemento 
@@ -121,7 +119,6 @@ public class LoadData {
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-
 				Created.SetDescription(concat);
 				Created.SetType("Event");
 				Created.SetCardNumber(Data.cantidad+1);
@@ -135,7 +132,7 @@ public class LoadData {
 	{
 		String cadena , concat;
 		Card Created;
-		Scanner s = null;
+		Scanner s;
 		FileReader f = new FileReader(archivo);
 		BufferedReader b = new BufferedReader(f);
 		while(  (cadena = b.readLine())!=null ) {
@@ -151,7 +148,6 @@ public class LoadData {
 					concat=concat.concat(" "); 
 				}
 				Created.SetName(concat);
-
 				Created.SetCost( Integer.parseInt(s.next()));//costo 
 				Created.SetLimit(Integer.parseInt(s.next()));//limite
 				Created.SetSource(s.next());//carga el elemento 
@@ -169,7 +165,7 @@ public class LoadData {
 		}
 		b.close();
 	}
-	public LoadData() throws FileNotFoundException, IOException
+	public LoadData() throws IOException
 	{
 		Data =new List();
 		cargaWarriors("Warriors.in"); 

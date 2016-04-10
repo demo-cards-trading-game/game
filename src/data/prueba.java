@@ -1,23 +1,20 @@
 package data;
 
-import java.awt.*;
-import java.awt.List;
-import java.awt.event.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import data.LoadData;
 import demo.BigCard;
 import demo.Card;
-import demo.CardGui;
-//hola
-//hola2
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Vector;
+
 public class prueba extends JLayeredPane
 {
 	private boolean band,band1;
@@ -25,15 +22,13 @@ public class prueba extends JLayeredPane
 	private JTable rightTable;
 	private JButton addButton;
 	private JButton removeButton;
-	private String deckname;
 	public LoadData data;
 	public int cant;
 	BigCard current;
 	public JPanel panel;
 	private JPanel panel_1;
-	private JLabel Count; 
+	private JLabel Count;
 	public static int c;
-	private JLabel lblCardsOnDeck;
 	private JButton Create;
 
 	public prueba()
@@ -51,8 +46,6 @@ public class prueba extends JLayeredPane
 		c=0;
 		try {
 			data=new LoadData();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -117,7 +110,7 @@ public class prueba extends JLayeredPane
 		lblPreview.setBounds(585, 39, 121, 29);
 		add(lblPreview);
 
-		lblCardsOnDeck = new JLabel("Cards on Deck");
+		JLabel lblCardsOnDeck = new JLabel("Cards on Deck");
 		lblCardsOnDeck.setOpaque(true);
 		lblCardsOnDeck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCardsOnDeck.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -235,7 +228,7 @@ public class prueba extends JLayeredPane
 			toModel.addRow(rowValue);
 		}
 
-		int selectedRow = -1;
+		int selectedRow;
 		while ((selectedRow = from.getSelectedRow()) != -1) {
 			fromModel.removeRow(selectedRow);
 		}
@@ -253,16 +246,16 @@ public class prueba extends JLayeredPane
 			x=data.Data.Consultar(i);
 			switch (x.GetSource())
 			{
-			case "Water":	color=(new Color(0, 191, 255));
-			break;
-			case "Wind": 	color=Color.WHITE;	
-			break;
-			case "Fire":   	color=(Color.RED);
-			break;
-			case "Earth": 	color=new Color(160, 82, 45);
-			break;
+				case "Water":	color=(new Color(0, 191, 255));
+					break;
+				case "Wind": 	color=Color.WHITE;
+					break;
+				case "Fire":   	color=(Color.RED);
+					break;
+				case "Earth": 	color=new Color(160, 82, 45);
+					break;
 
-			default : 	color=Color.ORANGE;
+				default : 	color=Color.ORANGE;
 			}
 			id=x.GetCardNumber();
 			Nombre=x.GetName();
@@ -271,7 +264,6 @@ public class prueba extends JLayeredPane
 	}
 
 	public class SimpleColorTableModel extends DefaultTableModel {
-
 		public SimpleColorTableModel() {
 			addColumn("Id");
 			addColumn("Name");
@@ -282,12 +274,11 @@ public class prueba extends JLayeredPane
 		public Class<?> getColumnClass(int columnIndex) {
 			Class clazz = String.class;
 			switch (columnIndex) {
-			case 2:
-				clazz = Color.class;
-				break;
+				case 2:
+					clazz = Color.class;
+					break;
 			}
 			return clazz;
 		}
 	}
 }
-//esta es una prueba en la que verifico si el merge tool sirve o el plugin de eclipse

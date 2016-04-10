@@ -1,32 +1,12 @@
 package data;
-import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.JList;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
-import demo.deck;
-import data.LoadData;
-
+import java.io.File;
+import java.io.IOException;
 
 public class deckCreator extends JInternalFrame implements ActionListener {
 	public JPanel panel1,panel2;
@@ -40,7 +20,6 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		getContentPane().setLayout(null);
 		setBounds(x,y,800,600);
 		setClosable(true);
-		//this.setResizable(false);
 		this.setEnabled(false);
 		setIconifiable(false);
 		addbackground(this);
@@ -99,7 +78,6 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		getContentPane().add(panel2);
 		panel2.setLayout(null);
 
-
 		create = new JButton("Create");
 		create.setBounds(104, 132, 173, 48);
 		panel2.add(create);
@@ -130,27 +108,23 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
 		if (e.getSource()== create)
 		{
-			Nombre=nombred.getText(); 
-
+			Nombre=nombred.getText();
 			if(!Nombre.isEmpty()){  
 				addbackground(this);// agregar el fondo
 				lista=new prueba();//
 				add(lista);
 				repaint();
-
 			}else
 			{
 				if(!error.isVisible())
 				{
 					error.setVisible(true);
-
 				}
 			}
 		}
