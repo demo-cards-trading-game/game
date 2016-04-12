@@ -39,7 +39,7 @@ public class Phases extends JPanel implements MouseListener {
 	
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(10, 35, 70, 40);
+		panel.setBounds(49, 35, 70, 40);
 		setup=new JLabel(new ImageIcon(ImageIO.read(new File("setup.png"))));
 		setup.setBounds(0, 0, 70, 40);
 		panel.add(setup);
@@ -52,7 +52,7 @@ public class Phases extends JPanel implements MouseListener {
 		draw.setBounds(0, 0, 70, 40);
 		panel_1.add(draw);
 		panel_1.setOpaque(false);
-		panel_1.setBounds(113, 35, 70, 40);
+		panel_1.setBounds(149, 35, 70, 40);
 		add(panel_1);
 		
 
@@ -62,7 +62,7 @@ public class Phases extends JPanel implements MouseListener {
 		action.setBounds(0, 0, 70, 40);
 		panel_2.add(action);
 		panel_2.setOpaque(false);
-		panel_2.setBounds(229, 35, 70, 40);
+		panel_2.setBounds(249, 35, 70, 40);
 		add(panel_2);
 		
 
@@ -72,10 +72,10 @@ public class Phases extends JPanel implements MouseListener {
 		attack.setBounds(0, 0, 70, 40);
 		panel_3.add(attack);
 		panel_3.setOpaque(false);
-		panel_3.setBounds(343, 35, 70, 40);
+		panel_3.setBounds(349, 35, 70, 40);
 		add(panel_3);
 		
-		panel_4.setBounds(459, 35, 70, 40);
+		panel_4.setBounds(449, 35, 70, 40);
 		end=new JLabel(new ImageIcon(ImageIO.read(new File("end.png"))));
 		end.setBounds(0, 0, 70, 40);
 		panel_4.add(end);

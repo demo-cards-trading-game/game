@@ -1,5 +1,6 @@
 package demo;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,13 +27,17 @@ public class fieldGui extends JPanel {
 		panel.setForeground(Color.GREEN);
 		panel.setBackground(new Color(169, 169, 169));
 		panel.setBounds(52, 0, 75, 145);
+		panel.arcs=new Dimension(10,10);
+		panel.shady=false;
 		add(panel);
 	
 		 panel2 = new RoundedPanel();
 		panel2.setLayout(null);
 		panel2.setForeground(new Color(147, 112, 219));
 		panel2.setBackground(new Color(169, 169, 169));
-		panel2.setBounds(150, 0, 75, 145);
+		panel2.setBounds(149, 0, 75, 145);
+		panel2.arcs=new Dimension(10,10);
+		panel2.shady=false;
 		add(panel2);
 		
 		panel3 = new RoundedPanel();
@@ -41,19 +46,25 @@ public class fieldGui extends JPanel {
 		panel3.setBackground(new Color(169, 169, 169));
 		panel3.setBounds(246, 0, 75, 145);
 		add(panel3);
+		panel3.arcs=new Dimension(10,10);
+		panel3.shady=false;
 		
 		panel4 = new RoundedPanel();
 		panel4.setLayout(null);
 		panel4.setForeground(Color.MAGENTA);
 		panel4.setBackground(new Color(169, 169, 169));
-		panel4.setBounds(344, 0, 75, 145);
+		panel4.setBounds(343, 0, 75, 145);
 		add(panel4);
+		panel4.arcs=new Dimension(10,10);
+		panel4.shady=false;
 		
 		panel5 = new RoundedPanel();
 		panel5.setLayout(null);
 		panel5.setForeground(Color.CYAN);
 		panel5.setBackground(new Color(169, 169, 169));
 		panel5.setBounds(440, 0, 75, 145);
+		panel5.arcs=new Dimension(10,10);
+		panel5.shady=false;
 		add(panel5);
 			
 	}

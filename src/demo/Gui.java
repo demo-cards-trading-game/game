@@ -113,11 +113,11 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 								dados.label.setBounds(295, 316, 507, 41);
 								Aifirst= new JButton();
 								Aifirst.setBounds(650,400,200,200);
-								Aifirst.setIcon(new ImageIcon("fish.png"));
+								Aifirst.setIcon(new ImageIcon("seccond.png"));
 								add(Aifirst);
 								playerfirst= new JButton();
 								playerfirst.setBounds(250,400,200,200);
-								playerfirst.setIcon(new ImageIcon("star.png"));
+								playerfirst.setIcon(new ImageIcon("first.png"));
 								add(playerfirst);
 								player=new JLabel("Player");
 								player.setBounds(350 ,620,200,30);

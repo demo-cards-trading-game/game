@@ -39,7 +39,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		//add(barriers);
 		pdeck = new DeckGui(0,0);
 		pdeck.setSize(250, 343);
-		pdeck.setLocation(770, 361);
+		pdeck.setLocation(740, 425);
 		this.add(pdeck);
 		
 		try {

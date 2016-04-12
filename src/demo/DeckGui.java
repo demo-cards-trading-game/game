@@ -81,7 +81,7 @@ public class DeckGui extends JPanel {
 		panel.add(new RoundedPanel());
 		panel.setLayout(null);
 		panel.setBackground(new Color(204, 153, 0));
-		panel.setBounds(39, 195, 100, 145);
+		panel.setBounds(50, 195, 75, 145);
 		add(panel);
 	}
 

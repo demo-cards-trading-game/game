@@ -103,8 +103,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		unleash.setBounds(0,0,100,145);
 		unleash.add (new JLabel(new ImageIcon(ImageIO.read(new File("unleash.png")))));
 		pane = new JInternalFrame("THE FALLEN");
-
-		phases=new Phases(220,300);
+		phases=new Phases(220,360);
 		add(phases);
 
 		this.add(player);
