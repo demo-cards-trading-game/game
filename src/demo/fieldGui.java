@@ -18,42 +18,42 @@ public class fieldGui extends JPanel {
 	public fieldGui(int posx,int posy) {
 		
 		setOpaque(false);
-		setBounds(posx,posy, 544, 145);
+		setBounds(posx,posy, 544, 166);
 		setLayout(null);
 		
 		 panel = new RoundedPanel();
 		panel.setLayout(null);
 		panel.setForeground(Color.GREEN);
 		panel.setBackground(new Color(169, 169, 169));
-		panel.setBounds(0, 0, 100, 145);
+		panel.setBounds(52, 0, 75, 145);
 		add(panel);
 	
 		 panel2 = new RoundedPanel();
 		panel2.setLayout(null);
 		panel2.setForeground(new Color(147, 112, 219));
 		panel2.setBackground(new Color(169, 169, 169));
-		panel2.setBounds(110, 0, 100, 145);
+		panel2.setBounds(150, 0, 75, 145);
 		add(panel2);
 		
 		panel3 = new RoundedPanel();
 		panel3.setLayout(null);
 		panel3.setForeground(Color.ORANGE);
 		panel3.setBackground(new Color(169, 169, 169));
-		panel3.setBounds(220, 0, 100, 145);
+		panel3.setBounds(246, 0, 75, 145);
 		add(panel3);
 		
 		panel4 = new RoundedPanel();
 		panel4.setLayout(null);
 		panel4.setForeground(Color.MAGENTA);
 		panel4.setBackground(new Color(169, 169, 169));
-		panel4.setBounds(330, 0, 100, 145);
+		panel4.setBounds(344, 0, 75, 145);
 		add(panel4);
 		
 		panel5 = new RoundedPanel();
 		panel5.setLayout(null);
 		panel5.setForeground(Color.CYAN);
 		panel5.setBackground(new Color(169, 169, 169));
-		panel5.setBounds(440, 0, 100, 145);
+		panel5.setBounds(440, 0, 75, 145);
 		add(panel5);
 			
 	}

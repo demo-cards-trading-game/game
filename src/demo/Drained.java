@@ -75,6 +75,15 @@ public class Drained extends JLayeredPane{
 		setVisible(true);
 		repaint();
 	}
+	void play(int n)
+	{
+		
+	}
+	void reset()
+	{
+		
+		
+	}
 	void set()
 	{
 		power++;
