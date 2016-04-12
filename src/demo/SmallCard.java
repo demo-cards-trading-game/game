@@ -47,7 +47,7 @@ public class SmallCard extends RoundedPanel{
 	
 		/******************************************************/
 		//setBounds(new Rectangle(0, 0, 100, 145));
-		setBounds(0,0, 100, 145);	
+		setBounds(0,0, 75, 145);	
 		
 		setLayout(null);
 		if(!bocabajo)
