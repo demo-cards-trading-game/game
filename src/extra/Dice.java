@@ -4,7 +4,6 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,15 +15,12 @@ import javax.swing.JLabel;
  * Copyright 2008 Stijn Strickx, All rights reserved
  */
 public class Dice {
-
-
     public Dice(){
-    
-        
+
     }
 
     public void start() throws IOException {
-    	JLabel dice1 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
+        JLabel dice1 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
         JLabel dice2 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
         JButton button = new JButton("Throw");
         JLabel text = new JLabel("Total: 2");
@@ -35,12 +31,8 @@ public class Dice {
         cp.add(dice2);
         cp.add(button);
         cp.add(text);
-        
-        //button.addActionListener(new ButtonListener(dice1, dice2, text));
-        
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
-        
     }
 }

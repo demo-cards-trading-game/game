@@ -5,18 +5,15 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ImageFlip extends JPanel {
-
   public void paint(Graphics g) {
     Image myImage = new ImageIcon("07big.png").getImage();
     BufferedImage bufferedImage = new BufferedImage(myImage.getWidth(null), myImage.getHeight(null), BufferedImage.TYPE_INT_RGB);
     Graphics2D g2d = (Graphics2D) g;
-
     Graphics gb = bufferedImage.getGraphics();
     gb.drawImage(myImage, 0, 0, null);
     gb.dispose();

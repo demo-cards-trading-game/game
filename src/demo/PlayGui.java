@@ -2,7 +2,6 @@ package demo;
 import demo.Fallen.SimpleColorTableModel;
 import extra.RoundedPanel;
 import extra.movePanel;
-import extra.rain;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -110,7 +109,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint=new JButton();
 
 		ai = new AIGui();
-
 
 		this.add(ai);
 
@@ -479,9 +477,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet5.setVisible(false);
 
 
-
-
-
 		this.ptarjet81= new JLabel();
 		this.ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet81.setBounds(230,380, 50, 50);
@@ -780,9 +775,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet113.setVisible(false);
 		this.aitarjet114.setVisible(false);
 		this.aitarjet115.setVisible(false);
-		
 
-	
 
 		for (int i = 0; i < player.hand.current; i++)
 			player.hand.handgui[i].Play.setEnabled(false);
@@ -811,9 +804,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			});
 			t.start();
 		}
-		
 		this.instanciaGui = g;
-
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -1,13 +1,9 @@
 package demo;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class RPanel extends JPanel{
-
 	/**
 	 * Create the panel.
 	 */
@@ -18,15 +14,10 @@ public class RPanel extends JPanel{
 	}
 	@Override
 	public void paintComponent(Graphics g) {
-		
 		super.paintComponent(g);
 		g2d = (Graphics2D) g;
-		
-			int  x = this.getWidth() / 2;
-			int y = this.getHeight() / 2;
-			g2d.rotate(-Math.PI, x, y);
-		
-		
-		
+		int  x = this.getWidth() / 2;
+		int y = this.getHeight() / 2;
+		g2d.rotate(-Math.PI, x, y);
 	}
 }
