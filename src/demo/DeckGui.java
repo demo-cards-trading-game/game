@@ -30,12 +30,12 @@ public class DeckGui extends JPanel {
 		setBounds(x, y, 250, 340);
 		setOpaque(false);
 		setLayout(null);
-		
+
 		btnNewButton = new JLabel("");
 		btnNewButton.setIcon(new ImageIcon("draw1.png"));
-		btnNewButton.setBounds(175, 269, 46, 40);
+		btnNewButton.setBounds(134, 206, 236, 160);
 		add(btnNewButton);
-		
+
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setForeground(new Color(255, 255, 255));
@@ -45,38 +45,38 @@ public class DeckGui extends JPanel {
 		textField.setBounds(149, 320, 91, 20);
 		add(textField);
 		textField.setColumns(10);
-		
+
 		lblDeck = new JLabel("Deck");
 		lblDeck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDeck.setForeground(new Color(50, 205, 50));
 		lblDeck.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		lblDeck.setBounds(168, 244, 53, 14);
 		add(lblDeck);
-		
+
 		btnNewButton_1 = new JLabel();
 		btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
-		btnNewButton_1.setBounds(175, 193, 46, 40);
+		btnNewButton_1.setBounds(135, 90,  236, 160);
 		add(btnNewButton_1);
-		
+
 		lblTheFallen = new JLabel("The Fallen");
 		lblTheFallen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTheFallen.setForeground(new Color(30, 144, 255));
 		lblTheFallen.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		lblTheFallen.setBounds(140, 168, 100, 14);
 		add(lblTheFallen);
-		
+
 		btnNewButton_2 = new JLabel();
 		btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
-		btnNewButton_2.setBounds(175, 117, 46, 40);
+		btnNewButton_2.setBounds(135, -26, 236, 160);
 		add(btnNewButton_2);
-		
+
 		lblForgotten = new JLabel("Forgotten");
 		lblForgotten.setForeground(new Color(0x8888ff));
 		lblForgotten.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		lblForgotten.setForeground(new Color(153, 102, 255));
 		lblForgotten.setBounds(149, 92, 117, 14);
 		add(lblForgotten);
-		
+
 		panel= new JLayeredPane();
 		panel.add(new RoundedPanel());
 		panel.setLayout(null);

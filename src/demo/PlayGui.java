@@ -813,6 +813,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		this.instanciaGui = g;
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
