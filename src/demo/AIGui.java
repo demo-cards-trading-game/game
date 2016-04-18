@@ -16,7 +16,7 @@ public class AIGui extends JPanel {
 	{
 		setBounds(0,0,1024,600);
 		this.setLayout(null);
-		aifield=new fieldGui(220,150);
+		aifield=new fieldGui(225,197);
 		barriers=new Barriers2(220,100);
 		aideck=new AiDeck(10,10);
 		aihand=new AiHand(278,-10);

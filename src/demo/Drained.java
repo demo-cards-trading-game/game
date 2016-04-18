@@ -22,36 +22,7 @@ public class Drained extends JLayeredPane{
 		lblVolatile.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		lblVolatile.setForeground(new Color(51, 204, 51));
 		lblVolatile.setBounds(50, 11, 97, 27);
-		add(lblVolatile);
-		
-		lblWater = new JLabel("Water");
-		lblWater.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblWater.setForeground(new Color(51, 153, 255));
-		lblWater.setBounds(10, 69, 79, 32);
-		add(lblWater);
-		
-		lblWind = new JLabel("Wind");
-		lblWind.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblWind.setForeground(new Color(255, 255, 255));
-		lblWind.setBounds(10, 138, 79, 27);
-		add(lblWind);
-		
-		lblPower = new JLabel("Power");
-		lblPower.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblPower.setBounds(10, 193, 95, 32);
-		add(lblPower);
-		
-		lblEarth = new JLabel("Earth");
-		lblEarth.setForeground(new Color(153, 102, 102));
-		lblEarth.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblEarth.setBounds(99, 69, 97, 32);
-		add(lblEarth);
-		
-		lblSolar = new JLabel("Solar");
-		lblSolar.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblSolar.setForeground(new Color(255, 102, 0));
-		lblSolar.setBounds(101, 131, 95, 41);
-		add(lblSolar);
+		//add(lblVolatile);
 		
 		try {
 			fondo = new JLabel(new ImageIcon(ImageIO.read(new File("ele.png"))));
