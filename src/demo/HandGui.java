@@ -108,7 +108,7 @@ public  class HandGui extends JLayeredPane
 			}
 		}else
 		{
-			Factor_de_compresion=496/ (current-1);
+			Factor_de_compresion=400/ (current-1);
 			for (int i=0;i<current-1;i++)
 			{
 				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);

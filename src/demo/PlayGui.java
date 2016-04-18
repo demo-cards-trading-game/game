@@ -2585,9 +2585,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		int x=-1;
 		int x2;
 		if(player.hand.current<5)
-			x2=124;
+			x2=100;
 		else
-			x2=498/(player.hand.current-1);
+			x2=400/(player.hand.current-1);
 
 		if(e.getSource()==player.hand.handgui[0])
 		{

@@ -29,11 +29,7 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		setBounds(x,y,196,384);
 		setLayout(null);
 	     
-		JLabel lblUndrained = new JLabel("UNDRAINED");
-		lblUndrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblUndrained.setForeground(new Color(0, 153, 255));
-		lblUndrained.setBounds(10, 11, 100, 14);
-		add(lblUndrained);
+		
 		
 		panel=new JPanel(null);
 		add(panel);
@@ -46,11 +42,7 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		panel_1.setBounds(0, 251, 200, 75);
 		add(panel_1);
 		
-		JLabel lblDrained = new JLabel("DRAINED");
-		lblDrained.setForeground(new Color(51, 102, 255));
-		lblDrained.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblDrained.setBounds(10, 226, 100, 14);
-		add(lblDrained);
+	
 		
 		panel_2 = new JPanel();
 		panel_2.setBounds(0, 140, 145, 75);
@@ -58,11 +50,7 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		panel_2.setLayout(null);
 		panel_2.setOpaque(false);
 		
-		JLabel lblVolatile = new JLabel("VOLATILE");
-		lblVolatile.setForeground(new Color(204, 255, 255));
-		lblVolatile.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblVolatile.setBounds(10, 115, 100, 14);
-		add(lblVolatile);
+		
 		
 		label = new JLabel("0");
 		label.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
