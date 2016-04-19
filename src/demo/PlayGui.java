@@ -3328,9 +3328,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				phases.change(phases.actual-1);
+				phases.actual-=1;
 				this.instanciaGui.accionarAgarreAutomatico.doClick();
-				phases.change(phases.actual+1);
+				phases.actual+=1;
 				repaint();
 			});
 			t1.start();
@@ -3347,9 +3347,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				phases.change(phases.actual-1);
+				phases.actual-=1;
 				this.instanciaGui.accionarAgarreAutomatico.doClick();
-				phases.change(phases.actual+1);
+				phases.actual+=1;
 				repaint();
 			});
 			t1.start();
