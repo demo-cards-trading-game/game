@@ -3126,6 +3126,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai.aidra.reset();
 
 		phases.change(phases.actual+1);
+
+		ai.aihand.draw(ai.aideck.Deck.extraerR());
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
 

@@ -259,6 +259,18 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 						{
 							CardGui nueva= new CardGui(player1.player.pdeck.Deck.extraerR(),0,0); 
 							appear(nueva);
+							Thread t1 = new Thread(() -> {
+								try {
+									Thread.sleep(1000);
+								} catch (InterruptedException e1) {
+									e1.printStackTrace();
+								}
+								player1.player.hand.draw(nueva);
+								repaint();
+							});
+							t1.start();
+
+							System.out.println("cartas en mazo "+player1.player.pdeck.Deck.cardsLeft());
 						}else
 						{
 							gameover(this);
