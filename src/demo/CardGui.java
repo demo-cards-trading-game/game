@@ -22,7 +22,7 @@ public class CardGui extends JLayeredPane  implements ActionListener  {
 	 * Create the panel.
 	 */
 	public CardGui(Card x, int a ,int b) {
-		setBounds(a, b,100, 145);
+		setBounds(a, b,105, 150);
 		setLayout(null);
 		setOpaque(false);
 		RoundedPanel Fondo = new RoundedPanel();

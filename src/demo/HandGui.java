@@ -113,7 +113,7 @@ public  class HandGui extends JLayeredPane
 			{
 				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);
 			}
-			handgui[current-1]=new CardGui(cards[current-1],498+30,20);
+			handgui[current-1]=new CardGui(cards[current-1],400+30,20);
 		}
 		addall();
 	}
