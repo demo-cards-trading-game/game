@@ -55,6 +55,9 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		setBackground(new Color(204, 204, 204));
 		setVisible(true);
 		show();
+
+		accionarAgarreAutomatico = new JButton();
+		accionarAgarreAutomatico.addActionListener(this);
 	}
 	public void addlistenerstoselectionbuttons()
 	{

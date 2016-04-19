@@ -84,6 +84,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public PlayGui(int x , int y, String name, Gui g) throws IOException {
+		this.instanciaGui = g;
 		setBorder(null);
 		player=new PlayerGui(x,y,name);
 		preview= new Previewpane();
@@ -224,14 +225,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(turn==1){//turno player 1
 			this.turnoLabel.setText("Player'S turn");
+			Thread t1 = new Thread(() -> {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				this.instanciaGui.accionarAgarreAutomatico.doClick();
+				repaint();
+			});
+			t1.start();
 
 		}else{ //turno player 2
 			this.turnoLabel.setText("AI Player'S turn");
-			
 		}
 		this.turnoLabel.setBounds(50, 320, 200, 20);
-		
-	
 		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.turnoLabel.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
@@ -804,7 +812,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			});
 			t.start();
 		}
-		this.instanciaGui = g;
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -834,20 +842,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallenAi.effectnumber = 0;
 				fallenAi.setVisible(false);
 				if (!Objects.equals(aux.actual.GetType(), "Warrior")) {
-					Thread t1 = new Thread(new Runnable() {
-						public void run() {
-							try {
-								Thread.sleep(750);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-							ai.aifield.quitar(where);
-							if (number == 18) {
-								ai.aidra.setwp();
-							}
-							repaint();
-						}
-					});
+					Thread t1 = new Thread(() -> {
+                        try {
+                            Thread.sleep(750);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                        ai.aifield.quitar(where);
+                        if (number == 18) {
+                            ai.aidra.setwp();
+                        }
+                        repaint();
+                    });
 					t1.start();
 				}
 			}
@@ -3314,14 +3320,40 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		
 		if(bugPrimerTurnoUSer==0){
 			bugPrimerTurnoUSer=1;
-			//phases.change(phases.actual+1);
-			//this.instanciaGui.accionarAgarreAutomatico.doClick();
+			phases.change(phases.actual+1);
+
+			Thread t1 = new Thread(() -> {
+				try {
+					Thread.sleep(2500);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				phases.change(phases.actual-1);
+				this.instanciaGui.accionarAgarreAutomatico.doClick();
+				phases.change(phases.actual+1);
+				repaint();
+			});
+			t1.start();
+			System.out.println("entre en 1");
 			repaint();
 		}
 		this.phases.end.addMouseListener(this);
 		if(phases.actual==-1){
 			phases.change(phases.actual+1);
-			//	this.instanciaGui.accionarAgarreAutomatico.doClick();
+
+			Thread t1 = new Thread(() -> {
+				try {
+					Thread.sleep(2500);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				phases.change(phases.actual-1);
+				this.instanciaGui.accionarAgarreAutomatico.doClick();
+				phases.change(phases.actual+1);
+				repaint();
+			});
+			t1.start();
+			System.out.println("entre en 2");
 			repaint();
 		}
 		
