@@ -137,7 +137,6 @@ public class prueba2 extends JInternalFrame
 
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            // TODO Auto-generated method stub
                             if(e.getSource()==current){
                                 opciones.setVisible(true);
                             }
@@ -145,22 +144,18 @@ public class prueba2 extends JInternalFrame
 
                         @Override
                         public void mouseEntered(MouseEvent arg0) {
-                            // TODO Auto-generated method stub
                         }
 
                         @Override
                         public void mouseExited(MouseEvent arg0) {
-                            // TODO Auto-generated method stub
                         }
 
                         @Override
                         public void mousePressed(MouseEvent arg0) {
-                            // TODO Auto-generated method stub
                         }
 
                         @Override
                         public void mouseReleased(MouseEvent arg0) {
-                            // TODO Auto-generated method stub
                         }
                     });
                 }

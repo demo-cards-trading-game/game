@@ -199,7 +199,6 @@ public class CardGui extends JLayeredPane  implements ActionListener  {
 		try {
 			panel_1.add(new JLabel(new ImageIcon(ImageIO.read(new File("mp.png")))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		moveToBack(Fondo);
@@ -217,7 +216,6 @@ public class CardGui extends JLayeredPane  implements ActionListener  {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==btnNewButton)
 		{
 			menu.setVisible(false);

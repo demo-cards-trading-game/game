@@ -41,7 +41,6 @@ public class movePanel extends JPanel {
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				moving.setLocation(i, 609-93);

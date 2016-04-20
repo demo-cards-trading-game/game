@@ -44,14 +44,12 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		try {
 			pdeck.addhero(pdeck.Deck.lista.Data.Consultar(8));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		pdeck.panel.addMouseListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -62,22 +60,17 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 				pdeck.menu.setVisible(true);
 			}
 		}
-		// TODO Auto-generated method stub
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 }

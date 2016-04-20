@@ -37,7 +37,6 @@ public class Fallen extends JInternalFrame implements ActionListener
 		try {
 			data=new LoadData();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		cant=data.Data.getCantidad();
@@ -103,7 +102,6 @@ public class Fallen extends JInternalFrame implements ActionListener
                 try {
                     cards[selecting]=new SmallCard(false,current.getcard());
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
                 switch(selecting)

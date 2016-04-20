@@ -87,7 +87,6 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 			l.setBounds(0, 0,25,20);
 			undrained[currentundrained].add(l);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		undrained[currentundrained].addMouseListener(this);
@@ -178,7 +177,6 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 			l.setBounds(0, 0,25,20);
 			drained[currentdrained].add(l);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		panel_1.add(drained[currentdrained]);
@@ -726,26 +724,21 @@ if(e.getSource()==undrained[6])
 		repaint();
 		panel.repaint();
 		setVisible(true);
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		//
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 }

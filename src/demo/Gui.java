@@ -97,7 +97,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 								turno= new FileWriter("turno.txt");
 								pw=new PrintWriter(turno);
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 
@@ -107,7 +106,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 								try {
 									Thread.sleep(1000);
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 								setContentPane(new Container());
@@ -145,7 +143,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 							try {
 								turno.close();
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -181,7 +178,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 									player1.Aiturn();
 									player1.contTurn++;
 								} catch (IOException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 							}
@@ -192,7 +188,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					});
 					t.start();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -213,7 +208,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					try {
 						dados= new RollDice();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					addbackground4(this);
@@ -233,7 +227,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					setVisible(true);
 				}
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		
@@ -305,7 +298,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 	class myKeyState1 extends KeyAdapter implements KeyListener{
 		@Override
 		public void keyPressed(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 				if(text.getText().trim().length()==0){
 					b1.setEnabled(false);
@@ -322,19 +314,16 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 		}
 
 		@Override
 		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 		}
 	}
 	
 	class myKeyState2 extends KeyAdapter implements KeyListener{
 		@Override
 		public void keyPressed(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 				b2.doClick();
 			}
@@ -342,19 +331,16 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 		}
 
 		@Override
 		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 		}
 	}
 	
 	class myKeyState3 extends KeyAdapter implements KeyListener{
 		@Override
 		public void keyPressed(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 				if(!dados.btnPlay.isVisible()){
 					dados.pane.rollButton.doClick();
@@ -367,17 +353,14 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 		}
 
 		@Override
 		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 		}
 	}
 	
 	private deckCreator deckCreator() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -604,7 +587,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					try {
 						Thread.sleep(1);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					moving.setLocation(i, 609-93);

@@ -27,7 +27,6 @@ public class Drained extends JLayeredPane{
 		try {
 			fondo = new JLabel(new ImageIcon(ImageIO.read(new File("ele.png"))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

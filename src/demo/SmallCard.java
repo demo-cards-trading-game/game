@@ -52,7 +52,6 @@ public class SmallCard extends RoundedPanel{
 			prueba.setBounds(2,2,96,141);
 			add(panel_1);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		repaint();
@@ -216,7 +215,6 @@ public class SmallCard extends RoundedPanel{
 		try {
 			panel_1.add(new JLabel(new ImageIcon(ImageIO.read(new File("mp.png")))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

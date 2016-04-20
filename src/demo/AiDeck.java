@@ -64,7 +64,6 @@ public class AiDeck extends JPanel {
 		try {
 			Deck.Load("resources/siren.in");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		btnNewButton_1 = new JLabel();

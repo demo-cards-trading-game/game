@@ -23,7 +23,6 @@ public class DeckGui extends JPanel {
 		try {
 			Deck.Load("resources/siren.in");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

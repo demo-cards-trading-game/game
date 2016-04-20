@@ -38,7 +38,6 @@ public class RollDicePanel extends JPanel implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		correr();
 		rollButton.enable(true);
 	}
@@ -59,7 +58,6 @@ public class RollDicePanel extends JPanel implements ActionListener{
 						icon2 = new ImageIcon(ImageIO.read(new File("d"+(num2+1)+".png")));
 						dice2.setIcon(icon2);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	     	            

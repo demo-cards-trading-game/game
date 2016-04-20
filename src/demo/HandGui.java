@@ -125,20 +125,17 @@ public  class HandGui extends JLayeredPane
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
 		} catch (UnsupportedAudioFileException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Clip clip = null;
 		try {
 			clip = AudioSystem.getClip();
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			clip.open(audioInputStream);
 		} catch (LineUnavailableException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		clip.start();

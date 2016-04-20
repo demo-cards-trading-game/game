@@ -42,7 +42,6 @@ public class deck{
         try {
             lista=new LoadData();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -101,7 +100,6 @@ public class deck{
     }
 
     private void exch( int i, int r) {
-        // TODO Auto-generated method stub
         Card swamp = new Card();
         swamp.asignar(cards[i]);
         cards[i].asignar(cards[r]);

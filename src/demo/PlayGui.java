@@ -797,26 +797,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		fallen.confirmcardsfromfallen.addActionListener(this);
 		fallenAi.confirmcardsfromfallen.addActionListener(this);
 		ai.aideck.btnNewButton_1.addMouseListener(this);
+
 		if(turn==1){
 			this.phases.end.addMouseListener(this);
-
-			Thread t = new Thread(new Runnable(){
-
-				public void run(){
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			t.start();
 		}
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
 		done = 0;
 		if (e.getSource() == fallenAi.confirmcardsfromfallen) {
 			SmallCard aux = null;
@@ -825,7 +812,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			try {
 				aux = new SmallCard(false, fallenAi.cards[0].getcard());
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -841,26 +827,26 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallenAi.button.setEnabled(false);
 				fallenAi.effectnumber = 0;
 				fallenAi.setVisible(false);
-				if (!Objects.equals(aux.actual.GetType(), "Warrior")) {
+				if (aux != null && !Objects.equals(aux.actual.GetType(), "Warrior")) {
 					Thread t1 = new Thread(() -> {
-                        try {
-                            Thread.sleep(750);
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
-                        ai.aifield.quitar(where);
-                        if (number == 18) {
-                            ai.aidra.setwp();
-                        }
-                        repaint();
-                    });
+						try {
+							Thread.sleep(750);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+						ai.aifield.quitar(where);
+						if (number == 18) {
+							ai.aidra.setwp();
+						}
+						repaint();
+					});
 					t1.start();
 				}
 			}
 		}
 		if(e.getSource()==fallen.confirmcardsfromfallen)
 		{
-			SmallCard aux = null;
+			SmallCard aux;
 			System.out.println("entro");
 			final int where=player.field.findwhere();
 			System.out.println(where);
@@ -876,25 +862,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					fallen.effectnumber=0;
 					fallen.setVisible(false);
 					if (!Objects.equals(aux.actual.GetType(), "Warrior")) {
-						Thread t1 = new Thread(new Runnable() {
-							public void run() {
-								try {
-									Thread.sleep(750);
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-								player.field.quitar(where);
-								if(number==18)
-								{
-									player.powers.setwp();
-								}
-								repaint();
-								fallenAi.setVisible(true);
+						Thread t1 = new Thread(() -> {
+                            try {
+                                Thread.sleep(750);
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            }
+                            player.field.quitar(where);
+                            if(number==18)
+                            {
+                                player.powers.setwp();
+                            }
+                            repaint();
+                            fallenAi.setVisible(true);
 
-								fallenAi.effectnumber=13;
-								fallenAi.button.setEnabled(true);
-							}
-						});
+                            fallenAi.effectnumber=13;
+                            fallenAi.button.setEnabled(true);
+                        });
 						t1.start();
 					}
 				}
@@ -920,7 +904,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallen.selecting=0;
 			} catch (IOException e1)
 			{
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -1185,7 +1168,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 
 		if(e.getSource()==this.top1){
-			int p;
 			this.top1.setVisible(false);
 			this.top2.setVisible(false);
 			this.top3.setVisible(false);
@@ -1193,28 +1175,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.top5.setVisible(false);
 
 			System.out.println("your card will be placed on top of the deck");
-			Card c = new Card();
+			Card c;
 			c=player.hand.cards[0];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(1);
 			this.repairListeners(true);
 
-			System.out.println("adding a water power from the deck");
-			p= player.pdeck.Deck.posCard("SSD-15");
-			if(p==-1){
-				System.out.println("cannot find a water power");
-			}else{
-				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
-				player.hand.handgui[pos-1].addMouseListener(this);
-				Addlisteners2Card(pos-1);
-				player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-				player.pdeck.textField.repaint();
-			}
+			addPowerCardFromTheDeck();
 			repaint();
 		}
 
 		if(e.getSource()==this.top2){
-			int p;
 			this.top1.setVisible(false);
 			this.top2.setVisible(false);
 			this.top3.setVisible(false);
@@ -1222,28 +1193,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.top5.setVisible(false);
 
 			System.out.println("your card will be placed on top of the deck");
-			Card c = new Card();
+			Card c;
 			c=player.hand.cards[1];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(2);
 			this.repairListeners(true);
 
-			System.out.println("adding a water power from the deck");
-			p= player.pdeck.Deck.posCard("SSD-15");
-			if(p==-1){
-				System.out.println("cannot find a water power");
-			}else{
-				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
-				player.hand.handgui[pos-1].addMouseListener(this);
-				Addlisteners2Card(pos-1);
-				player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-				player.pdeck.textField.repaint();
-			}
+			addPowerCardFromTheDeck();
 			repaint();
 		}
 
 		if(e.getSource()==this.top3){
-			int p;
 			this.top1.setVisible(false);
 			this.top2.setVisible(false);
 			this.top3.setVisible(false);
@@ -1251,28 +1211,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.top5.setVisible(false);
 
 			System.out.println("your card will be placed on top of the deck");
-			Card c = new Card();
+			Card c;
 			c=player.hand.cards[2];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(3);
 			this.repairListeners(true);
 
-			System.out.println("adding a water power from the deck");
-			p= player.pdeck.Deck.posCard("SSD-15");
-			if(p==-1){
-				System.out.println("cannot find a water power");
-			}else{
-				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
-				player.hand.handgui[pos-1].addMouseListener(this);
-				Addlisteners2Card(pos-1);
-				player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-				player.pdeck.textField.repaint();
-			}
+			addPowerCardFromTheDeck();
 			repaint();
 		}
 
 		if(e.getSource()==this.top4){
-			int p;
 			this.top1.setVisible(false);
 			this.top2.setVisible(false);
 			this.top3.setVisible(false);
@@ -1280,28 +1229,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.top5.setVisible(false);
 
 			System.out.println("your card will be placed on top of the deck");
-			Card c = new Card();
+			Card c;
 			c=player.hand.cards[3];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(4);
 			this.repairListeners(true);
 
-			System.out.println("adding a water power from the deck");
-			p= player.pdeck.Deck.posCard("SSD-15");
-			if(p==-1){
-				System.out.println("cannot find a water power");
-			}else{
-				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
-				player.hand.handgui[pos-1].addMouseListener(this);
-				Addlisteners2Card(pos-1);
-				player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-				player.pdeck.textField.repaint();
-			}
+			addPowerCardFromTheDeck();
 			repaint();
 		}
 
 		if(e.getSource()==this.top5){
-			int p;
 			this.top1.setVisible(false);
 			this.top2.setVisible(false);
 			this.top3.setVisible(false);
@@ -1309,24 +1247,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.top5.setVisible(false);
 
 			System.out.println("your card will be placed on top of the deck");
-			Card c = new Card();
+			Card c;
 			c=player.hand.cards[4];	
 			player.pdeck.Deck.insertar(c);
 			player.hand.discard(5);
 
 			this.repairListeners(true);
 
-			System.out.println("adding a water power from the deck");
-			p= player.pdeck.Deck.posCard("SSD-15");
-			if(p==-1){
-				System.out.println("cannot find a water power");
-			}else{
-				int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
-				player.hand.handgui[pos-1].addMouseListener(this);
-				Addlisteners2Card(pos-1);
-				player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-				player.pdeck.textField.repaint();
-			}
+			addPowerCardFromTheDeck();
 			repaint();
 		}
 	}
@@ -1934,7 +1862,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							player.field.poner(new SmallCard(true,c), 0);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -1944,7 +1871,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							player.field.poner(new SmallCard(true,c), 1);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -1954,7 +1880,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							player.field.poner(new SmallCard(true,c), 2);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -1964,7 +1889,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							player.field.poner(new SmallCard(true,c), 3);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -1974,7 +1898,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							player.field.poner(new SmallCard(true,c), 4);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -1984,7 +1907,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							this.ai.aifield.poner(new SmallCard(true,c), 0);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -1994,7 +1916,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							this.ai.aifield.poner(new SmallCard(true,c), 1);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -2004,7 +1925,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							this.ai.aifield.poner(new SmallCard(true,c), 2);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -2014,7 +1934,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							this.ai.aifield.poner(new SmallCard(true,c), 3);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -2024,7 +1943,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							this.ai.aifield.poner(new SmallCard(true,c), 4);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -2259,57 +2177,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 
-		int x=-1;
+		int x;
 		int x2;
 
 		if(player.hand.current<5)
 			x2=100;
 		else
 			x2=400/(player.hand.current-1);
-		if(e.getSource()==player.hand.handgui[0])
-		{
-			x=0;
-			preview.Remove();
-		}
-		else if(e.getSource()==player.hand.handgui[1])
-		{
-			x=1;
-			preview.Remove();
-		}
-		else if(e.getSource()==player.hand.handgui[2])
-		{
-			x=2;
-			preview.Remove();
-		}
-		else if(e.getSource()==player.hand.handgui[3])
-		{
-			x=3;
-			preview.Remove();
-		}else if(e.getSource()==player.hand.handgui[4])
-		{
-			x=4;
-			preview.Remove();
-		}else if(e.getSource()==player.hand.handgui[5])
-		{
-			x=5;
 
-		}else if(e.getSource()==player.hand.handgui[6])
-		{
-			x=6;
-
-		}else if(e.getSource()==player.hand.handgui[7])
-		{
-			x=7;
-
-		}else if(e.getSource()==player.hand.handgui[8])
-		{
-			x=8;
-
-		}else if(e.getSource()==player.hand.handgui[9])
-		{
-			x=9;
-
-		}
+		x=selectionHandgui(e);
+		preview.Remove();
 
 		if(x!=-1)
 		{
@@ -2588,48 +2465,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			moveToFront(unleash);
 			repaint();
 		}
-		int x=-1;
+		int x;
 		int x2;
 		if(player.hand.current<5)
 			x2=100;
 		else
 			x2=400/(player.hand.current-1);
 
-		if(e.getSource()==player.hand.handgui[0])
-		{
-			x=0;
-		}
-		else if(e.getSource()==player.hand.handgui[1])
-		{
-			x=1;
-		}
-		else if(e.getSource()==player.hand.handgui[2])
-		{
-			x=2;
-		}
-		else if(e.getSource()==player.hand.handgui[3])
-		{
-			x=3;
-		}else if(e.getSource()==player.hand.handgui[4])
-		{
-			x=4;
-		}
-		else if(e.getSource()==player.hand.handgui[5])
-		{
-			x=5;
-		}else if(e.getSource()==player.hand.handgui[6])
-		{
-			x=6;
-		}else if(e.getSource()==player.hand.handgui[7])
-		{
-			x=7;
-		}else if(e.getSource()==player.hand.handgui[8])
-		{
-			x=8;
-		}else if(e.getSource()==player.hand.handgui[9])
-		{
-			x=9;
-		}
+		x=selectionHandgui(e);
+
 		if(x!=-1)
 		{	
 			if(x!=player.hand.current){
@@ -2884,13 +2728,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	void set(final int pos,final int where)
 	{
-
 		final SmallCard carta  ;
 
 		if(pos!=-2 && pos!=-3){
 			X=player.hand.handgui[pos].getX();
 			Y=player.hand.handgui[pos].getY();
-			if (player.hand.handgui[pos].getcard().GetType() == "Warrior") {
+			if (Objects.equals(player.hand.handgui[pos].getcard().GetType(), "Warrior")) {
 				warriorPlayed = 1;
 			}
 		}
@@ -2898,83 +2741,80 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(pos>=0){
 				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
 				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
-				
 				player.hand.discard(pos+1);
 				animations.add(moving);
 				moveToFront(moving);
-				Thread t = new Thread(new Runnable() {
-					public void run() {
-						moving.setBounds(650+20,X,0,0);
-						int i=0,j=0;
-						while (i<=100 || j<=145) {
-							try {
-								if(i<=100){
-									i++;
-									moving.setBounds(200+X,Y+600,i,j);
-									Thread.sleep(3);
-								}
-								if(j<=145){
-									j++;
-									moving.setBounds(180+X,Y+550,i,j);
-							
-									Thread.sleep(3);
-								}
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-						int x=0,y=350;
-						i=180+X;
-						j=Y+550;
-						switch(where)
-						{
-							case 0: x= 220;
-								break;
-							case 1: x=330;
-								break;
-							case 2: x=440;
-								break;
-							case 3: x=550;
-								break;
-							case 4 : x=440;
-								break;
-						}
-						while (i!=x || j!=y) {
-							try {
-								if(i<x){
-									i++;
-									moving.setBounds(i,j,100,145);
-									Thread.sleep(3);
-								}
-								if(i>x){
-									i--;
-									moving.setBounds(i,j,100,145);
-									Thread.sleep(3);
-								}
-								
-								if(j<y){
-									j++;
-									moving.setBounds(i,j,100,145);
-							
-									Thread.sleep(3);
-								}
-								if(j>y){
-									j--;
-									moving.setBounds(i,j,100,145);
-								
-									Thread.sleep(3);
-								}
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-						repaint();
-						animations.remove(moving);
-						player.powers.play(carta.getcard().GetCost());
-						player.field.poner(carta, where);
-						carta.repaint();
-					}
-				});
+				Thread t = new Thread(() -> {
+                    moving.setBounds(650+20, X,0,0);
+                    int i1 =0, j1 =0;
+                    while (i1 <=100 || j1 <=145) {
+                        try {
+                            if(i1 <=100){
+                                i1++;
+                                moving.setBounds(200+X,Y+600, i1, j1);
+                                Thread.sleep(3);
+                            }
+                            if(j1 <=145){
+                                j1++;
+                                moving.setBounds(180+X,Y+550, i1, j1);
+
+                                Thread.sleep(3);
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    int x1 =0, y1 =350;
+                    i1 =180+X;
+                    j1 =Y+550;
+                    switch(where)
+                    {
+                        case 0: x1 = 220;
+                            break;
+                        case 1: x1 =330;
+                            break;
+                        case 2: x1 =440;
+                            break;
+                        case 3: x1 =550;
+                            break;
+                        case 4 : x1 =440;
+                            break;
+                    }
+                    while (i1 != x1 || j1 != y1) {
+                        try {
+                            if(i1 < x1){
+                                i1++;
+                                moving.setBounds(i1, j1,100,145);
+                                Thread.sleep(3);
+                            }
+                            if(i1 > x1){
+                                i1--;
+                                moving.setBounds(i1, j1,100,145);
+                                Thread.sleep(3);
+                            }
+
+                            if(j1 < y1){
+                                j1++;
+                                moving.setBounds(i1, j1,100,145);
+
+                                Thread.sleep(3);
+                            }
+                            if(j1 > y1){
+                                j1--;
+                                moving.setBounds(i1, j1,100,145);
+
+                                Thread.sleep(3);
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    repaint();
+                    animations.remove(moving);
+                    player.powers.play(carta.getcard().GetCost());
+                    player.field.poner(carta, where);
+                    carta.repaint();
+                });
 				t.start();
 				carta.addMouseListener(this);
 				carta.repaint();
@@ -3003,22 +2843,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				ubicacionDeCarta = where;
 				repaint();
 				if (!Objects.equals(carta.actual.GetType(), "Warrior")) {
-					Thread t1 = new Thread(new Runnable() {
-
-						public void run() {
-							try {
-								Thread.sleep(750);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-							player.field.quitar(ubicacionDeCarta);
-							if(carta.getcard().GetCardNumber()==18)
-							{
-								player.powers.setwp();
-							}
-							repaint();
-						}
-					});
+					Thread t1 = new Thread(() -> {
+                        try {
+                            Thread.sleep(750);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        player.field.quitar(ubicacionDeCarta);
+                        if(carta.getcard().GetCardNumber()==18)
+                        {
+                            player.powers.setwp();
+                        }
+                        repaint();
+                    });
 					t1.start();
 				}
 			}
@@ -3047,45 +2884,40 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.repairListeners(true);
 			repaint();
 
-			Thread t = new Thread(new Runnable() {
-				public void run() {
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					preview.Remove();
-				}
-			});
+			Thread t = new Thread(() -> {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                preview.Remove();
+            });
 			t.start();
 			repaint();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		removeNoWarriorsToPlayerFiedl();
 	}
 
 	void hilo() {
-		Thread t = new Thread(new Runnable() {
-			public void run() {
-				checking = true;
-				while (checking) {
-					try {
-						Thread.sleep(15);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
+		Thread t = new Thread(() -> {
+            checking = true;
+            while (checking) {
+                try {
+                    Thread.sleep(15);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 		t.start();
 	}
 	void play(int pos){// plays a card on field
 		boolean allowed = true;
 		if(pos>=0){
 			c=player.hand.handgui[pos].getcard().GetCost();
-			allowed= warriorPlayed == 0 ||(player.hand.handgui[pos].getcard().GetType()!="Warrior" && warriorPlayed ==1 );
+			allowed= warriorPlayed == 0 ||(!Objects.equals(player.hand.handgui[pos].getcard().GetType(), "Warrior") && warriorPlayed ==1 );
 		}else if (pos==-3)
 			c=player.pdeck.Deck.lista.Data.Consultar(9).GetCost();
 		else
@@ -3155,7 +2987,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			contTargetAttack=0;
 			for(int i=0;i<5;i++){
-				if(ai.aifield.cards[i]!=null && ai.aifield.cards[i].getcard().GetType()=="Warrior"){
+				if(ai.aifield.cards[i]!=null && Objects.equals(ai.aifield.cards[i].getcard().GetType(), "Warrior")){
 					this.aiAttack[i]=1;
 					contTargetAttack++;
 
@@ -3186,20 +3018,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if (contTargetAttack>0) {
 
 				for (int iterador = 0; iterador < rr.nextInt(contTargetAttack+1); iterador++) {
-					atkOrigin=-1;
-					atkDest=-1;
-					int band=0;
-					i=0;
-					while(band==0 && i<26){
-						Random r = new Random();
-						int a = r.nextInt(5);
-						if(this.aiAttack[a]==1){
-							this.atkOrigin=a;
-							band=1;
-							break;
-						}
-						i++;
-					}
+					aiAttackOrigin();
 					
 					for(int i=0;i<5;i++){
 						if(player.field.cards[i]!=null){
@@ -3208,20 +3027,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						else{
 							this.aiDest[i]=0;
 						}
-					}	
-					
-					band=0;
-					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<26){
-						Random r = new Random();
-						int a = r.nextInt(5);
-						if(this.aiDest[a]==1){
-							this.atkDest=a;
-							band=1;
-							break;
-						}
-						i++;
 					}
+
+					aiAttackDest();
 					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
 
 					if (this.atkOrigin==0) {
@@ -3300,9 +3108,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(phases.actual<4){
 			phases.change(phases.actual+1);
 		}else{
-			if(ready==1){
-				phases.change(-1);
-			}
+			phases.change(-1);
 		}
 		barierpicked=0;
 		warriorPlayed=0;
@@ -3324,38 +3130,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			bugPrimerTurnoUSer=1;
 			phases.change(phases.actual+1);
 
-			Thread t1 = new Thread(() -> {
-				try {
-					Thread.sleep(2500);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				phases.actual-=1;
-				this.instanciaGui.accionarAgarreAutomatico.doClick();
-				phases.actual+=1;
-				repaint();
-			});
-			t1.start();
-			System.out.println("entre en 1");
+			accionarAgarreAutomatico();
 			repaint();
 		}
 		this.phases.end.addMouseListener(this);
 		if(phases.actual==-1){
 			phases.change(phases.actual+1);
 
-			Thread t1 = new Thread(() -> {
-				try {
-					Thread.sleep(2500);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				phases.actual-=1;
-				this.instanciaGui.accionarAgarreAutomatico.doClick();
-				phases.actual+=1;
-				repaint();
-			});
-			t1.start();
-			System.out.println("entre en 2");
+			accionarAgarreAutomatico();
 			repaint();
 		}
 		
@@ -3369,17 +3151,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		this.phases.action.addMouseListener(this);
 		
-		Thread t = new Thread(new Runnable(){
-			public void run(){
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				phases.change(phases.actual+1);
-				repaint();
-			}
-		});
+		Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            phases.change(phases.actual+1);
+            repaint();
+        });
 		t.start();
 	}
 
@@ -3588,19 +3368,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		if(this.phases.actual==3){
 			if(id.equals("SSD-02")){
-				int p;
-				System.out.println("adding a water power from the deck");
-
-				p= player.pdeck.Deck.posCard("SSD-15");
-				if(p==-1){
-					System.out.println("cannot find a water power");
-				}else{
-					int poss= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
-					player.hand.handgui[poss-1].addMouseListener(this);
-					Addlisteners2Card(poss-1);
-					player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-					player.pdeck.textField.repaint();
-				}
+				addPowerCardFromTheDeck();
 			}
 			repaint();
 		}
@@ -3652,34 +3420,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(id.equals("SSD-07")){
-				for(int i=0; i<5; i++){
-					this.aiAttack[i]=-1;
-					this.aiDest[i]=-1;
-				}
-				contTargetAttack=0;
-				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null&&pos!=i){
-						this.aiAttack[i]=1;
-						contTargetAttack++;
-					}
-					else{
-						this.aiAttack[i]=0;
-					}
-				}	
-				atkOrigin=-1;
-				atkDest=-1;
-				int band=0;
-				i=0;
-				while(band==0 && i<26){
-					Random r = new Random();
-					int a = r.nextInt(5);
-					if(this.aiAttack[a]==1){
-						this.atkOrigin=a;
-						band=1;
-						break;
-					}
-					i++;
-				}
+				initPossiblesAttacks();
+				contPossibleTargetAttaks(pos);
+				aiAttackOrigin();
 
 				for(int i=0;i<5;i++){
 					if(player.field.cards[i]!=null){
@@ -3688,24 +3431,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					else{
 						this.aiDest[i]=0;
 					}
-				}	
-
-				band=0;
-				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<26){
-					Random r = new Random();
-					int a = r.nextInt(5);
-					if(this.aiDest[a]==1){
-						this.atkDest=a;
-						band=1;
-						break;
-					}
-					i++;
 				}
+
+				aiAttackDest();
 
 				//dest
 				if (atkDest!=-1 && atkOrigin!=-1) {
-					int poss= player.hand.draw(player.field.cards[this.atkDest].getcard());
+					player.hand.draw(player.field.cards[this.atkDest].getcard());
 					player.field.quitar(this.atkDest);
 
 					//origin
@@ -3718,34 +3450,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(id.equals("SSD-08")){
-				for(int i=0; i<5; i++){
-					this.aiAttack[i]=-1;
-					this.aiDest[i]=-1;
-				}
+				initPossiblesAttacks();
 				contTargetAttack=0;
-				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null&&pos!=i){
-						this.aiAttack[i]=1;
-						contTargetAttack++;
-					}
-					else{
-						this.aiAttack[i]=0;
-					}
-				}	
-				atkOrigin=-1;
-				atkDest=-1;
-				int band=0;
-				i=0;
-				while(band==0 && i<26){
-					Random r = new Random();
-					int a = r.nextInt(5);
-					if(this.aiAttack[a]==1){
-						this.atkOrigin=a;
-						band=1;
-						break;
-					}
-					i++;
-				}
+				contPossibleTargetAttaks(pos);
+				aiAttackOrigin();
 
 				for(int i=0;i<5;i++){
 					if(player.field.cards[i]!=null&&pos!=i){
@@ -3754,26 +3462,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					else{
 						this.aiDest[i]=0;
 					}
-				}	
-
-				band=0;
-				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<26){
-					Random r = new Random();
-					int a = r.nextInt(5);
-					if(this.aiDest[a]==1){
-						this.atkDest=a;
-						band=1;
-						break;
-					}
-					i++;
 				}
+
+				aiAttackDest();
+
 				if (this.atkDest!=-1 || this.atkOrigin!=-1) {
 					if(this.atkDest!=-1){
 						//dest
-						int poss= player.hand.draw(player.field.cards[this.atkDest].getcard());
+						player.hand.draw(player.field.cards[this.atkDest].getcard());
 						player.hand.handgui[this.atkDest].addMouseListener(this);
-						//Addlisteners2Card(pos-1);
 						player.field.quitar(this.atkDest);
 					}else{
 						//origin
@@ -3819,20 +3516,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						else{
 							this.aiDest[i]=0;
 						}
-					}	
-
-					int band=0;
-					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<26){
-						Random r = new Random();
-						int a = r.nextInt(5);
-						if(this.aiDest[a]==1){
-							this.atkDest=a;
-							band=1;
-							break;
-						}
-						i++;
 					}
+
+					aiAttackDest();
 
 					if(this.atkDest!=-1){
 						//dest
@@ -3843,34 +3529,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 				if(id.equals("SSD-10")){
-					for(int i=0; i<5; i++){
-						this.aiAttack[i]=-1;
-						this.aiDest[i]=-1;
-					}
-					contTargetAttack=0;
-					for(int i=0;i<5;i++){
-						if(ai.aifield.cards[i]!=null&&pos!=i){
-							this.aiAttack[i]=1;
-							contTargetAttack++;
-						}
-						else{
-							this.aiAttack[i]=0;
-						}
-					}	
-					atkOrigin=-1;
-					atkDest=-1;
-					int band=0;
-					i=0;
-					while(band==0 && i<26){
-						Random r = new Random();
-						int a = r.nextInt(5);
-						if(this.aiAttack[a]==1){
-							this.atkOrigin=a;
-							band=1;
-							break;
-						}
-						i++;
-					}
+					initPossiblesAttacks();
+					contPossibleTargetAttaks(pos);
+					aiAttackOrigin();
 
 					for(int i=0;i<5;i++){
 						if(player.field.cards[i]!=null){
@@ -3879,20 +3540,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						else{
 							this.aiDest[i]=0;
 						}
-					}	
-
-					band=0;
-					i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-					while(band==0 && i<26){
-						Random r = new Random();
-						int a = r.nextInt(5);
-						if(this.aiDest[a]==1){
-							this.atkDest=a;
-							band=1;
-							break;
-						}
-						i++;
 					}
+
+					aiAttackDest();
+
 					if (this.atkDest!=-1 || this.atkOrigin!=-1) {
 						if(this.atkDest!=-1){
 							player.field.quitar(this.atkDest);
@@ -3907,34 +3558,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(id.equals("SSD-11")){
-				for(int i=0; i<5; i++){
-					this.aiAttack[i]=-1;
-					this.aiDest[i]=-1;
-				}
+				initPossiblesAttacks();
 				contTargetAttack=0;
-				for(int i=0;i<5;i++){
-					if(ai.aifield.cards[i]!=null&&pos!=i){
-						this.aiAttack[i]=1;
-						contTargetAttack++;
-					}
-					else{
-						this.aiAttack[i]=0;
-					}
-				}	
-				atkOrigin=-1;
-				atkDest=-1;
-				int band=0;
-				i=0;
-				while(band==0 && i<26){
-					Random r = new Random();
-					int a = r.nextInt(5);
-					if(this.aiAttack[a]==1){
-						this.atkOrigin=a;
-						band=1;
-						break;
-					}
-					i++;
-				}
+				contPossibleTargetAttaks(pos);
+				aiAttackOrigin();
 
 				for(int i=0;i<5;i++){
 					if(player.field.cards[i]!=null){
@@ -3943,20 +3570,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					else{
 						this.aiDest[i]=0;
 					}
-				}	
-
-				band=0;
-				i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
-				while(band==0 && i<26){
-					Random r = new Random();
-					int a = r.nextInt(5);
-					if(this.aiDest[a]==1){
-						this.atkDest=a;
-						band=1;
-						break;
-					}
-					i++;
 				}
+
+				aiAttackDest();
 				Card c;
 
 				if (this.atkDest!=-1 || this.atkOrigin!=-1) {
@@ -3966,7 +3582,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							player.field.poner(new SmallCard(true, c), this.atkDest);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} else {
@@ -3975,7 +3590,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						try {
 							this.ai.aifield.poner(new SmallCard(true, c), this.atkOrigin);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -4448,7 +4062,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		boolean band = false;
 		
 		for (int i = 0; i < getCantAiHandCards(); i++) {
-			if (ai.aihand.cards[i]!=null && ai.aihand.cards[i].GetType()=="Warrior") {
+			if (ai.aihand.cards[i]!=null && Objects.equals(ai.aihand.cards[i].GetType(), "Warrior")) {
 				band=true;
 				break;
 			}
@@ -4460,7 +4074,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		boolean band=false;
 		
 		for (int i = 0; i < getCantAiHandCards(); i++) {
-			if (ai.aihand.cards[i].GetType()=="Warrior" && ai.aihand.cards[i].GetCost()<(getCantVolatilePower()+getCantUndrainedPower())) {
+			if (Objects.equals(ai.aihand.cards[i].GetType(), "Warrior") && ai.aihand.cards[i].GetCost()<(getCantVolatilePower()+getCantUndrainedPower())) {
 				band = true;
 				break;
 			}
@@ -4542,35 +4156,29 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 	
 	public void removeCardToFieldThread(){
-		Thread t1 = new Thread(new Runnable() {
-
-			public void run() {
-				try {
-					Thread.sleep(2500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), ai.aifield.cards[ai.whereInvoqued].getcard());
-				ai.aifield.quitar(ai.whereInvoqued);
-				preview.Remove();
-				repaint();
-			}
-		});
+		Thread t1 = new Thread(() -> {
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), ai.aifield.cards[ai.whereInvoqued].getcard());
+            ai.aifield.quitar(ai.whereInvoqued);
+            preview.Remove();
+            repaint();
+        });
 		t1.start();
 	}
 	
 	public void waitToPlayAnotherCard(){
-		Thread t1 = new Thread(new Runnable() {
-
-			public void run() {
-				try {
-					Thread.sleep(2500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				playAiCard("anywhere");
-			}
-		});
+		Thread t1 = new Thread(() -> {
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            playAiCard("anywhere");
+        });
 		t1.start();
 	}
 	
@@ -4602,7 +4210,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 //		fase 3: preview
 		preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
 //		fase 4: hilo de ejecucion
-		if (ai.aifield.cards[ai.whereInvoqued].getcard().GetType()!="Warrior") {
+		if (!Objects.equals(ai.aifield.cards[ai.whereInvoqued].getcard().GetType(), "Warrior")) {
 			removeCardToFieldThread();
 		}
 		repaint();
@@ -4613,15 +4221,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		int aleatorio;
 		ai.whereInvoqued=-1;
 //		verificamos los recursos que ai tiene por si acaso
-		int cantAiHandCards=0;
-		int cantAiFieldCards=0;
-		int cantVolatilePower=0;
-		int cantUndrainedPower=0;
+		int cantAiHandCards;
+		int cantAiFieldCards;
 
 		cantAiHandCards = getCantAiHandCards();
 		cantAiFieldCards = getCantAiFieldCards();
-		cantVolatilePower = getCantVolatilePower();
-		cantUndrainedPower = getCantUndrainedPower();
+
 
 		if (cantAiFieldCards<5) {
 			if(ExistWarriorsInHand()){
@@ -4676,23 +4281,133 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 	
 	public void removeNoWarriorsToPlayerFiedl(){
-		Thread t1 = new Thread(new Runnable() {
-			public void run() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				for (int i = 0; i < 5; i++) {
-					if(player.field.cards[i]!=null && player.field.cards[i].getcard().GetType()!="Warrior"){
-						fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[i].getcard());
-						player.field.quitar(i);
-					}
-				}
-				preview.Remove();
-				repaint();
+		Thread t1 = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            for (int i1 = 0; i1 < 5; i1++) {
+                if(player.field.cards[i1]!=null && !Objects.equals(player.field.cards[i1].getcard().GetType(), "Warrior")){
+                    fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[i1].getcard());
+                    player.field.quitar(i1);
+                }
+            }
+            preview.Remove();
+            repaint();
+        });
+		t1.start();
+	}
+
+	public void addPowerCardFromTheDeck(){
+		System.out.println("adding a water power from the deck");
+		int p = player.pdeck.Deck.posCard("SSD-15");
+		if(p ==-1){
+			System.out.println("cannot find a water power");
+		}else{
+			int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+			player.hand.handgui[pos-1].addMouseListener(this);
+			Addlisteners2Card(pos-1);
+			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
+			player.pdeck.textField.repaint();
+		}
+	}
+
+	public int selectionHandgui(MouseEvent e){
+		if(e.getSource()==player.hand.handgui[0])
+		{
+			return 0;
+		}else if(e.getSource()==player.hand.handgui[1])
+		{
+			return 1;
+		}else if(e.getSource()==player.hand.handgui[2])
+		{
+			return 2;
+		}else if(e.getSource()==player.hand.handgui[3])
+		{
+			return 3;
+		}else if(e.getSource()==player.hand.handgui[4])
+		{
+			return 4;
+		}else if(e.getSource()==player.hand.handgui[5])
+		{
+			return 5;
+		}else if(e.getSource()==player.hand.handgui[6])
+		{
+			return 6;
+		}else if(e.getSource()==player.hand.handgui[7])
+		{
+			return 7;
+		}else if(e.getSource()==player.hand.handgui[8])
+		{
+			return 8;
+		}else if(e.getSource()==player.hand.handgui[9])
+		{
+			return 9;
+		}
+		return -1;
+	}
+
+	public void aiAttackOrigin(){
+		atkOrigin=-1;
+		atkDest=-1;
+		i=0;
+		while(i<26){
+			Random r = new Random();
+			int a = r.nextInt(5);
+			if(this.aiAttack[a]==1){
+				this.atkOrigin=a;
+				break;
 			}
+			i++;
+		}
+	}
+
+	public void aiAttackDest(){
+		i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+		while(i<26){
+			Random r = new Random();
+			int a = r.nextInt(5);
+			if(this.aiDest[a]==1){
+				this.atkDest=a;
+				break;
+			}
+			i++;
+		}
+	}
+
+	public void accionarAgarreAutomatico(){
+		Thread t1 = new Thread(() -> {
+			try {
+				Thread.sleep(2500);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			phases.actual-=1;
+			this.instanciaGui.accionarAgarreAutomatico.doClick();
+			phases.actual+=1;
+			repaint();
 		});
 		t1.start();
+	}
+
+	public void initPossiblesAttacks(){
+		for(int i=0; i<5; i++){
+			this.aiAttack[i]=-1;
+			this.aiDest[i]=-1;
+		}
+	}
+
+	public void contPossibleTargetAttaks(int pos){
+		contTargetAttack=0;
+		for(int i=0;i<5;i++){
+			if(ai.aifield.cards[i]!=null&&pos!=i){
+				this.aiAttack[i]=1;
+				contTargetAttack++;
+			}
+			else{
+				this.aiAttack[i]=0;
+			}
+		}
 	}
 }
