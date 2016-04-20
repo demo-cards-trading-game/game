@@ -1,6 +1,5 @@
 package demo;
 public  class List{
-    //clase noob de nodo
     class Nodo {
         Card info;
         Nodo ant,sig;
@@ -14,7 +13,7 @@ public  class List{
     
     private Nodo raiz;
     private Nodo ultimo; //para poder insertar nodos al final directamente
-    public   int cantidad;
+    public int cantidad;
 
     public List() {
         raiz=null;
@@ -66,7 +65,6 @@ public  class List{
     }
 
     public void insertarUlt(Card x){
-        //this.insertar((this.getCantidad()+1), x); //solucion facil xD
         if(ultimo!=null)
         { Nodo nuevo = new Nodo ();
             nuevo.info.asignar(x);
@@ -80,31 +78,7 @@ public  class List{
         }
         cantidad++;
     }
-   
-    public Card extraer (int pos) {
-        Card informacion=new Card();
-        if (pos <= cantidad )    {
-            if (pos == 1) {
-                informacion = raiz.info;
-                raiz = raiz.sig;
-                if (raiz!=null)
-                    raiz.ant=null;
-            } else {
-                Nodo reco;
-                reco = raiz;
-                for (int f = 1 ; f <= pos - 2 ; f++)
-                    reco = reco.sig;
-                Nodo prox = reco.sig;
-                reco.sig = prox.sig;
-                Nodo siguiente=prox.sig;
-                if (siguiente!=null)
-                    siguiente.ant=reco;
-                informacion = prox.info;
-            }
-        }
-        return informacion;
-    }
-    
+
     public Card Consultar(int pos)
     {
         Card informacion=new Card();
@@ -121,40 +95,5 @@ public  class List{
             reco = reco.sig;
         }
         return informacion;
-    }
-
-    public void borrar (int pos)
-    {
-        if (pos <= cantidad )    {
-            if (pos == 1) {
-                raiz = raiz.sig;
-                if (raiz!=null)
-                    raiz.ant=null;
-            } else {
-                Nodo reco;
-                reco = raiz;
-                for (int f = 1 ; f <= pos - 2 ; f++)
-                    reco = reco.sig;
-                Nodo prox = reco.sig;
-                prox=prox.sig;
-                reco.sig = prox;
-                if (prox!=null)
-                    prox.ant=reco;
-            }
-        }
-    }
-
-    public void imprimir ()
-    {
-        int contador=1;
-        Nodo reco = raiz;
-        while (reco != null) {
-            System.out.print ("Card # " + contador);
-            reco.info.PrintCard();
-            System.out.println();
-            reco = reco.sig;
-            contador++;
-        }
-        System.out.println();
     }
 }

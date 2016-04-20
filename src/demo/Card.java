@@ -47,14 +47,6 @@ public class Card
   {
   return (this.Source);
   }
-  public String GetClass()
-  {
-    return (this.Class);
-  }
-  public int GetLimit()
-  {
-  return (this.Limit);
-  }
   public int GetHp()
   {
     return(this.Hp);

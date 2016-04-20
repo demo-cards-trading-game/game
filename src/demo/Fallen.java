@@ -156,18 +156,7 @@ public void remove()
 		String Nombre;
 		int id ;
 
-		switch (x.GetSource())
-		{
-			case "Water":	color=(new Color(0, 191, 255));
-				break;
-			case "Wind": 	color=Color.WHITE;	
-				break;
-			case "Fire":   	color=(Color.RED);
-				break;
-			case "Earth": 	color=new Color(160, 82, 45);
-				break;
-			default : 	color=Color.ORANGE;
-		}
+		color = prueba2.selectColor(x);
 			
 		id=x.GetCardNumber();
 		Nombre=x.GetName();

@@ -223,23 +223,9 @@ public class SmallCard extends RoundedPanel{
 	{
 		return actual;
 	}
-	public void  setHplabel()
-	{
-		lblAtaque.setText(""+actual.GetHp());
-	}
+
 	boolean getpos()
 	{
 		return down;
-	}
-
-	public class CirclePanel extends JPanel {
-
-		@Override
-		protected void paintComponent(Graphics g) {
-			Graphics2D g2d;
-			g.drawOval(0, 0, g.getClipBounds().width, g.getClipBounds().height);
-			g2d = (Graphics2D) g;
-			g2d.rotate( 180.0 * Math.PI,g.getClipBounds().width, g.getClipBounds().height);
-		}
 	}
 }

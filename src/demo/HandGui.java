@@ -1,14 +1,8 @@
 package demo;
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-public  class HandGui extends JLayeredPane 
+public  class HandGui extends JLayeredPane
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public CardGui[]  handgui  = new CardGui[30];
 	Card[]  cards  = new Card[30];
@@ -28,11 +22,6 @@ public  class HandGui extends JLayeredPane
 		add(panel);
 	}
 
-	public int countcards()//cuenta las cartas en la mano
-	{
-		return current;
-	}
-	
 	public void discard(int pos)
 	{
 		int i;
@@ -58,7 +47,7 @@ public  class HandGui extends JLayeredPane
 	}
 	public int draw(Card a)
 	{
-		music();
+		AiHand.music();
 		CardGui x;
 		cards[current]=a;
 			 
@@ -77,7 +66,7 @@ public  class HandGui extends JLayeredPane
 	}
 	public int draw(CardGui a)
 	{
-		music();
+		AiHand.music();
 		CardGui x;
 		cards[current]=a.getcard();
 			 
@@ -116,28 +105,5 @@ public  class HandGui extends JLayeredPane
 			handgui[current-1]=new CardGui(cards[current-1],400+30,20);
 		}
 		addall();
-	}
-
-	public static void music()
-	{
-		String soundName = "burn.wav";
-		AudioInputStream audioInputStream = null;
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-		} catch (UnsupportedAudioFileException | IOException e) {
-			e.printStackTrace();
-		}
-		Clip clip = null;
-		try {
-			clip = AudioSystem.getClip();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
-		try {
-			clip.open(audioInputStream);
-		} catch (LineUnavailableException | IOException e) {
-			e.printStackTrace();
-		}
-		clip.start();
 	}
 }

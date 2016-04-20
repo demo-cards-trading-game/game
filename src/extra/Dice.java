@@ -9,11 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-/**
- * Dice.java
- * Created by Stijn Strickx on Feb. 16 2008
- * Copyright 2008 Stijn Strickx, All rights reserved
- */
+
 public class Dice {
     public Dice(){
 

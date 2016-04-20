@@ -39,7 +39,6 @@ public class RollDicePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		correr();
-		rollButton.enable(true);
 	}
 	public void correr(){
 		Timer timer = new Timer();

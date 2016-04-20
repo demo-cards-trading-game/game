@@ -89,9 +89,4 @@ public class AiDeck extends JPanel {
 		panel.setLocation(116, 11);
 		repaint();
 	}
-	public void addhero(Card x) throws IOException
-	{
-		panel.add(new SmallCard(true,x));
-		repaint();
-	}
 }

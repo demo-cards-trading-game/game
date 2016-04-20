@@ -1,2 +1,0 @@
-el formato de cartas es 
-codigo  nombre  costo max fuente de poder atack defense class support descripcion

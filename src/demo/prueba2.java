@@ -1,7 +1,5 @@
 package demo;
 
-import data.LoadData;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -17,7 +15,6 @@ public class prueba2 extends JInternalFrame
 	private JTable leftTable;
 	private JTable rightTable;
 	private JButton addButton;
-	public LoadData data;
 	public int cant;
 	public BigCard current;
 	public JPanel panel;
@@ -218,7 +215,7 @@ public class prueba2 extends JInternalFrame
 		}
 	}
 
-	protected void moveSelectedRow(JTable from, JTable to) {
+	public static void moveSelectedRow(JTable from, JTable to) {
 		SimpleColorTableModel fromModel = (SimpleColorTableModel) from.getModel();
 		SimpleColorTableModel toModel = (SimpleColorTableModel) to.getModel();
 
@@ -227,7 +224,7 @@ public class prueba2 extends JInternalFrame
 			toModel.addRow(rowValue);
 		}
 
-		int selectedRow = -1;
+		int selectedRow;
 		while ((selectedRow = from.getSelectedRow()) != -1) {
 			fromModel.removeRow(selectedRow);
 		}
@@ -243,18 +240,8 @@ public class prueba2 extends JInternalFrame
 		for(i=0;i<cant;i++)
 		{
 			x= this.mazo.Consultar(i);
-			switch (x.GetSource())
-			{
-				case "Water":	color=(new Color(0, 191, 255));
-					break;
-				case "Wind": 	color=Color.WHITE;
-					break;
-				case "Fire":   	color=(Color.RED);
-					break;
-				case "Earth": 	color=new Color(160, 82, 45);
-					break;
-				default : 	color=Color.ORANGE;
-			}
+			color = selectColor(x);
+
 			id=x.GetCardNumber();
 			Nombre=x.GetName();
 			model.addRow(new Object[]{id,Nombre, color});
@@ -277,6 +264,17 @@ public class prueba2 extends JInternalFrame
 					break;
 			}
 			return clazz;
+		}
+	}
+
+	public static Color selectColor(Card x){
+		switch (x.GetSource())
+		{
+			case "Water":	return (new Color(0, 191, 255));
+			case "Wind": 	return Color.WHITE;
+			case "Fire":   	return (Color.RED);
+			case "Earth": 	return new Color(160, 82, 45);
+			default : 	return Color.ORANGE;
 		}
 	}
 }

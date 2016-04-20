@@ -3,6 +3,7 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 public  class AiHand extends JPanel //implements MouseListener
 {
@@ -118,25 +119,7 @@ public  class AiHand extends JPanel //implements MouseListener
 		}
 		clip.start();
 	}
-		 
-	public int findwarrior()
-	{
-		int which=-1;
-		int i=0;
-		int found=0;
-		while (i<5&& found==0)
-		{
-			
-			if(cards[i].GetType()=="Warrior")
-			{
-				which=i;
-				found=1;
-			}
-			i++;
-		}
-		return (which);
-	}
-		 
+
 	public int countcards()//cuenta las cartas en la mano
 	{
 		int cant=0;
@@ -148,21 +131,5 @@ public  class AiHand extends JPanel //implements MouseListener
 			i++;
 		}
 		return cant;
-	}
-	public int finddisruption()
-	{
-		int which=-1;
-		int i=0;
-		int found=0;
-		while (i<5&& found==0)
-		{
-			if(cards[i].GetType()=="Disruption")
-			{
-				which=i;
-				found=1;
-			}
-			i++;
-		}
-		return (which);
 	}
 }

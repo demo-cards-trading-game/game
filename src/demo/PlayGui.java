@@ -2880,7 +2880,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				player.field.poner(Hero, donde);
 			}
 			repaint();
-			HandGui.music();
+			AiHand.music();
 			this.repairListeners(true);
 			repaint();
 

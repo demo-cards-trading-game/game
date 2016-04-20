@@ -3,7 +3,6 @@ import demo.Card;
 import demo.List;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -90,7 +89,7 @@ public class LoadData {
 		}
 		b.close();
 	}
-	public  void cargaEvents(String archivo) throws FileNotFoundException, IOException 
+	public  void cargaEvents(String archivo) throws IOException
 	{
 		String cadena , concat;
 		Card Created;
@@ -128,7 +127,7 @@ public class LoadData {
 		b.close();
 	}
 
-	public void cargaPowers(String archivo) throws FileNotFoundException, IOException 
+	public void cargaPowers(String archivo) throws IOException
 	{
 		String cadena , concat;
 		Card Created;

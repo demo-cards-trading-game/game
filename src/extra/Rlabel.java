@@ -82,10 +82,6 @@ JFrame frame = new JFrame("RichJLabel hack");
     frame.pack();
     frame.setVisible(true);
   }
-
-  public static void p(String str) {
-    System.out.println(str);
-  }
 }
 
    

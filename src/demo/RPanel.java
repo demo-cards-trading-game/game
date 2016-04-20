@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RPanel extends JPanel{
-	/**
-	 * Create the panel.
-	 */
 	Graphics2D g2d;
 	public RPanel()
 	{

@@ -1,7 +1,6 @@
 package demo;
 import data.LoadData;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
@@ -33,7 +32,6 @@ public class deck{
  
     private nodo raiz; //primera carta del deck
     public int longitud; //tamaño del deck
-    private nodo fin= new nodo(); //apuntador al ultimo nodo
 
     //constructor
     public deck(){
@@ -44,11 +42,6 @@ public class deck{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
- 
-    public deck(Card[] cards, int n)
-    {
-        shuffle(); //se barajea el vector antes de insertarse en el deck
     }
 
     void init()
@@ -71,28 +64,29 @@ public class deck{
             b=randomGenerator.nextInt(cards.length-1);
             if(verif[a])
             {
-                a=findanother(a);
+                a=findanother();
             }
             if(verif[b])
             {
-                b=findanother(b);
+                b=findanother();
             }
             exch(a,b);
             this.insertar( cards[a]);
             this. insertar( cards[b]);
         }
     }
-    public int findanother(int x)
+    public int findanother()
     {
         int i=0;
         Random randomGenerator = new Random();
+        int x;
         do
         {
             x = randomGenerator.nextInt(cards.length-1);//genera un siguiente aleatoriamente
 		
             if(verif[x])//se genera el siguiente iterativamente
             {
-                x=i;
+                x =i;
                 i++;
             }
         }while(verif[x]);//ninguno de las dos formas lo encontro
@@ -108,14 +102,9 @@ public class deck{
         verif[r]=true;
     }
 
-//consulta
-public Card verPila(){
-    return raiz.info;
-}
- 
     public Card Consultar(int pos)
     {
-        Card informacion=new Card();
+        Card informacion;
         if (pos == 1)
         {
             informacion = raiz.info;
@@ -132,9 +121,9 @@ public Card verPila(){
 
     public Card ConsultarYextraer(int pos)
     {
-        Card informacion=new Card();
-        nodo sig= new nodo();
-        nodo ant= new nodo();
+        Card informacion;
+        nodo sig;
+        nodo ant;
         if (pos == 1)
         {
             informacion = raiz.info;
@@ -166,11 +155,7 @@ public Card verPila(){
         }
         return pos;
     }
- 
-    public int getLongitud(){
-        return longitud;
-    }
- 
+
     //modificacion
     public void insertar(Card c){
         nodo nuevo= new nodo();
@@ -183,21 +168,10 @@ public Card verPila(){
             nuevo.sig=raiz;
             raiz = nuevo;
         }
-        //agregar el apuntador al ultimo
-        if(longitud==0){
-            fin=nuevo;
-        }
-  
+
         longitud++;
     }
- 
-    public void extraer(){
-        if(raiz!=null){
-            raiz = raiz.sig;
-        }
-        longitud--;
-    }
- 
+
     public Card extraerR(){ //extrae retornando
         Card ident=new Card();
         if(raiz!=null){
@@ -207,19 +181,17 @@ public Card verPila(){
         }
         return ident;
     }
-    public void Load(String nombredeck)throws FileNotFoundException, IOException //de aca sale con 40 cartas
+    public void Load(String nombredeck)throws IOException //de aca sale con 40 cartas
     {
         String cadena;
         int numero = 0,veces=0;
-        Card Created;
-        Scanner s = null;
+        Scanner s;
         FileReader f = new FileReader(nombredeck);
         BufferedReader b = new BufferedReader(f);
 
         while(  (cadena = b.readLine())!=null )
         {
             s=new Scanner(cadena);
-            Created=new Card();
             if(s.hasNext())
             {
                 numero= Integer.parseInt(s.next());
@@ -238,18 +210,5 @@ public Card verPila(){
             cards[i]=Consultar(i);
         }
         shuffle();
-    }
-    public void vaciar()
-    {
-        nodo aux;
-        while (raiz!=null)
-        {
-            aux=raiz;
-            raiz=raiz.sig;
-        }
-    }
- 
-    public void imprimir(){ //cantidad de cartas
-        System.out.println(longitud);
     }
 }

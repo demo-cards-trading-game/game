@@ -2,16 +2,13 @@ package data;
 
 import demo.BigCard;
 import demo.Card;
+import demo.prueba2;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -26,7 +23,7 @@ public class prueba extends JLayeredPane
 	public int cant;
 	BigCard current;
 	public JPanel panel;
-	private JPanel panel_1;
+	public JPanel panel_1;
 	private JLabel Count;
 	public static int c;
 	private JButton Create;
@@ -51,10 +48,7 @@ public class prueba extends JLayeredPane
 		}
 		cant=data.Data.getCantidad();
 		addButton = new JButton("add to deck");
-		addButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		addButton.addActionListener(arg0 -> {});
 		addButton.setBounds(367, 163, 121, 29);
 		removeButton = new JButton("Remove from deck");
 		removeButton.setBounds(367, 203, 121, 34);
@@ -123,80 +117,67 @@ public class prueba extends JLayeredPane
 		add(Create);
 		Create.setEnabled(false);
 
-		leftTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) 
-			{
-				int count = leftTable.getSelectedRowCount();
-				if(count>0&& band1 )
-				{	
-					if (current!=null)
-						remove(current);
-					if(c < 10)
-						addButton.setEnabled(true);
+		leftTable.getSelectionModel().addListSelectionListener(e -> {
+            int count = leftTable.getSelectedRowCount();
+            if(count>0&& band1 )
+            {
+                if (current!=null)
+                    remove(current);
+                if(c < 10)
+                    addButton.setEnabled(true);
 
-					SimpleColorTableModel fromModel = (SimpleColorTableModel) leftTable.getModel();
-					for (int index :leftTable.getSelectedRows()) 
-					{
-						Vector rowValue = (Vector) fromModel.getDataVector().get(index);
-						int x=(int) rowValue.get(0);
-						current=new BigCard(data.Data.Consultar(x),520,120);
-					}
-					add (current);
-					moveToFront(current);
-				}
-				repaint();
-				band1= !band1;  
-			} 
-		});
-		rightTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				int count = rightTable.getSelectedRowCount();
+                SimpleColorTableModel fromModel = (SimpleColorTableModel) leftTable.getModel();
+                for (int index :leftTable.getSelectedRows())
+                {
+                    Vector rowValue = (Vector) fromModel.getDataVector().get(index);
+                    int x1 =(int) rowValue.get(0);
+                    current=new BigCard(data.Data.Consultar(x1),520,120);
+                }
+                add (current);
+                moveToFront(current);
+            }
+            repaint();
+            band1= !band1;
+        });
+		rightTable.getSelectionModel().addListSelectionListener(e -> {
+            int count = rightTable.getSelectedRowCount();
 
-				if(count>0 && band)
-				{	
-					if(current!=null)
-						remove(current);
-					removeButton.setEnabled(true);
+            if(count>0 && band)
+            {
+                if(current!=null)
+                    remove(current);
+                removeButton.setEnabled(true);
 
-					SimpleColorTableModel fromModel = (SimpleColorTableModel) rightTable.getModel();
-					for (int index :rightTable.getSelectedRows()) {
-						Vector rowValue = (Vector) fromModel.getDataVector().get(index);
-						int x=(int) rowValue.get(0);
-						current=new BigCard(data.Data.Consultar(x),520,120);
-					}
-					add (current);
-				}
-				repaint();
-				band= !band;
-			}
-		});
+                SimpleColorTableModel fromModel = (SimpleColorTableModel) rightTable.getModel();
+                for (int index :rightTable.getSelectedRows()) {
+                    Vector rowValue = (Vector) fromModel.getDataVector().get(index);
+                    int x1 =(int) rowValue.get(0);
+                    current=new BigCard(data.Data.Consultar(x1),520,120);
+                }
+                add (current);
+            }
+            repaint();
+            band= !band;
+        });
 
-		addButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveSelectedRow(leftTable, rightTable);
-				c=c+1;
-				Count.setText(""+c);
-				Count.repaint();
-				addButton.setEnabled(false);
-				if(c==10)
-					Create.setEnabled(true);
-			}
-		});
+		addButton.addActionListener(e -> {
+            prueba2.moveSelectedRow(leftTable, rightTable);
+            c=c+1;
+            Count.setText(""+c);
+            Count.repaint();
+            addButton.setEnabled(false);
+            if(c==10)
+                Create.setEnabled(true);
+        });
 
-		removeButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveSelectedRow(rightTable, leftTable);
-				c=c-1;
-				Count.setText(""+c);
-				Count.repaint();
-				if(c==9)
-					Create.setEnabled(false);
-			}
-		});
+		removeButton.addActionListener(e -> {
+            prueba2.moveSelectedRow(rightTable, leftTable);
+            c=c-1;
+            Count.setText(""+c);
+            Count.repaint();
+            if(c==9)
+                Create.setEnabled(false);
+        });
 	}
 
 	protected void setupTable(JTable table) {
@@ -219,7 +200,7 @@ public class prueba extends JLayeredPane
 		}
 	}
 
-	protected void moveSelectedRow(JTable from, JTable to) {
+	/*protected void moveSelectedRow(JTable from, JTable to) {
 		SimpleColorTableModel fromModel = (SimpleColorTableModel) from.getModel();
 		SimpleColorTableModel toModel = (SimpleColorTableModel) to.getModel();
 
@@ -234,7 +215,7 @@ public class prueba extends JLayeredPane
 		}
 		from.clearSelection();
 	}
-
+*/
 	protected void populate(SimpleColorTableModel model) {
 		Color color;
 		String Nombre;
@@ -244,6 +225,7 @@ public class prueba extends JLayeredPane
 		for(i=1;i<=cant;i++)
 		{
 			x=data.Data.Consultar(i);
+
 			switch (x.GetSource())
 			{
 				case "Water":	color=(new Color(0, 191, 255));
