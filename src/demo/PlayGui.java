@@ -18,29 +18,28 @@ import java.util.Random;
 
 public class PlayGui extends JLayeredPane implements ActionListener, MouseListener {
 	public fightpane fight;
-	public static PlayerGui player;//aca estan el hand el deck y lo demas
-	public AIGui ai;//lo mismo pero en el ai
+	public static PlayerGui player;
+	public AIGui ai;
 	public Previewpane preview;
-	int p,w,c;//pos , where, cost
-
-	SmallCard Hero;
-	boolean checking;//sirve para frenar al hilo que checkea y activa el boton de pago
-	int donde;
-	int number,X,Y;
-	SmallCard moving;
-	movePanel animations;
-	optionpane op;
-	int turn, contTurn=0;
+	public int p,w,c;
+	public SmallCard Hero;
+	public boolean checking;
+	public int donde;
+	public int number,X,Y;
+	public SmallCard moving;
+	public movePanel animations;
+	public optionpane op;
+	public int turn, contTurn=0;
 	public int ready=0;
-	int s,pl;
-	int i=0;
-	private Fallen fallen ;
-	JInternalFrame pane;
+	public int s,pl;
+	public int i=0;
+	public Fallen fallen ;
+	public JInternalFrame pane;
 	public Phases phases;
 	public Fallen fallenAi;
 	public  JButton repaint;
-	private JLabel turnoLabel;
-	int warriorPlayed; //indica que se jugo un warrior en el turno
+	public JLabel turnoLabel;
+	public int warriorPlayed;
 	public int cardDrawn, barierpicked;
 	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
 	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
@@ -56,19 +55,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
 	public RoundedPanel unleash;
-	
 	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
 	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
-	//esto es para sdd-09
 	public JLabel ptarjet91, ptarjet92, ptarjet93, ptarjet94, ptarjet95;
 	public JLabel aitarjet91, aitarjet92, aitarjet93, aitarjet94, aitarjet95;
-	//esto es para ssd-10
 	public JLabel ptarjet101, ptarjet102, ptarjet103, ptarjet104, ptarjet105;
 	public JLabel aitarjet101, aitarjet102, aitarjet103, aitarjet104, aitarjet105;
-	//esto es para ssd-11
 	public JLabel ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
 	public JLabel aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
-	//visor de las cartas totales
 	public int done;
 	public int bugPrimerTurnoUSer=0;
 	public int liberarTutoEnd=1;
@@ -110,7 +104,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint=new JButton();
 
 		ai = new AIGui();
-
 		this.add(ai);
 
 		/*******************************************/
@@ -1133,17 +1126,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					System.out.println("You must have 0 barriers to play this card");
 				}
 				else{
-					if(done==0)
-						play(pl);
-					done=1;
-					this.repairListeners(true);
+					playPlayerCard();
 				}
 			}else
 			{
-				if(done==0)
-					play(pl);
-				done=1;
-				this.repairListeners(true);
+				playPlayerCard();
 			}
 		}
 
@@ -2965,202 +2952,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		phases.change(phases.actual+1);
 		setVisible(true);
-	
-		if(ExistCardsInAiField()){
-			Random al = new Random();
-			int aleatorio = al.nextInt(2); //retornara 0 o 1
-			if (aleatorio==0) {
-				possiblesAiMovements();
-			}
-		}
-		else {
-			possiblesAiMovements();
-		}
-		
-		phases.change(phases.actual+1);
-		//attack phase 
 
-		if(this.contTurn>0){
-			for(int i=0; i<5; i++){
-				this.aiAttack[i]=-1;
-				this.aiDest[i]=-1;
-			}
-			contTargetAttack=0;
-			for(int i=0;i<5;i++){
-				if(ai.aifield.cards[i]!=null && Objects.equals(ai.aifield.cards[i].getcard().GetType(), "Warrior")){
-					this.aiAttack[i]=1;
-					contTargetAttack++;
+		aiMovements();
 
-					switch(i){
-						case 0:
-							this.sworda1.setVisible(true);
-							break;
-						case 1:
-							this.sworda2.setVisible(true);
-							break;
-						case 2:
-							this.sworda3.setVisible(true);
-							break;
-						case 3:
-							this.sworda4.setVisible(true);
-							break;
-						case 4:
-							this.sworda5.setVisible(true);
-							break;
-					}
-				}
-				else{
-					this.aiAttack[i]=0;
-				}
-			}
-			
-			Random rr = new Random();
-			if (contTargetAttack>0) {
-
-				for (int iterador = 0; iterador < rr.nextInt(contTargetAttack+1); iterador++) {
-					aiAttackOrigin();
-					
-					for(int i=0;i<5;i++){
-						if(player.field.cards[i]!=null){
-							this.aiDest[i]=1;
-						}
-						else{
-							this.aiDest[i]=0;
-						}
-					}
-
-					aiAttackDest();
-					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
-
-					if (this.atkOrigin==0) {
-						this.sworda1.setVisible(false);
-					}
-					if (this.atkOrigin==1) {
-						this.sworda2.setVisible(false);
-					}
-					if (this.atkOrigin==2) {
-						this.sworda3.setVisible(false);
-					}
-					if (this.atkOrigin==3) {
-						this.sworda4.setVisible(false);
-					}
-					if (this.atkOrigin==4) {
-						this.sworda5.setVisible(false);
-					}
-					this.aiAttack[atkOrigin]=0;
-					
-					if(atkOrigin!=-1 && atkDest==-1 && countCardsInPlayerField()==0){
-						int location = findPlayerBarrierToRemove();
-					
-						if(location!=-1)//existe un barrier
-						{
-							player.hand.draw(Barriers.cards[location]);
-							player.barriers.removebarrier(location);
-							Barriers.barriers[location].setVisible(false);
-						}
-						else {
-							instanciaGui.doGameOver();
-							repaint();
-						}
-					}
-					
-					if(atkDest!=-1 && atkOrigin!=-1  )
-					{
-						if(!player.field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
-							remove(phases);
-							if(!fight.isVisible()){
-								fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
-							}
-							if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
-							{
-								ai.aifield.quitar(atkOrigin);
-								fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[atkOrigin].getcard());
-								
-							}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
-							{
-								player.field.quitar(atkDest);
-								fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[atkDest].getcard());
-								this.makeAiEffect(this.ai.aifield.cards[atkOrigin].getcard().Getid(),atkOrigin );
-							}
-							add(phases);
-						}
-					}
-					repaint();
-				}
-			}
-		}
-
-		phases.change(phases.actual+1);
-
-		this.sworda1.setVisible(false);
-		this.sworda2.setVisible(false);
-		this.sworda3.setVisible(false);
-		this.sworda4.setVisible(false);
-		this.sworda5.setVisible(false);
-		turn=1;
-
-		this.turnoLabel.setText("Player'S turn");
-		this.contTurn++;
-
-		//primer turno del user
-		ready=1;
-		done=1;
-		if(phases.actual<4){
-			phases.change(phases.actual+1);
-		}else{
-			phases.change(-1);
-		}
-		barierpicked=0;
-		warriorPlayed=0;
-		cardDrawn=0;
-
-		for(int i=0;i<5;i++)
-			player.hand.handgui[i].Play.setEnabled(false);
-
-		System.out.println("you get 1 volatile power, use it wisely");
-		player.powers.token();
-		player.powers.reset();
+		phases.reaction.setIcon(new ImageIcon(("reAction.png")));
 		repaint();
-		
-		this.phases.setup.removeMouseListener(this);
-		this.phases.draw.removeMouseListener(this);
-		this.phases.draw.addMouseListener(this);
-		
-		if(bugPrimerTurnoUSer==0){
-			bugPrimerTurnoUSer=1;
-			phases.change(phases.actual+1);
 
-			accionarAgarreAutomatico();
-			repaint();
-		}
-		this.phases.end.addMouseListener(this);
-		if(phases.actual==-1){
-			phases.change(phases.actual+1);
-
-			accionarAgarreAutomatico();
-			repaint();
-		}
-		
-		//setup phase
-		this.phases.draw.removeMouseListener(this);
-		for(int i=0;i<5;i++)
-		{
-			if(Barriers.barriers[i]!=null){
-				Barriers.barriers[i].addMouseListener(this);
-			}
-		}
-		this.phases.action.addMouseListener(this);
-		
-		Thread t = new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            phases.change(phases.actual+1);
-            repaint();
-        });
-		t.start();
+		aiPhases();
 	}
 
 	public void makeEffect(String id, int pos){
@@ -4409,5 +4207,217 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				this.aiAttack[i]=0;
 			}
 		}
+	}
+
+	public void aiMovements(){
+		if(ExistCardsInAiField()){
+			Random al = new Random();
+			int aleatorio = al.nextInt(2); //retornara 0 o 1
+			if (aleatorio==0) {
+				possiblesAiMovements();
+			}
+		}
+		else {
+			possiblesAiMovements();
+		}
+	}
+	public void playPlayerCard(){
+		if(done==0)
+			play(pl);
+		phases.reaction.setIcon(new ImageIcon(("reAction.png")));
+		repaint();
+		aiMovements();
+		phases.reaction.setIcon(new ImageIcon(("reAction2.png")));
+		done=1;
+		this.repairListeners(true);
+	}
+
+	public void aiPhases(){
+		phases.reaction.setIcon(new ImageIcon(("reAction2.png")));
+		repaint();
+		phases.change(phases.actual+1);
+		//attack phase
+
+		if(this.contTurn>0){
+			for(int i=0; i<5; i++){
+				this.aiAttack[i]=-1;
+				this.aiDest[i]=-1;
+			}
+			contTargetAttack=0;
+			for(int i=0;i<5;i++){
+				if(ai.aifield.cards[i]!=null && Objects.equals(ai.aifield.cards[i].getcard().GetType(), "Warrior")){
+					this.aiAttack[i]=1;
+					contTargetAttack++;
+
+					switch(i){
+						case 0:
+							this.sworda1.setVisible(true);
+							break;
+						case 1:
+							this.sworda2.setVisible(true);
+							break;
+						case 2:
+							this.sworda3.setVisible(true);
+							break;
+						case 3:
+							this.sworda4.setVisible(true);
+							break;
+						case 4:
+							this.sworda5.setVisible(true);
+							break;
+					}
+				}
+				else{
+					this.aiAttack[i]=0;
+				}
+			}
+
+			Random rr = new Random();
+			if (contTargetAttack>0) {
+
+				for (int iterador = 0; iterador < rr.nextInt(contTargetAttack+1); iterador++) {
+					aiAttackOrigin();
+
+					for(int i=0;i<5;i++){
+						if(player.field.cards[i]!=null){
+							this.aiDest[i]=1;
+						}
+						else{
+							this.aiDest[i]=0;
+						}
+					}
+
+					aiAttackDest();
+					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
+
+					if (this.atkOrigin==0) {
+						this.sworda1.setVisible(false);
+					}
+					if (this.atkOrigin==1) {
+						this.sworda2.setVisible(false);
+					}
+					if (this.atkOrigin==2) {
+						this.sworda3.setVisible(false);
+					}
+					if (this.atkOrigin==3) {
+						this.sworda4.setVisible(false);
+					}
+					if (this.atkOrigin==4) {
+						this.sworda5.setVisible(false);
+					}
+					this.aiAttack[atkOrigin]=0;
+
+					if(atkOrigin!=-1 && atkDest==-1 && countCardsInPlayerField()==0){
+						int location = findPlayerBarrierToRemove();
+
+						if(location!=-1)//existe un barrier
+						{
+							player.hand.draw(Barriers.cards[location]);
+							player.barriers.removebarrier(location);
+							Barriers.barriers[location].setVisible(false);
+						}
+						else {
+							instanciaGui.doGameOver();
+							repaint();
+						}
+					}
+
+					if(atkDest!=-1 && atkOrigin!=-1  )
+					{
+						if(!player.field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
+							remove(phases);
+							if(!fight.isVisible()){
+								fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
+							}
+							if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
+							{
+								ai.aifield.quitar(atkOrigin);
+								fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[atkOrigin].getcard());
+
+							}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
+							{
+								player.field.quitar(atkDest);
+								fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[atkDest].getcard());
+								this.makeAiEffect(this.ai.aifield.cards[atkOrigin].getcard().Getid(),atkOrigin );
+							}
+							add(phases);
+						}
+					}
+					repaint();
+				}
+			}
+		}
+
+		phases.change(phases.actual+1);
+
+		this.sworda1.setVisible(false);
+		this.sworda2.setVisible(false);
+		this.sworda3.setVisible(false);
+		this.sworda4.setVisible(false);
+		this.sworda5.setVisible(false);
+		turn=1;
+
+		this.turnoLabel.setText("Player'S turn");
+		this.contTurn++;
+
+		//primer turno del user
+		ready=1;
+		done=1;
+		if(phases.actual<4){
+			phases.change(phases.actual+1);
+		}else{
+			phases.change(-1);
+		}
+		barierpicked=0;
+		warriorPlayed=0;
+		cardDrawn=0;
+
+		for(int i=0;i<5;i++)
+			player.hand.handgui[i].Play.setEnabled(false);
+
+		System.out.println("you get 1 volatile power, use it wisely");
+		player.powers.token();
+		player.powers.reset();
+		repaint();
+
+		this.phases.setup.removeMouseListener(this);
+		this.phases.draw.removeMouseListener(this);
+		this.phases.draw.addMouseListener(this);
+
+		if(bugPrimerTurnoUSer==0){
+			bugPrimerTurnoUSer=1;
+			phases.change(phases.actual+1);
+
+			accionarAgarreAutomatico();
+			repaint();
+		}
+		this.phases.end.addMouseListener(this);
+		if(phases.actual==-1){
+			phases.change(phases.actual+1);
+
+			accionarAgarreAutomatico();
+			repaint();
+		}
+
+		//setup phase
+		this.phases.draw.removeMouseListener(this);
+		for(int i=0;i<5;i++)
+		{
+			if(Barriers.barriers[i]!=null){
+				Barriers.barriers[i].addMouseListener(this);
+			}
+		}
+		this.phases.action.addMouseListener(this);
+
+		Thread t = new Thread(() -> {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			phases.change(phases.actual+1);
+			repaint();
+		});
+		t.start();
 	}
 }

@@ -11,8 +11,8 @@ public class Phases extends JPanel implements MouseListener {
 	public final JPanel panel_4 = new JPanel();
 	public JLabel arrow;
 	public int actual;
-	public JPanel panel, panel_1, panel_2, panel_3;
-	public JLabel setup, draw, action, attack, end;
+	public JPanel panel, panel_1, panel_2, panel_3, panel_5;
+	public JLabel setup, draw, action, attack, end, reaction;
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -70,6 +70,15 @@ public class Phases extends JPanel implements MouseListener {
 		add(panel_4);
 		panel_4.setLayout(null);
 		panel_4.setOpaque(false);
+
+		panel_5 = new JPanel();
+		panel_5.setLayout(null);
+		reaction=new JLabel(new ImageIcon(ImageIO.read(new File("reAction2.png"))));
+		reaction.setBounds(0, 0, 70, 40);
+		panel_5.add(reaction);
+		panel_5.setOpaque(false);
+		panel_5.setBounds(549, 35, 70, 40);
+		add(panel_5);
 		change(0);
 	}
 	public void change(int phase) //esta funcion mueve la flecha a el phase actual
