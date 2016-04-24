@@ -2181,7 +2181,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				player.hand.handgui[x].setBounds(x*x2+30,20,100,145);
 			}else
 			{
-				player.hand.handgui[x].setBounds(528,20,100,145);
+				player.hand.handgui[x].setBounds(400,20,100,145);
 			}
 		}
 
