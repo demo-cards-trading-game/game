@@ -802,11 +802,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			SmallCard aux = null;
 			System.out.println("entro");
 			
-			try {
-				aux = new SmallCard(false, fallenAi.cards[0].getcard());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			
+				aux = new SmallCard(fallenAi.cards[0].getcard(),0,0);
 			
 			final int where = ai.aifield.findwhere();
 			if (fallenAi.effectnumber == 13) // si es el efecto 13
@@ -843,8 +840,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			System.out.println("entro");
 			final int where=player.field.findwhere();
 			System.out.println(where);
-			try {
-				aux = new SmallCard(false,fallen.cards[0].getcard());
+			
+				aux = new SmallCard(fallen.cards[0].getcard(),0,0);
 				if(fallen.effectnumber==13)//si es el efecto 13
 				{
 					number  =aux.getcard().GetCardNumber();
@@ -895,10 +892,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					fallen.button.setEnabled(false);
 				}
 				fallen.selecting=0;
-			} catch (IOException e1)
-			{
-				e1.printStackTrace();
-			}
+			
 		}
 
 		s = -1;
@@ -1846,92 +1840,72 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if(e.getSource()==this.ptarjet111){
 						c= player.field.cards[0].getcard();
 						player.field.quitar(0);
-						try {
-							player.field.poner(new SmallCard(true,c), 0);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							player.field.poner(new SmallCard(c,0,0), 0);
+					
 					}
 					if(e.getSource()==this.ptarjet112){
 						c= player.field.cards[1].getcard();
 						player.field.quitar(1);
-						try {
-							player.field.poner(new SmallCard(true,c), 1);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							player.field.poner(new SmallCard(c,0,0), 1);
+					
 					}
 					if(e.getSource()==this.ptarjet113){
 						c= player.field.cards[2].getcard();
 						player.field.quitar(2);
-						try {
-							player.field.poner(new SmallCard(true,c), 2);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							player.field.poner(new SmallCard(c,0,0), 2);
+					
 					}
 					if(e.getSource()==this.ptarjet114){
 						c= player.field.cards[3].getcard();
 						player.field.quitar(3);
-						try {
-							player.field.poner(new SmallCard(true,c), 3);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							player.field.poner(new SmallCard(c,0,0), 3);
+						
 					}
 					if(e.getSource()==this.ptarjet115){
 						c= player.field.cards[4].getcard();
 						player.field.quitar(4);
-						try {
-							player.field.poner(new SmallCard(true,c), 4);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							player.field.poner(new SmallCard(c,0,0), 4);
+						
 					}
 					if(e.getSource()==this.aitarjet111){
 						c=this.ai.aifield.cards[0].getcard();
 						this.ai.aifield.quitar(0);
-						try {
-							this.ai.aifield.poner(new SmallCard(true,c), 0);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							this.ai.aifield.poner(new SmallCard(c,0,0), 0);
+					
 					}
 					if(e.getSource()==this.aitarjet112){
 						c=this.ai.aifield.cards[1].getcard();
 						this.ai.aifield.quitar(1);
-						try {
-							this.ai.aifield.poner(new SmallCard(true,c), 1);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							this.ai.aifield.poner(new SmallCard(c,0,0), 1);
+						
 					}
 					if(e.getSource()==this.aitarjet113){
 						c=this.ai.aifield.cards[2].getcard();
 						this.ai.aifield.quitar(2);
-						try {
-							this.ai.aifield.poner(new SmallCard(true,c), 2);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							this.ai.aifield.poner(new SmallCard(c,0,0), 2);
+						
 					}
 					if(e.getSource()==this.aitarjet114){
 						c=this.ai.aifield.cards[3].getcard();
 						this.ai.aifield.quitar(3);
-						try {
-							this.ai.aifield.poner(new SmallCard(true,c), 3);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							this.ai.aifield.poner(new SmallCard(c,0,0), 3);
+						
 					}
 					if(e.getSource()==this.aitarjet115){
 						c=this.ai.aifield.cards[4].getcard();
 						this.ai.aifield.quitar(4);
-						try {
-							this.ai.aifield.poner(new SmallCard(true,c), 4);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							this.ai.aifield.poner(new SmallCard(c,0,0), 4);
+						
 					}
 					repaint();
 					System.out.println("face down succesfully");
@@ -2178,10 +2152,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(x!=-1)
 		{
 			if(x!=player.hand.current-1 || x<5){
-				player.hand.handgui[x].setBounds(x*x2+30,20,100,145);
+				player.hand.handgui[x].setBounds(x*x2+30,20,83,145);
 			}else
 			{
-				player.hand.handgui[x].setBounds(400,20,100,145);
+				player.hand.handgui[x].setBounds(400,20,83,145);
 			}
 		}
 
@@ -2464,7 +2438,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(x!=-1)
 		{	
 			if(x!=player.hand.current){
-				player.hand.handgui[x].setBounds(x*x2,0,100,145);
+				player.hand.handgui[x].setBounds(x*x2,0,83,145);
 				player.hand.moveToFront(player.hand.handgui[x]);
 			}
 		}
@@ -2724,10 +2698,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				warriorPlayed = 1;
 			}
 		}
-		try {
+		
 			if(pos>=0){
-				carta = new SmallCard(false,player.hand.handgui[pos].getcard());
-				moving=new SmallCard(false,player.hand.handgui[pos].getcard());
+				carta = new SmallCard(player.hand.handgui[pos].getcard(),0,0);
+				moving=new SmallCard(player.hand.handgui[pos].getcard(),0,0);
 				player.hand.discard(pos+1);
 				animations.add(moving);
 				moveToFront(moving);
@@ -2848,7 +2822,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(pos==-2){
 				donde=w;
-				Hero = new SmallCard(false,player.pdeck.Hero.getcard());
+				Hero = new SmallCard(player.pdeck.Hero.getcard(),0,0);
 				Hero.shadowColor=Color.black.darker();
 				Hero.addMouseListener(this);
 				player.pdeck.panel.remove(player.pdeck.Hero);
@@ -2861,7 +2835,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			if(pos==-3)
 			{
-				Hero=new SmallCard(false,player.pdeck.Deck.lista.Data.Consultar(9));
+				Hero=new SmallCard(player.pdeck.Deck.lista.Data.Consultar(9),0,0);
 				player.field.quitar(donde);
 				player.powers.play(Hero.getcard().GetCost());
 				player.field.poner(Hero, donde);
@@ -2881,9 +2855,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
             });
 			t.start();
 			repaint();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	
 		removeNoWarriorsToPlayerFiedl();
 	}
 
@@ -3377,19 +3349,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if (this.atkDest != -1) {
 						c = player.field.cards[this.atkDest].getcard();
 						player.field.quitar(this.atkDest);
-						try {
-							player.field.poner(new SmallCard(true, c), this.atkDest);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+						
+							player.field.poner(new SmallCard( c,0,0), this.atkDest);
+						
 					} else {
 						c = this.ai.aifield.cards[this.atkOrigin].getcard();
 						this.ai.aifield.quitar(this.atkOrigin);
-						try {
-							this.ai.aifield.poner(new SmallCard(true, c), this.atkOrigin);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+							this.ai.aifield.poner(new SmallCard( c,0,0), this.atkOrigin);
+						
 					}
 				}else {
 					System.out.println("can't find a target");
@@ -3431,7 +3398,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void repairListeners(boolean enabled)//enabled dice si el boton playesta on o no
 	{
-		for(int i=0;i<player.hand.current;i++)
+		for(int i=0;i<player.hand.current-1;i++)
 		{
 			player.hand.handgui[i].removeMouseListener(this);
 		}

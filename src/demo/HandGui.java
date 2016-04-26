@@ -4,7 +4,7 @@ import java.awt.*;
 public  class HandGui extends JLayeredPane
 {
 	private static final long serialVersionUID = 1L;
-	public CardGui[]  handgui  = new CardGui[30];
+	public SmallCard[]  handgui  = new SmallCard[30];
 	Card[]  cards  = new Card[30];
 	public int current;
 	public JPanel panel;
@@ -48,11 +48,11 @@ public  class HandGui extends JLayeredPane
 	public int draw(Card a)
 	{
 		AiHand.music();
-		CardGui x;
+		SmallCard x;
 		cards[current]=a;
 			 
 		if (current<5){
-			x=new CardGui(a,current*100+30,20);
+			x=new SmallCard(a,current*100+30,20);
 			handgui[current]=x;
 			add(handgui[current],current);
 			current=current+1;
@@ -67,11 +67,11 @@ public  class HandGui extends JLayeredPane
 	public int draw(CardGui a)
 	{
 		AiHand.music();
-		CardGui x;
+		SmallCard x;
 		cards[current]=a.getcard();
 			 
 		if (current<5){
-			x=new CardGui(a.getcard(),current*100+30,20);
+			x=new SmallCard(a.getcard(),current*100+30,20);
 			handgui[current]=x;
 			add(handgui[current],current);
 			current=current+1;
@@ -93,16 +93,16 @@ public  class HandGui extends JLayeredPane
 			Factor_de_compresion=100;
 			for (int i=0;i<current;i++)
 			{
-				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);
+				handgui[i]=new SmallCard(cards[i],Factor_de_compresion*i+30,20);
 			}
 		}else
 		{
 			Factor_de_compresion=400/ (current-1);
 			for (int i=0;i<current-1;i++)
 			{
-				handgui[i]=new CardGui(cards[i],Factor_de_compresion*i+30,20);
+				handgui[i]=new SmallCard(cards[i],Factor_de_compresion*i+30,20);
 			}
-			handgui[current-1]=new CardGui(cards[current-1],400+30,20);
+			handgui[current-1]=new SmallCard(cards[current-1],400+30,20);
 		}
 		addall();
 	}

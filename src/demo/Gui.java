@@ -186,7 +186,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 
 				PlayGui.player.pdeck.btnNewButton_1.addMouseListener(this);//para que se puedan usar los botones del deck
 				PlayGui.player.pdeck.btnNewButton.addMouseListener(this);
-			
+				PlayGui.player.pdeck.textField.addMouseListener(this);
 				addbackground3(this);
 				getContentPane().setBackground(new Color(153, 204, 204));
 				getContentPane().setLayout(null);
@@ -437,6 +437,9 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 		if (e.getSource()== PlayGui.player.pdeck.btnNewButton)
 		{
 			PlayGui.player.pdeck.btnNewButton.setIcon(new ImageIcon("draw3.png"));
+			PlayGui.player.pdeck.textField.setBounds(234,206+70,70,20);
+			PlayGui.player.pdeck.textField.setVisible(true);
+			
 		}
 	}
 

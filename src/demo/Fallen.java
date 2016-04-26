@@ -99,11 +99,10 @@ public class Fallen extends JInternalFrame implements ActionListener
                     if(cards[selecting]!=null)
                         remove(cards[selecting]);
                 }
-                try {
-                    cards[selecting]=new SmallCard(false,current.getcard());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+               
+                    cards[selecting]=new SmallCard(current.getcard(),0,0);
+              
+              
                 switch(selecting)
                 {
                     case 0:cards[selecting].setBounds(400,40,100,145);

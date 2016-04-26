@@ -14,29 +14,45 @@ public class SmallCard extends RoundedPanel{
 	public Card  actual;
 	public JLabel lblAtaque;
 	public boolean down;
-	public JInternalFrame menu;
+	public RoundedPanel menu;
+	public JButton Play, Preview,Discard,Set; 
 	/**
 	 * Create the panel.
 	 * @throws IOException 
 	 */
-	public SmallCard(boolean bocabajo,Card x ) throws IOException {
+	public SmallCard(Card x ,int a,int b){
 		actual=x;
-		this.down=bocabajo;
+		this.down=false;
 		
 		/**********************menu******************************/
-	
-		/******************************************************/
-		setBounds(0,0, 82, 150);
-		menu=new  JInternalFrame();
-		menu.setBounds(0,0,75,145);
+		menu = new RoundedPanel();
+		menu.setLayout(null);
+		Play = new JButton("Play");
+		Play.setBounds(4, 11, 75, 23);
+		menu.add(Play);
+		
+		Discard = new JButton("Discard");
+		Discard.setBounds(4, 45, 75, 23);
+		menu.add(Discard);
+		
+		Preview = new JButton("Preview");
+		Preview.setBounds(4, 79, 75, 23);
+		menu.add(Preview);
+		
+		Set = new JButton("Set");
+		Set.setBounds(4, 110, 75, 23);
+		menu.add(Set);
+		menu.setBounds(0,0,83,145);
 		menu.setVisible(false);
 		add(menu);
+		/******************************************************/
+		setBounds(a,b, 82, 150);
+	
 		this.arcs=new Dimension(5,5);
 		setLayout(null);
-		if(!bocabajo)
+		
 			normal(x);
-		else
-			abajo();
+		
 	}
 	public void abajo()
 	{

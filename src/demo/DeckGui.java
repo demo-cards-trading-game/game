@@ -13,10 +13,10 @@ public class DeckGui extends JPanel {
 	public JLabel lblTheFallen;
 	public JLayeredPane panel;
 	public JLabel lblDeck; 
-	public JLabel lblForgotten ;
+	public JLabel lblForgotten;
 	public JInternalFrame menu;
 	public SmallCard Hero;
-	public JButton Play, Preview;
+	public JButton Play,Preview;
 	
 	public DeckGui(int x,int y) {
 		this.Deck=new deck();
@@ -42,40 +42,26 @@ public class DeckGui extends JPanel {
 		textField.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 10));
 		textField.setText("Cards Left "+ Deck.cardsLeft());
 		textField.setBackground(Color.BLACK);
-		textField.setBounds(149, 320, 91, 20);
+		textField.setBounds(149, 320, 70, 20);
+		textField.setVisible(false);
 		add(textField);
 		textField.setColumns(10);
 
-		lblDeck = new JLabel("Deck");
-		lblDeck.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDeck.setForeground(new Color(50, 205, 50));
-		lblDeck.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblDeck.setBounds(168, 244, 53, 14);
-		add(lblDeck);
+		
 
 		btnNewButton_1 = new JLabel();
 		btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
 		btnNewButton_1.setBounds(135, 90,  236, 160);
 		add(btnNewButton_1);
 
-		lblTheFallen = new JLabel("The Fallen");
-		lblTheFallen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTheFallen.setForeground(new Color(30, 144, 255));
-		lblTheFallen.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblTheFallen.setBounds(140, 168, 100, 14);
-		add(lblTheFallen);
+		
 
 		btnNewButton_2 = new JLabel();
 		btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		btnNewButton_2.setBounds(135, -26, 236, 160);
 		add(btnNewButton_2);
 
-		lblForgotten = new JLabel("Forgotten");
-		lblForgotten.setForeground(new Color(0x8888ff));
-		lblForgotten.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblForgotten.setForeground(new Color(153, 102, 255));
-		lblForgotten.setBounds(149, 92, 117, 14);
-		add(lblForgotten);
+	
 
 		panel= new JLayeredPane();
 		panel.add(new RoundedPanel());
@@ -87,7 +73,7 @@ public class DeckGui extends JPanel {
 
 	public void addhero(Card x) throws IOException
 	{
-		Hero=new SmallCard(false,x);	
+		Hero=new SmallCard(x,0,0);	
 		panel.add(Hero);
 		menu = new JInternalFrame();
 		menu.getContentPane().setLayout(null);
