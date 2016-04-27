@@ -29,13 +29,13 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		hand.setLocation(235,605 );
 		powers=new Drained(15,350,name);
 	
-		barriers =new Barriers(179,490);
+		barriers =new Barriers(179,590);
 		
 		/************a�ade atributos***********/
 		add(powers);
 		this.add(hand);
 		this.add(field);
-		//add(barriers);
+		add(barriers);
 		pdeck = new DeckGui(0,0);
 		pdeck.setSize(250, 343);
 		pdeck.setLocation(740, 425);
