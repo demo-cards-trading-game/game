@@ -2745,24 +2745,24 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
                         try {
                             if(i1 < x1){
                                 i1++;
-                                moving.setBounds(i1, j1,100,145);
+                                moving.setBounds(i1, j1,75,145);
                                 Thread.sleep(3);
                             }
                             if(i1 > x1){
                                 i1--;
-                                moving.setBounds(i1, j1,100,145);
+                                moving.setBounds(i1, j1,75,145);
                                 Thread.sleep(3);
                             }
 
                             if(j1 < y1){
                                 j1++;
-                                moving.setBounds(i1, j1,100,145);
+                                moving.setBounds(i1, j1,75,145);
 
                                 Thread.sleep(3);
                             }
                             if(j1 > y1){
                                 j1--;
-                                moving.setBounds(i1, j1,100,145);
+                                moving.setBounds(i1, j1,75,145);
 
                                 Thread.sleep(3);
                             }
@@ -2859,19 +2859,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		removeNoWarriorsToPlayerFiedl();
 	}
 
-	void hilo() {
-		Thread t = new Thread(() -> {
-            checking = true;
-            while (checking) {
-                try {
-                    Thread.sleep(15);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-		t.start();
-	}
+	
 	void play(int pos){// plays a card on field
 		boolean allowed = true;
 		if(pos>=0){
@@ -2889,12 +2877,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					p=pos;
 					w=where;
-					if(c==0)
-					{
-						set(p, w);
-					}else{
-						hilo();
-					}
+					
+					set(p, w);
+					
 				}
 			}else
 			{

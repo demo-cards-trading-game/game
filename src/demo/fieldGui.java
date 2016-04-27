@@ -67,7 +67,7 @@ public class fieldGui extends JPanel {
 				if(panel.isShowing()){
 					remove(panel);
 					cards[0]=x;
-					x.setBounds(0,0,100,145);
+					x.setBounds(52, 0, 83, 145);
 				}
 				break;
 			case 1:
@@ -75,7 +75,7 @@ public class fieldGui extends JPanel {
 				{
 					remove(panel2);
 					cards[1]=x;
-					x.setBounds(110,0,100,145);
+					x.setBounds(149, 0, 83, 145);
 				}
 				break;
 			case 2:
@@ -83,21 +83,21 @@ public class fieldGui extends JPanel {
 				{
 					remove(panel3);
 					cards[2]=x;
-					x.setBounds(220,0,100,145);
+					x.setBounds(246, 0, 83, 145);
 				}
 				break;
 			case 3 :
 				if(panel4.isShowing()){
 					remove(panel4);
 					cards[3]=x;
-					x.setBounds(330,0,100,145);
+					x.setBounds(343, 0, 83, 145);
 				}
 				break;
 			case 4:
 				if(panel5.isShowing()){
 					remove(panel5);
 					cards[4]=x;
-					x.setBounds(440,0,100,145);
+					x.setBounds(440, 0, 83, 145);
 				}
 				break;
 		}

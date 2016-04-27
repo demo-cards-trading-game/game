@@ -17,11 +17,8 @@ public class Drained extends JLayeredPane{
 		setBackground(new Color(51, 204, 0));
 		setBounds(x-20,y+100,196,384);
 		setLayout(null);
-		water=solar=Volatile=wind=earth=power=0;
-		lblVolatile = new JLabel("Volatile");
-		lblVolatile.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
-		lblVolatile.setForeground(new Color(51, 204, 51));
-		lblVolatile.setBounds(50, 11, 97, 27);
+		water=solar=Volatile=wind=earth=power=100;
+		
 		//add(lblVolatile);
 		
 		try {
@@ -33,7 +30,7 @@ public class Drained extends JLayeredPane{
 	void setwp()
 	{
 		water++;
-		lblWater.setText("Water "+water);
+	
 		setVisible(true);
 		repaint();
 	}
@@ -57,7 +54,7 @@ public class Drained extends JLayeredPane{
 	void set()
 	{
 		power++;
-		lblPower.setText("Power "+ power);
+
 		setVisible(true);
 		repaint();
 	}
@@ -71,21 +68,20 @@ public class Drained extends JLayeredPane{
 	void drain(int n)
 	{
 		power=power-n;
-		lblPower.setText("Power "+ power);
+		
 		setVisible(true);
 		repaint();
 	}
 	void set(int n)
 	{
 		power=power-n;
-		lblPower.setText("Power "+ power);
 		setVisible(true);
 		repaint();
 	}
 	void token()
 	{
 		Volatile++;
-		lblVolatile.setText("Volatile "+Volatile);
+		
 		setVisible(true);
 		repaint();
 	}
