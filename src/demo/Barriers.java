@@ -20,20 +20,15 @@ public class Barriers extends JPanel {
 		
 		
 		
+
+	
+
 		removeall();
 		setLayout(null);
 		setOpaque(false);
 		setBounds(x,y+10,600,50);//se fija el tama�o y la posicion
 		
-		//barriers[0]=;
-
-		
-
 	
-
-		
-
-
 
 		try {
 			JLabel label = new JLabel(new ImageIcon(ImageIO.read(new File("barrier.png"))));
@@ -66,6 +61,14 @@ public class Barriers extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+
+
+		
+		
+		
+		
+		
 
 
 

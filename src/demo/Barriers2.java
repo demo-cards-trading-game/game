@@ -1,10 +1,13 @@
 package demo;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Barriers2 extends JPanel {
-	public static  JPanel[]  barriers   = new JPanel[5];
+	public static  JLabel[]  barriers   = new JLabel[5];
 	public static  Card[]  cards   = new Card[5];
 
 	public Barriers2(int x ,int y) { // para de una vez conocer la ubicacion donde se pondra
@@ -13,89 +16,44 @@ public class Barriers2 extends JPanel {
 		setOpaque(false);
 		setBounds(x,y,600,50);//se fija el tama�o y la posicion
 
-		RPanel panel_1 = new RPanel();
-		panel_1.setLayout(null);
-		panel_1.setForeground(Color.WHITE);
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_1.setBackground(Color.GRAY);
-		panel_1.setBounds(128, 0, 65, 26);
-		add(panel_1);
+		
 
-		RPanel panel_2 = new RPanel();
-		panel_2.setLayout(null);
-		panel_2.setForeground(Color.WHITE);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_2.setBackground(Color.GRAY);
-		panel_2.setBounds(219, 0, 65, 26);
-		add(panel_2);
+		
+		
+	
 
-		RPanel panel_3 = new RPanel();
-		panel_3.setLayout(null);
-		panel_3.setForeground(Color.WHITE);
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_3.setBackground(Color.GRAY);
-		panel_3.setBounds(310, 0, 65, 26);
-		add(panel_3);
-		JPanel panel = new RPanel();
-		panel.setBackground(Color.GRAY);
-		panel.setForeground(new Color(0, 102, 0));
-		panel.setBounds(47, 0, 65, 26);
-		barriers[0]=panel;
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel.setLayout(null);
-		add(panel);
+		try {
+			JLabel label = new JLabel(new ImageIcon(ImageIO.read(new File("barrierai.png"))));
+			label.setBounds(96, 0, 80, 25);
+			add(label);
+			
+			JLabel label_1 = new JLabel(new ImageIcon(ImageIO.read(new File("barrierai.png"))));
+		
+			label_1.setBounds(194, 0, 80, 25);
+			add(label_1);
+			
 
-		JLabel label_4 = new JLabel("Barrier");
-		label_4.setBackground(Color.LIGHT_GRAY);
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setForeground(Color.WHITE);
-		label_4.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_4.setBounds(0, 0, 65, 25);
-		panel.add(label_4);
-		RPanel panel_4 = new RPanel();
-		panel_4.setLayout(null);
-		panel_4.setForeground(Color.WHITE);
-		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_4.setBackground(Color.GRAY);
-		panel_4.setBounds(400, 0, 65, 26);
-		add(panel_4);
-		barriers[1]= panel_1;
+			JLabel label_2 = new JLabel(new ImageIcon(ImageIO.read(new File("barrierai.png"))));
+			label_2.setBounds(290, 0, 80, 25);
+			add(label_2);
+			
+			JLabel label_3;
+			label_3 = new JLabel(new ImageIcon(ImageIO.read(new File("barrierai.png"))));
+			label_3.setBounds(386, 0, 80, 25);
+			add(label_3);
+			JLabel label_4 = new JLabel(new ImageIcon(ImageIO.read(new File("barrierai.png"))));
+			label_4.setBounds(486, 0, 80, 25);
+			add(label_4);
+			barriers[0]= label;
+			barriers[4]= label_4;
+			barriers[2]= label_2;
+			barriers[1]= label_1;
+			barriers[3]= label_3;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		JLabel label = new JLabel("Barrier");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label.setBounds(0, 0, 65, 25);
-		panel_1.add(label);
-		barriers[2]= panel_2;
-
-		JLabel label_1 = new JLabel("Barrier");
-		label_1.setBackground(Color.GRAY);
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_1.setBounds(0, 0, 65, 25);
-		panel_2.add(label_1);
-		barriers[3]= panel_3;
-
-		JLabel label_2 = new JLabel("Barrier");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_2.setBounds(0, 0, 65, 25);
-		panel_3.add(label_2);
-		barriers[4]= panel_4;
-
-
-		JLabel label_3 = new JLabel("Barrier");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Showcard Gothic", Font.PLAIN, 11));
-		label_3.setBounds(0,0, 65, 25);
-		panel_4.add(label_3);
-		barriers[2]= panel_2;
-		for (int i=0;i<5;i++)
-			barriers[i].setVisible(false);
 	}
 	int findwhere()
 	{
