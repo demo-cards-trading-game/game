@@ -73,7 +73,7 @@ public class AiDeck extends JPanel {
 		btnNewButton_2 = new JLabel();
 		btnNewButton_2.setIcon(new ImageIcon("forgotten4.png"));
 		btnNewButton_2.setBounds(175, 117, 46, 40);
-//		add(btnNewButton_2);
+//		add(btnNewButton_2);//
 
 		panel.setSize(53, 68);
 		btnNewButton.setSize(43, 43);
