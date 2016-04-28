@@ -2205,7 +2205,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.action.setIcon(new ImageIcon(("action.png")));
 		}
 		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw.png")));
+			phases.draw.setIcon(new ImageIcon(("draw11.png")));
 		}
 		if(e.getSource()==phases.attack){
 			phases.attack.setIcon(new ImageIcon(("attack.png")));
@@ -3591,19 +3591,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
 		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup.png")));
+			phases.setup.setIcon(new ImageIcon(("setup2.png")));
 		}
 		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action.png")));
+			phases.action.setIcon(new ImageIcon(("action2.png")));
 		}
 		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw.png")));
+			phases.draw.setIcon(new ImageIcon(("draw22.png")));
 		}
 		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack.png")));
+			phases.attack.setIcon(new ImageIcon(("attack2.png")));
 		}
 		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end.png")));
+			phases.end.setIcon(new ImageIcon(("end2.png")));
 		}
 		if(e.getSource()==ptarjet1){
 			ptarjet1.setIcon(new ImageIcon("redTarget1.png"));

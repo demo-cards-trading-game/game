@@ -51,7 +51,7 @@ public class DeckGui extends JPanel {
 
 		btnNewButton_1 = new JLabel();
 		btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
-		btnNewButton_1.setBounds(135, 90,  236, 160);
+		btnNewButton_1.setBounds(135, 90, 236, 160);
 		add(btnNewButton_1);
 
 		

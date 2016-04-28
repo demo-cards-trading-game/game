@@ -41,25 +41,25 @@ public class AiDeck extends JPanel {
 		lblDeck.setForeground(new Color(50, 205, 50));
 		lblDeck.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblDeck.setBounds(187, 244, 53, 14);
-		add(lblDeck);
+//		add(lblDeck);
 		lblTheFallen = new JLabel("The Fallen");
 		lblTheFallen.setForeground(new Color(30, 144, 255));
 		lblTheFallen.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblTheFallen.setBounds(160, 168, 80, 14);
-		add(lblTheFallen);
+//		add(lblTheFallen);
 
 		lblForgotten = new JLabel("Forgotten");
 		lblForgotten.setBorder(null);
 		lblForgotten.setForeground(new Color(153, 102, 255));
 		lblForgotten.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 12));
 		lblForgotten.setBounds(160, 99, 117, 14);
-		add(lblForgotten);
+//		add(lblForgotten);
 
 		panel = new RoundedPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(204, 153, 51));
 		panel.setBounds(41, 168, 100, 145);
-		add(panel);
+		//add(panel);
 
 		try {
 			Deck.Load("resources/siren.in");
@@ -67,25 +67,25 @@ public class AiDeck extends JPanel {
 			e.printStackTrace();
 		}
 		btnNewButton_1 = new JLabel();
-		btnNewButton_1.setIcon(new ImageIcon("fallen4.png"));
-		btnNewButton_1.setBounds(175, 193, 46, 40);
+		btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
+		btnNewButton_1.setBounds(55, 84, 236, 160);
 		add(btnNewButton_1);
 		btnNewButton_2 = new JLabel();
 		btnNewButton_2.setIcon(new ImageIcon("forgotten4.png"));
 		btnNewButton_2.setBounds(175, 117, 46, 40);
-		add(btnNewButton_2);
+//		add(btnNewButton_2);
 
 		panel.setSize(53, 68);
 		btnNewButton.setSize(43, 43);
-		btnNewButton_2.setSize(43, 43);
-		btnNewButton_1.setSize(43, 43);
-		textField.setLocation(10, 242);
+//		btnNewButton_2.setSize(43, 43);
+//		btnNewButton_1.setSize(43, 43);
+		textField.setLocation(50, 62);
 		lblTheFallen.setLocation(10, 11);
 		lblForgotten.setLocation(10, 96);
 		lblDeck.setLocation(20, 175);
 		btnNewButton.setLocation(20, 188);
-		btnNewButton_1.setLocation(20, 36);
-		btnNewButton_2.setLocation(20, 121);
+//		btnNewButton_1.setLocation(20, 36);
+//		btnNewButton_2.setLocation(20, 121);
 		panel.setLocation(116, 11);
 		repaint();
 	}
