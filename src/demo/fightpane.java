@@ -2,38 +2,33 @@ package demo;
 import javax.swing.*;
 import java.awt.*;
 
-public class fightpane extends JLayeredPane{//en este panel se muestran las dos cartas que pelearan
-	/**
-	 * Create the panel.
-	 */
+public class fightpane extends JLayeredPane{
 	JTextPane txtpnVs;
 	BigCard a1 ;
 	BigCard a2;
-	public fightpane( ) 
-	{
+
+	public fightpane() {
 		setLayout(null);
+		setVisible(false);
 		this.setBounds(200,150,700,400);
 		this.setOpaque(false);
+
 		txtpnVs = new JTextPane();
 		txtpnVs.setForeground(Color.WHITE);
 		txtpnVs.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 32));
 		txtpnVs.setText("VS");
 		txtpnVs.setBounds(300, 128, 78, 58);
 		txtpnVs.setOpaque(false);
-		setVisible(false);
 	}
 	
-	public void addCards(BigCard p1 , BigCard p2)
-	{
+	public void addCards(BigCard p1 , BigCard p2) throws InterruptedException{
 		a2=p2;
 		a1=p1;
 		
-		if (p1.getcard().GetHp() > p2.getcard().GetHp())//gana la carta 1
-		{
+		if (p1.getcard().GetHp() > p2.getcard().GetHp()){
 			add(p1);
 			add(p2);
-		} else //gana la carta 2
-		{
+		} else{
 			add(p2);
 			add(p1);
 		}
@@ -44,33 +39,29 @@ public class fightpane extends JLayeredPane{//en este panel se muestran las dos 
 		setVisible(true);
 		Thread t = new Thread(() -> {
 			int i = 0;
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+
+			timeThread(1000);
 
 			while (60 + i <= 360 - i) {
 				a1.setLocation(60 + i, 15);
 				a2.setLocation(360 - i, 15);
 				i++;
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				timeThread(10);
 			}
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
+			timeThread(1000);
 			setVisible(false);
 			Remove();
 		});
 		t.start();
+	}
+
+	public void timeThread(int time){
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void Remove()

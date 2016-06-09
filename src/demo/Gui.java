@@ -179,6 +179,8 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 								e1.printStackTrace();
 							} catch (LineUnavailableException e1) {
 								e1.printStackTrace();
+							} catch (InterruptedException e1) {
+								e1.printStackTrace();
 							}
 						}
                         else {
@@ -253,8 +255,14 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					if(player1.cardDrawn==0){
 						if(PlayGui.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
-							CardGui nueva= new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+							CardGui nueva= null;
+							try {
+								nueva = new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 							appear(nueva);
+							final CardGui finalNueva = nueva;
 							Thread t1 = new Thread(() -> {
 								try {
 									Thread.sleep(1000);
@@ -262,7 +270,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 									e1.printStackTrace();
 								}
 								try {
-									PlayGui.player.hand.draw(nueva);
+									PlayGui.player.hand.draw(finalNueva);
 								} catch (UnsupportedAudioFileException e1) {
 									e1.printStackTrace();
 								} catch (IOException e1) {
@@ -424,7 +432,12 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 					if(player1.cardDrawn==0){
 						if(PlayGui.player.pdeck.Deck.cardsLeft()!= 0 )
 						{
-							CardGui nueva= new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+							CardGui nueva= null;
+							try {
+								nueva = new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 							appear(nueva);
 						}else
 						{

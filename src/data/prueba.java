@@ -131,8 +131,12 @@ public class prueba extends JLayeredPane
                 {
                     Vector rowValue = (Vector) fromModel.getDataVector().get(index);
                     int x1 =(int) rowValue.get(0);
-                    current=new BigCard(data.Data.Consultar(x1),520,120);
-                }
+					try {
+						current=new BigCard(data.Data.Consultar(x1),520,120);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
                 add (current);
                 moveToFront(current);
             }
@@ -152,8 +156,12 @@ public class prueba extends JLayeredPane
                 for (int index :rightTable.getSelectedRows()) {
                     Vector rowValue = (Vector) fromModel.getDataVector().get(index);
                     int x1 =(int) rowValue.get(0);
-                    current=new BigCard(data.Data.Consultar(x1),520,120);
-                }
+					try {
+						current=new BigCard(data.Data.Consultar(x1),520,120);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
                 add (current);
             }
             repaint();

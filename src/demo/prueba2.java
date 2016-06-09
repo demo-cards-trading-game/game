@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.Vector;
 
 public class prueba2 extends JInternalFrame
@@ -26,32 +27,34 @@ public class prueba2 extends JInternalFrame
 	public JButton aceptar; 
 	public int num;
 	
-	public prueba2(deck d)
-	{
-		this.mazo= new deck();
-		this.mazo=d;
+	public prueba2(deck d) throws IOException {
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		setBounds(0,0,800,600);	
+		setBounds(0,0,800,600);
 		setOpaque(false);
+		setLayout(null);
+		setSize(620, 420);
+		c=0;
+
+		mazo= new deck();
+		mazo=d;
+		cant=mazo.cardsLeft();
+
 		Count = new JLabel("0");
 		Count.setForeground(new Color(0, 204, 204));
 		Count.setFont(new Font("Tahoma", Font.PLAIN, 57));
 		Count.setHorizontalAlignment(SwingConstants.CENTER);
 		Count.setLocation(390, 350);
 		Count.setSize(78, 62);
-		c=0;
 
-		cant=mazo.cardsLeft();
 		addButton = new JButton("add to deck");
-		addButton.addActionListener(arg0 -> {
-        });
 		addButton.setBounds(367, 163, 121, 29);
+
 		JButton removeButton = new JButton("Remove from deck");
 		removeButton.setBounds(367, 203, 121, 34);
-		setLayout(null);
-	      
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(new Rectangle(50, 343, 271, 246));
+
 		rightTable = new JTable(new SimpleColorTableModel());
 		rightTable.setBackground(new Color(0, 204, 204));
 		scrollPane.setColumnHeaderView(rightTable);
@@ -67,12 +70,13 @@ public class prueba2 extends JInternalFrame
 		scrollPane_1.setBounds(new Rectangle(500, 0, 250, 400));
 		scrollPane_1.setBounds(20, 20, 271, 208);
 		add(scrollPane_1);
+
 		leftTable = new JTable(new SimpleColorTableModel());
 		leftTable.setBackground(new Color(153, 204, 255));
 		scrollPane_1.setViewportView(leftTable);
 		setupTable(leftTable);
 		populate((SimpleColorTableModel) leftTable.getModel());
-		setSize(620, 420);
+
 		addButton.setEnabled(false);
 		removeButton.setEnabled(false);
 
@@ -122,15 +126,17 @@ public class prueba2 extends JInternalFrame
 
             int count = leftTable.getSelectedRowCount();
 
-            if(count>0&& band1 )
-            {
+            if(count>0&& band1 ){
                 if (current!=null)
                     remove(current);
 
-                for (int ignored :leftTable.getSelectedRows())
-                {
-                    current=new BigCard(mazo.Consultar(num),340,30);
-                    current.addMouseListener(new MouseListener(){
+                for (int ignored :leftTable.getSelectedRows()){
+					try {
+						current=new BigCard(mazo.Consultar(num),340,30);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					current.addMouseListener(new MouseListener(){
 
                         @Override
                         public void mouseClicked(MouseEvent e) {
@@ -183,14 +189,14 @@ public class prueba2 extends JInternalFrame
 
 		this.opciones = new JInternalFrame();
 		this.opciones.getContentPane().setLayout(null);
-		this.aceptar = new JButton("aceptar");
-		this.aceptar.setBounds(15, 11, 100, 20);
-		this.opciones.getContentPane().add(this.aceptar);
 		this.opciones.setClosable(true);
 		this.opciones.setBounds(380,160,130,70);
 		this.opciones.setVisible(false);
-		add(this.opciones);
 		this.opciones.moveToFront();
+		this.aceptar = new JButton("aceptar");
+		this.aceptar.setBounds(15, 11, 100, 20);
+		this.opciones.getContentPane().add(this.aceptar);
+		add(this.opciones);
 	}
 
 	protected void setupTable(JTable table) {

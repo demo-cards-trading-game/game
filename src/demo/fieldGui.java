@@ -36,19 +36,19 @@ public class fieldGui extends JPanel {
 		panel3.setForeground(Color.ORANGE);
 		panel3.setBackground(new Color(169, 169, 169));
 		panel3.setBounds(246, 0, 75, 145);
-		add(panel3);
 		panel3.arcs=new Dimension(10,10);
 		panel3.shady=false;
-		
+		add(panel3);
+
 		panel4 = new RoundedPanel();
 		panel4.setLayout(null);
 		panel4.setForeground(Color.MAGENTA);
 		panel4.setBackground(new Color(169, 169, 169));
 		panel4.setBounds(343, 0, 75, 145);
-		add(panel4);
 		panel4.arcs=new Dimension(10,10);
 		panel4.shady=false;
-		
+		add(panel4);
+
 		panel5 = new RoundedPanel();
 		panel5.setLayout(null);
 		panel5.setForeground(Color.CYAN);
@@ -59,10 +59,8 @@ public class fieldGui extends JPanel {
 		add(panel5);
 
 	}
-	void poner(SmallCard x,int pos)
-	{
-		switch(pos)
-		{
+	void poner(SmallCard x,int pos){
+		switch(pos){
 			case 0:
 				if(panel.isShowing()){
 					remove(panel);
@@ -71,16 +69,14 @@ public class fieldGui extends JPanel {
 				}
 				break;
 			case 1:
-				if(panel2.isShowing())
-				{
+				if(panel2.isShowing()){
 					remove(panel2);
 					cards[1]=x;
 					x.setBounds(149, 0, 83, 145);
 				}
 				break;
 			case 2:
-				if(panel3.isShowing())
-				{
+				if(panel3.isShowing()){
 					remove(panel3);
 					cards[2]=x;
 					x.setBounds(246, 0, 83, 145);
@@ -105,28 +101,23 @@ public class fieldGui extends JPanel {
 		repaint();
 	}
 	 
-	public void quitar(int pos)
-	{
-		if(cards[pos]!=null)
-		{
-			switch(pos)
-			{
+	public void quitar(int pos){
+		if(cards[pos]!=null){
+			switch(pos){
 				case 0:
 					remove(cards[0]);
 					cards[0]=null;
 					add(panel);
 					break;
 				case 1:
-					if(cards[1].isShowing())
-					{
+					if(cards[1].isShowing()){
 						remove(cards[1]);
 						cards[1]=null;
 						add(panel2);
 					}
 					break;
 				case 2:
-					if(cards[2].isShowing())
-					{
+					if(cards[2].isShowing()){
 						remove(cards[2]);
 						cards[2]=null;
 						add(panel3);
@@ -150,28 +141,24 @@ public class fieldGui extends JPanel {
 		}
 		repaint();
 	}
-	int findwhere()
-	{
+
+	int findwhere(){
 		int x=-1;
 		int i=0;
-		while(x==-1 && i<5)
-		{
-			if(cards[i]==null)
-			{
+		while(x==-1 && i<5){
+			if(cards[i]==null){
 				x=i;
 			}
 			i++;
 		}
 		return x;
 	}
-	int findwarrior()
-	{
+
+	int findwarrior(){
 		int x=-1;
 		int i=0;
-		while(x==-1 && i<5)
-		{
-			if(cards[i]!=null)
-			{
+		while(x==-1 && i<5){
+			if(cards[i]!=null){
 				if(Objects.equals(cards[i].getcard().GetType(), "Warrior")){
 					x=i;
 				}
@@ -181,12 +168,10 @@ public class fieldGui extends JPanel {
 		return x;
 	}
 	 
-	public int countcards()//cuenta las cartas en la mano
-	{
+	public int countcards(){
 		int cant=0;
 		int i = 0;
-		while(i<5)
-		{
+		while(i<5){
 			if(cards[i]!=null)
 				cant++;
 			i++;

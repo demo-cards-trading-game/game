@@ -4,15 +4,14 @@ public  class List{
         Card info;
         Nodo ant,sig;
 
-        public Nodo() /*falto esto*/
-        {
+        public Nodo() {
             ant=sig=null;
             info=new Card();
         }
     }
     
     private Nodo raiz;
-    private Nodo ultimo; //para poder insertar nodos al final directamente
+    private Nodo ultimo;
     public int cantidad;
 
     public List() {
@@ -24,9 +23,8 @@ public  class List{
         return this.cantidad;
     }
     
-    public void insertar (int pos, Card x)
-    {
-        if (pos <= cantidad  + 1)    {
+    public void insertar (int pos, Card x){
+        if (pos <= cantidad  + 1) {
             Nodo nuevo = new Nodo ();
             nuevo.info.asignar(x);
             if (pos == 1){
@@ -36,11 +34,10 @@ public  class List{
                 }
                 raiz = nuevo;
                 
-                if(cantidad==0){ //en este caso el primer elemento tambien es el ultimo
+                if(cantidad==0){
                     ultimo = nuevo;
                 }
-            } else
-            if (pos == cantidad  + 1)    {
+            } else if (pos == cantidad  + 1){
                 Nodo reco = raiz;
                 while (reco.sig != null) {
                     reco = reco.sig;
@@ -48,7 +45,6 @@ public  class List{
                 reco.sig = nuevo;
                 nuevo.ant=reco;
                 nuevo.sig = null;
-                    
                 ultimo=nuevo;
             } else {
                 Nodo reco = raiz;
@@ -65,30 +61,26 @@ public  class List{
     }
 
     public void insertarUlt(Card x){
-        if(ultimo!=null)
-        { Nodo nuevo = new Nodo ();
+        if(ultimo!=null){
+            Nodo nuevo = new Nodo ();
             nuevo.info.asignar(x);
             ultimo.sig=nuevo;
             nuevo.ant=ultimo;
             nuevo.sig=null;
             ultimo=nuevo;
-        }else
-        {
+        }else{
             insertar(1,x);
         }
         cantidad++;
     }
 
-    public Card Consultar(int pos)
-    {
+    public Card Consultar(int pos){
         Card informacion=new Card();
         boolean encontrado=false;
         Nodo reco;
         reco = raiz;
         while(!encontrado && reco!=null){
-           
-            if(pos==reco.info.GetCardNumber())
-            {
+            if(pos==reco.info.GetCardNumber()){
                 encontrado=true;
                 informacion=reco.info;
             }

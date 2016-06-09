@@ -1,5 +1,4 @@
 package demo;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,62 +12,58 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 	public Drained powers;
 	public Barriers barriers;
 	public fieldGui field;
-	/**
-	 * Create the panel.
-	 */
+
 	public PlayerGui(int x , int y, String name) throws IOException {
-		/************graficos del panel*****************/
 		setBounds(x,y, 1024, 768);
 		setOpaque(false);
 		setLayout(null);
 		
-		/*inicializacion de los atributos*/
 		hand= new HandGui (0,0);
-		field = new fieldGui(226,430);
 		hand.setLocation(235,605 );
+		add(hand);
+
+		field = new fieldGui(226,430);
+		add(field);
+
 		powers=new Drained(15,350,name);
-	
-		barriers =new Barriers(179,590);
-		
-		/************a�ade atributos***********/
 		add(powers);
-		this.add(hand);
-		this.add(field);
+
+		barriers =new Barriers(179,590);
 		add(barriers);
+
 		pdeck = new DeckGui(0,0);
 		pdeck.setSize(250, 343);
 		pdeck.setLocation(740, 425);
-		this.add(pdeck);
-		
-		try {
-			pdeck.addhero(pdeck.Deck.lista.Data.Consultar(8));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		pdeck.addhero(pdeck.Deck.lista.Data.Consultar(8));
 		pdeck.panel.addMouseListener(this);
+		add(pdeck);
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e.getClickCount()==1)
-		{
-			if(e.getSource()==pdeck.panel)
-			{
+		if(e.getClickCount()==1){
+			if(e.getSource()==pdeck.panel){
 				pdeck.menu.setVisible(true);
 			}
 		}
 	}
+
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 	}
+
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 	}
+
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 	}
+
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 	}
