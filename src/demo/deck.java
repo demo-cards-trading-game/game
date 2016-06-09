@@ -5,49 +5,32 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
-public class deck{
-    /******************revisar**********************/
-	
+
+public class deck {
     public   Card[]  cards  = new Card[40];
     private boolean[]  verif  = new boolean[40];
     public LoadData lista;
-    /**
-     * As cards are dealt from the deck, the number of
-     * cards left decreases.  This function returns the
-     * number of cards that are still left in the deck.
-     */
-    public int cardsLeft()
-    {
+
+    public int cardsLeft(){
         return longitud;
     }
-    /**
-     * Deals one card from the deck and returns it.
-     * @throws IllegalStateException if no more cards are left.
-     */
-    /*************************************************************/
-    class nodo{ //clase auxiliar para la pila
+
+    class nodo{
         Card info;
         nodo sig;
     }
- 
-    private nodo raiz; //primera carta del deck
-    public int longitud; //tamaño del deck
 
-    //constructor
-    public deck(){
+    private nodo raiz;
+    public int longitud;
+
+    public deck() throws IOException {
         raiz= null;
         longitud=0;
-        try {
-            lista=new LoadData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        lista=new LoadData();
     }
 
-    void init()
-    {
-        for (int i=0;i<40;i++)
-        {
+    void init(){
+        for (int i=0;i<40;i++){
             verif[i]=false;
         }
     }
@@ -56,40 +39,38 @@ public class deck{
         init();
         Random randomGenerator = new Random();
 	 	
-        raiz= null;//aca se deberia desuir lo que esta en la lista
+        raiz= null;
         longitud=0;
-        for(int i=0 ;i< 20;i++)
-        {
+
+        for(int i=0 ;i< 20;i++){
             a = randomGenerator.nextInt(cards.length-1);
             b=randomGenerator.nextInt(cards.length-1);
-            if(verif[a])
-            {
+
+            if(verif[a]){
                 a=findanother();
             }
-            if(verif[b])
-            {
+
+            if(verif[b]){
                 b=findanother();
             }
+
             exch(a,b);
             this.insertar( cards[a]);
-            this. insertar( cards[b]);
+            this.insertar( cards[b]);
         }
     }
-    public int findanother()
-    {
+    public int findanother(){
         int i=0;
-        Random randomGenerator = new Random();
         int x;
-        do
-        {
-            x = randomGenerator.nextInt(cards.length-1);//genera un siguiente aleatoriamente
-		
-            if(verif[x])//se genera el siguiente iterativamente
-            {
+        Random randomGenerator = new Random();
+
+        do{
+            x = randomGenerator.nextInt(cards.length-1);
+            if(verif[x]){
                 x =i;
                 i++;
             }
-        }while(verif[x]);//ninguno de las dos formas lo encontro
+        }while(verif[x]);
         return(x);
     }
 
@@ -102,14 +83,12 @@ public class deck{
         verif[r]=true;
     }
 
-    public Card Consultar(int pos)
-    {
+    public Card Consultar(int pos){
         Card informacion;
-        if (pos == 1)
-        {
+
+        if (pos == 1){
             informacion = raiz.info;
-        }else
-        {
+        }else{
             nodo reco;
             reco = raiz;
             for (int f = 2 ; f <= pos  ; f++)
@@ -119,17 +98,14 @@ public class deck{
         return informacion;
     }
 
-    public Card ConsultarYextraer(int pos)
-    {
+    public Card ConsultarYextraer(int pos){
         Card informacion;
         nodo sig;
         nodo ant;
-        if (pos == 1)
-        {
+        if (pos == 1){
             informacion = raiz.info;
             raiz=raiz.sig;
-        }else
-        {
+        }else{
             nodo reco;
             ant = raiz;
             reco=ant.sig;
@@ -156,7 +132,6 @@ public class deck{
         return pos;
     }
 
-    //modificacion
     public void insertar(Card c){
         nodo nuevo= new nodo();
         nuevo.info= c;
@@ -168,11 +143,10 @@ public class deck{
             nuevo.sig=raiz;
             raiz = nuevo;
         }
-
         longitud++;
     }
 
-    public Card extraerR(){ //extrae retornando
+    public Card extraerR(){
         Card ident=new Card();
         if(raiz!=null){
             ident= raiz.info;
@@ -181,7 +155,8 @@ public class deck{
         }
         return ident;
     }
-    public void Load(String nombredeck)throws IOException //de aca sale con 40 cartas
+
+    public void Load(String nombredeck)throws IOException
     {
         String cadena;
         int numero = 0,veces=0;
@@ -189,24 +164,21 @@ public class deck{
         FileReader f = new FileReader(nombredeck);
         BufferedReader b = new BufferedReader(f);
 
-        while(  (cadena = b.readLine())!=null )
-        {
+        while(  (cadena = b.readLine())!=null ){
             s=new Scanner(cadena);
-            if(s.hasNext())
-            {
+            if(s.hasNext()){
                 numero= Integer.parseInt(s.next());
                 veces= Integer.parseInt(s.next());
             }
+
             for (int i=1;i<=veces;i++){
                 insertar(lista.Data.Consultar(numero));
             }
         }
         barajear();
     }
-    public void barajear()
-    {
-        for (int i =0; i<40;i++)
-        {
+    public void barajear(){
+        for (int i =0; i<40;i++){
             cards[i]=Consultar(i);
         }
         shuffle();

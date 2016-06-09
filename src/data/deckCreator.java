@@ -19,6 +19,7 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 	{
 		getContentPane().setLayout(null);
 		setBounds(x,y,800,600);
+		setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
 		setClosable(true);
 		this.setEnabled(false);
 		setIconifiable(false);
@@ -39,18 +40,17 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		error.setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
 		error.add(txtpnTexto);
 		add(error);
-
 		error.setVisible(false);
-		setBorder(new LineBorder(new Color(128, 0, 0), 3, true));
+
 		panel2=new JPanel();
 		panel2.setBounds(400,0,400,600);
 		panel2.setOpaque(false);
 
 		panel1=new JPanel();
+		panel1.setLayout(null);
 		panel1.setBounds(0,0,400,600);
 		panel1.setOpaque(false);
 		getContentPane().add(panel1);
-		panel1.setLayout(null);
 
 		JButton btnStarter = new JButton("Use a starter deck");
 		btnStarter.setBounds(85, 42, 226, 53);
@@ -116,8 +116,8 @@ public class deckCreator extends JInternalFrame implements ActionListener {
 		{
 			Nombre=nombred.getText();
 			if(!Nombre.isEmpty()){  
-				addbackground(this);// agregar el fondo
-				lista=new prueba();//
+				addbackground(this);
+				lista=new prueba();
 				add(lista);
 				repaint();
 			}else

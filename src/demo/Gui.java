@@ -4,6 +4,8 @@ import data.deckCreator;
 import extra.RollDice;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -173,14 +175,22 @@ public class Gui extends JFrame implements ActionListener, MouseListener
                                 player1.contTurn++;
                             } catch (IOException e1) {
                                 e1.printStackTrace();
-                            }
-                        }
+                            } catch (UnsupportedAudioFileException e1) {
+								e1.printStackTrace();
+							} catch (LineUnavailableException e1) {
+								e1.printStackTrace();
+							}
+						}
                         else {
                             player1.firstPlayerTurn();
                         }
                     });
 					t.start();
 				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (UnsupportedAudioFileException e1) {
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
 					e1.printStackTrace();
 				}
 
@@ -251,7 +261,15 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 								} catch (InterruptedException e1) {
 									e1.printStackTrace();
 								}
-								PlayGui.player.hand.draw(nueva);
+								try {
+									PlayGui.player.hand.draw(nueva);
+								} catch (UnsupportedAudioFileException e1) {
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								} catch (LineUnavailableException e1) {
+									e1.printStackTrace();
+								}
 								repaint();
 							});
 							t1.start();
@@ -352,6 +370,10 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			player1=new PlayGui(0,0,Nombre1,this);
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
 		}
 		b2 = new JButton("rematch");
 		b2.setBackground(Color.BLACK);
@@ -371,6 +393,10 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			player1=new PlayGui(0,0,Nombre1,this);
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
 		}
 		b2 = new JButton("rematch");
 		b2.setBackground(Color.BLACK);

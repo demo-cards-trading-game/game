@@ -31,8 +31,9 @@ public class RoundedPanel extends JPanel {
         setBackground(Color.ORANGE);
         setOpaque(false);
     }
+
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         int width = getWidth();
         int height = getHeight();

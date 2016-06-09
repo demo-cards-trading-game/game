@@ -3,6 +3,8 @@ import demo.Fallen.SimpleColorTableModel;
 import extra.RoundedPanel;
 import extra.movePanel;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -77,7 +79,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		//int pos=player.field.findwarrior();//busca un warrior en el campo para hacer la animacion
 	}
 
-	public PlayGui(int x , int y, String name, Gui g) throws IOException {
+	public PlayGui(int x , int y, String name, Gui g) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		this.instanciaGui = g;
 		setBorder(null);
 		player=new PlayerGui(x,y,name);
@@ -873,8 +875,24 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 				}
 				else{
-					player.hand.draw(fallen.cards[0].getcard() );
-					player.hand.draw(fallen.cards[1].getcard() );
+					try {
+						player.hand.draw(fallen.cards[0].getcard() );
+					} catch (UnsupportedAudioFileException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						player.hand.draw(fallen.cards[1].getcard() );
+					} catch (UnsupportedAudioFileException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+						e1.printStackTrace();
+					}
 					fallen.confirmcardsfromfallen.setEnabled(false);
 					if(fallen.cards[0]!=null)
 					{
@@ -1120,11 +1138,27 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					System.out.println("You must have 0 barriers to play this card");
 				}
 				else{
-					playPlayerCard();
+					try {
+						playPlayerCard();
+					} catch (UnsupportedAudioFileException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}else
 			{
-				playPlayerCard();
+				try {
+					playPlayerCard();
+				} catch (UnsupportedAudioFileException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 
@@ -1139,7 +1173,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==this.listAll.aceptar){
 			this.listAll.setVisible(false);
 			this.listAll.opciones.setVisible(false);
-			int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(this.listAll.num));
+			int pos= 0;
+			try {
+				pos = player.hand.draw(player.pdeck.Deck.ConsultarYextraer(this.listAll.num));
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			player.hand.handgui[pos-1].addMouseListener(this);
 			Addlisteners2Card(pos-1);
 			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
@@ -1162,7 +1205,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.discard(1);
 			this.repairListeners(true);
 
-			addPowerCardFromTheDeck();
+			try {
+				addPowerCardFromTheDeck();
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			repaint();
 		}
 
@@ -1180,7 +1231,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.discard(2);
 			this.repairListeners(true);
 
-			addPowerCardFromTheDeck();
+			try {
+				addPowerCardFromTheDeck();
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			repaint();
 		}
 
@@ -1198,7 +1257,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.discard(3);
 			this.repairListeners(true);
 
-			addPowerCardFromTheDeck();
+			try {
+				addPowerCardFromTheDeck();
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			repaint();
 		}
 
@@ -1216,7 +1283,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.discard(4);
 			this.repairListeners(true);
 
-			addPowerCardFromTheDeck();
+			try {
+				addPowerCardFromTheDeck();
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			repaint();
 		}
 
@@ -1235,7 +1310,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			this.repairListeners(true);
 
-			addPowerCardFromTheDeck();
+			try {
+				addPowerCardFromTheDeck();
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			repaint();
 		}
 	}
@@ -1256,7 +1339,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==Hero)
 		{
 			remove(unleash);
-			play(-3);
+			try {
+				play(-3);
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			}
 			repaint();
 		}
 		if(e.getButton() == MouseEvent.BUTTON1)
@@ -1273,7 +1364,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				{
 					if(e.getSource()== Barriers.barriers[0])//si se da click a la barrera 0
 					{
-						int pos= player.hand.draw(Barriers.cards[0]);
+						int pos= 0;
+						try {
+							pos = player.hand.draw(Barriers.cards[0]);
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(0);
@@ -1283,7 +1383,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					if(e.getSource()== Barriers.barriers[1])
 					{
-						int pos= player.hand.draw(Barriers.cards[1]);
+						int pos= 0;
+						try {
+							pos = player.hand.draw(Barriers.cards[1]);
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(1);
@@ -1293,7 +1402,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					if(e.getSource()== Barriers.barriers[2])
 					{
-						int pos= player.hand.draw(Barriers.cards[2]);
+						int pos= 0;
+						try {
+							pos = player.hand.draw(Barriers.cards[2]);
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(2);
@@ -1303,7 +1421,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					if(e.getSource()== Barriers.barriers[3])
 					{
-						int pos= player.hand.draw(Barriers.cards[3]);
+						int pos= 0;
+						try {
+							pos = player.hand.draw(Barriers.cards[3]);
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(3);
@@ -1313,7 +1440,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					if(e.getSource()== Barriers.barriers[4])
 					{
-						int pos= player.hand.draw(Barriers.cards[4]);
+						int pos= 0;
+						try {
+							pos = player.hand.draw(Barriers.cards[4]);
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.barriers.removebarrier(4);
@@ -1484,6 +1620,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								Aiturn();
 							} catch (IOException e1) {
 								e1.printStackTrace();
+							} catch (UnsupportedAudioFileException e1) {
+								e1.printStackTrace();
+							} catch (LineUnavailableException e1) {
+								e1.printStackTrace();
 							}
 							break;
 					}
@@ -1628,7 +1768,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 				if(e.getSource()==this.aitarjet1||e.getSource()==this.aitarjet2||e.getSource()==this.aitarjet3||e.getSource()==this.aitarjet4||e.getSource()==this.aitarjet5){
-					int pos= player.hand.draw(player.field.cards[this.selected-1].getcard());
+					int pos= 0;
+					try {
+						pos = player.hand.draw(player.field.cards[this.selected-1].getcard());
+					} catch (UnsupportedAudioFileException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+						e1.printStackTrace();
+					}
 					player.hand.handgui[pos-1].addMouseListener(this);
 					Addlisteners2Card(pos-1);
 					player.field.quitar(this.selected-1);
@@ -1661,7 +1810,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				if(e.getSource()==this.ptarjet81||e.getSource()==this.ptarjet82||e.getSource()==this.ptarjet83||e.getSource()==this.ptarjet84||e.getSource()==this.ptarjet85||e.getSource()==this.aitarjet81||e.getSource()==this.aitarjet82||e.getSource()==this.aitarjet83||e.getSource()==this.aitarjet84||e.getSource()==this.aitarjet85){
 					this.selected=-1;
-					int pos;
+					int pos = 0;
 
 					this.ptarjet81.setVisible(false);
 					this.ptarjet82.setVisible(false);
@@ -1709,7 +1858,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.ai.aifield.quitar(this.selected-1);
 					}
 					else{
-						pos= player.hand.draw(player.field.cards[this.selected-1].getcard());
+						try {
+							pos= player.hand.draw(player.field.cards[this.selected-1].getcard());
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.field.quitar(this.selected-1);
@@ -2013,7 +2170,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
 					{
 						ai.aifield.quitar(atkDest-1);
-						this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+						try {
+							this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
+						} catch (UnsupportedAudioFileException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
+						}
 
 					}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
 					{
@@ -2687,8 +2852,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint();
 	}
 
-	void set(final int pos,final int where)
-	{
+	void set(final int pos,final int where) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		final SmallCard carta  ;
 
 		if(pos!=-2 && pos!=-3){
@@ -2860,7 +3024,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	
-	void play(int pos){// plays a card on field
+	void play(int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {// plays a card on field
 		boolean allowed = true;
 		if(pos>=0){
 			c=player.hand.handgui[pos].getcard().GetCost();
@@ -2891,7 +3055,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 	}
 
-	public void Aiturn() throws IOException//aqui se programara a lo salvaje el turno del ai
+	public void Aiturn() throws IOException, LineUnavailableException, UnsupportedAudioFileException//aqui se programara a lo salvaje el turno del ai
 	{
 		if (ai.aideck.Deck.cardsLeft()==0) {
 			instanciaGui.doWin();
@@ -2918,7 +3082,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		aiPhases();
 	}
 
-	public void makeEffect(String id, int pos){
+	public void makeEffect(String id, int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(this.phases.actual==2){
 			if(id.equals("SSD-06")){
 				System.out.println("you get 2 volatile power, use it wisely");
@@ -3130,7 +3294,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	}
 
-	public void makeAiEffect(String id, int pos){
+	public void makeAiEffect(String id, int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(this.phases.actual==2){
 
 			if(id.equals("SSD-2")){
@@ -3768,8 +3932,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.pdeck.Play.setEnabled(false);
 		player.powers.reset();
 	    
-		this.phases.setup.removeMouseListener(this);
-		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
 	}
 
@@ -3927,12 +4089,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            playAiCard("anywhere");
-        });
+			try {
+				playAiCard("anywhere");
+			} catch (UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (LineUnavailableException e) {
+				e.printStackTrace();
+			}
+		});
 		t1.start();
 	}
 	
-	public void playAiCard(String type){
+	public void playAiCard(String type) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 //		fase 1 : invocacion
 		int cardAiHandLocation = getCardAiHandLocation(type); //ubicar la carta a colocar en hand
 		int cardAiFieldLocation = getCardAiFieldLocation();  //ubicar la carta en una posicion del fiel disponible
@@ -3966,7 +4136,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint();
 	}
 	
-	public void possiblesAiMovements(){
+	public void possiblesAiMovements() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		Random al = new Random();
 		int aleatorio;
 		ai.whereInvoqued=-1;
@@ -4049,7 +4219,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		t1.start();
 	}
 
-	public void addPowerCardFromTheDeck(){
+	public void addPowerCardFromTheDeck() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		System.out.println("adding a water power from the deck");
 		int p = player.pdeck.Deck.posCard("SSD-15");
 		if(p ==-1){
@@ -4161,7 +4331,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 	}
 
-	public void aiMovements(){
+	public void aiMovements() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(ExistCardsInAiField()){
 			Random al = new Random();
 			int aleatorio = al.nextInt(2); //retornara 0 o 1
@@ -4173,7 +4343,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			possiblesAiMovements();
 		}
 	}
-	public void playPlayerCard(){
+	public void playPlayerCard() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(done==0)
 			play(pl);
 		phases.reaction.setIcon(new ImageIcon(("reAction.png")));
@@ -4184,7 +4354,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.repairListeners(true);
 	}
 
-	public void aiPhases(){
+	public void aiPhases() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		phases.reaction.setIcon(new ImageIcon(("reAction2.png")));
 		repaint();
 		phases.change(phases.actual+1);
@@ -4332,8 +4502,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.reset();
 		repaint();
 
-		this.phases.setup.removeMouseListener(this);
-		this.phases.draw.removeMouseListener(this);
 		this.phases.draw.addMouseListener(this);
 
 		if(bugPrimerTurnoUSer==0){

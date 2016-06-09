@@ -1,6 +1,10 @@
 package demo;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+
 public  class HandGui extends JLayeredPane
 {
 	private static final long serialVersionUID = 1L;
@@ -45,8 +49,7 @@ public  class HandGui extends JLayeredPane
 			moveToFront(handgui[i]);
 		}
 	}
-	public int draw(Card a)
-	{
+	public int draw(Card a) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		AiHand.music();
 		SmallCard x;
 		cards[current]=a;
@@ -64,8 +67,7 @@ public  class HandGui extends JLayeredPane
 
 		return(current);
 	}
-	public int draw(CardGui a)
-	{
+	public int draw(CardGui a) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		AiHand.music();
 		SmallCard x;
 		cards[current]=a.getcard();

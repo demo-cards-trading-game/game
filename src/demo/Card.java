@@ -1,12 +1,12 @@
 package demo;
 public class Card
 {
-  private String SetNumber; /*id de la carta*/
-  private int Cost;    /*costo de mana */
-  private String Name; /*nombre de la carta*/
-  private String Class; /*clase de la carta */
-  private int Limit;   /*el limite de esa carta que puede haber en un deck*/
-  private String Source; /*el elemento de la carta */
+  private String SetNumber;
+  private int Cost;
+  private String Name;
+  private String Class;
+  private int Limit;
+  private String Source;
   private String Description;
   private int Hp;
   private int Mp;
@@ -14,19 +14,18 @@ public class Card
   private String Type;
   private int CardNumber;
 
-  public Card()/*constructor*/
+  public Card()
   {
     this.SetNumber="";
     this.Limit=0;
     this.Cost=0;
    }
-  /**********************funciones de consulta****************************/
 
+  /**********************funciones de consulta****************************/
   public String GetType()
   {
     return(this.Type);
   }
-  
   public String Getid()
   {
     return(this.SetNumber);
@@ -63,6 +62,7 @@ public class Card
   {
     return(this.CardNumber);
   }
+
     /**********************modificadores****************************/
   public void SetCardNumber(int New)
   {
@@ -96,10 +96,7 @@ public class Card
   {
     this.Cost=New;
   }
-  public void SetName(String New)
-  {
-    this.Name=New;
-  }
+  public void SetName(String New){this.Name=New;}
   public void SetSource(String New)
   {
     this.Source=New;
@@ -111,32 +108,15 @@ public class Card
   public void SetLimit(int New)
   {
     this.Limit=New;
-  } 
-  /***************************  otros **********************************/
-  public void PrintCard() /*imprime toda la info de las cartas (para pruebas)*/
-  {
-    System.out.println("\nCard Info");
-    System.out.println("SetNumber = "+this.SetNumber);
-    System.out.println("Cost = "+this.Cost);
-    System.out.println("Type= " +this.Type);
-    System.out.println("Name = " + this.Name);
-    System.out.println("Source = "+this.Source);
-    System.out.println("Class = "+this.Class);
-    System.out.println("Limit per Deck = "+this.Limit);
-    System.out.println("Description= "+this.Description);
-    System.out.println("Hp = "+this.Hp);
-    System.out.println("Mp = "+this.Mp);
-    System.out.println("Support = " +this.Sup);
-    System.out.println("Number = " +this.GetCardNumber());
   }
-  
-  public void asignar( Card b)/*a = b */
+
+  public void asignar( Card b)
   {
-       this.SetNumber=b.SetNumber; /*id de la carta*/
-       this.Cost=b.Cost;    /*costo de mana */
-       this.Name=b.Name;  /*nombre de la carta*/
-       this.Class=b.Class; /*clase de la carta */
-       this.Limit=b.Limit;   /*el limite de esa carta que puede haber en un deck*/
+       this.SetNumber=b.SetNumber;
+       this.Cost=b.Cost;
+       this.Name=b.Name;
+       this.Class=b.Class;
+       this.Limit=b.Limit;
        this.Source=b.Source;
        this.Description=b.Description;
        this.Hp=b.Hp;

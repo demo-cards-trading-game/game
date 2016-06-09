@@ -3,9 +3,9 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Random;
-public  class AiHand extends JPanel //implements MouseListener
+
+public  class AiHand extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	public AIcard[]  handgui  = new AIcard[5];
@@ -19,13 +19,11 @@ public  class AiHand extends JPanel //implements MouseListener
 		setLayout(null);
 	}
 	
-	public void discard(int pos)
-	{
+	public void discard(int pos){
 		int i;
 	     
 		if(pos>0){
-			for (i=pos;i<current;i++)
-			{
+			for (i=pos;i<current;i++){
 				cards[i-1]=cards[i];
 				handgui[i-1]=handgui[i];
 			}
@@ -38,15 +36,12 @@ public  class AiHand extends JPanel //implements MouseListener
 			repaint();
 		}
 	}
-	void addall()
-	{
-		for (int i=0;i<current;i++)
-		{
+	void addall(){
+		for (int i=0;i<current;i++){
 			add(handgui[i]);
 		}
 	}
-	public int draw(Card a)
-	{
+	public int draw(Card a) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		music();
 		if(current==5)
 		{
@@ -54,11 +49,11 @@ public  class AiHand extends JPanel //implements MouseListener
 			int randomInt = randomGenerator.nextInt(4);
 			discard(randomInt+1);
 		}
+
 		AIcard x = null;
 		cards[current]=a;
 		      
-		switch(current)
-		{
+		switch(current){
 			case 0:x= new AIcard(a,0,20);
 				break;
 			case 1:x= new AIcard(a,80,20);
@@ -96,36 +91,22 @@ public  class AiHand extends JPanel //implements MouseListener
 		}
 	}
 
-	public static void music()
-	{
+	public static void music() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 		String soundName = "burn.wav";
-		AudioInputStream audioInputStream = null;
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-				
-		} catch (UnsupportedAudioFileException | IOException e) {
-			e.printStackTrace();
-		}
-		Clip clip = null;
-		try {
-			clip = AudioSystem.getClip();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
-		try {
-			clip.open(audioInputStream);
-		} catch (LineUnavailableException | IOException e) {
-			e.printStackTrace();
-		}
+		AudioInputStream audioInputStream;
+		audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+
+		Clip clip;
+		clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
 		clip.start();
 	}
 
-	public int countcards()//cuenta las cartas en la mano
+	public int countcards()
 	{
 		int cant=0;
 		int i = 0;
-		while(i<5)
-		{
+		while(i<5){
 			if(handgui[i]!=null)
 				cant++;
 			i++;

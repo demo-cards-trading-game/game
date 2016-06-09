@@ -16,8 +16,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 	/**
 	 * Create the panel.
 	 */
-	public PlayerGui(int x , int y, String name) 
-	{
+	public PlayerGui(int x , int y, String name) throws IOException {
 		/************graficos del panel*****************/
 		setBounds(x,y, 1024, 768);
 		setOpaque(false);

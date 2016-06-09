@@ -200,22 +200,6 @@ public class prueba extends JLayeredPane
 		}
 	}
 
-	/*protected void moveSelectedRow(JTable from, JTable to) {
-		SimpleColorTableModel fromModel = (SimpleColorTableModel) from.getModel();
-		SimpleColorTableModel toModel = (SimpleColorTableModel) to.getModel();
-
-		for (int index : from.getSelectedRows()) {
-			Vector rowValue = (Vector) fromModel.getDataVector().get(index);
-			toModel.addRow(rowValue);
-		}
-
-		int selectedRow;
-		while ((selectedRow = from.getSelectedRow()) != -1) {
-			fromModel.removeRow(selectedRow);
-		}
-		from.clearSelection();
-	}
-*/
 	protected void populate(SimpleColorTableModel model) {
 		Color color;
 		String Nombre;

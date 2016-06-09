@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class RollDicePanel extends JPanel implements ActionListener{
 	public JButton rollButton;
-	public JLabel text = new JLabel(""); //donde deberia ir el resultado
+	public JLabel text = new JLabel("");
 	public JLabel dice1;
 	public JLabel dice2;
 	private Random rg = new Random();
@@ -74,7 +74,6 @@ public class RollDicePanel extends JPanel implements ActionListener{
 					}
 				}
 				else{
-	     	        	
 					this.cancel();
 				}
 			}
