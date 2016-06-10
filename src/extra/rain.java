@@ -1,5 +1,4 @@
 package extra;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -8,15 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class rain extends JPanel
-{
+public class rain extends JPanel{
     private float mGravity = 9.8f;
-
     private int mRepaintTimeMS = 20;
     private double mDdropInitialVelocity = 5;
     private Color mColor=Color.white;
-//*********************************************
-
     private ArrayList<Rain> rainV;
     private ArrayList<Drop> dropV;
 
@@ -62,8 +57,6 @@ public class rain extends JPanel
         float mRainWidth = 0.5f;
         g2.setStroke(new BasicStroke(mRainWidth));
         g2.setColor(mColor);
-
-        //DRAW DROPS
         Iterator<Drop> iterator2 = dropV.iterator();
         while (iterator2.hasNext()) {
             Drop drop = iterator2.next();
@@ -75,7 +68,6 @@ public class rain extends JPanel
             }
         }
 
-        //DRAW RAIN
         Iterator<Rain> iterator = rainV.iterator();
         while (iterator.hasNext()) {
             Rain rain = iterator.next();
@@ -83,7 +75,6 @@ public class rain extends JPanel
             rain.draw(g2);
 
             if (rain.y >= getHeight()) {
-                //create new drops (2-8)
                 long dropCount = 1 + Math.round(Math.random() * 4);
                 for (int i = 0; i < dropCount; i++) {
                     dropV.add(new Drop(rain.x, getHeight()));
@@ -92,7 +83,6 @@ public class rain extends JPanel
             }
         }
 
-        //CREATE NEW RAIN
         double mRainChance = 0.99;
         if (Math.random() < mRainChance) {
             rainV.add(new Rain());
@@ -113,9 +103,9 @@ public class rain extends JPanel
         }
 
         public void update() {
+            float mWind = 2.05f;
             prevX = x;
             prevY = y;
-            float mWind = 2.05f;
             x += mWind;
             y += mGravity;
         }
@@ -129,8 +119,8 @@ public class rain extends JPanel
     private class Drop {
         double x0;
         double y0;
-        double v0; //initial velocity
-        double t;  //time
+        double v0;
+        double t;
         double angle;
         double x;
         double y;
@@ -139,7 +129,6 @@ public class rain extends JPanel
             super();
             this.x0 = x0;
             this.y0 = y0;
-
             v0 = mDdropInitialVelocity;
             angle = Math.toRadians(Math.round(Math.random() * 180)); //from 0 - 180 degrees
         }

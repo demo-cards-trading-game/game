@@ -1,8 +1,5 @@
 package demo;
-
-import data.deckCreator;
 import extra.RollDice;
-
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -17,13 +14,12 @@ import java.util.Objects;
 
 public class Gui extends JFrame implements ActionListener, MouseListener
 {
-	public JButton b2,b3, accionarAgarreAutomatico,Aifirst,playerfirst;
+	public JButton b2, accionarAgarreAutomatico,Aifirst,playerfirst;
 	public JLabel demo, ai,player;
 	public JTextArea val2;
 	public CardGui moving;
-	public String Nombre1;//nombre del jugador1
+	public String Nombre1;
 	public PlayGui player1;
-	public deckCreator crear;
 	public RollDice dados;
 	private FileWriter turno = null;
 	private PrintWriter pw = null;
@@ -234,14 +230,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-		
-		if (e.getSource()==b3)
-		{
-			if(!crear.isVisible()){
-				crear.setVisible(true);
-				add(crear);
-			}
-		}
 
 		if (player1!=null){
 			if(e.getSource()==player1.repaint)

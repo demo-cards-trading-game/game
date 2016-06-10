@@ -1,5 +1,4 @@
 package extra;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,25 +20,29 @@ public class RollDicePanel extends JPanel implements ActionListener{
  
 	RollDicePanel() throws IOException {
 		this.setOpaque(false);
+		setLayout(null);
+		this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+
 		dice1 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
 		dice1.setBounds(-66, 51, 244, 244);
+		this.add(dice1);
+
 		dice2 = new JLabel(new ImageIcon(ImageIO.read(new File("d1.png"))));
 		dice2.setBounds(542, 51, 244, 244);
+		this.add(dice2);
+
 		rollButton = new JButton("Let them roll");
 		rollButton.setBounds(71, 317, 440, 41);
 		rollButton.setFont(new Font("Sansserif", Font.PLAIN, 24));
-
-		setLayout(null);
-		this.add(rollButton);
-		this.add(dice1);
-		this.add(dice2);
 		rollButton.addActionListener(this);
-		this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		this.add(rollButton);
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		correr();
 	}
+
 	public void correr(){
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask(){

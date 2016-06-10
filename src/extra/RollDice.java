@@ -1,5 +1,4 @@
 package extra;
-
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
@@ -13,6 +12,7 @@ public class RollDice extends JPanel {
 		this.setBounds(0,0,1024,768);
 		this.setLayout(null);
 		this.setOpaque(false);
+
 		pane=new RollDicePanel();
 		pane.dice2.setLocation(544, 51);
 		pane.dice1.setLocation(21, 51);
@@ -24,16 +24,17 @@ public class RollDice extends JPanel {
 		btnPlay = new JButton("Play");
 		btnPlay.setFont(new Font("Showcard Gothic", Font.BOLD, 14));
 		btnPlay.setBounds(268, 369, 264, 41);
+		btnPlay.setVisible(false);
 		pane.add(btnPlay);
-	 
+
 		label = new JLabel("");
 		label.setForeground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Showcard Gothic", Font.BOLD, 20));
 		label.setBounds(236, 320, 507, 41);
-		pane.add(label);
-		btnPlay.setVisible(false);
 		label.setVisible(false);
+		pane.add(label);
+
 		this.setVisible(true);
 	}
 }

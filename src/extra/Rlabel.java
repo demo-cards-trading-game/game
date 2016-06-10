@@ -1,5 +1,4 @@
 package extra;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +11,6 @@ public class Rlabel extends JLabel {
   }
 
   private int left_x, left_y, right_x, right_y;
-
   private Color left_color, right_color;
 
   public void setLeftShadow(int x, int y, Color color) {
@@ -30,27 +28,20 @@ public class Rlabel extends JLabel {
   public Dimension getPreferredSize() {
     String text = getText();
     FontMetrics fm = this.getFontMetrics(getFont());
-
     int w = fm.stringWidth(text);
+    int h = fm.getHeight();
     w += (text.length() - 1) * tracking;
     w += left_x + right_x;
-
-    int h = fm.getHeight();
     h += left_y + right_y;
-
     return new Dimension(w, h);
   }
 
   public void paintComponent(Graphics g) {
-    ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-            RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
+    ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     char[] chars = getText().toCharArray();
-
     FontMetrics fm = this.getFontMetrics(getFont());
     int h = fm.getAscent();
     g.setFont(getFont());
-
     int x = 0;
 
     for (char ch : chars) {
@@ -83,5 +74,3 @@ JFrame frame = new JFrame("RichJLabel hack");
     frame.setVisible(true);
   }
 }
-
-   
