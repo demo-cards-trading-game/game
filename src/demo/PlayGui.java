@@ -25,7 +25,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public Previewpane preview;
 	public int p,w,c;
 	public SmallCard Hero;
-	public boolean checking;
 	public int donde;
 	public int number,X,Y;
 	public SmallCard moving;
@@ -43,8 +42,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel turnoLabel;
 	public int warriorPlayed;
 	public int cardDrawn, barierpicked;
-	public JLabel swordp1,swordp2,swordp3,swordp4,swordp5;
-	public JLabel sworda1,sworda2,sworda3,sworda4,sworda5;
+	public JLabel swordsPlayer[], swordsAi[];
 	public JLabel dest1, dest2, dest3, dest4, dest5;
 	public int atkDest=-1, atkOrigin=-1;
 	public int [] aiAttack= new int[5];
@@ -74,6 +72,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int getPhaseActual(){
 		return phases.actual;
 	}
+
 	public void battle()
 	{
 		//int pos=player.field.findwarrior();//busca un warrior en el campo para hacer la animacion
@@ -81,23 +80,25 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public PlayGui(int x , int y, String name, Gui g) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		this.instanciaGui = g;
-		setBorder(null);
-		player=new PlayerGui(x,y,name);
-		preview= new Previewpane();
-		player.hand.addMouseListener(this);
 
+		setBorder(null);
 		setOpaque(false);
 		setLayout(null);
 		setBounds(0,0, 1024, 768);
+
+		player=new PlayerGui(x,y,name);
+		player.hand.addMouseListener(this);
+
 		cardDrawn=0;
 
 		fight=new fightpane();
-		moveToFront(fight);//takes to front fightpane
+		moveToFront(fight);
 		this.add(fight);
 
 		unleash=new RoundedPanel();
 		unleash.setBounds(0,0,100,145);
 		unleash.add (new JLabel(new ImageIcon(ImageIO.read(new File("unleash.png")))));
+
 		pane = new JInternalFrame("THE FALLEN");
 		phases=new Phases(220,360);
 		add(phases);
@@ -108,11 +109,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai = new AIGui();
 		this.add(ai);
 
-		/*******************************************/
-
 		fallenAi=new Fallen();
 		add(fallenAi);
 
+		preview= new Previewpane();
 		this.add(preview);
 
 		player.barriers.addMouseListener(this);
@@ -123,7 +123,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
 
 			Addlisteners2Card(pos-1);
-			player.hand.handgui[pos-1].addMouseListener(this);					 //DE HAND A FIELD
+			player.hand.handgui[pos-1].addMouseListener(this);
 			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
 			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
 			player.pdeck.textField.repaint();
@@ -131,94 +131,42 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			
 		fallen=new Fallen();
 		add(fallen);
+
 		player.pdeck.btnNewButton_1.addMouseListener(this);
 
 		op=new  optionpane();
-		//swords
-		swordp1= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp1.setBounds(240, 350, 50, 120);
-		add(swordp1);
-		this.moveToFront(swordp1);
 
-		sworda1= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
-		sworda1.setBounds(0, 0, 540, 385);
-		add(sworda1);
-		this.moveToFront(sworda1);
-
-		swordp2= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp2.setBounds(350, 350, 50, 120);
-		add(swordp2);
-		this.moveToFront(swordp2);
-
-		sworda2= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
-		sworda2.setBounds(0, 0, 760, 385);
-		add(sworda2);
-		this.moveToFront(sworda2);
-
-		swordp3= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp3.setBounds(460, 350, 50, 120);
-		add(swordp3);
-		this.moveToFront(swordp3);
-
-		sworda3= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
-		sworda3.setBounds(0, 0, 980, 385);
-		add(sworda3);
-		this.moveToFront(sworda3);
-
-		swordp4= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp4.setBounds(570, 350, 50, 120);
-		add(swordp4);
-		this.moveToFront(swordp4);
-
-		sworda4= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
-		sworda4.setBounds(0, 0, 1200, 385);
-		add(sworda4);
-		this.moveToFront(sworda4);
-
-		swordp5= new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-		swordp5.setBounds(680, 350, 50, 120);
-		add(swordp5);
-		this.moveToFront(swordp5);
-
-		sworda5= new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
-		sworda5.setBounds(0, 0, 1420, 385);
-		add(sworda5);
-		this.moveToFront(sworda5);
-
-		this.swordp1.setVisible(false);
-		this.swordp2.setVisible(false);
-		this.swordp3.setVisible(false);
-		this.swordp4.setVisible(false);
-		this.swordp5.setVisible(false);
-		this.sworda1.setVisible(false);
-		this.sworda2.setVisible(false);
-		this.sworda3.setVisible(false);
-		this.sworda4.setVisible(false);
-		this.sworda5.setVisible(false);
-
-		swordp1.addMouseListener(this);
-		swordp2.addMouseListener(this);
-		swordp3.addMouseListener(this);
-		swordp4.addMouseListener(this);
-		swordp5.addMouseListener(this);
-		
-		try{
-			FileReader turno = new FileReader(new File("turno.txt"));
-			BufferedReader br = new BufferedReader(turno);
-			this.turn = Integer.parseInt(br.readLine());
-			turno.close();
-		}catch(Exception e2){ 
-			e2.printStackTrace();
+		swordsPlayer = new JLabel[5];
+		for(int i=0; i<5; i++){
+			swordsPlayer[i] = new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
+			swordsPlayer[i].setBounds(240+(110*i), 350, 50, 120);
+			swordsPlayer[i].setVisible(false);
+			swordsPlayer[i].addMouseListener(this);
+			moveToFront(swordsPlayer[i]);
+			add(swordsPlayer[i]);
 		}
 
-		this.turnoLabel = new JLabel();
-		
-		turnoLabel.setFont(new Font("Comic Sans MS", turnoLabel.getFont().getStyle(), 20));
+		swordsAi = new JLabel[5];
+		for(int i=0; i<5; i++){
+			swordsAi[i] = new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
+			swordsAi[i].setBounds(0, 0, 540+(220*i), 385);
+			swordsAi[i].setVisible(false);
+			moveToFront(swordsAi[i]);
+			add(swordsAi[i]);
+		}
 
+		FileReader turno = new FileReader(new File("turno.txt"));
+		BufferedReader br = new BufferedReader(turno);
+		this.turn = Integer.parseInt(br.readLine());
+		turno.close();
+
+		this.turnoLabel = new JLabel();
+		turnoLabel.setFont(new Font("Comic Sans MS", turnoLabel.getFont().getStyle(), 20));
 		turnoLabel.setForeground(Color.green);
-		
-		
-		if(turn==1){//turno player 1
+		this.turnoLabel.setBounds(50, 320, 200, 20);
+		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		this.turnoLabel.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
+		if(turn==1){
 			this.turnoLabel.setText("Player'S turn");
 			Thread t1 = new Thread(() -> {
 				try {
@@ -230,49 +178,46 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				repaint();
 			});
 			t1.start();
-
-		}else{ //turno player 2
+		}else{
 			this.turnoLabel.setText("AI Player'S turn");
 		}
-		this.turnoLabel.setBounds(50, 320, 200, 20);
-		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.turnoLabel.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		add(turnoLabel);
+
 
 		this.dest1 = new JLabel();
 		dest1.setIcon(new ImageIcon("redTarget1.png"));
 		this.dest1.setBounds(230, 210, 50, 50);
 		this.dest1.setVisible(false);
-		add(dest1);
 		this.moveToFront(this.dest1);
+		add(dest1);
 
 		this.dest2 = new JLabel();
 		dest2.setIcon(new ImageIcon("redTarget1.png"));
 		this.dest2.setBounds(340, 210, 50, 50);
 		this.dest2.setVisible(false);
-		add(dest2);
 		this.moveToFront(this.dest2);
+		add(dest2);
 
 		this.dest3 = new JLabel();
 		dest3.setIcon(new ImageIcon("redTarget1.png"));
 		this.dest3.setBounds(450, 210, 50, 50);
 		this.dest3.setVisible(false);
-		add(dest3);
 		this.moveToFront(this.dest3);
+		add(dest3);
 
 		this.dest4 = new JLabel();
 		dest4.setIcon(new ImageIcon("redTarget1.png"));
 		this.dest4.setBounds(560, 210, 50, 50);
 		this.dest4.setVisible(false);
-		add(dest4);
 		this.moveToFront(this.dest4);
+		add(dest4);
 
 		this.dest5 = new JLabel();
 		dest5.setIcon(new ImageIcon("redTarget1.png"));
 		this.dest5.setBounds(670, 210, 50, 50);
 		this.dest5.setVisible(false);
-		add(dest5);
 		this.moveToFront(this.dest5);
+		add(dest5);
 
 		this.dest1.addMouseListener(this);
 		this.dest2.addMouseListener(this);
@@ -283,70 +228,74 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.field.addMouseListener(this);
 
 		this.listAll = new prueba2(player.pdeck.Deck);
-
 		this.listAll.setBounds(150, 100, 620, 420);
 		this.listAll.setVisible(false);
 		this.moveToFront(this.listAll);
-
 		this.listAll.aceptar.addActionListener(this);
 
 		this.top1=new JButton("target");
 		this.top1.setBounds(200,580,80,30);
-		add(top1);
 		this.moveToFront(top1);
 		this.top1.addActionListener(this);
+		add(top1);
 
 		this.top2=new JButton("target");
 		this.top2.setBounds(330,580,80,30);
-		add(top2);
 		this.moveToFront(top2);
 		this.top2.addActionListener(this);
+		add(top2);
 
 		this.top3=new JButton("target");
 		this.top3.setBounds(450,580,80,30);
-		add(top3);
 		this.moveToFront(top3);
 		this.top3.addActionListener(this);
+		add(top3);
 
 		this.top4=new JButton("target");
 		this.top4.setBounds(570,580,80,30);
-		add(top4);
 		this.moveToFront(top4);
 		this.top4.addActionListener(this);
+		add(top4);
 
 		this.top5=new JButton("target");
 		this.top5.setBounds(700,580,80,30);
-		add(top5);
 		this.moveToFront(top5);
 		this.top5.addActionListener(this);
+		add(top5);
 
 		this.top1.setVisible(false);
 		this.top2.setVisible(false);
 		this.top3.setVisible(false);
 		this.top4.setVisible(false);
 		this.top5.setVisible(false);
+
 		phases.draw.addMouseListener(this);
 
 		this.ptarjet1= new JLabel();
 		this.ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet1.setBounds(230,380, 50, 50);
+		add(ptarjet1);
+
 		this.ptarjet2= new JLabel();
 		this.ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet2.setBounds(340,380, 50, 50);
+		add(ptarjet2);
+
 		this.ptarjet3= new JLabel();
 		this.ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet3.setBounds(450,380, 50, 50);
+		add(ptarjet3);
+
 		this.ptarjet4= new JLabel();
 		this.ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet4.setBounds(560,380, 50, 50);
+		add(ptarjet4);
+
 		this.ptarjet5= new JLabel();
 		this.ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
 		this.ptarjet5.setBounds(670,380, 50, 50);
-		add(ptarjet1);
-		add(ptarjet2);
-		add(ptarjet3);
-		add(ptarjet4);
 		add(ptarjet5);
+
 		this.moveToFront(ptarjet1);
 		this.moveToFront(ptarjet2);
 		this.moveToFront(ptarjet3);
@@ -356,23 +305,28 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet1= new JLabel();
 		this.aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet1.setBounds(230, 210, 50, 50);
+		add(aitarjet1);
+
 		this.aitarjet2= new JLabel();
 		this.aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet2.setBounds(340,210, 50, 50);
+		add(aitarjet2);
+
 		this.aitarjet3= new JLabel();
 		this.aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet3.setBounds(450,210, 50, 50);
+		add(aitarjet3);
+
 		this.aitarjet4= new JLabel();
 		this.aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet4.setBounds(560,210, 50, 50);
+		add(aitarjet4);
+
 		this.aitarjet5= new JLabel();
 		this.aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
 		this.aitarjet5.setBounds(670,210, 50, 50);
-		add(aitarjet1);
-		add(aitarjet2);
-		add(aitarjet3);
-		add(aitarjet4);
 		add(aitarjet5);
+
 		this.moveToFront(aitarjet1);
 		this.moveToFront(aitarjet2);
 		this.moveToFront(aitarjet3);
@@ -785,12 +739,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.pdeck.Play.addActionListener(this);
 		player.pdeck.Preview.addActionListener(this);
+
 		animations= new movePanel();
 		add(animations);
 		moveToFront(animations);
 		animations.setOpaque(false);
+
 		fallen.confirmcardsfromfallen.addActionListener(this);
+
 		fallenAi.confirmcardsfromfallen.addActionListener(this);
+
 		ai.aideck.btnNewButton_1.addMouseListener(this);
 
 		if(turn==1){
@@ -800,10 +758,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void actionPerformed(ActionEvent e) {
 		done = 0;
+
 		if (e.getSource() == fallenAi.confirmcardsfromfallen) {
 			SmallCard aux = null;
 			System.out.println("entro");
-
 
 			try {
 				aux = new SmallCard(fallenAi.cards[0].getcard(),0,0);
@@ -812,17 +770,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			final int where = ai.aifield.findwhere();
-			if (fallenAi.effectnumber == 13) // si es el efecto 13
-			{
+
+			if (fallenAi.effectnumber == 13){
 				if (aux != null) {
 					number = aux.getcard().GetCardNumber();
 				}
 				ai.aifield.poner(aux, where);
+
 				fallenAi.remove();
 				fallenAi.confirmcardsfromfallen.setEnabled(false);
 				fallenAi.button.setEnabled(false);
 				fallenAi.effectnumber = 0;
 				fallenAi.setVisible(false);
+
 				if (aux != null && !Objects.equals(aux.actual.GetType(), "Warrior")) {
 					Thread t1 = new Thread(() -> {
 						try {
@@ -844,8 +804,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 		}
-		if(e.getSource()==fallen.confirmcardsfromfallen)
-		{
+
+		if(e.getSource()==fallen.confirmcardsfromfallen){
 			SmallCard aux = null;
 			System.out.println("entro");
 			final int where=player.field.findwhere();
@@ -856,106 +816,70 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			if(fallen.effectnumber==13)//si es el efecto 13
-				{
+			if(fallen.effectnumber==13){
+				if (aux != null) {
 					number  =aux.getcard().GetCardNumber();
-					player.field.poner(aux,where);
-					fallen.remove();
-					fallen.confirmcardsfromfallen.setEnabled(false);
-					fallen.button.setEnabled(false);
-					fallen.effectnumber=0;
-					fallen.setVisible(false);
-					if (!Objects.equals(aux.actual.GetType(), "Warrior")) {
-						Thread t1 = new Thread(() -> {
-                            try {
-                                Thread.sleep(750);
-                            } catch (InterruptedException e1) {
-                                e1.printStackTrace();
-                            }
-                            player.field.quitar(where);
-                            if(number==18)
-                            {
-                                player.powers.setwp();
-                            }
-                            repaint();
-                            fallenAi.setVisible(true);
+				}
+				player.field.poner(aux,where);
+				fallen.remove();
+				fallen.confirmcardsfromfallen.setEnabled(false);
+				fallen.button.setEnabled(false);
+				fallen.effectnumber=0;
+				fallen.setVisible(false);
+				if (aux != null && !Objects.equals(aux.actual.GetType(), "Warrior")) {
+					Thread t1 = new Thread(() -> {
+						try {
+							Thread.sleep(750);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+						player.field.quitar(where);
+						if (number == 18) {
+							player.powers.setwp();
+						}
+						repaint();
 
-                            fallenAi.effectnumber=13;
-                            fallenAi.button.setEnabled(true);
-                        });
-						t1.start();
-					}
+						fallenAi.setVisible(true);
+						fallenAi.effectnumber = 13;
+						fallenAi.button.setEnabled(true);
+					});
+					t1.start();
 				}
-				else{
-					try {
-						player.hand.draw(fallen.cards[0].getcard() );
-					} catch (UnsupportedAudioFileException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (LineUnavailableException e1) {
-						e1.printStackTrace();
-					}
-					try {
-						player.hand.draw(fallen.cards[1].getcard() );
-					} catch (UnsupportedAudioFileException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (LineUnavailableException e1) {
-						e1.printStackTrace();
-					}
-					fallen.confirmcardsfromfallen.setEnabled(false);
-					if(fallen.cards[0]!=null)
-					{
-						fallen.remove(fallen.cards[0]);
-					}
-					if(fallen.cards[1]!=null)
-					{
-						fallen.remove(fallen.cards[1]);
-					}
-					if(fallen.cards[2]!=null)
-					{
-						fallen.remove(fallen.cards[2]);
-					}
-					fallen.setVisible(false);
-					fallen.button.setEnabled(false);
+			}
+			else{
+				try {
+					player.hand.draw(fallen.cards[0].getcard() );
+					player.hand.draw(fallen.cards[1].getcard() );
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					e1.printStackTrace();
 				}
-				fallen.selecting=0;
-			
+
+				fallen.confirmcardsfromfallen.setEnabled(false);
+				if(fallen.cards[0]!=null){
+					fallen.remove(fallen.cards[0]);
+				}
+				if(fallen.cards[1]!=null){
+					fallen.remove(fallen.cards[1]);
+				}
+				if(fallen.cards[2]!=null){
+					fallen.remove(fallen.cards[2]);
+				}
+				fallen.setVisible(false);
+				fallen.button.setEnabled(false);
+			}
+			fallen.selecting=0;
 		}
 
 		s = -1;
-		if (e.getSource() == player.hand.handgui[0].Set) {
-			if (done == 0) {
-				s = 0;
+		for(int i=0; i<5;i++){
+			if (e.getSource() == player.hand.handgui[i].Set) {
+				if (done == i) {
+					s = i;
+				}
+				done = 1;
 			}
-			done = 1;
 		}
-		if (e.getSource() == player.hand.handgui[1].Set) {
-			if (done == 0) {
-				s = 1;
-			}
-			done = 1;
-		}
-		if (e.getSource() == player.hand.handgui[2].Set) {
-			if (done == 0) {
-				s = 2;
-			}
-			done = 1;
-		}
-		if (e.getSource() == player.hand.handgui[3].Set) {
-			if (done == 0) {
-				s = 3;
-			}
-			done = 1;
-		}
-		if (e.getSource() == player.hand.handgui[4].Set) {
-			if (done == 0) {
-				s = 4;
-			}
-			done = 1;
-		}
+
 		if (player.hand.handgui[5] != null) {
 			if (e.getSource() == player.hand.handgui[5].Set) {
 				if (done == 0) {
@@ -964,6 +888,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				done = 1;
 			}
 		}
+
 		if (s != -1) {
 			fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.hand.cards[s]);
 			if (player.hand.cards[s].GetCardNumber() == 18)
@@ -978,88 +903,35 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(phases.actual==2){
 				this.repairListeners(true);
-			}else
-			{
+			}else{
 				this.repairListeners(false);
 			}
 		}
 
-		if(e.getSource()==player.hand.handgui[1].Discard)//si se le da play a la carta 1  
-		{
-			if(done==0){
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[1]);
-				try {
-					player.hand.discard(2);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+		for(int i=0; i<5;i++){
+			if(e.getSource()==player.hand.handgui[i].Discard){
+				if(done==0)
+					if(i!=0){
+						fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[i]);
+					}
+					try {
+						if(i!=4){
+							player.hand.discard(i+1);
+						}
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				if(phases.actual==2){
 					this.repairListeners(true);
-				}else
-				{
+				}else{
 					this.repairListeners(false);
 				}
+				done=1;
 			}
-			done=1;
 		}
-		if(e.getSource()==player.hand.handgui[2].Discard)//si se le da play a la carta 1  
-		{
-			if(done==0)
-			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[2]);
-				try {
-					player.hand.discard(3);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				if(phases.actual==2){
-					this.repairListeners(true);
-				}else
-				{
-					this.repairListeners(false);
-				}
-			}
-			done=1;
-		}
-		if(e.getSource()==player.hand.handgui[3].Discard)//si se le da play a la carta 1  
-		{
-			if(done==0)
-			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[3]);
-				try {
-					player.hand.discard(4);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				if(phases.actual==2){
-					this.repairListeners(true);
-				}else
-				{
-					this.repairListeners(false);
-				}
-			}
-			done=1;
-		}
-		if(e.getSource()==player.hand.handgui[4].Discard)//si se le da play a la carta 1  
-		{
-			if(done==0)
-			{
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.hand.cards[4]);
 
-				if(phases.actual==2){
-					this.repairListeners(true);
-				}else
-				{
-					this.repairListeners(false);
-				}
-			}
-			done=1;
-		}
-		
-		if(e.getSource()==player.pdeck.Preview)//muestra la carta 1 
-		{
-			if(done==0)
-			{
+		if(e.getSource()==player.pdeck.Preview){
+			if(done==0){
 				try {
 					preview.addCard(new BigCard(player.pdeck.Hero.getcard(),0,0));
 				} catch (IOException e1) {
@@ -1068,153 +940,57 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			done=1;
 		}
-		if(e.getSource()==player.hand.handgui[0].Preview)//muestra la carta 1 
-		{
-			if(done==0)
-			{
-				try {
-					preview.addCard(new BigCard(player.hand.handgui[0].getcard(),0,0));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-			done=1;
-		}
-		if(e.getSource()==player.hand.handgui[1].Preview)//muestra la carta 1 
-		{
-			if(done==0)
-			{
-				try {
-					preview.addCard(new BigCard(player.hand.handgui[1].getcard(),0,0));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-			done=1;
-		}
-		if(e.getSource()==player.hand.handgui[2].Preview)//muestra la carta 1 
-		{
-			if(done==0)
-			{
-				try {
-					preview.addCard(new BigCard(player.hand.handgui[2].getcard(),0,0));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-			done=1;
-		}
 
-		if(e.getSource()==player.hand.handgui[3].Preview)//muestra la carta 1 
-		{
-			if(done==0)
-			{
-				try {
-					preview.addCard(new BigCard(player.hand.handgui[3].getcard(),0,0));
-				} catch (IOException e1) {
-					e1.printStackTrace();
+		for(int i=0; i<5; i++){
+			if(e.getSource()==player.hand.handgui[i].Preview){
+				if(done==0){
+					try {
+						preview.addCard(new BigCard(player.hand.handgui[i].getcard(),0,0));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
+				done=1;
 			}
-			done=1;
-		}
-		if(e.getSource()==player.hand.handgui[4].Preview)//muestra la carta 1 
-		{
-			if(done==0)
-			{
-				try {
-					preview.addCard(new BigCard(player.hand.handgui[4].getcard(),0,0));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-			done=1;
-		}
-		if(e.getSource()==player.hand.handgui[0].Discard)//si se le da play a la carta 1  
-		{
-			if(done==0)
-				try {
-					player.hand.discard(1);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-			if(phases.actual==2){
-				this.repairListeners(true);
-			}else
-			{
-				this.repairListeners(false);
-			}
-
-			done=1;
 		}
 		
 		pl=-1;
-		if(e.getSource()==player.pdeck.Play)
-		{
+		if(e.getSource()==player.pdeck.Play){
 			pl=-2;
 		}
-		if(e.getSource()==player.hand.handgui[0].Play)//si se le da play a la carta 2  
-		{
-			pl=0;
+
+		for(int i=0;i<5;i++){
+			if(e.getSource()==player.hand.handgui[i].Play){
+				pl=i;
+			}
 		}
-		if(e.getSource()==player.hand.handgui[1].Play)//si se le da play a la carta 2  
-		{
-			pl=1;
-		}
-		if(e.getSource()==player.hand.handgui[2].Play)//si se le da play a la carta 2  
-		{
-			pl=2;
-		}
-		if(e.getSource()==player.hand.handgui[3].Play)//si se le da play a la carta 2  
-		{
-			pl=3;
-		}
-		if(e.getSource()==player.hand.handgui[4].Play)//si se le da play a la carta 2  
-		{
-			pl=4;
-		}
+
 		if(player.hand.handgui[5]!=null){
-			if(e.getSource()==player.hand.handgui[5].Play)//si se le da play a la carta 2  
-			{
+			if(e.getSource()==player.hand.handgui[5].Play){
 				pl=5;
 			}
 		}
 
 		if(player.hand.handgui[6]!=null){
-			if(e.getSource()==player.hand.handgui[6].Play)//si se le da play a la carta 2  
-			{
+			if(e.getSource()==player.hand.handgui[6].Play){
 				pl=6;
 			}
 		}
 
-		if(pl!=-1)
-		{
-			if(pl!=-2){
-				if(player.hand.cards[pl].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
-					System.out.println("You must have 0 barriers to play this card");
-				}
-				else{
-					try {
-						playPlayerCard();
-					} catch (UnsupportedAudioFileException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (LineUnavailableException e1) {
-						e1.printStackTrace();
+		if(pl!=-1){
+			try{
+				if(pl!=-2){
+					if(player.hand.cards[pl].Getid().equals("SSD-10")&&(contarBarriers()>=0)){
+						System.out.println("You must have 0 barriers to play this card");
 					}
-				}
-			}else
-			{
-				try {
+					else{
+						playPlayerCard();
+					}
+				}else{
 					playPlayerCard();
-				} catch (UnsupportedAudioFileException e1) {
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} catch (LineUnavailableException e1) {
-					e1.printStackTrace();
 				}
+			}catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+				e1.printStackTrace();
 			}
 		}
 
@@ -1236,11 +1012,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			int pos= 0;
 			try {
 				pos = player.hand.draw(player.pdeck.Deck.ConsultarYextraer(this.listAll.num));
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 				e1.printStackTrace();
 			}
 			player.hand.handgui[pos-1].addMouseListener(this);
@@ -1403,149 +1175,55 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 	}
 
-	void Addlisteners2Card(int i)//le coloca listeners al menu de la carta
-	{
+	void Addlisteners2Card(int i){
 		player.hand.handgui[i].Play.addActionListener(this);
 		player.hand.handgui[i].Discard.addActionListener(this);
 		player.hand.handgui[i].Preview.addActionListener(this);
 		player.hand.handgui[i].Set.addActionListener(this);
 	}
-	public DeckGui getDeck() {
-		return player.pdeck;
-	}
 
-	public void mouseClicked(MouseEvent e) 
-	{
-		if(e.getSource()==Hero)
-		{
+	public void mouseClicked(MouseEvent e){
+		if(e.getSource()==Hero){
 			remove(unleash);
 			try {
 				play(-3);
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 				e1.printStackTrace();
 			}
 			repaint();
 		}
-		if(e.getButton() == MouseEvent.BUTTON1)
-		{
-			if(e.getClickCount()==1)
-			{
-				if(e.getSource()==ai.aideck.btnNewButton_1)
-				{
+
+		if(e.getButton() == MouseEvent.BUTTON1){
+			if(e.getClickCount()==1){
+				if(e.getSource()==ai.aideck.btnNewButton_1){
 					fallenAi.setVisible(true);
 					moveToFront(fallenAi);
 				}
 
-				if(barierpicked==0)
-				{
-					if(e.getSource()== Barriers.barriers[0])//si se da click a la barrera 0
-					{
-						int pos= 0;
-						try {
-							pos = player.hand.draw(Barriers.cards[0]);
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
-							e1.printStackTrace();
+				if(barierpicked==0){
+					for(int i=0;i<5;i++){
+						if(e.getSource()== Barriers.barriers[i]){
+							int pos= 0;
+							try {
+								pos = player.hand.draw(Barriers.cards[i]);
+							} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+								e1.printStackTrace();
+							}
+							player.hand.handgui[pos-1].addMouseListener(this);
+							Addlisteners2Card(pos-1);
+							player.barriers.removebarrier(i);
+							barierpicked=1;
+							repaint();
+							repairListeners(false);
 						}
-						player.hand.handgui[pos-1].addMouseListener(this);
-						Addlisteners2Card(pos-1);
-						player.barriers.removebarrier(0);
-						barierpicked=1;
-						repaint();
-						repairListeners(false);
 					}
-					if(e.getSource()== Barriers.barriers[1])
-					{
-						int pos= 0;
-						try {
-							pos = player.hand.draw(Barriers.cards[1]);
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
-							e1.printStackTrace();
-						}
-						player.hand.handgui[pos-1].addMouseListener(this);
-						Addlisteners2Card(pos-1);
-						player.barriers.removebarrier(1);
-						barierpicked=1;
-						repaint();
-						repairListeners(false);
-					}
-					if(e.getSource()== Barriers.barriers[2])
-					{
-						int pos= 0;
-						try {
-							pos = player.hand.draw(Barriers.cards[2]);
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
-							e1.printStackTrace();
-						}
-						player.hand.handgui[pos-1].addMouseListener(this);
-						Addlisteners2Card(pos-1);
-						player.barriers.removebarrier(2);
-						barierpicked=1;
-						repairListeners(false);
-						repaint();
-					}
-					if(e.getSource()== Barriers.barriers[3])
-					{
-						int pos= 0;
-						try {
-							pos = player.hand.draw(Barriers.cards[3]);
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
-							e1.printStackTrace();
-						}
-						player.hand.handgui[pos-1].addMouseListener(this);
-						Addlisteners2Card(pos-1);
-						player.barriers.removebarrier(3);
-						barierpicked=1;
-						repairListeners(false);
-						repaint();
-					}
-					if(e.getSource()== Barriers.barriers[4])
-					{
-						int pos= 0;
-						try {
-							pos = player.hand.draw(Barriers.cards[4]);
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
-							e1.printStackTrace();
-						}
-						player.hand.handgui[pos-1].addMouseListener(this);
-						Addlisteners2Card(pos-1);
-						player.barriers.removebarrier(4);
-						barierpicked=1;
-						repairListeners(false);
-						repaint();
-					}
-				}else
-				{
+				}else{
 					if(phases.actual==1){
 						System.out.println("sorry u can only get a card from barriers per turn");
 					}
 				}	
 				
-				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end))
-				{
+				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
 					repaint();
 					done=1;
 					if (e.getSource()==phases.end && phases.actual < 3) {
@@ -1573,7 +1251,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					
 					switch(phases.actual){
-						//setup
 						case 0:
 							barierpicked=0;
 							warriorPlayed=0;
@@ -1588,8 +1265,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							break;
 						case 1:
 							this.phases.draw.removeMouseListener(this);
-							for(int i=0;i<5;i++)
-							{
+							for(int i=0;i<5;i++){
 								if(Barriers.barriers[i]!=null){
 									Barriers.barriers[i].addMouseListener(this);
 								}
@@ -1597,8 +1273,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.phases.action.addMouseListener(this);
 							break;
 						case 2:
-							for(int i=0;i<5;i++)
-							{
+							for(int i=0;i<5;i++){
 								if(Barriers.barriers[i]!=null){
 									Barriers.barriers[i].removeMouseListener(this);
 								}
@@ -1620,62 +1295,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						
 							if(this.turn==1&&this.contTurn>0){
 								for(int i=0;i<5;i++){
-									if(player.field.cards[i]!=null){
-										switch(i){
-											case 0:
-												if(!player.field.cards[0].down){
-													this.swordp1.setVisible(true);
-												}
-												break;
-											case 1:
-												if(!player.field.cards[1].down){
-													this.swordp2.setVisible(true);
-												}
-												break;
-											case 2:
-												if(!player.field.cards[2].down){
-													this.swordp3.setVisible(true);
-												}
-												break;
-											case 3:
-												if(!player.field.cards[3].down){
-													this.swordp4.setVisible(true);
-												}
-												break;
-											case 4:
-												if(!player.field.cards[4].down){
-													this.swordp5.setVisible(true);
-												}
-												break;
-										}
+									if(player.field.cards[i]!=null && !player.field.cards[i].down){
+										this.swordsPlayer[i].setVisible(true);
 									}
 								}
 							}
 							break;
 						case 4:
-							if(ready==1){//funciona como segunda oportunidad
-
+							if(ready==1){
 								for (int i=0;i<5;i++)
 									Barriers.barriers[i].removeMouseListener(this);
 								ready=0;
 								this.phases.setup.addMouseListener(this);
 
-								this.swordp1.setVisible(false);
-								this.swordp2.setVisible(false);
-								this.swordp3.setVisible(false);
-								this.swordp4.setVisible(false);
-								this.swordp5.setVisible(false);
-								this.sworda1.setVisible(false);
-								this.sworda2.setVisible(false);
-								this.sworda3.setVisible(false);
-								this.sworda4.setVisible(false);
-								this.sworda5.setVisible(false);
+								for(int i=0;i<5;i++){
+									swordsPlayer[i].setVisible(false);
+									swordsAi[i].setVisible(false);
+								}
 
 								this.dest1.setVisible(false);
 								this.dest2.setVisible(false);
 								this.dest3.setVisible(false);
 								this.dest4.setVisible(false);
 								this.dest5.setVisible(false);
+
 								if(turn==1){
 									turn=2;
 									this.turnoLabel.setText("AI Player'S turn");
@@ -1687,24 +1330,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								repaint();
 								this.contTurn++;
 								this.atkDest=this.atkOrigin=-1;
-							}else
-							{
-//							tuto.end();
+							}else{
 								ready=1;
 							}
 							this.phases.end.removeMouseListener(this);
-							//turno del oponente
-							phases.change(0);
 							ai.aideck.btnNewButton.addMouseListener(this);
+							phases.change(0);
 							try {
 								Aiturn();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							} catch (UnsupportedAudioFileException e1) {
-								e1.printStackTrace();
-							} catch (LineUnavailableException e1) {
-								e1.printStackTrace();
-							} catch (InterruptedException e1) {
+							} catch (IOException | UnsupportedAudioFileException | InterruptedException | LineUnavailableException e1) {
 								e1.printStackTrace();
 							}
 							break;
@@ -1713,92 +1347,31 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					done=0;
 				}
 
-				int x=-1; //destino
-				if(e.getSource()==player.hand.handgui[0])
-				{
-					x=0;
+				int x=-1;
+				for(int i=0;i<8;i++){
+					if(e.getSource()==player.hand.handgui[i]){
+						x=i;
+					}
 				}
-				else if(e.getSource()==player.hand.handgui[1])
-				{
-					x=1;
-				}
-				else if(e.getSource()==player.hand.handgui[2])
-				{
-					x=2;
-				}
-				else if(e.getSource()==player.hand.handgui[3])
-				{
-					x=3;
 
-				}else if(e.getSource()==player.hand.handgui[4])
-				{
-					x=4;
-				}
-				else if(e.getSource()==player.hand.handgui[5])
-				{
-					x=5;
-				}
-				else if(e.getSource()==player.hand.handgui[6])
-				{
-					x=6;
-				}
-				else if(e.getSource()==player.hand.handgui[7])
-				{
-					x=7;
-				}
-				if(x!=-1)
-				{
-					for(int j=0;j<player.hand.current;j++)
-					{
-						if(x!=j)
-						{
+				if(x!=-1){
+					for(int j=0;j<player.hand.current;j++){
+						if(x!=j){
 							player.hand.handgui[j].menu.setVisible(false);
-						}else
-						{
+						}else{
 							player.hand.handgui[j].menu.setVisible(true);
 						}
 					}	
 				}
-				if(phases.actual==3&&this.contTurn>0){
-					if(e.getSource()==player.field.cards[0]&&!player.field.cards[0].down)
-					{
-						this.swordp1.setVisible(true);
-						this.swordp2.setVisible(false);
-						this.swordp3.setVisible(false);
-						this.swordp4.setVisible(false);
-						this.swordp5.setVisible(false);
-					}	
-					if(e.getSource()==player.field.cards[1]&&!player.field.cards[1].down)
-					{
-						this.swordp2.setVisible(true);
-						this.swordp1.setVisible(false);
-						this.swordp3.setVisible(false);
-						this.swordp4.setVisible(false);
-						this.swordp5.setVisible(false);
-					}
-					if(e.getSource()==player.field.cards[2]&&!player.field.cards[2].down)
-					{
-						this.swordp3.setVisible(true);
-						this.swordp1.setVisible(false);
-						this.swordp2.setVisible(false);
-						this.swordp4.setVisible(false);
-						this.swordp5.setVisible(false);
-					}
-					if(e.getSource()==player.field.cards[3]&&!player.field.cards[3].down)
-					{
-						this.swordp4.setVisible(true);
-						this.swordp1.setVisible(false);
-						this.swordp2.setVisible(false);
-						this.swordp3.setVisible(false);
-						this.swordp5.setVisible(false);
 
-					}if(e.getSource()==player.field.cards[4]&&!player.field.cards[4].down)
-					{
-						this.swordp5.setVisible(true);
-						this.swordp1.setVisible(false);
-						this.swordp2.setVisible(false);
-						this.swordp3.setVisible(false);
-						this.swordp4.setVisible(false);
+				if(phases.actual==3&&this.contTurn>0){
+					for(int i=0;i<5;i++){
+						if(e.getSource()==player.field.cards[i]&&!player.field.cards[i].down){
+							for(int j=0; j<5; j++){
+								swordsPlayer[j].setVisible(false);
+							}
+							swordsPlayer[i].setVisible(true);
+						}
 					}
 				}
 				
@@ -1853,11 +1426,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					int pos= 0;
 					try {
 						pos = player.hand.draw(player.field.cards[this.selected-1].getcard());
-					} catch (UnsupportedAudioFileException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (LineUnavailableException e1) {
+					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 						e1.printStackTrace();
 					}
 					player.hand.handgui[pos-1].addMouseListener(this);
@@ -1942,18 +1511,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					else{
 						try {
 							pos= player.hand.draw(player.field.cards[this.selected-1].getcard());
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 							e1.printStackTrace();
 						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
 						player.field.quitar(this.selected-1);
 					}
-
 					repaint();
 					System.out.println("cards were returned to the hands of owners");
 				}
@@ -2004,7 +1568,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 
 					this.selected=-1;
-
 					this.aitarjet91.setVisible(false);
 					this.aitarjet92.setVisible(false);
 					this.aitarjet93.setVisible(false);
@@ -2085,7 +1648,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.ptarjet112){
 						c= player.field.cards[1].getcard();
@@ -2096,7 +1658,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.ptarjet113){
 						c= player.field.cards[2].getcard();
@@ -2107,7 +1668,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.ptarjet114){
 						c= player.field.cards[3].getcard();
@@ -2118,7 +1678,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.ptarjet115){
 						c= player.field.cards[4].getcard();
@@ -2129,7 +1688,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.aitarjet111){
 						c=this.ai.aifield.cards[0].getcard();
@@ -2140,7 +1698,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.aitarjet112){
 						c=this.ai.aifield.cards[1].getcard();
@@ -2151,7 +1708,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.aitarjet113){
 						c=this.ai.aifield.cards[2].getcard();
@@ -2162,7 +1718,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.aitarjet114){
 						c=this.ai.aifield.cards[3].getcard();
@@ -2173,7 +1728,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					if(e.getSource()==this.aitarjet115){
 						c=this.ai.aifield.cards[4].getcard();
@@ -2184,63 +1738,32 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-
 					}
 					repaint();
 					System.out.println("face down succesfully");
 					repaint();
 				}
 
-				if(e.getSource()==this.swordp1||e.getSource()==this.swordp2||e.getSource()==this.swordp3||e.getSource()==this.swordp4||e.getSource()==this.swordp5){
-					if(e.getSource()==this.swordp1){
-						this.atkOrigin=1;
+				for(int i=0;i<5;i++){
+					if(e.getSource()==swordsPlayer[i]){
+						atkOrigin= i+1;
 					}
-					if(e.getSource()==this.swordp2){
-						this.atkOrigin=2;
-					}
-					if(e.getSource()==this.swordp3){
-						this.atkOrigin=3;
-					}
-					if(e.getSource()==this.swordp4){
-						this.atkOrigin=4;
-					}
-					if(e.getSource()==this.swordp5){
-						this.atkOrigin=5;
-					}
-					if(ai.aifield.countcards()==0)
-					{
-						int which=ai.barriers.findwhich();//verifica que exista un barrier
+					if(ai.aifield.countcards()==0){
+						int which=ai.barriers.findwhich();
 						System.out.println("congratulations , direct hit");
-						if(ai.aihand.current==5){	
+						if(ai.aihand.current==5){
 							ai.aihand.discard(5);
 						}
-						if(which!=-1)//existe un barrier
-						{
+						if(which!=-1){
 							ai.barriers.removebarrier(which);
 							Barriers2.barriers[which].setVisible(false);
 							repaint();
-						}
-						else{
-							//gana el usuario
+						}else{
 							instanciaGui.doWin();
 							repaint();
 						}
 
-						if(e.getSource()==this.swordp1){
-							this.swordp1.setVisible(false);
-						}
-						if(e.getSource()==this.swordp2){
-							this.swordp2.setVisible(false);
-						}
-						if(e.getSource()==this.swordp3){
-							this.swordp3.setVisible(false);
-						}
-						if(e.getSource()==this.swordp4){
-							this.swordp4.setVisible(false);
-						}
-						if(e.getSource()==this.swordp5){
-							this.swordp5.setVisible(false);
-						}
+						swordsPlayer[i].setVisible(false);
 					}else{
 						System.out.println("Select Your Target");
 						if(ai.aifield.cards[0]!=null){
@@ -2278,38 +1801,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						this.atkDest=5;
 					}
 
-					swordp1.setVisible(false);
-					swordp2.setVisible(false);
-					swordp3.setVisible(false);
-					swordp4.setVisible(false);
-					swordp5.setVisible(false);
+					for(int i=0;i<5;i++){
+						swordsPlayer[i].setVisible(false);
+					}
 
 					System.out.println("Card "+this.atkOrigin+" attack to ai Card "+this.atkDest);
 					remove(phases);
+
 					if(!fight.isVisible()){
 						try {
 							fight.addCards(new BigCard(player.field.cards[atkOrigin-1].getcard(),0,0),new BigCard(ai.aifield.cards[atkDest-1].getcard(),0,0));
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (InterruptedException e1) {
+						} catch (IOException | InterruptedException e1) {
 							e1.printStackTrace();
 						}
 					}
-					if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp())
-					{
+
+					if(player.field.cards[atkOrigin-1].getcard().GetHp()>ai.aifield.cards[atkDest-1].getcard().GetHp()){
 						ai.aifield.quitar(atkDest-1);
 						try {
 							this.makeEffect(player.field.cards[atkOrigin-1].getcard().Getid(),atkOrigin-1 );
-						} catch (UnsupportedAudioFileException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (LineUnavailableException e1) {
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 							e1.printStackTrace();
 						}
 
-					}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp())
-					{
+					}else if(player.field.cards[atkOrigin-1].getcard().GetHp()<ai.aifield.cards[atkDest-1].getcard().GetHp()){
 						player.field.quitar(atkOrigin-1);
 					}
 					add(phases);
@@ -2321,112 +1836,39 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 			}
 
-			if (e.getSource()==player.pdeck.btnNewButton_1)// si se le da click al boton de fallen 
-			{
+			if (e.getSource()==player.pdeck.btnNewButton_1){
 				fallen.setVisible(true);
 				moveToFront(fallen);
 			}
-
-			
 		}	    
-		else if(e.getButton() == MouseEvent.BUTTON3)
-		{
-			if(e.getClickCount()==1)
-			{
-				if(e.getSource()==player.field.cards[0])
-				{
-					if(player.field.cards[0].getcard().Getid().equals("SSD-01")){
-						System.out.println("This card referred to 4 water power");
-						player.powers.set(player.field.cards[0].getcard().GetCost()*4);
+		else if(e.getButton() == MouseEvent.BUTTON3){
+			if(e.getClickCount()==1){
+				for(int i=0;i<5;i++){
+					if(e.getSource()==player.field.cards[i]){
+						if(player.field.cards[i].getcard().Getid().equals("SSD-01")){
+							System.out.println("This card referred to 4 water power");
+							player.powers.set(player.field.cards[i].getcard().GetCost()*4);
+						}
+						else{
+							player.powers.play(player.field.cards[i].getcard().GetCost());
+						}
+						fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[i].getcard());
+						player.field.quitar(i);
 					}
-					else{
-						player.powers.play(player.field.cards[0].getcard().GetCost());
-					}
-
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[0].getcard());
-					player.field.quitar(0);
-				}	
-				if(e.getSource()==player.field.cards[1])
-				{
-					if(player.field.cards[1].getcard().Getid().equals("SSD-01")){
-						System.out.println("This card referred to 4 water power");
-						player.powers.set(player.field.cards[1].getcard().GetCost()*4);
-					}
-					else{
-						player.powers.play(player.field.cards[1].getcard().GetCost());
-					}
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[1].getcard());
-					player.field.quitar(1);
 				}
-				if(e.getSource()==player.field.cards[2])
-				{
-					if(player.field.cards[2].getcard().Getid().equals("SSD-01")){
-						System.out.println("This card referred to 4 water power");
-						player.powers.set(player.field.cards[2].getcard().GetCost()*4);
-					}
-					else{
-						player.powers.play(player.field.cards[2].getcard().GetCost());
-					}
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[2].getcard());
-					player.field.quitar(2);
-				}
-				if(e.getSource()==player.field.cards[3])
-				{
-					if(player.field.cards[3].getcard().Getid().equals("SSD-01")){
-						System.out.println("This card referred to 4 water power");
-						player.powers.set(player.field.cards[3].getcard().GetCost()*4);
-					}
-					else{
-						player.powers.play(player.field.cards[3].getcard().GetCost());
-					}
-					fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[3].getcard());
-					player.field.quitar(3);
-
-				}if(e.getSource()==player.field.cards[4])
-			{
-				if(player.field.cards[4].getcard().Getid().equals("SSD-01")){
-					System.out.println("This card referred to 4 water power");
-					player.powers.set(player.field.cards[4].getcard().GetCost()*4);
-				}
-				else{
-					player.powers.play(player.field.cards[4].getcard().GetCost());
-				}
-				fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[4].getcard());
-				player.field.quitar(4);
-			}
 			}
 		}
 	}
 
 	public void mouseExited(MouseEvent e) {
-		if(e.getSource()== Barriers.barriers[0])
-		{
-			Barriers.barriers[0].setBackground(new Color(128, 128, 128));
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[1])
-		{
-			Barriers.barriers[1].setBackground(new Color(128, 128, 128));
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[2])
-		{
-			Barriers.barriers[2].setBackground(new Color(128, 128, 128));
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[3])
-		{
-			Barriers.barriers[3].setBackground(new Color(128, 128, 128));
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[4])
-		{
-			Barriers.barriers[4].setBackground(new Color(128, 128, 128));
-			repaint();
+		for(int i=0;i<5;i++){
+			if(e.getSource()== Barriers.barriers[i]){
+				Barriers.barriers[i].setBackground(new Color(128, 128, 128));
+				repaint();
+			}
 		}
 		
-		if(e.getSource()==Hero)
-		{
+		if(e.getSource()==Hero){
 			remove(unleash);
 			repaint();
 		}
@@ -2442,52 +1884,31 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		x=selectionHandgui(e);
 		preview.Remove();
 
-		if(x!=-1)
-		{
+		if(x!=-1){
 			if(x!=player.hand.current-1 || x<5){
 				player.hand.handgui[x].setBounds(x*x2+30,20,83,145);
-			}else
-			{
+			}else{
 				player.hand.handgui[x].setBounds(400,20,83,145);
 			}
 		}
 
-		if(e.getSource()==player.field.cards[0])
-		{
-			preview.Remove();
-		}
-		if(e.getSource()==player.field.cards[1])
-		{
-			preview.Remove();
-		}
-		if(e.getSource()==player.field.cards[2])
-		{
-			preview.Remove();
-		}
-		if(e.getSource()==player.field.cards[3])
-		{
-			preview.Remove();
-		}
-		if(e.getSource()==player.field.cards[4])
-		{
-			preview.Remove();
-		}
-		if(e.getSource()==ai.aifield.cards[0])
-		{
-			preview.Remove();
-		}
-		if(e.getSource()==ai.aifield.cards[1]||e.getSource()==ai.aifield.cards[2]|| e.getSource()==ai.aifield.cards[3]||e.getSource()==ai.aifield.cards[4] )
-		{
-			preview.Remove();
+		for(int i=0;i<5;i++){
+			if(e.getSource()==player.field.cards[i]){
+				preview.Remove();
+			}
 		}
 
-		if (e.getSource()==player.pdeck.btnNewButton_1)
-		{
+		for(int i=0;i<5;i++){
+			if(e.getSource()==ai.aifield.cards[i]){
+				preview.Remove();
+			}
+		}
+
+		if (e.getSource()==player.pdeck.btnNewButton_1){
 			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
 		}
 
-		if (e.getSource()==player.pdeck.btnNewButton_2)
-		{
+		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
 		
@@ -2666,59 +2087,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==aitarjet115){
 			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
 		}
-		if (e.getSource()==swordp1) {
-			swordp1.setIcon(new ImageIcon("sword.png"));
-		}
-		if (e.getSource()==swordp2) {
-			swordp2.setIcon(new ImageIcon("sword.png"));
-		}
-		if (e.getSource()==swordp3) {
-			swordp3.setIcon(new ImageIcon("sword.png"));
-		}
-		if (e.getSource()==swordp4) {
-			swordp4.setIcon(new ImageIcon("sword.png"));
-		}
-		if (e.getSource()==swordp5) {
-			swordp5.setIcon(new ImageIcon("sword.png"));
+
+		for(int i=0;i<5;i++){
+			if (e.getSource()==swordsPlayer[i]) {
+				swordsPlayer[i].setIcon(new ImageIcon("sword.png"));
+			}
 		}
 		repaint();
 	}
 
-	public void mouseEntered(MouseEvent e) 
-	{
-		if(e.getSource()== Barriers.barriers[0])
-		{
-			Barriers.barriers[0].setBackground(Color.red);
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[1])
-		{
-			Barriers.barriers[1].setBackground(Color.red);
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[2])
-		{
-			Barriers.barriers[2].setBackground(Color.red);
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[3])
-		{
-			Barriers.barriers[3].setBackground(Color.red);
-			repaint();
-		}
-		if(e.getSource()== Barriers.barriers[4])
-		{
-			Barriers.barriers[4].setBackground(Color.red);
-			repaint();
+	public void mouseEntered(MouseEvent e) {
+		for(int i=0;i<5;i++){
+			if(e.getSource()== Barriers.barriers[i]){
+				Barriers.barriers[i].setBackground(Color.red);
+				repaint();
+			}
 		}
 		
-		if(e.getSource()==Hero)
-		{
+		if(e.getSource()==Hero){
 			unleash.setBounds(Hero.getX()+220,Hero.getY()+350,100,150);
 			add(unleash);
 			moveToFront(unleash);
 			repaint();
 		}
+
 		int x;
 		int x2;
 		if(player.hand.current<5)
@@ -2728,99 +2120,38 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		x=selectionHandgui(e);
 
-		if(x!=-1)
-		{	
+		if(x!=-1){
 			if(x!=player.hand.current){
 				player.hand.handgui[x].setBounds(x*x2,0,83,145);
 				player.hand.moveToFront(player.hand.handgui[x]);
 			}
 		}
 
-		if(e.getSource()==player.field.cards[0])
-		{
-			try {
-				preview.addCard(new BigCard(player.field.cards[0].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if(e.getSource()==player.field.cards[1])
-		{
-			try {
-				preview.addCard(new BigCard(player.field.cards[1].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}if(e.getSource()==player.field.cards[2])
-	{
-		try {
-			preview.addCard(new BigCard(player.field.cards[2].getcard(),0,0));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}if(e.getSource()==player.field.cards[3])
-	{
-		try {
-			preview.addCard(new BigCard(player.field.cards[3].getcard(),0,0));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}if(e.getSource()==player.field.cards[4])
-	{
-		try {
-			preview.addCard(new BigCard(player.field.cards[4].getcard(),0,0));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
-		if(e.getSource()==ai.aifield.cards[0])
-		{
-			try {
-				preview.addCard(new BigCard(ai.aifield.cards[0].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if(e.getSource()==ai.aifield.cards[1])
-		{
-			try {
-				preview.addCard(new BigCard(ai.aifield.cards[1].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if(e.getSource()==ai.aifield.cards[2])
-		{
-			try {
-				preview.addCard(new BigCard(ai.aifield.cards[2].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if(e.getSource()==ai.aifield.cards[3])
-		{
-			try {
-				preview.addCard(new BigCard(ai.aifield.cards[3].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if(e.getSource()==ai.aifield.cards[4])
-		{
-			try {
-				preview.addCard(new BigCard(ai.aifield.cards[4].getcard(),0,0));
-			} catch (IOException e1) {
-				e1.printStackTrace();
+		for(int i=0;i<5;i++){
+			if(e.getSource()==player.field.cards[i]){
+				try {
+					preview.addCard(new BigCard(player.field.cards[i].getcard(),0,0));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 
-		if (e.getSource()==player.pdeck.btnNewButton_1)
-		{
+		for(int i=0;i<5;i++){
+			if(e.getSource()==ai.aifield.cards[i]){
+				try {
+					preview.addCard(new BigCard(ai.aifield.cards[i].getcard(),0,0));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+
+		if (e.getSource()==player.pdeck.btnNewButton_1){
 			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen3.png"));
 		}
 
-		if (e.getSource()==player.pdeck.btnNewButton_2)
-		{
+		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten3.png"));
 		}
 		
@@ -3002,21 +2333,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==aitarjet115){
 			aitarjet115.setIcon(new ImageIcon("redTarget3.png"));
 		}
-		if (e.getSource()==swordp1) {
-			swordp1.setIcon(new ImageIcon("swordEnfoqued.png"));
+
+		for(int i=0;i<5;i++){
+			if (e.getSource()==swordsPlayer[i]) {
+				swordsPlayer[i].setIcon(new ImageIcon("swordEnfoqued.png"));
+			}
 		}
-		if (e.getSource()==swordp2) {
-			swordp2.setIcon(new ImageIcon("swordEnfoqued.png"));
-		}
-		if (e.getSource()==swordp3) {
-			swordp3.setIcon(new ImageIcon("swordEnfoqued.png"));
-		}
-		if (e.getSource()==swordp4) {
-			swordp4.setIcon(new ImageIcon("swordEnfoqued.png"));
-		}
-		if (e.getSource()==swordp5) {
-			swordp5.setIcon(new ImageIcon("swordEnfoqued.png"));
-		}
+
 		repaint();
 	}
 
@@ -3112,29 +2435,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				carta.addMouseListener(this);
 				carta.repaint();
 				System.out.println(""+ carta.getcard().GetCardNumber() + " "+ carta.getcard().GetName());
-				/***************************EFECTOS*******************************/
-				if(carta.getcard().GetCardNumber()==15)
-				{
+
+				if(carta.getcard().GetCardNumber()==15){
 					player.powers.token();
 					player.powers.token();
 					player.powers.token();
 					player.powers.token();
 				}
-				if(carta.getcard().GetCardNumber()==16)
-				{
+
+				if(carta.getcard().GetCardNumber()==16){
 					fallen.setVisible(true);
 					fallen.effectnumber=13;
 					fallen.button.setEnabled(true);
 				}
-				if(carta.getcard().GetCardNumber()==17)
-				{
+
+				if(carta.getcard().GetCardNumber()==17){
 					fallen.setVisible(true);
 					fallen.button.setEnabled(true);
 					fallen.effectnumber=14;
 				}
+
 				this.makeEffect(carta.actual.Getid(),where);
 				ubicacionDeCarta = where;
 				repaint();
+
 				if (!Objects.equals(carta.actual.GetType(), "Warrior")) {
 					Thread t1 = new Thread(() -> {
                         try {
@@ -3165,13 +2489,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				player.pdeck.panel.add(show);
 				player.field.poner(Hero, where);
 			}
-			if(pos==-3)
-			{
+
+			if(pos==-3){
 				Hero=new SmallCard(player.pdeck.Deck.lista.Data.Consultar(9),0,0);
 				player.field.quitar(donde);
 				player.powers.play(Hero.getcard().GetCost());
 				player.field.poner(Hero, donde);
 			}
+
 			repaint();
 			AiHand.music();
 			this.repairListeners(true);
@@ -3187,12 +2512,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
             });
 			t.start();
 			repaint();
-	
 		removeNoWarriorsToPlayerFiedl();
 	}
 
 	
-	void play(int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {// plays a card on field
+	void play(int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		boolean allowed = true;
 		if(pos>=0){
 			c=player.hand.handgui[pos].getcard().GetCost();
@@ -3202,23 +2526,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		else
 			c=player.pdeck.Hero.getcard().GetCost();
 
-		if ( player.powers.power+player.powers.Volatile - c >=0 ) {//verifica que haya mana
-			if (allowed) {//verifica que un warrior no se ha jugado en ese turno
+		if ( player.powers.power+player.powers.Volatile - c >=0 ) {
+			if (allowed) {
 				int where = player.field.findwhere();
-				if (where != -1)
-				{
+				if (where != -1){
 					p=pos;
 					w=where;
-					
 					set(p, w);
-					
 				}
-			}else
-			{
+			}else{
 				System.out.println("Sorry , u can only play a warrior on each turn");
 			}
 		} else {
-
 			System.out.println("Sorry , u dont have enough powers to play it");
 		}
 	}
@@ -3459,12 +2778,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 			repaint();
 		}
-
 	}
 
 	public void makeAiEffect(String id, int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(this.phases.actual==2){
-
 			if(id.equals("SSD-2")){
 				int p;
 				System.out.println("adding a water power from the deck");
@@ -3522,12 +2839,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				aiAttackDest();
 
-				//dest
 				if (atkDest!=-1 && atkOrigin!=-1) {
 					player.hand.draw(player.field.cards[this.atkDest].getcard());
 					player.field.quitar(this.atkDest);
 
-					//origin
 					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
 					this.ai.aifield.quitar(this.atkOrigin); 
 				}
@@ -3555,12 +2870,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				if (this.atkDest!=-1 || this.atkOrigin!=-1) {
 					if(this.atkDest!=-1){
-						//dest
 						player.hand.draw(player.field.cards[this.atkDest].getcard());
 						player.hand.handgui[this.atkDest].addMouseListener(this);
 						player.field.quitar(this.atkDest);
 					}else{
-						//origin
 						pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
 						this.ai.aifield.quitar(this.atkOrigin);
 					}
@@ -3571,26 +2884,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				if(this.ai.aifield.cards[0]!=null&&pos!=0&&this.ai.aifield.cards[0].getcard().Getid().equals("SSD-03")){
-					this.selected=0;
+				for(int i=0;i<5;i++){
+					if(this.ai.aifield.cards[i]!=null&&pos!=i&&this.ai.aifield.cards[i].getcard().Getid().equals("SSD-03")){
+						this.selected=i;
+					}
 				}
-				if(this.ai.aifield.cards[1]!=null&&pos!=1&&this.ai.aifield.cards[1].getcard().Getid().equals("SSD-03")){
-					this.selected=1;
-				}
-				if(this.ai.aifield.cards[2]!=null&&pos!=2&&this.ai.aifield.cards[2].getcard().Getid().equals("SSD-03")){
-					this.selected=2;
-				}
-				if(this.ai.aifield.cards[3]!=null&&pos!=3&&this.ai.aifield.cards[3].getcard().Getid().equals("SSD-03")){
-					this.selected=3;
-				}
-				if(this.ai.aifield.cards[4]!=null&&pos!=4&&this.ai.aifield.cards[4].getcard().Getid().equals("SSD-03")){
-					this.selected=4;
-				}
+
 				if(this.selected==-1){
 					System.out.println("cannot find a Siren");
 				}else{
 					this.ai.aifield.quitar(this.selected);
-
 					for(int i=0; i<5; i++){
 						this.aiDest[i]=-1;
 					}
@@ -3606,9 +2909,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 
 					aiAttackDest();
-
 					if(this.atkDest!=-1){
-						//dest
 						player.field.quitar(this.atkDest);
 					}else{
 						System.out.println("can't find a target");
@@ -3630,7 +2931,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 
 					aiAttackDest();
-
 					if (this.atkDest!=-1 || this.atkOrigin!=-1) {
 						if(this.atkDest!=-1){
 							player.field.quitar(this.atkDest);
@@ -3666,25 +2966,21 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if (this.atkDest != -1) {
 						c = player.field.cards[this.atkDest].getcard();
 						player.field.quitar(this.atkDest);
-						
-							player.field.poner(new SmallCard( c,0,0), this.atkDest);
+						player.field.poner(new SmallCard( c,0,0), this.atkDest);
 						
 					} else {
 						c = this.ai.aifield.cards[this.atkOrigin].getcard();
 						this.ai.aifield.quitar(this.atkOrigin);
-							this.ai.aifield.poner(new SmallCard( c,0,0), this.atkOrigin);
-						
+						this.ai.aifield.poner(new SmallCard( c,0,0), this.atkOrigin);
 					}
 				}else {
 					System.out.println("can't find a target");
 				}
 			}
-			
+
 			if (id.equals("SSD-10")) {
-				ai.aidra.set(1);
-				ai.aidra.set(1);
-				ai.aidra.set(1);
-				ai.aidra.set(1);
+				for(int i=0;i<4;i++)
+					ai.aidra.set(1);
 			}
 			repaint();
 		}
@@ -3713,10 +3009,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		return cont;
 	}
 
-	public void repairListeners(boolean enabled)//enabled dice si el boton playesta on o no
-	{
-		for(int i=0;i<player.hand.current-1;i++)
-		{
+	public void repairListeners(boolean enabled){
+		for(int i=0;i<player.hand.current-1;i++){
 			player.hand.handgui[i].removeMouseListener(this);
 		}
 
@@ -3727,22 +3021,17 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		
 		player.pdeck.Play.setEnabled(enabled);
-		if(player.hand.handgui[player.hand.current]!=null)
-		{
+		if(player.hand.handgui[player.hand.current]!=null){
 			Addlisteners2Card(player.hand.current);
 			player.hand.handgui[player.hand.current].addMouseListener(this);	
 		}
-		
-
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (e.getSource()==player.pdeck.btnNewButton_1)
-		{
+		if (e.getSource()==player.pdeck.btnNewButton_1){
 			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen2.png"));
 		}
-		if (e.getSource()==player.pdeck.btnNewButton_2)
-		{
+		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten2.png"));
 		}
 		if(e.getSource()==phases.setup){
@@ -3914,12 +3203,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (e.getSource()==player.pdeck.btnNewButton_1)
-		{
+		if (e.getSource()==player.pdeck.btnNewButton_1){
 			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
 		}
-		if (e.getSource()==player.pdeck.btnNewButton_2)
-		{
+		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
 		if(e.getSource()==phases.setup){
@@ -4259,11 +3546,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
             }
 			try {
 				playAiCard("anywhere");
-			} catch (UnsupportedAudioFileException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (LineUnavailableException e) {
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 				e.printStackTrace();
 			}
 		});
@@ -4271,9 +3554,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 	
 	public void playAiCard(String type) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-//		fase 1 : invocacion
-		int cardAiHandLocation = getCardAiHandLocation(type); //ubicar la carta a colocar en hand
-		int cardAiFieldLocation = getCardAiFieldLocation();  //ubicar la carta en una posicion del fiel disponible
+		int cardAiHandLocation = getCardAiHandLocation(type);
+		int cardAiFieldLocation = getCardAiFieldLocation();
 		SmallCard carta = null;
 		
 		try {
@@ -4284,20 +3566,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai.aifield.poner(carta, cardAiFieldLocation);
 
 		if (carta != null && carta.getcard().GetCardNumber() == 15) {
-			ai.aidra.token();
-			ai.aidra.token();
-			ai.aidra.token();
-			ai.aidra.token();
+			for(int i=0;i<5;i++)
+				ai.aidra.token();
 		}
 		ai.aihand.discard(cardAiHandLocation);
 		ai.whereInvoqued=cardAiFieldLocation;
 		repaint();
 		
-//		fase 2: efecto correspondiente
 		this.makeAiEffect(ai.aifield.cards[ai.whereInvoqued].getcard().Getid(),ai.whereInvoqued);
-//		fase 3: preview
 		preview.addCard(new BigCard(ai.aifield.cards[ai.whereInvoqued].getcard(), 0, 0));
-//		fase 4: hilo de ejecucion
 		if (!Objects.equals(ai.aifield.cards[ai.whereInvoqued].getcard().GetType(), "Warrior")) {
 			removeCardToFieldThread();
 		}
@@ -4308,13 +3585,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		Random al = new Random();
 		int aleatorio;
 		ai.whereInvoqued=-1;
-//		verificamos los recursos que ai tiene por si acaso
 		int cantAiHandCards;
 		int cantAiFieldCards;
 
 		cantAiHandCards = getCantAiHandCards();
 		cantAiFieldCards = getCantAiFieldCards();
-
 
 		if (cantAiFieldCards<5) {
 			if(ExistWarriorsInHand()){
@@ -4324,15 +3599,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if (existPowerToPlayAnotherCard()) {
 						aleatorio = al.nextInt(2); 
 						if (aleatorio == 0) {
-							//JUGAR UNA SOLA CARTA
 							playAiCard("anywhere");
 							aleatorio = al.nextInt(2);
 							if (aleatorio == 0 && cantAiHandCards>1) {
-								//SET A CARTA ALEATORIAMENTE DE LA MANO
 								randomSetCardToHand();
 							}
 						}else {
-							//JUGAR DOS CARTAS
 							if (cantAiHandCards>1) {
 								playAiCard("anywhere");
 								waitToPlayAnotherCard();
@@ -4340,13 +3612,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 					}
 					else {
-						//SET A CARD
 						randomSetCardToHand();
 						aleatorio = al.nextInt(2);
 						if (aleatorio == 0){
 							if(ExistWarriorsInHand()){
 								if(canInvoqueWarriorToHand()){
-									//SE JUEGA EL WARRIOR
 									playAiCard("Warrior");
 								}
 							}	
@@ -4354,7 +3624,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 				}
 			}else {
-				//SET A RANDOM CARD
 				aleatorio = al.nextInt(2);
 				if (aleatorio==0) {
 					randomSetCardToHand();
@@ -4402,36 +3671,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public int selectionHandgui(MouseEvent e){
-		if(e.getSource()==player.hand.handgui[0])
-		{
-			return 0;
-		}else if(e.getSource()==player.hand.handgui[1])
-		{
-			return 1;
-		}else if(e.getSource()==player.hand.handgui[2])
-		{
-			return 2;
-		}else if(e.getSource()==player.hand.handgui[3])
-		{
-			return 3;
-		}else if(e.getSource()==player.hand.handgui[4])
-		{
-			return 4;
-		}else if(e.getSource()==player.hand.handgui[5])
-		{
-			return 5;
-		}else if(e.getSource()==player.hand.handgui[6])
-		{
-			return 6;
-		}else if(e.getSource()==player.hand.handgui[7])
-		{
-			return 7;
-		}else if(e.getSource()==player.hand.handgui[8])
-		{
-			return 8;
-		}else if(e.getSource()==player.hand.handgui[9])
-		{
-			return 9;
+		for(int i=0;i<10;i++){
+			if(e.getSource()==player.hand.handgui[i]){
+				return i;
+			}
 		}
 		return -1;
 	}
@@ -4452,7 +3695,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void aiAttackDest(){
-		i=0;//si no haces esto cuando no hay cartas queda un ciclo infinito
+		i=0;
 		while(i<26){
 			Random r = new Random();
 			int a = r.nextInt(5);
@@ -4502,7 +3745,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public void aiMovements() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(ExistCardsInAiField()){
 			Random al = new Random();
-			int aleatorio = al.nextInt(2); //retornara 0 o 1
+			int aleatorio = al.nextInt(2);
 			if (aleatorio==0) {
 				possiblesAiMovements();
 			}
@@ -4526,7 +3769,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		phases.reaction.setIcon(new ImageIcon(("reAction2.png")));
 		repaint();
 		phases.change(phases.actual+1);
-		//attack phase
 
 		if(this.contTurn>0){
 			for(int i=0; i<5; i++){
@@ -4538,24 +3780,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(ai.aifield.cards[i]!=null && Objects.equals(ai.aifield.cards[i].getcard().GetType(), "Warrior")){
 					this.aiAttack[i]=1;
 					contTargetAttack++;
-
-					switch(i){
-						case 0:
-							this.sworda1.setVisible(true);
-							break;
-						case 1:
-							this.sworda2.setVisible(true);
-							break;
-						case 2:
-							this.sworda3.setVisible(true);
-							break;
-						case 3:
-							this.sworda4.setVisible(true);
-							break;
-						case 4:
-							this.sworda5.setVisible(true);
-							break;
-					}
+					swordsAi[i].setVisible(true);
 				}
 				else{
 					this.aiAttack[i]=0;
@@ -4564,7 +3789,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			Random rr = new Random();
 			if (contTargetAttack>0) {
-
 				for (int iterador = 0; iterador < rr.nextInt(contTargetAttack+1); iterador++) {
 					aiAttackOrigin();
 
@@ -4580,28 +3804,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					aiAttackDest();
 					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
 
-					if (this.atkOrigin==0) {
-						this.sworda1.setVisible(false);
+					for(int i=0;i<5;i++){
+						if (this.atkOrigin==i) {
+							swordsAi[i].setVisible(false);
+						}
 					}
-					if (this.atkOrigin==1) {
-						this.sworda2.setVisible(false);
-					}
-					if (this.atkOrigin==2) {
-						this.sworda3.setVisible(false);
-					}
-					if (this.atkOrigin==3) {
-						this.sworda4.setVisible(false);
-					}
-					if (this.atkOrigin==4) {
-						this.sworda5.setVisible(false);
-					}
+
 					this.aiAttack[atkOrigin]=0;
 
 					if(atkOrigin!=-1 && atkDest==-1 && countCardsInPlayerField()==0){
 						int location = findPlayerBarrierToRemove();
 
-						if(location!=-1)//existe un barrier
-						{
+						if(location!=-1){
 							player.hand.draw(Barriers.cards[location]);
 							player.barriers.removebarrier(location);
 							Barriers.barriers[location].setVisible(false);
@@ -4614,18 +3828,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					if(atkDest!=-1 && atkOrigin!=-1  )
 					{
-						if(!player.field.cards[atkDest].getpos()){ //si la carta elegida no esta bocabajo
+						if(!player.field.cards[atkDest].getpos()){
 							remove(phases);
 							if(!fight.isVisible()){
 								fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
 							}
-							if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp())
-							{
+							if(player.field.cards[atkDest].getcard().GetHp()>ai.aifield.cards[atkOrigin].getcard().GetHp()){
 								ai.aifield.quitar(atkOrigin);
 								fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[atkOrigin].getcard());
 
-							}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp())
-							{
+							}else if(player.field.cards[atkDest].getcard().GetHp()<ai.aifield.cards[atkOrigin].getcard().GetHp()){
 								player.field.quitar(atkDest);
 								fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[atkDest].getcard());
 								this.makeAiEffect(this.ai.aifield.cards[atkOrigin].getcard().Getid(),atkOrigin );
@@ -4640,17 +3852,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		phases.change(phases.actual+1);
 
-		this.sworda1.setVisible(false);
-		this.sworda2.setVisible(false);
-		this.sworda3.setVisible(false);
-		this.sworda4.setVisible(false);
-		this.sworda5.setVisible(false);
+		for(int i=0;i<5;i++){
+			swordsAi[i].setVisible(false);
+		}
 		turn=1;
 
 		this.turnoLabel.setText("Player'S turn");
 		this.contTurn++;
 
-		//primer turno del user
 		ready=1;
 		done=1;
 		if(phases.actual<4){
@@ -4687,7 +3896,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 
-		//setup phase
 		this.phases.draw.removeMouseListener(this);
 		for(int i=0;i<5;i++)
 		{
