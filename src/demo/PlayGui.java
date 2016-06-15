@@ -50,26 +50,24 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
-//	public JButton top1,top2,top3,top4,top5;
 	public JButton top[];
-	public JLabel ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
-	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
+	public JLabel ptarjet[], aitarjet[];
 	public int selected=-1;
 	public RoundedPanel unleash;
-	public JLabel ptarjet81, ptarjet82, ptarjet83, ptarjet84, ptarjet85;
-	public JLabel aitarjet81, aitarjet82, aitarjet83, aitarjet84, aitarjet85;
-	public JLabel ptarjet91, ptarjet92, ptarjet93, ptarjet94, ptarjet95;
-	public JLabel aitarjet91, aitarjet92, aitarjet93, aitarjet94, aitarjet95;
-	public JLabel ptarjet101, ptarjet102, ptarjet103, ptarjet104, ptarjet105;
-	public JLabel aitarjet101, aitarjet102, aitarjet103, aitarjet104, aitarjet105;
-	public JLabel ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
-	public JLabel aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
+	public JLabel ptarjet8[], aitarjet8[];
+	public JLabel ptarjet9[], aitarjet9[];
+	public JLabel ptarjet10[], aitarjet10[];
+	public JLabel ptarjet11[], aitarjet11[];
+	//	public JLabel ptarjet101, ptarjet102, ptarjet103, ptarjet104, ptarjet105;
+//	public JLabel aitarjet101, aitarjet102, aitarjet103, aitarjet104, aitarjet105;
+//	public JLabel ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
+//	public JLabel aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	public int done;
 	public int bugPrimerTurnoUSer=0;
 	public int liberarTutoEnd=1;
 	public int ubicacionDeCarta;
 	public Gui instanciaGui;
-	
+
 	public int getPhaseActual(){
 		return phases.actual;
 	}
@@ -128,7 +126,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
 			player.pdeck.textField.repaint();
 		}
-			
+
 		fallen=new Fallen();
 		add(fallen);
 
@@ -215,465 +213,115 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		phases.draw.addMouseListener(this);
 
-		this.ptarjet1= new JLabel();
-		this.ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet1.setBounds(230,380, 50, 50);
-		add(ptarjet1);
+		ptarjet = new JLabel[5];
+		for(int i=0; i<ptarjet.length; i++){
+			ptarjet[i]= new JLabel();
+			ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			ptarjet[i].setBounds(230+(i*110),380, 50, 50);
+			moveToFront(ptarjet[i]);
+			ptarjet[i].setVisible(false);
+			ptarjet[i].addMouseListener(this);
+			add(ptarjet[i]);
+		}
 
-		this.ptarjet2= new JLabel();
-		this.ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet2.setBounds(340,380, 50, 50);
-		add(ptarjet2);
+		aitarjet = new JLabel[5];
+		for(int i=0; i<aitarjet.length; i++){
+			aitarjet[i]= new JLabel();
+			aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			aitarjet[i].setBounds(230+(i*110), 210, 50, 50);
+			moveToFront(aitarjet[i]);
+			aitarjet[i].setVisible(false);
+			aitarjet[i].addMouseListener(this);
+			add(aitarjet[i]);
+		}
 
-		this.ptarjet3= new JLabel();
-		this.ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet3.setBounds(450,380, 50, 50);
-		add(ptarjet3);
+		ptarjet8 = new JLabel[5];
+		for(int i=0; i<ptarjet8.length; i++){
+			ptarjet8[i]= new JLabel();
+			ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			ptarjet8[i].setBounds(230+(i*110),380, 50, 50);
+			moveToFront(ptarjet8[i]);
+			ptarjet8[i].addMouseListener(this);
+			ptarjet8[i].setVisible(false);
+			add(ptarjet8[i]);
+		}
 
-		this.ptarjet4= new JLabel();
-		this.ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet4.setBounds(560,380, 50, 50);
-		add(ptarjet4);
+		aitarjet8 = new JLabel[5];
+		for(int i=0; i<aitarjet8.length; i++){
+			aitarjet8[i]= new JLabel();
+			aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			aitarjet8[i].setBounds(230+(i*110), 210, 50, 50);
+			moveToFront(aitarjet8[i]);
+			aitarjet8[i].addMouseListener(this);
+			aitarjet8[i].setVisible(false);
+			add(aitarjet8[i]);
+		}
 
-		this.ptarjet5= new JLabel();
-		this.ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet5.setBounds(670,380, 50, 50);
-		add(ptarjet5);
+		ptarjet9 = new JLabel[5];
+		for(int i=0; i<ptarjet9.length; i++){
+			ptarjet9[i]= new JLabel();
+			ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			ptarjet9[i].setBounds(230+(i*110),380, 50, 50);
+			moveToFront(ptarjet9[i]);
+			ptarjet9[i].addMouseListener(this);
+			ptarjet9[i].setVisible(false);
+			add(ptarjet9[i]);
+		}
 
-		this.moveToFront(ptarjet1);
-		this.moveToFront(ptarjet2);
-		this.moveToFront(ptarjet3);
-		this.moveToFront(ptarjet4);
-		this.moveToFront(ptarjet5);
+		aitarjet9 = new JLabel[5];
+		for(int i=0; i<aitarjet9.length; i++){
+			aitarjet9[i]= new JLabel();
+			aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			aitarjet9[i].setBounds(230+(i*110), 210, 50, 50);
+			moveToFront(aitarjet9[i]);
+			aitarjet9[i].addMouseListener(this);
+			aitarjet9[i].setVisible(false);
+			add(aitarjet9[i]);
+		}
 
-		this.aitarjet1= new JLabel();
-		this.aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet1.setBounds(230, 210, 50, 50);
-		add(aitarjet1);
+		ptarjet10 = new JLabel[5];
+		for(int i=0; i<ptarjet10.length; i++){
+			ptarjet10[i]= new JLabel();
+			ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			ptarjet10[i].setBounds(230+(i*110),380, 50, 50);
+			moveToFront(ptarjet10[i]);
+			ptarjet10[i].addMouseListener(this);
+			ptarjet10[i].setVisible(false);
+			add(ptarjet10[i]);
+		}
 
-		this.aitarjet2= new JLabel();
-		this.aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet2.setBounds(340,210, 50, 50);
-		add(aitarjet2);
+		aitarjet10 = new JLabel[5];
+		for(int i=0; i<aitarjet10.length; i++){
+			aitarjet10[i]= new JLabel();
+			aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			aitarjet10[i].setBounds(230+(i*110), 210, 50, 50);
+			moveToFront(aitarjet10[i]);
+			aitarjet10[i].addMouseListener(this);
+			aitarjet10[i].setVisible(false);
+			add(aitarjet10[i]);
+		}
 
-		this.aitarjet3= new JLabel();
-		this.aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet3.setBounds(450,210, 50, 50);
-		add(aitarjet3);
+		ptarjet11 = new JLabel[5];
+		for(int i=0; i<ptarjet11.length; i++){
+			ptarjet11[i]= new JLabel();
+			ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			ptarjet11[i].setBounds(230+(i*110),380, 50, 50);
+			moveToFront(ptarjet11[i]);
+			ptarjet11[i].addMouseListener(this);
+			ptarjet11[i].setVisible(false);
+			add(ptarjet11[i]);
+		}
 
-		this.aitarjet4= new JLabel();
-		this.aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet4.setBounds(560,210, 50, 50);
-		add(aitarjet4);
-
-		this.aitarjet5= new JLabel();
-		this.aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet5.setBounds(670,210, 50, 50);
-		add(aitarjet5);
-
-		this.moveToFront(aitarjet1);
-		this.moveToFront(aitarjet2);
-		this.moveToFront(aitarjet3);
-		this.moveToFront(aitarjet4);
-		this.moveToFront(aitarjet5);
-
-		this.ptarjet1.addMouseListener(this);
-		this.ptarjet2.addMouseListener(this);
-		this.ptarjet3.addMouseListener(this);
-		this.ptarjet4.addMouseListener(this);
-		this.ptarjet5.addMouseListener(this);
-		this.aitarjet1.addMouseListener(this);
-		this.aitarjet2.addMouseListener(this);
-		this.aitarjet3.addMouseListener(this);
-		this.aitarjet4.addMouseListener(this);
-		this.aitarjet5.addMouseListener(this);
-
-		this.ptarjet1.setVisible(false);
-		this.ptarjet2.setVisible(false);
-		this.ptarjet3.setVisible(false);
-		this.ptarjet4.setVisible(false);
-		this.ptarjet5.setVisible(false);
-		this.aitarjet1.setVisible(false);
-		this.aitarjet2.setVisible(false);
-		this.aitarjet3.setVisible(false);
-		this.aitarjet4.setVisible(false);
-		this.aitarjet5.setVisible(false);
-
-
-		this.ptarjet1= new JLabel();
-		this.ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet1.setBounds(230,380, 50, 50);
-		this.ptarjet2= new JLabel();
-		this.ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet2.setBounds(340,380, 50, 50);
-		this.ptarjet3= new JLabel();
-		this.ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet3.setBounds(450,380, 50, 50);
-		this.ptarjet4= new JLabel();
-		this.ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet4.setBounds(560,380, 50, 50);
-		this.ptarjet5= new JLabel();
-		this.ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet5.setBounds(670,380, 50, 50);
-		add(ptarjet1);
-		add(ptarjet2);
-		add(ptarjet3);
-		add(ptarjet4);
-		add(ptarjet5);
-		this.moveToFront(ptarjet1);
-		this.moveToFront(ptarjet2);
-		this.moveToFront(ptarjet3);
-		this.moveToFront(ptarjet4);
-		this.moveToFront(ptarjet5);
-
-		this.aitarjet1= new JLabel();
-		this.aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet1.setBounds(230, 210, 50, 50);
-		this.aitarjet2= new JLabel();
-		this.aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet2.setBounds(340,210, 50, 50);
-		this.aitarjet3= new JLabel();
-		this.aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet3.setBounds(450,210, 50, 50);
-		this.aitarjet4= new JLabel();
-		this.aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet4.setBounds(560,210, 50, 50);
-		this.aitarjet5= new JLabel();
-		this.aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet5.setBounds(670,210, 50, 50);
-		add(aitarjet1);
-		add(aitarjet2);
-		add(aitarjet3);
-		add(aitarjet4);
-		add(aitarjet5);
-		this.moveToFront(aitarjet1);
-		this.moveToFront(aitarjet2);
-		this.moveToFront(aitarjet3);
-		this.moveToFront(aitarjet4);
-		this.moveToFront(aitarjet5);
-
-		this.ptarjet1.addMouseListener(this);
-		this.ptarjet2.addMouseListener(this);
-		this.ptarjet3.addMouseListener(this);
-		this.ptarjet4.addMouseListener(this);
-		this.ptarjet5.addMouseListener(this);
-		this.aitarjet1.addMouseListener(this);
-		this.aitarjet2.addMouseListener(this);
-		this.aitarjet3.addMouseListener(this);
-		this.aitarjet4.addMouseListener(this);
-		this.aitarjet5.addMouseListener(this);
-
-		this.ptarjet1.setVisible(false);
-		this.ptarjet2.setVisible(false);
-		this.ptarjet3.setVisible(false);
-		this.ptarjet4.setVisible(false);
-		this.ptarjet5.setVisible(false);
-		this.aitarjet1.setVisible(false);
-		this.aitarjet2.setVisible(false);
-		this.aitarjet3.setVisible(false);
-		this.aitarjet4.setVisible(false);
-		this.aitarjet5.setVisible(false);
-
-
-		this.ptarjet81= new JLabel();
-		this.ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet81.setBounds(230,380, 50, 50);
-		this.ptarjet82= new JLabel();
-		this.ptarjet82.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet82.setBounds(340,380, 50, 50);
-		this.ptarjet83= new JLabel();
-		this.ptarjet83.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet83.setBounds(450,380, 50, 50);
-		this.ptarjet84= new JLabel();
-		this.ptarjet84.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet84.setBounds(560,380, 50, 50);
-		this.ptarjet85= new JLabel();
-		this.ptarjet85.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet85.setBounds(670,380, 50, 50);
-		add(ptarjet81);
-		add(ptarjet82);
-		add(ptarjet83);
-		add(ptarjet84);
-		add(ptarjet85);
-		this.moveToFront(ptarjet81);
-		this.moveToFront(ptarjet82);
-		this.moveToFront(ptarjet83);
-		this.moveToFront(ptarjet84);
-		this.moveToFront(ptarjet85);
-
-		this.aitarjet81= new JLabel();
-		this.aitarjet81.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet81.setBounds(230, 210, 50, 50);
-		this.aitarjet82= new JLabel();
-		this.aitarjet82.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet82.setBounds(340,210, 50, 50);
-		this.aitarjet83= new JLabel();
-		this.aitarjet83.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet83.setBounds(450,210, 50, 50);
-		this.aitarjet84= new JLabel();
-		this.aitarjet84.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet84.setBounds(560,210, 50, 50);
-		this.aitarjet85= new JLabel();
-		this.aitarjet85.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet85.setBounds(670,210, 50, 50);
-		add(aitarjet81);
-		add(aitarjet82);
-		add(aitarjet83);
-		add(aitarjet84);
-		add(aitarjet85);
-		this.moveToFront(aitarjet81);
-		this.moveToFront(aitarjet82);
-		this.moveToFront(aitarjet83);
-		this.moveToFront(aitarjet84);
-		this.moveToFront(aitarjet85);
-
-		this.ptarjet81.addMouseListener(this);
-		this.ptarjet82.addMouseListener(this);
-		this.ptarjet83.addMouseListener(this);
-		this.ptarjet84.addMouseListener(this);
-		this.ptarjet85.addMouseListener(this);
-		this.aitarjet81.addMouseListener(this);
-		this.aitarjet82.addMouseListener(this);
-		this.aitarjet83.addMouseListener(this);
-		this.aitarjet84.addMouseListener(this);
-		this.aitarjet85.addMouseListener(this);
-
-		this.ptarjet81.setVisible(false);
-		this.ptarjet82.setVisible(false);
-		this.ptarjet83.setVisible(false);
-		this.ptarjet84.setVisible(false);
-		this.ptarjet85.setVisible(false);
-		this.aitarjet81.setVisible(false);
-		this.aitarjet82.setVisible(false);
-		this.aitarjet83.setVisible(false);
-		this.aitarjet84.setVisible(false);
-		this.aitarjet85.setVisible(false);
-
-
-
-
-		this.ptarjet91= new JLabel();
-		this.ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet91.setBounds(230,380, 50, 50);
-		this.ptarjet92 = new JLabel();
-		this.ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet92.setBounds(340, 380, 50, 50);
-		this.ptarjet93 = new JLabel();
-		this.ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet93.setBounds(450, 380, 50, 50);
-		this.ptarjet94 = new JLabel();
-		this.ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet94.setBounds(560, 380, 50, 50);
-		this.ptarjet95 = new JLabel();
-		this.ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet95.setBounds(670, 380, 50, 50);
-		add(ptarjet91);
-		add(ptarjet92);
-		add(ptarjet93);
-		add(ptarjet94);
-		add(ptarjet95);
-		this.moveToFront(ptarjet91);
-		this.moveToFront(ptarjet92);
-		this.moveToFront(ptarjet93);
-		this.moveToFront(ptarjet94);
-		this.moveToFront(ptarjet95);
-
-		this.aitarjet91 = new JLabel();
-		this.aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet91.setBounds(230, 210, 50, 50);
-		this.aitarjet92 = new JLabel();
-		this.aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet92.setBounds(340, 210, 50, 50);
-		this.aitarjet93 = new JLabel();
-		this.aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet93.setBounds(450, 210, 50, 50);
-		this.aitarjet94 = new JLabel();
-		this.aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet94.setBounds(560, 210, 50, 50);
-		this.aitarjet95 = new JLabel();
-		this.aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet95.setBounds(670, 210, 50, 50);
-		add(aitarjet91);
-		add(aitarjet92);
-		add(aitarjet93);
-		add(aitarjet94);
-		add(aitarjet95);
-		this.moveToFront(aitarjet91);
-		this.moveToFront(aitarjet92);
-		this.moveToFront(aitarjet93);
-		this.moveToFront(aitarjet94);
-		this.moveToFront(aitarjet95);
-
-		this.ptarjet91.addMouseListener(this);
-		this.ptarjet92.addMouseListener(this);
-		this.ptarjet93.addMouseListener(this);
-		this.ptarjet94.addMouseListener(this);
-		this.ptarjet95.addMouseListener(this);
-		this.aitarjet91.addMouseListener(this);
-		this.aitarjet92.addMouseListener(this);
-		this.aitarjet93.addMouseListener(this);
-		this.aitarjet94.addMouseListener(this);
-		this.aitarjet95.addMouseListener(this);
-
-		this.ptarjet91.setVisible(false);
-		this.ptarjet92.setVisible(false);
-		this.ptarjet93.setVisible(false);
-		this.ptarjet94.setVisible(false);
-		this.ptarjet95.setVisible(false);
-		this.aitarjet91.setVisible(false);
-		this.aitarjet92.setVisible(false);
-		this.aitarjet93.setVisible(false);
-		this.aitarjet94.setVisible(false);
-		this.aitarjet95.setVisible(false);
-
-		this.ptarjet101 = new JLabel();
-		this.ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet101.setBounds(230, 380, 50, 50);
-		this.ptarjet102 = new JLabel();
-		this.ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet102.setBounds(340, 380, 50, 50);
-		this.ptarjet103 = new JLabel();
-		this.ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet103.setBounds(450, 380, 50, 50);
-		this.ptarjet104 = new JLabel();
-		this.ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet104.setBounds(560, 380, 50, 50);
-		this.ptarjet105 = new JLabel();
-		this.ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet105.setBounds(670, 380, 50, 50);
-		add(ptarjet101);
-		add(ptarjet102);
-		add(ptarjet103);
-		add(ptarjet104);
-		add(ptarjet105);
-		this.moveToFront(ptarjet101);
-		this.moveToFront(ptarjet102);
-		this.moveToFront(ptarjet103);
-		this.moveToFront(ptarjet104);
-		this.moveToFront(ptarjet105);
-
-		this.aitarjet101 = new JLabel();
-		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet101.setBounds(230, 210, 50, 50);
-		this.aitarjet102 = new JLabel();
-		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet102.setBounds(340, 210, 50, 50);
-		this.aitarjet103 = new JLabel();
-		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet103.setBounds(450, 210, 50, 50);
-		this.aitarjet104 = new JLabel();
-		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet104.setBounds(560, 210, 50, 50);
-		this.aitarjet105 = new JLabel();
-		this.aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet105.setBounds(670, 210, 50, 50);
-		add(aitarjet101);
-		add(aitarjet103);
-		add(aitarjet102);
-		add(aitarjet104);
-		add(aitarjet105);
-		this.moveToFront(aitarjet101);
-		this.moveToFront(aitarjet102);
-		this.moveToFront(aitarjet103);
-		this.moveToFront(aitarjet104);
-		this.moveToFront(aitarjet105);
-		this.aitarjet102.addMouseListener(this);
-
-		this.ptarjet102.addMouseListener(this);
-		this.ptarjet101.addMouseListener(this);
-		this.ptarjet103.addMouseListener(this);
-		this.ptarjet104.addMouseListener(this);
-		this.ptarjet105.addMouseListener(this);
-		this.aitarjet101.addMouseListener(this);
-		this.aitarjet103.addMouseListener(this);
-		this.aitarjet104.addMouseListener(this);
-		this.aitarjet105.addMouseListener(this);
-
-		this.ptarjet101.setVisible(false);
-		this.ptarjet102.setVisible(false);
-		this.ptarjet103.setVisible(false);
-		this.ptarjet104.setVisible(false);
-		this.ptarjet105.setVisible(false);
-		this.aitarjet101.setVisible(false);
-		this.aitarjet102.setVisible(false);
-		this.aitarjet103.setVisible(false);
-		this.aitarjet104.setVisible(false);
-		this.aitarjet105.setVisible(false);
-
-		this.ptarjet111 = new JLabel();
-		this.ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet111.setBounds(230, 380, 50, 50);
-		this.ptarjet112 = new JLabel();
-		this.ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet112.setBounds(340, 380, 50, 50);
-		this.ptarjet113 = new JLabel();
-		this.ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet113.setBounds(450, 380, 50, 50);
-		this.ptarjet114 = new JLabel();
-		this.ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet114.setBounds(560, 380, 50, 50);
-		this.ptarjet115 = new JLabel();
-		this.ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		this.ptarjet115.setBounds(670, 380, 50, 50);
-		add(ptarjet111);
-		add(ptarjet112);
-		add(ptarjet113);
-		add(ptarjet114);
-		add(ptarjet115);
-		this.moveToFront(ptarjet111);
-		this.moveToFront(ptarjet112);
-		this.moveToFront(ptarjet113);
-		this.moveToFront(ptarjet114);
-		this.moveToFront(ptarjet115);
-
-		this.aitarjet111 = new JLabel();
-		this.aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet111.setBounds(230, 210, 50, 50);
-		this.aitarjet112 = new JLabel();
-		this.aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet112.setBounds(340, 210, 50, 50);
-		this.aitarjet113 = new JLabel();
-		this.aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet113.setBounds(450, 210, 50, 50);
-		this.aitarjet114 = new JLabel();
-		this.aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet114.setBounds(560, 210, 50, 50);
-		this.aitarjet115 = new JLabel();
-		this.aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		this.aitarjet115.setBounds(670, 210, 50, 50);
-		add(aitarjet111);
-		add(aitarjet112);
-		add(aitarjet113);
-		add(aitarjet114);
-		add(aitarjet115);
-		this.moveToFront(aitarjet111);
-		this.moveToFront(aitarjet112);
-		this.moveToFront(aitarjet113);
-		this.moveToFront(aitarjet114);
-		this.moveToFront(aitarjet115);
-
-		this.ptarjet111.addMouseListener(this);
-		this.ptarjet112.addMouseListener(this);
-		this.ptarjet113.addMouseListener(this);
-		this.ptarjet114.addMouseListener(this);
-		this.ptarjet115.addMouseListener(this);
-		this.aitarjet111.addMouseListener(this);
-		this.aitarjet112.addMouseListener(this);
-		this.aitarjet113.addMouseListener(this);
-		this.aitarjet114.addMouseListener(this);
-		this.aitarjet115.addMouseListener(this);
-
-		this.ptarjet111.setVisible(false);
-		this.ptarjet112.setVisible(false);
-		this.ptarjet113.setVisible(false);
-		this.ptarjet114.setVisible(false);
-		this.ptarjet115.setVisible(false);
-		this.aitarjet111.setVisible(false);
-		this.aitarjet112.setVisible(false);
-		this.aitarjet113.setVisible(false);
-		this.aitarjet114.setVisible(false);
-		this.aitarjet115.setVisible(false);
-
+		aitarjet11 = new JLabel[5];
+		for(int i=0; i<aitarjet11.length; i++){
+			aitarjet11[i]= new JLabel();
+			aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			aitarjet11[i].setBounds(230+(i*110), 210, 50, 50);
+			moveToFront(aitarjet11[i]);
+			aitarjet11[i].addMouseListener(this);
+			aitarjet11[i].setVisible(false);
+			add(aitarjet11[i]);
+		}
 
 		for (int i = 0; i < player.hand.current; i++)
 			player.hand.handgui[i].Play.setEnabled(false);
@@ -849,7 +497,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		}
 
-		for(int i=0; i<5;i++){
+		for(int i=0; i<player.hand.current;i++){
 			if(e.getSource()==player.hand.handgui[i].Discard){
 				if(done==0)
 					if(i!=0){
@@ -882,7 +530,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			done=1;
 		}
 
-		for(int i=0; i<5; i++){
+		for(int i=0; i<player.hand.current; i++){
 			if(e.getSource()==player.hand.handgui[i].Preview){
 				if(done==0){
 					try {
@@ -894,27 +542,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				done=1;
 			}
 		}
-		
+
 		pl=-1;
 		if(e.getSource()==player.pdeck.Play){
 			pl=-2;
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<player.hand.current;i++){
 			if(e.getSource()==player.hand.handgui[i].Play){
 				pl=i;
-			}
-		}
-
-		if(player.hand.handgui[5]!=null){
-			if(e.getSource()==player.hand.handgui[5].Play){
-				pl=5;
-			}
-		}
-
-		if(player.hand.handgui[6]!=null){
-			if(e.getSource()==player.hand.handgui[6].Play){
-				pl=6;
 			}
 		}
 
@@ -964,16 +600,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		}
 
-		if(e.getSource()==this.top1){
-			this.top1.setVisible(false);
-			this.top2.setVisible(false);
-			this.top3.setVisible(false);
-			this.top4.setVisible(false);
-			this.top5.setVisible(false);
+		if(e.getSource()==top[0]||e.getSource()==top[1]||e.getSource()==top[2]||e.getSource()==top[3]||e.getSource()==top[4]){
+			for(int i=0; i<top.length; i++){
+				top[i].setVisible(false);
+			}
 
 			System.out.println("your card will be placed on top of the deck");
 			Card c;
-			c=player.hand.cards[0];	
+			c=player.hand.cards[0];
 			player.pdeck.Deck.insertar(c);
 			try {
 				player.hand.discard(1);
@@ -984,139 +618,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			try {
 				addPowerCardFromTheDeck();
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
-				e1.printStackTrace();
-			}
-			repaint();
-		}
-
-		if(e.getSource()==this.top2){
-			this.top1.setVisible(false);
-			this.top2.setVisible(false);
-			this.top3.setVisible(false);
-			this.top4.setVisible(false);
-			this.top5.setVisible(false);
-
-			System.out.println("your card will be placed on top of the deck");
-			Card c;
-			c=player.hand.cards[1];	
-			player.pdeck.Deck.insertar(c);
-			try {
-				player.hand.discard(2);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			this.repairListeners(true);
-
-			try {
-				addPowerCardFromTheDeck();
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
-				e1.printStackTrace();
-			}
-			repaint();
-		}
-
-		if(e.getSource()==this.top3){
-			this.top1.setVisible(false);
-			this.top2.setVisible(false);
-			this.top3.setVisible(false);
-			this.top4.setVisible(false);
-			this.top5.setVisible(false);
-
-			System.out.println("your card will be placed on top of the deck");
-			Card c;
-			c=player.hand.cards[2];	
-			player.pdeck.Deck.insertar(c);
-			try {
-				player.hand.discard(3);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			this.repairListeners(true);
-
-			try {
-				addPowerCardFromTheDeck();
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
-				e1.printStackTrace();
-			}
-			repaint();
-		}
-
-		if(e.getSource()==this.top4){
-			this.top1.setVisible(false);
-			this.top2.setVisible(false);
-			this.top3.setVisible(false);
-			this.top4.setVisible(false);
-			this.top5.setVisible(false);
-
-			System.out.println("your card will be placed on top of the deck");
-			Card c;
-			c=player.hand.cards[3];	
-			player.pdeck.Deck.insertar(c);
-			try {
-				player.hand.discard(4);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			this.repairListeners(true);
-
-			try {
-				addPowerCardFromTheDeck();
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
-				e1.printStackTrace();
-			}
-			repaint();
-		}
-
-		if(e.getSource()==this.top5){
-			this.top1.setVisible(false);
-			this.top2.setVisible(false);
-			this.top3.setVisible(false);
-			this.top4.setVisible(false);
-			this.top5.setVisible(false);
-
-			System.out.println("your card will be placed on top of the deck");
-			Card c;
-			c=player.hand.cards[4];	
-			player.pdeck.Deck.insertar(c);
-			try {
-				player.hand.discard(5);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-
-			this.repairListeners(true);
-
-			try {
-				addPowerCardFromTheDeck();
-			} catch (UnsupportedAudioFileException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (LineUnavailableException e1) {
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 				e1.printStackTrace();
 			}
 			repaint();
 		}
 	}
 
-	void Addlisteners2Card(int i){
+	private void Addlisteners2Card(int i){
 		player.hand.handgui[i].Play.addActionListener(this);
 		player.hand.handgui[i].Discard.addActionListener(this);
 		player.hand.handgui[i].Preview.addActionListener(this);
@@ -1162,8 +671,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if(phases.actual==1){
 						System.out.println("sorry u can only get a card from barriers per turn");
 					}
-				}	
-				
+				}
+
 				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
 					repaint();
 					done=1;
@@ -1171,10 +680,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						barierpicked=0;
 						warriorPlayed=0;
 						cardDrawn=0;
-						
+
 						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
-						
+
 						this.phases.setup.removeMouseListener(this);
 						this.phases.draw.removeMouseListener(this);
 						this.phases.action.removeMouseListener(this);
@@ -1190,13 +699,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}
 						}
 					}
-					
+
 					switch(phases.actual){
 						case 0:
 							barierpicked=0;
 							warriorPlayed=0;
 							cardDrawn=0;
-						
+
 							for(int i=0;i<player.hand.current;i++)
 								player.hand.handgui[i].Play.setEnabled(false);
 
@@ -1233,7 +742,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 							for(int i=0;i<player.hand.current;i++)
 								player.hand.handgui[i].Play.setEnabled(false);
-						
+
 							if(this.turn==1&&this.contTurn>0){
 								for(int i=0;i<player.field.cards.length;i++){
 									if(player.field.cards[i]!=null && !player.field.cards[i].down){
@@ -1300,7 +809,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}else{
 							player.hand.handgui[j].menu.setVisible(true);
 						}
-					}	
+					}
 				}
 
 				if(phases.actual==3&&this.contTurn>0){
@@ -1313,56 +822,25 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 					}
 				}
-				
-				if(e.getSource()==this.ptarjet1||e.getSource()==this.ptarjet2||e.getSource()==this.ptarjet3||e.getSource()==this.ptarjet4||e.getSource()==this.ptarjet5){
-					if(e.getSource()==this.ptarjet1){
-						this.selected=1;
-					}
-					if(e.getSource()==this.ptarjet2){
-						this.selected=2;
-					}
-					if(e.getSource()==this.ptarjet3){
-						this.selected=3;
-					}
-					if(e.getSource()==this.ptarjet4){
-						this.selected=4;
-					}
-					if(e.getSource()==this.ptarjet5){
-						this.selected=5;
-					}
-					this.ptarjet1.setVisible(false);
-					this.ptarjet2.setVisible(false);
-					this.ptarjet3.setVisible(false);
-					this.ptarjet4.setVisible(false);
-					this.ptarjet5.setVisible(false);
 
-					if(this.ai.aifield.cards[0]!=null){
-						this.aitarjet1.setVisible(true);
-					}
+				if(e.getSource()==ptarjet[0]||e.getSource()==ptarjet[1]||e.getSource()==ptarjet[2]||e.getSource()==ptarjet[3]||e.getSource()==ptarjet[4]){
+					for(int i=0; i<ptarjet.length; i++){
+						if(e.getSource()==ptarjet[i]){
+							selected=i+1;
+						}
+						ptarjet[i].setVisible(false);
 
-					if(this.ai.aifield.cards[1]!=null){
-						this.aitarjet2.setVisible(true);
+						if(this.ai.aifield.cards[i]!=null){
+							aitarjet[i].setVisible(true);
+						}
 					}
-
-					if(this.ai.aifield.cards[2]!=null){
-						this.aitarjet3.setVisible(true);
-					}
-
-					if(this.ai.aifield.cards[3]!=null){
-						this.aitarjet4.setVisible(true);
-					}
-
-					if(this.ai.aifield.cards[4]!=null){
-						this.aitarjet5.setVisible(true);
-					}
-
 					repaint();
 					System.out.println("please select a card from ai field");
 					repaint();
 				}
 
-				if(e.getSource()==this.aitarjet1||e.getSource()==this.aitarjet2||e.getSource()==this.aitarjet3||e.getSource()==this.aitarjet4||e.getSource()==this.aitarjet5){
-					int pos= 0;
+				if(e.getSource()==aitarjet[0]||e.getSource()==aitarjet[1]||e.getSource()==aitarjet[2]||e.getSource()==aitarjet[3]||e.getSource()==aitarjet[4]){
+					int pos=0;
 					try {
 						pos = player.hand.draw(player.field.cards[this.selected-1].getcard());
 					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
@@ -1371,83 +849,40 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					player.hand.handgui[pos-1].addMouseListener(this);
 					Addlisteners2Card(pos-1);
 					player.field.quitar(this.selected-1);
-
 					this.selected=-1;
-					if(e.getSource()==this.aitarjet1){
-						this.selected=1;
+
+					for(int i=0; i<aitarjet.length; i++){
+						if(e.getSource()==aitarjet[i]){
+							this.selected=i+1;
+						}
+						aitarjet[i].setVisible(false);
 					}
-					if(e.getSource()==this.aitarjet2){
-						this.selected=2;
-					}
-					if(e.getSource()==this.aitarjet3){
-						this.selected=3;
-					}
-					if(e.getSource()==this.aitarjet4){
-						this.selected=4;
-					}
-					if(e.getSource()==this.aitarjet5){
-						this.selected=5;
-					}
-					this.aitarjet1.setVisible(false);
-					this.aitarjet2.setVisible(false);
-					this.aitarjet3.setVisible(false);
-					this.aitarjet4.setVisible(false);
-					this.aitarjet5.setVisible(false);
 
 					this.ai.aifield.quitar(this.selected-1);
 					System.out.println("cards were returned to the hands of owners");
 				}
 
-				if(e.getSource()==this.ptarjet81||e.getSource()==this.ptarjet82||e.getSource()==this.ptarjet83||e.getSource()==this.ptarjet84||e.getSource()==this.ptarjet85||e.getSource()==this.aitarjet81||e.getSource()==this.aitarjet82||e.getSource()==this.aitarjet83||e.getSource()==this.aitarjet84||e.getSource()==this.aitarjet85){
+				if(e.getSource()==ptarjet8[0]||e.getSource()==ptarjet8[1]||e.getSource()==ptarjet8[2]||e.getSource()==ptarjet8[3]||e.getSource()==ptarjet8[4]){
 					this.selected=-1;
 					int pos = 0;
 
-					this.ptarjet81.setVisible(false);
-					this.ptarjet82.setVisible(false);
-					this.ptarjet83.setVisible(false);
-					this.ptarjet84.setVisible(false);
-					this.ptarjet85.setVisible(false);
-					this.aitarjet81.setVisible(false);
-					this.aitarjet82.setVisible(false);
-					this.aitarjet83.setVisible(false);
-					this.aitarjet84.setVisible(false);
-					this.aitarjet85.setVisible(false);
+					for(int i=0; i<ptarjet8.length;i++){
+						ptarjet8[i].setVisible(false);
+						aitarjet8[i].setVisible(false);
 
-					if(e.getSource()==this.ptarjet81){
-						this.selected=1;
-					}
-					if(e.getSource()==this.ptarjet82){
-						this.selected=2;
-					}
-					if(e.getSource()==this.ptarjet83){
-						this.selected=3;
-					}
-					if(e.getSource()==this.ptarjet84){
-						this.selected=4;
-					}
-					if(e.getSource()==this.ptarjet85){
-						this.selected=5;
+						if(e.getSource()==ptarjet8[i]){
+							selected=i+1;
+						}
 					}
 
 					if(this.selected==-1){
-						if(e.getSource()==this.aitarjet81){
-							this.selected=1;
-						}
-						if(e.getSource()==this.aitarjet82){
-							this.selected=2;
-						}
-						if(e.getSource()==this.aitarjet83){
-							this.selected=3;
-						}
-						if(e.getSource()==this.aitarjet84){
-							this.selected=4;
-						}
-						if(e.getSource()==this.aitarjet85){
-							this.selected=5;
+						for(int i=0; i<aitarjet8.length;i++){
+							if(e.getSource()==aitarjet8[i]){
+								this.selected=i+1;
+							}
 						}
 						this.ai.aifield.quitar(this.selected-1);
-					}
-					else{
+					}else{
 						try {
 							pos= player.hand.draw(player.field.cards[this.selected-1].getcard());
 						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
@@ -1461,223 +896,82 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					System.out.println("cards were returned to the hands of owners");
 				}
 
-				if(e.getSource()==this.ptarjet91||e.getSource()==this.ptarjet92||e.getSource()==this.ptarjet93||e.getSource()==this.ptarjet94||e.getSource()==this.ptarjet95){
-					this.ptarjet91.setVisible(false);
-					this.ptarjet92.setVisible(false);
-					this.ptarjet93.setVisible(false);
-					this.ptarjet94.setVisible(false);
-					this.ptarjet95.setVisible(false);
+				if(e.getSource()==ptarjet9[0]||e.getSource()==ptarjet9[1]||e.getSource()==ptarjet9[2]||e.getSource()==ptarjet9[3]||e.getSource()==ptarjet9[4]){
+					for(int i=0; i<ptarjet9.length; i++){
+						ptarjet9[i].setVisible(false);
+					}
 
 					player.field.quitar(this.selected);
 					System.out.println("select an ai card to destroy");
 
-					if(this.ai.aifield.cards[0]!=null){
-						this.aitarjet91.setVisible(true);
-					}
-
-					if(this.ai.aifield.cards[1]!=null){
-						this.aitarjet92.setVisible(true);
-					}
-					if(this.ai.aifield.cards[2]!=null){
-						this.aitarjet93.setVisible(true);
-					}
-					if(this.ai.aifield.cards[3]!=null){
-						this.aitarjet94.setVisible(true);
-					}
-					if(this.ai.aifield.cards[4]!=null){
-						this.aitarjet95.setVisible(true);
+					for(int i=0; i<aitarjet9.length; i++){
+						if(this.ai.aifield.cards[i]!=null){
+							aitarjet9[i].setVisible(true);
+						}
 					}
 				}
 
-				if(e.getSource()==this.aitarjet91||e.getSource()==this.aitarjet92||e.getSource()==this.aitarjet93||e.getSource()==this.aitarjet94||e.getSource()==this.aitarjet95){
-					if(e.getSource()==this.aitarjet91){
-						this.ai.aifield.quitar(0);
-					}
-					if(e.getSource()==this.aitarjet92){
-						this.ai.aifield.quitar(1);
-					}
-					if(e.getSource()==this.aitarjet93){
-						this.ai.aifield.quitar(2);
-					}
-					if(e.getSource()==this.aitarjet94){
-						this.ai.aifield.quitar(3);
-					}
-					if(e.getSource()==this.aitarjet95){
-						this.ai.aifield.quitar(4);
+				if(e.getSource()==aitarjet9[0]||e.getSource()==aitarjet9[1]||e.getSource()==aitarjet9[2]||e.getSource()==aitarjet9[3]||e.getSource()==aitarjet9[4]){
+					for(int i=0; i<aitarjet9.length; i++){
+						if(e.getSource()==aitarjet9[i]){
+							this.ai.aifield.quitar(i);
+						}
+						aitarjet9[i].setVisible(false);
 					}
 
 					this.selected=-1;
-					this.aitarjet91.setVisible(false);
-					this.aitarjet92.setVisible(false);
-					this.aitarjet93.setVisible(false);
-					this.aitarjet94.setVisible(false);
-					this.aitarjet95.setVisible(false);
-
 					System.out.println("destroyed succefully");
 					repaint();
 				}
 
-				if(e.getSource()==this.ptarjet101||e.getSource()==this.ptarjet102||e.getSource()==this.ptarjet103||e.getSource()==this.ptarjet104||e.getSource()==this.ptarjet105||e.getSource()==this.aitarjet101||e.getSource()==this.aitarjet102||e.getSource()==this.aitarjet103||e.getSource()==this.aitarjet104||e.getSource()==this.aitarjet105){
-					this.ptarjet101.setVisible(false);
-					this.ptarjet102.setVisible(false);
-					this.ptarjet103.setVisible(false);
-					this.ptarjet104.setVisible(false);
-					this.ptarjet105.setVisible(false);
-					this.aitarjet101.setVisible(false);
-					this.aitarjet102.setVisible(false);
-					this.aitarjet103.setVisible(false);
-					this.aitarjet104.setVisible(false);
-					this.aitarjet105.setVisible(false);
+				if(e.getSource()==ptarjet10[0]||e.getSource()==ptarjet10[1]||e.getSource()==ptarjet10[2]||e.getSource()==ptarjet10[3]||e.getSource()==ptarjet10[4]||e.getSource()==aitarjet10[0]||e.getSource()==aitarjet10[1]||e.getSource()==aitarjet10[2]||e.getSource()==aitarjet10[3]||e.getSource()==aitarjet10[4]){
+					for(int i=0; i<5; i++){
+						ptarjet10[i].setVisible(false);
+						aitarjet10[i].setVisible(false);
 
-					if(e.getSource()==this.ptarjet101){
-						player.field.quitar(0);
-					}
-					if(e.getSource()==this.ptarjet102){
-						player.field.quitar(1);
-					}
-					if(e.getSource()==this.ptarjet103){
-						player.field.quitar(2);
-					}
-					if(e.getSource()==this.ptarjet104){
-						player.field.quitar(3);
-					}
-					if(e.getSource()==this.ptarjet105){
-						player.field.quitar(4);
-					}
-					if(e.getSource()==this.aitarjet101){
-						this.ai.aifield.quitar(0);
-					}
-					if(e.getSource()==this.aitarjet102){
-						this.ai.aifield.quitar(1);
-					}
-					if(e.getSource()==this.aitarjet103){
-						this.ai.aifield.quitar(2);
-					}
-					if(e.getSource()==this.aitarjet104){
-						this.ai.aifield.quitar(3);
-					}
-					if(e.getSource()==this.aitarjet105){
-						this.ai.aifield.quitar(4);
+						if(e.getSource()==ptarjet10[i]){
+							player.field.quitar(i);
+						}
+
+						if(e.getSource()==aitarjet10[i]){
+							this.ai.aifield.quitar(i);
+						}
 					}
 
 					System.out.println("destroyed succefully");
 					repaint();
 				}
 
-				if(e.getSource()==this.ptarjet111||e.getSource()==this.ptarjet112||e.getSource()==this.ptarjet113||e.getSource()==this.ptarjet114||e.getSource()==this.ptarjet115||e.getSource()==this.aitarjet111||e.getSource()==this.aitarjet112||e.getSource()==this.aitarjet113||e.getSource()==this.aitarjet114||e.getSource()==this.aitarjet115){
+				if(e.getSource()==ptarjet11[0]||e.getSource()==ptarjet11[1]||e.getSource()==ptarjet11[2]||e.getSource()==ptarjet11[3]||e.getSource()==ptarjet11[4]||e.getSource()==aitarjet11[0]||e.getSource()==aitarjet11[1]||e.getSource()==aitarjet11[2]||e.getSource()==aitarjet11[3]||e.getSource()==aitarjet11[4]){
 					Card c;
 
-					this.ptarjet111.setVisible(false);
-					this.ptarjet112.setVisible(false);
-					this.ptarjet113.setVisible(false);
-					this.ptarjet114.setVisible(false);
-					this.ptarjet115.setVisible(false);
-					this.aitarjet111.setVisible(false);
-					this.aitarjet112.setVisible(false);
-					this.aitarjet113.setVisible(false);
-					this.aitarjet114.setVisible(false);
-					this.aitarjet115.setVisible(false);
+					for(int i=0; i<5; i++){
+						ptarjet11[i].setVisible(false);
+						aitarjet11[i].setVisible(false);
 
-					if(e.getSource()==this.ptarjet111){
-						c= player.field.cards[0].getcard();
-						player.field.quitar(0);
+						if(e.getSource()==ptarjet11[i]){
+							c= player.field.cards[i].getcard();
+							player.field.quitar(i);
 
-						try {
-							player.field.poner(new SmallCard(c,0,0), 0);
-						} catch (IOException e1) {
-							e1.printStackTrace();
+							try {
+								player.field.poner(new SmallCard(c,0,0), i);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+						}
+
+						if(e.getSource()==aitarjet11[i]){
+							c=this.ai.aifield.cards[i].getcard();
+							this.ai.aifield.quitar(i);
+
+							try {
+								this.ai.aifield.poner(new SmallCard(c,0,0), i);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 						}
 					}
-					if(e.getSource()==this.ptarjet112){
-						c= player.field.cards[1].getcard();
-						player.field.quitar(1);
 
-						try {
-							player.field.poner(new SmallCard(c,0,0), 1);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.ptarjet113){
-						c= player.field.cards[2].getcard();
-						player.field.quitar(2);
-
-						try {
-							player.field.poner(new SmallCard(c,0,0), 2);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.ptarjet114){
-						c= player.field.cards[3].getcard();
-						player.field.quitar(3);
-
-						try {
-							player.field.poner(new SmallCard(c,0,0), 3);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.ptarjet115){
-						c= player.field.cards[4].getcard();
-						player.field.quitar(4);
-
-						try {
-							player.field.poner(new SmallCard(c,0,0), 4);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.aitarjet111){
-						c=this.ai.aifield.cards[0].getcard();
-						this.ai.aifield.quitar(0);
-
-						try {
-							this.ai.aifield.poner(new SmallCard(c,0,0), 0);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.aitarjet112){
-						c=this.ai.aifield.cards[1].getcard();
-						this.ai.aifield.quitar(1);
-
-						try {
-							this.ai.aifield.poner(new SmallCard(c,0,0), 1);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.aitarjet113){
-						c=this.ai.aifield.cards[2].getcard();
-						this.ai.aifield.quitar(2);
-
-						try {
-							this.ai.aifield.poner(new SmallCard(c,0,0), 2);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.aitarjet114){
-						c=this.ai.aifield.cards[3].getcard();
-						this.ai.aifield.quitar(3);
-
-						try {
-							this.ai.aifield.poner(new SmallCard(c,0,0), 3);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-					if(e.getSource()==this.aitarjet115){
-						c=this.ai.aifield.cards[4].getcard();
-						this.ai.aifield.quitar(4);
-
-						try {
-							this.ai.aifield.poner(new SmallCard(c,0,0), 4);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
 					repaint();
 					System.out.println("face down succesfully");
 					repaint();
@@ -1755,7 +1049,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallen.setVisible(true);
 				moveToFront(fallen);
 			}
-		}	    
+		}
 		else if(e.getButton() == MouseEvent.BUTTON3){
 			if(e.getClickCount()==1){
 				for(int i=0;i<player.field.cards.length;i++){
@@ -1782,7 +1076,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				repaint();
 			}
 		}
-		
+
 		if(e.getSource()==Hero){
 			remove(unleash);
 			repaint();
@@ -1826,7 +1120,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
-		
+
 		if(e.getSource()==phases.setup){
 			phases.setup.setIcon(new ImageIcon(("setup.png")));
 		}
@@ -1842,165 +1136,47 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end.png")));
 		}
-		
-		if(e.getSource()==ptarjet1){
-			ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet2){
-			ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet3){
-			ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet4){
-			ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet5){
-			ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==aitarjet1){
-			aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet2){
-			aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet3){
-			aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet4){
-			aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet5){
-			aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==ptarjet81){
-			ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet82){
-			ptarjet82.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet83){
-			ptarjet83.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet84){
-			ptarjet84.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet85){
-			ptarjet85.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==aitarjet81){
-			aitarjet81.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet82){
-			aitarjet82.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet83){
-			aitarjet83.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet84){
-			aitarjet84.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet85){
-			aitarjet85.setIcon(new ImageIcon("redTarget1.png"));
-		}
 
-		if(e.getSource()==ptarjet91){
-			ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet92){
-			ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet93){
-			ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet94){
-			ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet95){
-			ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==aitarjet91){
-			aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet92){
-			aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet93){
-			aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet94){
-			aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet95){
-			aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		}
+		for(int i=0; i<5; i++){
+			if(e.getSource()==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
 
-		if(e.getSource()==ptarjet101){
-			ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet102){
-			ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet103){
-			ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet104){
-			ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet105){
-			ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==aitarjet101){
-			aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet102){
-			aitarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet103){
-			aitarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet104){
-			aitarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet105){
-			aitarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==ptarjet111){
-			ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet112){
-			ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet113){
-			ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet114){
-			ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet115){
-			ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		
-		if(e.getSource()==aitarjet111){
-			aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet112){
-			aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet113){
-			aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet114){
-			aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet115){
-			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
+			if(e.getSource()==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet10[i]){
+				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet10[i]){
+				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet11[i]){
+				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet11[i]){
+				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
 		}
 
 		for(int i=0;i<swordsPlayer.length;i++){
@@ -2018,7 +1194,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				repaint();
 			}
 		}
-		
+
 		if(e.getSource()==Hero){
 			unleash.setBounds(Hero.getX()+220,Hero.getY()+350,100,150);
 			add(unleash);
@@ -2069,7 +1245,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten3.png"));
 		}
-		
+
 		if(e.getSource()==phases.setup){
 			phases.setup.setIcon(new ImageIcon(("setup3.png")));
 		}
@@ -2088,165 +1264,47 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				liberarTutoEnd=1;
 			}
 		}
-		
-		if(e.getSource()==ptarjet1){
-			ptarjet1.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet2){
-			ptarjet2.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet3){
-			ptarjet3.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet4){
-			ptarjet4.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet5){
-			ptarjet5.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==aitarjet1){
-			aitarjet1.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet2){
-			aitarjet2.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet3){
-			aitarjet3.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet4){
-			aitarjet4.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet5){
-			aitarjet5.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==ptarjet81){
-			ptarjet81.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet82){
-			ptarjet82.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet83){
-			ptarjet83.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet84){
-			ptarjet84.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet85){
-			ptarjet85.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==aitarjet81){
-			aitarjet81.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet82){
-			aitarjet82.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet83){
-			aitarjet83.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet84){
-			aitarjet84.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet85){
-			aitarjet85.setIcon(new ImageIcon("redTarget3.png"));
+
+		for(int i=0; i<5; i++){
+			if(e.getSource()==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget3.png"));
+			}
+
+			if(e.getSource()==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget3.png"));
+			}
+
+			if(e.getSource()==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget3.png"));
+			}
+
+			if(e.getSource()==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget3.png"));
+			}
+
+			if(e.getSource()==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget3.png"));
+			}
+
+			if(e.getSource()==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget3.png"));
+			}
 		}
 
-		if(e.getSource()==ptarjet91){
-			ptarjet91.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet92){
-			ptarjet92.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet93){
-			ptarjet93.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet94){
-			ptarjet94.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet95){
-			ptarjet95.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==aitarjet91){
-			aitarjet91.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet92){
-			aitarjet92.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet93){
-			aitarjet93.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet94){
-			aitarjet94.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet95){
-			aitarjet95.setIcon(new ImageIcon("redTarget3.png"));
+		if(e.getSource()==ptarjet10[i]){
+			ptarjet10[i].setIcon(new ImageIcon("redTarget3.png"));
 		}
 
-		if(e.getSource()==ptarjet101){
-			ptarjet101.setIcon(new ImageIcon("redTarget3.png"));
+		if(e.getSource()==aitarjet10[i]){
+			aitarjet10[i].setIcon(new ImageIcon("redTarget3.png"));
 		}
-		if(e.getSource()==ptarjet102){
-			ptarjet102.setIcon(new ImageIcon("redTarget3.png"));
+
+		if(e.getSource()==ptarjet11[i]){
+			ptarjet11[i].setIcon(new ImageIcon("redTarget3.png"));
 		}
-		if(e.getSource()==ptarjet103){
-			ptarjet103.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet104){
-			ptarjet104.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet105){
-			ptarjet105.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==aitarjet101){
-			aitarjet101.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet102){
-			aitarjet102.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet103){
-			aitarjet103.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet104){
-			aitarjet104.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet105){
-			aitarjet105.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==ptarjet111){
-			ptarjet111.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet112){
-			ptarjet112.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet113){
-			ptarjet113.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet114){
-			ptarjet114.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==ptarjet115){
-			ptarjet115.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		
-		if(e.getSource()==aitarjet111){
-			aitarjet111.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet112){
-			aitarjet112.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet113){
-			aitarjet113.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet114){
-			aitarjet114.setIcon(new ImageIcon("redTarget3.png"));
-		}
-		if(e.getSource()==aitarjet115){
-			aitarjet115.setIcon(new ImageIcon("redTarget3.png"));
+
+		if(e.getSource()==aitarjet11[i]){
+			aitarjet11[i].setIcon(new ImageIcon("redTarget3.png"));
 		}
 
 		for(int i=0;i<swordsPlayer.length;i++){
@@ -2268,7 +1326,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				warriorPlayed = 1;
 			}
 		}
-		
+
 			if(pos>=0){
 				carta = new SmallCard(player.hand.handgui[pos].getcard(),0,0);
 				moving=new SmallCard(player.hand.handgui[pos].getcard(),0,0);
@@ -2430,7 +1488,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		removeNoWarriorsToPlayerFiedl();
 	}
 
-	
+
 	void play(int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		boolean allowed = true;
 		if(pos>=0){
@@ -2500,98 +1558,44 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(id.equals("SSD-04")){
 				System.out.println("please, select your hand card");
 
-				if(player.hand.current>0){
-					this.top1.setVisible(true);
-				}
-				if(player.hand.current>1){
-					this.top2.setVisible(true);
-				}
-				if(player.hand.current>2){
-					this.top3.setVisible(true);
-				}
-				if(player.hand.current>3){
-					this.top4.setVisible(true);
-				}
-				if(player.hand.current>4){
-					this.top5.setVisible(true);
+				for(int i=0; i<top.length; i++){
+					if(player.hand.current>i){
+						top[i].setVisible(true);
+					}
 				}
 			}
 			if(id.equals("SSD-07")){
 				System.out.println("please select a card from your field");
-				if(player.field.cards[0]!=null && pos!=0){
-					this.ptarjet1.setVisible(true);
-				}
-				if(player.field.cards[1]!=null && pos!=1){
-					this.ptarjet2.setVisible(true);				
-				}
-				if(player.field.cards[2]!=null && pos!=2){
-					this.ptarjet3.setVisible(true);
-				}
-				if(player.field.cards[3]!=null && pos!=3){
-					this.ptarjet4.setVisible(true);
-				}
-				if(player.field.cards[4]!=null && pos!=4){
-					this.ptarjet5.setVisible(true);
+				for(int i=0; i<ptarjet.length; i++){
+					if(player.field.cards[i]!=null && pos!=0){
+						ptarjet[i].setVisible(true);
+					}
 				}
 			}
 
 			if(id.equals("SSD-08")){
 				System.out.println("please select a card from the field");
-				if(player.field.cards[0]!=null && pos!=0){
-					this.ptarjet81.setVisible(true);
-				}
-				if(player.field.cards[1]!=null && pos!=1){
-					this.ptarjet82.setVisible(true);				
-				}
-				if(player.field.cards[2]!=null && pos!=2){
-					this.ptarjet83.setVisible(true);
-				}
-				if(player.field.cards[3]!=null && pos!=3){
-					this.ptarjet84.setVisible(true);
-				}
-				if(player.field.cards[4]!=null && pos!=4){
-					this.ptarjet85.setVisible(true);
-				}
-				if(this.ai.aifield.cards[0]!=null){
-					this.aitarjet81.setVisible(true);
-				}
-				if(this.ai.aifield.cards[1]!=null){
-					this.aitarjet82.setVisible(true);
-				}
-				if(this.ai.aifield.cards[2]!=null){
-					this.aitarjet83.setVisible(true);
-				}
-				if(this.ai.aifield.cards[3]!=null){
-					this.aitarjet84.setVisible(true);
-				}
-				if(this.ai.aifield.cards[4]!=null){
-					this.aitarjet85.setVisible(true);
+				for(int i=0; i<5; i++){
+					if(player.field.cards[i]!=null && pos!=i){
+						ptarjet8[i].setVisible(true);
+					}
+					if(this.ai.aifield.cards[i]!=null){
+						aitarjet8[i].setVisible(true);
+					}
 				}
 			}
 
 			if(id.equals("SSD-09")){
 				System.out.println("please select a Siren Character");
 				this.selected=-1;
-				if(player.field.cards[0]!=null&& player.field.cards[0].getcard().Getid().equals("SSD-03")){
-					this.ptarjet91.setVisible(true);
-					this.selected=0;
+
+				for(int i=0; i<ptarjet9.length;i++){
+					if(player.field.cards[i]!=null&& player.field.cards[i].getcard().Getid().equals("SSD-03")){
+						ptarjet9[i].setVisible(true);
+						selected=0;
+					}
 				}
-				if(player.field.cards[1]!=null&& player.field.cards[1].getcard().Getid().equals("SSD-03")){
-					this.ptarjet92.setVisible(true);
-					this.selected=1;
-				}
-				if(player.field.cards[2]!=null&& player.field.cards[2].getcard().Getid().equals("SSD-03")){
-					this.ptarjet93.setVisible(true);
-					this.selected=2;
-				}
-				if(player.field.cards[3]!=null&& player.field.cards[3].getcard().Getid().equals("SSD-03")){
-					this.ptarjet94.setVisible(true);
-					this.selected=3;
-				}
-				if(player.field.cards[4]!=null&& player.field.cards[4].getcard().Getid().equals("SSD-03")){
-					this.ptarjet95.setVisible(true);
-					this.selected=4;
-				}
+
 				if(this.selected==-1){
 					System.out.println("sorry, you don't contain a Siren Character in the field");
 				}
@@ -2599,89 +1603,26 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-10")){
 				System.out.println("select an ai card to destroy");
-				if(player.field.cards[0]!=null && pos!=0){
-					this.ptarjet101.setVisible(true);
-				}
-				if(player.field.cards[1]!=null && pos!=1){//
-					this.ptarjet102.setVisible(true);				
-				}
-				if(player.field.cards[2]!=null && pos!=2){
-					this.ptarjet103.setVisible(true);
-				}
-				if(player.field.cards[3]!=null && pos!=3){
-					this.ptarjet104.setVisible(true);
-				}
-				if(player.field.cards[4]!=null && pos!=4){
-					this.ptarjet105.setVisible(true);
-				}
-				if(this.ai.aifield.cards[0]!=null){
-					this.aitarjet101.setVisible(true);
-				}
-				if(this.ai.aifield.cards[1]!=null){
-					this.aitarjet102.setVisible(true);
-				}
-				if(this.ai.aifield.cards[2]!=null){
-					this.aitarjet103.setVisible(true);
-				}
-				if(this.ai.aifield.cards[3]!=null){
-					this.aitarjet104.setVisible(true);
-				}
-				if(this.ai.aifield.cards[4]!=null){
-					this.aitarjet105.setVisible(true);
+				for(int i=0; i<ptarjet10.length;i++){
+					if(player.field.cards[i]!=null && pos!=i){
+						ptarjet10[i].setVisible(true);
+					}
+
+					if(this.ai.aifield.cards[i]!=null){
+						aitarjet10[i].setVisible(true);
+					}
 				}
 			}
 
 			if(id.equals("SSD-11")){
 				System.out.println("select 1 Character to Turn face-down");
-				if(player.field.cards[0]!=null && pos!=0){
-					if(!player.field.cards[0].down){
-						this.ptarjet111.setVisible(true);
-					}	
-				}
-				if(player.field.cards[1]!=null && pos!=1){
-					if(!player.field.cards[1].down){
-						this.ptarjet112.setVisible(true);
-					}				
-				}
-				if(player.field.cards[2]!=null && pos!=2){
-					if(!player.field.cards[2].down){
-						this.ptarjet113.setVisible(true);
+				for(int i=0; i<ptarjet11.length;i++){
+					if(player.field.cards[i]!=null && pos!=i && !player.field.cards[i].down){
+						ptarjet11[i].setVisible(true);
 					}
-				}
-				if(player.field.cards[3]!=null && pos!=3){
-					if(!player.field.cards[3].down){
-						this.ptarjet114.setVisible(true);
-					}
-				}
-				if(player.field.cards[4]!=null && pos!=4){
-					if(!player.field.cards[4].down){
-						this.ptarjet115.setVisible(true);
-					}
-				}
-				if(this.ai.aifield.cards[0]!=null){
-					if(!this.ai.aifield.cards[0].down){
-						this.aitarjet111.setVisible(true);
-					}
-				}
-				if(this.ai.aifield.cards[1]!=null){
-					if(!this.ai.aifield.cards[1].down){
-						this.aitarjet112.setVisible(true);
-					}
-				}
-				if(this.ai.aifield.cards[2]!=null){
-					if(!this.ai.aifield.cards[2].down){
-						this.aitarjet113.setVisible(true);
-					}
-				}
-				if(this.ai.aifield.cards[3]!=null){
-					if(!this.ai.aifield.cards[3].down){
-						this.aitarjet114.setVisible(true);
-					}
-				}
 
-				if(this.ai.aifield.cards[4]!=null){
-					if(!this.ai.aifield.cards[4].down){
-						this.aitarjet115.setVisible(true);
+					if(ai.aifield.cards[i]!=null && !ai.aifield.cards[i].down){
+						aitarjet11[i].setVisible(true);
 					}
 				}
 			}
@@ -2759,7 +1700,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					player.field.quitar(this.atkDest);
 
 					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
-					this.ai.aifield.quitar(this.atkOrigin); 
+					this.ai.aifield.quitar(this.atkOrigin);
 				}
 				else{
 					System.out.println("cannot find targets");
@@ -2882,7 +1823,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						c = player.field.cards[this.atkDest].getcard();
 						player.field.quitar(this.atkDest);
 						player.field.poner(new SmallCard( c,0,0), this.atkDest);
-						
+
 					} else {
 						c = this.ai.aifield.cards[this.atkOrigin].getcard();
 						this.ai.aifield.quitar(this.atkOrigin);
@@ -2932,13 +1873,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		for(int i=0;i<player.hand.current;i++){
 			Addlisteners2Card(i);
 			player.hand.handgui[i].Play.setEnabled(enabled);
-			player.hand.handgui[i].addMouseListener(this);	
+			player.hand.handgui[i].addMouseListener(this);
 		}
-		
+
 		player.pdeck.Play.setEnabled(enabled);
 		if(player.hand.handgui[player.hand.current]!=null){
 			Addlisteners2Card(player.hand.current);
-			player.hand.handgui[player.hand.current].addMouseListener(this);	
+			player.hand.handgui[player.hand.current].addMouseListener(this);
 		}
 	}
 	@Override
@@ -2964,156 +1905,47 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("endz.png")));
 		}
-		
-		if(e.getSource()==ptarjet1){
-			ptarjet1.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet2){
-			ptarjet2.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet3){
-			ptarjet3.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet4){
-			ptarjet4.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet5){
-			ptarjet5.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet1){
-			aitarjet1.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet2){
-			aitarjet2.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet3){
-			aitarjet3.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet4){
-			aitarjet4.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet5){
-			aitarjet5.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet81){
-			ptarjet81.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet82){
-			ptarjet82.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet83){
-			ptarjet83.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet84){
-			ptarjet84.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet85){
-			ptarjet85.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet81){
-			aitarjet81.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet82){
-			aitarjet82.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet83){
-			aitarjet83.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet84){
-			aitarjet84.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet85){
-			aitarjet85.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet91){
-			ptarjet91.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet92){
-			ptarjet92.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet93){
-			ptarjet93.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet94){
-			ptarjet94.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet95){
-			ptarjet95.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet91){
-			aitarjet91.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet92){
-			aitarjet92.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet93){
-			aitarjet93.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet94){
-			aitarjet94.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet95){
-			aitarjet95.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet101){
-			ptarjet101.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet102){
-			ptarjet102.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet103){
-			ptarjet103.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet104){
-			ptarjet104.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet105){
-			ptarjet105.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet101){
-			aitarjet101.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet102){
-			aitarjet102.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet103){
-			aitarjet103.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet104){
-			aitarjet104.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet105){
-			aitarjet105.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet111){
-			ptarjet111.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet112){
-			ptarjet112.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet113){
-			ptarjet113.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet114){
-			ptarjet114.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==ptarjet115){
-			ptarjet115.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet111){
-			aitarjet111.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet112){
-			aitarjet112.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet113){
-			aitarjet113.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet114){
-			aitarjet114.setIcon(new ImageIcon("redTarget2.png"));
-		}
-		if(e.getSource()==aitarjet115){
-			aitarjet115.setIcon(new ImageIcon("redTarget2.png"));
+
+		for(int i=0; i<5; i++){
+			if(e.getSource()==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet10[i]){
+				ptarjet10[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet10[i]){
+				aitarjet10[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet11[i]){
+				ptarjet11[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet11[i]){
+				aitarjet11[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
 		}
 	}
 	@Override
@@ -3139,155 +1971,47 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(e.getSource()==phases.end){
 			phases.end.setIcon(new ImageIcon(("end2.png")));
 		}
-		if(e.getSource()==ptarjet1){
-			ptarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet2){
-			ptarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet3){
-			ptarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet4){
-			ptarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet5){
-			ptarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet1){
-			aitarjet1.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet2){
-			aitarjet2.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet3){
-			aitarjet3.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet4){
-			aitarjet4.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet5){
-			aitarjet5.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet81){
-			ptarjet81.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet82){
-			ptarjet82.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet83){
-			ptarjet83.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet84){
-			ptarjet84.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet85){
-			ptarjet85.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet81){
-			aitarjet81.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet82){
-			aitarjet82.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet83){
-			aitarjet83.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet84){
-			aitarjet84.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet85){
-			aitarjet85.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet91){
-			ptarjet91.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet92){
-			ptarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet93){
-			ptarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet94){
-			ptarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet95){
-			ptarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet91){
-			aitarjet91.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet92){
-			aitarjet92.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet93){
-			aitarjet93.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet94){
-			aitarjet94.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet95){
-			aitarjet95.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet101){
-			ptarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet102){
-			ptarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet103){
-			ptarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet104){
-			ptarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet105){
-			ptarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet101){
-			aitarjet101.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet102){
-			aitarjet102.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet103){
-			aitarjet103.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet104){
-			aitarjet104.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet105){
-			aitarjet105.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet111){
-			ptarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet112){
-			ptarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet113){
-			ptarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet114){
-			ptarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==ptarjet115){
-			ptarjet115.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet111){
-			aitarjet111.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet112){
-			aitarjet112.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet113){
-			aitarjet113.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet114){
-			aitarjet114.setIcon(new ImageIcon("redTarget1.png"));
-		}
-		if(e.getSource()==aitarjet115){
-			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
+
+		for(int i=0; i<5; i++){
+			if(e.getSource()==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet10[i]){
+				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet10[i]){
+				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet11[i]){
+				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet11[i]){
+				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
 		}
 	}
 	
