@@ -35,7 +35,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int s,pl;
 	public int i=0;
 	public Fallen fallen ;
-	public JInternalFrame pane;
 	public Phases phases;
 	public Fallen fallenAi;
 	public  JButton repaint;
@@ -43,14 +42,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int warriorPlayed;
 	public int cardDrawn, barierpicked;
 	public JLabel swordsPlayer[], swordsAi[];
-	public JLabel dest[];
+	public JLabel dest[], top[];
 	public int atkDest=-1, atkOrigin=-1;
 	public int [] aiAttack= new int[5];
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
-	public JButton top[];
 	public JLabel ptarjet[], aitarjet[];
 	public int selected=-1;
 	public RoundedPanel unleash;
@@ -58,24 +56,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public JLabel ptarjet9[], aitarjet9[];
 	public JLabel ptarjet10[], aitarjet10[];
 	public JLabel ptarjet11[], aitarjet11[];
-	//	public JLabel ptarjet101, ptarjet102, ptarjet103, ptarjet104, ptarjet105;
-//	public JLabel aitarjet101, aitarjet102, aitarjet103, aitarjet104, aitarjet105;
-//	public JLabel ptarjet111, ptarjet112, ptarjet113, ptarjet114, ptarjet115;
-//	public JLabel aitarjet111, aitarjet112, aitarjet113, aitarjet114, aitarjet115;
 	public int done;
 	public int bugPrimerTurnoUSer=0;
 	public int liberarTutoEnd=1;
 	public int ubicacionDeCarta;
 	public Gui instanciaGui;
 
-	public int getPhaseActual(){
-		return phases.actual;
-	}
-
-	public void battle()
-	{
-		//int pos=player.field.findwarrior();//busca un warrior en el campo para hacer la animacion
-	}
 
 	public PlayGui(int x , int y, String name, Gui g) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		this.instanciaGui = g;
@@ -87,6 +73,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player=new PlayerGui(x,y,name);
 		player.hand.addMouseListener(this);
+		this.add(player);
 
 		cardDrawn=0;
 
@@ -98,11 +85,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		unleash.setBounds(0,0,100,145);
 		unleash.add (new JLabel(new ImageIcon(ImageIO.read(new File("unleash.png")))));
 
-		pane = new JInternalFrame("THE FALLEN");
 		phases=new Phases(220,360);
+		phases.draw.addMouseListener(this);
 		add(phases);
 
-		this.add(player);
 		repaint=new JButton();
 
 		ai = new AIGui();
@@ -114,44 +100,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		preview= new Previewpane();
 		this.add(preview);
 
-		player.barriers.addMouseListener(this);
-
-		for(int i=1;i<=5;i++){
-			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
-			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
-
-			Addlisteners2Card(pos-1);
-			player.hand.handgui[pos-1].addMouseListener(this);
-			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
-			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
-			player.pdeck.textField.repaint();
-		}
-
 		fallen=new Fallen();
 		add(fallen);
 
-		player.pdeck.btnNewButton_1.addMouseListener(this);
-
-		op=new  optionpane();
-
-		swordsPlayer = new JLabel[5];
-		for(int i=0; i<swordsPlayer.length; i++){
-			swordsPlayer[i] = new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
-			swordsPlayer[i].setBounds(240+(110*i), 350, 50, 120);
-			swordsPlayer[i].setVisible(false);
-			swordsPlayer[i].addMouseListener(this);
-			moveToFront(swordsPlayer[i]);
-			add(swordsPlayer[i]);
-		}
-
-		swordsAi = new JLabel[5];
-		for(int i=0; i<swordsAi.length; i++){
-			swordsAi[i] = new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
-			swordsAi[i].setBounds(0, 0, 540+(220*i), 385);
-			swordsAi[i].setVisible(false);
-			moveToFront(swordsAi[i]);
-			add(swordsAi[i]);
-		}
+		op = new optionpane();
 
 		FileReader turno = new FileReader(new File("turno.txt"));
 		BufferedReader br = new BufferedReader(turno);
@@ -181,146 +133,54 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		add(turnoLabel);
 
-		dest = new JLabel[5];
-		for (int i=0; i<dest.length; i++){
-			this.dest[i] = new JLabel();
-			dest[i].setIcon(new ImageIcon("redTarget1.png"));
-			this.dest[i].setBounds(230+(i*110), 210, 50, 50);
-			this.dest[i].setVisible(false);
-			this.moveToFront(this.dest[i]);
-			this.dest[i].addMouseListener(this);
-			add(dest[i]);
-		}
-
-		player.field.addMouseListener(this);
-
 		this.listAll = new prueba2(player.pdeck.Deck);
 		this.listAll.setBounds(150, 100, 620, 420);
 		this.listAll.setVisible(false);
 		this.moveToFront(this.listAll);
 		this.listAll.aceptar.addActionListener(this);
 
-		top = new JButton[5];
-		for(int i=0; i<top.length; i++){
-			this.top[i]=new JButton("target");
-			this.top[i].setBounds(200+(i*130),580,80,30);
-			this.moveToFront(top[i]);
-			this.top[i].addActionListener(this);
-			this.top[i].setVisible(false);
-			add(top[i]);
-		}
+		player.barriers.addMouseListener(this);
+		player.pdeck.btnNewButton_1.addMouseListener(this);
+		player.field.addMouseListener(this);
 
-
-		phases.draw.addMouseListener(this);
-
+		swordsPlayer = new JLabel[5];
+		swordsAi = new JLabel[5];
+		dest = new JLabel[5];
+		top = new JLabel[5];
 		ptarjet = new JLabel[5];
-		for(int i=0; i<ptarjet.length; i++){
-			ptarjet[i]= new JLabel();
-			ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			ptarjet[i].setBounds(230+(i*110),380, 50, 50);
-			moveToFront(ptarjet[i]);
-			ptarjet[i].setVisible(false);
-			ptarjet[i].addMouseListener(this);
-			add(ptarjet[i]);
-		}
-
 		aitarjet = new JLabel[5];
-		for(int i=0; i<aitarjet.length; i++){
-			aitarjet[i]= new JLabel();
-			aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			aitarjet[i].setBounds(230+(i*110), 210, 50, 50);
-			moveToFront(aitarjet[i]);
-			aitarjet[i].setVisible(false);
-			aitarjet[i].addMouseListener(this);
-			add(aitarjet[i]);
-		}
-
 		ptarjet8 = new JLabel[5];
-		for(int i=0; i<ptarjet8.length; i++){
-			ptarjet8[i]= new JLabel();
-			ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			ptarjet8[i].setBounds(230+(i*110),380, 50, 50);
-			moveToFront(ptarjet8[i]);
-			ptarjet8[i].addMouseListener(this);
-			ptarjet8[i].setVisible(false);
-			add(ptarjet8[i]);
-		}
-
 		aitarjet8 = new JLabel[5];
-		for(int i=0; i<aitarjet8.length; i++){
-			aitarjet8[i]= new JLabel();
-			aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			aitarjet8[i].setBounds(230+(i*110), 210, 50, 50);
-			moveToFront(aitarjet8[i]);
-			aitarjet8[i].addMouseListener(this);
-			aitarjet8[i].setVisible(false);
-			add(aitarjet8[i]);
-		}
-
 		ptarjet9 = new JLabel[5];
-		for(int i=0; i<ptarjet9.length; i++){
-			ptarjet9[i]= new JLabel();
-			ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			ptarjet9[i].setBounds(230+(i*110),380, 50, 50);
-			moveToFront(ptarjet9[i]);
-			ptarjet9[i].addMouseListener(this);
-			ptarjet9[i].setVisible(false);
-			add(ptarjet9[i]);
-		}
-
 		aitarjet9 = new JLabel[5];
-		for(int i=0; i<aitarjet9.length; i++){
-			aitarjet9[i]= new JLabel();
-			aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			aitarjet9[i].setBounds(230+(i*110), 210, 50, 50);
-			moveToFront(aitarjet9[i]);
-			aitarjet9[i].addMouseListener(this);
-			aitarjet9[i].setVisible(false);
-			add(aitarjet9[i]);
-		}
-
 		ptarjet10 = new JLabel[5];
-		for(int i=0; i<ptarjet10.length; i++){
-			ptarjet10[i]= new JLabel();
-			ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			ptarjet10[i].setBounds(230+(i*110),380, 50, 50);
-			moveToFront(ptarjet10[i]);
-			ptarjet10[i].addMouseListener(this);
-			ptarjet10[i].setVisible(false);
-			add(ptarjet10[i]);
-		}
-
 		aitarjet10 = new JLabel[5];
-		for(int i=0; i<aitarjet10.length; i++){
-			aitarjet10[i]= new JLabel();
-			aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			aitarjet10[i].setBounds(230+(i*110), 210, 50, 50);
-			moveToFront(aitarjet10[i]);
-			aitarjet10[i].addMouseListener(this);
-			aitarjet10[i].setVisible(false);
-			add(aitarjet10[i]);
-		}
-
 		ptarjet11 = new JLabel[5];
-		for(int i=0; i<ptarjet11.length; i++){
-			ptarjet11[i]= new JLabel();
-			ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			ptarjet11[i].setBounds(230+(i*110),380, 50, 50);
-			moveToFront(ptarjet11[i]);
-			ptarjet11[i].addMouseListener(this);
-			ptarjet11[i].setVisible(false);
-			add(ptarjet11[i]);
-		}
-
 		aitarjet11 = new JLabel[5];
-		for(int i=0; i<aitarjet11.length; i++){
-			aitarjet11[i]= new JLabel();
-			aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			aitarjet11[i].setBounds(230+(i*110), 210, 50, 50);
-			moveToFront(aitarjet11[i]);
-			aitarjet11[i].addMouseListener(this);
-			aitarjet11[i].setVisible(false);
-			add(aitarjet11[i]);
+
+		for(int i=1;i<=5;i++){
+			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
+			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
+			Addlisteners2Card(pos-1);
+			player.hand.handgui[pos-1].addMouseListener(this);
+			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
+			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
+			player.pdeck.textField.repaint();
+
+			swordsPlayer[i-1]=setLabel("sword.png", new Rectangle(240+(110*i), 350, 50, 120));
+			swordsAi[i-1]=setLabel("swordR.png", new Rectangle(0, 0, 540+(220*i), 385));
+			dest[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 210, 50, 50));
+			top[i-1]=setLabel("redTarget1.png", new Rectangle(200+(i*130),580,80,30));
+			ptarjet[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110),380, 50, 50));
+			aitarjet[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 210, 50, 50));
+			ptarjet8[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110),380, 50, 50));
+			aitarjet8[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 210, 50, 50));
+			ptarjet9[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 380, 50, 50));
+			aitarjet9[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 210, 50, 50));
+			ptarjet10[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 380, 50, 50));
+			aitarjet10[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 210, 50, 50));
+			ptarjet11[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 380, 50, 50));
+			aitarjet11[i-1]=setLabel("redTarget1.png", new Rectangle(230+(i*110), 210, 50, 50));
 		}
 
 		for (int i = 0; i < player.hand.current; i++)
@@ -335,9 +195,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		animations.setOpaque(false);
 
 		fallen.confirmcardsfromfallen.addActionListener(this);
-
 		fallenAi.confirmcardsfromfallen.addActionListener(this);
-
 		ai.aideck.btnNewButton_1.addMouseListener(this);
 
 		if(turn==1){
@@ -599,37 +457,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.removeAll();
 			repaint();
 		}
-
-		if(e.getSource()==top[0]||e.getSource()==top[1]||e.getSource()==top[2]||e.getSource()==top[3]||e.getSource()==top[4]){
-			for(int i=0; i<top.length; i++){
-				top[i].setVisible(false);
-			}
-
-			System.out.println("your card will be placed on top of the deck");
-			Card c;
-			c=player.hand.cards[0];
-			player.pdeck.Deck.insertar(c);
-			try {
-				player.hand.discard(1);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			this.repairListeners(true);
-
-			try {
-				addPowerCardFromTheDeck();
-			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-				e1.printStackTrace();
-			}
-			repaint();
-		}
-	}
-
-	private void Addlisteners2Card(int i){
-		player.hand.handgui[i].Play.addActionListener(this);
-		player.hand.handgui[i].Discard.addActionListener(this);
-		player.hand.handgui[i].Preview.addActionListener(this);
-		player.hand.handgui[i].Set.addActionListener(this);
 	}
 
 	public void mouseClicked(MouseEvent e){
@@ -1049,6 +876,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				fallen.setVisible(true);
 				moveToFront(fallen);
 			}
+
+			if(e.getSource()==top[0]||e.getSource()==top[1]||e.getSource()==top[2]||e.getSource()==top[3]||e.getSource()==top[4]){
+				for(int i=0; i<top.length; i++){
+					top[i].setVisible(false);
+				}
+
+				System.out.println("your card will be placed on top of the deck");
+				Card c;
+				c=player.hand.cards[0];
+				player.pdeck.Deck.insertar(c);
+				try {
+					player.hand.discard(1);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				this.repairListeners(true);
+
+				try {
+					addPowerCardFromTheDeck();
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					e1.printStackTrace();
+				}
+				repaint();
+			}
 		}
 		else if(e.getButton() == MouseEvent.BUTTON3){
 			if(e.getClickCount()==1){
@@ -1316,6 +1167,154 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		repaint();
 	}
 
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if (e.getSource()==player.pdeck.btnNewButton_1){
+			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen2.png"));
+		}
+		if (e.getSource()==player.pdeck.btnNewButton_2){
+			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten2.png"));
+		}
+		if(e.getSource()==phases.setup){
+			phases.setup.setIcon(new ImageIcon(("setup2.png")));
+		}
+		if(e.getSource()==phases.action){
+			phases.action.setIcon(new ImageIcon(("action2.png")));
+		}
+		if(e.getSource()==phases.draw){
+			phases.draw.setIcon(new ImageIcon(("draw22.png")));
+		}
+		if(e.getSource()==phases.attack){
+			phases.attack.setIcon(new ImageIcon(("attack2.png")));
+		}
+		if(e.getSource()==phases.end){
+			phases.end.setIcon(new ImageIcon(("endz.png")));
+		}
+
+		for(int i=0; i<5; i++){
+			if(e.getSource()==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet10[i]){
+				ptarjet10[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet10[i]){
+				aitarjet10[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==ptarjet11[i]){
+				ptarjet11[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+
+			if(e.getSource()==aitarjet11[i]){
+				aitarjet11[i].setIcon(new ImageIcon("redTarget2.png"));
+			}
+		}
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (e.getSource()==player.pdeck.btnNewButton_1){
+			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
+		}
+		if (e.getSource()==player.pdeck.btnNewButton_2){
+			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
+		}
+		if(e.getSource()==phases.setup){
+			phases.setup.setIcon(new ImageIcon(("setup2.png")));
+		}
+		if(e.getSource()==phases.action){
+			phases.action.setIcon(new ImageIcon(("action2.png")));
+		}
+		if(e.getSource()==phases.draw){
+			phases.draw.setIcon(new ImageIcon(("draw22.png")));
+		}
+		if(e.getSource()==phases.attack){
+			phases.attack.setIcon(new ImageIcon(("attack2.png")));
+		}
+		if(e.getSource()==phases.end){
+			phases.end.setIcon(new ImageIcon(("end2.png")));
+		}
+
+		for(int i=0; i<5; i++){
+			if(e.getSource()==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet10[i]){
+				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet10[i]){
+				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==ptarjet11[i]){
+				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(e.getSource()==aitarjet11[i]){
+				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+		}
+	}
+
+	public int getPhaseActual(){
+		return phases.actual;
+	}
+
+	public void battle(){
+		//int pos=player.field.findwarrior();//busca un warrior en el campo para hacer la animacion
+	}
+
+	private void Addlisteners2Card(int i){
+		player.hand.handgui[i].Play.addActionListener(this);
+		player.hand.handgui[i].Discard.addActionListener(this);
+		player.hand.handgui[i].Preview.addActionListener(this);
+		player.hand.handgui[i].Set.addActionListener(this);
+	}
+
 	void set(final int pos,final int where) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		final SmallCard carta  ;
 
@@ -1488,7 +1487,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		removeNoWarriorsToPlayerFiedl();
 	}
 
-
 	void play(int pos) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		boolean allowed = true;
 		if(pos>=0){
@@ -1515,8 +1513,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 	}
 
-	public void Aiturn() throws IOException, LineUnavailableException, UnsupportedAudioFileException, InterruptedException//aqui se programara a lo salvaje el turno del ai
-	{
+	public void Aiturn() throws IOException, LineUnavailableException, UnsupportedAudioFileException, InterruptedException{
 		if (ai.aideck.Deck.cardsLeft()==0) {
 			instanciaGui.doWin();
 			repaint();
@@ -1882,139 +1879,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.hand.handgui[player.hand.current].addMouseListener(this);
 		}
 	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		if (e.getSource()==player.pdeck.btnNewButton_1){
-			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen2.png"));
-		}
-		if (e.getSource()==player.pdeck.btnNewButton_2){
-			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten2.png"));
-		}
-		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup2.png")));
-		}
-		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action2.png")));
-		}
-		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw22.png")));
-		}
-		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack2.png")));
-		}
-		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("endz.png")));
-		}
 
-		for(int i=0; i<5; i++){
-			if(e.getSource()==ptarjet[i]){
-				ptarjet[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==aitarjet[i]){
-				aitarjet[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==ptarjet8[i]){
-				ptarjet8[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==aitarjet8[i]){
-				aitarjet8[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==ptarjet9[i]){
-				ptarjet9[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==aitarjet9[i]){
-				aitarjet9[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==ptarjet10[i]){
-				ptarjet10[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==aitarjet10[i]){
-				aitarjet10[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==ptarjet11[i]){
-				ptarjet11[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-
-			if(e.getSource()==aitarjet11[i]){
-				aitarjet11[i].setIcon(new ImageIcon("redTarget2.png"));
-			}
-		}
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if (e.getSource()==player.pdeck.btnNewButton_1){
-			player.pdeck.btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
-		}
-		if (e.getSource()==player.pdeck.btnNewButton_2){
-			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
-		}
-		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup2.png")));
-		}
-		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action2.png")));
-		}
-		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw22.png")));
-		}
-		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack2.png")));
-		}
-		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end2.png")));
-		}
-
-		for(int i=0; i<5; i++){
-			if(e.getSource()==ptarjet[i]){
-				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet[i]){
-				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet8[i]){
-				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet8[i]){
-				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet9[i]){
-				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet9[i]){
-				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet10[i]){
-				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet10[i]){
-				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet11[i]){
-				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet11[i]){
-				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-		}
-	}
-	
 	public void firstPlayerTurn(){
 		barierpicked=0;
 		warriorPlayed=0;
@@ -2553,5 +2418,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			repaint();
 		});
 		t.start();
+	}
+
+	public JLabel setLabel(String image, Rectangle rectangle) throws IOException {
+		JLabel label = new JLabel(new ImageIcon(ImageIO.read(new File(image))));
+		label.setBounds(rectangle);
+		label.setVisible(false);
+		label.addMouseListener(this);
+		moveToFront(label);
+		add(label);
+
+		return label;
 	}
 }
