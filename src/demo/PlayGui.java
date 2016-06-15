@@ -43,14 +43,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int warriorPlayed;
 	public int cardDrawn, barierpicked;
 	public JLabel swordsPlayer[], swordsAi[];
-	public JLabel dest1, dest2, dest3, dest4, dest5;
+	public JLabel dest[];
 	public int atkDest=-1, atkOrigin=-1;
 	public int [] aiAttack= new int[5];
 	public int [] aiDest= new int[5];
 	public int contTargetAttack;
 	public JButton j;
 	public prueba2 listAll;
-	public JButton top1,top2,top3,top4,top5;
+//	public JButton top1,top2,top3,top4,top5;
+	public JButton top[];
 	public JLabel ptarjet1, ptarjet2, ptarjet3, ptarjet4, ptarjet5;
 	public JLabel aitarjet1, aitarjet2, aitarjet3, aitarjet4, aitarjet5;
 	public int selected=-1;
@@ -117,8 +118,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		player.barriers.addMouseListener(this);
 
-		for(int i=1;i<=5;i++)
-		{
+		for(int i=1;i<=5;i++){
 			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
 			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
 
@@ -137,7 +137,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		op=new  optionpane();
 
 		swordsPlayer = new JLabel[5];
-		for(int i=0; i<5; i++){
+		for(int i=0; i<swordsPlayer.length; i++){
 			swordsPlayer[i] = new JLabel(new ImageIcon(ImageIO.read(new File("sword.png"))));
 			swordsPlayer[i].setBounds(240+(110*i), 350, 50, 120);
 			swordsPlayer[i].setVisible(false);
@@ -147,7 +147,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 
 		swordsAi = new JLabel[5];
-		for(int i=0; i<5; i++){
+		for(int i=0; i<swordsAi.length; i++){
 			swordsAi[i] = new JLabel(new ImageIcon(ImageIO.read(new File("swordR.png"))));
 			swordsAi[i].setBounds(0, 0, 540+(220*i), 385);
 			swordsAi[i].setVisible(false);
@@ -183,47 +183,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		add(turnoLabel);
 
-
-		this.dest1 = new JLabel();
-		dest1.setIcon(new ImageIcon("redTarget1.png"));
-		this.dest1.setBounds(230, 210, 50, 50);
-		this.dest1.setVisible(false);
-		this.moveToFront(this.dest1);
-		add(dest1);
-
-		this.dest2 = new JLabel();
-		dest2.setIcon(new ImageIcon("redTarget1.png"));
-		this.dest2.setBounds(340, 210, 50, 50);
-		this.dest2.setVisible(false);
-		this.moveToFront(this.dest2);
-		add(dest2);
-
-		this.dest3 = new JLabel();
-		dest3.setIcon(new ImageIcon("redTarget1.png"));
-		this.dest3.setBounds(450, 210, 50, 50);
-		this.dest3.setVisible(false);
-		this.moveToFront(this.dest3);
-		add(dest3);
-
-		this.dest4 = new JLabel();
-		dest4.setIcon(new ImageIcon("redTarget1.png"));
-		this.dest4.setBounds(560, 210, 50, 50);
-		this.dest4.setVisible(false);
-		this.moveToFront(this.dest4);
-		add(dest4);
-
-		this.dest5 = new JLabel();
-		dest5.setIcon(new ImageIcon("redTarget1.png"));
-		this.dest5.setBounds(670, 210, 50, 50);
-		this.dest5.setVisible(false);
-		this.moveToFront(this.dest5);
-		add(dest5);
-
-		this.dest1.addMouseListener(this);
-		this.dest2.addMouseListener(this);
-		this.dest3.addMouseListener(this);
-		this.dest4.addMouseListener(this);
-		this.dest5.addMouseListener(this);
+		dest = new JLabel[5];
+		for (int i=0; i<dest.length; i++){
+			this.dest[i] = new JLabel();
+			dest[i].setIcon(new ImageIcon("redTarget1.png"));
+			this.dest[i].setBounds(230+(i*110), 210, 50, 50);
+			this.dest[i].setVisible(false);
+			this.moveToFront(this.dest[i]);
+			this.dest[i].addMouseListener(this);
+			add(dest[i]);
+		}
 
 		player.field.addMouseListener(this);
 
@@ -233,41 +202,16 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.moveToFront(this.listAll);
 		this.listAll.aceptar.addActionListener(this);
 
-		this.top1=new JButton("target");
-		this.top1.setBounds(200,580,80,30);
-		this.moveToFront(top1);
-		this.top1.addActionListener(this);
-		add(top1);
+		top = new JButton[5];
+		for(int i=0; i<top.length; i++){
+			this.top[i]=new JButton("target");
+			this.top[i].setBounds(200+(i*130),580,80,30);
+			this.moveToFront(top[i]);
+			this.top[i].addActionListener(this);
+			this.top[i].setVisible(false);
+			add(top[i]);
+		}
 
-		this.top2=new JButton("target");
-		this.top2.setBounds(330,580,80,30);
-		this.moveToFront(top2);
-		this.top2.addActionListener(this);
-		add(top2);
-
-		this.top3=new JButton("target");
-		this.top3.setBounds(450,580,80,30);
-		this.moveToFront(top3);
-		this.top3.addActionListener(this);
-		add(top3);
-
-		this.top4=new JButton("target");
-		this.top4.setBounds(570,580,80,30);
-		this.moveToFront(top4);
-		this.top4.addActionListener(this);
-		add(top4);
-
-		this.top5=new JButton("target");
-		this.top5.setBounds(700,580,80,30);
-		this.moveToFront(top5);
-		this.top5.addActionListener(this);
-		add(top5);
-
-		this.top1.setVisible(false);
-		this.top2.setVisible(false);
-		this.top3.setVisible(false);
-		this.top4.setVisible(false);
-		this.top5.setVisible(false);
 
 		phases.draw.addMouseListener(this);
 
@@ -354,9 +298,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.aitarjet3.setVisible(false);
 		this.aitarjet4.setVisible(false);
 		this.aitarjet5.setVisible(false);
-
-		this.top4.setVisible(false);
-		this.top5.setVisible(false);
 
 
 		this.ptarjet1= new JLabel();
@@ -1201,7 +1142,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 				if(barierpicked==0){
-					for(int i=0;i<5;i++){
+					for(int i=0;i<Barriers.barriers.length;i++){
 						if(e.getSource()== Barriers.barriers[i]){
 							int pos= 0;
 							try {
@@ -1265,7 +1206,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							break;
 						case 1:
 							this.phases.draw.removeMouseListener(this);
-							for(int i=0;i<5;i++){
+							for(int i=0;i<Barriers.barriers.length;i++){
 								if(Barriers.barriers[i]!=null){
 									Barriers.barriers[i].addMouseListener(this);
 								}
@@ -1273,7 +1214,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							this.phases.action.addMouseListener(this);
 							break;
 						case 2:
-							for(int i=0;i<5;i++){
+							for(int i=0;i<Barriers.barriers.length;i++){
 								if(Barriers.barriers[i]!=null){
 									Barriers.barriers[i].removeMouseListener(this);
 								}
@@ -1290,11 +1231,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							battle();
 							this.phases.attack.removeMouseListener(this);
 
-							for(int i=0;i<5;i++)
+							for(int i=0;i<player.hand.current;i++)
 								player.hand.handgui[i].Play.setEnabled(false);
 						
 							if(this.turn==1&&this.contTurn>0){
-								for(int i=0;i<5;i++){
+								for(int i=0;i<player.field.cards.length;i++){
 									if(player.field.cards[i]!=null && !player.field.cards[i].down){
 										this.swordsPlayer[i].setVisible(true);
 									}
@@ -1303,21 +1244,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							break;
 						case 4:
 							if(ready==1){
-								for (int i=0;i<5;i++)
+								for (int i=0;i<Barriers.barriers.length;i++)
 									Barriers.barriers[i].removeMouseListener(this);
 								ready=0;
 								this.phases.setup.addMouseListener(this);
 
-								for(int i=0;i<5;i++){
+								for(int i=0;i<swordsPlayer.length;i++){
 									swordsPlayer[i].setVisible(false);
 									swordsAi[i].setVisible(false);
 								}
 
-								this.dest1.setVisible(false);
-								this.dest2.setVisible(false);
-								this.dest3.setVisible(false);
-								this.dest4.setVisible(false);
-								this.dest5.setVisible(false);
+								for (JLabel aDest : dest) {
+									aDest.setVisible(false);
+								}
 
 								if(turn==1){
 									turn=2;
@@ -1348,7 +1287,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 				int x=-1;
-				for(int i=0;i<8;i++){
+				for(int i=0;i<player.hand.current;i++){
 					if(e.getSource()==player.hand.handgui[i]){
 						x=i;
 					}
@@ -1365,9 +1304,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				}
 
 				if(phases.actual==3&&this.contTurn>0){
-					for(int i=0;i<5;i++){
+					for(int i=0;i<player.field.cards.length;i++){
 						if(e.getSource()==player.field.cards[i]&&!player.field.cards[i].down){
-							for(int j=0; j<5; j++){
+							for(int j=0; j<swordsPlayer.length; j++){
 								swordsPlayer[j].setVisible(false);
 							}
 							swordsPlayer[i].setVisible(true);
@@ -1744,7 +1683,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					repaint();
 				}
 
-				for(int i=0;i<5;i++){
+				for(int i=0;i<swordsPlayer.length;i++){
 					if(e.getSource()==swordsPlayer[i]){
 						atkOrigin= i+1;
 					}
@@ -1766,42 +1705,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						swordsPlayer[i].setVisible(false);
 					}else{
 						System.out.println("Select Your Target");
-						if(ai.aifield.cards[0]!=null){
-							this.dest1.setVisible(true);
-						}
-						if(ai.aifield.cards[1]!=null){
-							this.dest2.setVisible(true);
-						}
-						if(ai.aifield.cards[2]!=null){
-							this.dest3.setVisible(true);
-						}
-						if(ai.aifield.cards[3]!=null){
-							this.dest4.setVisible(true);
-						}
-						if(ai.aifield.cards[4]!=null){
-							this.dest5.setVisible(true);
+						for(int j=0; j<dest.length; j++){
+							if(ai.aifield.cards[j]!=null){
+								this.dest[j].setVisible(true);
+							}
 						}
 					}
 				}
-				
-				if(e.getSource()==this.dest1||e.getSource()==this.dest2||e.getSource()==this.dest3||e.getSource()==this.dest4||e.getSource()==this.dest5){
-					if(e.getSource()==this.dest1){
-						this.atkDest=1;
-					}
-					if(e.getSource()==this.dest2){
-						this.atkDest=2;
-					}
-					if(e.getSource()==this.dest3){
-						this.atkDest=3;
-					}
-					if(e.getSource()==this.dest4){
-						this.atkDest=4;
-					}
-					if(e.getSource()==this.dest5){
-						this.atkDest=5;
-					}
 
-					for(int i=0;i<5;i++){
+				if(e.getSource()==this.dest[0]||e.getSource()==this.dest[1]||e.getSource()==this.dest[2]||e.getSource()==this.dest[3]||e.getSource()==this.dest[4]){
+					for(int i=0; i<dest.length; i++){
+						if(e.getSource()==this.dest[i]){
+							this.atkDest=i+1;
+						}
 						swordsPlayer[i].setVisible(false);
 					}
 
@@ -1828,11 +1744,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						player.field.quitar(atkOrigin-1);
 					}
 					add(phases);
-					this.dest1.setVisible(false);
-					this.dest2.setVisible(false);
-					this.dest3.setVisible(false);
-					this.dest4.setVisible(false);
-					this.dest5.setVisible(false);
+
+					for (JLabel aDest : dest) {
+						aDest.setVisible(false);
+					}
 				}
 			}
 
@@ -1843,7 +1758,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}	    
 		else if(e.getButton() == MouseEvent.BUTTON3){
 			if(e.getClickCount()==1){
-				for(int i=0;i<5;i++){
+				for(int i=0;i<player.field.cards.length;i++){
 					if(e.getSource()==player.field.cards[i]){
 						if(player.field.cards[i].getcard().Getid().equals("SSD-01")){
 							System.out.println("This card referred to 4 water power");
@@ -1861,7 +1776,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void mouseExited(MouseEvent e) {
-		for(int i=0;i<5;i++){
+		for(int i=0;i<Barriers.barriers.length;i++){
 			if(e.getSource()== Barriers.barriers[i]){
 				Barriers.barriers[i].setBackground(new Color(128, 128, 128));
 				repaint();
@@ -1892,13 +1807,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<player.field.cards.length;i++){
 			if(e.getSource()==player.field.cards[i]){
 				preview.Remove();
 			}
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<ai.aifield.cards.length;i++){
 			if(e.getSource()==ai.aifield.cards[i]){
 				preview.Remove();
 			}
@@ -2088,7 +2003,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			aitarjet115.setIcon(new ImageIcon("redTarget1.png"));
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<swordsPlayer.length;i++){
 			if (e.getSource()==swordsPlayer[i]) {
 				swordsPlayer[i].setIcon(new ImageIcon("sword.png"));
 			}
@@ -2097,7 +2012,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void mouseEntered(MouseEvent e) {
-		for(int i=0;i<5;i++){
+		for(int i=0;i<Barriers.barriers.length;i++){
 			if(e.getSource()== Barriers.barriers[i]){
 				Barriers.barriers[i].setBackground(Color.red);
 				repaint();
@@ -2127,7 +2042,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<player.field.cards.length;i++){
 			if(e.getSource()==player.field.cards[i]){
 				try {
 					preview.addCard(new BigCard(player.field.cards[i].getcard(),0,0));
@@ -2137,7 +2052,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<ai.aifield.cards.length;i++){
 			if(e.getSource()==ai.aifield.cards[i]){
 				try {
 					preview.addCard(new BigCard(ai.aifield.cards[i].getcard(),0,0));
@@ -2334,7 +2249,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			aitarjet115.setIcon(new ImageIcon("redTarget3.png"));
 		}
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<swordsPlayer.length;i++){
 			if (e.getSource()==swordsPlayer[i]) {
 				swordsPlayer[i].setIcon(new ImageIcon("swordEnfoqued.png"));
 			}
@@ -2828,7 +2743,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				contPossibleTargetAttaks(pos);
 				aiAttackOrigin();
 
-				for(int i=0;i<5;i++){
+				for(int i=0;i<player.field.cards.length;i++){
 					if(player.field.cards[i]!=null){
 						this.aiDest[i]=1;
 					}
@@ -2857,7 +2772,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				contPossibleTargetAttaks(pos);
 				aiAttackOrigin();
 
-				for(int i=0;i<5;i++){
+				for(int i=0;i<player.field.cards.length;i++){
 					if(player.field.cards[i]!=null&&pos!=i){
 						this.aiDest[i]=1;
 					}
@@ -2884,7 +2799,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 			if(id.equals("SSD-09")){
 				this.selected=-1;
-				for(int i=0;i<5;i++){
+				for(int i=0;i<ai.aifield.cards.length;i++){
 					if(this.ai.aifield.cards[i]!=null&&pos!=i&&this.ai.aifield.cards[i].getcard().Getid().equals("SSD-03")){
 						this.selected=i;
 					}
@@ -2894,12 +2809,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					System.out.println("cannot find a Siren");
 				}else{
 					this.ai.aifield.quitar(this.selected);
-					for(int i=0; i<5; i++){
+					for(int i=0; i<aiDest.length; i++){
 						this.aiDest[i]=-1;
 					}
 
 					atkDest=-1;
-					for(int i=0;i<5;i++){
+					for(int i=0;i<aiDest.length;i++){
 						if(player.field.cards[i]!=null){
 							this.aiDest[i]=1;
 						}
@@ -2921,7 +2836,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					contPossibleTargetAttaks(pos);
 					aiAttackOrigin();
 
-					for(int i=0;i<5;i++){
+					for(int i=0;i<player.field.cards.length;i++){
 						if(player.field.cards[i]!=null){
 							this.aiDest[i]=1;
 						}
@@ -2950,7 +2865,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				contPossibleTargetAttaks(pos);
 				aiAttackOrigin();
 
-				for(int i=0;i<5;i++){
+				for(int i=0;i<player.field.cards.length;i++){
 					if(player.field.cards[i]!=null){
 						this.aiDest[i]=1;
 					}
@@ -3001,7 +2916,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public int contarBarriers() {
 		int cont = 0;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < Barriers.cards.length; i++) {
 			if (Barriers.cards[i] != null) {
 				cont++;
 			}
@@ -3381,7 +3296,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		warriorPlayed=0;
 		cardDrawn=0;
 
-		for(int i=0;i<5;i++)
+		for(int i=0;i<player.hand.current;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 
 		player.pdeck.Play.setEnabled(false);
@@ -3393,7 +3308,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int countCardsInPlayerField(){
 		int aux=0;
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < player.field.cards.length; i++) {
 			if (player.field.cards[i]!=null) {
 				aux++;
 			}
@@ -3404,7 +3319,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int findPlayerBarrierToRemove(){
 		int aux=-1;
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < Barriers.barriers.length; i++) {
 			if (Barriers.barriers[i].isVisible()) {
 				aux=i;
 				break;
@@ -3416,7 +3331,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public boolean ExistCardsInAiField(){
 		boolean band= false;
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<ai.aifield.cards.length;i++){
 			if(ai.aifield.cards[i]!=null){
 				band = true;
 				break;
@@ -3513,7 +3428,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int getCardAiFieldLocation(){
 		int location = -1;
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < ai.aifield.cards.length; i++) {
 			if (ai.aifield.cards[i]==null){
 				location = i;
 				break;
@@ -3644,7 +3559,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            for (int i1 = 0; i1 < 5; i1++) {
+            for (int i1 = 0; i1 < player.field.cards.length; i1++) {
                 if(player.field.cards[i1]!=null && !Objects.equals(player.field.cards[i1].getcard().GetType(), "Warrior")){
                     fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[i1].getcard());
                     player.field.quitar(i1);
@@ -3671,7 +3586,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public int selectionHandgui(MouseEvent e){
-		for(int i=0;i<10;i++){
+		for(int i=0;i<player.hand.current;i++){
 			if(e.getSource()==player.hand.handgui[i]){
 				return i;
 			}
@@ -3723,7 +3638,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void initPossiblesAttacks(){
-		for(int i=0; i<5; i++){
+		for(int i=0; i<aiAttack.length; i++){
 			this.aiAttack[i]=-1;
 			this.aiDest[i]=-1;
 		}
@@ -3731,7 +3646,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public void contPossibleTargetAttaks(int pos){
 		contTargetAttack=0;
-		for(int i=0;i<5;i++){
+		for(int i=0;i<ai.aifield.cards.length;i++){
 			if(ai.aifield.cards[i]!=null&&pos!=i){
 				this.aiAttack[i]=1;
 				contTargetAttack++;
@@ -3771,12 +3686,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		phases.change(phases.actual+1);
 
 		if(this.contTurn>0){
-			for(int i=0; i<5; i++){
+			for(int i=0; i<aiAttack.length; i++){
 				this.aiAttack[i]=-1;
 				this.aiDest[i]=-1;
 			}
 			contTargetAttack=0;
-			for(int i=0;i<5;i++){
+			for(int i=0;i<ai.aifield.cards.length;i++){
 				if(ai.aifield.cards[i]!=null && Objects.equals(ai.aifield.cards[i].getcard().GetType(), "Warrior")){
 					this.aiAttack[i]=1;
 					contTargetAttack++;
@@ -3792,7 +3707,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				for (int iterador = 0; iterador < rr.nextInt(contTargetAttack+1); iterador++) {
 					aiAttackOrigin();
 
-					for(int i=0;i<5;i++){
+					for(int i=0;i<player.field.cards.length;i++){
 						if(player.field.cards[i]!=null){
 							this.aiDest[i]=1;
 						}
@@ -3804,7 +3719,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					aiAttackDest();
 					JOptionPane.showMessageDialog(null, "Card "+this.atkOrigin+" attack to player Card "+this.atkDest);
 
-					for(int i=0;i<5;i++){
+					for(int i=0;i<swordsAi.length;i++){
 						if (this.atkOrigin==i) {
 							swordsAi[i].setVisible(false);
 						}
@@ -3852,7 +3767,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		phases.change(phases.actual+1);
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<swordsAi.length;i++){
 			swordsAi[i].setVisible(false);
 		}
 		turn=1;
@@ -3871,7 +3786,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		warriorPlayed=0;
 		cardDrawn=0;
 
-		for(int i=0;i<5;i++)
+		for(int i=0;i<player.hand.current;i++)
 			player.hand.handgui[i].Play.setEnabled(false);
 
 		System.out.println("you get 1 volatile power, use it wisely");
@@ -3897,8 +3812,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 
 		this.phases.draw.removeMouseListener(this);
-		for(int i=0;i<5;i++)
-		{
+		for(int i=0;i<Barriers.barriers.length;i++){
 			if(Barriers.barriers[i]!=null){
 				Barriers.barriers[i].addMouseListener(this);
 			}
