@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Gui extends JFrame implements ActionListener, MouseListener{
 	public JButton b2, accionarAgarreAutomatico,Aifirst,playerfirst;
 	public JLabel demo, ai,player;
-	public JTextArea val2;
+//	public JTextArea val2;
 	public CardGui moving;
 	public String Nombre1;
 	public PlayGui player1;
@@ -84,12 +84,12 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
-
+						dados.pane.text.setText("2");
                         if(Objects.equals(dados.pane.text.getText(), "1")){
                             dados.label.setText("Congratulations , fate is on your side");
                             dados.label.setVisible(true);
                             try {
-                                Thread.sleep(1000);
+                                Thread.sleep(500);
                             } catch (InterruptedException e1) {
                                 e1.printStackTrace();
                             }
@@ -128,8 +128,10 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
                         }
                         else{
                             dados.label.setText("AI player gets the  first turn");
+							dados.pane.setVisible(true);
                             dados.label.setVisible(true);
                             dados.btnPlay.setVisible(true);
+							repaint();
                             pw.println(2);
                         }
 
@@ -207,12 +209,12 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 			}
 			getContentPane().setLayout(null);
 					
-			val2 = new JTextArea();
+			/*val2 = new JTextArea();
 			val2.setBounds(480, 580, 0, 0);
 			val2.setVisible(true);
 			val2.requestFocusInWindow();
 			val2.addKeyListener(new myKeyState3());
-			add(val2);
+			add(val2);*/
 
 			dados.pane.rollButton.addActionListener(this);
 			dados.btnPlay.addActionListener(this);
