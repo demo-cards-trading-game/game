@@ -142,10 +142,10 @@ public class BigCard extends RoundedPanel {
 		add(lblType);
 	}
 
-	public Card getcard()
-	{
+	public Card getcard(){
 		return actual;
 	}
+
 	public class CirclePanel extends JPanel {
 		@Override
 	    protected void paintComponent(Graphics g) {

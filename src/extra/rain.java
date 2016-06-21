@@ -130,7 +130,7 @@ public class rain extends JPanel{
             this.x0 = x0;
             this.y0 = y0;
             v0 = mDdropInitialVelocity;
-            angle = Math.toRadians(Math.round(Math.random() * 180)); //from 0 - 180 degrees
+            angle = Math.toRadians(Math.round(Math.random() * 180));
         }
 
         private void update() {

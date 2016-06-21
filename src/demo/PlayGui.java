@@ -208,7 +208,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		if (e.getSource() == fallenAi.confirmcardsfromfallen) {
 			SmallCard aux = null;
-			System.out.println("entro");
 
 			try {
 				aux = new SmallCard(fallenAi.cards[0].getcard(),0,0);
@@ -254,9 +253,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		if(e.getSource()==fallen.confirmcardsfromfallen){
 			SmallCard aux = null;
-			System.out.println("entro");
 			final int where=player.field.findwhere();
-			System.out.println(where);
 
 			try {
 				aux = new SmallCard(fallen.cards[0].getcard(),0,0);
@@ -988,47 +985,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.end.setIcon(new ImageIcon(("end.png")));
 		}
 
-		for(int i=0; i<5; i++){
-			if(e.getSource()==ptarjet[i]){
-				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet[i]){
-				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet8[i]){
-				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet8[i]){
-				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet9[i]){
-				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet9[i]){
-				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet10[i]){
-				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet10[i]){
-				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet11[i]){
-				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet11[i]){
-				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-		}
+		evaluateTarjects(e.getSource());
 
 		for(int i=0;i<swordsPlayer.length;i++){
 			if (e.getSource()==swordsPlayer[i]) {
@@ -1257,47 +1214,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			phases.end.setIcon(new ImageIcon(("end2.png")));
 		}
 
-		for(int i=0; i<5; i++){
-			if(e.getSource()==ptarjet[i]){
-				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet[i]){
-				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet8[i]){
-				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet8[i]){
-				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet9[i]){
-				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet9[i]){
-				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet10[i]){
-				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet10[i]){
-				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==ptarjet11[i]){
-				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-
-			if(e.getSource()==aitarjet11[i]){
-				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
-			}
-		}
+		evaluateTarjects(e.getSource());
 	}
 
 	public int getPhaseActual(){
@@ -1406,7 +1323,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				t.start();
 				carta.addMouseListener(this);
 				carta.repaint();
-				System.out.println(""+ carta.getcard().GetCardNumber() + " "+ carta.getcard().GetName());
 
 				if(carta.getcard().GetCardNumber()==15){
 					player.powers.token();
@@ -2007,7 +1923,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		aleatorio = al.nextInt(getCantAiHandCards()+1);
 		
 		ai.aidra.set();
-		System.out.println(aleatorio);
 		if(aleatorio>0)
 			fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), ai.aihand.cards[aleatorio-1]);
 		ai.aihand.discard(aleatorio);
@@ -2161,7 +2076,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void addPowerCardFromTheDeck() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		System.out.println("adding a water power from the deck");
 		int p = player.pdeck.Deck.posCard("SSD-15");
 		if(p ==-1){
 			System.out.println("cannot find a water power");
@@ -2429,5 +2343,49 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		add(label);
 
 		return label;
+	}
+
+	public void evaluateTarjects(Object o){
+		for(int i=0; i<5; i++){
+			if(o==ptarjet[i]){
+				ptarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==aitarjet[i]){
+				aitarjet[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==ptarjet8[i]){
+				ptarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==aitarjet8[i]){
+				aitarjet8[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==ptarjet9[i]){
+				ptarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==aitarjet9[i]){
+				aitarjet9[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==ptarjet10[i]){
+				ptarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==aitarjet10[i]){
+				aitarjet10[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==ptarjet11[i]){
+				ptarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+
+			if(o==aitarjet11[i]){
+				aitarjet11[i].setIcon(new ImageIcon("redTarget1.png"));
+			}
+		}
 	}
 }

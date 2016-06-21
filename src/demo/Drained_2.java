@@ -193,7 +193,6 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 	}
 
 	void drain(int n){
-		System.out.println("drain n="+"n="+n);
 		while(n>=1){
 			drain();
 			take();
@@ -286,7 +285,6 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 		setVisible(true);
 	}
 	void play(int n) throws IOException {
-		System.out.println("N="+N+"n="+n);
 		drain(used-2*N);
 		for( int i=0;i<N;i++){
 			drainwp();
@@ -341,7 +339,6 @@ public class Drained_2 extends JLayeredPane implements MouseListener{
 					used++;
 				}
 				label.setText(""+paying);
-				System.out.println(""+used);
 			}else{
 				undrained[1].setBackground(Color.blue);
 				paying--;

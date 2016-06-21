@@ -42,26 +42,23 @@ public class RoundedPanel extends JPanel {
                 shadowColor.getGreen(), shadowColor.getBlue(), shadowAlpha);
         Graphics2D graphics = (Graphics2D) g;
 
-        //Sets antialiasing if HQ.
         if (highQuality) {
             graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
         }
 
-        //Draws shadow borders if any.
         if (shady) {
             graphics.setColor(shadowColorA);
             graphics.fillRoundRect(
-                    shadowOffset,// X position
-                    shadowOffset,// Y position
-                    width - strokeSize - shadowOffset, // width
-                    height - strokeSize - shadowOffset, // height
-                    arcs.width, arcs.height);// arc Dimension
+                    shadowOffset,
+                    shadowOffset,
+                    width - strokeSize - shadowOffset,
+                    height - strokeSize - shadowOffset,
+                    arcs.width, arcs.height);
         } else {
             shadowGap = 1;
         }
 
-        //Draws the rounded opaque panel with borders.
         graphics.setColor(getBackground());
         graphics.fillRoundRect(0, 0, width - shadowGap,
                 height - shadowGap, arcs.width, arcs.height);
@@ -70,7 +67,6 @@ public class RoundedPanel extends JPanel {
         graphics.drawRoundRect(0, 0, width - shadowGap,
                 height - shadowGap, arcs.width, arcs.height);
 
-        //Sets strokes to default, is better.
         graphics.setStroke(new BasicStroke());
     }
 }

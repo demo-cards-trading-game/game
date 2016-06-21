@@ -63,17 +63,17 @@ public class LoadData {
 			Created=new Card();
 
 			if(s.hasNext()){
-				Created.SetId(s.next());//carga el sid 
+				Created.SetId(s.next());
 				concat="";
-				while(!s.hasNextInt())//esto carga el nombre 
+				while(!s.hasNextInt())
 				{
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
 				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));//costo 
-				Created.SetLimit(Integer.parseInt(s.next()));//limite
-				Created.SetSource(s.next());//carga el elemento 
+				Created.SetCost( Integer.parseInt(s.next()));
+				Created.SetLimit(Integer.parseInt(s.next()));
+				Created.SetSource(s.next());
 				Created.SetClass(s.next());
 				concat="";
 				while(s.hasNext()){
@@ -101,17 +101,17 @@ public class LoadData {
 			s=new Scanner(cadena);
 			Created=new Card();
 			if(s.hasNext()){
-				Created.SetId(s.next());//carga el sid 
+				Created.SetId(s.next());
 				concat="";
-				while(!s.hasNextInt())//esto carga el nombre 
+				while(!s.hasNextInt())
 				{
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
 				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));//costo 
-				Created.SetLimit(Integer.parseInt(s.next()));//limite
-				Created.SetSource(s.next());//carga el elemento 
+				Created.SetCost( Integer.parseInt(s.next()));
+				Created.SetLimit(Integer.parseInt(s.next()));
+				Created.SetSource(s.next());
 				Created.SetClass(s.next());
 				concat="";
 				while(s.hasNext()){
@@ -139,17 +139,17 @@ public class LoadData {
 			Created=new Card();
 
 			if(s.hasNext()){
-				Created.SetId(s.next());//carga el sid 
+				Created.SetId(s.next());
 				concat="";
-				while(!s.hasNextInt())//esto carga el nombre 
+				while(!s.hasNextInt())
 				{
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
 				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));//costo 
-				Created.SetLimit(Integer.parseInt(s.next()));//limite
-				Created.SetSource(s.next());//carga el elemento 
+				Created.SetCost( Integer.parseInt(s.next()));
+				Created.SetLimit(Integer.parseInt(s.next()));
+				Created.SetSource(s.next());
 				Created.SetType(s.next());
 				concat="";
 				while(s.hasNext()){

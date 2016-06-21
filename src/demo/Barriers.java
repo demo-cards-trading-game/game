@@ -14,6 +14,7 @@ public class Barriers extends JPanel {
 		setOpaque(false);
 		setBounds(x,y+10,600,50);
 
+		// TODO: 21-06-2016 hacer abstraccion de la definicion de estos componentes junto con el barriers2.java 
 		JLabel label = new JLabel(new ImageIcon(ImageIO.read(new File("barrier.png"))));
 		label.setBounds(96, 0, 80, 25);
 		add(label);
@@ -40,65 +41,37 @@ public class Barriers extends JPanel {
 		barriers[2]= label_2;
 		barriers[3]= label_3;
 		barriers[4]= label_4;
-
-
-
-
-		
-		
-		
-		
-		
-
-
-
-		
-		
-		
-		
-		
-		
-		
 	}
-	int findwhere()
-	{
+
+	public int findwhere(){
 		int x=-1;
 		int i=0;
-		while(x==-1 && i<5)
-		{
-			if(cards[i]==null)
-			{
+		while(x==-1 && i<5){
+			if(cards[i]==null){
 				x=i;
 			}
 			i++;
-			
 		}
-		
 		return x;
 	}
-	void addbarrier(Card recieved)
-	{
+
+	public void addbarrier(Card recieved){
 		int i = findwhere();
 		cards[i]=recieved;
 		barriers[i].setVisible(true);
 		repaint();
 		
 	}
-	void removebarrier(int pos)
-	{
+
+	public void removebarrier(int pos){
 		barriers[pos].setVisible(false);
 		cards[pos]=null;
 		repaint();
 	}
-	void removeall()
-	{
-		
-		
-		
-			for (int i=0;i<5;i++){
-			cards[i]=null;
-			}
-		
-	}
 
+	public void removeall(){
+		for (int i=0;i<5;i++){
+			cards[i]=null;
+		}
+	}
 }

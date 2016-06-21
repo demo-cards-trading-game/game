@@ -40,9 +40,9 @@ public class Barriers2 extends JPanel {
 		barriers[2]= label_2;
 		barriers[1]= label_1;
 		barriers[3]= label_3;
-
 	}
-	int findwhere(){
+
+	public int findwhere(){
 		int x=-1;
 		int i=0;
 		while(x==-1 && i<5){
@@ -53,7 +53,7 @@ public class Barriers2 extends JPanel {
 		return x;
 	}
 
-	void addbarrier(Card recieved){
+	public void addbarrier(Card recieved){
 		int i = findwhere();
 		if(i!=-1){
 			cards[i]=recieved;
@@ -61,19 +61,20 @@ public class Barriers2 extends JPanel {
 			repaint();
 		}
 	}
-	void removebarrier(int pos){
+
+	public void removebarrier(int pos){
 		barriers[pos].setVisible(false);
 		cards[pos]=null;
 		repaint();
 	}
 
-	void removeall(){
+	public void removeall(){
 		for (int i=0;i<5;i++){
 			cards[i]=null;
 		}
 	}
 
-	int findwhich(){
+	public int findwhich(){
 		int which=-1,i=0;
 		int found=0;
 		while(i<5 && found==0){

@@ -196,8 +196,7 @@ public class CardGui extends JLayeredPane  implements ActionListener  {
 		moveToBack(Fondo);
 	}
 	    
-	public Card getcard()
-	{
+	public Card getcard(){
 		return actual;
 	}
 

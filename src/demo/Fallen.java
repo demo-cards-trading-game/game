@@ -12,16 +12,16 @@ import java.util.Vector;
 
 public class Fallen extends JInternalFrame implements ActionListener{
 	private boolean band1;
-	JTable leftTable;
+	public JTable leftTable;
 	public LoadData data;
 	public int cant;
-	BigCard current;
-	int selecting=0;
+	public BigCard current;
+	public int selecting=0;
 	public JPanel panel;
 	public JButton confirmcardsfromfallen;
-	int effectnumber;
-	int position;
-	SmallCard[] cards=new SmallCard[4];
+	public int effectnumber;
+	public int position;
+	public SmallCard[] cards=new SmallCard[4];
 	public static int c;
 	public JButton button;
 	public int a;
@@ -31,8 +31,8 @@ public class Fallen extends JInternalFrame implements ActionListener{
 		setClosable(true);
 		getContentPane().setLayout(null);
 		setSize(836, 450);
-		c=0;
 
+		c=0;
 		data=new LoadData();
 		cant=data.Data.getCantidad();
 
@@ -123,13 +123,12 @@ public class Fallen extends JInternalFrame implements ActionListener{
         });
 	}
 
-	public void remove()
-	{
+	public void remove(){
 		SimpleColorTableModel fromModel = (SimpleColorTableModel) leftTable.getModel();
 		fromModel.removeRow(leftTable.getSelectedRow());
 	}
 	
-	protected void setupTable(JTable table) {
+	protected void setupTable(JTable table){
 		table.setFillsViewportHeight(true);
 		table.getColumnModel().getColumn(2).setMaxWidth(10);
 		table.getColumnModel().getColumn(0).setMaxWidth(18);
@@ -137,7 +136,6 @@ public class Fallen extends JInternalFrame implements ActionListener{
 	}
 	
 	public class ColorTableCellRenderer extends DefaultTableCellRenderer {
-
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -157,7 +155,6 @@ public class Fallen extends JInternalFrame implements ActionListener{
 		int id ;
 
 		color = prueba2.selectColor(x);
-			
 		id=x.GetCardNumber();
 		Nombre=x.GetName();
 		model.addRow(new Object[]{id,Nombre, color});
@@ -178,7 +175,6 @@ public class Fallen extends JInternalFrame implements ActionListener{
 				case 2:
 					clazz = Color.class;
 					break;
-
 			}
 			return clazz;
 		}
@@ -190,8 +186,6 @@ public class Fallen extends JInternalFrame implements ActionListener{
 			if(effectnumber==13){
 				confirmcardsfromfallen.setEnabled(true);
 			}else{
-				System.out.println(cards[selecting].getcard().GetSource().equals("Water"));
-				System.out.println(true);
 				if(cards[selecting].getcard().GetSource().equals("Water")){
 					if (selecting < 1){
 						selecting++;

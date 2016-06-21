@@ -43,7 +43,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 		add(b2);
 
 		demo=new JLabel("<html><font color='white'>Demo version: 0.000011 </font></html>");
-		demo.setBounds(870,660,300,30); //esto se mueve como horizontal vertical 100= h 200=v
+		demo.setBounds(870,660,300,30);
 		this.add(demo);
 
 		accionarAgarreAutomatico = new JButton();
@@ -180,7 +180,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 					e1.printStackTrace();
 				}
 
-				PlayGui.player.pdeck.btnNewButton_1.addMouseListener(this);//para que se puedan usar los botones del deck
+				PlayGui.player.pdeck.btnNewButton_1.addMouseListener(this);
 				PlayGui.player.pdeck.btnNewButton.addMouseListener(this);
 				PlayGui.player.pdeck.textField.addMouseListener(this);
 
@@ -257,7 +257,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 								repaint();
 							});
 							t1.start();
-							System.out.println("cartas en mazo "+ PlayGui.player.pdeck.Deck.cardsLeft());
 						}else{
 							doGameOver();
 						}

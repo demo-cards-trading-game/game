@@ -138,8 +138,7 @@ public class deck {
         if(raiz==null){
             nuevo.sig=null;
             raiz=nuevo;
-        }
-        else{
+        }else{
             nuevo.sig=raiz;
             raiz = nuevo;
         }
@@ -156,8 +155,7 @@ public class deck {
         return ident;
     }
 
-    public void Load(String nombredeck)throws IOException
-    {
+    public void Load(String nombredeck)throws IOException{
         String cadena;
         int numero = 0,veces=0;
         Scanner s;

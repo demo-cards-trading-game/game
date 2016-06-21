@@ -1,6 +1,5 @@
 package demo;
-public class Card
-{
+public class Card{
   private String SetNumber;
   private int Cost;
   private String Name;
@@ -14,115 +13,114 @@ public class Card
   private String Type;
   private int CardNumber;
 
-  public Card()
-  {
+  public Card(){
     this.SetNumber="";
     this.Limit=0;
     this.Cost=0;
-   }
+  }
 
   /**********************funciones de consulta****************************/
-  public String GetType()
-  {
+  public String GetType(){
     return(this.Type);
   }
-  public String Getid()
-  {
+
+  public String Getid(){
     return(this.SetNumber);
   }
-  public int GetCost()
-  {
+
+  public int GetCost(){
     return(this.Cost);
   }
-  public String GetDescription()
-  {
+
+  public String GetDescription(){
     return(this.Description);
   }
-  public String GetName()
-  {
+
+  public String GetName(){
     return(this.Name);
   }
-  public String GetSource()
-  {
-  return (this.Source);
+
+  public String GetSource(){
+    return (this.Source);
   }
-  public int GetHp()
-  {
+
+  public int GetHp(){
     return(this.Hp);
   }
-  public int GetMp()
-  {
+
+  public int GetMp(){
     return(this.Mp);
   }
-  public int GetSup()
-  {
+
+  public int GetSup(){
     return(this.Sup);
   }
-  public int GetCardNumber()
-  {
+
+  public int GetCardNumber(){
     return(this.CardNumber);
   }
 
-    /**********************modificadores****************************/
-  public void SetCardNumber(int New)
-  {
+  /**********************modificadores****************************/
+  public void SetCardNumber(int New){
     this.CardNumber=New;
   }
-  public void SetHp(int New)
-  {
+
+  public void SetHp(int New){
     this.Hp=New;
   }
-  public void SetMp(int New)
-  {
+
+  public void SetMp(int New){
     this.Mp=New;
   }
-  public void SetSup(int New)
-  {
+
+  public void SetSup(int New){
     this.Sup=New;
   }
-  public void SetType(String New)
-  {
+
+  public void SetType(String New){
     this.Type=New;
-  }  
-  public void SetDescription(String New)
-  {
+  }
+
+  public void SetDescription(String New){
     this.Description=New;
-  }  
-  public void SetId(String New)
-  {
+  }
+
+  public void SetId(String New){
     this.SetNumber=New;
   }
-  public void SetCost(int New)
-  {
+
+  public void SetCost(int New){
     this.Cost=New;
   }
-  public void SetName(String New){this.Name=New;}
-  public void SetSource(String New)
-  {
+
+  public void SetName(String New){
+    this.Name=New;
+  }
+
+  public void SetSource(String New){
     this.Source=New;
   }
-  public void SetClass(String New)
-  {
+
+  public void SetClass(String New){
     this.Class=New;
   }
-  public void SetLimit(int New)
-  {
+
+  public void SetLimit(int New){
     this.Limit=New;
   }
 
-  public void asignar( Card b)
-  {
-       this.SetNumber=b.SetNumber;
-       this.Cost=b.Cost;
-       this.Name=b.Name;
-       this.Class=b.Class;
-       this.Limit=b.Limit;
-       this.Source=b.Source;
-       this.Description=b.Description;
-       this.Hp=b.Hp;
-       this.Mp=b.Mp;
-       this.Sup=b.Sup;
-       this.Type=b.Type;
-       this.CardNumber=b.CardNumber;
+  public void asignar( Card b){
+    this.SetNumber=b.SetNumber;
+    this.Cost=b.Cost;
+    this.Name=b.Name;
+    this.Class=b.Class;
+    this.Limit=b.Limit;
+    this.Source=b.Source;
+    this.Description=b.Description;
+    this.Hp=b.Hp;
+    this.Mp=b.Mp;
+    this.Sup=b.Sup;
+    this.Type=b.Type;
+    this.CardNumber=b.CardNumber;
   }
 }

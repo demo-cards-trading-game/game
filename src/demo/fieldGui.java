@@ -59,6 +59,7 @@ public class fieldGui extends JPanel {
 		add(panel5);
 
 	}
+
 	void poner(SmallCard x,int pos){
 		switch(pos){
 			case 0:

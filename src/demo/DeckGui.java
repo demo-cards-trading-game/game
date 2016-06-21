@@ -24,29 +24,25 @@ public class DeckGui extends JPanel {
 		setOpaque(false);
 		setLayout(null);
 
-		btnNewButton = new JLabel("");
-		btnNewButton.setIcon(new ImageIcon("draw1.png"));
+		btnNewButton = new JLabel(new ImageIcon("draw1.png"));
 		btnNewButton.setBounds(134, 206, 236, 160);
 		add(btnNewButton);
 
-		textField = new JTextField();
+		textField = new JTextField("Cards Left "+ Deck.cardsLeft());
 		textField.setEditable(false);
 		textField.setForeground(new Color(255, 255, 255));
 		textField.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 10));
-		textField.setText("Cards Left "+ Deck.cardsLeft());
 		textField.setBackground(Color.BLACK);
 		textField.setBounds(149, 320, 70, 20);
 		textField.setVisible(false);
 		textField.setColumns(10);
 		add(textField);
 
-		btnNewButton_1 = new JLabel();
-		btnNewButton_1.setIcon(new ImageIcon("fallen1.png"));
+		btnNewButton_1 = new JLabel(new ImageIcon("fallen1.png"));
 		btnNewButton_1.setBounds(135, 90, 236, 160);
 		add(btnNewButton_1);
 
-		btnNewButton_2 = new JLabel();
-		btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
+		btnNewButton_2 = new JLabel(new ImageIcon("forgotten1.png"));
 		btnNewButton_2.setBounds(135, -26, 236, 160);
 		add(btnNewButton_2);
 

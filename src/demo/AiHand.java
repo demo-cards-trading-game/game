@@ -5,11 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-public  class AiHand extends JPanel
-{
+public  class AiHand extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public AIcard[]  handgui  = new AIcard[5];
-	Card[]  cards  = new Card[5];
+	public Card[]  cards  = new Card[5];
 	int current;
 
 	public AiHand(int posx,int posy) {
@@ -36,15 +35,16 @@ public  class AiHand extends JPanel
 			repaint();
 		}
 	}
-	void addall(){
+
+	public void addall(){
 		for (int i=0;i<current;i++){
 			add(handgui[i]);
 		}
 	}
+
 	public int draw(Card a) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		music();
-		if(current==5)
-		{
+		if(current==5){
 			Random randomGenerator = new Random();
 			int randomInt = randomGenerator.nextInt(4);
 			discard(randomInt+1);
@@ -72,10 +72,8 @@ public  class AiHand extends JPanel
 		return(current);
 	}
 
-	public void compactar()
-	{
-		for (int i=0;i<current;i++)
-		{
+	public void compactar(){
+		for (int i=0;i<current;i++){
 			switch(i){
 				case 0:handgui[i].setBounds(0, 20, 65, 90);
 					break;
@@ -102,8 +100,7 @@ public  class AiHand extends JPanel
 		clip.start();
 	}
 
-	public int countcards()
-	{
+	public int countcards(){
 		int cant=0;
 		int i = 0;
 		while(i<5){

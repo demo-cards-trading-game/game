@@ -19,7 +19,7 @@ public class AIGui extends JPanel {
 		setOpaque(false);
 
 		aifield=new fieldGui(225,197);
-		add (aifield);
+		add(aifield);
 
 		barriers=new Barriers2(180,140);
 		add(barriers);
