@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Gui extends JFrame implements ActionListener, MouseListener{
 	public JButton b2, accionarAgarreAutomatico,Aifirst,playerfirst;
 	public JLabel demo, ai,player;
-//	public JTextArea val2;
 	public CardGui moving;
 	public String Nombre1;
 	public PlayGui player1;
@@ -209,13 +208,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 			}
 			getContentPane().setLayout(null);
 					
-			/*val2 = new JTextArea();
-			val2.setBounds(480, 580, 0, 0);
-			val2.setVisible(true);
-			val2.requestFocusInWindow();
-			val2.addKeyListener(new myKeyState3());
-			add(val2);*/
-
 			dados.pane.rollButton.addActionListener(this);
 			dados.btnPlay.addActionListener(this);
 			add(dados);
@@ -264,28 +256,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 					JOptionPane.showMessageDialog(null, "Sorry , u can only pick cards on the draw phase");
 				}
 			}
-		}
-	}
-
-	class myKeyState3 extends KeyAdapter implements KeyListener{
-		@Override
-		public void keyPressed(KeyEvent arg0) {
-			if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-				if(!dados.btnPlay.isVisible()){
-					dados.pane.rollButton.doClick();
-				}
-				else{
-					dados.btnPlay.doClick();
-				}
-			}
-		}
-
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0) {
 		}
 	}
 
