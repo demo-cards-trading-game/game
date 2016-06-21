@@ -50,11 +50,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 		accionarAgarreAutomatico.addActionListener(this);
 	}
 
-	public void addlistenerstoselectionbuttons(){
-		playerfirst.addActionListener(this);
-		Aifirst.addActionListener(this);
-	}
-
 	public void actionPerformed(ActionEvent e) {
 		if(dados!=null){
 			if(e.getSource()==dados.pane.rollButton){
@@ -82,6 +77,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
                     else{
                         dados.label.setBounds(150, 316, 507, 41);
                         dados.pane.rollButton.setVisible(false);
+                        dados.pane.setVisible(false);
                         try {
                             turno= new FileWriter("turno.txt");
                             pw=new PrintWriter(turno);
@@ -97,7 +93,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
                             } catch (InterruptedException e1) {
                                 e1.printStackTrace();
                             }
-                            setContentPane(new Container());
 
 							dados.label.setText("Now select who is playing first");
 							dados.label.setBounds(295, 316, 507, 41);
@@ -116,15 +111,19 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 							player=new JLabel("Player");
                             player.setBounds(350 ,620,200,30);
                             player.setAlignmentX(CENTER_ALIGNMENT);
+							player.setForeground(Color.WHITE);
                             add(player);
 
 							ai=new JLabel("Ai");
                             ai.setBounds(750 ,620,200,30);
                             ai.setAlignmentX(CENTER_ALIGNMENT);
+							ai.setForeground(Color.WHITE);
                             add(ai);
 
-							addlistenerstoselectionbuttons();
-                            repaint();
+							playerfirst.addActionListener(this);
+							Aifirst.addActionListener(this);
+
+							repaint();
                             pw.println(1);
                         }
                         else{
@@ -202,10 +201,6 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 		if (e.getSource()==b2){
 			try {
 				dados= new RollDice();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			try {
 				addbackground4(this);
 			} catch (IOException e1) {
 				e1.printStackTrace();
