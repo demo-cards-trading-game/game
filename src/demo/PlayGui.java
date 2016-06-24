@@ -805,27 +805,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if(e.getSource()==swordsPlayer[i]){
 						atkOrigin= i+1;
 					}
-					if(ai.aifield.countcards()==0){
-						int which=ai.barriers.findwhich();
-						System.out.println("congratulations , direct hit");
-						if(ai.aihand.current==5){
-							ai.aihand.discard(5);
-						}
-						if(which!=-1){
-							ai.barriers.removebarrier(which);
-							Barriers2.barriers[which].setVisible(false);
-							repaint();
-						}else{
-							instanciaGui.doWin();
-							repaint();
-						}
 
-						swordsPlayer[i].setVisible(false);
-					}else{
-						System.out.println("Select Your Target");
-						for(int j=0; j<dest.length; j++){
-							if(ai.aifield.cards[j]!=null){
-								this.dest[j].setVisible(true);
+					if(atkOrigin!=-1){
+						if(ai.aifield.countcards()==0){
+							int which=ai.barriers.findwhich();
+							System.out.println("congratulations , direct hit");
+							if(ai.aihand.current==5){
+								ai.aihand.discard(5);
+							}
+							if(which!=-1){
+								ai.barriers.removebarrier(which);
+								Barriers2.barriers[which].setVisible(false);
+								repaint();
+							}else{
+								instanciaGui.doWin();
+								repaint();
+							}
+
+							swordsPlayer[i].setVisible(false);
+						}else{
+							System.out.println("Select Your Target");
+							for(int j=0; j<dest.length; j++){
+								if(ai.aifield.cards[j]!=null){
+									this.dest[j].setVisible(true);
+								}
 							}
 						}
 					}

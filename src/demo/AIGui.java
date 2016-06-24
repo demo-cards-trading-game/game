@@ -24,7 +24,7 @@ public class AIGui extends JPanel {
 		barriers=new Barriers2(180,140);
 		add(barriers);
 
-		aideck=new AiDeck(10,10);
+		aideck=new AiDeck(-70,10);
 		add(aideck);
 
 		aihand=new AiHand(278,-10);

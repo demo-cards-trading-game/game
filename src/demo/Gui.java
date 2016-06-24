@@ -83,7 +83,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
-						dados.pane.text.setText("2");
+
                         if(Objects.equals(dados.pane.text.getText(), "1")){
                             dados.label.setText("Congratulations , fate is on your side");
                             dados.label.setVisible(true);
