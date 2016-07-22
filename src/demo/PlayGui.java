@@ -1304,13 +1304,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
                             if(j1 < y1){
                                 j1++;
                                 moving.setBounds(i1, j1,75,145);
-
                                 Thread.sleep(3);
                             }
                             if(j1 > y1){
                                 j1--;
                                 moving.setBounds(i1, j1,75,145);
-
                                 Thread.sleep(3);
                             }
                         } catch (InterruptedException e) {
@@ -1358,8 +1356,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
                             e.printStackTrace();
                         }
                         player.field.quitar(ubicacionDeCarta);
-                        if(carta.getcard().GetCardNumber()==18)
-                        {
+                        if(carta.getcard().GetCardNumber()==18){
                             player.powers.setwp();
                         }
                         repaint();
