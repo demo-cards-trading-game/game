@@ -25,7 +25,7 @@ public class fightpane extends JLayeredPane{
 		a2=p2;
 		a1=p1;
 		
-		if (p1.getcard().GetHp() > p2.getcard().GetHp()){
+		if (p1.getcard().getHp() > p2.getcard().getHp()){
 			add(p1);
 			add(p2);
 		} else{

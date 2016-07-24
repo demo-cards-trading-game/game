@@ -155,8 +155,8 @@ public class Fallen extends JInternalFrame implements ActionListener{
 		int id ;
 
 		color = prueba2.selectColor(x);
-		id=x.GetCardNumber();
-		Nombre=x.GetName();
+		id=x.getCardNumber();
+		Nombre=x.getName();
 		model.addRow(new Object[]{id,Nombre, color});
 		repaint();
 	}
@@ -186,7 +186,7 @@ public class Fallen extends JInternalFrame implements ActionListener{
 			if(effectnumber==13){
 				confirmcardsfromfallen.setEnabled(true);
 			}else{
-				if(cards[selecting].getcard().GetSource().equals("Water")){
+				if(cards[selecting].getcard().getSource().equals("Water")){
 					if (selecting < 1){
 						selecting++;
 						remove();

@@ -248,8 +248,8 @@ public class prueba2 extends JInternalFrame
 			x= this.mazo.Consultar(i);
 			color = selectColor(x);
 
-			id=x.GetCardNumber();
-			Nombre=x.GetName();
+			id=x.getCardNumber();
+			Nombre=x.getName();
 			model.addRow(new Object[]{id,Nombre, color});
 		}
 	}
@@ -274,7 +274,7 @@ public class prueba2 extends JInternalFrame
 	}
 
 	public static Color selectColor(Card x){
-		switch (x.GetSource())
+		switch (x.getSource())
 		{
 			case "Water":	return (new Color(0, 191, 255));
 			case "Wind": 	return Color.WHITE;

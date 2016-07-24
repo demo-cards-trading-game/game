@@ -160,7 +160,7 @@ public class fieldGui extends JPanel {
 		int i=0;
 		while(x==-1 && i<5){
 			if(cards[i]!=null){
-				if(Objects.equals(cards[i].getcard().GetType(), "Warrior")){
+				if(Objects.equals(cards[i].getcard().getType(), "Warrior")){
 					x=i;
 				}
 			}

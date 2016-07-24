@@ -67,7 +67,7 @@ public class SmallCard extends RoundedPanel{
 		setForeground(Color.WHITE);
 		actual=x;
 
-		JLabel lblMpp = new JLabel(""+x.GetCost());
+		JLabel lblMpp = new JLabel(""+x.getCost());
 		lblMpp.setForeground(new Color(0, 0, 0));
 		lblMpp.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
 		lblMpp.setBounds(8,5,15,15);
@@ -75,12 +75,12 @@ public class SmallCard extends RoundedPanel{
 
 		JTextPane txtpnTexto = new JTextPane();
 		txtpnTexto.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 5));
-		txtpnTexto.setText(x.GetDescription());
+		txtpnTexto.setText(x.getDescription());
 		txtpnTexto.setBounds(2,93, 70, 35);
 		txtpnTexto.setEditable(false);
 		add(txtpnTexto);
 		
-		JLabel lblSource = new JLabel(x.GetSource());
+		JLabel lblSource = new JLabel(x.getSource());
 		lblSource.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		lblSource.setBounds(50, 28, 25, 10);
 		lblSource.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -88,7 +88,7 @@ public class SmallCard extends RoundedPanel{
 		lblSource.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblSource);
 
-		switch (x.GetSource()){
+		switch (x.getSource()){
 			case "Water":	lblSource.setBackground(new Color(0, 191, 255));
 				break;
 			case "Wind": 	lblSource.setBackground(Color.WHITE);
@@ -105,12 +105,12 @@ public class SmallCard extends RoundedPanel{
 		panel.setVisible(true);
 		panel.setBounds(2, 26, 71, 55);
 
-		if(Objects.equals(x.GetType(), "Warrior")){
+		if(Objects.equals(x.getType(), "Warrior")){
 			txtpnTexto.setBackground(new Color(255, 228, 181));
 			setBackground(Color.ORANGE);
 
 			lblAtaque = new JLabel();
-			lblAtaque.setText(""+x.GetHp());
+			lblAtaque.setText(""+x.getHp());
 			lblAtaque.setBounds(61, 46, 14, 9);
 			lblAtaque.setBackground(new Color(255, 51, 204));
 			lblAtaque.setOpaque(true);
@@ -120,7 +120,7 @@ public class SmallCard extends RoundedPanel{
 			lblAtaque.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 7));
 			add(lblAtaque);
 
-			JLabel lblDefensa = new JLabel("" + x.GetMp());
+			JLabel lblDefensa = new JLabel("" + x.getMp());
 			lblDefensa.setBounds(61, 60, 14, 9);
 			lblDefensa.setBackground(new Color(0, 255, 51));
 			lblDefensa.setOpaque(true);
@@ -129,7 +129,7 @@ public class SmallCard extends RoundedPanel{
 			lblDefensa.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 7));
 			add(lblDefensa);
 
-			JLabel lblSupport = new JLabel(""+ x.GetSup());
+			JLabel lblSupport = new JLabel(""+ x.getSup());
 			lblSupport.setBounds(50, 75, 25, 10);
 			lblSupport.setOpaque(true);
 			lblSupport.setBackground(new Color(204, 153, 255));
@@ -140,12 +140,12 @@ public class SmallCard extends RoundedPanel{
 
 			panel.setForeground(new Color(204, 153, 51));
 			
-		}else if(Objects.equals(x.GetType(), "Disruption")){
+		}else if(Objects.equals(x.getType(), "Disruption")){
 			txtpnTexto.setBackground(new Color(255, 105, 180));
 			setBackground(new Color(255, 0, 153));
 			panel.setForeground(new Color(255, 0, 153));
 
-		}else if(Objects.equals(x.GetType(), "Event")){
+		}else if(Objects.equals(x.getType(), "Event")){
 			txtpnTexto.setBackground(new Color(216, 191, 216));
 			setBackground(new Color(147, 112, 219));
 			panel.setForeground(new Color(147, 112, 219));
@@ -158,7 +158,7 @@ public class SmallCard extends RoundedPanel{
 		
 		txtpnTexto.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 
-		JLabel lblNombre = new JLabel(x.GetName());
+		JLabel lblNombre = new JLabel(x.getName());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombre.setFont(new Font("Showcard Gothic", Font.ITALIC, 5));
 		lblNombre.setBounds(0, 13, 75, 20);
@@ -166,7 +166,7 @@ public class SmallCard extends RoundedPanel{
 		lblNombre.setBackground(new Color(0, 0, 0));
 		add(lblNombre);
 
-		switch(x.GetCardNumber()){
+		switch(x.getCardNumber()){
 			case 1:
 				panel.add(new RoundedLabel(new ImageIcon(ImageIO.read(new File("01.png")))));
 				break;
@@ -196,13 +196,13 @@ public class SmallCard extends RoundedPanel{
 		lblAbility.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 7));
 		add(lblAbility);
 
-		JLabel lblNewLabel = new JLabel(""+x.Getid());
+		JLabel lblNewLabel = new JLabel(""+x.getId());
 		lblNewLabel.setFont(new Font("Showcard Gothic", Font.BOLD | Font.ITALIC, 7));
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setBounds(46, 125, 77, 21);
 		add(lblNewLabel);
 		
-		JLabel lblType = new JLabel(x.GetType());
+		JLabel lblType = new JLabel(x.getType());
 		lblType.setFont(new Font("Showcard Gothic", Font.ITALIC, 7));
 		lblType.setForeground(new Color(255, 255, 255));
 		lblType.setBounds(40, 2, 52, 14);

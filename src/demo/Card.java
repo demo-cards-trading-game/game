@@ -19,93 +19,91 @@ public class Card{
     this.Cost=0;
   }
 
-  /**********************funciones de consulta****************************/
-  public String GetType(){
+  public String getType(){
     return(this.Type);
   }
 
-  public String Getid(){
+  public String getId(){
     return(this.SetNumber);
   }
 
-  public int GetCost(){
+  public int getCost(){
     return(this.Cost);
   }
 
-  public String GetDescription(){
+  public String getDescription(){
     return(this.Description);
   }
 
-  public String GetName(){
+  public String getName(){
     return(this.Name);
   }
 
-  public String GetSource(){
+  public String getSource(){
     return (this.Source);
   }
 
-  public int GetHp(){
+  public int getHp(){
     return(this.Hp);
   }
 
-  public int GetMp(){
+  public int getMp(){
     return(this.Mp);
   }
 
-  public int GetSup(){
+  public int getSup(){
     return(this.Sup);
   }
 
-  public int GetCardNumber(){
+  public int getCardNumber(){
     return(this.CardNumber);
   }
 
-  /**********************modificadores****************************/
-  public void SetCardNumber(int New){
+  public void setCardNumber(int New){
     this.CardNumber=New;
   }
 
-  public void SetHp(int New){
+  public void setHp(int New){
     this.Hp=New;
   }
 
-  public void SetMp(int New){
+  public void setMp(int New){
     this.Mp=New;
   }
 
-  public void SetSup(int New){
+  public void setSup(int New){
     this.Sup=New;
   }
 
-  public void SetType(String New){
+  public void setType(String New){
     this.Type=New;
   }
 
-  public void SetDescription(String New){
+  public void setDescription(String New){
     this.Description=New;
   }
 
-  public void SetId(String New){
+  public void setId(String New){
     this.SetNumber=New;
   }
 
-  public void SetCost(int New){
+  public void setCost(int New){
     this.Cost=New;
   }
 
-  public void SetName(String New){
+  public void setName(String New){
     this.Name=New;
   }
 
-  public void SetSource(String New){
+  public void setSource(String New){
     this.Source=New;
   }
 
-  public void SetClass(String New){
+  public void setClass(String New){
     this.Class=New;
   }
 
-  public void SetLimit(int New){
+  public void setLimit(int New){
     this.Limit=New;
   }
 

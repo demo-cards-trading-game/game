@@ -125,7 +125,7 @@ public class deck {
     public int posCard(String id){
         int pos=-1;
         for(int i=0; i<this.cardsLeft(); i++){
-            if(this.Consultar(i).Getid().equals(id)){
+            if(this.Consultar(i).getId().equals(id)){
                 pos=i;
             }
         }

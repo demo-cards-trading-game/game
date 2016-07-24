@@ -18,16 +18,19 @@ public class GuiTest {
     public void initData() {
         try{
 //        Card card = new Card();
-//        card.SetCardNumber(17);
-//        card.SetName("Return from the Sea ");
-//        card.SetClass("Siren");
-//        card.SetLimit(2);
-//        card.SetSource("Water");
-//        card.SetType("Event");
+//        card.setCardNumber(17);
+//        card.setName("Return from the Sea ");
+//        card.setClass("Siren");
+//        card.setLimit(2);
+//        card.setSource("Water");
+//        card.setType("Event");
 //        System.out.println("hola");
         }catch (Exception e){
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
 
+    public static void main(String args){
+        System.out.println("");
+    }
 }

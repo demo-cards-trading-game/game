@@ -80,7 +80,7 @@ public  class List{
         Nodo reco;
         reco = raiz;
         while(!encontrado && reco!=null){
-            if(pos==reco.info.GetCardNumber()){
+            if(pos==reco.info.getCardNumber()){
                 encontrado=true;
                 informacion=reco.info;
             }

@@ -23,28 +23,28 @@ public class LoadData {
 			Created=new Card();
 
 			if(s.hasNext()){
-				Created.SetId(s.next());
+				Created.setId(s.next());
 				concat="";
 				while(!s.hasNextInt()){
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));
-				Created.SetLimit(Integer.parseInt(s.next()));
-				Created.SetSource(s.next());
-				Created.SetHp(Integer.parseInt(s.next()));
-				Created.SetMp(Integer.parseInt(s.next()));
-				Created.SetClass(s.next());
-				Created.SetSup(Integer.parseInt(s.next()));
+				Created.setName(concat);
+				Created.setCost( Integer.parseInt(s.next()));
+				Created.setLimit(Integer.parseInt(s.next()));
+				Created.setSource(s.next());
+				Created.setHp(Integer.parseInt(s.next()));
+				Created.setMp(Integer.parseInt(s.next()));
+				Created.setClass(s.next());
+				Created.setSup(Integer.parseInt(s.next()));
 				concat="";
 				while(s.hasNext()){
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetDescription(concat);
-				Created.SetType("Warrior");
-				Created.SetCardNumber(Data.cantidad+1);
+				Created.setDescription(concat);
+				Created.setType("Warrior");
+				Created.setCardNumber(Data.cantidad+1);
 				Data.insertarUlt(Created);
 			} 
 		}
@@ -63,27 +63,27 @@ public class LoadData {
 			Created=new Card();
 
 			if(s.hasNext()){
-				Created.SetId(s.next());
+				Created.setId(s.next());
 				concat="";
 				while(!s.hasNextInt())
 				{
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));
-				Created.SetLimit(Integer.parseInt(s.next()));
-				Created.SetSource(s.next());
-				Created.SetClass(s.next());
+				Created.setName(concat);
+				Created.setCost( Integer.parseInt(s.next()));
+				Created.setLimit(Integer.parseInt(s.next()));
+				Created.setSource(s.next());
+				Created.setClass(s.next());
 				concat="";
 				while(s.hasNext()){
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
 
-				Created.SetDescription(concat);
-				Created.SetType("Disruption");
-				Created.SetCardNumber(Data.cantidad+1);
+				Created.setDescription(concat);
+				Created.setType("Disruption");
+				Created.setCardNumber(Data.cantidad+1);
 				Data.insertarUlt(Created);
 			} 
 		}
@@ -101,26 +101,26 @@ public class LoadData {
 			s=new Scanner(cadena);
 			Created=new Card();
 			if(s.hasNext()){
-				Created.SetId(s.next());
+				Created.setId(s.next());
 				concat="";
 				while(!s.hasNextInt())
 				{
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));
-				Created.SetLimit(Integer.parseInt(s.next()));
-				Created.SetSource(s.next());
-				Created.SetClass(s.next());
+				Created.setName(concat);
+				Created.setCost( Integer.parseInt(s.next()));
+				Created.setLimit(Integer.parseInt(s.next()));
+				Created.setSource(s.next());
+				Created.setClass(s.next());
 				concat="";
 				while(s.hasNext()){
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetDescription(concat);
-				Created.SetType("Event");
-				Created.SetCardNumber(Data.cantidad+1);
+				Created.setDescription(concat);
+				Created.setType("Event");
+				Created.setCardNumber(Data.cantidad+1);
 				Data.insertarUlt(Created);
 			} 
 		}
@@ -139,26 +139,26 @@ public class LoadData {
 			Created=new Card();
 
 			if(s.hasNext()){
-				Created.SetId(s.next());
+				Created.setId(s.next());
 				concat="";
 				while(!s.hasNextInt())
 				{
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetName(concat);
-				Created.SetCost( Integer.parseInt(s.next()));
-				Created.SetLimit(Integer.parseInt(s.next()));
-				Created.SetSource(s.next());
-				Created.SetType(s.next());
+				Created.setName(concat);
+				Created.setCost( Integer.parseInt(s.next()));
+				Created.setLimit(Integer.parseInt(s.next()));
+				Created.setSource(s.next());
+				Created.setType(s.next());
 				concat="";
 				while(s.hasNext()){
 					concat=concat.concat(s.next()); 
 					concat=concat.concat(" "); 
 				}
-				Created.SetDescription(concat);
-				Created.SetType("Event");
-				Created.SetCardNumber(Data.cantidad+1);
+				Created.setDescription(concat);
+				Created.setType("Event");
+				Created.setCardNumber(Data.cantidad+1);
 				Data.insertar(1,Created);
 			} 
 		}
