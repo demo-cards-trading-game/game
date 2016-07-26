@@ -8,11 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Phases extends JPanel implements GeneralConstants{
-//	public final JPanel panel_4 = new JPanel();
 	public int actual;
-//	public JPanel panel_1, panel_2, panel_3, panel_5;
-//	public JLabel setup, draw, action, attack, end, reaction;
-
 	public JPanel panels[];
 	public JLabel labels[];
 	public String imageNames[] = {"setup","draw11.png", "action2.png", "attack2.png", "reAction2.png", "end2.png"};
@@ -26,51 +22,7 @@ public class Phases extends JPanel implements GeneralConstants{
 		panels = new JPanel[6];
 		labels = new JLabel[6];
 
-/*
-		panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setOpaque(false);
-		panel_1.setBounds(55, 35, 70, 40);
-		draw=new JLabel(new ImageIcon(ImageIO.read(new File("draw11.png"))));
-		draw.setBounds(0, 0, 70, 40);
-		panel_1.add(draw);
-		add(panel_1);
-
-		panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setOpaque(false);
-		panel_2.setBounds(155, 35, 70, 40);
-		action=new JLabel(new ImageIcon(ImageIO.read(new File("action2.png"))));
-		action.setBounds(0, 0, 70, 40);
-		panel_2.add(action);
-		add(panel_2);
-
-		panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setOpaque(false);
-		panel_3.setBounds(249, 35, 70, 40);
-		attack=new JLabel(new ImageIcon(ImageIO.read(new File("attack2.png"))));
-		attack.setBounds(0, 0, 70, 40);
-		panel_3.add(attack);
-		add(panel_3);
-
-		panel_5 = new JPanel();
-		panel_5.setLayout(null);
-		panel_5.setOpaque(false);
-		panel_5.setBounds(349, 35, 70, 40);
-		reaction=new JLabel(new ImageIcon(ImageIO.read(new File("reAction2.png"))));
-		reaction.setBounds(0, 0, 70, 40);
-		panel_5.add(reaction);
-		add(panel_5);
-
-		panel_4.setBounds(449, 35, 70, 40);
-		panel_4.setLayout(null);
-		panel_4.setOpaque(false);
-		end=new JLabel(new ImageIcon(ImageIO.read(new File("end2.png"))));
-		end.setBounds(0, 0, 70, 40);
-		panel_4.add(end);
-		add(panel_4);*/
-
+// TODO: 26/7/2016 definir lo que se debe hacer con las fases restantes
 //		panels[PHASES_SETUP] = getCustomPanel(new Rectangle(?,?,?,?), imageNames[PHASES_SETUP], PHASES_SETUP);
 //		add(panels[PHASES_SETUP]);
 		panels[PHASES_DRAW] = getCustomPanel(new Rectangle(55, 35, 70, 40), imageNames[PHASES_DRAW], PHASES_DRAW);
@@ -112,6 +64,7 @@ public class Phases extends JPanel implements GeneralConstants{
 
 	public void changeTurn(int phase){
 		actual=phase;
+		// TODO: 26/7/2016 definir comportamiento del cambio de phases
 		switch(actual){
 			case 0:
 				break;
