@@ -11,7 +11,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 	public DeckGui pdeck;
 	public Drained powers;
 	public Barriers barriers;
-	public fieldGui field;
+	public FieldGui field;
 
 	public PlayerGui(int x , int y, String name) throws IOException {
 		setBounds(x,y, 1024, 768);
@@ -22,7 +22,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		hand.setLocation(235,605 );
 		add(hand);
 
-		field = new fieldGui(226,430);
+		field = new FieldGui(226,430);
 		add(field);
 
 		powers=new Drained(15,350,name);

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class AIGui extends JPanel {
 
-	public fieldGui aifield;
+	public FieldGui aifield;
 	public AiDeck aideck;
 	public AiHand aihand;
 	public Barriers2 barriers;
@@ -18,7 +18,7 @@ public class AIGui extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 
-		aifield=new fieldGui(225,197);
+		aifield=new FieldGui(225,197);
 		add(aifield);
 
 		barriers=new Barriers2(180,140);

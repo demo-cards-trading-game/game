@@ -217,13 +217,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				e1.printStackTrace();
 			}
 
-			final int where = ai.aifield.findwhere();
+			final int where = ai.aifield.findwhereSetCard();
 
 			if (fallenAi.effectnumber == 13){
 				if (aux != null) {
 					number = aux.getcard().getCardNumber();
 				}
-				ai.aifield.poner(aux, where);
+				ai.aifield.addCard(aux, where);
 
 				fallenAi.remove();
 				fallenAi.confirmcardsfromfallen.setEnabled(false);
@@ -238,7 +238,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
-						ai.aifield.quitar(where);
+						ai.aifield.removeCard(where);
 						if (number == 18) {
 							try {
 								ai.aidra.setwp();
@@ -255,7 +255,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		if(e.getSource()==fallen.confirmcardsfromfallen){
 			SmallCard aux = null;
-			final int where=player.field.findwhere();
+			final int where=player.field.findwhereSetCard();
 
 			try {
 				aux = new SmallCard(fallen.cards[0].getcard(),0,0);
@@ -266,7 +266,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if (aux != null) {
 					number  =aux.getcard().getCardNumber();
 				}
-				player.field.poner(aux,where);
+				player.field.addCard(aux,where);
 				fallen.remove();
 				fallen.confirmcardsfromfallen.setEnabled(false);
 				fallen.button.setEnabled(false);
@@ -279,7 +279,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
-						player.field.quitar(where);
+						player.field.removeCard(where);
 						if (number == 18) {
 							player.powers.setwp();
 						}
@@ -674,7 +674,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 					player.hand.handgui[pos-1].addMouseListener(this);
 					Addlisteners2Card(pos-1);
-					player.field.quitar(this.selected-1);
+					player.field.removeCard(this.selected-1);
 					this.selected=-1;
 
 					for(int i=0; i<aitarjet.length; i++){
@@ -684,7 +684,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						aitarjet[i].setVisible(false);
 					}
 
-					this.ai.aifield.quitar(this.selected-1);
+					this.ai.aifield.removeCard(this.selected-1);
 					System.out.println("cards were returned to the hands of owners");
 				}
 
@@ -707,7 +707,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								this.selected=i+1;
 							}
 						}
-						this.ai.aifield.quitar(this.selected-1);
+						this.ai.aifield.removeCard(this.selected-1);
 					}else{
 						try {
 							pos= player.hand.draw(player.field.cards[this.selected-1].getcard());
@@ -716,7 +716,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 						player.hand.handgui[pos-1].addMouseListener(this);
 						Addlisteners2Card(pos-1);
-						player.field.quitar(this.selected-1);
+						player.field.removeCard(this.selected-1);
 					}
 					repaint();
 					System.out.println("cards were returned to the hands of owners");
@@ -727,7 +727,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						ptarjet9[i].setVisible(false);
 					}
 
-					player.field.quitar(this.selected);
+					player.field.removeCard(this.selected);
 					System.out.println("select an ai card to destroy");
 
 					for(int i=0; i<aitarjet9.length; i++){
@@ -740,7 +740,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(e.getSource()==aitarjet9[0]||e.getSource()==aitarjet9[1]||e.getSource()==aitarjet9[2]||e.getSource()==aitarjet9[3]||e.getSource()==aitarjet9[4]){
 					for(int i=0; i<aitarjet9.length; i++){
 						if(e.getSource()==aitarjet9[i]){
-							this.ai.aifield.quitar(i);
+							this.ai.aifield.removeCard(i);
 						}
 						aitarjet9[i].setVisible(false);
 					}
@@ -756,11 +756,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						aitarjet10[i].setVisible(false);
 
 						if(e.getSource()==ptarjet10[i]){
-							player.field.quitar(i);
+							player.field.removeCard(i);
 						}
 
 						if(e.getSource()==aitarjet10[i]){
-							this.ai.aifield.quitar(i);
+							this.ai.aifield.removeCard(i);
 						}
 					}
 
@@ -777,10 +777,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						if(e.getSource()==ptarjet11[i]){
 							c= player.field.cards[i].getcard();
-							player.field.quitar(i);
+							player.field.removeCard(i);
 
 							try {
-								player.field.poner(new SmallCard(c,0,0), i);
+								player.field.addCard(new SmallCard(c,0,0), i);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
@@ -788,10 +788,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						if(e.getSource()==aitarjet11[i]){
 							c=this.ai.aifield.cards[i].getcard();
-							this.ai.aifield.quitar(i);
+							this.ai.aifield.removeCard(i);
 
 							try {
-								this.ai.aifield.poner(new SmallCard(c,0,0), i);
+								this.ai.aifield.addCard(new SmallCard(c,0,0), i);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
@@ -809,7 +809,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 
 					if(atkOrigin!=-1){
-						if(ai.aifield.countcards()==0){
+						if(ai.aifield.getCardsLength()==0){
 							int which=ai.barriers.findwhich();
 							System.out.println("congratulations , direct hit");
 							if(ai.aihand.current==5){
@@ -856,7 +856,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 
 					if(player.field.cards[atkOrigin-1].getcard().getHp()>ai.aifield.cards[atkDest-1].getcard().getHp()){
-						ai.aifield.quitar(atkDest-1);
+						ai.aifield.removeCard(atkDest-1);
 						try {
 							this.makeEffect(player.field.cards[atkOrigin-1].getcard().getId(),atkOrigin-1 );
 						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
@@ -864,7 +864,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						}
 
 					}else if(player.field.cards[atkOrigin-1].getcard().getHp()<ai.aifield.cards[atkDest-1].getcard().getHp()){
-						player.field.quitar(atkOrigin-1);
+						player.field.removeCard(atkOrigin-1);
 					}
 					add(phases);
 
@@ -915,7 +915,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							player.powers.play(player.field.cards[i].getcard().getCost());
 						}
 						fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(),player.field.cards[i].getcard());
-						player.field.quitar(i);
+						player.field.removeCard(i);
 					}
 				}
 			}
@@ -1320,7 +1320,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
                     repaint();
                     animations.remove(moving);
                     player.powers.play(carta.getcard().getCost());
-                    player.field.poner(carta, where);
+                    player.field.addCard(carta, where);
                     carta.repaint();
                 });
 				t.start();
@@ -1357,7 +1357,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        player.field.quitar(ubicacionDeCarta);
+                        player.field.removeCard(ubicacionDeCarta);
                         if(carta.getcard().getCardNumber()==18){
                             player.powers.setwp();
                         }
@@ -1377,14 +1377,14 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				RoundedPanel show=new RoundedPanel();
 				show.setBounds(0,0,100,145);
 				player.pdeck.panel.add(show);
-				player.field.poner(Hero, where);
+				player.field.addCard(Hero, where);
 			}
 
 			if(pos==-3){
 				Hero=new SmallCard(player.pdeck.Deck.lista.Data.Consultar(9),0,0);
-				player.field.quitar(donde);
+				player.field.removeCard(donde);
 				player.powers.play(Hero.getcard().getCost());
-				player.field.poner(Hero, donde);
+				player.field.addCard(Hero, donde);
 			}
 
 			repaint();
@@ -1417,7 +1417,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		if ( player.powers.power+player.powers.Volatile - c >=0 ) {
 			if (allowed) {
-				int where = player.field.findwhere();
+				int where = player.field.findwhereSetCard();
 				if (where != -1){
 					p=pos;
 					w=where;
@@ -1612,10 +1612,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 				if (atkDest!=-1 && atkOrigin!=-1) {
 					player.hand.draw(player.field.cards[this.atkDest].getcard());
-					player.field.quitar(this.atkDest);
+					player.field.removeCard(this.atkDest);
 
 					pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
-					this.ai.aifield.quitar(this.atkOrigin);
+					this.ai.aifield.removeCard(this.atkOrigin);
 				}
 				else{
 					System.out.println("cannot find targets");
@@ -1643,10 +1643,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if(this.atkDest!=-1){
 						player.hand.draw(player.field.cards[this.atkDest].getcard());
 						player.hand.handgui[this.atkDest].addMouseListener(this);
-						player.field.quitar(this.atkDest);
+						player.field.removeCard(this.atkDest);
 					}else{
 						pos= this.ai.aihand.draw(this.ai.aifield.cards[this.atkOrigin].getcard());
-						this.ai.aifield.quitar(this.atkOrigin);
+						this.ai.aifield.removeCard(this.atkOrigin);
 					}
 				}else {
 					System.out.println("cannot find targets");
@@ -1664,7 +1664,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if(this.selected==-1){
 					System.out.println("cannot find a Siren");
 				}else{
-					this.ai.aifield.quitar(this.selected);
+					this.ai.aifield.removeCard(this.selected);
 					for(int i=0; i<aiDest.length; i++){
 						this.aiDest[i]=-1;
 					}
@@ -1681,7 +1681,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 					aiAttackDest();
 					if(this.atkDest!=-1){
-						player.field.quitar(this.atkDest);
+						player.field.removeCard(this.atkDest);
 					}else{
 						System.out.println("can't find a target");
 					}
@@ -1704,10 +1704,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					aiAttackDest();
 					if (this.atkDest!=-1 || this.atkOrigin!=-1) {
 						if(this.atkDest!=-1){
-							player.field.quitar(this.atkDest);
+							player.field.removeCard(this.atkDest);
 						}
 						else{
-							this.ai.aifield.quitar(this.atkOrigin);
+							this.ai.aifield.removeCard(this.atkOrigin);
 						}
 					}else {
 						System.out.println("can't find a target");
@@ -1736,13 +1736,13 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				if (this.atkDest!=-1 || this.atkOrigin!=-1) {
 					if (this.atkDest != -1) {
 						c = player.field.cards[this.atkDest].getcard();
-						player.field.quitar(this.atkDest);
-						player.field.poner(new SmallCard( c,0,0), this.atkDest);
+						player.field.removeCard(this.atkDest);
+						player.field.addCard(new SmallCard( c,0,0), this.atkDest);
 
 					} else {
 						c = this.ai.aifield.cards[this.atkOrigin].getcard();
-						this.ai.aifield.quitar(this.atkOrigin);
-						this.ai.aifield.poner(new SmallCard( c,0,0), this.atkOrigin);
+						this.ai.aifield.removeCard(this.atkOrigin);
+						this.ai.aifield.addCard(new SmallCard( c,0,0), this.atkOrigin);
 					}
 				}else {
 					System.out.println("can't find a target");
@@ -1888,7 +1888,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 	
 	public int getCantAiFieldCards(){
-		return ai.aifield.countcards();
+		return ai.aifield.getCardsLength();
 	}
 	
 	public int getCantVolatilePower(){
@@ -1951,7 +1951,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
                 e.printStackTrace();
             }
             fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), ai.aifield.cards[ai.whereInvoqued].getcard());
-            ai.aifield.quitar(ai.whereInvoqued);
+            ai.aifield.removeCard(ai.whereInvoqued);
             preview.Remove();
             repaint();
         });
@@ -1984,7 +1984,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ai.aifield.poner(carta, cardAiFieldLocation);
+		ai.aifield.addCard(carta, cardAiFieldLocation);
 
 		if (carta != null && carta.getcard().getCardNumber() == 15) {
 			for(int i=0;i<5;i++)
@@ -2068,7 +2068,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
             for (int i1 = 0; i1 < player.field.cards.length; i1++) {
                 if(player.field.cards[i1]!=null && !Objects.equals(player.field.cards[i1].getcard().getType(), "Warrior")){
                     fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[i1].getcard());
-                    player.field.quitar(i1);
+                    player.field.removeCard(i1);
                 }
             }
             preview.Remove();
@@ -2254,11 +2254,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								fight.addCards(new BigCard(player.field.cards[atkDest].getcard(),0,0),new BigCard(ai.aifield.cards[atkOrigin].getcard(),0,0));
 							}
 							if(player.field.cards[atkDest].getcard().getHp()>ai.aifield.cards[atkOrigin].getcard().getHp()){
-								ai.aifield.quitar(atkOrigin);
+								ai.aifield.removeCard(atkOrigin);
 								fallenAi.populate((SimpleColorTableModel) fallenAi.leftTable.getModel(), player.field.cards[atkOrigin].getcard());
 
 							}else if(player.field.cards[atkDest].getcard().getHp()<ai.aifield.cards[atkOrigin].getcard().getHp()){
-								player.field.quitar(atkDest);
+								player.field.removeCard(atkDest);
 								fallen.populate((SimpleColorTableModel) fallen.leftTable.getModel(), player.field.cards[atkDest].getcard());
 								this.makeAiEffect(this.ai.aifield.cards[atkOrigin].getcard().getId(),atkOrigin );
 							}
