@@ -2,6 +2,8 @@ package demo;
 import demo.Fallen.SimpleColorTableModel;
 import extra.RoundedPanel;
 import extra.movePanel;
+import utils.GeneralConstants;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -18,7 +20,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class PlayGui extends JLayeredPane implements ActionListener, MouseListener {
+public class PlayGui extends JLayeredPane implements ActionListener, MouseListener, GeneralConstants {
 	public fightpane fight;
 	public static PlayerGui player;
 	public AIGui ai;
@@ -86,7 +88,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		unleash.add (new JLabel(new ImageIcon(ImageIO.read(new File("unleash.png")))));
 
 		phases=new Phases(220,360);
-		phases.draw.addMouseListener(this);
+		phases.getLabel(PHASES_DRAW).addMouseListener(this);
 		add(phases);
 
 		repaint=new JButton();
@@ -199,7 +201,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai.aideck.btnNewButton_1.addMouseListener(this);
 
 		if(turn==1){
-			this.phases.end.addMouseListener(this);
+			this.phases.getLabel(PHASES_END).addMouseListener(this);
 		}
 	}
 
@@ -497,10 +499,10 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					}
 				}
 
-				if((e.getSource()==phases.setup)||(e.getSource()==phases.draw)||(e.getSource()==phases.action)||(e.getSource()==phases.attack)||(e.getSource()==phases.end)){
+				if((e.getSource()==phases.getLabel(PHASES_SETUP))||(e.getSource()==phases.getLabel(PHASES_DRAW))||(e.getSource()==phases.getLabel(PHASES_ACTION))||(e.getSource()==phases.getLabel(PHASES_ATTACK))||(e.getSource()==phases.getLabel(PHASES_END))){
 					repaint();
 					done=1;
-					if (e.getSource()==phases.end && phases.actual < 3) {
+					if (e.getSource()==phases.getLabel(PHASES_END) && phases.actual < 3) {
 						barierpicked=0;
 						warriorPlayed=0;
 						cardDrawn=0;
@@ -508,18 +510,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						for(int i=0;i<player.hand.current;i++)
 							player.hand.handgui[i].Play.setEnabled(false);
 
-						this.phases.setup.removeMouseListener(this);
-						this.phases.draw.removeMouseListener(this);
-						this.phases.action.removeMouseListener(this);
-						this.phases.attack.removeMouseListener(this);
-						phases.change(4);
+						this.phases.getLabel(PHASES_SETUP).removeMouseListener(this);
+						this.phases.getLabel(PHASES_DRAW).removeMouseListener(this);
+						this.phases.getLabel(PHASES_ACTION).removeMouseListener(this);
+						this.phases.getLabel(PHASES_ATTACK).removeMouseListener(this);
+						phases.changeTurn(4);
 					}
 					else {
 						if(phases.actual<4){
-							phases.change(phases.actual+1);
+							phases.changeTurn(phases.actual+1);
 						}else{
 							if(ready==1){
-								phases.change(0);
+								phases.changeTurn(0);
 							}
 						}
 					}
@@ -533,18 +535,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							for(int i=0;i<player.hand.current;i++)
 								player.hand.handgui[i].Play.setEnabled(false);
 
-							this.phases.setup.removeMouseListener(this);
-							this.phases.draw.removeMouseListener(this);
-							this.phases.draw.addMouseListener(this);
+							this.phases.getLabel(PHASES_SETUP).removeMouseListener(this);
+							this.phases.getLabel(PHASES_DRAW).removeMouseListener(this);
+							this.phases.getLabel(PHASES_DRAW).addMouseListener(this);
 							break;
 						case 1:
-							this.phases.draw.removeMouseListener(this);
+							this.phases.getLabel(PHASES_DRAW).removeMouseListener(this);
 							for(int i=0;i<Barriers.barriers.length;i++){
 								if(Barriers.barriers[i]!=null){
 									Barriers.barriers[i].addMouseListener(this);
 								}
 							}
-							this.phases.action.addMouseListener(this);
+							this.phases.getLabel(PHASES_ACTION).addMouseListener(this);
 							break;
 						case 2:
 							for(int i=0;i<Barriers.barriers.length;i++){
@@ -552,8 +554,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 									Barriers.barriers[i].removeMouseListener(this);
 								}
 							}
-							this.phases.action.removeMouseListener(this);
-							this.phases.attack.addMouseListener(this);
+							this.phases.getLabel(PHASES_ACTION).removeMouseListener(this);
+							this.phases.getLabel(PHASES_ATTACK).addMouseListener(this);
 
 							for(int i=0;i<player.hand.current;i++)
 								player.hand.handgui[i].Play.setEnabled(true);
@@ -562,7 +564,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 						case 3:
 							liberarTutoEnd=0;
 							battle();
-							this.phases.attack.removeMouseListener(this);
+							this.phases.getLabel(PHASES_ATTACK).removeMouseListener(this);
 
 							for(int i=0;i<player.hand.current;i++)
 								player.hand.handgui[i].Play.setEnabled(false);
@@ -580,7 +582,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								for (int i=0;i<Barriers.barriers.length;i++)
 									Barriers.barriers[i].removeMouseListener(this);
 								ready=0;
-								this.phases.setup.addMouseListener(this);
+								this.phases.getLabel(PHASES_SETUP).addMouseListener(this);
 
 								for(int i=0;i<swordsPlayer.length;i++){
 									swordsPlayer[i].setVisible(false);
@@ -605,9 +607,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}else{
 								ready=1;
 							}
-							this.phases.end.removeMouseListener(this);
+							this.phases.getLabel(PHASES_END).removeMouseListener(this);
 							ai.aideck.btnNewButton.addMouseListener(this);
-							phases.change(0);
+							phases.changeTurn(0);
 							try {
 								Aiturn();
 							} catch (IOException | UnsupportedAudioFileException | InterruptedException | LineUnavailableException e1) {
@@ -972,20 +974,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
 
-		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup.png")));
+		if(e.getSource()==phases.getLabel(PHASES_SETUP)){
+			phases.getLabel(PHASES_SETUP).setIcon(new ImageIcon(("setup.png")));
 		}
-		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ACTION)){
+			phases.getLabel(PHASES_ACTION).setIcon(new ImageIcon(("action.png")));
 		}
-		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw11.png")));
+		if(e.getSource()==phases.getLabel(PHASES_DRAW)){
+			phases.getLabel(PHASES_DRAW).setIcon(new ImageIcon(("draw11.png")));
 		}
-		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ATTACK)){
+			phases.getLabel(PHASES_ATTACK).setIcon(new ImageIcon(("attack.png")));
 		}
-		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end.png")));
+		if(e.getSource()==phases.getLabel(PHASES_END)){
+			phases.getLabel(PHASES_END).setIcon(new ImageIcon(("getLabel(PHASES_END).png")));
 		}
 
 		evaluateTarjects(e.getSource());
@@ -1057,20 +1059,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten3.png"));
 		}
 
-		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup3.png")));
+		if(e.getSource()==phases.getLabel(PHASES_SETUP)){
+			phases.getLabel(PHASES_SETUP).setIcon(new ImageIcon(("setup3.png")));
 		}
-		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action3.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ACTION)){
+			phases.getLabel(PHASES_ACTION).setIcon(new ImageIcon(("action3.png")));
 		}
-		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw33.png")));
+		if(e.getSource()==phases.getLabel(PHASES_DRAW)){
+			phases.getLabel(PHASES_DRAW).setIcon(new ImageIcon(("draw33.png")));
 		}
-		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack3.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ATTACK)){
+			phases.getLabel(PHASES_ATTACK).setIcon(new ImageIcon(("attack3.png")));
 		}
-		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end3.png")));
+		if(e.getSource()==phases.getLabel(PHASES_END)){
+			phases.getLabel(PHASES_END).setIcon(new ImageIcon(("end3.png")));
 			if (liberarTutoEnd==0) {
 				liberarTutoEnd=1;
 			}
@@ -1135,20 +1137,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten2.png"));
 		}
-		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_SETUP)){
+			phases.getLabel(PHASES_SETUP).setIcon(new ImageIcon(("setup2.png")));
 		}
-		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ACTION)){
+			phases.getLabel(PHASES_ACTION).setIcon(new ImageIcon(("action2.png")));
 		}
-		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw22.png")));
+		if(e.getSource()==phases.getLabel(PHASES_DRAW)){
+			phases.getLabel(PHASES_DRAW).setIcon(new ImageIcon(("draw22.png")));
 		}
-		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ATTACK)){
+			phases.getLabel(PHASES_ATTACK).setIcon(new ImageIcon(("attack2.png")));
 		}
-		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("endz.png")));
+		if(e.getSource()==phases.getLabel(PHASES_END)){
+			phases.getLabel(PHASES_END).setIcon(new ImageIcon(("endz.png")));
 		}
 
 		for(int i=0; i<5; i++){
@@ -1201,20 +1203,20 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (e.getSource()==player.pdeck.btnNewButton_2){
 			player.pdeck.btnNewButton_2.setIcon(new ImageIcon("forgotten1.png"));
 		}
-		if(e.getSource()==phases.setup){
-			phases.setup.setIcon(new ImageIcon(("setup2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_SETUP)){
+			phases.getLabel(PHASES_SETUP).setIcon(new ImageIcon(("setup2.png")));
 		}
-		if(e.getSource()==phases.action){
-			phases.action.setIcon(new ImageIcon(("action2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ACTION)){
+			phases.getLabel(PHASES_ACTION).setIcon(new ImageIcon(("action2.png")));
 		}
-		if(e.getSource()==phases.draw){
-			phases.draw.setIcon(new ImageIcon(("draw22.png")));
+		if(e.getSource()==phases.getLabel(PHASES_DRAW)){
+			phases.getLabel(PHASES_DRAW).setIcon(new ImageIcon(("draw22.png")));
 		}
-		if(e.getSource()==phases.attack){
-			phases.attack.setIcon(new ImageIcon(("attack2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_ATTACK)){
+			phases.getLabel(PHASES_ATTACK).setIcon(new ImageIcon(("attack2.png")));
 		}
-		if(e.getSource()==phases.end){
-			phases.end.setIcon(new ImageIcon(("end2.png")));
+		if(e.getSource()==phases.getLabel(PHASES_END)){
+			phases.getLabel(PHASES_END).setIcon(new ImageIcon(("end2.png")));
 		}
 
 		evaluateTarjects(e.getSource());
@@ -1438,18 +1440,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ai.aidra.token();
 		ai.aidra.reset();
 
-		phases.change(phases.actual+1);
+		phases.changeTurn(phases.actual+1);
 
 		ai.aihand.draw(ai.aideck.Deck.extraerR());
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
 
-		phases.change(phases.actual+1);
+		phases.changeTurn(phases.actual+1);
 		setVisible(true);
 
 		aiMovements();
 
-		phases.reaction.setIcon(new ImageIcon(("reAction.png")));
+		phases.getLabel(PHASES_REACTION).setIcon(new ImageIcon(("reAction.png")));
 		repaint();
 
 		aiPhases();
@@ -1807,7 +1809,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.pdeck.Play.setEnabled(false);
 		player.powers.reset();
 	    
-		this.phases.draw.addMouseListener(this);
+		this.phases.getLabel(PHASES_DRAW).addMouseListener(this);
 	}
 
 	public int countCardsInPlayerField(){
@@ -2175,18 +2177,18 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public void playPlayerCard() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if(done==0)
 			play(pl);
-		phases.reaction.setIcon(new ImageIcon(("reAction.png")));
+		phases.getLabel(PHASES_REACTION).setIcon(new ImageIcon(("reAction.png")));
 		repaint();
 		aiMovements();
-		phases.reaction.setIcon(new ImageIcon(("reAction2.png")));
+		phases.getLabel(PHASES_REACTION).setIcon(new ImageIcon(("reAction2.png")));
 		done=1;
 		this.repairListeners(true);
 	}
 
 	public void aiPhases() throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
-		phases.reaction.setIcon(new ImageIcon(("reAction2.png")));
+		phases.getLabel(PHASES_REACTION).setIcon(new ImageIcon(("reAction2.png")));
 		repaint();
-		phases.change(phases.actual+1);
+		phases.changeTurn(phases.actual+1);
 
 		if(this.contTurn>0){
 			for(int i=0; i<aiAttack.length; i++){
@@ -2268,7 +2270,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 		}
 
-		phases.change(phases.actual+1);
+		phases.changeTurn(phases.actual+1);
 
 		for(int i=0;i<swordsAi.length;i++){
 			swordsAi[i].setVisible(false);
@@ -2281,9 +2283,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		ready=1;
 		done=1;
 		if(phases.actual<4){
-			phases.change(phases.actual+1);
+			phases.changeTurn(phases.actual+1);
 		}else{
-			phases.change(-1);
+			phases.changeTurn(-1);
 		}
 		barierpicked=0;
 		warriorPlayed=0;
@@ -2297,30 +2299,30 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		player.powers.reset();
 		repaint();
 
-		this.phases.draw.addMouseListener(this);
+		this.phases.getLabel(PHASES_DRAW).addMouseListener(this);
 
 		if(bugPrimerTurnoUSer==0){
 			bugPrimerTurnoUSer=1;
-			phases.change(phases.actual+1);
+			phases.changeTurn(phases.actual+1);
 
 			accionarAgarreAutomatico();
 			repaint();
 		}
-		this.phases.end.addMouseListener(this);
+		this.phases.getLabel(PHASES_END).addMouseListener(this);
 		if(phases.actual==-1){
-			phases.change(phases.actual+1);
+			phases.changeTurn(phases.actual+1);
 
 			accionarAgarreAutomatico();
 			repaint();
 		}
 
-		this.phases.draw.removeMouseListener(this);
+		this.phases.getLabel(PHASES_DRAW).removeMouseListener(this);
 		for(int i=0;i<Barriers.barriers.length;i++){
 			if(Barriers.barriers[i]!=null){
 				Barriers.barriers[i].addMouseListener(this);
 			}
 		}
-		this.phases.action.addMouseListener(this);
+		this.phases.getLabel(PHASES_ACTION).addMouseListener(this);
 
 		Thread t = new Thread(() -> {
 			try {
@@ -2328,7 +2330,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			phases.change(phases.actual+1);
+			phases.changeTurn(phases.actual+1);
 			repaint();
 		});
 		t.start();

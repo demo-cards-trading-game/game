@@ -60,6 +60,11 @@ public class GuiTest implements ActionListener {
         System.out.println("fin");
     }
 
+    @Test
+    public void testPhases(){
+        Phases phases = new Phases(0,0);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Utils.flag = true;
