@@ -59,6 +59,10 @@ public class Card{
     return(this.CardNumber);
   }
 
+  public int getLimit(){
+	    return(Limit);
+ }
+ 
   public void setCardNumber(int New){
     this.CardNumber=New;
   }
