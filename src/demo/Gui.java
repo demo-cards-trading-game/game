@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Gui extends JFrame implements ActionListener, MouseListener{
 	public JButton b2, accionarAgarreAutomatico,Aifirst,playerfirst;
 	public JLabel demo, ai,player;
-	public CardGui moving;
+	public SmallCard moving;
 	public String Nombre1;
 	public PlayGui player1;
 	public RollDice dados;
@@ -224,14 +224,14 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 				if(this.player1.getPhaseActual()==0){
 					if(player1.cardDrawn==0){
 						if(PlayGui.player.pdeck.Deck.cardsLeft()!= 0 ){
-							CardGui nueva= null;
+							SmallCard nueva= null;
 							try {
-								nueva = new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+								nueva = new SmallCard(PlayGui.player.pdeck.Deck.extraerR(),0,0);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
-							appear(nueva);
-							final CardGui finalNueva = nueva;
+						
+							final SmallCard finalNueva = nueva;
 							Thread t1 = new Thread(() -> {
 								try {
 									Thread.sleep(1000);
@@ -331,13 +331,13 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 				if(this.player1.getPhaseActual()==0){
 					if(player1.cardDrawn==0){
 						if(PlayGui.player.pdeck.Deck.cardsLeft()!= 0 ){
-							CardGui nueva= null;
+							SmallCard nueva= null;
 							try {
-								nueva = new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+								nueva = new SmallCard(PlayGui.player.pdeck.Deck.extraerR(),0,0);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
-							appear(nueva);
+							
 						}else{
 							doGameOver();
 						}
@@ -381,7 +381,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 		}
 	}
 
-	public void appear(final CardGui card) {
+	public void appear(final SmallCard card) {
 		moving=card;
 		player1.animations.add(moving);
 		Thread t = new Thread(() -> {

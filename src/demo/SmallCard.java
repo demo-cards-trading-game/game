@@ -46,10 +46,10 @@ public class SmallCard extends RoundedPanel{
 
 		add(menu);
 
-		normal(x);
+		setUp(x);
 	}
 
-	public void abajo() throws IOException {
+	public void setDown() throws IOException {
 		JPanel panel_1= new RoundedPanel();
 		panel_1.setBounds(0, 0, 75, 145);
 		panel_1.setOpaque(true);
@@ -63,7 +63,7 @@ public class SmallCard extends RoundedPanel{
 		repaint();
 	}
 
-	public void normal(Card x ) throws IOException {
+	public void setUp(Card x ) throws IOException {
 		setForeground(Color.WHITE);
 		actual=x;
 
@@ -218,12 +218,12 @@ public class SmallCard extends RoundedPanel{
 		panel_1.add(new JLabel(new ImageIcon(ImageIO.read(new File("mp.png")))));
 	}
 
-	public Card getcard()
+	public Card getCard()
 	{
 		return actual;
 	}
 
-	boolean getpos()
+	boolean getPos()
 	{
 		return down;
 	}
