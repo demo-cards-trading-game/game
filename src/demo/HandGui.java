@@ -66,10 +66,10 @@ public  class HandGui extends JLayeredPane{
 	public int draw(SmallCard a) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		AiHand.music();
 		SmallCard x;
-		cards[current]=a.getcard();
+		cards[current]=a.getCard();
 			 
 		if (current<5){
-			x=new SmallCard(a.getcard(),current*100+30,20);
+			x=new SmallCard(a.getCard(),current*100+30,20);
 			handgui[current]=x;
 			add(handgui[current],current);
 			current=current+1;

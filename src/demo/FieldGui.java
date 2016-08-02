@@ -72,7 +72,7 @@ public class FieldGui extends JPanel {
 		int x=-1;
 		int i=0;
 		while(x==-1 && i<5){
-			if(cards[i]!=null && Objects.equals(cards[i].getcard().getType(), "Warrior")){
+			if(cards[i]!=null && Objects.equals(cards[i].getCard().getType(), "Warrior")){
 				x=i;
 			}
 			i++;
