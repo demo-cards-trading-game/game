@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class FieldGui extends JPanel {
 	public SmallCard[]  cards  = new SmallCard[5];
-	public RoundedPanel panels[];
+	public JPanel panels[];
 	public int boundAxisX[] = {52,149,246,343,440};
 
 	public FieldGui(int x, int y) {
@@ -14,10 +14,12 @@ public class FieldGui extends JPanel {
 		setOpaque(false);
 		setLayout(null);
 
-		panels = new RoundedPanel[5];
+		panels = new JPanel[5];
 
 		for(int i = 0; i<5; i++){
-			panels[i] = setRoundedPanel(Color.GREEN,  new Rectangle(boundAxisX[i], 0, 75, 145));
+			panels[i] = new JPanel();
+			panels[i].setBounds(boundAxisX[i], 0, 75, 145);
+			panels[i].setOpaque(false);
 			add(panels[i]);
 		}
 	}
