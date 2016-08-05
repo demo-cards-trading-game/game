@@ -5,22 +5,28 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SmallCard extends RoundedPanel{
+public class SmallCard extends RoundedPanel implements MouseListener{
 	public Card  actual;
 	public JLabel lblAtaque;
 	public boolean down;
 	public RoundedPanel menu;
 	public JButton Play, Preview,Discard,Set; 
+	private int X,Y;
 
 	public SmallCard(Card x ,int a,int b) throws IOException {
 		setBounds(a,b, 82, 150);
 		setLayout(null);
-
+	
 		actual=x;
+		X=a;
+		Y=b;
+		
 		this.down=false;
 
 		menu = new RoundedPanel();
@@ -217,7 +223,14 @@ public class SmallCard extends RoundedPanel{
 
 		panel_1.add(new JLabel(new ImageIcon(ImageIO.read(new File("mp.png")))));
 	}
-
+	public int getX()
+	{
+		return(this.X);	
+	}
+	public int getY()
+	{
+		return(this.Y);	
+	}
 	public Card getCard()
 	{
 		return actual;
@@ -226,5 +239,35 @@ public class SmallCard extends RoundedPanel{
 	boolean getPos()
 	{
 		return down;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
@@ -40,7 +41,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public Phases phases;
 	public Fallen fallenAi;
 	public  JButton repaint;
-	public JLabel turnoLabel;
 	public int warriorPlayed;
 	public int cardDrawn, barierpicked;
 	public JLabel swordsPlayer[], swordsAi[];
@@ -63,11 +63,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int liberarTutoEnd=1;
 	public int ubicacionDeCarta;
 	public Gui instanciaGui;
-
+	public TransferHandler transferCard;
+	public JButton pruebadrag;
 
 	public PlayGui(int x , int y, String name, Gui g) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		this.instanciaGui = g;
-
+		transferCard=new TransferHandler("carta");
 		setBorder(null);
 		setOpaque(false);
 		setLayout(null);
@@ -112,14 +113,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		this.turn = Integer.parseInt(br.readLine());
 		turno.close();
 
-		this.turnoLabel = new JLabel();
-		turnoLabel.setFont(new Font("Comic Sans MS", turnoLabel.getFont().getStyle(), 20));
-		turnoLabel.setForeground(Color.green);
-		this.turnoLabel.setBounds(50, 320, 200, 20);
-		this.turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.turnoLabel.setFont(new Font("Elephant", Font.BOLD | Font.ITALIC, 15));
 		if(turn==1){
-			this.turnoLabel.setText("Player'S turn");
 			Thread t1 = new Thread(() -> {
 				try {
 					Thread.sleep(2000);
@@ -130,10 +124,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				repaint();
 			});
 			t1.start();
-		}else{
-			this.turnoLabel.setText("AI Player'S turn");
 		}
-		add(turnoLabel);
+
 
 		this.listAll = new prueba2(player.pdeck.Deck);
 		this.listAll.setBounds(150, 100, 620, 420);
@@ -203,6 +195,23 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(turn==1){
 			this.phases.getLabel(PHASES_END).addMouseListener(this);
 		}
+		pruebadrag=new JButton("prueba de drag");
+		pruebadrag.setBounds(400,400,150,75);
+		animations.add(pruebadrag);
+		pruebadrag.setTransferHandler(transferCard);
+		pruebadrag.addMouseListener(new MouseAdapter(){
+			
+		public void mousePressed(MouseEvent e)
+		{
+			JButton small=(JButton)e.getSource();
+			TransferHandler handler=small.getTransferHandler();
+			handler.exportAsDrag(small, e, TransferHandler.COPY);
+			System.out.println("ME han pullao tio");
+			repaint();
+		}
+			
+			
+		});
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -595,10 +604,9 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 								if(turn==1){
 									turn=2;
-									this.turnoLabel.setText("AI Player'S turn");
 								}else{
 									turn=1;
-									this.turnoLabel.setText("Player'S turn");
+								
 								}
 								repaint();
 								repaint();
@@ -2277,7 +2285,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 		turn=1;
 
-		this.turnoLabel.setText("Player'S turn");
+		
 		this.contTurn++;
 
 		ready=1;
