@@ -64,7 +64,6 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int ubicacionDeCarta;
 	public Gui instanciaGui;
 	public TransferHandler transferCard;
-	public JButton pruebadrag;
 
 	public PlayGui(int x , int y, String name, Gui g) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		this.instanciaGui = g;
@@ -195,23 +194,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if(turn==1){
 			this.phases.getLabel(PHASES_END).addMouseListener(this);
 		}
-		pruebadrag=new JButton("prueba de drag");
-		pruebadrag.setBounds(400,400,150,75);
-		animations.add(pruebadrag);
-		pruebadrag.setTransferHandler(transferCard);
-		pruebadrag.addMouseListener(new MouseAdapter(){
-			
-		public void mousePressed(MouseEvent e)
-		{
-			JButton small=(JButton)e.getSource();
-			TransferHandler handler=small.getTransferHandler();
-			handler.exportAsDrag(small, e, TransferHandler.COPY);
-			System.out.println("ME han pullao tio");
-			repaint();
-		}
-			
-			
-		});
+		
+	
 	}
 
 	public void actionPerformed(ActionEvent e) {
