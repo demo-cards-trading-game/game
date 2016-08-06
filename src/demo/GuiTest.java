@@ -36,30 +36,30 @@ public class GuiTest extends JFrame implements ActionListener {
 
     @Test
     public void testFrame(){
-        JFrame frame = new JFrame("FrameDemo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        frame.setBounds(0,0,600,600);
+//        JFrame frame = new JFrame("FrameDemo");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
+        setBounds(0,0,600,600);
 
         fieldGui = new FieldGui(0,0);
         fieldGui.setBounds(20,80,500,500);
-        frame.setContentPane(fieldGui);
+        setContentPane(fieldGui);
 
-        frame.setVisible(true);
+        setVisible(true);
         Card card = new Card();
         card.setSource("Water");
 
         JButton button = new JButton("deleteCard");
         button.setBounds(200,500,100,50);
         button.addActionListener(this);
-        frame.getContentPane().add(button, BorderLayout.CENTER);
+        getContentPane().add(button, BorderLayout.CENTER);
 
         try {
             fieldGui.addCard(new SmallCard(card,0,0),1);
+            repaint();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        repaint();
         Utils.waitWithFlag();
     }
 

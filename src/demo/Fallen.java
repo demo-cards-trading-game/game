@@ -186,7 +186,7 @@ public class Fallen extends JInternalFrame implements ActionListener{
 			if(effectnumber==13){
 				confirmcardsfromfallen.setEnabled(true);
 			}else{
-				if(cards[selecting].getCard().getSource().equals("Water")){
+				if(cards[selecting].getcard().getSource().equals("Water")){
 					if (selecting < 1){
 						selecting++;
 						remove();
