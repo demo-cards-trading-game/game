@@ -1,36 +1,58 @@
 package demo;
-import extra.RoundedPanel;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 public class FieldGui extends JPanel {
-	public SmallCard[]  cards  = new SmallCard[5];
-	public RoundedPanel panels[];
+	public SmallCard[] cards = new SmallCard[5];
+	public JPanel panels[];
 	public int boundAxisX[] = {52,149,246,343,440};
+	public JLabel swords[];
+	public JLabel tarjets[];
 
 	public FieldGui(int x, int y) {
 		setBounds(x,y, 544, 166);
 		setOpaque(false);
 		setLayout(null);
 
-		panels = new RoundedPanel[5];
+		panels = new JPanel[5];
+		swords = new JLabel[5];
+		tarjets = new JLabel[5];
 
 		for(int i = 0; i<5; i++){
-			panels[i] = setRoundedPanel(Color.GREEN,  new Rectangle(boundAxisX[i], 0, 75, 145));
+			panels[i] = new JPanel();
+			panels[i].setBounds(boundAxisX[i], 0, 75, 145);
+			panels[i].setOpaque(false);
 			add(panels[i]);
+			try {
+				swords[i]=setLabel("sword.png", new Rectangle(boundAxisX[i], 0, 75, 145));
+				add(swords[i]);
+				tarjets[i]=setLabel("redTarget1.png", new Rectangle(boundAxisX[i], 0, 75, 145));
+				add(tarjets[i]);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public RoundedPanel setRoundedPanel(Color color, Rectangle rectangle){
-		RoundedPanel roundedPanel = new RoundedPanel();
-		roundedPanel.setLayout(null);
-		roundedPanel.setForeground(color);
-		roundedPanel.setBackground(new Color(169,169,169));
-		roundedPanel.setBounds(rectangle);
-		roundedPanel.arcs = new Dimension(10,10);
-		roundedPanel.shady = false;
-		return roundedPanel;
+	public JLabel setLabel(String image, Rectangle rectangle) throws IOException {
+		JLabel label = new JLabel(new ImageIcon(ImageIO.read(new File(image))));
+		label.setBounds(rectangle);
+		label.setVisible(false);
+		add(label);
+
+		return label;
+	}
+
+	public JLabel getSword(int pos){
+		return swords[pos];
+	}
+
+	public JLabel getTarjet(int pos){
+		return tarjets[pos];
 	}
 
 	void addCard(SmallCard card, int pos){

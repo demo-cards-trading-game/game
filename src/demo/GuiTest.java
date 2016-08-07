@@ -55,7 +55,9 @@ public class GuiTest extends JFrame implements ActionListener {
         getContentPane().add(button, BorderLayout.CENTER);
 
         try {
+            fieldGui.addCard(new SmallCard(card,0,0),0);
             fieldGui.addCard(new SmallCard(card,0,0),1);
+            fieldGui.addCard(new SmallCard(card,0,0),2);
             repaint();
         } catch (IOException e) {
             e.printStackTrace();
