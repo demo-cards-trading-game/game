@@ -1,15 +1,17 @@
 package demo;
+import utils.GeneralConstants;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.io.IOException;
 
-public class AIGui extends JPanel {
+public class AIGui extends JPanel implements GeneralConstants{
 
 	public FieldGui aifield;
 	public AiDeck aideck;
 	public AiHand aihand;
-	public Barriers2 barriers;
+	public Barriers barriers;
 	public Drained_2 aidra;
 	public int whereInvoqued;
 
@@ -21,7 +23,7 @@ public class AIGui extends JPanel {
 		aifield=new FieldGui(225,197);
 		add(aifield);
 
-		barriers=new Barriers2(180,140);
+		barriers=new Barriers(180,140, BARRIER_AI_POSITION);
 		add(barriers);
 
 		aideck=new AiDeck(-70,10);
@@ -37,7 +39,7 @@ public class AIGui extends JPanel {
 
 		for (int i=1;i<=5;i++){
 			aihand.draw(aideck.Deck.extraerR());
-			barriers.addbarrier(aideck.Deck.extraerR());
+			barriers.addCard(aideck.Deck.extraerR());
 		}
 	}
 }

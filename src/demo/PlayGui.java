@@ -162,7 +162,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		for(int i=1;i<=5;i++){
 			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
-			player.barriers.addbarrier(player.pdeck.Deck.extraerR());
+			player.barriers.addCard(player.pdeck.Deck.extraerR());
 			Addlisteners2Card(pos-1);
 			player.hand.handgui[pos-1].addMouseListener(this);
 			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
@@ -487,7 +487,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}
 							player.hand.handgui[pos-1].addMouseListener(this);
 							Addlisteners2Card(pos-1);
-							player.barriers.removebarrier(i);
+							player.barriers.removeCard(i);
 							barierpicked=1;
 							repaint();
 							repairListeners(false);
@@ -816,8 +816,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 								ai.aihand.discard(5);
 							}
 							if(which!=-1){
-								ai.barriers.removebarrier(which);
-								Barriers2.barriers[which].setVisible(false);
+								ai.barriers.removeCard(which);
+								Barriers.barriers[which].setVisible(false);
 								repaint();
 							}else{
 								instanciaGui.doWin();
@@ -2237,7 +2237,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 						if(location!=-1){
 							player.hand.draw(Barriers.cards[location]);
-							player.barriers.removebarrier(location);
+							player.barriers.removeCard(location);
 							Barriers.barriers[location].setVisible(false);
 						}
 						else {

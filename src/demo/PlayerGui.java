@@ -1,4 +1,6 @@
 package demo;
+import utils.GeneralConstants;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-public class PlayerGui extends JLayeredPane implements ActionListener,MouseListener {
+public class PlayerGui extends JLayeredPane implements ActionListener,MouseListener, GeneralConstants {
 	public HandGui hand;
 	public DeckGui pdeck;
 	public Drained powers;
@@ -28,7 +30,7 @@ public class PlayerGui extends JLayeredPane implements ActionListener,MouseListe
 		powers=new Drained(15,350,name);
 		add(powers);
 
-		barriers =new Barriers(179,590);
+		barriers =new Barriers(179,590, BARRIER_PLAYER_POSITION);
 		add(barriers);
 
 		pdeck = new DeckGui(0,0);
