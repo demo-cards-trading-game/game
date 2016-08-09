@@ -226,7 +226,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 						if(PlayGui.player.pdeck.Deck.cardsLeft()!= 0 ){
 							CardGui nueva= null;
 							try {
-								nueva = new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+								nueva = new CardGui(PlayGui.player.pdeck.Deck.extractCard(),0,0);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
@@ -333,7 +333,7 @@ public class Gui extends JFrame implements ActionListener, MouseListener{
 						if(PlayGui.player.pdeck.Deck.cardsLeft()!= 0 ){
 							CardGui nueva= null;
 							try {
-								nueva = new CardGui(PlayGui.player.pdeck.Deck.extraerR(),0,0);
+								nueva = new CardGui(PlayGui.player.pdeck.Deck.extractCard(),0,0);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}

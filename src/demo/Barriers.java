@@ -58,7 +58,7 @@ public class Barriers extends JPanel implements GeneralConstants{
 		return cards[pos];
 	}
 
-	public int getCurretCards(){
+	public int getCardsLenght(){
 		int cont =0;
 		for (int i=0; i<5; i++){
 			if(cards[i]!=null){

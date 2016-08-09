@@ -9,57 +9,58 @@ import java.util.Scanner;
 public class deck {
     public   Card[]  cards  = new Card[40];
     private boolean[]  verif  = new boolean[40];
-    public LoadData lista;
+    public LoadData list;
 
     public int cardsLeft(){
-        return longitud;
+        return length;
     }
 
-    class nodo{
+    class Node {
         Card info;
-        nodo sig;
+        Node next;
     }
 
-    private nodo raiz;
-    public int longitud;
+    private Node root;
+    public int length;
 
     public deck() throws IOException {
-        raiz= null;
-        longitud=0;
-        lista=new LoadData();
+        root = null;
+        length =0;
+        list =new LoadData();
     }
 
     void init(){
         for (int i=0;i<40;i++){
             verif[i]=false;
+            cards[i]= getCard(i);
         }
     }
-    public void shuffle() {
+    public void shuffleDeck() {
         int a,b;
         init();
         Random randomGenerator = new Random();
 	 	
-        raiz= null;
-        longitud=0;
+        root = null;
+        length =0;
 
         for(int i=0 ;i< 20;i++){
             a = randomGenerator.nextInt(cards.length-1);
             b=randomGenerator.nextInt(cards.length-1);
 
             if(verif[a]){
-                a=findanother();
+                a= findAnother();
             }
 
             if(verif[b]){
-                b=findanother();
+                b= findAnother();
             }
 
-            exch(a,b);
-            this.insertar( cards[a]);
-            this.insertar( cards[b]);
+            exchange(a,b);
+            this.addCard( cards[a]);
+            this.addCard( cards[b]);
         }
     }
-    public int findanother(){
+    public int findAnother(){
         int i=0;
         int x;
         Random randomGenerator = new Random();
@@ -74,7 +75,7 @@ public class deck {
         return(x);
     }
 
-    private void exch( int i, int r) {
+    private void exchange(int i, int r) {
         Card swamp = new Card();
         swamp.asignar(cards[i]);
         cards[i].asignar(cards[r]);
@@ -83,102 +84,102 @@ public class deck {
         verif[r]=true;
     }
 
-    public Card Consultar(int pos){
-        Card informacion;
+    public Card getCard(int pos){
+        Card info;
 
         if (pos == 1){
-            informacion = raiz.info;
+            info = root.info;
         }else{
-            nodo reco;
-            reco = raiz;
+            Node travel;
+            travel = root;
             for (int f = 2 ; f <= pos  ; f++)
-                reco = reco.sig;
-            informacion=reco.info;
+                travel = travel.next;
+            info=travel.info;
         }
-        return informacion;
+        return info;
     }
 
-    public Card ConsultarYextraer(int pos){
-        Card informacion;
-        nodo sig;
-        nodo ant;
+    public Card getCardAndExtract(int pos){
+        Card info;
+        Node sig;
+        Node ant;
         if (pos == 1){
-            informacion = raiz.info;
-            raiz=raiz.sig;
+            info = root.info;
+            root = root.next;
         }else{
-            nodo reco;
-            ant = raiz;
-            reco=ant.sig;
-            sig=reco.sig;
+            Node reco;
+            ant = root;
+            reco=ant.next;
+            sig=reco.next;
             for (int f = 2 ; f < pos  ; f++){
-                ant=ant.sig;
-                reco = ant.sig;
-                sig = reco.sig;
+                ant=ant.next;
+                reco = ant.next;
+                sig = reco.next;
             }
-            informacion=reco.info;
-            ant.sig=sig;
+            info=reco.info;
+            ant.next =sig;
         }
-        longitud--;
-        return informacion;
+        length--;
+        return info;
     }
 
-    public int posCard(String id){
+    public int getPosCard(String id){
         int pos=-1;
         for(int i=0; i<this.cardsLeft(); i++){
-            if(this.Consultar(i).getId().equals(id)){
+            if(this.getCard(i).getId().equals(id)){
                 pos=i;
             }
         }
         return pos;
     }
 
-    public void insertar(Card c){
-        nodo nuevo= new nodo();
-        nuevo.info= c;
-        if(raiz==null){
-            nuevo.sig=null;
-            raiz=nuevo;
+    public void addCard(Card c){
+        Node newNode= new Node();
+        newNode.info= c;
+        if(root ==null){
+            newNode.next =null;
+            root =newNode;
         }else{
-            nuevo.sig=raiz;
-            raiz = nuevo;
+            newNode.next = root;
+            root = newNode;
         }
-        longitud++;
+        length++;
     }
 
-    public Card extraerR(){
-        Card ident=new Card();
-        if(raiz!=null){
-            ident= raiz.info;
-            raiz = raiz.sig;
-            longitud--;
+    public Card extractCard(){
+        Card card=new Card();
+        if(root !=null){
+            card= root.info;
+            root = root.next;
+            length--;
         }
-        return ident;
+        return card;
     }
 
-    public void Load(String nombredeck)throws IOException{
-        String cadena;
-        int numero = 0,veces=0;
+    public void load(String deckName)throws IOException{
+        String string;
+        int number = 0,times=0;
         Scanner s;
-        FileReader f = new FileReader(nombredeck);
+        FileReader f = new FileReader(deckName);
         BufferedReader b = new BufferedReader(f);
 
-        while(  (cadena = b.readLine())!=null ){
-            s=new Scanner(cadena);
+        while(  (string = b.readLine())!=null ){
+            s=new Scanner(string);
             if(s.hasNext()){
-                numero= Integer.parseInt(s.next());
-                veces= Integer.parseInt(s.next());
+                number= Integer.parseInt(s.next());
+                times= Integer.parseInt(s.next());
             }
 
-            for (int i=1;i<=veces;i++){
-                insertar(lista.Data.Consultar(numero));
+            for (int i=1;i<=times;i++){
+                addCard(list.Data.Consultar(number));
             }
         }
-        barajear();
-    }
-    public void barajear(){
-        for (int i =0; i<40;i++){
-            cards[i]=Consultar(i);
-        }
         shuffle();
+    }
+    public void shuffle(){
+        for (int i =0; i<40;i++){
+            cards[i]= getCard(i);
+        }
+        shuffleDeck();
     }
 }

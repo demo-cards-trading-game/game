@@ -161,8 +161,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		aitarjet11 = new JLabel[5];
 
 		for(int i=1;i<=5;i++){
-			int pos= player.hand.draw(player.pdeck.Deck.extraerR());
-			player.barriers.addCard(player.pdeck.Deck.extraerR());
+			int pos= player.hand.draw(player.pdeck.Deck.extractCard());
+			player.barriers.addCard(player.pdeck.Deck.extractCard());
 			Addlisteners2Card(pos-1);
 			player.hand.handgui[pos-1].addMouseListener(this);
 			ai.aideck.textField.setText("cards left "+ ai.aideck.Deck.cardsLeft());
@@ -445,7 +445,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			this.listAll.opciones.setVisible(false);
 			int pos= 0;
 			try {
-				pos = player.hand.draw(player.pdeck.Deck.ConsultarYextraer(this.listAll.num));
+				pos = player.hand.draw(player.pdeck.Deck.getCardAndExtract(this.listAll.num));
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 				e1.printStackTrace();
 			}
@@ -887,7 +887,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				System.out.println("your card will be placed on top of the deck");
 				Card c;
 				c=player.hand.cards[0];
-				player.pdeck.Deck.insertar(c);
+				player.pdeck.Deck.addCard(c);
 				try {
 					player.hand.discard(1);
 				} catch (IOException e1) {
@@ -1381,7 +1381,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			}
 
 			if(pos==-3){
-				Hero=new SmallCard(player.pdeck.Deck.lista.Data.Consultar(9),0,0);
+				Hero=new SmallCard(player.pdeck.Deck.list.Data.Consultar(9),0,0);
 				player.field.removeCard(donde);
 				player.powers.play(Hero.getcard().getCost());
 				player.field.addCard(Hero, donde);
@@ -1411,7 +1411,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			c=player.hand.handgui[pos].getcard().getCost();
 			allowed= warriorPlayed == 0 ||(!Objects.equals(player.hand.handgui[pos].getcard().getType(), "Warrior") && warriorPlayed ==1 );
 		}else if (pos==-3)
-			c=player.pdeck.Deck.lista.Data.Consultar(9).getCost();
+			c=player.pdeck.Deck.list.Data.Consultar(9).getCost();
 		else
 			c=player.pdeck.Hero.getcard().getCost();
 
@@ -1442,7 +1442,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 		phases.changeTurn(phases.actual+1);
 
-		ai.aihand.draw(ai.aideck.Deck.extraerR());
+		ai.aihand.draw(ai.aideck.Deck.extractCard());
 		ai.aideck.textField.setText("cards left "+ai.aideck.Deck.cardsLeft());
 		ai.aideck.textField.repaint();
 
@@ -1556,7 +1556,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 			if(id.equals("SSD-2")){
 				int p;
 				System.out.println("adding a water power from the deck");
-				p=this.ai.aideck.Deck.posCard("SSD-15");
+				p=this.ai.aideck.Deck.getPosCard("SSD-15");
 				if(p==-1){
 					System.out.println("cannot find a water power");
 				}else{
@@ -1572,11 +1572,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 				Random randomGenerator = new Random();
 				int test = randomGenerator.nextInt(this.ai.aihand.countcards());
 				c=ai.aihand.cards[test];
-				ai.aideck.Deck.insertar(c);
+				ai.aideck.Deck.addCard(c);
 				ai.aihand.discard(test);
 
 				System.out.println("adding a water power from the deck");
-				p=this.ai.aideck.Deck.posCard("SSD-15");
+				p=this.ai.aideck.Deck.getPosCard("SSD-15");
 				if(p==-1){
 					System.out.println("cannot find a water power");
 				}else{
@@ -1758,7 +1758,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		if (this.phases.actual == 3) {
 			if(id.equals("SSD-02")){
 				int p;
-				p=this.ai.aideck.Deck.posCard("SSD-15");
+				p=this.ai.aideck.Deck.getPosCard("SSD-15");
 				if(p==-1){
 					System.out.println("cannot find a water power");
 				}else{
@@ -2078,11 +2078,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void addPowerCardFromTheDeck() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		int p = player.pdeck.Deck.posCard("SSD-15");
+		int p = player.pdeck.Deck.getPosCard("SSD-15");
 		if(p ==-1){
 			System.out.println("cannot find a water power");
 		}else{
-			int pos= player.hand.draw(player.pdeck.Deck.ConsultarYextraer(p));
+			int pos= player.hand.draw(player.pdeck.Deck.getCardAndExtract(p));
 			player.hand.handgui[pos-1].addMouseListener(this);
 			Addlisteners2Card(pos-1);
 			player.pdeck.textField.setText("cards left "+ player.pdeck.Deck.cardsLeft());
