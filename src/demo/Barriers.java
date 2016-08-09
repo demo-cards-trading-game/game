@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Barriers extends JPanel implements GeneralConstants{
-	public static  JLabel[]  barriers   = new JLabel[5];
-	public static  Card[]  cards   = new Card[5];
+	public JLabel[]  barriers   = new JLabel[5];
+	public Card[]  cards   = new Card[5];
 	public int boundAxisX[] = {96,194,290,386,486};
 
 	public Barriers(int x ,int y, int barrierPos) throws IOException {

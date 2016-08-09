@@ -476,28 +476,28 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					moveToFront(fallenAi);
 				}
 
-				if(barierpicked==0){
-					for(int i=0;i<Barriers.barriers.length;i++){
-						if(e.getSource()== Barriers.barriers[i]){
-							int pos= 0;
-							try {
-								pos = player.hand.draw(Barriers.cards[i]);
-							} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-								e1.printStackTrace();
-							}
-							player.hand.handgui[pos-1].addMouseListener(this);
-							Addlisteners2Card(pos-1);
-							player.barriers.removeCard(i);
-							barierpicked=1;
-							repaint();
-							repairListeners(false);
-						}
-					}
-				}else{
-					if(phases.actual==1){
-						System.out.println("sorry u can only get a card from barriers per turn");
-					}
-				}
+//				if(barierpicked==0){
+//					for(int i=0;i<Barriers.barriers.length;i++){
+//						if(e.getSource()== Barriers.barriers[i]){
+//							int pos= 0;
+//							try {
+//								pos = player.hand.draw(Barriers.cards[i]);
+//							} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+//								e1.printStackTrace();
+//							}
+//							player.hand.handgui[pos-1].addMouseListener(this);
+//							Addlisteners2Card(pos-1);
+//							player.barriers.removeCard(i);
+//							barierpicked=1;
+//							repaint();
+//							repairListeners(false);
+//						}
+//					}
+//				}else{
+//					if(phases.actual==1){
+//						System.out.println("sorry u can only get a card from barriers per turn");
+//					}
+//				}
 
 				if((e.getSource()==phases.getLabel(PHASES_SETUP))||(e.getSource()==phases.getLabel(PHASES_DRAW))||(e.getSource()==phases.getLabel(PHASES_ACTION))||(e.getSource()==phases.getLabel(PHASES_ATTACK))||(e.getSource()==phases.getLabel(PHASES_END))){
 					repaint();
@@ -541,19 +541,19 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							break;
 						case 1:
 							this.phases.getLabel(PHASES_DRAW).removeMouseListener(this);
-							for(int i=0;i<Barriers.barriers.length;i++){
-								if(Barriers.barriers[i]!=null){
-									Barriers.barriers[i].addMouseListener(this);
-								}
-							}
+//							for(int i=0;i<Barriers.barriers.length;i++){
+//								if(Barriers.barriers[i]!=null){
+//									Barriers.barriers[i].addMouseListener(this);
+//								}
+//							}
 							this.phases.getLabel(PHASES_ACTION).addMouseListener(this);
 							break;
 						case 2:
-							for(int i=0;i<Barriers.barriers.length;i++){
-								if(Barriers.barriers[i]!=null){
-									Barriers.barriers[i].removeMouseListener(this);
-								}
-							}
+//							for(int i=0;i<Barriers.barriers.length;i++){
+//								if(Barriers.barriers[i]!=null){
+//									Barriers.barriers[i].removeMouseListener(this);
+//								}
+//							}
 							this.phases.getLabel(PHASES_ACTION).removeMouseListener(this);
 							this.phases.getLabel(PHASES_ATTACK).addMouseListener(this);
 
@@ -579,8 +579,8 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							break;
 						case 4:
 							if(ready==1){
-								for (int i=0;i<Barriers.barriers.length;i++)
-									Barriers.barriers[i].removeMouseListener(this);
+//								for (int i=0;i<Barriers.barriers.length;i++)
+//									Barriers.barriers[i].removeMouseListener(this);
 								ready=0;
 								this.phases.getLabel(PHASES_SETUP).addMouseListener(this);
 
@@ -817,7 +817,7 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 							}
 							if(which!=-1){
 								ai.barriers.removeCard(which);
-								Barriers.barriers[which].setVisible(false);
+//								Barriers.barriers[which].setVisible(false);
 								repaint();
 							}else{
 								instanciaGui.doWin();
@@ -923,12 +923,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void mouseExited(MouseEvent e) {
-		for(int i=0;i<Barriers.barriers.length;i++){
-			if(e.getSource()== Barriers.barriers[i]){
-				Barriers.barriers[i].setBackground(new Color(128, 128, 128));
-				repaint();
-			}
-		}
+//		for(int i=0;i<Barriers.barriers.length;i++){
+//			if(e.getSource()== Barriers.barriers[i]){
+//				Barriers.barriers[i].setBackground(new Color(128, 128, 128));
+//				repaint();
+//			}
+//		}
 
 		if(e.getSource()==Hero){
 			remove(unleash);
@@ -1001,12 +1001,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	}
 
 	public void mouseEntered(MouseEvent e) {
-		for(int i=0;i<Barriers.barriers.length;i++){
-			if(e.getSource()== Barriers.barriers[i]){
-				Barriers.barriers[i].setBackground(Color.red);
-				repaint();
-			}
-		}
+//		for(int i=0;i<Barriers.barriers.length;i++){
+//			if(e.getSource()== Barriers.barriers[i]){
+//				Barriers.barriers[i].setBackground(Color.red);
+//				repaint();
+//			}
+//		}
 
 		if(e.getSource()==Hero){
 			unleash.setBounds(Hero.getX()+220,Hero.getY()+350,100,150);
@@ -1772,11 +1772,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 
 	public int contarBarriers() {
 		int cont = 0;
-		for (int i = 0; i < Barriers.cards.length; i++) {
-			if (Barriers.cards[i] != null) {
-				cont++;
-			}
-		}
+//		for (int i = 0; i < Barriers.cards.length; i++) {
+//			if (Barriers.cards[i] != null) {
+//				cont++;
+//			}
+//		}
 		return cont;
 	}
 
@@ -1826,12 +1826,12 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 	public int findPlayerBarrierToRemove(){
 		int aux=-1;
 		
-		for (int i = 0; i < Barriers.barriers.length; i++) {
-			if (Barriers.barriers[i].isVisible()) {
-				aux=i;
-				break;
-			}
-		}
+//		for (int i = 0; i < Barriers.barriers.length; i++) {
+//			if (Barriers.barriers[i].isVisible()) {
+//				aux=i;
+//				break;
+//			}
+//		}
 		return aux;
 	}
 	
@@ -2235,15 +2235,15 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 					if(atkOrigin!=-1 && atkDest==-1 && countCardsInPlayerField()==0){
 						int location = findPlayerBarrierToRemove();
 
-						if(location!=-1){
-							player.hand.draw(Barriers.cards[location]);
-							player.barriers.removeCard(location);
-							Barriers.barriers[location].setVisible(false);
-						}
-						else {
-							instanciaGui.doGameOver();
-							repaint();
-						}
+//						if(location!=-1){
+//							player.hand.draw(Barriers.cards[location]);
+//							player.barriers.removeCard(location);
+//							Barriers.barriers[location].setVisible(false);
+//						}
+//						else {
+//							instanciaGui.doGameOver();
+//							repaint();
+//						}
 					}
 
 					if(atkDest!=-1 && atkOrigin!=-1  )
@@ -2317,11 +2317,11 @@ public class PlayGui extends JLayeredPane implements ActionListener, MouseListen
 		}
 
 		this.phases.getLabel(PHASES_DRAW).removeMouseListener(this);
-		for(int i=0;i<Barriers.barriers.length;i++){
-			if(Barriers.barriers[i]!=null){
-				Barriers.barriers[i].addMouseListener(this);
-			}
-		}
+//		for(int i=0;i<Barriers.barriers.length;i++){
+//			if(Barriers.barriers[i]!=null){
+//				Barriers.barriers[i].addMouseListener(this);
+//			}
+//		}
 		this.phases.getLabel(PHASES_ACTION).addMouseListener(this);
 
 		Thread t = new Thread(() -> {
