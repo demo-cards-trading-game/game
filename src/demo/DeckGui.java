@@ -17,7 +17,7 @@ public class DeckGui extends JPanel {
 	
 	public DeckGui(int x,int y) throws IOException {
 		this.Deck=new deck();
-		Deck.Load("resources/siren.in");
+		Deck.load("resources/siren.in");
 
 		setBackground(new Color(255, 165, 0));
 		setBounds(x, y, 250, 340);

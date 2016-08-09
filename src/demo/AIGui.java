@@ -38,8 +38,8 @@ public class AIGui extends JPanel implements GeneralConstants{
 		repaint();
 
 		for (int i=1;i<=5;i++){
-			aihand.draw(aideck.Deck.extraerR());
-			barriers.addCard(aideck.Deck.extraerR());
+			aihand.draw(aideck.Deck.extractCard());
+			barriers.addCard(aideck.Deck.extractCard());
 		}
 	}
 }

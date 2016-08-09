@@ -132,7 +132,7 @@ public class prueba2 extends JInternalFrame
 
                 for (int ignored :leftTable.getSelectedRows()){
 					try {
-						current=new BigCard(mazo.Consultar(num),340,30);
+						current=new BigCard(mazo.getCard(num),340,30);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -245,7 +245,7 @@ public class prueba2 extends JInternalFrame
     	
 		for(i=0;i<cant;i++)
 		{
-			x= this.mazo.Consultar(i);
+			x= this.mazo.getCard(i);
 			color = selectColor(x);
 
 			id=x.getCardNumber();

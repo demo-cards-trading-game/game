@@ -19,7 +19,7 @@ public class AiDeck extends JPanel {
 		setLayout(null);
 
 		this.Deck = new deck();
-		Deck.Load("resources/siren.in");
+		Deck.load("resources/siren.in");
 
 		textField = new JTextField("Cards left "+ Deck.cardsLeft(), 10);
 		textField.setEditable(false);
